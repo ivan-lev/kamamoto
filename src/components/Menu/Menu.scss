@@ -1,0 +1,12 @@
+.menu {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  text-transform: uppercase;
+
+  &__link {
+    text-decoration: none;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+}
