@@ -1,5 +1,13 @@
 import './Header.scss';
 
-export default function Header() {
-  return <header className="header">Header here</header>;
+import Logo from '../Logo/Logo';
+import Menu from '../Menu/Menu';
+
+export default function Header(): JSX.Element {
+  return (
+    <header className="header bordered">
+      <Logo />
+      <Menu />
+    </header>
+  );
 }
