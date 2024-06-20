@@ -1,3 +1,6 @@
+@import url('./variables/colors.scss');
+@import url('./variables/fonts.scss');
+
 body {
   margin: 0;
   display: flex;
@@ -5,4 +8,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  font-family: Roboto, Inter, Helvetica, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
