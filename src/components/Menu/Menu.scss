@@ -9,4 +9,8 @@
     color: var(--text-primary);
     cursor: pointer;
   }
+
+  &__link_active {
+    font-weight: bold;
+  }
 }

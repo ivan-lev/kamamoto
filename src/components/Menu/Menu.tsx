@@ -1,28 +1,26 @@
 import './Menu.scss';
 
+import { NavLink } from 'react-router-dom';
+
+import { menu } from '../../variables/menu';
+
 export default function Menu(): JSX.Element {
   return (
     <ul className="menu">
-      <li>
-        <a className="menu__link" href="#">
-          Обо мне
-        </a>
-      </li>
-      <li>
-        <a className="menu__link" href="#">
-          Коллекция
-        </a>
-      </li>
-      <li>
-        <a className="menu__link" href="#">
-          Выставки
-        </a>
-      </li>
-      <li>
-        <a className="menu__link" href="#">
-          Контакты
-        </a>
-      </li>
+      {menu.map(element => {
+        return (
+          <li key={element.name}>
+            <NavLink
+              // className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => `menu__link ${isActive ? 'menu__link_active' : ''}`}
+              // className="menu__link"
+              to={element.link}
+            >
+              {element.name}
+            </NavLink>
+          </li>
+        );
+      })}
     </ul>
   );
 }
