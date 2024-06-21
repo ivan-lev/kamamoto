@@ -1,5 +1,6 @@
 @import url('./variables/colors.scss');
 @import url('./variables/fonts.scss');
+@import url('./variables/commonClasses.scss');
 
 body {
   margin: 0;
@@ -10,7 +11,7 @@ body {
   min-height: 100vh;
 
   background-color: var(--background-primary);
-  color: var(--text-primary);
+  color: var(--text-default);
   font-family: Roboto, Inter, Helvetica, sans-serif;
 }
 
