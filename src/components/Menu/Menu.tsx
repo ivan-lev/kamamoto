@@ -11,9 +11,7 @@ export default function Menu(): JSX.Element {
         return (
           <li key={element.name}>
             <NavLink
-              // className={({ isActive }) => (isActive ? 'active' : '')}
               className={({ isActive }) => `menu__link ${isActive ? 'menu__link_active' : ''}`}
-              // className="menu__link"
               to={element.link}
             >
               {element.name}

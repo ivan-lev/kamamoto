@@ -6,11 +6,18 @@
 
   &__link {
     text-decoration: none;
-    color: var(--text-primary);
+    font-family: var(--menu-font);
+    color: var(--text-default);
+    letter-spacing: 3px;
     cursor: pointer;
   }
 
   &__link_active {
     font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: var(--text-muted);
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
   }
 }
