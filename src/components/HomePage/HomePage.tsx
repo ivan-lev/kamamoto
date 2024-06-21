@@ -12,7 +12,7 @@ import { images } from '../../variables/images';
 export default function HomePage() {
   return (
     <>
-      <h1 className="header1">Kamamoto - коллекция японской керамики</h1>
+      <h1 className="title title1">Kamamoto - коллекция японской керамики</h1>
       <ImageGallery items={images} />
       <Statistics />
     </>
