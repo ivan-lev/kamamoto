@@ -1,0 +1,34 @@
+.about {
+  display: grid;
+  grid-template-areas:
+    'avatar heading'
+    '. content'
+    '. links';
+  max-width: 1280px;
+
+  &__avatar {
+    width: 300px;
+    grid-area: avatar;
+    align-self: start;
+  }
+
+  &__heading {
+    grid-area: heading;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__content {
+    grid-area: content;
+    max-width: 800px;
+  }
+
+  &__links {
+    grid-area: links;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
