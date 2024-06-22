@@ -54,13 +54,9 @@
     height: 38px;
     box-sizing: border-box;
     padding: 10px;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    border-radius: 500px;
-    border: 1px solid var(--border-default, rgba(218, 197, 167, 0.15));
-    background: var(--background-muted, rgba(218, 197, 167, 0.05));
+    border-radius: 50%;
   }
 
   &__column-title {

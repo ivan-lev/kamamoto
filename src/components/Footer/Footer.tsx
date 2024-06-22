@@ -23,17 +23,15 @@ export default function Footer() {
         <Link to="/files" className="footer__column-element">
           Файлы для скачивания
         </Link>
-        <Link to="/downloads" className="footer__column-element">
+        <Link to="/documents" className="footer__column-element">
           Шаблоны документов
         </Link>
-        {/* <span className="footer__column-element">файлы для скачивания</span>
-        <span className="footer__column-element">шаблоны документов</span> */}
       </div>
       <div className="footer__bottom-line">
         <span className="footer__copyright">&copy; 2024 Сайт создан Иваном Львом</span>
         <a className="link footer__column-element" href="#">
           Вверх
-          <img className="footer__icon" src="/icons/link-arrow-up.svg" />
+          <img className="background-muted bordered footer__icon" src="/icons/link-arrow-up.svg" />
         </a>
       </div>
     </footer>
