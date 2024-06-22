@@ -8,7 +8,7 @@ import Collection from '../Collection/Collection';
 import Exhibitions from '../Exhibitions/Exhibitions';
 import Contacts from '../Contacts/Contacts';
 import Files from '../Files/Files';
-import Downloads from '../Downloads/Downloads';
+import Documents from '../Documents/Documents';
 
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
@@ -22,7 +22,7 @@ export default function Main() {
         <Route path="/exhibitions" element={<Exhibitions />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/files" element={<Files />} />
-        <Route path="/downloads" element={<Downloads />} />
+        <Route path="/documents" element={<Documents />} />
       </Routes>
     </main>
   );
