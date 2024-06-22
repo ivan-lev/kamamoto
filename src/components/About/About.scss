@@ -31,4 +31,20 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
+
+  &__link::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-image: url('../../../public/icons/link-arrow-up.svg');
+    margin-left: auto;
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
 }

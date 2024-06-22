@@ -2,6 +2,8 @@ import './About.scss';
 
 import avatar from '/avatar.jpg';
 
+import { socialLinks } from '../../variables/socialLinks';
+
 export default function About() {
   return (
     <section className="section about">
@@ -29,15 +31,14 @@ export default function About() {
         </p>
       </div>
       <div className="about__links">
-        <a className="link link_instagram background-muted bordered" href="#">
-          Instagram
-        </a>
-        <a className="link link_telegram background-muted bordered" href="#">
-          Telegram
-        </a>
-        <a className="link link_mail background-muted bordered" href="#">
-          Email
-        </a>
+        {socialLinks.map(socialLink => {
+          return (
+            <a className="link background-muted bordered about__link" href={socialLink.link}>
+              <img className="about__icon" src={socialLink.icon} />
+              {socialLink.title}
+            </a>
+          );
+        })}
       </div>
     </section>
   );
