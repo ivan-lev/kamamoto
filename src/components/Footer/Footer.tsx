@@ -1,5 +1,7 @@
 import './Footer.scss';
 
+import { Link } from 'react-router-dom';
+
 import { socialLinks } from '../../variables/socialLinks';
 
 export default function Footer() {
@@ -18,8 +20,14 @@ export default function Footer() {
       </div>
       <div className="footer__column footer__useful">
         <span className="footer__column-element footer__column-title">Полезные материалы</span>
-        <span className="footer__column-element">файлы для скачивания</span>
-        <span className="footer__column-element">шаблоны документов</span>
+        <Link to="/files" className="footer__column-element">
+          Файлы для скачивания
+        </Link>
+        <Link to="/downloads" className="footer__column-element">
+          Шаблоны документов
+        </Link>
+        {/* <span className="footer__column-element">файлы для скачивания</span>
+        <span className="footer__column-element">шаблоны документов</span> */}
       </div>
       <div className="footer__bottom-line">
         <span className="footer__copyright">&copy; 2024 Сайт создан Иваном Львом</span>
