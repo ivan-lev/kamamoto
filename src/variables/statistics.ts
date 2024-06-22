@@ -1,4 +1,4 @@
-import type { StatisticsType } from '../components/types/statisticsType';
+import type { StatisticsType } from '../types/statisticsType';
 
 export const statistics: StatisticsType = [
   { header: 'Год начала', value: '2005' },

@@ -1,4 +1,4 @@
-import type { Menu } from '../components/types/menuType';
+import type { Menu } from '../types/menuType';
 
 export const menu: Menu = [
   { name: 'Обо мне', link: '/about' },
