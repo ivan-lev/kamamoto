@@ -8,13 +8,15 @@ export default function Exhibitions() {
     <section className="exhibitions">
       <h2 className="title title2">Выставки</h2>
       <ul className="exhibitions__list">
-        {exhibitions.map(exhibition => {
-          return (
-            <li className="exhibitions__element" key={exhibition.id}>
-              <ExhibitionCard exhibition={exhibition} />
-            </li>
-          );
-        })}
+        {exhibitions
+          .map(exhibition => {
+            return (
+              <li className="exhibitions__element" key={exhibition.id}>
+                <ExhibitionCard exhibition={exhibition} />
+              </li>
+            );
+          })
+          .reverse()}
       </ul>
     </section>
   );
