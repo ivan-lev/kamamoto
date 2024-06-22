@@ -1,5 +1,33 @@
 import './Footer.scss';
 
+import { socialLinks } from '../../variables/socialLinks';
+
 export default function Footer() {
-  return <footer className="footer">&copy; 2024 Сайт создан Иваном Львом</footer>;
+  return (
+    <footer className="footer">
+      <div className="footer__column footer__social">
+        <span className="footer__column-element footer__column-title">Социальные ссылки</span>
+        {socialLinks.map(socialLink => {
+          return (
+            <a className="link footer__column-element" href={socialLink.link} key={socialLink.id}>
+              <img className="background-muted bordered footer__icon" src={socialLink.icon} />
+              {socialLink.title}
+            </a>
+          );
+        })}
+      </div>
+      <div className="footer__column footer__useful">
+        <span className="footer__column-element footer__column-title">Полезные материалы</span>
+        <span className="footer__column-element">файлы для скачивания</span>
+        <span className="footer__column-element">шаблоны документов</span>
+      </div>
+      <div className="footer__bottom-line">
+        <span className="footer__copyright">&copy; 2024 Сайт создан Иваном Львом</span>
+        <a className="link footer__column-element" href="#">
+          Вверх
+          <img className="footer__icon" src="/icons/link-arrow-up.svg" />
+        </a>
+      </div>
+    </footer>
+  );
 }
