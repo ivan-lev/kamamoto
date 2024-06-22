@@ -33,7 +33,11 @@ export default function About() {
       <div className="about__links">
         {socialLinks.map(socialLink => {
           return (
-            <a className="link background-muted bordered about__link" href={socialLink.link}>
+            <a
+              className="link background-muted bordered about__link"
+              href={socialLink.link}
+              key={socialLink.id}
+            >
               <img className="about__icon" src={socialLink.icon} />
               {socialLink.title}
             </a>
