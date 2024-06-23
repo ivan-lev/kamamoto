@@ -31,7 +31,7 @@ export default function Footer() {
         <span className="footer__copyright">&copy; 2024 Сайт создан Иваном Львом</span>
         <a className="link footer__column-element" href="#">
           Вверх
-          <img className="background-muted bordered footer__icon" src="/icons/link-arrow-up.svg" />
+          <img className="background-muted bordered link__icon" src="/icons/link-arrow-up.svg" />
         </a>
       </div>
     </footer>
