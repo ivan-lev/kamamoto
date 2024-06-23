@@ -10,10 +10,18 @@ export default function About() {
       <img className="about__avatar" src={avatar}></img>
       <div className="about__heading">
         <h2 className="title title2">Иван Лев</h2>
-        <p className="subtitle">Коллекционер японской керамики</p>
+        <ul className="list">
+          <li>Коллекционер японской керамики</li>
+          <li>Ценитель китайского чая</li>
+          <li>Веб-разработчик</li>
+        </ul>
+        <a className="link about__anchor-link" href="#about-author">
+          <img className="background-muted bordered link__icon" src="/icons/link-arrow-down.svg" />
+          Обо мне
+        </a>
       </div>
 
-      <div className="about__content container background-muted bordered">
+      <div id="about-author" className="about__content container background-muted bordered">
         <h3 className="title title3">Созерцая красоту</h3>
         <p className="text">
           As a freelance web designer and developer, I bring a unique combination of creativity and

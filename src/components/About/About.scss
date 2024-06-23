@@ -17,7 +17,8 @@
     align-self: start;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    height: 100%;
   }
 
   &__content {
@@ -30,6 +31,19 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+  }
+
+  &__anchor-link {
+    margin-top: auto;
+  }
+
+  &__link {
+    padding: 0 24px;
+    height: 56px;
+  }
+
+  &__link:hover {
+    background: var(--background-hover);
   }
 
   &__link::after {
