@@ -23,13 +23,13 @@ export default function About() {
 
       <div id="about-author" className="about__content container background-muted bordered">
         <h3 className="title title3">Созерцая красоту</h3>
-        <p className="text">
+        <p className="text text_muted">
           As a freelance web designer and developer, I bring a unique combination of creativity and
           technical expertise to every project. With a keen eye for design and a passion for
           delivering user-friendly web experiences, I work closely with clients to understand their
           needs and bring their vision to life.
         </p>
-        <p className="text">
+        <p className="text text_muted">
           My approach is rooted in collaboration and communication, and I take pride in my ability
           to explain technical concepts in simple terms. Whether I'm developing a new website from
           scratch or optimizing an existing site for search engines, I always strive for excellence
