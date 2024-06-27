@@ -35,7 +35,7 @@ const exhibitsSlice = createSlice({
     },
 
     setExhibit: (state, action) => {
-      state.exhibit = exhibits.find(exhibit => exhibit.id === action.payload);
+      state.exhibit = exhibits.find(exhibit => exhibit.id === Number(action.payload));
     },
 
     resetExhibit: state => {
