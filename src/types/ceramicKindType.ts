@@ -1,7 +1,8 @@
-export enum ceramicKindType {
-  bowl = 'Чаша',
+export enum CeramicKindType {
+  bowls = 'Чаша',
   cups = 'Пиалы',
   other = 'Другое',
-  plate = 'Тарелка',
-  vase = 'Ваза'
+  plates = 'Тарелка',
+  vases = 'Ваза',
+  caddies = 'Чайница'
 }
