@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import About from '../About/About';
 import Collection from '../Collection/Collection';
-import CollectionCategory from '../CollectionCategory/CollectionCategoty';
+import CollectionCategory from '../CollectionCategory/CollectionCategory';
 import Exhibit from '../Exhibit/Exhibit';
 import Exhibitions from '../Exhibitions/Exhibitions';
 import Contacts from '../Contacts/Contacts';
