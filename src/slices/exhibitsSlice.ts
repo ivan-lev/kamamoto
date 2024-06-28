@@ -3,17 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ExhibitsCategory } from '../types/exhibitsCategory';
 import type { Exhibit } from '../types/exhibitType';
 import { exhibits } from '../variables/exhibits';
+import { Images } from '../types/imageObjectType';
 
 interface exhibitsState {
   exhibitsCategory?: ExhibitsCategory;
   exhibitsList: Exhibit[];
   exhibit?: Exhibit;
+  images: Images;
 }
 
 const initialState: exhibitsState = {
   exhibitsCategory: undefined,
   exhibitsList: [],
-  exhibit: undefined
+  exhibit: undefined,
+  images: []
 };
 
 const exhibitsSlice = createSlice({
@@ -40,6 +43,14 @@ const exhibitsSlice = createSlice({
 
     resetExhibit: state => {
       state.exhibit = undefined;
+    },
+
+    setImages: (state, action) => {
+      state.images = action.payload;
+    },
+
+    resetImages: state => {
+      state.images = [];
     }
   }
 });
@@ -49,7 +60,9 @@ export const {
   setExhibitsList,
   resetExhibitionList,
   setExhibit,
-  resetExhibit
+  resetExhibit,
+  setImages,
+  resetImages
 } = exhibitsSlice.actions;
 
 export default exhibitsSlice.reducer;
