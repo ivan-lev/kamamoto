@@ -1,59 +1,50 @@
 import './Exhibit.scss';
 
-import parse, { Element } from 'html-react-parser';
-
+// React & Redux
 import { useEffect } from 'react';
-
-// Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../slices';
+import { resetExhibit, resetImages } from '../../slices/exhibitsSlice';
 
-//vendor components
+// Other packages
+import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
-import { Images } from '../../types/imageObjectType';
-
+// Utils
 import { handleSetExhibit } from '../../utils/handleSetExhibit';
+import { generateImageLinks } from '../../utils/generateImageLinks';
+
+// Variables
+import { htmlParserOptions } from '../../variables/htmlParserOptions';
 
 export default function Exhibit(): JSX.Element {
   const exhibit = useSelector((state: RootState) => state.exhibits.exhibit);
-
+  const images = useSelector((state: RootState) => state.exhibits.images);
   const dispatch = useDispatch();
-
-  const images: Images = [];
+  const options = htmlParserOptions;
 
   useEffect(() => {
     if (!exhibit) {
       handleSetExhibit(dispatch);
     }
-  }, [exhibit]);
 
-  for (let i = 1; i <= 10; i++) {
-    const imageLink = `/exhibits/${exhibit?.id}/${i === 10 ? '10' : '0' + i}.jpg`;
-    const imageObject = { original: imageLink, thumbnail: imageLink };
-    images.push(imageObject);
-  }
-
-  const options = {
-    replace(domNode: any) {
-      if (domNode instanceof Element && domNode.name === 'ul') {
-        domNode.attribs.class = 'list';
-        return domNode;
-      }
-      if (domNode instanceof Element && domNode.name === 'p') {
-        domNode.attribs.class = 'text';
-        return domNode;
-      }
+    if (exhibit) {
+      generateImageLinks(exhibit.id, dispatch);
     }
-  };
+
+    return () => {
+      exhibit && dispatch(resetExhibit());
+      dispatch(resetImages());
+    };
+  }, [exhibit]);
 
   return (
     <section className="section">
       <h3>{exhibit?.name}</h3>
-      <ImageGallery items={images} />
+      <ImageGallery items={images || []} />
       <div>{parse(exhibit?.description || '', options)}</div>
-      {exhibit?.additionalPhotos && <ImageGallery items={images} />}
+      {exhibit?.additionalPhotos && <ImageGallery items={images || []} />}
       <div>{parse(exhibit?.additionalDescription || '', options)}</div>
     </section>
   );
