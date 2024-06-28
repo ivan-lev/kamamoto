@@ -13,6 +13,10 @@ export type Exhibit = {
   description: string;
   additionalDescription?: string;
   price: number;
+  weigth?: number;
+  height?: number;
+  length?: number;
+  width?: number;
 };
 
 export type Exhibits = Exhibit[];
