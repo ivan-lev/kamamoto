@@ -1,4 +1,4 @@
-import './CollectionCategory.scss';
+import './Category.scss';
 
 import { useEffect } from 'react';
 
@@ -12,7 +12,7 @@ import { handleSetCategory } from '../../utils/handleSetCategory';
 import { Link } from 'react-router-dom';
 import { handleSetList } from '../../utils/handleSetList';
 
-export default function CollectionCategory(): JSX.Element {
+export default function Category(): JSX.Element {
   const dispatch = useDispatch();
   const categoryName = useSelector((state: RootState) => state.exhibits.exhibitsCategory);
   const categoryList = useSelector((state: RootState) => state.exhibits.exhibitsList);
@@ -25,15 +25,30 @@ export default function CollectionCategory(): JSX.Element {
   }, [categoryName]);
 
   return (
-    <section className="section">
-      <Link to="/collection">Назад</Link>
-      <h3>{categoryName}</h3>
-      <ul>
+    <section className="section category">
+      <Link className="link" to="/collection">
+        Назад
+      </Link>
+      <h3 className="title3 category__title">{categoryName}</h3>
+      <ul className="category__list">
         {categoryList &&
-          categoryList.map(item => {
+          categoryList.map((item, index) => {
             return (
-              <li key={item.id}>
+              <li className="category__item" key={item.id + index}>
                 <Link
+                  className="link"
+                  to={item.id.toString()}
+                  onClick={() => {
+                    dispatch(setExhibit(item.id));
+                  }}
+                >
+                  <img
+                    className="category__item-image"
+                    src={`/exhibits/${item?.id}/thumb.jpg`}
+                  ></img>
+                </Link>
+                <Link
+                  className="link category__link"
                   to={item.id.toString()}
                   onClick={() => {
                     dispatch(setExhibit(item.id));

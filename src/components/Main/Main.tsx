@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import About from '../About/About';
 import Collection from '../Collection/Collection';
-import CollectionCategory from '../CollectionCategory/CollectionCategory';
+import Category from '../Category/Category';
 import Exhibit from '../Exhibit/Exhibit';
 import Exhibitions from '../Exhibitions/Exhibitions';
 import Contacts from '../Contacts/Contacts';
@@ -19,7 +19,7 @@ export default function Main() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/collection" element={<Collection />} />
-        <Route path="/collection/:category" element={<CollectionCategory />} />
+        <Route path="/collection/:category" element={<Category />} />
         <Route path="/collection/:category/:exhibit" element={<Exhibit />} />
         <Route path="/exhibitions" element={<Exhibitions />} />
         <Route path="/contacts" element={<Contacts />} />
