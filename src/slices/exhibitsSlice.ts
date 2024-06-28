@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ExhibitsCategory } from '../types/exhibitsCategory';
 import type { Exhibit } from '../types/exhibitType';
-import { exhibits } from '../variables/exhibits';
+import { exhibits } from '../variables/exhibits/index';
 import { Images } from '../types/imageObjectType';
 
 interface exhibitsState {

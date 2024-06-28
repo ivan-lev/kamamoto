@@ -1,8 +1,8 @@
-import { ExhibitsCategory } from '../types/exhibitsCategory';
-import { CeramicStyleType } from '../types/ceramicStyleType';
-import type { Exhibits } from '../types/exhibitType';
+import { ExhibitsCategory } from '../../types/exhibitsCategory';
+import { CeramicStyleType } from '../../types/ceramicStyleType';
+import type { Exhibits } from '../../types/exhibitType';
 
-export const exhibits: Exhibits = [
+export const caddies: Exhibits = [
   {
     id: 2852,
     name: 'Чайница Такатори мастера Такатори Хассэна в 13м поколении',
