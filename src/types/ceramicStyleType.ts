@@ -1,10 +1,14 @@
 export enum CeramicStyleType {
-  arita = 'Arita',
-  bizen = 'Bizen',
-  echizen = 'Echizen',
-  hagi = 'Hagi',
-  oribe = 'Oribe',
-  raku = 'Raku',
+  akahada = 'Акахада',
+  arita = 'Арита',
+  bizen = 'Бидзэн',
+  echizen = 'Этидзэн',
+  hagi = 'Хаги',
+  kyo = 'Кё',
+  oribe = 'Орибэ',
+  raku = 'Раку',
+  shino = 'Сино',
   takatori = 'Такатори',
-  tokoname = 'Tokoname'
+  tokoname = 'Токонамэ',
+  unknown = 'не определён'
 }
