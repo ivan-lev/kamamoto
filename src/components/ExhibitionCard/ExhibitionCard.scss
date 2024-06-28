@@ -31,7 +31,8 @@
 
   &__card {
     grid-area: card;
-    width: 420px;
+    width: 100%;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     gap: 15px;
