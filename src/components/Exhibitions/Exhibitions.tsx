@@ -5,7 +5,7 @@ import { exhibitions } from '../../variables/exhibitions';
 
 export default function Exhibitions() {
   return (
-    <section className="exhibitions">
+    <section className="section exhibitions">
       <h2 className="title title2">Выставки</h2>
       <ul className="exhibitions__list">
         {exhibitions
