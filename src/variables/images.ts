@@ -1,11 +1,6 @@
-type ImageObject = {
-  original: string;
-  thumbnail: string;
-};
+import { Images } from '../types/imageObjectType';
 
-type ImagesObject = ImageObject[];
-
-export const images: ImagesObject = [
+export const images: Images = [
   {
     original: '01/1766.jpg',
     thumbnail: '01/1766.jpg'

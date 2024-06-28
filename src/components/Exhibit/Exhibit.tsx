@@ -12,7 +12,7 @@ import { RootState } from '../../slices';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
-import { Images } from '../../variables/images';
+import { Images } from '../../types/imageObjectType';
 
 import { handleSetExhibit } from '../../utils/handleSetExhibit';
 
