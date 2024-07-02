@@ -51,8 +51,6 @@ const exhibitsSlice = createSlice({
 export const {
   setExhibitsCategory,
   resetExhibitsCategory,
-  // setExhibitsList,
-  // resetExhibitionList,
   setExhibit,
   resetExhibit,
   setImages,
