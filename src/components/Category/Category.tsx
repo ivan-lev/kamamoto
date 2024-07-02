@@ -32,7 +32,7 @@ export default function Category(): JSX.Element {
           if (exhibit.category === categoryName) {
             return {
               id: exhibit.id,
-              thumb: `/exhibits/${exhibit.id}/thumb.jpg`,
+              thumb: `/exhibits/${exhibit.id}/0.jpg`,
               name: exhibit.name,
               link: `/collection/bowls/${exhibit.id}`
             };

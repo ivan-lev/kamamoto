@@ -16,15 +16,16 @@ export default function DisplayGrid({ action }: { action: any }): JSX.Element {
         {displayList &&
           displayList.map((item, index) => {
             return (
-              <Card
-                key={index}
-                link={item.link}
-                name={item.name}
-                image={item.thumb}
-                onClick={() => {
-                  dispatch(action(item.name));
-                }}
-              />
+              <li className="display-grid__element" key={index}>
+                <Card
+                  link={item.link}
+                  name={item.name}
+                  image={item.thumb}
+                  onClick={() => {
+                    dispatch(action(item.name));
+                  }}
+                />
+              </li>
             );
           })}
       </ul>

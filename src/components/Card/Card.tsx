@@ -14,12 +14,12 @@ export default function Card({
   onClick: any;
 }): JSX.Element {
   return (
-    <div className="category__item">
+    <div className="card">
       <Link className="link" to={link} onClick={onClick}>
-        <img className="category__item-image" src={image}></img>
+        <img className="card__image" src={image}></img>
       </Link>
-      <Link className="link category__link" to={link} onClick={onClick}>
-        {name}
+      <Link className="link card__link" to={link} onClick={onClick}>
+        <span className="card__name">{name}</span>
       </Link>
     </div>
   );
