@@ -9,7 +9,7 @@ import type { Exhibits } from '../../types/exhibitType';
 //     potterJapaneseName: '',
 //     potterPhoto: '',
 //     additionalPhotos: false,
-//     category: ExhibitCategory,
+//     category: ExhibitCategory.plates,
 //     style: CeramicStyleType,
 //     description: ``,
 //     additionalDescription: ``,
