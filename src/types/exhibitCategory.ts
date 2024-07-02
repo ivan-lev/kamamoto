@@ -1,8 +1,9 @@
 export enum ExhibitCategory {
   bowls = 'Чаши',
+  caddies = 'Чайницы',
   cups = 'Пиалы',
   other = 'Другое',
   plates = 'Тарелки',
-  vases = 'Вазы',
-  caddies = 'Чайницы'
+  teapots = 'Чайники',
+  vases = 'Вазы'
 }
