@@ -1,4 +1,4 @@
-import { ExhibitsCategory } from '../../types/exhibitsCategory';
+import { ExhibitCategory } from '../../types/exhibitCategory';
 import { CeramicStyleType } from '../../types/ceramicStyleType';
 import type { Exhibits } from '../../types/exhibitType';
 
@@ -10,7 +10,7 @@ export const bowls: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitsCategory.bowls,
+    category: ExhibitCategory.bowls,
     style: CeramicStyleType.kyo,
     description:
       'Прекрасная чаша в технике Кё с парой журавлей, летящих на фоне солнца. Чаша сделана в Киото и выполнена очень талантливым гончаром, который умело применяет и комбинирует различные декоративные техники. Например, солнце и силуэты журавлей выполнены в технике какиотоси — соскабливания верхнего слоя глины, под которым находится контрастная основа. Другие элементы выполнены в технике кинсаи иро-э — росписи надглазурными эмалевидными красками с применением золотого цвета.',
@@ -30,7 +30,7 @@ export const bowls: Exhibits = [
     potterJapaneseName: '古瀬堯三',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitsCategory.bowls,
+    category: ExhibitCategory.bowls,
     style: CeramicStyleType.akahada,
     description: `<p>Чаша с изображением трёх оленей (традиционный символ города Нара), располагающихся по периметру её тулова. Изготовлена мастером Фурусэ (Дзихэй) Гёдзо в 7-м поколении, имя при рождении — Такаси (隆). Мастер работает в семейной печи Акахадаяма Мотогама (赤膚山元窯), которая столетиями не меняет своей локации и находится в Нара, Япония. Мастер учился под руководством легендарных керамистов Томимото Кенкити (富本憲吉), Кондо Юдзо (近藤悠三) и Фудзимото Ёсимити (藤本能道).</p>
     <p>В 1959 году мастер окончил Киотский городской университет искусств, где познакомился с современными технологиями и идеями, и смог привнести это вдохновение в свои творения, органично соединив их с семейными традициями. Простота формы дополняется традиционной глазурью из рисовой соломы и обжигом в печи ноборигама (многокамерная печь дровяного обжига). В результате изделия приобретают вневременную, утонченную и уникально, не поддающуюся определению красоту.</p>
@@ -54,7 +54,7 @@ export const bowls: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitsCategory.bowls,
+    category: ExhibitCategory.bowls,
     style: CeramicStyleType.raku,
     description: `<p>Печь Кацура (桂窯) была основана в округе Арасияма города Киото, недалеко от реки Кацура. Основатель печи, Ёригами Сохаку, изначально производил черепицу для крыш храмов и замков. В свободное время он увлекался чаем и это сподвигло его начать производить чайную утварь. В 1953 он начал производить только чайную посудуи отурыл свою печь, наняв молодого ученика, Хигаки Сораку.</p>
     <p>Хигаки Сораку I (檜垣 崇楽) женился на дочери Ёригами и учился у своего тестя Ёригами Сохаку (寄神 崇白), унаследовав печь Кацура.</p>
@@ -75,7 +75,7 @@ export const bowls: Exhibits = [
     potterJapaneseName: '林 亮炊',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitsCategory.bowls,
+    category: ExhibitCategory.bowls,
     style: CeramicStyleType.shino,
     description: `<p>Чаша в технике Э-Сино (絵志野) с веткой цветущей сливы, выполненная мастером Хаяси Рёдзи.</p>
     <p>Хаяси Рёдзи (林 亮炊) — гончар Мино (美濃焼), управляющий печью Сояма (荘山窯), работающий в различных техниках: Сино, Орибэ, пепельная глазурь и другие. Родился в городе Токи, префектура Гифу в 1940 году.</p>
@@ -95,6 +95,40 @@ export const bowls: Exhibits = [
     <li>1991 — сертифицирован в качестве мастера традиционных ремёсел (伝統工芸士)</li>
     </ul>
     <p>Персональные выставки проходили в универмагах Кэё (京王百貨店), Гифу Кинтэцу (岐阜近鉄百貨店), Хансин (阪神百貨店), Хиросима Тэнмая (広島天満屋百貨店)</p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
+    id: 2320,
+    name: 'чаша Хаги',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.bowls,
+    style: CeramicStyleType.hagi,
+    description: `Описание в процессе разработки`,
+    additionalDescription: ``,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
+    id: 2656,
+    name: 'Чаша журавль тантидзуру',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.bowls,
+    style: CeramicStyleType.kyo,
+    description: `Описание в процессе подготовки, есть дополнительные фотографии`,
+    additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
