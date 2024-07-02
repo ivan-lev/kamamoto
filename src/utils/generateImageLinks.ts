@@ -7,10 +7,9 @@ import { Images } from '../types/imageObjectType';
 export const generateImageLinks = (id: number, dispatch: Dispatch): void => {
   let images: Images = [];
 
-  for (let i = 1; i <= 10; i++) {
-    const imageLink = `/exhibits/${id}/${i === 10 ? '10' : '0' + i}.jpg`;
-    const imageObject = { original: imageLink, thumbnail: imageLink };
-    images.push(imageObject);
+  for (let i = 0; i <= 9; i++) {
+    const link = `/exhibits/${id}/${i}.jpg`;
+    images.push({ original: link, thumbnail: link });
   }
   dispatch(setImages(images));
 };
