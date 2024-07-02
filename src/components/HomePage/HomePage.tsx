@@ -8,13 +8,19 @@ import 'react-image-gallery/styles/scss/image-gallery.scss';
 import Statistics from '../Statistics/Statistics';
 
 // variables
-import { images } from '../../variables/images';
+import { homepageSliderImages } from '../../variables/homepageSliderImages';
 
 export default function HomePage() {
   return (
     <section className="section">
       <h1 className="title title1">Kamamoto - коллекция японской керамики</h1>
-      <ImageGallery items={images} />
+      <ImageGallery
+        items={homepageSliderImages}
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showPlayButton={false}
+        autoPlay={true}
+      />
       <Statistics />
     </section>
   );
