@@ -5,5 +5,6 @@ export enum ExhibitCategory {
   other = 'Другое',
   plates = 'Тарелки',
   teapots = 'Чайники',
-  vases = 'Вазы'
+  vases = 'Вазы',
+  archive = 'Архив'
 }
