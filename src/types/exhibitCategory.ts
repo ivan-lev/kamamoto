@@ -1,4 +1,4 @@
-export enum ExhibitsCategory {
+export enum ExhibitCategory {
   bowls = 'Чаши',
   cups = 'Пиалы',
   other = 'Другое',

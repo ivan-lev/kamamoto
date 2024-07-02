@@ -1,20 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ExhibitsCategory } from '../types/exhibitsCategory';
+import { ExhibitCategory } from '../types/exhibitCategory';
 import type { Exhibit } from '../types/exhibitType';
 import { exhibits } from '../variables/exhibits/index';
 import { Images } from '../types/imageObjectType';
 
 interface exhibitsState {
-  exhibitsCategory?: ExhibitsCategory;
-  exhibitsList: Exhibit[];
+  exhibitsCategory?: ExhibitCategory;
   exhibit?: Exhibit;
   images: Images;
 }
 
 const initialState: exhibitsState = {
   exhibitsCategory: undefined,
-  exhibitsList: [],
   exhibit: undefined,
   images: []
 };
@@ -24,17 +22,12 @@ const exhibitsSlice = createSlice({
   initialState,
   reducers: {
     setExhibitsCategory: (state, action) => {
-      state.exhibitsCategory = ExhibitsCategory[action.payload as keyof typeof ExhibitsCategory];
+      state.exhibitsCategory = ExhibitCategory[action.payload as keyof typeof ExhibitCategory];
+      // state.exhibitsCategory = action.payload;
     },
 
-    setExhibitsList: (state, action) => {
-      const categoryName = ExhibitsCategory[action.payload as keyof typeof ExhibitsCategory];
-      state.exhibitsList = exhibits.filter(exhibit => exhibit.category === categoryName);
-    },
-
-    resetExhibitionList: state => {
+    resetExhibitsCategory: state => {
       state.exhibitsCategory = undefined;
-      state.exhibitsList = [];
     },
 
     setExhibit: (state, action) => {
@@ -57,8 +50,9 @@ const exhibitsSlice = createSlice({
 
 export const {
   setExhibitsCategory,
-  setExhibitsList,
-  resetExhibitionList,
+  resetExhibitsCategory,
+  // setExhibitsList,
+  // resetExhibitionList,
   setExhibit,
   resetExhibit,
   setImages,

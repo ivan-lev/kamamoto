@@ -1,7 +1,10 @@
 import './Exhibit.scss';
 
-// React & Redux
+// React
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../slices';
 import { resetExhibit, resetImages } from '../../slices/exhibitsSlice';
@@ -11,11 +14,9 @@ import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
-// Utils
+// Utils and variables
 import { handleSetExhibit } from '../../utils/handleSetExhibit';
 import { generateImageLinks } from '../../utils/generateImageLinks';
-
-// Variables
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 
 export default function Exhibit(): JSX.Element {
@@ -23,6 +24,8 @@ export default function Exhibit(): JSX.Element {
   const images = useSelector((state: RootState) => state.exhibits.images);
   const dispatch = useDispatch();
   const options = htmlParserOptions;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!exhibit) {
@@ -40,7 +43,10 @@ export default function Exhibit(): JSX.Element {
   }, [exhibit]);
 
   return (
-    <section className="section">
+    <section className="section exhibit">
+      <a className="link exhibit__link" onClick={() => navigate(-1)}>
+        Назад
+      </a>
       <h3>{exhibit?.name}</h3>
       <ImageGallery items={images || []} />
       <div>{parse(exhibit?.description || '', options)}</div>

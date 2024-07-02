@@ -1,36 +1,28 @@
 import './Collection.scss';
 
-import { Link } from 'react-router-dom';
-
-import { ExhibitsCategory } from '../../types/exhibitsCategory';
-
 import { useDispatch } from 'react-redux';
-import { setExhibitsCategory, setExhibitsList } from '../../slices/exhibitsSlice';
+import { resetExhibitsCategory, setExhibitsCategory } from '../../slices/exhibitsSlice';
+
+import DisplayGrid from '../DisplayGrid/DisplayGrid';
+import { categoryList } from '../../variables/categoryList';
+import { setDisplayList, resetDisplayList } from '../../slices/listSlice';
+import { useEffect } from 'react';
 
 export default function Collection() {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(setDisplayList(categoryList));
+    return () => {
+      dispatch(resetDisplayList());
+      dispatch(resetExhibitsCategory());
+    };
+  }, []);
+
   return (
     <section className="section collection">
       <h2 className="title title2">Коллекция</h2>
-      <ul className="">
-        {(Object.keys(ExhibitsCategory) as Array<keyof typeof ExhibitsCategory>).map(key => {
-          return (
-            <li key={key}>
-              <Link
-                className="footer__column-element"
-                to={key}
-                onClick={() => {
-                  dispatch(setExhibitsCategory(key));
-                  dispatch(setExhibitsList(key));
-                }}
-              >
-                {ExhibitsCategory[key]}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <DisplayGrid action={setExhibitsCategory} />
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import { ExhibitsCategory } from './exhibitsCategory';
+import { ExhibitCategory } from './exhibitCategory';
 import { CeramicStyleType } from './ceramicStyleType';
 
 export type Exhibit = {
@@ -8,7 +8,7 @@ export type Exhibit = {
   potterJapaneseName?: string;
   potterPhoto?: string;
   additionalPhotos: boolean;
-  category: ExhibitsCategory;
+  category: ExhibitCategory;
   style: CeramicStyleType;
   description: string;
   additionalDescription?: string;
