@@ -46,11 +46,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: 180%;
-  padding-bottom: 1lh;
-
-  &:last-child {
-    padding-bottom: 0;
-  }
 
   &_muted {
     color: var(--text-muted, rgba(218, 197, 167, 0.6));
