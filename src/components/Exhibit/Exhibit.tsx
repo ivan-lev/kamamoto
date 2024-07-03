@@ -49,9 +49,11 @@ export default function Exhibit(): JSX.Element {
       </a>
       <h3>{exhibit?.name}</h3>
       <ImageGallery items={images || []} />
-      <div>{parse(exhibit?.description || '', options)}</div>
+      <div className="container">{parse(exhibit?.description || '', options)}</div>
       {exhibit?.additionalPhotos && <ImageGallery items={images || []} />}
-      <div>{parse(exhibit?.additionalDescription || '', options)}</div>
+      {exhibit?.additionalDescription && (
+        <div className="container">{parse(exhibit?.additionalDescription || '', options)}</div>
+      )}
     </section>
   );
 }
