@@ -29,7 +29,7 @@ export default function Footer() {
       </div>
       <div className="footer__bottom-line">
         <span className="footer__copyright">&copy; 2024 Сайт создан Иваном Львом</span>
-        <a className="link footer__column-element" href="#">
+        <a className="link footer__column-element footer__to-top-link" href="#">
           Вверх
           <img className="background-muted bordered link__icon" src="/icons/link-arrow-up.svg" />
         </a>
