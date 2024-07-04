@@ -2,61 +2,44 @@ import './Category.scss';
 
 // React
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../slices';
-import { setExhibit } from '../../slices/exhibitsSlice';
+import { setExhibit } from '../../slices/exhibitSlice';
 import { setDisplayList } from '../../slices/listSlice';
+import { setCategory } from '../../slices/categorySlice';
 
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
 
 // Utils and variables
-import { handleSetCategory } from '../../utils/handleSetCategory';
 import { exhibits } from '../../variables/exhibits';
+import { generateListToDisplay } from '../../utils/generateListToDisplay';
+
+import { ExhibitCategory } from '../../types/exhibitCategory';
 
 export default function Category(): JSX.Element {
   const dispatch = useDispatch();
-  const categoryName = useSelector((state: RootState) => state.exhibits.exhibitsCategory);
+  const location = useLocation();
+  const category = useSelector((state: RootState) => state.category.category);
 
   useEffect(() => {
-    if (!categoryName) {
-      handleSetCategory(dispatch);
+    if (category) {
+      dispatch(setDisplayList(generateListToDisplay(category, exhibits)));
+    } else {
+      const currentCategory =
+        ExhibitCategory[location.pathname.split('/').pop() as keyof typeof ExhibitCategory];
+
+      dispatch(setCategory(currentCategory));
+      dispatch(setCategory(currentCategory));
     }
-
-    if (categoryName) {
-      let listToDisplay = exhibits
-        .map(exhibit => {
-          if (exhibit.category === categoryName) {
-            return {
-              id: exhibit.id,
-              thumb: `/exhibits/${exhibit.id}/0.jpg`,
-              name: exhibit.name,
-              link: `/collection/bowls/${exhibit.id}`
-            };
-          } else {
-            return;
-          }
-        })
-        .filter(Boolean); // to clean array from undefined elements
-
-      if (!listToDisplay) {
-        listToDisplay = [];
-      }
-
-      dispatch(setDisplayList(listToDisplay));
-    }
-  }, [categoryName]);
+  }, [category]);
 
   return (
     <section className="section category">
-      <Link className="link" to="/collection">
-        Назад
-      </Link>
-      <h3 className="title3 category__title">{categoryName}</h3>
-
+      <h3 className="title3 category__title">{category}</h3>
       <DisplayGrid action={setExhibit} />
     </section>
   );

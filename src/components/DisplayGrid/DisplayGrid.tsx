@@ -1,12 +1,20 @@
 import './DisplayGrid.scss';
 
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+// React
+import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { RootState } from '../../slices';
 
+// Components
 import Card from '../Card/Card';
 
-export default function DisplayGrid({ action }: { action: any }): JSX.Element {
+export default function DisplayGrid({
+  action
+}: {
+  action: ActionCreatorWithPayload<any, any>;
+}): JSX.Element {
   const displayList = useSelector((state: RootState) => state.list.displayList);
   const dispatch = useDispatch();
 

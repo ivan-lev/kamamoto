@@ -3,11 +3,11 @@ import './Exhibit.scss';
 // React
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../slices';
-import { resetExhibit, resetImages } from '../../slices/exhibitsSlice';
+import { resetExhibit, resetImages } from '../../slices/exhibitSlice';
 
 // Other packages
 import parse from 'html-react-parser';
@@ -20,8 +20,8 @@ import { generateImageLinks } from '../../utils/generateImageLinks';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 
 export default function Exhibit(): JSX.Element {
-  const exhibit = useSelector((state: RootState) => state.exhibits.exhibit);
-  const images = useSelector((state: RootState) => state.exhibits.images);
+  const exhibit = useSelector((state: RootState) => state.exhibit.info);
+  const images = useSelector((state: RootState) => state.exhibit.images);
   const dispatch = useDispatch();
   const options = htmlParserOptions;
 
