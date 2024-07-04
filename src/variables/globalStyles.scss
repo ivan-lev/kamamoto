@@ -3,6 +3,14 @@
   flex-direction: column;
   gap: 30px;
   padding: 48px;
+
+  @media screen and (max-width: 768px) {
+    padding: 30px;
+  }
+
+  @media screen and (max-width: 900px) {
+    padding: 20px;
+  }
 }
 
 .bordered {

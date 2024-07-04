@@ -5,6 +5,10 @@
     align-items: center;
     width: 100%;
     max-width: 1000px;
+
+    @media screen and (max-width: 900px) {
+      gap: 5px;
+    }
   }
 
   &__element {
@@ -28,16 +32,10 @@
       'card year'
       'card lower-line';
   }
-}
 
-@media screen and (max-width: 900px) {
-  .exhibitions {
-    &__list {
-      gap: 5px;
-    }
-
-    &__element:nth-child(even),
-    &__element:nth-child(odd) {
+  &__element:nth-child(odd),
+  &__element:nth-child(even) {
+    @media screen and (max-width: 900px) {
       padding: 0;
       grid-template-columns: 400px;
       grid-template-rows: 20px 50px 20px 1fr;
@@ -48,5 +46,26 @@
         'card';
       row-gap: 5px;
     }
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
 }
+
+// @media screen and (max-width: 900px) {
+//   .exhibitions {
+//     &__element:nth-child(even),
+//     &__element:nth-child(odd) {
+//       padding: 0;
+//       grid-template-columns: 400px;
+//       grid-template-rows: 20px 50px 20px 1fr;
+//       grid-template-areas:
+//         'upper-line'
+//         'year'
+//         'lower-line'
+//         'card';
+//       row-gap: 5px;
+//     }
+//   }
+// }
