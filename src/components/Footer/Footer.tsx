@@ -7,7 +7,7 @@ import { socialLinks } from '../../variables/socialLinks';
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__column footer__social">
+      <div className="footer__column footer__first-column">
         <span className="footer__column-element footer__column-title">Социальные ссылки</span>
         {socialLinks.map(socialLink => {
           return (
@@ -18,7 +18,7 @@ export default function Footer() {
           );
         })}
       </div>
-      <div className="footer__column footer__useful">
+      <div className="footer__column second-column">
         <span className="footer__column-element footer__column-title">Полезные материалы</span>
         <Link to="/files" className="footer__column-element">
           Файлы для скачивания
