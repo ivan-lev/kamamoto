@@ -170,5 +170,98 @@ export const bowls: Exhibits = [
     height: undefined,
     length: undefined,
     width: undefined
+  },
+  {
+    id: 2775,
+    name: 'Чаша с полевыми травами',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.bowls,
+    style: CeramicStyleType.kyo,
+    description: `<p>описание в процессе подготовки</p>`,
+    additionalDescription: `<p></p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
+    id: 2803,
+    name: 'Чаша Раку с Райдзином',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.bowls,
+    style: CeramicStyleType.kyo,
+    description: `<p>описание в процессе подготовки</p>`,
+    additionalDescription: `<p></p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
+    id: 2819,
+    name: 'Чаша цуцу черный Раку',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.bowls,
+    style: CeramicStyleType.kyo,
+    description: `<p>описание в процессе подготовки</p>`,
+    additionalDescription: `<p></p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
+    id: 2840,
+    name: 'Чаша с ирисами и яцухаси',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.bowls,
+    style: CeramicStyleType.kyo,
+    description: `<p>Чаша неизвестного мастера, выполненная в технике Кё, с цветами ирисов на болоте и мостиками. Возле ножки чаши стоит печать мастера 香泉.</p>
+    <p>Ирисы и яцухаси — классический мотив японской поэзии и живописи. Мотив отсылает к девятой главе «Повести об Исэ», сборнику рассказов, написанных в период Хэйан, и на протяжении многих веков широко известному в Японии.</p>
+    <p>Восемь мостов (八橋, яцухаси) — это конструкция японского моста, состоящая из восьми перекрывающихся деревянных или каменных досок. Со временем этот мотив (который стал стилизованным под зигзагообразную форму) был включен в широкий спектр художественных форм: его можно найти на кимоно, письменных ящиках, ширмах и фарфоре, в гравюрах укиё-э и садовых пейзажах.</p>`,
+    additionalDescription: `<p>В «Повести об Исэ» мужчина и двое его друзей, путешествуя в Восточную Японию, пришли в место в провинции Микава, известное как Яцухаси. Перед ними река разбилась на восемь каналов, проходящих через болото, заросшее ирисами, и каждый канал пересекал мост. Большое количество путей перед ними представляет собой решение, которое должны принять мужчины. Вместо выбора пути, они остановились и сели у Яцухаси, сочинив поэму об ирисах, которые «красиво растут на болоте». Эта аллюзия предполагает своего рода нерешительность, и чувство растерянности, потерянности и нежелания двигаться дальше. Эти эмоции тоски по дому и желания вернуться домой отражены в стихотворении, которое сочиняет один из мужчин:</p>
+    <p>У меня есть любимая жена,<br>
+    Знакомая, как пола<br>
+    Поношенного платья,<br>
+    И это далекое путешествие<br>
+    Наполняет мое сердце тоской.</p>
+    <p>Сам текст выстраивает своеобразный эмоциональный пейзаж, где читатель переживает чувства тоски по дому и отчужденности вместе с самими персонажами через элементы пейзажа. Здесь визуальная идея восьми мостов означает столкновение с трудным выбором между многими путями, ведущими прочь от дома, а сам ирис становится символом, связанным с женой одного из мужчин и горем, связанным с путешествием прочь от нее.</p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
+    id: 2946,
+    name: 'Чаша Токонамэ с каллиграфией',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.bowls,
+    style: CeramicStyleType.kyo,
+    description: `<p>описание в процессе подготовки</p>`,
+    additionalDescription: `<p></p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
   }
 ];

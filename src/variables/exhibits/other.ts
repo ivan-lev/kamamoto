@@ -73,5 +73,24 @@ export const other: Exhibits = [
     height: undefined,
     length: undefined,
     width: undefined
+  },
+  {
+    id: 2813,
+    name: 'Тясяку с молодыми побегами сосны',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.other,
+    style: CeramicStyleType.other,
+    description: `<p>описание в процессе подготовки</p>`,
+    additionalDescription: `<p></p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
   }
 ];
+
+//
