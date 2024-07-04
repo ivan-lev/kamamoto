@@ -9,8 +9,8 @@ export default function About() {
     <section className="section about">
       <img className="about__avatar" src={avatar}></img>
       <div className="about__heading">
-        <h2 className="title title2">Иван Лев</h2>
-        <ul className="list">
+        <h2 className="title title2 about__title">Иван Лев</h2>
+        <ul className="list about__list">
           <li>Коллекционер японской керамики</li>
           <li>Ценитель китайского чая</li>
           <li>Веб-разработчик</li>

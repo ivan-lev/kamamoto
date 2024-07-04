@@ -3,3 +3,12 @@
     cursor: pointer;
   }
 }
+
+.image-gallery-thumbnails-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.image-gallery-thumbnail {
+  width: 100%;
+}

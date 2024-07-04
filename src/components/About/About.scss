@@ -6,10 +6,30 @@
     '. links';
   max-width: 1280px;
 
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'avatar heading'
+      'content content'
+      'links links';
+  }
+
   &__avatar {
     width: 300px;
     grid-area: avatar;
     align-self: start;
+
+    @media screen and (max-width: 900px) {
+      width: 280px;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 250px;
+    }
+  }
+
+  &__title {
+    text-align: left;
   }
 
   &__heading {
@@ -24,6 +44,10 @@
   &__content {
     grid-area: content;
     max-width: 800px;
+
+    @media screen and (max-width: 1000px) {
+      max-width: unset;
+    }
   }
 
   &__links {

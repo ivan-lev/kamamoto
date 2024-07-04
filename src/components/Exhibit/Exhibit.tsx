@@ -1,4 +1,5 @@
 import './Exhibit.scss';
+import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 // React
 import { useEffect } from 'react';
@@ -12,7 +13,6 @@ import { resetExhibit, resetImages } from '../../slices/exhibitSlice';
 // Other packages
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 // Utils and variables
 import { handleSetExhibit } from '../../utils/handleSetExhibit';
@@ -48,7 +48,13 @@ export default function Exhibit(): JSX.Element {
         Назад
       </a>
       <h3>{exhibit?.name}</h3>
-      <ImageGallery items={images || []} />
+      <ImageGallery
+        items={images || []}
+        // showBullets={true}
+        // showThumbnails={false}
+        showFullscreenButton={false}
+        showPlayButton={false}
+      />
       <div className="container">{parse(exhibit?.description || '', options)}</div>
       {exhibit?.additionalPhotos && <ImageGallery items={images || []} />}
       {exhibit?.additionalDescription && (

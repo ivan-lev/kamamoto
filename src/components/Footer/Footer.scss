@@ -11,6 +11,13 @@
   background-color: var(--background-secondary);
   padding: 64px 0;
 
+  @media screen and (max-width: 900px) and (orientation: portrait) {
+    grid-template-areas:
+      'social'
+      'useful'
+      'bottom-line';
+  }
+
   &__column {
     display: flex;
     flex-direction: column;
@@ -30,6 +37,11 @@
     display: flex;
     align-items: center;
     width: 100%;
+
+    @media screen and (max-width: 900px) and (orientation: portrait) {
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 
   &__column-element {

@@ -4,6 +4,10 @@
   list-style-type: none;
   text-transform: uppercase;
 
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
   &__link {
     text-decoration: none;
     font-family: var(--menu-font);

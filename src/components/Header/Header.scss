@@ -5,7 +5,17 @@
   justify-content: center;
   gap: 32px;
   height: 65px;
-  padding: 12px;
+  padding: 12px 32px;
   box-sizing: border-box;
   background-color: var(--background-secondary);
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    height: unset;
+    padding: 32px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 80px);
+  }
 }

@@ -6,16 +6,13 @@
     gap: 30px;
     grid-template-columns: repeat(3, 1fr);
     list-style-type: none;
-  }
-}
 
-@media screen and (max-width: 800px) {
-  .display-grid {
-    &__list {
-      display: grid;
-      gap: 30px;
+    @media screen and (max-width: 900px) {
       grid-template-columns: repeat(2, 1fr);
-      list-style-type: none;
+    }
+
+    @media screen and (max-width: 900px) and (orientation: portrait) {
+      grid-template-columns: 1fr;
     }
   }
 }
