@@ -1,11 +1,13 @@
 .menu {
-  display: flex;
-  gap: 20px;
-  list-style-type: none;
-  text-transform: uppercase;
+  &__list {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+    text-transform: uppercase;
 
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   &__link {
