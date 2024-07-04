@@ -12,8 +12,10 @@ import { homepageSliderImages } from '../../variables/homepageSliderImages';
 
 export default function HomePage() {
   return (
-    <section className="section">
-      <h1 className="title title1">Kamamoto - японская керамика</h1>
+    <section className="section home-page">
+      <div className="container">
+        <h1 className="title title1">Kamamoto - японская керамика</h1>
+      </div>
       <ImageGallery
         items={homepageSliderImages}
         showThumbnails={false}
@@ -21,7 +23,9 @@ export default function HomePage() {
         showPlayButton={false}
         autoPlay={true}
       />
-      <Statistics />
+      <div className="container">
+        <Statistics />
+      </div>
     </section>
   );
 }
