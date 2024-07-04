@@ -2,7 +2,7 @@ import './Contacts.scss';
 
 export default function Contacts() {
   return (
-    <section className="contacts">
+    <section className="section contacts">
       <h2 className="title title2">Контакты</h2>
       <form className="container background-muted bordered contacts__form">
         <input className="contacts__input background-muted bordered" placeholder="Имя"></input>

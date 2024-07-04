@@ -3,6 +3,14 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 50px;
+
+    @media screen and (max-width: 768px) {
+      grid-column-gap: 35px;
+    }
+
+    @media screen and (max-width: 600px) {
+      grid-column-gap: 20px;
+    }
   }
 
   &__element {
@@ -26,5 +34,13 @@
     font-style: normal;
     font-weight: 300;
     text-transform: uppercase;
+
+    @media screen and (max-width: 768px) {
+      font-size: 50px;
+    }
+
+    @media screen and (max-width: 600px) {
+      font-size: 30px;
+    }
   }
 }
