@@ -31,8 +31,6 @@ export default function Category(): JSX.Element {
     } else {
       const currentCategory =
         ExhibitCategory[location.pathname.split('/').pop() as keyof typeof ExhibitCategory];
-
-      dispatch(setCategory(currentCategory));
       dispatch(setCategory(currentCategory));
     }
   }, [category]);

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
 import { RootState } from '../../slices';
-import { resetExhibit, resetImages } from '../../slices/exhibitSlice';
 
 // Other packages
 import parse from 'html-react-parser';
@@ -35,11 +34,6 @@ export default function Exhibit(): JSX.Element {
     if (exhibit) {
       generateImageLinks(exhibit.id, dispatch);
     }
-
-    return () => {
-      exhibit && dispatch(resetExhibit());
-      dispatch(resetImages());
-    };
   }, [exhibit]);
 
   return (
@@ -48,13 +42,7 @@ export default function Exhibit(): JSX.Element {
         Назад
       </a>
       <h3>{exhibit?.name}</h3>
-      <ImageGallery
-        items={images || []}
-        // showBullets={true}
-        // showThumbnails={false}
-        showFullscreenButton={false}
-        showPlayButton={false}
-      />
+      <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
       <div className="container">{parse(exhibit?.description || '', options)}</div>
       {exhibit?.additionalPhotos && <ImageGallery items={images || []} />}
       {exhibit?.additionalDescription && (
