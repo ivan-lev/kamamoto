@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import exhibitsReducer from './exhibitsSlice';
+import exhibitsReducer from './exhibitSlice';
 import listReducer from './listSlice';
+import categoryReducer from './categorySlice';
 
 const store = configureStore({
   reducer: {
-    exhibits: exhibitsReducer,
+    category: categoryReducer,
+    exhibit: exhibitsReducer,
     list: listReducer
   }
 });
