@@ -1,6 +1,6 @@
 import { Dispatch } from '@reduxjs/toolkit';
 
-import { setImages } from '../slices/exhibitsSlice';
+import { setImages } from '../slices/exhibitSlice';
 
 import { Images } from '../types/imageObjectType';
 

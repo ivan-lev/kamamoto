@@ -3,7 +3,7 @@ import { displayListType } from '../types/displayListType';
 
 const keys = Object.keys(ExhibitCategory);
 
-export const categoryList: displayListType[] = keys.map((key, index) => {
+export const categories: displayListType[] = keys.map((key, index) => {
   return {
     id: index,
     thumb: `images/categories/${key}.jpg`,
