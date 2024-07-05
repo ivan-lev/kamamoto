@@ -3,32 +3,42 @@ import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 // React
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
 import { RootState } from '../../slices';
+import { setExhibit } from '../../slices/exhibitSlice';
+import { setCategory } from '../../slices/categorySlice';
 
 // Other packages
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
 
 // Utils and variables
-import { handleSetExhibit } from '../../utils/handleSetExhibit';
 import { generateImageLinks } from '../../utils/generateImageLinks';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
+import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
 
 export default function Exhibit(): JSX.Element {
   const exhibit = useSelector((state: RootState) => state.exhibit.info);
+  const category = useSelector((state: RootState) => state.category.category);
   const images = useSelector((state: RootState) => state.exhibit.images);
   const dispatch = useDispatch();
   const options = htmlParserOptions;
 
   const navigate = useNavigate();
+  const location = useLocation().pathname;
 
   useEffect(() => {
+    const { exhibitCategory, exhibitNumber } = getExhibitNumberAndCategory(location);
+
     if (!exhibit) {
-      handleSetExhibit(dispatch);
+      dispatch(setExhibit(exhibitNumber));
+    }
+
+    if (!category) {
+      dispatch(setCategory(exhibitCategory));
     }
 
     if (exhibit) {

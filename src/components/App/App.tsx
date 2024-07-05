@@ -6,7 +6,6 @@ import { Routes, Route } from 'react-router-dom';
 //Redux
 import { useDispatch } from 'react-redux';
 import { setCategory } from '../../slices/categorySlice';
-import { setExhibit } from '../../slices/exhibitSlice';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -38,11 +37,7 @@ export default function App() {
             element={<Category />}
             action={category => dispatch(setCategory(category))}
           />
-          <Route
-            path="collection/:category/:exhibit"
-            element={<Exhibit />}
-            action={exhibit => dispatch(setExhibit(exhibit))}
-          />
+          <Route path="collection/:category/:exhibit" element={<Exhibit />} />
 
           <Route path="exhibitions" element={<Exhibitions />} />
           <Route path="contacts" element={<Contacts />} />

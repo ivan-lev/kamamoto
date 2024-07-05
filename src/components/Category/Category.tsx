@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 
 // Redux
 import { RootState } from '../../slices';
-import { setExhibit } from '../../slices/exhibitSlice';
 import { setDisplayList } from '../../slices/listSlice';
 import { setCategory } from '../../slices/categorySlice';
 
@@ -22,23 +21,25 @@ import { ExhibitCategory } from '../../types/exhibitCategory';
 
 export default function Category(): JSX.Element {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation().pathname;
   const category = useSelector((state: RootState) => state.category.category);
 
   useEffect(() => {
+    if (!category) {
+      const currentCategory =
+        ExhibitCategory[location.split('/').pop() as keyof typeof ExhibitCategory];
+      dispatch(setCategory(currentCategory));
+    }
+
     if (category) {
       dispatch(setDisplayList(generateListToDisplay(category, exhibits)));
-    } else {
-      const currentCategory =
-        ExhibitCategory[location.pathname.split('/').pop() as keyof typeof ExhibitCategory];
-      dispatch(setCategory(currentCategory));
     }
   }, [category]);
 
   return (
     <section className="section category">
       <h3 className="title3 category__title">{category}</h3>
-      <DisplayGrid action={setExhibit} />
+      <DisplayGrid />
     </section>
   );
 }
