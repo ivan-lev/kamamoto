@@ -4,8 +4,6 @@ import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 
 //Redux
-import { useDispatch } from 'react-redux';
-import { setCategory } from '../../slices/categorySlice';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -22,8 +20,6 @@ import Files from '../Files/Files';
 import Documents from '../Documents/Documents';
 
 export default function App() {
-  const dispatch = useDispatch();
-
   return (
     <>
       <Header />
@@ -32,13 +28,8 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="about" element={<About />} />
           <Route path="collection" element={<Collection />} />
-          <Route
-            path="collection/:category"
-            element={<Category />}
-            action={category => dispatch(setCategory(category))}
-          />
+          <Route path="collection/:category" element={<Category />} />
           <Route path="collection/:category/:exhibit" element={<Exhibit />} />
-
           <Route path="exhibitions" element={<Exhibitions />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="files" element={<Files />} />

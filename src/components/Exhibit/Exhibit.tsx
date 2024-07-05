@@ -3,7 +3,7 @@ import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 // React
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
@@ -19,6 +19,9 @@ import ImageGallery from 'react-image-gallery';
 import { generateImageLinks } from '../../utils/generateImageLinks';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
+import { generateListToDisplay } from '../../utils/generateListToDisplay';
+import { exhibits } from '../../variables/exhibits';
+import { setDisplayList } from '../../slices/listSlice';
 
 export default function Exhibit(): JSX.Element {
   const exhibit = useSelector((state: RootState) => state.exhibit.info);
@@ -27,7 +30,6 @@ export default function Exhibit(): JSX.Element {
   const dispatch = useDispatch();
   const options = htmlParserOptions;
 
-  const navigate = useNavigate();
   const location = useLocation().pathname;
 
   useEffect(() => {
@@ -35,10 +37,13 @@ export default function Exhibit(): JSX.Element {
 
     if (!exhibit) {
       dispatch(setExhibit(exhibitNumber));
+      dispatch(setCategory(exhibitCategory));
+      dispatch(setDisplayList(generateListToDisplay(exhibitCategory, exhibits)));
     }
 
     if (!category) {
-      dispatch(setCategory(exhibitCategory));
+      // dispatch(setCategory(exhibitCategory));
+      // dispatch(setDisplayList(generateListToDisplay(exhibitCategory, exhibits)));
     }
 
     if (exhibit) {
@@ -48,9 +53,11 @@ export default function Exhibit(): JSX.Element {
 
   return (
     <section className="section exhibit">
-      <a className="link exhibit__link" onClick={() => navigate(-1)}>
-        Назад
-      </a>
+      <span className="exhibit__breadcrumbs">
+        <Link to={`/collection/${category}`} className="link exhibit__link">
+          Назад
+        </Link>
+      </span>
       <h3>{exhibit?.name}</h3>
       <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
       <div className="container">{parse(exhibit?.description || '', options)}</div>

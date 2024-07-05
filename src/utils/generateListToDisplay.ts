@@ -1,10 +1,11 @@
 import { ExhibitCategory } from '../types/exhibitCategory';
 import { Exhibits } from '../types/exhibitType';
 
-export const generateListToDisplay = (category: ExhibitCategory, exhibits: Exhibits) => {
+export const generateListToDisplay = (category: string, exhibits: Exhibits) => {
   let listToDisplay = exhibits
     .map(exhibit => {
-      if (exhibit.category === category) {
+      const categoryToDisplay = ExhibitCategory[category as keyof typeof ExhibitCategory];
+      if (exhibit.category === categoryToDisplay) {
         return {
           id: exhibit.id,
           thumb: `/exhibits/${exhibit.id}/0.jpg`,

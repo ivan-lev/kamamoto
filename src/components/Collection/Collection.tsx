@@ -1,6 +1,7 @@
 import './Collection.scss';
 
 // React
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Redux
@@ -14,7 +15,10 @@ import { categories } from '../../variables/categories';
 
 export default function Collection() {
   const dispatch = useDispatch();
-  dispatch(setDisplayList(categories));
+
+  useEffect(() => {
+    dispatch(setDisplayList(categories));
+  }, []);
 
   return (
     <section className="section collection">

@@ -2,6 +2,11 @@
   &__link {
     cursor: pointer;
   }
+
+  &__breadcrumbs {
+    display: flex;
+    gap: 5px;
+  }
 }
 
 .image-gallery-thumbnails-container {
