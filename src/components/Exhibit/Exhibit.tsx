@@ -2,7 +2,7 @@ import './Exhibit.scss';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 // React
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -29,6 +29,10 @@ export default function Exhibit(): JSX.Element {
   const dispatch = useDispatch();
   const location = useLocation().pathname;
   const options = htmlParserOptions;
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     const { exhibitCategory, exhibitNumber } = getExhibitNumberAndCategory(location);

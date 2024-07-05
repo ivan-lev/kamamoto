@@ -1,7 +1,7 @@
 import './Category.scss';
 
 // React
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -24,6 +24,10 @@ export default function Category(): JSX.Element {
   const location = useLocation().pathname;
   const currentCategory = getCategory(location);
   const categoryName = ExhibitCategory[currentCategory as keyof typeof ExhibitCategory];
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     dispatch(setCategory(currentCategory));
