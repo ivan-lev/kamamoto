@@ -25,12 +25,10 @@ import { setDisplayList } from '../../slices/listSlice';
 
 export default function Exhibit(): JSX.Element {
   const exhibit = useSelector((state: RootState) => state.exhibit.info);
-  const category = useSelector((state: RootState) => state.category.category);
   const images = useSelector((state: RootState) => state.exhibit.images);
   const dispatch = useDispatch();
-  const options = htmlParserOptions;
-
   const location = useLocation().pathname;
+  const options = htmlParserOptions;
 
   useEffect(() => {
     const { exhibitCategory, exhibitNumber } = getExhibitNumberAndCategory(location);
@@ -41,11 +39,6 @@ export default function Exhibit(): JSX.Element {
       dispatch(setDisplayList(generateListToDisplay(exhibitCategory, exhibits)));
     }
 
-    if (!category) {
-      // dispatch(setCategory(exhibitCategory));
-      // dispatch(setDisplayList(generateListToDisplay(exhibitCategory, exhibits)));
-    }
-
     if (exhibit) {
       generateImageLinks(exhibit.id, dispatch);
     }
@@ -54,7 +47,7 @@ export default function Exhibit(): JSX.Element {
   return (
     <section className="section exhibit">
       <span className="exhibit__breadcrumbs">
-        <Link to={`/collection/${category}`} className="link exhibit__link">
+        <Link to=".." className="link exhibit__link" relative="path">
           Назад
         </Link>
       </span>
