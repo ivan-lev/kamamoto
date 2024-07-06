@@ -4,13 +4,20 @@ export const documents: Resources = [
   {
     id: 0,
     preview: '/icons/download-docx.svg',
-    link: '/files/document.docx',
-    description: 'Шаблон доверенности на транспортировку и хранение экспонатов.'
+    link: '/files/kamamoto-document.docx',
+    description: 'Шаблон акта приёма-передачи на хранение и использование предметов.'
   },
   {
     id: 1,
-    preview: '/icons/download-pdf.svg',
-    link: '/files/document-app.docx',
-    description: 'Шаблон приложения 1 (с описью лотов), прилагаемый к доверенности'
+    preview: '/icons/download-docx.svg',
+    link: '/files/kamamoto-document-application.docx',
+    description:
+      'Шаблон приложения 1 (с описью лотов), прилагаемый к акту приёма-передачи, содержащий номер лота, его название, сохранность, комплектность и общую фотографию лота.'
+  },
+  {
+    id: 2,
+    preview: '/icons/download-docx.svg',
+    link: '/files/kamamoto-document-return.docx',
+    description: 'Шаблон акта возврата, оформляемый по возвращении предметов.'
   }
 ];
