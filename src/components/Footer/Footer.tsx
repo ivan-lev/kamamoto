@@ -20,7 +20,7 @@ export default function Footer() {
       </div>
       <div className="footer__column second-column">
         <span className="footer__column-element footer__column-title">Полезные материалы</span>
-        <Link to="/files" className="footer__column-element">
+        <Link to="/downloads" className="footer__column-element">
           Файлы для скачивания
         </Link>
         <Link to="/documents" className="footer__column-element">
@@ -28,7 +28,7 @@ export default function Footer() {
         </Link>
       </div>
       <div className="footer__bottom-line">
-        <span className="footer__copyright">&copy; 2024 Сайт создан Иваном Львом</span>
+        <span className="footer__copyright">&copy; 2024 Иван Лев</span>
         <a className="link footer__column-element footer__to-top-link" href="#">
           Вверх
           <img className="background-muted bordered link__icon" src="/icons/link-arrow-up.svg" />

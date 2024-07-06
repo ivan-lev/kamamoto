@@ -3,7 +3,9 @@ import './App.scss';
 // React
 import { Routes, Route } from 'react-router-dom';
 
-//Redux
+// Variables
+import { documents } from '../../variables/documents';
+import { files } from '../../variables/files';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -17,7 +19,7 @@ import Exhibit from '../Exhibit/Exhibit';
 import Exhibitions from '../Exhibitions/Exhibitions';
 import Contacts from '../Contacts/Contacts';
 import Files from '../Files/Files';
-import Documents from '../Documents/Documents';
+// import Documents from '../Documents/Documents';
 
 export default function App() {
   return (
@@ -32,8 +34,11 @@ export default function App() {
           <Route path="collection/:category/:exhibit" element={<Exhibit />} />
           <Route path="exhibitions" element={<Exhibitions />} />
           <Route path="contacts" element={<Contacts />} />
-          <Route path="files" element={<Files />} />
-          <Route path="documents" element={<Documents />} />
+          <Route path="downloads" element={<Files title="Файлы для скачивания" files={files} />} />
+          <Route
+            path="documents"
+            element={<Files title="Шаблоны документов" files={documents} />}
+          />
         </Route>
       </Routes>
       <Footer />
