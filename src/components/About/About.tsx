@@ -1,13 +1,11 @@
 import './About.scss';
 
-import avatar from '/avatar.jpg';
-
 import { socialLinks } from '../../variables/socialLinks';
 
 export default function About() {
   return (
     <section className="section about">
-      <img className="about__avatar" src={avatar}></img>
+      <img className="about__avatar" src="/images/about-avatar.jpg" alt=""></img>
       <div className="about__heading">
         <h2 className="title title2 about__title">Иван Лев</h2>
         <ul className="list about__list">
@@ -34,6 +32,7 @@ export default function About() {
           самому: так я научился находить и собирать знания, использовать их крупицы, чтобы сложить
           более полную картину изучаемого.
         </p>
+        <img className="about__photo" src="/images/about-photo.jpg" alt="Чайное действо"></img>
         <p className="text text_muted">
           В результате у меня появился небольшой проект, посвященный китайскому чаю, который
           благополучно существовал до 2015 года, когда я, изучая чай других стран, открыл для себя
@@ -42,6 +41,11 @@ export default function About() {
           жизни, чтобы изучить его полностью. В этот момент появился новый проект, посвященные
           японским вещам - Камамото.
         </p>
+        <img
+          className="about__photo"
+          src="/images/about-photo-2.jpg"
+          alt="Японская керамика и деревянные коробки"
+        ></img>
         <p className="text text_muted">
           Японское слово камамото состоит из двух иероглифов: <b>窯元</b>. Первый означает печь для
           обжига, а второй "начало" и "происхождение". Вместе они образуют слово понятие "гончарная
