@@ -15,7 +15,6 @@ const categorySlice = createSlice({
   initialState,
   reducers: {
     setCategory: (state, action) => {
-      // state.exhibitsCategory = ExhibitCategory[action.payload as keyof typeof ExhibitCategory];
       state.category = action.payload;
     },
 
