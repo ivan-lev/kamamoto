@@ -8,6 +8,6 @@ export const categories: displayListType[] = keys.map((key, index) => {
     id: index,
     thumb: `images/categories/${key}.jpg`,
     name: ExhibitCategory[key as keyof typeof ExhibitCategory],
-    link: `/collection/${key}`
+    link: `${key}`
   };
 });
