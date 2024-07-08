@@ -4,11 +4,15 @@ export type Exhibition = {
   dates: string;
   city: string;
   place: string;
+  address?: string;
   name: string;
   link?: string;
   description?: string;
-  photos?: boolean;
-  poster?: string;
+  photosCount?: number;
+  poster?: boolean;
+  curators?: string;
+  organisators?: string;
+  isPageActive: boolean;
 };
 
 export type Exhibitions = Exhibition[];
