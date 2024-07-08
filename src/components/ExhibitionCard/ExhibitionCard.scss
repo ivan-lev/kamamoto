@@ -1,4 +1,4 @@
-.exhibition {
+.exhibition-card {
   &__upper-line {
     width: 1px;
     background: var(--border-default, rgba(218, 197, 167, 0.15));
@@ -61,6 +61,11 @@
     line-height: 160%;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+  }
+
+  &__main-content {
+    display: flex;
+    flex-direction: column;
   }
 
   &__name,
