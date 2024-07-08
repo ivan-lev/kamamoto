@@ -1,10 +1,10 @@
 import { Images } from '../types/imageType';
 
-export const generateImageLinks = (id: number): Images => {
+export const generateImageLinks = (path: string, id: number, photosCount: number = 10): Images => {
   let images: Images = [];
 
-  for (let i = 0; i <= 9; i++) {
-    const link = `/exhibits/${id}/${i}.jpg`;
+  for (let i = 0; i < photosCount; i++) {
+    const link = `${path}${id}/${i}.jpg`;
     images.push({ original: link, thumbnail: link });
   }
   return images;

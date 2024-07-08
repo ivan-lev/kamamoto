@@ -9,10 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // Redux
 import { RootState } from '../../slices';
 import { setCategory } from '../../slices/categorySlice';
-import { setExhibit } from '../../slices/exhibitSlice';
-import { resetExhibit } from '../../slices/exhibitSlice';
-import { setImages } from '../../slices/exhibitSlice';
-import { resetImages } from '../../slices/exhibitSlice';
+import { setExhibit, resetExhibit, setImages, resetImages } from '../../slices/exhibitSlice';
 
 // Other packages
 import parse from 'html-react-parser';
@@ -22,6 +19,7 @@ import ImageGallery from 'react-image-gallery';
 import { generateImageLinks } from '../../utils/generateImageLinks';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
+import { PATHS } from '../../variables/variables';
 
 export default function Exhibit(): JSX.Element {
   const category = useSelector((state: RootState) => state.category.category);
@@ -51,7 +49,7 @@ export default function Exhibit(): JSX.Element {
 
   useEffect(() => {
     if (exhibit) {
-      dispatch(setImages(generateImageLinks(exhibit.id)));
+      dispatch(setImages(generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id)));
     }
   }, [exhibit]);
 
