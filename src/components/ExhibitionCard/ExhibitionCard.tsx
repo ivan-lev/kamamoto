@@ -16,7 +16,7 @@ export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition 
         <p className="exhibition__city">{exhibition.city}</p>
         <div>
           {exhibition.link ? (
-            <a className="exhibition__link" href={exhibition.link}>
+            <a className="exhibition__link" href={exhibition.link} target="_blank">
               {exhibition.name}
             </a>
           ) : (
