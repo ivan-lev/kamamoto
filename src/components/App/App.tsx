@@ -17,6 +17,7 @@ import Collection from '../Collection/Collection';
 import Category from '../Category/Category';
 import Exhibit from '../Exhibit/Exhibit';
 import Exhibitions from '../Exhibitions/Exhibitions';
+import Exhibition from '../Exhibition/Exhibition';
 import Contacts from '../Contacts/Contacts';
 import Files from '../Files/Files';
 // import Documents from '../Documents/Documents';
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="collection/:category" element={<Category />} />
           <Route path="collection/:category/:exhibit" element={<Exhibit />} />
           <Route path="exhibitions" element={<Exhibitions />} />
+          <Route path="exhibitions/:exhibition" element={<Exhibition />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="downloads" element={<Files title="Файлы для скачивания" files={files} />} />
           <Route
