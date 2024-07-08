@@ -101,6 +101,11 @@
   box-sizing: border-box;
 }
 
+.link_usual {
+  display: inline;
+  text-decoration: underline;
+}
+
 .link_navigational {
   text-transform: uppercase;
 }
