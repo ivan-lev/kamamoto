@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 // Redux
 import { setDisplayList } from '../../slices/listSlice';
+import { resetDisplayList } from '../../slices/listSlice';
 
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
@@ -18,6 +19,10 @@ export default function Collection() {
 
   useEffect(() => {
     dispatch(setDisplayList(categories));
+
+    return () => {
+      dispatch(resetDisplayList());
+    };
   }, []);
 
   return (

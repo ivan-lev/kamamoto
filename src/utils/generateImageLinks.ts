@@ -1,15 +1,11 @@
-import { Dispatch } from '@reduxjs/toolkit';
+import { Images } from '../types/imageType';
 
-import { setImages } from '../slices/exhibitSlice';
-
-import { Images } from '../types/imageObjectType';
-
-export const generateImageLinks = (id: number, dispatch: Dispatch): void => {
+export const generateImageLinks = (id: number): Images => {
   let images: Images = [];
 
   for (let i = 0; i <= 9; i++) {
     const link = `/exhibits/${id}/${i}.jpg`;
     images.push({ original: link, thumbnail: link });
   }
-  dispatch(setImages(images));
+  return images;
 };

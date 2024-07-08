@@ -8,8 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
 import { RootState } from '../../slices';
-import { setExhibit } from '../../slices/exhibitSlice';
 import { setCategory } from '../../slices/categorySlice';
+import { setExhibit } from '../../slices/exhibitSlice';
+import { resetExhibit } from '../../slices/exhibitSlice';
+import { setImages } from '../../slices/exhibitSlice';
+import { resetImages } from '../../slices/exhibitSlice';
 
 // Other packages
 import parse from 'html-react-parser';
@@ -19,11 +22,9 @@ import ImageGallery from 'react-image-gallery';
 import { generateImageLinks } from '../../utils/generateImageLinks';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
-import { generateListToDisplay } from '../../utils/generateListToDisplay';
-import { exhibits } from '../../variables/exhibits';
-import { setDisplayList } from '../../slices/listSlice';
 
 export default function Exhibit(): JSX.Element {
+  const category = useSelector((state: RootState) => state.category.category);
   const exhibit = useSelector((state: RootState) => state.exhibit.info);
   const images = useSelector((state: RootState) => state.exhibit.images);
   const dispatch = useDispatch();
@@ -36,12 +37,21 @@ export default function Exhibit(): JSX.Element {
   });
 
   useEffect(() => {
-    dispatch(setExhibit(exhibitNumber));
-    dispatch(setCategory(exhibitCategory));
-    dispatch(setDisplayList(generateListToDisplay(exhibitCategory, exhibits)));
+    if (!category) {
+      dispatch(setCategory(exhibitCategory));
+    }
 
+    dispatch(setExhibit(exhibitNumber));
+
+    return () => {
+      dispatch(resetExhibit());
+      dispatch(resetImages());
+    };
+  }, []);
+
+  useEffect(() => {
     if (exhibit) {
-      generateImageLinks(exhibit.id, dispatch);
+      dispatch(setImages(generateImageLinks(exhibit.id)));
     }
   }, [exhibit]);
 
