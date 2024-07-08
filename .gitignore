@@ -12,7 +12,9 @@ node_modules
 dist
 dist-ssr
 *.local
+
 public/exhibits/
+public/exhibitions/
 
 # Editor directories and files
 .vscode/*
