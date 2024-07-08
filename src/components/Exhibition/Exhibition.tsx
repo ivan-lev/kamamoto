@@ -27,7 +27,6 @@ import { generateImageLinks } from '../../utils/generateImageLinks';
 import { getExhibitionId } from '../../utils/getExhibitionId';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { PATHS } from '../../variables/variables';
-// import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
 
 export default function Exhibit(): JSX.Element {
   const id = useSelector((state: RootState) => state.exhibition.id);
@@ -49,6 +48,7 @@ export default function Exhibit(): JSX.Element {
     return () => {
       dispatch(resetExhibitionId());
       dispatch(resetExhibition());
+      dispatch(resetExhibitionImages());
     };
   }, []);
 
@@ -58,6 +58,17 @@ export default function Exhibit(): JSX.Element {
       dispatch(setExhibitionImages(generateImageLinks(PATHS.EXHIBITION_PATH, id)));
     }
   }, [id]);
+
+  useEffect(() => {
+    if (exhibition) {
+      dispatch(setExhibition(id));
+      dispatch(
+        setExhibitionImages(
+          generateImageLinks(PATHS.EXHIBITION_PATH, exhibition.id, exhibition.photosCount)
+        )
+      );
+    }
+  }, [exhibition]);
 
   return (
     <section className="section exhibition">
