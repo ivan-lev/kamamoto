@@ -28,6 +28,7 @@ export default function Exhibit(): JSX.Element {
   const images = useSelector((state: RootState) => state.exhibit.images);
   const dispatch = useDispatch();
   const location = useLocation().pathname;
+  const { exhibitCategory, exhibitNumber } = getExhibitNumberAndCategory(location);
   const options = htmlParserOptions;
 
   useLayoutEffect(() => {
@@ -35,13 +36,9 @@ export default function Exhibit(): JSX.Element {
   });
 
   useEffect(() => {
-    const { exhibitCategory, exhibitNumber } = getExhibitNumberAndCategory(location);
-
-    if (!exhibit) {
-      dispatch(setExhibit(exhibitNumber));
-      dispatch(setCategory(exhibitCategory));
-      dispatch(setDisplayList(generateListToDisplay(exhibitCategory, exhibits)));
-    }
+    dispatch(setExhibit(exhibitNumber));
+    dispatch(setCategory(exhibitCategory));
+    dispatch(setDisplayList(generateListToDisplay(exhibitCategory, exhibits)));
 
     if (exhibit) {
       generateImageLinks(exhibit.id, dispatch);
