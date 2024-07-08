@@ -1,4 +1,4 @@
-import { Images } from '../types/imageObjectType';
+import { Images } from '../types/imageType';
 
 export const homepageSliderImages: Images = [
   {
