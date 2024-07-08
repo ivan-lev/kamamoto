@@ -10,5 +10,9 @@ export const htmlParserOptions = {
       domNode.attribs.class = 'text';
       return domNode;
     }
+    if (domNode instanceof Element && domNode.name === 'a') {
+      domNode.attribs.class = 'link link_usual';
+      return domNode;
+    }
   }
 };
