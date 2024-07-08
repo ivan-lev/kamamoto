@@ -1,5 +1,8 @@
 import './ExhibitionCard.scss';
 
+// React
+import { Link } from 'react-router-dom';
+
 import type { Exhibition } from '../../types/exhibitionType';
 
 export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition }): JSX.Element {
@@ -21,6 +24,9 @@ export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition 
           )}
           <p className="exhibition__place">{exhibition.place}</p>
         </div>
+        <Link className="link muted exhibition__more-link" to={exhibition.id.toString()}>
+          Подробнее
+        </Link>
       </div>
     </>
   );
