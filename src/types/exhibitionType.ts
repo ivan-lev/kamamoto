@@ -6,6 +6,9 @@ export type Exhibition = {
   place: string;
   name: string;
   link?: string;
+  description?: string;
+  photos?: boolean;
+  poster?: string;
 };
 
 export type Exhibitions = Exhibition[];
