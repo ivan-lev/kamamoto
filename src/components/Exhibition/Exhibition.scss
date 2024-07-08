@@ -1,0 +1,73 @@
+.exhibition {
+  display: grid;
+  grid-template-areas:
+    'breadcrumbs breadcrumbs'
+    'title title'
+    'place participants'
+    'photos photos'
+    'description description';
+  grid-template-columns: 30% auto;
+
+  @media screen and (max-width: 768px) {
+    grid-template-areas:
+      'breadcrumbs breadcrumbs'
+      'title title'
+      'place place'
+      'participants participants'
+      'photos photos'
+      'description description';
+  }
+
+  &__breadcrumbs {
+    grid-area: breadcrumbs;
+  }
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__place {
+    grid-area: place;
+    align-self: start;
+    padding: 40px 0 0 0;
+
+    @media screen and (max-width: 768px) {
+      display: inline;
+    }
+
+    & span:not(:first-of-type)::after {
+      content: ', ';
+    }
+    & span:last-of-type::after {
+      content: '.';
+    }
+  }
+
+  &__participants {
+    grid-area: participants;
+  }
+
+  &__photos {
+    grid-area: photos;
+  }
+
+  &__description {
+    grid-area: description;
+    display: block;
+  }
+
+  &__poster {
+    grid-area: poster;
+    max-width: 30%;
+    float: left;
+    padding-right: 48px;
+    padding-bottom: 40px;
+
+    @media screen and (max-width: 768px) {
+      float: unset;
+      max-width: unset;
+      width: 100%;
+      padding-right: 0;
+    }
+  }
+}
