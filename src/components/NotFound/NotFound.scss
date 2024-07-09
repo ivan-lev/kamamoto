@@ -3,12 +3,13 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 500px;
+  aspect-ratio: 16 / 9;
   box-sizing: border-box;
   background-image: linear-gradient(0deg, rgba(14, 14, 14, 0.7), rgba(14, 14, 14, 0.7)),
-    url('../../../public/images/not-found-background.jpg');
+    url('../../assets/background-not-found-page.jpg');
   background-position: center;
   background-repeat: no-repeat;
+  background-size: contain;
   border-radius: 10px;
   overflow: hidden;
 
