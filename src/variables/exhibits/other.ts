@@ -51,6 +51,23 @@ export const other: Exhibits = [
     width: undefined
   },
   {
+    id: 2133,
+    name: ' Тёси - чайник для нагревания сакэ',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.vases,
+    style: CeramicStyleType.other,
+    description: `<p>Тёси (銚子) — чайник для нагрева сакэ. Старый чугунный чайник с декором в виде волн и растений. Крышка чайника сделана из дерева и покрыта лаком, который местами скололся. Ручка декорирована узором, имитирующим следы жуков-короедов. Внутри виден ремонт — дно стало протекать и предыдущий хозяин залил его металлом, запечатавшим отверстие.</p>`,
+    additionalDescription: ``,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
     id: 2478,
     name: 'бамбуковая лопаточка монаха Такэда Экидзю',
     potterName: 'Такэда Экидзю',
@@ -68,6 +85,25 @@ export const other: Exhibits = [
       <br>竹田益州老師 — «старый мастер Такэда Экидзю»
       <br>品番 — «инвентарный номер»
       <br>備考 — «примечание»</p>`,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
+    id: 2498,
+    name: 'Чугунный котёл (чагама) с сосновыми ветками для зимнего чая',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.other,
+    style: CeramicStyleType.other,
+    description: `<p>Широкий и округлый чугунный котёл чагама (茶釜), используемый для нагревания воды во время зимних чаепитий. На его корпусе отлит узор в виде ветки сосны — дерева, которое всегда остаётся зелёным, даже в самые сильные морозы, олицетворение стойкости и один из «трёх друзей зимы», наряду со сливой и бамбуком.</p>
+    <p>Кама (釜) — это японский термин, означающий металлический горшок или котёл. Специфический термин для котла, используемого в японской чайной церемонии — чагама (茶釜), то есть чайный котёл. Камы традиционно делают из чугуна или меди.</p>
+    <p>Зимой в чайной комнате чагама нагревается в углубленном очаге ро (炉), встроенном в пол чайной комнаты, а летом над переносной жаровней фуро (風炉).</p>`,
+    additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,

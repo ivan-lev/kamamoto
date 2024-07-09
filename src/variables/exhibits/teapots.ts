@@ -22,8 +22,25 @@ import type { Exhibits } from '../../types/exhibitType';
 
 export const teapots: Exhibits = [
   {
+    id: 2731,
+    name: 'Чайник хохин Хаги',
+    potterName: '',
+    potterJapaneseName: '',
+    potterPhoto: '',
+    additionalPhotos: false,
+    category: ExhibitCategory.teapots,
+    style: CeramicStyleType.kyo,
+    description: `описание в процессе подготовки`,
+    additionalDescription: ``,
+    price: 0,
+    weigth: undefined,
+    height: undefined,
+    length: undefined,
+    width: undefined
+  },
+  {
     id: 2818,
-    name: 'Хохин Хаги',
+    name: 'Чайник хохин Хаги',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
