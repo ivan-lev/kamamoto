@@ -1,4 +1,4 @@
-.exhibitions {
+.expos {
   &__list {
     display: flex;
     flex-direction: column;
@@ -52,20 +52,3 @@
     }
   }
 }
-
-// @media screen and (max-width: 900px) {
-//   .exhibitions {
-//     &__element:nth-child(even),
-//     &__element:nth-child(odd) {
-//       padding: 0;
-//       grid-template-columns: 400px;
-//       grid-template-rows: 20px 50px 20px 1fr;
-//       grid-template-areas:
-//         'upper-line'
-//         'year'
-//         'lower-line'
-//         'card';
-//       row-gap: 5px;
-//     }
-//   }
-// }
