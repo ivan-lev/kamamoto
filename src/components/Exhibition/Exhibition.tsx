@@ -103,15 +103,17 @@ export default function Exhibit(): JSX.Element {
         </div>
       </div>
 
-      <div className="exhibition__photos">
-        <ImageGallery
-          items={images || []}
-          showFullscreenButton={false}
-          showPlayButton={false}
-          showBullets={true}
-          showThumbnails={false}
-        />
-      </div>
+      {images?.length !== 0 && (
+        <div className="exhibition__photos">
+          <ImageGallery
+            items={images || []}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            showBullets={true}
+            showThumbnails={false}
+          />
+        </div>
+      )}
 
       <div className="exhibition__description">
         {exhibition?.poster && (
