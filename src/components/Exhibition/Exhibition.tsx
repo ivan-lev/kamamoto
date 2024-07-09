@@ -93,16 +93,14 @@ export default function Exhibit(): JSX.Element {
       </div>
 
       <div className="container bordered background-muted muted exhibition__participants">
-        <p>
-          Организаторы:
-          <br />
+        <div>
+          <span>Организаторы:</span>
           {parse(exhibition?.organisators || '', options)}
-        </p>
-        <p>
-          Кураторы:
-          <br />
+        </div>
+        <div>
+          <span>Кураторы:</span>
           {parse(exhibition?.curators || '', options)}
-        </p>
+        </div>
       </div>
 
       <div className="exhibition__photos">
