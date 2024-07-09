@@ -20,7 +20,7 @@ import Exhibitions from '../Exhibitions/Exhibitions';
 import Exhibition from '../Exhibition/Exhibition';
 import Contacts from '../Contacts/Contacts';
 import Files from '../Files/Files';
-// import Documents from '../Documents/Documents';
+import NotFound from '../NotFound/NotFound';
 
 export default function App() {
   return (
@@ -29,19 +29,20 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<HomePage />} />
-          <Route path="about" element={<About />} />
-          <Route path="collection" element={<Collection />} />
-          <Route path="collection/:category" element={<Category />} />
+          <Route path="about/" element={<About />} />
+          <Route path="collection/" element={<Collection />} />
+          <Route path="collection/:category/" element={<Category />} />
           <Route path="collection/:category/:exhibit" element={<Exhibit />} />
-          <Route path="exhibitions" element={<Exhibitions />} />
+          <Route path="exhibitions/" element={<Exhibitions />} />
           <Route path="exhibitions/:exhibition" element={<Exhibition />} />
-          <Route path="contacts" element={<Contacts />} />
-          <Route path="downloads" element={<Files title="Файлы для скачивания" files={files} />} />
+          <Route path="contacts/" element={<Contacts />} />
+          <Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
           <Route
-            path="documents"
+            path="documents/"
             element={<Files title="Шаблоны документов" files={documents} />}
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
