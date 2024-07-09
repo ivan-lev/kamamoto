@@ -12,7 +12,11 @@ export const exhibitions: Exhibitions = [
     description: '',
     photosCount: 10,
     poster: true,
-    curators: '',
+    organisators: '',
+    curators: `<ul>
+    <li>Наталья Смирнова (г.Челябинск)</li>
+    <li>Галия Малоушкина (г.Челябинск)</li>
+    </ul>`,
     isPageActive: true
   },
   {
@@ -26,7 +30,11 @@ export const exhibitions: Exhibitions = [
     description: '',
     photosCount: 0,
     poster: false,
-    curators: '',
+    organisators: '',
+    curators: `<ul>
+    <li>Наталья Смирнова (г.Челябинск)</li>
+    <li>Галия Малоушкина (г.Челябинск)</li>
+    </ul>`,
     isPageActive: false
   },
   {
@@ -77,7 +85,10 @@ export const exhibitions: Exhibitions = [
     photosCount: 11,
     poster: true,
     organisators: '',
-    curators: '',
+    curators: `<ul>
+    <li>Наталья Смирнова (г.Челябинск)</li>
+    <li>Галия Малоушкина (г.Челябинск)</li>
+    </ul>`,
     isPageActive: true
   },
   {
