@@ -20,10 +20,10 @@ export default function Footer() {
       </div>
       <div className="footer__column second-column">
         <span className="footer__column-element footer__column-title">Полезные материалы</span>
-        <Link to="/downloads" className="footer__column-element">
+        <Link to="downloads/" className="footer__column-element">
           Файлы для скачивания
         </Link>
-        <Link to="/documents" className="footer__column-element">
+        <Link to="documents/" className="footer__column-element">
           Шаблоны документов
         </Link>
       </div>
