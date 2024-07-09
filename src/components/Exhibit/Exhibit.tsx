@@ -60,9 +60,17 @@ export default function Exhibit(): JSX.Element {
           Назад
         </Link>
       </span>
-      <h3>{exhibit?.name}</h3>
+      <h3 className="title title3">{exhibit?.name}</h3>
       <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
-      <div className="container">{parse(exhibit?.description || '', options)}</div>
+      <div className="container exhibit__description">
+        {exhibit?.potterPhoto && (
+          <img
+            className="exhibit__potter-photo"
+            src={`${PATHS.EXHIBIT_PATH}${exhibit?.id}/${exhibit.potterPhoto}`}
+          ></img>
+        )}
+        {parse(exhibit?.description || '', options)}
+      </div>
       {exhibit?.additionalPhotos && <ImageGallery items={images || []} />}
       {exhibit?.additionalDescription && (
         <div className="container">{parse(exhibit?.additionalDescription || '', options)}</div>

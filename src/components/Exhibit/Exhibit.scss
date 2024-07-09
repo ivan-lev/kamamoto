@@ -7,6 +7,28 @@
     display: flex;
     gap: 5px;
   }
+
+  &__description {
+    display: block;
+  }
+
+  &__description * {
+    margin-bottom: 20px;
+  }
+
+  &__potter-photo {
+    max-width: 30%;
+    float: left;
+    padding-right: 48px;
+    padding-bottom: 40px;
+
+    @media screen and (max-width: 768px) {
+      float: unset;
+      max-width: unset;
+      width: 100%;
+      padding-right: 0;
+    }
+  }
 }
 
 .image-gallery-thumbnails-container {
