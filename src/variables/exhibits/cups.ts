@@ -32,7 +32,7 @@ export const cups: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.cups,
     style: CeramicStyleType.kohiki,
-    description: `<p>Описание пока доступно на японском языке<br/>
+    description: `<p>На данный момент описание доступно на японском языке<br/>
     日本工芸会正会員<br/>
 神通窯<br/>
 昭和18年<br/>
@@ -81,8 +81,42 @@ export const cups: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.cups,
     style: CeramicStyleType.kyo,
-    description: `<p>Описание в процессе подготовки</p>`,
-    additionalDescription: `<p></p>`,
+    description: `На данный момент описание доступно на японском языке`,
+    additionalDescription: `<p>元行動美術協会々員<br/>
+    小西嘉純<br/>
+    住所 香川県仲多度郡琴平町榎井 334の5<br/></p>
+    <p>画歴</p>
+    <ul>
+    <li>大正9年 5月 香川県仲多度郡琴平町榎井に生れる</li>
+    <li>昭和23年3月 創造美術協会展出品K賞受賞<br/>
+    〃 年5月 行動美術協会全関西展出品画人賞受賞<br/>
+    〃 年9月 第3回行動美術協会展出品入選</li>
+    <li>昭和24年5月 創造美術協会々員に推薦</li>
+    <li>〃 30年9月 行動美術協会々友に推薦</li>
+    <li>〃 33年 現代具象作家新人100人展に依嘱出品</li>
+    <li>〃 44年 高松市石清水会館壁画作成<br/>
+    〃 高知鉄道会館壁画作成</li>
+    <li>〃 45年8月 香川ビルマ会慰霊塔壁画作成<br/>
+    〃 9月 行動美術協会々員に推薦</li>
+    <li>〃 47 年徳島駅東ビル壁画作成</li>
+    <li>〃 54年愛媛ビルマ会慰霊塔壁画作成<br/>
+    香川県及高松市立美術館作品蔵</li>
+    <li>〃 57年 総本山善通寺宝物殿作品蔵</li>
+    <li>〃 60年 香川県展五十周年記念に感謝状を受ける<br/>
+    画業五十年の歩み展を善通寺画廊にて開催</li>
+    <li>〃 61年11月 香川県教育文化功労者として表彰される</li>
+    <li>63年 松山郵政局の依頼により年賀状 「香川より<br/>
+    見た瀬戸大橋」を描く</li>
+    <li>平成2年 香川の現代作家シリーズ小西嘉純展香川県<br/>
+    文化会館にて開催</li>
+    <li>平成3年 観音寺市琴弾公園内 「雅の郷」<br/>
+    能楽堂の壁画作成<br/>
+    〃 高松市広田八幡神社拝殿天井画作成<br/>
+    平成4年 丸亀みなと公園旧金毘羅街道案内板作成<br/>
+    香川県展審査員7回<br/>
+    香川県展実行委員3回<br/>
+    外遊 (東南アジア) 4回</li>
+    </ul>`,
     price: 0,
     weigth: undefined,
     height: undefined,

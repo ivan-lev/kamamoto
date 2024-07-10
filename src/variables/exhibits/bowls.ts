@@ -110,7 +110,7 @@ export const bowls: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
     style: CeramicStyleType.hagi,
-    description: `Описание в процессе разработки`,
+    description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
@@ -120,15 +120,16 @@ export const bowls: Exhibits = [
   },
   {
     id: 2656,
-    name: 'Чаша журавль тантидзуру',
+    name: 'Чаша "Стоящий Журавль" (Тантидзуру)',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
-    additionalPhotos: false,
     category: ExhibitCategory.bowls,
     style: CeramicStyleType.kyo,
-    description: `Описание в процессе подготовки, есть дополнительные фотографии`,
-    additionalDescription: ``,
+    description: ``,
+    additionalDescription: `<p>Чаши со стоящим журавлём, выполненные мастерами Рокубэем и Иэмицу</p>`,
+    additionalPhotos: true,
+    additionalPhotosCount: 2,
     price: 0,
     weigth: undefined,
     height: undefined,
@@ -140,12 +141,12 @@ export const bowls: Exhibits = [
     name: 'Чаша Киёмидзу c момидзи',
     potterName: 'Фудзихира Масафуми',
     potterJapaneseName: '藤平正文',
-    potterPhoto: '',
+    potterPhoto: 'fujihira-shin.jpg',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
     style: CeramicStyleType.kyo,
     description: `<p>Чаша мастера Фудзихиры Сина (1922 - 2013), создававшего керамику Киёмидзу под именем "Фудзихира Масафуми" в своей мастерской <a href="https://www.fujihiratougei.co.jp/">Фудзихира Тогэй</a> (藤平陶芸).</p>`,
-    additionalDescription: `<p>
+    additionalDescription: `<p>Некоторые вехи в карьере мастера:</p>
     <ul>
     <li>1944 поступил в Киотскую среднюю школу ремесел, но бросил учебу из-за болезни</li>
     <li>1945 основал гончарную мастерскую Фудзихира</li>
@@ -163,7 +164,7 @@ export const bowls: Exhibits = [
     <li>1985 Выставка «Перспектива современного японского искусства»</li>
     <li>1990 получил Киотскую премию искусства и культуры</li>
     <li>1991 получил премию города Киото за достижения в области культуры</li>
-    </ul></p>
+    </ul>
     <p>Мастер был удостоен чести аудиенции Ее Императорского Высочества принцессы Титибу, аудиенции принца Такамацу и его жены, а также награждён Орденом Священного Сокровища пятой степени.</p>`,
     price: 0,
     weigth: undefined,
@@ -180,8 +181,8 @@ export const bowls: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
     style: CeramicStyleType.kyo,
-    description: `<p>описание в процессе подготовки</p>`,
-    additionalDescription: `<p></p>`,
+    description: ``,
+    additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
@@ -197,8 +198,8 @@ export const bowls: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
     style: CeramicStyleType.kyo,
-    description: `<p>описание в процессе подготовки</p>`,
-    additionalDescription: `<p></p>`,
+    description: ``,
+    additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
@@ -214,8 +215,8 @@ export const bowls: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
     style: CeramicStyleType.kyo,
-    description: `<p>описание в процессе подготовки</p>`,
-    additionalDescription: `<p></p>`,
+    description: ``,
+    additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
@@ -256,8 +257,8 @@ export const bowls: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
     style: CeramicStyleType.kyo,
-    description: `<p>описание в процессе подготовки</p>`,
-    additionalDescription: `<p></p>`,
+    description: ``,
+    additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,

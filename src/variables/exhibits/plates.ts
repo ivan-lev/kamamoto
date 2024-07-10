@@ -30,7 +30,7 @@ export const plates: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.plates,
     style: CeramicStyleType.kyo,
-    description: `описание в разработке`,
+    description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,

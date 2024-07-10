@@ -30,7 +30,7 @@ export const vases: Exhibits = [
     additionalPhotos: false,
     category: ExhibitCategory.vases,
     style: CeramicStyleType.celadon,
-    description: `описание в процесси подготовки`,
+    description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
