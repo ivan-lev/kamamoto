@@ -9,7 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 // Redux
 import { RootState } from '../../slices';
 import { setCategory } from '../../slices/categorySlice';
-import { setExhibit, resetExhibit, setImages, resetImages } from '../../slices/exhibitSlice';
+import {
+  setExhibit,
+  resetExhibit,
+  setImages,
+  resetImages,
+  setAdditionalImages,
+  resetAdditionalImages
+} from '../../slices/exhibitSlice';
 
 // Other packages
 import parse from 'html-react-parser';
@@ -25,6 +32,7 @@ export default function Exhibit(): JSX.Element {
   const category = useSelector((state: RootState) => state.category.category);
   const exhibit = useSelector((state: RootState) => state.exhibit.info);
   const images = useSelector((state: RootState) => state.exhibit.images);
+  const additionalImages = useSelector((state: RootState) => state.exhibit.additionalImages);
   const dispatch = useDispatch();
   const location = useLocation().pathname;
   const { exhibitCategory, exhibitNumber } = getExhibitNumberAndCategory(location);
@@ -50,6 +58,7 @@ export default function Exhibit(): JSX.Element {
   useEffect(() => {
     if (exhibit) {
       dispatch(setImages(generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id)));
+      dispatch(setAdditionalImages(generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id, 2, true)));
     }
   }, [exhibit]);
 
@@ -69,12 +78,23 @@ export default function Exhibit(): JSX.Element {
             src={`${PATHS.EXHIBIT_PATH}${exhibit?.id}/${exhibit.potterPhoto}`}
           ></img>
         )}
-        {parse(exhibit?.description || '', options)}
+
+        {exhibit?.description ? (
+          parse(exhibit?.description || '', options)
+        ) : (
+          <p className="text">Описание в процессе подготовки</p>
+        )}
+        {exhibit?.additionalDescription && parse(exhibit?.additionalDescription || '', options)}
+        {exhibit?.additionalPhotos && (
+          <ImageGallery
+            items={additionalImages || []}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            showThumbnails={false}
+            showBullets={true}
+          />
+        )}
       </div>
-      {exhibit?.additionalPhotos && <ImageGallery items={images || []} />}
-      {exhibit?.additionalDescription && (
-        <div className="container">{parse(exhibit?.additionalDescription || '', options)}</div>
-      )}
     </section>
   );
 }
