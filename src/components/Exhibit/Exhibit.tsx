@@ -52,6 +52,7 @@ export default function Exhibit(): JSX.Element {
     return () => {
       dispatch(resetExhibit());
       dispatch(resetImages());
+      dispatch(resetAdditionalImages());
     };
   }, []);
 
