@@ -8,6 +8,7 @@ export type Exhibit = {
   potterJapaneseName?: string;
   potterPhoto?: string;
   additionalPhotos: boolean;
+  additionalPhotosCount?: number;
   category: ExhibitCategory;
   style: CeramicStyleType;
   description: string;
