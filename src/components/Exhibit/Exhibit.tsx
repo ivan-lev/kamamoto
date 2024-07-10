@@ -65,11 +65,12 @@ export default function Exhibit(): JSX.Element {
 
   return (
     <section className="section exhibit">
-      <span className="exhibit__breadcrumbs">
-        <Link to=".." className="link exhibit__link" relative="path">
+      <div className="exhibit__breadcrumbs">
+        <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+          <img className="background-muted bordered link__icon" src="/icons/link-arrow-left.svg" />
           Назад
         </Link>
-      </span>
+      </div>
       <h3 className="title title3">{exhibit?.name}</h3>
       <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
       <div className="container exhibit__description">

@@ -6,6 +6,7 @@
   &__breadcrumbs {
     display: flex;
     gap: 5px;
+    align-self: flex-start;
   }
 
   &__description {
