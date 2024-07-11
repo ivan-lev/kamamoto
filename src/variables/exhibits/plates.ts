@@ -1,6 +1,5 @@
-import { ExhibitCategory } from '../../types/exhibitCategory';
-import { CeramicStyleType } from '../../types/ceramicStyleType';
 import type { Exhibits } from '../../types/exhibitType';
+import { ExhibitCategory } from '../../types/exhibitCategory';
 import { ExhibitComplectation } from '../../types/exhibitComplectationType';
 
 const { plate, tomobakoWooden, paperDocument, protectiveCloth } = ExhibitComplectation;
@@ -19,7 +18,7 @@ export const plates: Exhibits = [
     additionalDescription: ``,
     additionalPhotos: false,
     additionalPhotosCount: undefined,
-    style: CeramicStyleType.other,
+    style: 'other',
     price: 15400,
     height: 4.5,
     length: 24,
@@ -36,7 +35,7 @@ export const plates: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.plates,
-    style: CeramicStyleType.kyo,
+    style: 'kyo',
     description: ``,
     additionalDescription: ``,
     price: 0,
@@ -59,7 +58,7 @@ export const plates: Exhibits = [
     additionalDescription: ``,
     additionalPhotos: false,
     additionalPhotosCount: undefined,
-    style: CeramicStyleType.shino,
+    style: 'shino',
     price: 16500,
     height: 4,
     length: 23,
@@ -83,7 +82,7 @@ export const plates: Exhibits = [
     additionalDescription: ``,
     additionalPhotos: false,
     additionalPhotosCount: undefined,
-    style: CeramicStyleType.kiyomizu,
+    style: 'kiyomizu',
     price: 17300,
     height: 3.5,
     length: 18.3,
@@ -106,7 +105,7 @@ export const plates: Exhibits = [
     additionalDescription: ``,
     additionalPhotos: false,
     additionalPhotosCount: undefined,
-    style: CeramicStyleType.shino,
+    style: 'shino',
     price: 14700,
     height: 5,
     length: 24,
@@ -146,7 +145,7 @@ export const plates: Exhibits = [
     <p>Ниже несколько фотографий, передающих атмосферу, при которой создаются вещи в семейной печи:</p>`,
     additionalPhotos: true,
     additionalPhotosCount: 8,
-    style: CeramicStyleType.mino,
+    style: 'mino',
     price: 27900,
     height: 4,
     length: 21,

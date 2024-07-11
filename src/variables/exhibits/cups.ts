@@ -1,6 +1,8 @@
-import { ExhibitCategory } from '../../types/exhibitCategory';
-import { CeramicStyleType } from '../../types/ceramicStyleType';
 import type { Exhibits } from '../../types/exhibitType';
+import { ExhibitCategory } from '../../types/exhibitCategory';
+import { ExhibitComplectation } from '../../types/exhibitComplectationType';
+
+const { cup, cups2, cups3, tomobakoWooden, protectiveCloth, paperDocument } = ExhibitComplectation;
 
 export const cups: Exhibits = [
   {
@@ -11,7 +13,7 @@ export const cups: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.cups,
-    style: CeramicStyleType.glass,
+    style: 'glass',
     description: `<p>Пиалы «Сосна, бамбук и слива» («cётикубай»), созданные на фабрике по производству изделий из хрусталя Kagami Crystal, которая поставляет для официальных приемов стеклянную посуду Агентству императорского двора, а также производит традиционные японские изделия Эдо Кирико (江戸切子) — вещи с выгравированными узорами.</p>
     <p>Компания Kagami Crystal Co., Ltd. (各務クリスタル製作所), основанная Кагами Кодзо (各務鑛三), открыла первый в Японии завод по производству хрусталя в 1934 году. С момента своего основания более восьмидесяти лет назад компания разработала для создания оригинальных и высококачественных изделий передовые навыки и технологии изготовления стекла, включая ручное выдувание стекла, ручную резку и гравировку.</p>
     <p>Продукция фабрики Кагами широко используется на официальных встречах, таких как приемы государственных гостей и иностранных высокопоставленных лиц в Государственном гостевом доме, а также в посольствах и консульствах Японии по всему миру. Компания неоднократно получала специальные заказы от Императорской семьи. Кагами считается ведущим поставщиком высококачественной стеклянной посуды в Японии.</p>
@@ -21,7 +23,8 @@ export const cups: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [cups3, tomobakoWooden]
   },
   {
     id: 2751,
@@ -31,7 +34,7 @@ export const cups: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.cups,
-    style: CeramicStyleType.kohiki,
+    style: 'kohiki',
     description: `<p>На данный момент описание доступно на японском языке<br/>
     日本工芸会正会員<br/>
 神通窯<br/>
@@ -70,7 +73,8 @@ export const cups: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [cups2, tomobakoWooden, paperDocument]
   },
   {
     id: 2759,
@@ -80,7 +84,7 @@ export const cups: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.cups,
-    style: CeramicStyleType.kyo,
+    style: 'unknown',
     description: `На данный момент описание доступно на японском языке`,
     additionalDescription: `<p>元行動美術協会々員<br/>
     小西嘉純<br/>
@@ -121,7 +125,8 @@ export const cups: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [cup, tomobakoWooden, protectiveCloth, paperDocument]
   },
   {
     id: 2847,
@@ -131,7 +136,7 @@ export const cups: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.cups,
-    style: CeramicStyleType.agano,
+    style: 'agano',
     description: `<p>Чашка, выполненная в технике Агано (上野燒), одной из так называемых «Семи печей Кобори Энсю (遠州七窯), постоянным членом Японской Ассоциации Когэй (日本工芸会) мастером Кумагаи Коё в 15 поколении (十五代 熊谷紅陽). Керамика Агано, производство которой ранее в период Мэйдзи было прекращено, была возрождена при поддержке правительства Кумагаем Кухатиро, который стал мастером в 13-м поколении, последовавшим за двенадцатью поколениями, работавшими в технике Агано еще с феодальных времён.</p>
     <p>Пиала выполнена из глины с большим содержанием песчинок и равномерно покрыта глазурью желтовато-бежевого оттенка. Печать мастера стоит возле ножки пиалы.</p>
     <p>Мастер родился 13 февраля 1912 года в Уэно, город Акаикэ, район Тагава, префектуре Фукуока (福岡県田川郡赤池町上野). В марте 1929 получил награду губернатора (卒業知事賞) за окончание средней технической школы Арита префектуры Сага (佐賀県立有田工業学校). Далее вошел в семейное дело под руководством отца Рюхо (竜峯) — мастера в 14м поколении. Мастера не стало в 1992 году.</p>`,
@@ -158,6 +163,7 @@ export const cups: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [cup, tomobakoWooden, paperDocument]
   }
 ];

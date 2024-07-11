@@ -13,7 +13,7 @@ export type Exhibit = {
   additionalPhotos: boolean;
   additionalPhotosCount?: number;
   category: ExhibitCategory;
-  style: CeramicStyleType;
+  style: keyof typeof CeramicStyleType;
   description: string;
   additionalDescription?: string;
   price: number;

@@ -1,6 +1,9 @@
-import { ExhibitCategory } from '../../types/exhibitCategory';
-import { CeramicStyleType } from '../../types/ceramicStyleType';
 import type { Exhibits } from '../../types/exhibitType';
+import { ExhibitCategory } from '../../types/exhibitCategory';
+import { ExhibitComplectation } from '../../types/exhibitComplectationType';
+
+const { bowl, tomobakoWooden, protectiveCloth, paperDocument, paperDocuments2 } =
+  ExhibitComplectation;
 
 export const bowls: Exhibits = [
   {
@@ -11,7 +14,7 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'kyo',
     description:
       'Прекрасная чаша в технике Кё с парой журавлей, летящих на фоне солнца. Чаша сделана в Киото и выполнена очень талантливым гончаром, который умело применяет и комбинирует различные декоративные техники. Например, солнце и силуэты журавлей выполнены в технике какиотоси — соскабливания верхнего слоя глины, под которым находится контрастная основа. Другие элементы выполнены в технике кинсаи иро-э — росписи надглазурными эмалевидными красками с применением золотого цвета.',
     additionalDescription: `<p>Журавль, летящий на фоне солнца олицетворяет свободу.</p>
@@ -21,7 +24,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden]
   },
   {
     id: 2069,
@@ -31,7 +35,7 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.akahada,
+    style: 'akahada',
     description: `<p>Чаша с изображением трёх оленей (традиционный символ города Нара), располагающихся по периметру её тулова. Изготовлена мастером Фурусэ (Дзихэй) Гёдзо в 7-м поколении, имя при рождении — Такаси (隆). Мастер работает в семейной печи Акахадаяма Мотогама (赤膚山元窯), которая столетиями не меняет своей локации и находится в Нара, Япония. Мастер учился под руководством легендарных керамистов Томимото Кенкити (富本憲吉), Кондо Юдзо (近藤悠三) и Фудзимото Ёсимити (藤本能道).</p>
     <p>В 1959 году мастер окончил Киотский городской университет искусств, где познакомился с современными технологиями и идеями, и смог привнести это вдохновение в свои творения, органично соединив их с семейными традициями. Простота формы дополняется традиционной глазурью из рисовой соломы и обжигом в печи ноборигама (многокамерная печь дровяного обжига). В результате изделия приобретают вневременную, утонченную и уникально, не поддающуюся определению красоту.</p>
     <p>Шедевры Фурусэ Гёдзо не считаются эффектными, но скорее следуют философии ваби-саби. Его произведения для чайной церемонии похожи на повседневные изделия, но выполняются с максимальной тщательностью и вызывают ощущение утонченной красоты и спокойствия. В настоящее время Фурусэ в 8-м поколении продолжает семейные традиции и работу предыдущих мастеров.</p>`,
@@ -45,7 +49,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden, paperDocument]
   },
   {
     id: 2218,
@@ -55,7 +60,7 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.raku,
+    style: 'raku',
     description: `<p>Печь Кацура (桂窯) была основана в округе Арасияма города Киото, недалеко от реки Кацура. Основатель печи, Ёригами Сохаку, изначально производил черепицу для крыш храмов и замков. В свободное время он увлекался чаем и это сподвигло его начать производить чайную утварь. В 1953 он начал производить только чайную посудуи отурыл свою печь, наняв молодого ученика, Хигаки Сораку.</p>
     <p>Хигаки Сораку I (檜垣 崇楽) женился на дочери Ёригами и учился у своего тестя Ёригами Сохаку (寄神 崇白), унаследовав печь Кацура.</p>
     <p>Хигаки Сораку II родилась в 1927 в Киото и была старшей дочерью Ёригами Сохаку, основателя печи. В 1983 году, когда её муж скончался, она взяла имя Хигаки Сораку во втором поколении.</p>
@@ -66,7 +71,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden, protectiveCloth, paperDocument]
   },
   {
     id: 2268,
@@ -76,7 +82,7 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.shino,
+    style: 'shino',
     description: `<p>Чаша в технике Э-Сино (絵志野) с веткой цветущей сливы, выполненная мастером Хаяси Рёдзи.</p>
     <p>Хаяси Рёдзи (林 亮炊) — гончар Мино (美濃焼), управляющий печью Сояма (荘山窯), работающий в различных техниках: Сино, Орибэ, пепельная глазурь и другие. Родился в городе Токи, префектура Гифу в 1940 году.</p>
     <p>Керамика Сино часто характеризуется наличием множества мелких отверстий, называемых «суана». Хаяси Рёдзи доработал глазурь Сино и придал ей уникальный вид — глазурь как бы рвётся от отверстия к отверстию, покрываясь глубокими, драматичными трещинами, напоминающими кору дерева или сухую землю. Некоторые его работы отмечены несколькими основными большими трещинами, которые задают тон всему изделию.</p>`,
@@ -99,7 +105,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden, protectiveCloth, paperDocument]
   },
   {
     id: 2320,
@@ -109,14 +116,15 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.hagi,
+    style: 'hagi',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden, protectiveCloth, paperDocument]
   },
   {
     id: 2656,
@@ -125,7 +133,7 @@ export const bowls: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'kyo',
     description: ``,
     additionalDescription: `<p>Чаши со стоящим журавлём, выполненные мастерами Рокубэем и Иэмицу</p>`,
     additionalPhotos: true,
@@ -134,7 +142,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden]
   },
   {
     id: 2739,
@@ -144,7 +153,7 @@ export const bowls: Exhibits = [
     potterPhoto: 'fujihira-shin.jpg',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'kiyomizu',
     description: `<p>Чаша мастера Фудзихиры Сина (1922 - 2013), создававшего керамику Киёмидзу под именем "Фудзихира Масафуми" в своей мастерской <a href="https://www.fujihiratougei.co.jp/">Фудзихира Тогэй</a> (藤平陶芸).</p>`,
     additionalDescription: `<p>Некоторые вехи в карьере мастера:</p>
     <ul>
@@ -170,7 +179,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, paperDocuments2]
   },
   {
     id: 2775,
@@ -180,14 +190,15 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'kyo',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden]
   },
   {
     id: 2803,
@@ -197,14 +208,15 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'raku',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden, protectiveCloth]
   },
   {
     id: 2819,
@@ -214,14 +226,15 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'raku',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden, protectiveCloth]
   },
   {
     id: 2840,
@@ -231,7 +244,7 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'kyo',
     description: `<p>Чаша неизвестного мастера, выполненная в технике Кё, с цветами ирисов на болоте и мостиками. Возле ножки чаши стоит печать мастера 香泉.</p>
     <p>Ирисы и яцухаси — классический мотив японской поэзии и живописи. Мотив отсылает к девятой главе «Повести об Исэ», сборнику рассказов, написанных в период Хэйан, и на протяжении многих веков широко известному в Японии.</p>
     <p>Восемь мостов (八橋, яцухаси) — это конструкция японского моста, состоящая из восьми перекрывающихся деревянных или каменных досок. Со временем этот мотив (который стал стилизованным под зигзагообразную форму) был включен в широкий спектр художественных форм: его можно найти на кимоно, письменных ящиках, ширмах и фарфоре, в гравюрах укиё-э и садовых пейзажах.</p>`,
@@ -246,7 +259,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl]
   },
   {
     id: 2946,
@@ -256,13 +270,14 @@ export const bowls: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.bowls,
-    style: CeramicStyleType.kyo,
+    style: 'tokoname',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl, tomobakoWooden, protectiveCloth]
   }
 ];

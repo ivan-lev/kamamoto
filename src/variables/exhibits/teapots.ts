@@ -1,24 +1,8 @@
-import { ExhibitCategory } from '../../types/exhibitCategory';
-import { CeramicStyleType } from '../../types/ceramicStyleType';
 import type { Exhibits } from '../../types/exhibitType';
+import { ExhibitCategory } from '../../types/exhibitCategory';
+import { ExhibitComplectation } from '../../types/exhibitComplectationType';
 
-// {
-//     id: 0,
-//     name: '',
-//     potterName: '',
-//     potterJapaneseName: '',
-//     potterPhoto: '',
-//     additionalPhotos: false,
-//     category: ExhibitCategory.plates,
-//     style: CeramicStyleType,
-//     description: ``,
-//     additionalDescription: ``,
-//     price: undefined,
-//     weigth: undefined,
-//     height: undefined,
-//     length: undefined,
-//     width: undefined
-//   }
+const { teapot } = ExhibitComplectation;
 
 export const teapots: Exhibits = [
   {
@@ -29,14 +13,15 @@ export const teapots: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.teapots,
-    style: CeramicStyleType.kyo,
+    style: 'hagi',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [teapot]
   },
   {
     id: 2818,
@@ -46,14 +31,15 @@ export const teapots: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.teapots,
-    style: CeramicStyleType.kyo,
+    style: 'hagi',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [teapot]
   },
   {
     id: 2846,
@@ -63,13 +49,14 @@ export const teapots: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.teapots,
-    style: CeramicStyleType.kyo,
+    style: 'hagi',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [teapot]
   }
 ];

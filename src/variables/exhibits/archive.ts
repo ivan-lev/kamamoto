@@ -1,6 +1,8 @@
-import { ExhibitCategory } from '../../types/exhibitCategory';
-import { CeramicStyleType } from '../../types/ceramicStyleType';
 import type { Exhibits } from '../../types/exhibitType';
+import { ExhibitCategory } from '../../types/exhibitCategory';
+import { ExhibitComplectation } from '../../types/exhibitComplectationType';
+
+const { bowl } = ExhibitComplectation;
 
 export const archive: Exhibits = [
   {
@@ -11,13 +13,14 @@ export const archive: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.archive,
-    style: CeramicStyleType.kyo,
+    style: 'kyo',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [bowl]
   }
 ];

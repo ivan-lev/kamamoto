@@ -1,6 +1,8 @@
-import { ExhibitCategory } from '../../types/exhibitCategory';
-import { CeramicStyleType } from '../../types/ceramicStyleType';
 import type { Exhibits } from '../../types/exhibitType';
+import { ExhibitCategory } from '../../types/exhibitCategory';
+import { ExhibitComplectation } from '../../types/exhibitComplectationType';
+
+const { chaire, natsume, tomobakoWooden, protectiveCloth, shifuku } = ExhibitComplectation;
 
 export const caddies: Exhibits = [
   {
@@ -11,14 +13,15 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.other,
+    style: 'other',
     description: `Чайница для церемоний с большим количеством участников. Описание в процессе подготовки`,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [natsume]
   },
   {
     id: 2696,
@@ -28,14 +31,15 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.seto,
+    style: 'seto',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [chaire]
   },
   {
     id: 2705,
@@ -45,14 +49,15 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.seto,
+    style: 'seto',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [chaire]
   },
   {
     id: 2728,
@@ -62,14 +67,15 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.seto,
+    style: 'seto',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [chaire]
   },
   {
     id: 2811,
@@ -79,14 +85,15 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.other,
+    style: 'other',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [natsume, tomobakoWooden, protectiveCloth]
   },
   {
     id: 2812,
@@ -96,14 +103,15 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.other,
+    style: 'other',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [chaire, tomobakoWooden]
   },
   {
     id: 2822,
@@ -113,7 +121,7 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.other,
+    style: 'other',
     description: `<p>Деревянная чайница, покрытая лаком и украшенная узором гэндзи-гурума (源氏車) – колёсами повозок госё-гурума (御所車), запрягаемых волами, которые использовались знатью периода Хэйан. Эти колёса опускали в воду, чтобы они не рассыхались, если их долго не используют.</p>
     <p>В древнем и средневековом Киото императорская семья и знать ездили в повозках, запряженных волами. Этот образ намекает на несколько классических литературных сцен, среди которых событие из главы «Листья дикого имбиря» (Аой) в «Сказании о Гэндзи», в котором слуги жены Гэндзи и его бывшей возлюбленной создают давку из телег, соревнуясь за лучшую позицию для просмотра фестиваля Камо в Киото.</p>`,
     additionalDescription: ``,
@@ -121,7 +129,8 @@ export const caddies: Exhibits = [
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [natsume]
   },
   {
     id: 2843,
@@ -131,14 +140,15 @@ export const caddies: Exhibits = [
     potterPhoto: '',
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.other,
+    style: 'other',
     description: ``,
     additionalDescription: ``,
     price: 0,
     weigth: undefined,
     height: undefined,
     length: undefined,
-    width: undefined
+    width: undefined,
+    complectation: [natsume]
   },
   {
     id: 2852,
@@ -148,7 +158,7 @@ export const caddies: Exhibits = [
     potterPhoto: undefined,
     additionalPhotos: false,
     category: ExhibitCategory.caddies,
-    style: CeramicStyleType.takatori,
+    style: 'takatori',
     description: `<p>Чайница Такатори, выполненная мастером в 13м поколении Такатори Хассэном. Мастер родился 27 декабря 1934 года. В 1950 году окончил начальную школу Коисивара и занялся семейным бизнесом, а в 1953 получил имя Такотори в 13-м поколении.</p>
     <p>
     Вещи Такатори (高取焼) считаются керамикой кирэй-саби (綺麗寂 — эстетика, основанная на ваби-саби с большим акцентом на элегантность) и связаны со школой чайной церемонии мастера Кобори Энсю, который упоминал Такатори как одну из любимых разновидностей керамики для проведения чайного действа. Это знаменитая печь, известная за свои копии чайных контейнеров карамоно (китайских вещей). Глина для изготовления вещей очищается до высшей степени чистоты, традиционная глазурь очень красива, а нить, которой заготовка отделается от круга, обрезает дно изделия слева.</p>`,
@@ -170,6 +180,7 @@ export const caddies: Exhibits = [
     <li>2005 Награжден премией Национальной ассоциации традиционных ремесленников за выдающиеся заслуги (全国伝統工芸士会功労賞), награждён орденом Священного Сокровища (勲章瑞宝)</li>
     <li>2013 Мемориальная выставка Кидзю (喜寿記念展覧会) в Художественном музее Фукуока (福岡市美術館)</li>
     </ul>`,
-    price: 25600
+    price: 25600,
+    complectation: [chaire, tomobakoWooden, shifuku]
   }
 ];
