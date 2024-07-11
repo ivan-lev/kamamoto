@@ -26,12 +26,14 @@ import ImageGallery from 'react-image-gallery';
 import { generateImageLinks } from '../../utils/generateImageLinks';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
+import { ceramicStylesDescriptions } from '../../variables/ceramisStylesDescriptions';
 import { PATHS } from '../../variables/variables';
 
 export default function Exhibit(): JSX.Element {
   const category = useSelector((state: RootState) => state.category.category);
   const exhibit = useSelector((state: RootState) => state.exhibit.info);
   const images = useSelector((state: RootState) => state.exhibit.images);
+  const ceramicStyle = useSelector((state: RootState) => state.exhibit.info?.style);
   const additionalImages = useSelector((state: RootState) => state.exhibit.additionalImages);
   const dispatch = useDispatch();
   const location = useLocation().pathname;
@@ -99,6 +101,13 @@ export default function Exhibit(): JSX.Element {
             showThumbnails={false}
             showBullets={true}
           />
+        )}
+        {ceramicStyle && (
+          <div>
+            {parse(
+              ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions]
+            ) || ''}
+          </div>
         )}
       </div>
     </section>
