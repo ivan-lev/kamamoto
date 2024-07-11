@@ -8,7 +8,10 @@ export enum CeramicStyleType {
   glass = 'Стекло',
   hakuji = 'Хакудзи',
   hagi = 'Хаги',
+  irabo = 'Ирабо',
+  izushi = 'Идзуси',
   mino = 'Мино',
+  karatsu = 'Карацу',
   kiyomizu = 'Киёмидзу',
   kohiki = 'Кохики',
   kyo = 'Кё',
@@ -21,5 +24,6 @@ export enum CeramicStyleType {
   shino = 'Сино',
   takatori = 'Такатори',
   tokoname = 'Токонамэ',
-  unknown = 'не определён'
+  unknown = 'не определён',
+  zeze = 'дзэдзэ'
 }
