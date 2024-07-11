@@ -59,7 +59,11 @@ export default function Exhibit(): JSX.Element {
   useEffect(() => {
     if (exhibit) {
       dispatch(setImages(generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id)));
-      dispatch(setAdditionalImages(generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id, 2, true)));
+      dispatch(
+        setAdditionalImages(
+          generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id, exhibit.additionalPhotosCount, true)
+        )
+      );
     }
   }, [exhibit]);
 
