@@ -103,7 +103,7 @@ export default function Exhibit(): JSX.Element {
           />
         )}
         {ceramicStyle && (
-          <div>
+          <div className="container bordered background-muted">
             {parse(
               ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions]
             ) || ''}
