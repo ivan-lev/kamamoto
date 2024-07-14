@@ -52,7 +52,7 @@ export default function Category(): JSX.Element {
         </Link>
       </div>
 
-      <h3 className="title3 category__title">{categoryName}</h3>
+      <h3 className="title title3 category__title">{categoryName}</h3>
       <DisplayGrid />
     </section>
   );
