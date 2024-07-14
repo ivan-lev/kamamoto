@@ -77,6 +77,7 @@ export default function Exhibit(): JSX.Element {
           Назад
         </Link>
       </div>
+
       <h3 className="title title3">{exhibit?.name}</h3>
 
       {/* Main image gallery */}
@@ -125,12 +126,11 @@ export default function Exhibit(): JSX.Element {
 
       {/* Ceramic style description section */}
       {ceramicStyle !== 'other' && (
-        <div className="exhibit__description">
-          <div className="container bordered background-muted exhibit__description">
-            {parse(
-              ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions]
-            ) || ''}
-          </div>
+        <div className="container bordered background-muted exhibit__description">
+          {parse(
+            ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions] || '',
+            options
+          )}
         </div>
       )}
     </section>
