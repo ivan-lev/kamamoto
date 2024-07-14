@@ -15,7 +15,7 @@ export enum CeramicStyleType {
   kiyomizu = 'Киёмидзу',
   kizeto = 'Кидзэто',
   kohiki = 'Кохики',
-  kutanii = 'Кутани',
+  kutani = 'Кутани',
   kyo = 'Кё',
   mikawachi = 'Микавати',
   mishima = 'Мисима',
