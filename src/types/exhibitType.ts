@@ -9,13 +9,17 @@ export type Exhibit = {
   potterName?: string;
   potterJapaneseName?: string;
   potterLifeDates?: string;
-  potterPhoto?: string;
-  additionalPhotos: boolean;
-  additionalPhotosCount?: number;
   category: ExhibitCategory;
   style: keyof typeof CeramicStyleType;
   description: string;
+
+  potterPhoto?: string;
+  potterInfo?: string;
+
   additionalDescription?: string;
+  additionalPhotos: boolean;
+  additionalPhotosCount?: number;
+
   price: number;
   height?: number;
   length?: number;
