@@ -51,6 +51,10 @@
   text-align: center;
 }
 
+.title::first-letter {
+  text-transform: capitalize;
+}
+
 .title1 {
   font-size: 55px;
 
