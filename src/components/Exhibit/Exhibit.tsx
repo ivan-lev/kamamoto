@@ -78,38 +78,61 @@ export default function Exhibit(): JSX.Element {
         </Link>
       </div>
       <h3 className="title title3">{exhibit?.name}</h3>
-      <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
-      <div className="container exhibit__description">
-        {exhibit?.potterPhoto && (
-          <img
-            className="exhibit__potter-photo"
-            src={`${PATHS.EXHIBIT_PATH}${exhibit?.id}/${exhibit.potterPhoto}`}
-          ></img>
-        )}
 
+      {/* Main image gallery */}
+      <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
+
+      {/* Exhibit description section */}
+      <div className="exhibit__description">
         {exhibit?.description ? (
           parse(exhibit?.description || '', options)
         ) : (
           <p className="text">Описание в процессе подготовки</p>
         )}
-        {exhibit?.additionalDescription && parse(exhibit?.additionalDescription || '', options)}
-        {exhibit?.additionalPhotos && (
-          <ImageGallery
-            items={additionalImages || []}
-            showFullscreenButton={false}
-            showPlayButton={false}
-            showThumbnails={false}
-            showBullets={true}
-          />
-        )}
-        {ceramicStyle && (
-          <div className="container bordered background-muted">
+      </div>
+
+      {/* Potter description section */}
+      {exhibit?.potterInfo && (
+        <div className="exhibit__description">
+          {exhibit?.potterPhoto && (
+            <img
+              className="exhibit__potter-photo"
+              src={`${PATHS.EXHIBIT_PATH}${exhibit?.id}/${exhibit.potterPhoto}`}
+            ></img>
+          )}
+
+          {exhibit?.potterInfo && parse(exhibit?.potterInfo || '', options)}
+        </div>
+      )}
+
+      {/* Additional info */}
+      {exhibit?.additionalDescription && (
+        <div className="exhibit__description">
+          {exhibit?.additionalDescription && parse(exhibit?.additionalDescription || '', options)}
+        </div>
+      )}
+
+      {/* Additional photo gallery */}
+      {exhibit?.additionalPhotos && (
+        <ImageGallery
+          items={additionalImages || []}
+          showFullscreenButton={false}
+          showPlayButton={false}
+          showThumbnails={false}
+          showBullets={true}
+        />
+      )}
+
+      {/* Ceramic style description section */}
+      {ceramicStyle !== 'other' && (
+        <div className="exhibit__description">
+          <div className="container bordered background-muted exhibit__description">
             {parse(
               ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions]
             ) || ''}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }

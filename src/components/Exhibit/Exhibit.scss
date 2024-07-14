@@ -12,6 +12,7 @@
   &__description {
     display: block;
     width: 100%;
+    box-sizing: border-box;
   }
 
   &__description p,
