@@ -3,7 +3,7 @@ import './Category.scss';
 // React
 import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // Redux
 import { setCategory } from '../../slices/categorySlice';
@@ -45,6 +45,13 @@ export default function Category(): JSX.Element {
 
   return (
     <section className="section category">
+      <div className="exhibit__breadcrumbs">
+        <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+          <img className="background-muted bordered link__icon" src="/icons/link-arrow-left.svg" />
+          Назад
+        </Link>
+      </div>
+
       <h3 className="title3 category__title">{categoryName}</h3>
       <DisplayGrid />
     </section>
