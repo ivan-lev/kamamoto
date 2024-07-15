@@ -36,5 +36,6 @@ export enum CeramicStyleType {
   tobe = 'Тобэ',
   tokoname = 'Токонамэ',
   unknown = 'не определён',
+  yasaka = 'Ясака',
   zeze = 'дзэдзэ'
 }
