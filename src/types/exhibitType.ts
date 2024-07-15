@@ -25,6 +25,7 @@ export type Exhibit = {
   length?: number;
   width?: number;
   weigth?: number;
+  volume?: number;
   weightOfSet?: number;
   complectation: ExhibitComplectation[];
   preservation?: string;
