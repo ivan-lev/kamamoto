@@ -29,7 +29,7 @@ export const vases: Exhibits = [
     id: 2383,
     name: 'Ваза Танба Татикуи мастера Итино Хироюки',
     age: undefined,
-    style: 'other',
+    style: 'tamba',
     category: ExhibitCategory.vases,
     potterName: 'Итино Хироюки',
     potterJapaneseName: '市野 弘之',
