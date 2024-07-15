@@ -84,7 +84,7 @@ export default function Exhibit(): JSX.Element {
       <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
 
       {/* Exhibit description section */}
-      <div className="exhibit__description">
+      <div className="text-block">
         {exhibit?.description ? (
           parse(exhibit?.description || '', options)
         ) : (
@@ -94,7 +94,7 @@ export default function Exhibit(): JSX.Element {
 
       {/* Potter description section */}
       {exhibit?.potterInfo && (
-        <div className="exhibit__description">
+        <div className="text-block">
           {exhibit?.potterPhoto && (
             <img
               className="exhibit__potter-photo"
@@ -108,7 +108,7 @@ export default function Exhibit(): JSX.Element {
 
       {/* Additional info */}
       {exhibit?.additionalDescription && (
-        <div className="exhibit__description">
+        <div className="text-block">
           {exhibit?.additionalDescription && parse(exhibit?.additionalDescription || '', options)}
         </div>
       )}
@@ -126,7 +126,7 @@ export default function Exhibit(): JSX.Element {
 
       {/* Ceramic style description section */}
       {ceramicStyle !== 'other' && (
-        <div className="container bordered background-muted exhibit__description">
+        <div className="container bordered background-muted text-block">
           {parse(
             ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions] || '',
             options

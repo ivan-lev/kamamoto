@@ -9,21 +9,6 @@
     align-self: flex-start;
   }
 
-  &__description {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  &__description p,
-  &__description ul {
-    margin-bottom: 20px;
-  }
-
-  &__description *:last-child {
-    margin-bottom: 0;
-  }
-
   &__potter-photo {
     max-width: 30%;
     float: left;

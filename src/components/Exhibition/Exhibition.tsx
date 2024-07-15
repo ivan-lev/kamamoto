@@ -115,7 +115,7 @@ export default function Exhibit(): JSX.Element {
         </div>
       )}
 
-      <div className="exhibition__description">
+      <div className="text-block exhibition__description">
         {exhibition?.poster && (
           <img
             className="exhibition__poster"
