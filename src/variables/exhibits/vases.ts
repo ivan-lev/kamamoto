@@ -177,6 +177,36 @@ export const vases: Exhibits = [
     complectation: [vase, tomobakoWooden, paperDocument]
   },
   {
+    id: 2742,
+    name: 'Ваза Хаги неизвестного автора',
+    age: undefined,
+    style: 'hagi',
+    category: ExhibitCategory.vases,
+    potterName: '',
+    potterJapaneseName: '',
+    potterLifeDates: '',
+
+    description: ``,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [vase, tomobakoWooden, protectiveCloth],
+    preservation: undefined
+  },
+  {
     id: 2748,
     name: 'ваза Сэто мастера Като Кэия',
     age: undefined,
