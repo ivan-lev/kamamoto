@@ -24,6 +24,8 @@ export type Exhibit = {
   height?: number;
   length?: number;
   width?: number;
+  diameter?: number;
+  footDiameter?: number;
   weigth?: number;
   volume?: number;
   weightOfSet?: number;
