@@ -451,6 +451,41 @@ export const bowls: Exhibits = [
     complectation: [bowl, tomobakoWooden]
   },
   {
+    id: 2779,
+    name: 'Чаша кутани с изображением кукушки и сливы',
+    age: undefined,
+    style: 'kutani',
+    category: ExhibitCategory.bowls,
+    potterName: '',
+    potterJapaneseName: '',
+    potterLifeDates: '',
+
+    description: `<p>Интересная чаша Кутани с необычным дизайном. В комплекте есть бумажный документ с примерно следующим содержанием:</p>
+    <p>Дух Кутани</p>
+    <p>Эта вещь сочетает в себе тщательную прорисовку каждой детали и роспись кинсаи нисики-э (金彩錦絵), создавае великолепие, которое может иметь только настоящее золото. Теплый золотой цвет  и тонкость внешнего слоя делает посуду Кутани уникальной.</p>
+    <p>С 1950 года мы работаем над традиционным ремеслом Кутани, унаследовав кровь нашего отца, Тамуры Кинсэя (田村金星), являющегося нематериальным культурным достоянием.</p>
+    <p>Кадо, город Комацу, префектура Исикава. (石川県小松市窩堂)</p>
+    <p>Кинсэн (金仙)</p>`,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [bowl, tomobakoWooden, paperDocument],
+    preservation: 'состояние новой'
+  },
+  {
     id: 2803,
     name: 'Чаша Раку с Райдзином',
     potterName: '',
