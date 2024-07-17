@@ -115,6 +115,36 @@ export const vases: Exhibits = [
     complectation: [vase, tomobakoCarton, paperDocument]
   },
   {
+    id: 2721,
+    name: 'Большая ваза Сэто неизвестного автора',
+    age: undefined,
+    style: 'seto',
+    category: ExhibitCategory.vases,
+    potterName: '',
+    potterJapaneseName: '',
+    potterLifeDates: '',
+
+    description: ``,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [vase, tomobakoWooden],
+    preservation: undefined
+  },
+  {
     id: 2734,
     name: 'Ваза хакудзи мастера Накао Ясудзуми',
     potterName: 'Накао Ясудзуми',
