@@ -119,7 +119,7 @@ export const exhibitions: Exhibitions = [
     year: 2024,
     dates: '18 июля - 21 июля',
     city: 'село Маслянское',
-    place: 'Шадринский район',
+    place: 'Шадринский район, Курганская область',
     address: 'ул. Советская 15',
     name: 'Симпозиум керамистов',
     link: 'https://vk.com/event221707614',
