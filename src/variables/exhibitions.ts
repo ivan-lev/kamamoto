@@ -117,6 +117,24 @@ export const exhibitions: Exhibitions = [
   {
     id: 6,
     year: 2024,
+    dates: '18 июля - 21 июля',
+    city: 'село Маслянское',
+    place: 'Шадринский район',
+    address: 'ул. Советская 15',
+    name: 'Симпозиум керамистов',
+    link: 'https://vk.com/event221707614',
+    description: `<p>Третий симпозиум керамистов, на котором будут проходить дровяной, газовый обжиги и обжиг в интерпретации техники Раку</p>`,
+    photosCount: 0,
+    poster: false,
+    organisators: `<ul>
+    <li><a href="https://vk.com/id315165927">Андрей Васильев</a></li>
+    </ul>`,
+    curators: ``,
+    isPageActive: true
+  },
+  {
+    id: 7,
+    year: 2024,
     dates: '1 августа - 22 сентября',
     city: 'Курган',
     place: 'ГАУ Курганский областной Дом народного творчества',
