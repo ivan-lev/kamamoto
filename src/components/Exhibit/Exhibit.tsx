@@ -21,6 +21,7 @@ import {
 // Other packages
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
+import { Helmet } from 'react-helmet-async';
 
 // Utils and variables
 import { generateImageLinks } from '../../utils/generateImageLinks';
@@ -69,70 +70,84 @@ export default function Exhibit(): JSX.Element {
     }
   }, [exhibit]);
 
+  const pageTitle = `Kamamoto: ${exhibit?.name.charAt(0).toLowerCase()}${exhibit?.name.slice(1)}`;
+  const pagePreview = `./exhibits/${exhibitNumber}/0.jpg`;
+
   return (
-    <section className="section exhibit">
-      <div className="exhibit__breadcrumbs">
-        <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
-          <img className="background-muted bordered link__icon" src="/icons/link-arrow-left.svg" />
-          Назад
-        </Link>
-      </div>
-
-      <h3 className="title title3">{exhibit?.name}</h3>
-
-      {/* Main image gallery */}
-      <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
-
-      {/* Exhibit description section */}
-      <div className="text-block">
-        {exhibit?.description ? (
-          parse(exhibit?.description || '', options)
-        ) : (
-          <p className="text">Описание в процессе подготовки</p>
-        )}
-      </div>
-
-      {/* Potter description section */}
-      {exhibit?.potterInfo && (
-        <div className="text-block">
-          {exhibit?.potterPhoto && (
+    <>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:image" content={pagePreview} />
+      </Helmet>
+      <section className="section exhibit">
+        <div className="exhibit__breadcrumbs">
+          <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
             <img
-              className="exhibit__potter-photo"
-              src={`${PATHS.EXHIBIT_PATH}${exhibit?.id}/${exhibit.potterPhoto}`}
-            ></img>
-          )}
-
-          {exhibit?.potterInfo && parse(exhibit?.potterInfo || '', options)}
+              className="background-muted bordered link__icon"
+              src="/icons/link-arrow-left.svg"
+            />
+            Назад
+          </Link>
         </div>
-      )}
 
-      {/* Additional info */}
-      {exhibit?.additionalDescription && (
+        <h3 className="title title3">{exhibit?.name}</h3>
+
+        {/* Main image gallery */}
+        <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
+
+        {/* Exhibit description section */}
         <div className="text-block">
-          {exhibit?.additionalDescription && parse(exhibit?.additionalDescription || '', options)}
-        </div>
-      )}
-
-      {/* Additional photo gallery */}
-      {exhibit?.additionalPhotos && (
-        <ImageGallery
-          items={additionalImages || []}
-          showFullscreenButton={false}
-          showPlayButton={false}
-          showThumbnails={false}
-          showBullets={true}
-        />
-      )}
-
-      {/* Ceramic style description section */}
-      {ceramicStyle !== 'other' && (
-        <div className="container bordered background-muted text-block">
-          {parse(
-            ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions] || '',
-            options
+          {exhibit?.description ? (
+            parse(exhibit?.description || '', options)
+          ) : (
+            <p className="text">Описание в процессе подготовки</p>
           )}
         </div>
-      )}
-    </section>
+
+        {/* Potter description section */}
+        {exhibit?.potterInfo && (
+          <div className="text-block">
+            {exhibit?.potterPhoto && (
+              <img
+                className="exhibit__potter-photo"
+                src={`${PATHS.EXHIBIT_PATH}${exhibit?.id}/${exhibit.potterPhoto}`}
+              ></img>
+            )}
+
+            {exhibit?.potterInfo && parse(exhibit?.potterInfo || '', options)}
+          </div>
+        )}
+
+        {/* Additional info */}
+        {exhibit?.additionalDescription && (
+          <div className="text-block">
+            {exhibit?.additionalDescription && parse(exhibit?.additionalDescription || '', options)}
+          </div>
+        )}
+
+        {/* Additional photo gallery */}
+        {exhibit?.additionalPhotos && (
+          <ImageGallery
+            items={additionalImages || []}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            showThumbnails={false}
+            showBullets={true}
+          />
+        )}
+
+        {/* Ceramic style description section */}
+        {ceramicStyle !== 'other' && (
+          <div className="container bordered background-muted text-block">
+            {parse(
+              ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions] ||
+                '',
+              options
+            )}
+          </div>
+        )}
+      </section>
+    </>
   );
 }

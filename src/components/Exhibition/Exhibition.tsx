@@ -21,6 +21,7 @@ import {
 // Other packages
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
+import { Helmet } from 'react-helmet-async';
 
 // Utils and variables
 import { generateImageLinks } from '../../utils/generateImageLinks';
@@ -70,60 +71,73 @@ export default function Exhibit(): JSX.Element {
     }
   }, [exhibition]);
 
+  const pageTitle = `Kamamoto: ${exhibition?.name}`;
+  const pagePreview = `https://kamamoto.ru/images/og-image.jpg`;
+
   return (
-    <section className="section exhibition">
-      <div className="exhibition__breadcrumbs">
-        <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
-          <img className="background-muted bordered link__icon" src="/icons/link-arrow-left.svg" />
-          Назад
-        </Link>
-      </div>
-
-      <h3 className="title title3 exhibition__title">Выставка «{exhibition?.name}»</h3>
-
-      <div className="container exhibition__place">
-        <span>Место проведения: </span>
-        <span>
-          {exhibition?.city}, {exhibition?.address}
-        </span>
-        <span>{exhibition?.place}</span>
-        <span>
-          {exhibition?.year} год, {exhibition?.dates}
-        </span>
-      </div>
-
-      <div className="container bordered background-muted muted exhibition__participants">
-        <div>
-          <span>Организаторы:</span>
-          {parse(exhibition?.organisators || '', options)}
+    <>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:image" content={pagePreview} />
+      </Helmet>
+      <section className="section exhibition">
+        <div className="exhibition__breadcrumbs">
+          <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+            <img
+              className="background-muted bordered link__icon"
+              src="/icons/link-arrow-left.svg"
+            />
+            Назад
+          </Link>
         </div>
-        <div>
-          <span>Кураторы:</span>
-          {parse(exhibition?.curators || '', options)}
-        </div>
-      </div>
 
-      {images?.length !== 0 && (
-        <div className="exhibition__photos">
-          <ImageGallery
-            items={images || []}
-            showFullscreenButton={false}
-            showPlayButton={false}
-            showBullets={true}
-            showThumbnails={false}
-          />
-        </div>
-      )}
+        <h3 className="title title3 exhibition__title">Выставка «{exhibition?.name}»</h3>
 
-      <div className="text-block exhibition__description">
-        {exhibition?.poster && (
-          <img
-            className="exhibition__poster"
-            src={`${PATHS.EXHIBITION_PATH}${exhibition?.id}/poster.jpg`}
-          ></img>
+        <div className="container exhibition__place">
+          <span>Место проведения: </span>
+          <span>
+            {exhibition?.city}, {exhibition?.address}
+          </span>
+          <span>{exhibition?.place}</span>
+          <span>
+            {exhibition?.year} год, {exhibition?.dates}
+          </span>
+        </div>
+
+        <div className="container bordered background-muted muted exhibition__participants">
+          <div>
+            <span>Организаторы:</span>
+            {parse(exhibition?.organisators || '', options)}
+          </div>
+          <div>
+            <span>Кураторы:</span>
+            {parse(exhibition?.curators || '', options)}
+          </div>
+        </div>
+
+        {images?.length !== 0 && (
+          <div className="exhibition__photos">
+            <ImageGallery
+              items={images || []}
+              showFullscreenButton={false}
+              showPlayButton={false}
+              showBullets={true}
+              showThumbnails={false}
+            />
+          </div>
         )}
-        {parse(exhibition?.description || '', options)}
-      </div>
-    </section>
+
+        <div className="text-block exhibition__description">
+          {exhibition?.poster && (
+            <img
+              className="exhibition__poster"
+              src={`${PATHS.EXHIBITION_PATH}${exhibition?.id}/poster.jpg`}
+            ></img>
+          )}
+          {parse(exhibition?.description || '', options)}
+        </div>
+      </section>
+    </>
   );
 }

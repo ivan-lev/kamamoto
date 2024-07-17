@@ -11,6 +11,9 @@ import { resetCategory } from '../../slices/categorySlice';
 import { setDisplayList } from '../../slices/listSlice';
 import { resetDisplayList } from '../../slices/listSlice';
 
+// Other packages
+import { Helmet } from 'react-helmet-async';
+
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
 
@@ -43,17 +46,30 @@ export default function Category(): JSX.Element {
     };
   }, []);
 
-  return (
-    <section className="section category">
-      <div className="exhibit__breadcrumbs">
-        <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
-          <img className="background-muted bordered link__icon" src="/icons/link-arrow-left.svg" />
-          Назад
-        </Link>
-      </div>
+  const pageTitle = `Kamamoto: ${categoryName.charAt(0).toLowerCase()}${categoryName.slice(1)}`;
+  const pagePreview = `./images/categories/${category}.jpg`;
 
-      <h3 className="title title3 category__title">{categoryName}</h3>
-      <DisplayGrid />
-    </section>
+  return (
+    <>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:image" content={pagePreview} />
+      </Helmet>
+      <section className="section category">
+        <div className="exhibit__breadcrumbs">
+          <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+            <img
+              className="background-muted bordered link__icon"
+              src="/icons/link-arrow-left.svg"
+            />
+            Назад
+          </Link>
+        </div>
+
+        <h3 className="title title3 category__title">{categoryName}</h3>
+        <DisplayGrid />
+      </section>
+    </>
   );
 }

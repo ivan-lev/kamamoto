@@ -8,6 +8,9 @@ import { useDispatch } from 'react-redux';
 import { setDisplayList } from '../../slices/listSlice';
 import { resetDisplayList } from '../../slices/listSlice';
 
+// Other packages
+import { Helmet } from 'react-helmet-async';
+
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
 
@@ -26,9 +29,16 @@ export default function Collection() {
   }, []);
 
   return (
-    <section className="section collection">
-      <h2 className="title title2">Коллекция</h2>
-      <DisplayGrid />
-    </section>
+    <>
+      <Helmet>
+        <title>{`Kamamoto: коллекция японской керамики по категориям`}</title>
+        <meta property="og:title" content={`Kamamoto: коллекция японской керамики по категориям`} />
+        <meta property="og:image" content={`https://kamamoto.ru/images/og-image.jpg`} />
+      </Helmet>
+      <section className="section collection">
+        <h2 className="title title2">Коллекция</h2>
+        <DisplayGrid />
+      </section>
+    </>
   );
 }
