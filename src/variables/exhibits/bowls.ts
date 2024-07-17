@@ -212,6 +212,47 @@ export const bowls: Exhibits = [
     complectation: [bowl, tomobakoWooden, protectiveCloth, paperDocument]
   },
   {
+    id: 2282,
+    name: 'Чаша с пейзажем, замком и каллиграфией неизвестного автора',
+    age: undefined,
+    style: 'unknown',
+    category: ExhibitCategory.bowls,
+    potterName: '',
+    potterJapaneseName: '',
+    potterLifeDates: '',
+
+    description: `<p>Старая чаша, украшенная пейзажем с замком и каллиграфией со стихами японского географа Сиги Сигэаки (志賀 重昂), в которых он восхваляет красоту Японии. Чаша покрыта патиной от использования, а неглазурованная ножка чаши потемнела. Коробка новая и без подписи - была, очевидно, приобретена отдельно от чаши для хранения.</p>
+    <p>Каллиграфия на чаше:<br>
+    千里江陵<br>
+    一日還<br>
+    萊因夕照<br>
+    絶人間<br>
+    東人漫誦<br>
+    西人句<br>
+    咫尺無他<br>
+    説犬山</p>
+    <p>Примерный перевод: <cite>Цянлин за тысячу ли, далеко, в дне пути / за полем закатное солнце выделяется среди людей / люди Востока читают стихи людей Запада / рядом говорят, не иначе как об Инуяме</cite></p>
+    <p>На дне чаши стоит печать Инуяма (犬山), скорее всего намекая на замок Инуяма в префектуре Айти</p>`,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [bowl, tomobakoWooden, protectiveCloth],
+    preservation: 'следы бытования и патина на чаше, коробка новая'
+  },
+  {
     id: 2320,
     name: 'чаша Хаги',
     potterName: '',
