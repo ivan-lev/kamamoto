@@ -70,7 +70,7 @@ export default function Exhibit(): JSX.Element {
     }
   }, [exhibit]);
 
-  const pageTitle = `Kamamoto: ${exhibit?.name.charAt(0).toLowerCase()}${exhibit?.name.slice(1)}`;
+  const pageTitle = `Камамото: ${exhibit?.name.charAt(0).toLowerCase()}${exhibit?.name.slice(1)}`;
   const pagePreview = `./exhibits/${exhibitNumber}/0.jpg`;
 
   return (

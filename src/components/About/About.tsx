@@ -10,8 +10,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>{`Kamamoto: коллекция японской керамики по категориям`}</title>
-        <meta property="og:title" content={`Kamamoto: о хранителе коллекции`} />
+        <title>{`Камамото: коллекция японской керамики по категориям`}</title>
+        <meta property="og:title" content={`Камамото: о хранителе коллекции`} />
         <meta property="og:image" content={`https://kamamoto.ru/about-avatar.jpg`} />
       </Helmet>
       <section className="section about">

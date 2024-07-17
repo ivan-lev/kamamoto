@@ -29,8 +29,8 @@ export default function App() {
     <>
       <HelmetProvider>
         <Helmet>
-          <title>{`Kamamoto - японская керамика`}</title>
-          <meta property="og:title" content={`Kamamoto - японская керамика`} />
+          <title>{`Камамото - японская керамика`}</title>
+          <meta property="og:title" content={`Камамото - японская керамика`} />
           <meta property="og:image" content={`https://kamamoto.ru/images/og-image.jpg`} />
         </Helmet>
         <Header />

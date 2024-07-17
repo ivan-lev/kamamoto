@@ -31,8 +31,8 @@ export default function Collection() {
   return (
     <>
       <Helmet>
-        <title>{`Kamamoto: коллекция японской керамики по категориям`}</title>
-        <meta property="og:title" content={`Kamamoto: коллекция японской керамики по категориям`} />
+        <title>{`Камамото: коллекция японской керамики по категориям`}</title>
+        <meta property="og:title" content={`Камамото: коллекция японской керамики по категориям`} />
         <meta property="og:image" content={`https://kamamoto.ru/images/og-image.jpg`} />
       </Helmet>
       <section className="section collection">

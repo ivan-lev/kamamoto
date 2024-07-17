@@ -7,8 +7,8 @@ import ExhibitionCard from '../ExhibitionCard/ExhibitionCard';
 import { exhibitions } from '../../variables/exhibitions';
 
 export default function Expos() {
-  const pageTitle = `Kamamoto: мероприятия, на каторых представлена коллекция`;
-  const pagePreview = '';
+  const pageTitle = `Камамото: мероприятия, на каторых представлена коллекция`;
+  const pagePreview = 'https://kamamoto.ru/images/og-image.jpg';
 
   return (
     <>
