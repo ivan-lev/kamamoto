@@ -47,7 +47,7 @@ export default function Category(): JSX.Element {
   }, []);
 
   const pageTitle = `Камамото: ${categoryName.charAt(0).toLowerCase()}${categoryName.slice(1)}`;
-  const pagePreview = `./images/categories/${category}.jpg`;
+  const pagePreview = `https://kamamoto.ru/images/categories/${category}.jpg`;
 
   return (
     <>

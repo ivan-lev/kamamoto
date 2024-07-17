@@ -71,7 +71,7 @@ export default function Exhibit(): JSX.Element {
   }, [exhibit]);
 
   const pageTitle = `Камамото: ${exhibit?.name.charAt(0).toLowerCase()}${exhibit?.name.slice(1)}`;
-  const pagePreview = `./exhibits/${exhibitNumber}/0.jpg`;
+  const pagePreview = `https://kamamoto.ru/exhibits/${exhibitNumber}/0.jpg`;
 
   return (
     <>
