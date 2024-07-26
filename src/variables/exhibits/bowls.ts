@@ -299,8 +299,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     volume: undefined,
     weightOfSet: undefined,
-    complectation: [ExhibitComplectation.bowl],
-    preservation: undefined
+    complectation: [bowl],
+    preservation: 'состояние новой'
   },
   {
     id: 2656,
@@ -584,8 +584,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     volume: undefined,
     weightOfSet: undefined,
-    complectation: [ExhibitComplectation.bowl],
-    preservation: undefined
+    complectation: [bowl, tomobakoWooden, protectiveCloth],
+    preservation: 'состояние новой, слегка потемневшая ножка'
   },
   {
     id: 2840,
