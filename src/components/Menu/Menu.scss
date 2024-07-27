@@ -17,10 +17,10 @@
     color: var(--text-default);
     letter-spacing: 3px;
     cursor: pointer;
+    font-weight: 200;
   }
 
   &__link_active {
-    font-weight: bold;
     text-decoration: underline;
     text-decoration-color: var(--text-muted);
     text-decoration-skip-ink: auto;

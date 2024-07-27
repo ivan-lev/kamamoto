@@ -1,11 +1,12 @@
-// https://fonts.google.com/specimen/Poiret+One
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-
 // https://fonts.google.com/specimen/Raleway
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+// https://fonts.google.com/specimen/Zen+Kaku+Gothic+New
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
+
 :root {
   --main-font: Raleway, Roboto, Inter, Helvetica, sans-serif;
-  --title-font: 'Poiret One', Roboto, Inter, Helvetica, sans-serif;
-  --menu-font: 'Poiret One', Roboto, Inter, Helvetica, sans-serif;
+  --title-font: Raleway, Roboto, Inter, Helvetica, sans-serif;
+  --menu-font: Raleway, Roboto, Inter, Helvetica, sans-serif;
+  --japanese-font: 'Zen Kaku Gothic New', Roboto, Inter, Helvetica, sans-serif;
 }
