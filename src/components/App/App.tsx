@@ -3,16 +3,17 @@ import './App.scss';
 // React
 import { Routes, Route } from 'react-router-dom';
 
+// Other packages
 import { Helmet } from 'react-helmet-async';
 
 // Variables
 import { documents } from '../../variables/documents';
 import { files } from '../../variables/files';
 
+// Components
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-
 import HomePage from '../HomePage/HomePage';
 import About from '../About/About';
 import Collection from '../Collection/Collection';
@@ -22,7 +23,9 @@ import Expos from '../Expos/Expos';
 import Exhibition from '../Exhibition/Exhibition';
 import Contacts from '../Contacts/Contacts';
 import Files from '../Files/Files';
+import ThanksLetters from '../ThanksLetters/ThanksLetters';
 import NotFound from '../NotFound/NotFound';
+import Benefactors from '../Benefactors/Benefactors';
 
 export default function App() {
   return (
@@ -48,6 +51,8 @@ export default function App() {
             path="documents/"
             element={<Files title="Шаблоны документов" files={documents} />}
           />
+          <Route path="thanks-letters/" element={<ThanksLetters />} />
+          <Route path="benefactors/" element={<Benefactors />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
