@@ -8,6 +8,7 @@ export enum CeramicStyleType {
   glass = 'Стекло',
   hakuji = 'Хакудзи',
   hagi = 'Хаги',
+  iga = 'Ига',
   irabo = 'Ирабо',
   izushi = 'Идзуси',
   mino = 'Мино',
