@@ -83,13 +83,25 @@
     font-size: 35px;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 600px) {
     font-size: 30px;
   }
 }
 
 .title2 {
   font-size: 50px;
+
+  @media screen and (max-width: 900px) {
+    font-size: 45px;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 40px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 35px;
+  }
 }
 
 .title3 {
@@ -99,6 +111,10 @@
 .subtitle {
   color: var(--text-muted, rgba(218, 197, 167, 0.6));
   font-size: 20px;
+
+  @media screen and (max-width: 600px) {
+    text-align: center;
+  }
 }
 
 .text {
