@@ -40,6 +40,11 @@
 
   &__preview {
     max-height: 400px;
+
+    @media screen and (max-width: 600px) {
+      max-height: unset;
+      width: 100%;
+    }
   }
 
   &__description {
