@@ -9,7 +9,7 @@ export const footerLinks = [
   },
   {
     name: 'Благодарственные письма',
-    url: 'thanks-letters/'
+    url: 'thanksletters/'
   },
   {
     name: 'Благодетели',

@@ -51,7 +51,7 @@ export default function App() {
             path="documents/"
             element={<Files title="Шаблоны документов" files={documents} />}
           />
-          <Route path="thanks-letters/" element={<ThanksLetters />} />
+          <Route path="thanksletters/" element={<ThanksLetters />} />
           <Route path="benefactors/" element={<Benefactors />} />
         </Route>
         <Route path="*" element={<NotFound />} />
