@@ -21,7 +21,7 @@ export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition 
               {name}
             </a>
           ) : (
-            <p className="exhibition-card__name">«{name}»</p>
+            <p className="exhibition-card__name">{name}</p>
           )}
           <p className="exhibition-card__place">{place}</p>
         </div>
