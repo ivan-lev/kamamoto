@@ -3,11 +3,12 @@ import './Footer.scss';
 import { Link } from 'react-router-dom';
 
 import { socialLinks } from '../../variables/socialLinks';
+import { footerLinks } from '../../variables/footerLinks';
 
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__column footer__first-column">
+      <div className="footer__column footer__column_social">
         <span className="footer__column-element footer__column-title">Социальные ссылки</span>
         {socialLinks.map(socialLink => {
           return (
@@ -18,14 +19,13 @@ export default function Footer() {
           );
         })}
       </div>
-      <div className="footer__column second-column">
+      <div className="footer__column footer__column_useful">
         <span className="footer__column-element footer__column-title">Полезные материалы</span>
-        <Link to="downloads/" className="footer__column-element">
-          Файлы для скачивания
-        </Link>
-        <Link to="documents/" className="footer__column-element">
-          Шаблоны документов
-        </Link>
+        {footerLinks.map(link => (
+          <Link to={link.url} className="footer__column-element">
+            {link.name}
+          </Link>
+        ))}
       </div>
       <div className="footer__bottom-line">
         <span className="footer__copyright">&copy; 2024 Иван Лев</span>
