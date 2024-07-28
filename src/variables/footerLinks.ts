@@ -12,7 +12,7 @@ export const footerLinks = [
     url: 'thanksletters/'
   },
   {
-    name: 'Благодетели',
+    name: 'Помощники проекта',
     url: 'benefactors/'
   }
 ];
