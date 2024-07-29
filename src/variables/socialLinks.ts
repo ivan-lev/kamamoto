@@ -22,7 +22,7 @@ export const socialLinks: SocialLinks = [
   {
     id: 3,
     title: 'Email',
-    link: '',
+    link: 'mailto:fanatos@mail.ru',
     icon: '/icons/logo-mail.svg'
   },
   {
