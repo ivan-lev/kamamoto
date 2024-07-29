@@ -11,6 +11,7 @@
     "upload": "rsync -av -e ssh --exclude='exhibits/1/*' /Users/ivanlev/Documents/dev/kamamoto/kamamoto-frontend/dist/* root@158.255.5.156:/var/www/html/"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@reduxjs/toolkit": "^2.2.5",
     "@types/react-image-gallery": "^1.2.4",
     "html-react-parser": "^5.1.10",
