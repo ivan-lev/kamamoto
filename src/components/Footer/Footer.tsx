@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="footer__column footer__column_useful">
         <span className="footer__column-element footer__column-title">Полезные материалы</span>
         {footerLinks.map(link => (
-          <Link to={link.url} className="footer__column-element">
+          <Link key={link.id} to={link.url} className="footer__column-element">
             {link.name}
           </Link>
         ))}
