@@ -1,4 +1,9 @@
 .contacts {
+  &__links {
+    width: 100%;
+    max-width: 600px;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
@@ -6,6 +11,7 @@
     width: 100%;
     max-width: 600px;
     box-sizing: border-box;
+    position: relative;
   }
 
   &__input {
@@ -29,6 +35,12 @@
     }
   }
 
+  &__input_disabled {
+    background-color: var(--background-hover);
+    color: var(--text-disabled);
+    cursor: default;
+  }
+
   &__textarea {
     padding-top: 16px;
     padding-bottom: 15px;
@@ -47,12 +59,46 @@
     border: 0;
     border-radius: 2px;
     background: var(--text-default, #dac5a7);
-
     color: var(--text-inverse, #0e0e0e);
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+  }
+
+  &__submit_sending {
+    color: transparent;
+    background-image: url('/icons/preloader.svg');
+    background-size: 60% 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__submit-message {
+    position: absolute;
+    bottom: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      bottom: 6px;
+    }
+  }
+
+  &__submit-message_success {
+    left: 48px;
+
+    @media screen and (max-width: 768px) {
+      left: 30px;
+    }
+  }
+
+  &__submit-message_error {
+    color: red;
+    right: 48px;
+
+    @media screen and (max-width: 768px) {
+      right: 30px;
+    }
   }
 }

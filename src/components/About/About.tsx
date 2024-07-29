@@ -71,15 +71,15 @@ export default function About() {
             года.
           </p>
         </div>
-        <div className="about__links">
+        <div className="links_social about__links">
           {socialLinks.map(socialLink => {
             return (
               <a
-                className="link background-muted bordered about__link"
+                className="link background-muted bordered link_social"
                 href={socialLink.link}
                 key={socialLink.id}
               >
-                <img className="about__icon" src={socialLink.icon} />
+                <img className="link_social-icon" src={socialLink.icon} />
                 {socialLink.title}
               </a>
             );
