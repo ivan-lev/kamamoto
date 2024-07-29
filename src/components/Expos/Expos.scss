@@ -1,13 +1,15 @@
 .expos {
   &__list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
     max-width: 1000px;
 
     @media screen and (max-width: 900px) {
-      gap: 5px;
+      width: unset;
+      margin: 0 auto;
+
+      *:not(:first-child) {
+        margin-top: 5px;
+      }
     }
   }
 
