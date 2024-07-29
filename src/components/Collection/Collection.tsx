@@ -1,7 +1,7 @@
 import './Collection.scss';
 
 // React
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Redux
@@ -19,6 +19,10 @@ import { categories } from '../../variables/categories';
 
 export default function Collection() {
   const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     dispatch(setDisplayList(categories));
