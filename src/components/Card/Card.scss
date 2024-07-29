@@ -3,10 +3,31 @@
   flex-direction: column;
   gap: 15px;
 
+  &__image-wrapper {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__preloader {
+    width: 15%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   &__image {
     width: 100%;
-
-    border-radius: 5px;
+    object-fit: contain;
   }
 
   &__link {
