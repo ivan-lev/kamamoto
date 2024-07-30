@@ -2,6 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  position: relative;
+
+  &__image-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  &:hover &__image-shadow {
+    box-shadow: inset 0px 0px 50px 0px var(--box-shadow);
+    z-index: 200;
+  }
 
   &__image-wrapper {
     width: 100%;
@@ -14,6 +27,11 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    z-index: 100;
+  }
+
+  &:hover &__image-wrapper {
+    border: 1px solid var(--border-hover);
   }
 
   &__preloader {
