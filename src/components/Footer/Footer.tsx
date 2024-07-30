@@ -15,7 +15,10 @@ export default function Footer() {
         {socialLinks.map(socialLink => {
           return (
             <a className="link footer__column-element" href={socialLink.link} key={socialLink.id}>
-              <img className="background-muted bordered footer__icon" src={socialLink.icon} />
+              <div className="background-muted bordered footer__icon-wrapper">
+                <img className="footer__icon" src={socialLink.icon} />
+              </div>
+
               {socialLink.title}
             </a>
           );
