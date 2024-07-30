@@ -15,5 +15,10 @@ export const htmlParserOptions = {
       domNode.attribs.target = '_blank';
       return domNode;
     }
+    if (domNode instanceof Element && domNode.name === 'blockquote') {
+      domNode.attribs.class = 'blockquote container background-muted';
+      domNode.attribs.target = '_blank';
+      return domNode;
+    }
   }
 };
