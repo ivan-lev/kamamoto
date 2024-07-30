@@ -1,7 +1,9 @@
 import './Footer.scss';
 
+// React
 import { Link } from 'react-router-dom';
 
+// Variables
 import { socialLinks } from '../../variables/socialLinks';
 import { footerLinks } from '../../variables/footerLinks';
 
@@ -9,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__column footer__column_social">
-        <span className="footer__column-element footer__column-title">Социальные ссылки</span>
+        <span className="footer__column-element footer__column-title">Ссылки на проект</span>
         {socialLinks.map(socialLink => {
           return (
             <a className="link footer__column-element" href={socialLink.link} key={socialLink.id}>
@@ -20,7 +22,7 @@ export default function Footer() {
         })}
       </div>
       <div className="footer__column footer__column_useful">
-        <span className="footer__column-element footer__column-title">Полезные материалы</span>
+        <span className="footer__column-element footer__column-title">Материалы</span>
         {footerLinks.map(link => (
           <Link key={link.id} to={link.url} className="footer__column-element">
             {link.name}
