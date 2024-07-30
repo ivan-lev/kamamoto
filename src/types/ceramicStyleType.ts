@@ -28,6 +28,7 @@ export enum CeramicStyleType {
   satsuma = 'Сацума',
   seiji = 'Сэидзи',
   seto = 'Сэто',
+  shibukusa = 'Сибукуса',
   shigaraki = 'Сигараки',
   shino = 'Сино',
   sometsuke = 'Сомэцукэ',
