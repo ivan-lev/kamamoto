@@ -23,7 +23,8 @@
   box-sizing: border-box;
 
   & p,
-  & ul {
+  & ul,
+  & blockquote {
     margin-bottom: 20px;
   }
 
@@ -171,4 +172,9 @@
 .image-gallery-slide-wrapper {
   aspect-ratio: 3 / 2;
   width: 100%;
+}
+
+.blockquote {
+  border-left: 6px solid var(--border);
+  display: inline-block;
 }
