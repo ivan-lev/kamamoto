@@ -114,6 +114,7 @@ export default function Contacts() {
             isMessageSending && 'muted contacts__submit_sending'
           }`}
           type="submit"
+          disabled={isMessageSending}
         >
           Отправить
         </button>
