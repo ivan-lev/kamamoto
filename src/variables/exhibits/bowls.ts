@@ -354,6 +354,37 @@ export const bowls: Exhibits = [
     complectation: [bowl, tomobakoWooden]
   },
   {
+    id: 2707,
+    name: 'Жёлтая чаша Киёмидзу с сезонными травами',
+    age: '2002-2005',
+    style: 'kiyomizu',
+    category: ExhibitCategory.bowls,
+    potterName: '',
+    potterJapaneseName: '',
+    potterLifeDates: '',
+
+    description: `<p>Чаша с изображением колокольчиков, изготовленная примерно в 2000-2005 годах. Тулово чаши изготовлено из белой мелкозернистой глины и покрыто слоем красивой глазури насыщенного желтого цвета, которая застыла потёками и каплями. Поверх глазури нанесена изящная роспись в виде колокольчиков и полевых трав. Она выполнена надглазурными эмалевидными красками золотого, зеленого, синего и голубого цветов. Синяя и зеленая краски легли густым слоем, их можно тактильно ощутить поверх глазури, что делает чашу еще более интересной. Мастер подчеркнул рисунок засечками, нанесенными под глазурью по телу чаши. Возле ножки стоит печать мастера.</p>`,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: 8,
+    length: undefined,
+    width: undefined,
+    diameter: 12,
+    footDiameter: 5.5,
+    weigth: 285,
+    volume: 500,
+    weightOfSet: undefined,
+    complectation: [ExhibitComplectation.bowl],
+    preservation: 'состояние новой'
+  },
+  {
     id: 2712,
     name: 'Чаша Нэдзуми Сино мастера Савада Сюити',
     age: undefined,

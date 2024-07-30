@@ -421,6 +421,38 @@ export const cups: Exhibits = [
     complectation: [cup, tomobakoWooden, paperDocument]
   },
   {
+    id: 2848,
+    name: 'Пиала Хаги с листом клёна мастера Иори Сюраиси',
+    age: undefined,
+    style: 'hagi',
+    category: ExhibitCategory.cups,
+    potterName: 'Иори Сюраиси',
+    potterJapaneseName: '庵松籟',
+    potterLifeDates: '',
+
+    description: `<p>Пиала юноми, выполненная мастером Иори Сюраиси (庵松籟) в печи Дзёдзан-гама (城山窯), располагающейся в городе Хаги, у подножья руин замка, некогда принадлежавшего клану Мори.</p>
+    <p>У пиалы прекрасная форма, она очень хорошо лежит в руке. Глазурь не похожа на классическую глазурь Хаги - цвета более серо-коричневые, нежели бежево-розовые. Мастер, возможно, хотел подчеркнуть осеннее настроение, чтобы дополнить ощущение, которое передаёт кленовый лист, ассоциирующийся в Японии с осенним периодом.</p>`,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    footDiameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [cup, tomobakoWooden, paperDocument],
+    preservation: `состояние новой`
+  },
+  {
     id: 2939,
     name: 'Юноми Хаги мастера Ямато Хосо',
     age: '1983',
