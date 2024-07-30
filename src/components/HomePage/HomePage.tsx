@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <section className="section home-page">
       <div className="container">
-        <h1 className="title title1">Kamamoto - японская керамика</h1>
+        <h1 className="title title1">Камамото - японская керамика</h1>
       </div>
       <ImageGallery
         items={homepageSliderImages}
