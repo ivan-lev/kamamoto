@@ -81,6 +81,8 @@ export default function Contacts() {
           required
           onChange={handleChange}
           disabled={isMessageSending}
+          minLength={3}
+          maxLength={40}
         ></input>
 
         <input
