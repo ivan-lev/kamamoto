@@ -92,6 +92,37 @@ export const plates: Exhibits = [
     complectation: [plate, tomobakoWooden]
   },
   {
+    id: 2493,
+    name: 'Тарелка Сэто в виде кленового листа',
+    age: undefined,
+    style: 'seto',
+    category: ExhibitCategory.plates,
+    potterName: '',
+    potterJapaneseName: '',
+    potterLifeDates: '',
+
+    description: `<p>Прекрасная "осенняя" тарелка неизвестного мастера, повторяющая форму кленового листа, как она традиционно изображалась в японском искусстве мастерами Кэндзаном, Нинсэем и другими выдающимися художниками Японии. Тарелка имеет слегка вогнутую форму, стоит на трёх ножка. Она полностью (за исключением "подошв" ножек) покрыта слоем глазури с небольшим содержанием железа, придающим ей желтовато-зеленый оттенок с сетью глубоких трещинок кракле, и с наплывом голубовато-фиолетового цвета с одной стороны.</p>
+    <p>Печать мастера стоит на дне тарелки возле одной из ножек и на крышке коробки, которая идёт в комплекте.</p>`,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [plate, tomobakoWooden],
+    preservation: undefined
+  },
+  {
     id: 2793,
     name: 'Японская большая тарелка мастера Суисэна',
     age: '1980-1985',

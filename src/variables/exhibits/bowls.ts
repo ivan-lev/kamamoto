@@ -271,6 +271,38 @@ export const bowls: Exhibits = [
     complectation: [bowl, tomobakoWooden, protectiveCloth, paperDocument]
   },
   {
+    id: 2452,
+    name: 'Чаша Сибукуса мастера Сибукуса Рёдзо',
+    age: undefined,
+    style: 'shibukusa',
+    category: ExhibitCategory.bowls,
+    potterName: 'Сибукуса Рёдзо',
+    potterJapaneseName: '渋草柳三',
+    potterLifeDates: '',
+
+    description: `<p>Чаша мастера Сибукуса Рёдзо (渋草柳三), выполенная в технике хида ака-э, или роспись красным из Хида</p>
+    <p>Подпись мастера стоит на дне чашки. На крышке коробки каллиграфия Сибукуса-яки (渋草焼, чёрным справа), чаша для чая на открытом воздухе (野点碗, нодатэ ван), красная печать слева внизу - гончарная печь Сибукуса (渋草陶窯)</p>
+    Такаяма, префектура Гифу`,
+
+    potterPhoto: '',
+    potterInfo: ``,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [bowl, tomobakoWooden],
+    preservation: 'состояние новой'
+  },
+  {
     id: 2458,
     name: 'Фарфоровая чаша Микавати с сокровищами выполненная мастерами Хирато',
     age: undefined,
@@ -534,6 +566,36 @@ export const bowls: Exhibits = [
     length: undefined,
     width: undefined,
     complectation: [bowl, tomobakoWooden, protectiveCloth]
+  },
+  {
+    id: 2806,
+    name: 'Чаша Ига мастера Кэйдзана во 2м поколении',
+    age: undefined,
+    style: 'iga',
+    category: ExhibitCategory.bowls,
+    potterName: 'Кэйдзан',
+    potterJapaneseName: '二代景山',
+    potterLifeDates: '',
+
+    description: `Прекрасная чаша Ига дровного обжига, выполненная из неочищенной глины с включениями белых камней, расплавившихся при обжиге. Чаша частично покрыта стекловидной глазурью с сетью трещин кракле. По тулову видны восходящие бороздки, оставленные мастером при формовке чаши на круге и следы от огня и пепла, оставшиеся после обжига. На дне чаши стоит печать мастера 景山.`,
+
+    potterPhoto: '',
+    potterInfo: `О мастере не удалось найти определённой информации, кроме как той, что он, скорее всего работает в мастерской Кэйдзан-тоэн (景山陶苑), находящейся на улице Марубасира, в городе Ига, префектура Миэ`,
+
+    additionalPhotos: false,
+    additionalPhotosCount: undefined,
+    additionalDescription: ``,
+
+    price: 0,
+    height: undefined,
+    length: undefined,
+    width: undefined,
+    diameter: undefined,
+    weigth: undefined,
+    volume: undefined,
+    weightOfSet: undefined,
+    complectation: [bowl, tomobakoWooden],
+    preservation: 'состояние новой'
   },
   {
     id: 2819,
