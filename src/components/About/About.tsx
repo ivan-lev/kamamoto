@@ -3,8 +3,11 @@ import './About.scss';
 // Other packages
 import { Helmet } from 'react-helmet-async';
 
-//Variables
-import { socialLinks } from '../../variables/socialLinks';
+// Components
+import SocialLinks from '../SocialLinks/SocialLinks';
+
+// Variables
+import { personalSocialLinks } from '../../variables/socialLinks';
 
 export default function About() {
   return (
@@ -70,21 +73,10 @@ export default function About() {
             выбираю с особой ответственностью, трепетом и внимательностью, которые развивал с 2015
             года.
           </p>
+          <p className="text text_muted">Ниже блок ссылок на мои персональные страницы.</p>
         </div>
-        <div className="links_social about__links">
-          {socialLinks.map(socialLink => {
-            return (
-              <a
-                className="link background-muted bordered link_social"
-                href={socialLink.link}
-                key={socialLink.id}
-              >
-                <img className="link_social-icon" src={socialLink.icon} />
-                {socialLink.title}
-              </a>
-            );
-          })}
-        </div>
+
+        <SocialLinks links={personalSocialLinks} additionalClassNames="about__links" />
       </section>
     </>
   );

@@ -1,9 +1,15 @@
 import './Contacts.scss';
 
+// React
 import { useState } from 'react';
 
+// Components
+import SocialLinks from '../SocialLinks/SocialLinks';
+
+// Other packages
 import emailjs from '@emailjs/browser';
 
+// Variables
 import { socialLinks } from '../../variables/socialLinks';
 
 export default function Contacts() {
@@ -47,24 +53,15 @@ export default function Contacts() {
   return (
     <section className="section contacts">
       <h2 className="title title2">Контакты</h2>
-      <p className="text muted">Для связи со мной можно использ одну из следующих ссылок:</p>
+      <p className="text muted">
+        Для связи со мной можно использовать одну из следующих ссылок, ведущих на реурсы коллекции:
+      </p>
 
-      <div className="links_social contacts__links">
-        {socialLinks.map(socialLink => {
-          return (
-            <a
-              className="link background-muted bordered link_social"
-              href={socialLink.link}
-              key={socialLink.id}
-            >
-              <img className="link_social-icon" src={socialLink.icon} />
-              {socialLink.title}
-            </a>
-          );
-        })}
-      </div>
+      <SocialLinks links={socialLinks} additionalClassNames="contacts__links" />
 
-      <p className="text muted">Вы также можете заполнить форму ниже, и я свяжусь с вами:</p>
+      <p className="text muted">
+        Также можно заполнить форму ниже, я получу оповещение и свяжусь с вами:
+      </p>
 
       <form className="container background-muted bordered contacts__form" onSubmit={sendEmail}>
         <input
@@ -107,7 +104,9 @@ export default function Contacts() {
         ></textarea>
 
         <button
-          className={`contacts__submit ${isMessageSending && 'contacts__submit_sending'}`}
+          className={`muted-8 contacts__submit ${
+            isMessageSending && 'muted contacts__submit_sending'
+          }`}
           type="submit"
         >
           Отправить
