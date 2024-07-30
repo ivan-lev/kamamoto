@@ -1,7 +1,7 @@
 import './Contacts.scss';
 
 // React
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Components
 import SocialLinks from '../SocialLinks/SocialLinks';
@@ -19,6 +19,12 @@ export default function Contacts() {
   const [showAlert, setShowAlert] = useState(false);
 
   const { name, email, message } = mailData;
+
+  useEffect(() => {
+    if (showAlert) {
+      setTimeout(() => setShowAlert(false), 5000);
+    }
+  }, [showAlert]);
 
   const handleChange = (event: any) => {
     const { name, value } = event.currentTarget;
