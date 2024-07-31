@@ -17,7 +17,7 @@
       background: var(--background-hover);
     }
 
-    ::after {
+    &::after {
       content: '';
       width: 16px;
       height: 16px;
