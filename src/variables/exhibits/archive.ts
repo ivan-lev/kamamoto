@@ -7,11 +7,11 @@ const { bowl, cups3, tomobakoWooden } = ExhibitComplectation;
 export const archive: Exhibits = [
   {
     id: 2537,
-    name: 'Пиалы Три друга зимы мастера Киёмидзу Рокубэя',
+    name: 'Пиалы Три друга зимы мастера Киёмидзу Рокубэя',
     age: undefined,
     style: 'kiyomizu',
     category: ExhibitCategory.archive,
-    potterName: 'Киёмидзу Рокубэй',
+    potterName: 'Киёмидзу Рокубэй',
     potterJapaneseName: '',
     potterLifeDates: '',
 

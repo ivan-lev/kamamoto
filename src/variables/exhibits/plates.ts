@@ -76,9 +76,9 @@ export const plates: Exhibits = [
   },
   {
     id: 2449,
-    name: 'Японская старая большая тарелка для сладостей мастера Эираку',
+    name: 'Японская старая большая тарелка для сладостей мастера Эйраку',
     age: undefined,
-    potterName: 'Эираку',
+    potterName: 'Эйраку',
     potterJapaneseName: '永楽',
     potterPhoto: '',
     category: ExhibitCategory.plates,
@@ -129,9 +129,9 @@ export const plates: Exhibits = [
   },
   {
     id: 2793,
-    name: 'Японская большая тарелка мастера Суисэна',
+    name: 'Японская большая тарелка мастера Суйсэна',
     age: '1980-1985',
-    potterName: 'Суисэн',
+    potterName: 'Суйсэн',
     potterJapaneseName: '翆泉',
     potterPhoto: '',
     category: ExhibitCategory.plates,

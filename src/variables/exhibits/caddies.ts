@@ -7,7 +7,7 @@ const { chaire, natsume, tomobakoWooden, protectiveCloth, shifuku } = ExhibitCom
 export const caddies: Exhibits = [
   {
     id: 2672,
-    name: 'Чайница с открывающимся верхом',
+    name: 'Чайница с открывающимся верхом',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -25,7 +25,7 @@ export const caddies: Exhibits = [
   },
   {
     id: 2696,
-    name: 'Чайница тяирэ в форме бунрин',
+    name: 'Чайница тяирэ в форме бунрин',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -43,7 +43,7 @@ export const caddies: Exhibits = [
   },
   {
     id: 2705,
-    name: 'Чайница тяирэ катацуки',
+    name: 'Чайница тяирэ катацуки',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -61,7 +61,7 @@ export const caddies: Exhibits = [
   },
   {
     id: 2728,
-    name: 'Чайница тяирэ насу',
+    name: 'Чайница тяирэ насу',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -79,7 +79,7 @@ export const caddies: Exhibits = [
   },
   {
     id: 2811,
-    name: 'Деревянная чайница с сезонными цветами',
+    name: 'Деревянная чайница с сезонными цветами',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -97,7 +97,7 @@ export const caddies: Exhibits = [
   },
   {
     id: 2812,
-    name: 'керамическая чайница, керамика Сакура',
+    name: 'керамическая чайница, керамика Сакура',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -115,7 +115,7 @@ export const caddies: Exhibits = [
   },
   {
     id: 2822,
-    name: 'Чайница с колёсами гэндзи-гурума',
+    name: 'Чайница с колёсами гэндзи-гурума',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -134,7 +134,7 @@ export const caddies: Exhibits = [
   },
   {
     id: 2843,
-    name: 'Чайница с кику и киро мон',
+    name: 'Чайница с кику и киро мон',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',

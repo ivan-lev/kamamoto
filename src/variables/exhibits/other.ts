@@ -67,7 +67,7 @@ export const other: Exhibits = [
   },
   {
     id: 2133,
-    name: ' Тёси - чайник для нагревания сакэ',
+    name: ' Тёси - чайник для нагревания сакэ',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -112,7 +112,7 @@ export const other: Exhibits = [
   },
   {
     id: 2498,
-    name: 'Чугунный котёл (чагама) с сосновыми ветками для зимнего чая',
+    name: 'Чугунный котёл (чагама) с сосновыми ветками для зимнего чая',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',

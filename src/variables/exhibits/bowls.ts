@@ -8,7 +8,7 @@ const { bowl, tomobakoWooden, protectiveCloth, paperDocument, paperDocuments2 } 
 export const bowls: Exhibits = [
   {
     id: 1,
-    name: 'Чаша "7 мудрецов бамбуковой рощи"',
+    name: 'Чаша "7 мудрецов бамбуковой рощи"',
     age: undefined,
     style: 'kyo',
     category: ExhibitCategory.bowls,
@@ -121,7 +121,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2069,
-    name: 'Чаша Акахада с оленями мастера Фурусэ Гёдзо 7',
+    name: 'Чаша Акахада с оленями мастера Фурусэ Гёдзо 7',
     potterName: 'Фурусэ Гёдзо 7',
     potterJapaneseName: '古瀬堯三',
     potterPhoto: '',
@@ -169,7 +169,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2254,
-    name: 'Чаша Акадзу мастерской Рокубэй',
+    name: 'Чаша Акадзу мастерской Рокубэй',
     age: undefined,
     style: 'kizeto',
     category: ExhibitCategory.bowls,
@@ -219,12 +219,12 @@ export const bowls: Exhibits = [
     weigth: undefined,
     volume: undefined,
     weightOfSet: undefined,
-    complectation: [ExhibitComplectation.bowl],
+    complectation: [bowl, tomobakoWooden, protectiveCloth, paperDocument],
     preservation: undefined
   },
   {
     id: 2268,
-    name: 'Чаша Э-Сино мастера Хаяси Рёдзи',
+    name: 'Чаша Э-Сино мастера Хаяси Рёдзи',
     potterName: 'Хаяси Рёдзи',
     potterJapaneseName: '林 亮炊',
     potterPhoto: '',
@@ -400,7 +400,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2707,
-    name: 'Жёлтая чаша Киёмидзу с сезонными травами',
+    name: 'Жёлтая чаша Киёмидзу с сезонными травами',
     age: '2002-2005',
     style: 'kiyomizu',
     category: ExhibitCategory.bowls,
@@ -529,7 +529,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2730,
-    name: 'Чаша Хаги мастера Ивасаки Хосё',
+    name: 'Чаша Хаги мастера Ивасаки Хосё',
     age: '~1978',
     style: 'hagi',
     category: ExhibitCategory.bowls,
@@ -569,7 +569,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2739,
-    name: 'Чаша Киёмидзу c момидзи',
+    name: 'Чаша Киёмидзу c момидзи',
     potterName: 'Фудзихира Масафуми',
     potterJapaneseName: '藤平正文',
     potterPhoto: 'fujihira-shin.jpg',

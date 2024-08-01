@@ -214,7 +214,7 @@ export const cups: Exhibits = [
   },
   {
     id: 2759,
-    name: 'Юноми с хвощём',
+    name: 'Юноми с хвощём',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -266,11 +266,11 @@ export const cups: Exhibits = [
   },
   {
     id: 2769,
-    name: 'Пара пиал Кутани мастера Морисавы Сёдзо',
+    name: 'Пара пиал Кутани мастера Морисавы Сёдзо',
     age: undefined,
     style: 'kutani',
     category: ExhibitCategory.cups,
-    potterName: 'Морисава Сёдзо',
+    potterName: 'Морисава Сёдзо',
     potterJapaneseName: '森澤 昭三',
     potterLifeDates: '',
 
@@ -298,7 +298,7 @@ export const cups: Exhibits = [
   },
   {
     id: 2826,
-    name: 'Мэото юноми (парные пиалы) из корейского селадона',
+    name: 'Мэото юноми (парные пиалы) из корейского селадона',
     age: undefined,
     style: 'seiji',
     category: ExhibitCategory.cups,
@@ -417,8 +417,8 @@ export const cups: Exhibits = [
   },
   {
     id: 2847,
-    name: 'Юноми Агано мастера Кумагаи Коё 15',
-    potterName: 'Кумагаи Коё 15',
+    name: 'Юноми Агано мастера Кумагаи Коё 15',
+    potterName: 'Кумагаи Коё 15',
     potterJapaneseName: '15代熊谷紅陽',
     potterPhoto: '',
     potterLifeDates: '1912-1992',
