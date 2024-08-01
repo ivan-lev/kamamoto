@@ -169,12 +169,24 @@
   padding-left: 17px;
 }
 
+.blockquote {
+  border-left: 6px solid var(--border);
+  display: inline-block;
+}
+
 .image-gallery-slide-wrapper {
   aspect-ratio: 3 / 2;
   width: 100%;
 }
 
-.blockquote {
-  border-left: 6px solid var(--border);
-  display: inline-block;
+.image-gallery-content {
+  width: 100%;
+}
+
+.image-gallery {
+  width: 100%;
+}
+
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  max-height: unset;
 }
