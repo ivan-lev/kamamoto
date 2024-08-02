@@ -29,22 +29,13 @@
   &__place {
     grid-area: place;
     align-self: start;
-    padding: 40px 0 0 0;
-
-    @media screen and (max-width: 768px) {
-      display: inline;
-    }
-
-    & span:not(:first-of-type)::after {
-      content: ', ';
-    }
-    & span:last-of-type::after {
-      content: '.';
-    }
+    padding: 0 0 0 0;
+    gap: 15px;
   }
 
   &__participants {
     grid-area: participants;
+    align-self: flex-start;
   }
 
   &__photos {
@@ -69,5 +60,10 @@
       width: 100%;
       padding-right: 0;
     }
+  }
+
+  &__link {
+    text-decoration: underline;
+    display: inline;
   }
 }
