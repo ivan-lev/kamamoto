@@ -92,7 +92,7 @@ export default function Exhibit(): JSX.Element {
           </Link>
         </div>
 
-        <h3 className="title title3 exhibition__title">Выставка «{exhibition?.name}»</h3>
+        <h3 className="title title3 exhibition__title">{`«${exhibition?.name}»`}</h3>
 
         <div className="container exhibition__place">
           <span className="muted">Место проведения: </span>
