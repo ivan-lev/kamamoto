@@ -107,6 +107,14 @@
 
 .title3 {
   font-size: 40px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 35px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 30px;
+  }
 }
 
 .subtitle {
