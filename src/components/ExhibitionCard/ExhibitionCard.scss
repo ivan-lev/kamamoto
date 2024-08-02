@@ -41,6 +41,11 @@
     padding: 40px 40px 30px 40px;
   }
 
+  &__card:hover {
+    transition: all 0.2s;
+    background-color: var(--background-hover-card);
+  }
+
   &__dates {
     color: var(--text-default, #dac5a7);
     font-size: 12px;
