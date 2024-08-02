@@ -95,14 +95,22 @@ export default function Exhibit(): JSX.Element {
         <h3 className="title title3 exhibition__title">Выставка «{exhibition?.name}»</h3>
 
         <div className="container exhibition__place">
-          <span>Место проведения: </span>
-          <span>
-            {exhibition?.city}, {exhibition?.address}
+          <span className="muted">Место проведения: </span>
+          <span className="text">
+            {exhibition?.city}, {exhibition?.address}, {exhibition?.place}
           </span>
-          <span>{exhibition?.place}</span>
+          <span className="muted">Даты: </span>
           <span>
             {exhibition?.year} год, {exhibition?.dates}
           </span>
+          {exhibition?.link && (
+            <span className="muted">
+              Ссылка на{' '}
+              <a className="link exhibition__link" href={exhibition?.link}>
+                мероприятие
+              </a>
+            </span>
+          )}
         </div>
 
         <div className="container bordered background-muted muted exhibition__participants">
