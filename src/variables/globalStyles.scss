@@ -138,6 +138,11 @@
   text-decoration: none;
   box-sizing: border-box;
   width: fit-content;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--text-default);
+  }
 }
 
 .link_usual {
@@ -188,5 +193,5 @@
 }
 
 .image-gallery-content .image-gallery-slide .image-gallery-image {
-  max-height: unset;
+  max-height: 100% !important;
 }
