@@ -103,12 +103,6 @@
 
     @media screen and (max-width: 768px) {
       place-self: center;
-      max-width: 200px;
-    }
-
-    @media screen and (orientation: portrait) and (max-width: 500px) {
-      max-width: 100%;
-      width: 100%;
     }
   }
 }
