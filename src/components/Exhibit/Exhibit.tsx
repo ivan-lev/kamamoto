@@ -23,6 +23,9 @@ import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
 import { Helmet } from 'react-helmet-async';
 
+// Components
+import ExhibitTechInfo from '../ExhibitTechInfo/ExhibitTechInfo';
+
 // Utils and variables
 import { generateImageLinks } from '../../utils/generateImageLinks';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
@@ -147,6 +150,9 @@ export default function Exhibit(): JSX.Element {
             )}
           </div>
         )}
+
+        {/* Technical info */}
+        <ExhibitTechInfo exhibit={exhibit} />
       </section>
     </>
   );
