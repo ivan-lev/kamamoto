@@ -13,8 +13,7 @@ dist
 dist-ssr
 *.local
 
-public/exhibits/
-public/exhibitions/
+public
 
 # Editor directories and files
 .vscode/*
