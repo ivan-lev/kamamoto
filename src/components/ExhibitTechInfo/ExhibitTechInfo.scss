@@ -45,6 +45,9 @@
     gap: 32px;
     margin-top: 16px;
     font-size: 14px;
+    grid-template-areas:
+      'potter-info exhibit-info'
+      'qr-code exhibit-info';
 
     &_hidden {
       display: none;
@@ -52,6 +55,10 @@
 
     @media screen and (max-width: 768px) {
       grid-template-columns: 1fr;
+      grid-template-areas:
+        'potter-info'
+        'exhibit-info'
+        'qr-code';
     }
   }
 
@@ -80,9 +87,28 @@
 
   &__list-element-complectation {
     text-align: right;
+  }
 
-    &*::after {
-      content: ', ';
+  &__potter-info {
+    grid-area: potter-info;
+  }
+
+  &__exhibit-info {
+    grid-area: exhibit-info;
+  }
+
+  &__qr-code {
+    grid-area: qr-code;
+    max-width: 150px;
+
+    @media screen and (max-width: 768px) {
+      place-self: center;
+      max-width: 200px;
+    }
+
+    @media screen and (orientation: portrait) and (max-width: 500px) {
+      max-width: 100%;
+      width: 100%;
     }
   }
 }

@@ -28,7 +28,7 @@ export default function ExhibitTechInfo({
       </button>
 
       <div className={`tech-info__content${showTechInfo ? '' : '_hidden'}`}>
-        <div>
+        <div className="tech-info__potter-info">
           <span className="tech-info__column-title">Информация о мастере</span>
           <ul className="tech-info__list">
             {exhibit?.potterName && (
@@ -53,7 +53,12 @@ export default function ExhibitTechInfo({
             )}
           </ul>
         </div>
-        <div>
+
+        {exhibit?.id && (
+          <img className="tech-info__qr-code" src={`/qr-codes/${exhibit.id}.svg`}></img>
+        )}
+
+        <div className="tech-info__exhibit-info">
           <span className="tech-info__column-title">Информация о лоте</span>
           <ul className="tech-info__list">
             <li className="tech-info__list-element">
