@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "upload-all": "tsc && vite build && rsync -av -e ssh /Users/ivanlev/Documents/dev/kamamoto/kamamoto-frontend/dist/* root@158.255.5.156:/var/www/html/",
-    "upload": "tsc && vite build && rsync -av -e ssh --exclude='*.jpg' /Users/ivanlev/Documents/dev/kamamoto/kamamoto-frontend/dist/* root@158.255.5.156:/var/www/html/"
+    "upload": "tsc && vite build && rsync -av -e ssh --exclude='exhibitions' --exclude='exhibits' --exclude='files' --exclude='icons' --exclude='images' --exclude='thanks-letters' --exclude='favicon.svg' --exclude='logo.png' --exclude='.DS_Store' dist/ root@158.255.5.156:/var/www/html/"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
