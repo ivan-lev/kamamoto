@@ -7,7 +7,7 @@ const { bowl, tomobakoWooden, protectiveCloth, paperDocument, paperDocuments2 } 
 
 export const bowls: Exhibits = [
   {
-    id: 1,
+    id: 2529,
     name: 'Чаша "7 мудрецов бамбуковой рощи"',
     age: undefined,
     style: 'kyo',
@@ -48,8 +48,8 @@ export const bowls: Exhibits = [
     weigth: undefined,
     volume: undefined,
     weightOfSet: undefined,
-    complectation: [ExhibitComplectation.bowl],
-    preservation: undefined
+    complectation: [bowl, tomobakoWooden],
+    preservation: 'следы бытования, видимых повреждений нет, потемнение древесины коробки'
   },
   {
     id: 1337,
