@@ -68,7 +68,7 @@ export default function ExhibitTechInfo({
 
             {exhibit?.age && (
               <li className="tech-info__list-element">
-                <span>Возраст: </span>
+                <span>Возраст предмета: </span>
                 {exhibit?.age}
               </li>
             )}
