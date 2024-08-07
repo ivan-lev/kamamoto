@@ -97,7 +97,9 @@ export default function Exhibit(): JSX.Element {
         <h3 className="title title3">{exhibit?.name}</h3>
 
         {/* Main image gallery */}
-        <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
+        {images && (
+          <ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
+        )}
 
         {/* Exhibit description section */}
         <div className="text-block">
@@ -141,7 +143,7 @@ export default function Exhibit(): JSX.Element {
         )}
 
         {/* Ceramic style description section */}
-        {ceramicStyle !== 'other' && (
+        {ceramicStyle && ceramicStyle !== 'other' && (
           <div className="container bordered background-muted text-block">
             {parse(
               ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions] ||
@@ -152,7 +154,7 @@ export default function Exhibit(): JSX.Element {
         )}
 
         {/* Technical info */}
-        <ExhibitTechInfo exhibit={exhibit} />
+        {exhibit && <ExhibitTechInfo exhibit={exhibit} />}
       </section>
     </>
   );
