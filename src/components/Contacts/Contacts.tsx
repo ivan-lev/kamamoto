@@ -71,9 +71,7 @@ export default function Contacts() {
 
       <form className="container background-muted bordered contacts__form" onSubmit={sendEmail}>
         <input
-          className={`background-muted bordered contacts__input ${
-            isMessageSending && 'contacts__input_disabled'
-          }`}
+          className={`background-muted bordered input ${isMessageSending && 'input_disabled'}`}
           placeholder="Имя"
           name="name"
           value={name}
@@ -86,9 +84,7 @@ export default function Contacts() {
         ></input>
 
         <input
-          className={`background-muted bordered contacts__input ${
-            isMessageSending && 'contacts__input_disabled'
-          }`}
+          className={`background-muted bordered input ${isMessageSending && 'input_disabled'}`}
           placeholder="Почта"
           name="email"
           value={email}
@@ -99,8 +95,8 @@ export default function Contacts() {
         ></input>
 
         <textarea
-          className={`background-muted bordered contacts__textarea contacts__input ${
-            isMessageSending && 'contacts__input_disabled'
+          className={`background-muted bordered textarea input ${
+            isMessageSending && 'input_disabled'
           }`}
           placeholder="Сообщение"
           name="message"

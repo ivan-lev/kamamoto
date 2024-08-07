@@ -184,6 +184,38 @@
   display: inline-block;
 }
 
+.input {
+  height: 55px;
+  width: 100%;
+  padding: 0 24px;
+  color: var(--text-default, #dac5a7);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  box-sizing: border-box;
+
+  &::placeholder {
+    text-transform: uppercase;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--text-muted);
+  }
+
+  &_disabled {
+    background-color: var(--background-hover);
+    color: var(--text-disabled);
+    cursor: default;
+  }
+}
+
+.textarea {
+  padding-top: 16px;
+  padding-bottom: 15px;
+  resize: none;
+  height: 200px;
+  font-family: var(--main-font);
+}
+
 .image-gallery-slide-wrapper {
   width: 100%;
 }
