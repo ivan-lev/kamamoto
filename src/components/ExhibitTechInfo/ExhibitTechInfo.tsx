@@ -31,12 +31,10 @@ export default function ExhibitTechInfo({
         <div className="tech-info__potter-info">
           <span className="tech-info__column-title">Информация о мастере</span>
           <ul className="tech-info__list">
-            {exhibit?.potterName && (
-              <li className="tech-info__list-element">
-                <span>Имя мастера:</span>
-                <span>{exhibit?.potterName}</span>
-              </li>
-            )}
+            <li className="tech-info__list-element">
+              <span>Имя мастера:</span>
+              <span>{exhibit?.potterName || 'неизвестно'}</span>
+            </li>
 
             {exhibit?.potterJapaneseName && (
               <li className="tech-info__list-element">
