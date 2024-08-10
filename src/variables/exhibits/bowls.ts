@@ -122,7 +122,7 @@ export const bowls: Exhibits = [
   {
     id: 2069,
     name: 'Чаша Акахада с оленями мастера Фурусэ Гёдзо 7',
-    potterName: 'Фурусэ Гёдзо 7',
+    potterName: 'Фурусэ Гёдзо 7',
     potterJapaneseName: '古瀬堯三',
     potterPhoto: '',
     additionalPhotos: false,
@@ -227,7 +227,7 @@ export const bowls: Exhibits = [
   {
     id: 2268,
     name: 'Чаша Э-Сино мастера Хаяси Рёдзи',
-    potterName: 'Хаяси Рёдзи',
+    potterName: 'Хаяси Рёдзи',
     potterJapaneseName: '林 亮炊',
     potterPhoto: '',
     additionalPhotos: false,
@@ -541,7 +541,7 @@ export const bowls: Exhibits = [
     age: '~1978',
     style: 'hagi',
     category: ExhibitCategory.bowls,
-    potterName: 'Ивасаки Хосё',
+    potterName: 'Ивасаки Хосё',
     potterJapaneseName: '岩崎 峰昇',
     potterLifeDates: '1926-',
 
@@ -676,7 +676,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2803,
-    name: 'Чаша Раку с Райдзином',
+    name: 'Чаша Раку с Райдзином',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -847,7 +847,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2941,
-    name: 'чаша с процессией мастера Ямакава Ацуси',
+    name: 'чаша с процессией мастера Ямакава Ацуси',
     age: undefined,
     style: 'other',
     category: ExhibitCategory.bowls,
@@ -928,7 +928,7 @@ export const bowls: Exhibits = [
   },
   {
     id: 2947,
-    name: 'чаша Токонамэ с хризантемой мастера Сибаяма Масая',
+    name: 'чаша Токонамэ с хризантемой мастера Сибаяма Масая',
     age: undefined,
     style: 'tokoname',
     category: ExhibitCategory.bowls,
