@@ -1,5 +1,4 @@
 import type { Exhibits } from '../../types/exhibitType';
-import { ExhibitCategory } from '../../types/exhibitCategory';
 import { ExhibitComplectation } from '../../types/exhibitComplectationType';
 
 const { bowl, cups3, paperDocument, protectiveCloth, tomobakoWooden, vase } = ExhibitComplectation;
