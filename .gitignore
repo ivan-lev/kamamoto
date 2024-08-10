@@ -14,6 +14,7 @@ dist-ssr
 *.local
 
 public
+rsync-exclude.txt
 
 # Editor directories and files
 .vscode/*
