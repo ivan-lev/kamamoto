@@ -125,9 +125,6 @@
 .text {
   color: var(--text-default, rgba(218, 197, 167, 0.6));
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 180%;
 
   &_muted {
     color: var(--text-muted, rgba(218, 197, 167, 0.6));
@@ -173,9 +170,6 @@
 .list {
   color: var(--text-default, #dac5a7);
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 180%;
   padding-left: 17px;
 }
 
