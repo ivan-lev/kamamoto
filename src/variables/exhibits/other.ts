@@ -23,7 +23,7 @@ export const other: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.other,
+    category: 'other',
     style: 'seiji',
     description: `Контейнер для благовоний в форме петуха, состоящий из двух половинок: основания и крышки. Авторство уточняется`,
     additionalDescription: ``,
@@ -41,7 +41,7 @@ export const other: Exhibits = [
     potterJapaneseName: '市川廣三',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.other,
+    category: 'other',
     style: 'hakuji',
     description: `<p>Интересный кого (контейнер для благовоний) с кандзи "петух" (鶏), выполненный талантливым гончаром Итикавой Кодзо 市川廣三 (1930-2009), жившим в Киото. Он со своим братом Итикавой Цусаном обучался у знаменитого мастера Кусубэ Яити.</p>
     <p><p>На коробке от кого написано:<br>白磁瑞 - Хакудзи<br>香合皿 - контейнер для благовоний<br>廣三 - Итикава</p></p>`,
@@ -72,7 +72,7 @@ export const other: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.other,
+    category: 'other',
     style: 'other',
     description: `<p>Тёси (銚子) — чайник для нагрева сакэ. Старый чугунный чайник с декором в виде волн и растений. Крышка чайника сделана из дерева и покрыта лаком, который местами скололся. Ручка декорирована узором, имитирующим следы жуков-короедов. Внутри виден ремонт — дно стало протекать и предыдущий хозяин залил его металлом, запечатавшим отверстие.</p>`,
     additionalDescription: ``,
@@ -90,7 +90,7 @@ export const other: Exhibits = [
     potterJapaneseName: '竹田益州',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.other,
+    category: 'other',
     style: 'other',
     description: `<p>Редкая бамбуковая лопаточка тясяку для порошкового чая, созданная около 40 лет назад. Она в отличном состоянии, выглядит новой и идёт с тремя коробками: внутренней бамбуковой коробкой с каллиграфией Экидзю Такэда, средней деревянной коробкой и, наконец, картонной внешней коробкой.</p>
     <p>На деревянной коробке есть несколько отверстий, сделанных короедом (видно на последней фотографии). На картонной коробке с годами появились небольшие желтые пятнышки, придающие всему набору антикварный шарм.</p>
@@ -117,7 +117,7 @@ export const other: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.other,
+    category: 'other',
     style: 'other',
     description: `<p>Широкий и округлый чугунный котёл чагама (茶釜), используемый для нагревания воды во время зимних чаепитий. На его корпусе отлит узор в виде ветки сосны — дерева, которое всегда остаётся зелёным, даже в самые сильные морозы, олицетворение стойкости и один из «трёх друзей зимы», наряду со сливой и бамбуком.</p>
     <p>Кама (釜) — это японский термин, означающий металлический горшок или котёл. Специфический термин для котла, используемого в японской чайной церемонии — чагама (茶釜), то есть чайный котёл. Камы традиционно делают из чугуна или меди.</p>
@@ -137,7 +137,7 @@ export const other: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.other,
+    category: 'other',
     style: 'other',
     description: ``,
     additionalDescription: `<p></p>`,

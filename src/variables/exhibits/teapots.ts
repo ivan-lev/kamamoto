@@ -1,5 +1,4 @@
 import type { Exhibits } from '../../types/exhibitType';
-import { ExhibitCategory } from '../../types/exhibitCategory';
 import { ExhibitComplectation } from '../../types/exhibitComplectationType';
 
 const { teapot } = ExhibitComplectation;
@@ -12,7 +11,7 @@ export const teapots: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.teapots,
+    category: 'teapots',
     style: 'hagi',
     description: ``,
     additionalDescription: ``,
@@ -30,7 +29,7 @@ export const teapots: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.teapots,
+    category: 'teapots',
     style: 'hagi',
     description: ``,
     additionalDescription: ``,
@@ -48,7 +47,7 @@ export const teapots: Exhibits = [
     potterJapaneseName: '',
     potterPhoto: '',
     additionalPhotos: false,
-    category: ExhibitCategory.teapots,
+    category: 'teapots',
     style: 'hagi',
     description: ``,
     additionalDescription: ``,

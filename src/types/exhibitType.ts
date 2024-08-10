@@ -9,7 +9,7 @@ export type Exhibit = {
   potterName?: string;
   potterJapaneseName?: string;
   potterLifeDates?: string;
-  category: ExhibitCategory;
+  category: keyof typeof ExhibitCategory;
   style: keyof typeof CeramicStyleType;
   description: string;
 
