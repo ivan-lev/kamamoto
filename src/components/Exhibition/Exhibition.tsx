@@ -81,6 +81,7 @@ export default function Exhibit(): JSX.Element {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:image" content={pagePreview} />
       </Helmet>
+
       <section className="section exhibition">
         <div className="exhibition__breadcrumbs">
           <Link to=".." className="link link_navigational muted exhibit__link" relative="path">

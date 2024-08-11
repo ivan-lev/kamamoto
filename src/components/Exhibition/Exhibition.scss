@@ -4,18 +4,19 @@
     'breadcrumbs breadcrumbs'
     'title title'
     'place participants'
-    'photos photos'
-    'description description';
+    'description description'
+    'photos photos';
   grid-template-columns: 30% auto;
 
   @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
     grid-template-areas:
-      'breadcrumbs breadcrumbs'
-      'title title'
-      'place place'
-      'participants participants'
-      'photos photos'
-      'description description';
+      'breadcrumbs'
+      'title'
+      'place'
+      'participants'
+      'description'
+      'photos';
   }
 
   &__breadcrumbs {
