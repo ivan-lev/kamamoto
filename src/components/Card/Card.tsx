@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import preloader from '/public/icons/preloader.svg';
+import preloader from '/icons/preloader.svg';
 
 export default function Card({
   link,

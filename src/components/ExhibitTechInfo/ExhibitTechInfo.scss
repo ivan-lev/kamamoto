@@ -31,13 +31,13 @@
       border-radius: 50%;
       border: 1px solid var(--border-default, rgba(218, 197, 167, 0.15));
       background: var(--background-muted, rgba(218, 197, 167, 0.05));
-      background-image: url('../../../public/icons/plus.svg');
+      background-image: url('/icons/plus.svg');
       background-position: center;
       background-repeat: no-repeat;
     }
 
     &_opened::after {
-      background-image: url('../../../public/icons/minus.svg');
+      background-image: url('/icons/minus.svg');
     }
   }
 
