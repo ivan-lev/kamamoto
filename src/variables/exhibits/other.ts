@@ -17,7 +17,7 @@ const {
 export const other: Exhibits = [
   {
     id: 770,
-    name: 'Кого петух',
+    name: 'Кого из селадона в форме петуха',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
@@ -66,7 +66,7 @@ export const other: Exhibits = [
   },
   {
     id: 2133,
-    name: ' Тёси - чайник для нагревания сакэ',
+    name: 'Тёси - чугунный чайник для нагревания сакэ',
     potterName: '',
     potterJapaneseName: '',
     potterPhoto: '',
