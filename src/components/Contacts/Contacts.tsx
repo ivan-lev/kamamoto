@@ -82,7 +82,7 @@ export default function Contacts() {
 
       <form className="container background-muted bordered contacts__form" onSubmit={sendEmail}>
         <input
-          className={`background-muted bordered input ${isMessageSending && 'input_disabled'}`}
+          className={`background-muted bordered input ${isMessageSending ? 'input_disabled' : ''}`}
           placeholder="Имя"
           name="name"
           value={name}
@@ -94,7 +94,7 @@ export default function Contacts() {
           maxLength={40}
         ></input>
         <input
-          className={`background-muted bordered input ${isMessageSending && 'input_disabled'}`}
+          className={`background-muted bordered input ${isMessageSending ? 'input_disabled' : ''}`}
           placeholder="Почта"
           name="email"
           value={email}
@@ -104,8 +104,8 @@ export default function Contacts() {
           disabled={isMessageSending}
         ></input>
         <textarea
-          className={`background-muted bordered textarea input ${
-            isMessageSending && 'input_disabled'
+          className={`background-muted bordered textarea input${
+            isMessageSending ? ' input_disabled' : ''
           }`}
           placeholder="Сообщение"
           name="message"
@@ -118,8 +118,8 @@ export default function Contacts() {
 
         <p>
           <span className="muted contacts__agreement">
-            Я не собираю и не храню персональные данные, но вы должны знать, что отправляете их мне
-            и согласны с вышенаписанными условиями&nbsp;
+            Я не собираю и не храню персональные данные, вы отправляете их мне с текстом сообщения
+            на этих условиях. Подтвердить согласие&nbsp;&nbsp;&nbsp;
           </span>
           <input
             className="contacts__agreement"
@@ -131,8 +131,8 @@ export default function Contacts() {
         </p>
 
         <button
-          className={`muted-8 contacts__submit ${isButtonDisabled && 'muted'} ${
-            isMessageSending && 'contacts__submit_sending'
+          className={`contacts__submit${isButtonDisabled ? ' muted' : ''}${
+            isMessageSending ? ' contacts__submit_sending' : ''
           }`}
           type="submit"
           disabled={isButtonDisabled}
