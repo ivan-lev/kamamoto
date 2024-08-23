@@ -118,8 +118,8 @@ export default function Contacts() {
 
         <p>
           <span className="muted contacts__agreement">
-            Я не собираю и не храню персональные данные, вы отправляете их мне с текстом сообщения
-            на этих условиях. Подтвердить согласие&nbsp;&nbsp;&nbsp;
+            Вместе с текстом сообщения вы передаёте ваши персональные данные. Я не собираю и не
+            храню их, но прошу подтвердить своё согласие на их передачу&nbsp;&nbsp;&nbsp;
           </span>
           <input
             className="contacts__agreement"
