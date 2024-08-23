@@ -1,0 +1,33 @@
+@mixin thestyle {
+  background: var(--Color-Dark-Blue, #242038);
+}
+
+.admin {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: 300px auto;
+  grid-template-rows: auto;
+  grid-template-areas: 'sidebar content';
+
+  &__sidebar {
+    grid-area: sidebar;
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__content {
+    margin: 30px;
+    grid-area: content;
+  }
+
+  &__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
