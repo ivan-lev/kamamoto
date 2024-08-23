@@ -1,0 +1,6 @@
+.admin-exhibition {
+  &__list {
+    display: grid;
+    grid-template-columns: 30px 1fr 100px 100px 50px;
+  }
+}
