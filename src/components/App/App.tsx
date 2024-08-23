@@ -27,6 +27,11 @@ import ThanksLetters from '../ThanksLetters/ThanksLetters';
 import NotFound from '../NotFound/NotFound';
 import Benefactors from '../Benefactors/Benefactors';
 
+import Admin from '../Admin/Admin';
+import AdminStatistics from '../AdminStatistics/AdminStatistics';
+import AdminExhibits from '../AdminExhibits/AdminExhibits';
+import AdminExhibitions from '../AdminExbitions/AdminExhibitions';
+
 export default function App() {
   return (
     <>
@@ -35,9 +40,18 @@ export default function App() {
         <meta property="og:title" content={`Камамото - японская керамика`} />
         <meta property="og:image" content={`https://kamamoto.ru/images/og-image.jpg`} />
       </Helmet>
-      <Header />
+
       <Routes>
-        <Route path="/" element={<Main />}>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Main />
+              <Footer />
+            </>
+          }
+        >
           <Route index element={<HomePage />} />
           <Route path="about/" element={<About />} />
           <Route path="collection/" element={<Collection />} />
@@ -54,9 +68,13 @@ export default function App() {
           <Route path="thanksletters/" element={<ThanksLetters />} />
           <Route path="benefactors/" element={<Benefactors />} />
         </Route>
+        <Route path="admin/" element={<Admin />}>
+          <Route index element={<AdminStatistics />} />
+          <Route path="exhibits/" element={<AdminExhibits />} />
+          <Route path="exhibitions/" element={<AdminExhibitions />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </>
   );
 }
