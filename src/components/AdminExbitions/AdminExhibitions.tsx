@@ -58,8 +58,6 @@ export default function AdminExhibitions(): JSX.Element {
 
   const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
-    console.log('name:', name);
-    console.log('value', checked);
     setExhibitionToCreate({ ...exhibitionToCreate, [name]: checked });
   };
 
@@ -82,12 +80,15 @@ export default function AdminExhibitions(): JSX.Element {
         organisators,
         isActive
       })
-      .then(response => setExhibitions([...exhibitions, response]))
+      .then(response => {
+        setExhibitions([...exhibitions, response]);
+        setExhibitionToCreate({ ...emptyExhibition, id: exhibitionToCreate.id + 1 });
+      })
       .catch(error => console.log(error));
   };
 
   return (
-    <div className="admin-exhibition">
+    <div className="container admin-exhibition">
       <div className="admin-exhibition__list">
         <div className="admin-exhibition__row">
           <span>ID</span>
@@ -265,6 +266,7 @@ export default function AdminExhibitions(): JSX.Element {
               <input
                 className="background-muted bordered input"
                 type="checkbox"
+                checked={poster}
                 name="poster"
                 onChange={handleCheckBox}
               />
@@ -274,6 +276,7 @@ export default function AdminExhibitions(): JSX.Element {
               <input
                 className="background-muted bordered input"
                 type="checkbox"
+                checked={isActive}
                 name="isActive"
                 placeholder="активность"
                 onChange={handleCheckBox}
