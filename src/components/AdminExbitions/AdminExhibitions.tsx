@@ -128,6 +128,7 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
+
             <div className="admin-exhibition__field admin-exhibition__field-year">
               <span>год</span>
               <input
@@ -139,6 +140,7 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
+
             <div className="admin-exhibition__field admin-exhibition__field-date">
               <span>даты</span>
               <input
@@ -164,6 +166,7 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
+
             <div className="admin-exhibition__field admin-exhibition__field-city">
               <span>город</span>
               <input
@@ -189,6 +192,7 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
+
             <div className="admin-exhibition__field admin-exhibition__field-place">
               <span>место проведения</span>
               <input
@@ -213,6 +217,7 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
+
             <div className="admin-exhibition__field admin-exhibition__field-organisators">
               <span>организаторы</span>
               <textarea
@@ -250,6 +255,7 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
+
             <div className="admin-exhibition__field admin-exhibition__field-photos-count">
               <span>кол-во фото</span>
               <input
@@ -261,16 +267,6 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
-            {/* <div className="admin-exhibition__field admin-exhibition__field-poster">
-              <span>постер</span>
-              <input
-                className="background-muted bordered input"
-                type="checkbox"
-                checked={poster}
-                name="poster"
-                onChange={handleCheckBox}
-              />
-            </div> */}
 
             <div className="checkbox admin-exhibition__field admin-exhibition__field-poster">
               <span>постер</span>
@@ -306,16 +302,6 @@ export default function AdminExhibitions(): JSX.Element {
               </label>
             </div>
 
-            {/* <div className="admin-exhibition__field admin-exhibition__field-is-active">
-              <span>активность: </span>
-              <input
-                className="background-muted bordered input"
-                type="checkbox"
-                checked={isActive}
-                name="isActive"
-                onChange={handleCheckBox}
-              />
-            </div> */}
             <div className="admin-exhibition__field admin-exhibition__field-submit">
               <button className="admin-exhibition__field-button button" type="submit">
                 Отправить
