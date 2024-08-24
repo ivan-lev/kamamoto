@@ -118,7 +118,7 @@ export default function AdminExhibitions(): JSX.Element {
 
           <div className="admin-exhibition__fields-row">
             <div className="admin-exhibition__field admin-exhibition__field-id">
-              <span>id: </span>
+              <span>номер</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -129,7 +129,7 @@ export default function AdminExhibitions(): JSX.Element {
               />
             </div>
             <div className="admin-exhibition__field admin-exhibition__field-year">
-              <span>год: </span>
+              <span>год</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -140,7 +140,7 @@ export default function AdminExhibitions(): JSX.Element {
               />
             </div>
             <div className="admin-exhibition__field admin-exhibition__field-date">
-              <span>даты: </span>
+              <span>даты</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -154,7 +154,7 @@ export default function AdminExhibitions(): JSX.Element {
 
           <div className="admin-exhibition__fields-row">
             <div className="admin-exhibition__field admin-exhibition__field-name">
-              <span>название: </span>
+              <span>название</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -165,7 +165,7 @@ export default function AdminExhibitions(): JSX.Element {
               />
             </div>
             <div className="admin-exhibition__field admin-exhibition__field-city">
-              <span>город: </span>
+              <span>город</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -179,7 +179,7 @@ export default function AdminExhibitions(): JSX.Element {
 
           <div className="admin-exhibition__fields-row">
             <div className="admin-exhibition__field admin-exhibition__field-address">
-              <span>адрес: </span>
+              <span>адрес</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -190,7 +190,7 @@ export default function AdminExhibitions(): JSX.Element {
               />
             </div>
             <div className="admin-exhibition__field admin-exhibition__field-place">
-              <span>место проведения: </span>
+              <span>место проведения</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -204,7 +204,7 @@ export default function AdminExhibitions(): JSX.Element {
 
           <div className="admin-exhibition__fields-row">
             <div className="admin-exhibition__field admin-exhibition__field-curators">
-              <span>кураторы: </span>
+              <span>кураторы</span>
               <textarea
                 className="background-muted bordered textarea input"
                 name="curators"
@@ -214,7 +214,7 @@ export default function AdminExhibitions(): JSX.Element {
               />
             </div>
             <div className="admin-exhibition__field admin-exhibition__field-organisators">
-              <span>организаторы: </span>
+              <span>организаторы</span>
               <textarea
                 className="background-muted bordered textarea input"
                 name="organisators"
@@ -227,7 +227,7 @@ export default function AdminExhibitions(): JSX.Element {
 
           <div className="admin-exhibition__fields-row">
             <div className="admin-exhibition__field admin-exhibition__field-description">
-              <span>описание: </span>
+              <span>описание</span>
               <textarea
                 className="background-muted bordered textarea input"
                 name="description"
@@ -240,7 +240,7 @@ export default function AdminExhibitions(): JSX.Element {
 
           <div className="admin-exhibition__fields-row">
             <div className="admin-exhibition__field admin-exhibition__field-link">
-              <span>ссылка: </span>
+              <span>ссылка</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -251,7 +251,7 @@ export default function AdminExhibitions(): JSX.Element {
               />
             </div>
             <div className="admin-exhibition__field admin-exhibition__field-photos-count">
-              <span>кол-во фото: </span>
+              <span>кол-во фото</span>
               <input
                 className="background-muted bordered input"
                 type="text"
@@ -261,8 +261,8 @@ export default function AdminExhibitions(): JSX.Element {
                 onChange={handleChange}
               />
             </div>
-            <div className="admin-exhibition__field admin-exhibition__field-poster">
-              <span>постер: </span>
+            {/* <div className="admin-exhibition__field admin-exhibition__field-poster">
+              <span>постер</span>
               <input
                 className="background-muted bordered input"
                 type="checkbox"
@@ -270,18 +270,52 @@ export default function AdminExhibitions(): JSX.Element {
                 name="poster"
                 onChange={handleCheckBox}
               />
+            </div> */}
+
+            <div className="checkbox admin-exhibition__field admin-exhibition__field-poster">
+              <span>постер</span>
+              <label
+                className={`background-muted bordered input checkbox-label ${
+                  exhibitionToCreate.poster ? 'checkbox-label_checked' : ''
+                } admin-exhibition__checkbox-label`}
+              >
+                <input
+                  className="checkbox-input"
+                  type="checkbox"
+                  checked={poster}
+                  name="poster"
+                  onChange={handleCheckBox}
+                />
+              </label>
             </div>
-            <div className="admin-exhibition__field admin-exhibition__field-is-active">
+
+            <div className="checkbox admin-exhibition__field admin-exhibition__field-is-active">
+              <span>на сайте</span>
+              <label
+                className={`background-muted bordered input checkbox-label ${
+                  exhibitionToCreate.isActive ? 'checkbox-label_checked' : ''
+                } admin-exhibition__checkbox-label`}
+              >
+                <input
+                  className="checkbox-input"
+                  type="checkbox"
+                  checked={isActive}
+                  name="isActive"
+                  onChange={handleCheckBox}
+                />
+              </label>
+            </div>
+
+            {/* <div className="admin-exhibition__field admin-exhibition__field-is-active">
               <span>активность: </span>
               <input
                 className="background-muted bordered input"
                 type="checkbox"
                 checked={isActive}
                 name="isActive"
-                placeholder="активность"
                 onChange={handleCheckBox}
               />
-            </div>
+            </div> */}
             <div className="admin-exhibition__field admin-exhibition__field-submit">
               <button className="admin-exhibition__field-button button" type="submit">
                 Отправить

@@ -58,9 +58,6 @@
     max-width: 250px;
   }
 
-  &__field-is-active {
-  }
-
   &__field-city {
     width: 100%;
     max-width: 250px;
@@ -109,5 +106,14 @@
     & button {
       height: 45px;
     }
+  }
+
+  &__field-is-active {
+    align-items: center;
+  }
+
+  &__checkbox-label {
+    width: 45px;
+    height: 45px;
   }
 }
