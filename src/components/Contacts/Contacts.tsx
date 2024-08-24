@@ -131,21 +131,20 @@ export default function Contacts() {
         </p>
 
         <button
-          className={`contacts__submit${isButtonDisabled ? ' muted' : ''}${
-            isMessageSending ? ' contacts__submit_sending' : ''
-          }`}
+          className={`button ${isMessageSending ? 'button_sending' : ''}
+            ${isButtonDisabled ? 'muted' : ''}`}
           type="submit"
           disabled={isButtonDisabled}
         >
           Отправить
         </button>
         {showAlert && isSuccessSended && (
-          <span className=" contacts__submit-message contacts__submit-message_success ">
+          <span className="contacts__submit-message contacts__submit-message_success ">
             Сообщение отправлено
           </span>
         )}
         {showAlert && !isSuccessSended && (
-          <span className=" contacts__submit-message contacts__submit-message_error">
+          <span className="contacts__submit-message contacts__submit-message_error">
             Произошла ошибка
           </span>
         )}

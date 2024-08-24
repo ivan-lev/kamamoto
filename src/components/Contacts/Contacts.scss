@@ -18,33 +18,6 @@
     font-size: 12px;
   }
 
-  &__submit {
-    display: flex;
-    padding: 10px 16px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    align-self: stretch;
-    border: 0;
-    border-radius: 2px;
-    background: var(--text-default, #dac5a7);
-    color: var(--text-inverse, #0e0e0e);
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-
-  &__submit_sending {
-    color: transparent;
-    background-image: url('/icons/preloader.svg');
-    background-size: 60% 60%;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
   &__submit-message {
     font-size: 14px;
     position: absolute;
