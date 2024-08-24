@@ -202,6 +202,23 @@
   }
 }
 
+.checkbox-label {
+  padding: 0;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.checkbox-label_checked {
+  background-image: url('/icons/check.svg');
+}
+
+.checkbox-input {
+  appearance: none;
+  width: 0;
+  height: 0 !important;
+}
+
 .textarea {
   padding-top: 16px;
   padding-bottom: 15px;
