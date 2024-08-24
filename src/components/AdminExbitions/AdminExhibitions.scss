@@ -1,6 +1,106 @@
 .admin-exhibition {
-  &__list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  &__form {
+    padding: 30px;
+  }
+
+  &__fieldset {
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__row {
     display: grid;
     grid-template-columns: 30px 1fr 100px 100px 50px;
+  }
+
+  &__fields-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+
+    & span {
+      font-size: 14px;
+    }
+
+    & input {
+      height: 45px;
+    }
+  }
+
+  &__field-id {
+    width: 70px;
+    margin-right: auto;
+  }
+
+  &__field-name {
+    width: 100%;
+    max-width: 300px;
+    margin-right: auto;
+  }
+
+  &__field-year {
+    width: 100%;
+    max-width: 90px;
+  }
+
+  &__field-date {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  &__field-is-active {
+  }
+
+  &__field-city {
+    width: 100%;
+    max-width: 250px;
+  }
+  &__field-address {
+    width: 100%;
+    max-width: 300px;
+    margin-right: auto;
+  }
+  &__field-place {
+    width: 100%;
+    max-width: 250px;
+  }
+  &__field-link {
+    flex-grow: 1;
+  }
+
+  &__field-photos-count {
+    width: 100%;
+    max-width: 90px;
+  }
+  &__field-poster {
+  }
+  &__field-curators {
+    width: 50%;
+  }
+  &__field-organisators {
+    width: 50%;
+  }
+  &__field-description {
+    width: 100%;
+  }
+  &__field-button {
+  }
+
+  &__field-submit {
+    justify-content: flex-end;
+
+    & button {
+      height: 45px;
+    }
   }
 }
