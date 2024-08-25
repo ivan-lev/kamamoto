@@ -10,6 +10,9 @@ import { Helmet } from 'react-helmet-async';
 import { documents } from '../../variables/documents';
 import { files } from '../../variables/files';
 
+import { Provider } from 'react-redux';
+import adminStore from '../../slices/adminSlice.ts';
+
 // Components
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -68,7 +71,15 @@ export default function App() {
           <Route path="thanksletters/" element={<ThanksLetters />} />
           <Route path="benefactors/" element={<Benefactors />} />
         </Route>
-        <Route path="admin/" element={<Admin />}>
+
+        <Route
+          path="admin/"
+          element={
+            <Provider store={adminStore}>
+              <Admin />
+            </Provider>
+          }
+        >
           <Route index element={<AdminStatistics />} />
           <Route path="exhibits/" element={<AdminExhibits />} />
           <Route path="exhibitions/" element={<AdminExhibitions />} />
