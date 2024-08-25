@@ -37,6 +37,13 @@ const adminSlice = createSlice({
       state.exhibitionToDisplay = { ...defaultExhibition, id: state.exhibitions.length + 1 };
     },
 
+    setExhibitionToEdit: (state, action) => {
+      state.exhibitionToDisplay =
+        state.exhibitions.find(exhibition => exhibition.id === action.payload) || defaultExhibition;
+      state.isExhibitionFormShowed = true;
+      state.isExistingExhibitionEdited = true;
+    },
+
     setIsExistingExhibitionEdited: (state, action) => {
       state.isExistingExhibitionEdited = action.payload;
     },
@@ -51,6 +58,7 @@ export const {
   setExhibitions,
   setExhibitionFormShowed,
   clearExhibitionForm,
+  setExhibitionToEdit,
   setIsExistingExhibitionEdited,
   setExhibitionToDisplay
 } = adminSlice.actions;
