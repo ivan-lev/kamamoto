@@ -5,11 +5,23 @@
 
   &__row {
     display: grid;
-    grid-template-columns: 30px 1fr 150px 50px 60px;
+    grid-template-columns: 30px 1fr 150px 50px 60px 20px;
   }
 
   &__fields-row {
     display: flex;
     gap: 10px;
+  }
+
+  &__edit-button {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 0;
+    background-image: url('/icons/edit.svg');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
   }
 }

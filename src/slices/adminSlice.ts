@@ -33,6 +33,11 @@ const adminSlice = createSlice({
       state.isExhibitionFormShowed = action.payload;
     },
 
+    openEmptyExhibitionForm: state => {
+      state.exhibitionToDisplay = { ...defaultExhibition, id: state.exhibitions.length + 1 };
+      state.isExhibitionFormShowed = true;
+    },
+
     clearExhibitionForm: state => {
       state.exhibitionToDisplay = { ...defaultExhibition, id: state.exhibitions.length + 1 };
     },
@@ -57,6 +62,7 @@ const adminSlice = createSlice({
 export const {
   setExhibitions,
   setExhibitionFormShowed,
+  openEmptyExhibitionForm,
   clearExhibitionForm,
   setExhibitionToEdit,
   setIsExistingExhibitionEdited,

@@ -5,8 +5,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { AdminRootState } from '../../slices/adminSlice';
-import { setExhibitions, setExhibitionFormShowed } from '../../slices/adminSlice';
+import {
+  AdminRootState,
+  setExhibitionToEdit,
+  setExhibitions,
+  openEmptyExhibitionForm
+} from '../../slices/adminSlice';
 
 // Components
 import AdminExhibitionForm from '../AdminExhibitionForm/AdminExhibitionForm';
@@ -36,6 +40,7 @@ export default function AdminExhibitions(): JSX.Element {
           <span>Город</span>
           <span>Год</span>
           <span>Акт-сть</span>
+          <span></span>
         </div>
         {exhibitions.map(exhibition => {
           return (
@@ -45,6 +50,12 @@ export default function AdminExhibitions(): JSX.Element {
               <span>{exhibition.city}</span>
               <span>{exhibition.year}</span>
               <span>{exhibition.isActive ? 'Да' : 'Нет'}</span>
+              <span>
+                <button
+                  className="admin-exhibitions__edit-button"
+                  onClick={() => dispatch(setExhibitionToEdit(exhibition.id))}
+                ></button>
+              </span>
             </div>
           );
         })}
@@ -53,7 +64,7 @@ export default function AdminExhibitions(): JSX.Element {
       {isExhibitionFormShowed ? (
         <AdminExhibitionForm />
       ) : (
-        <button className="button" onClick={() => dispatch(setExhibitionFormShowed(true))}>
+        <button className="button" onClick={() => dispatch(openEmptyExhibitionForm())}>
           Создать
         </button>
       )}
