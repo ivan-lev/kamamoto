@@ -1,12 +1,12 @@
 import './AdminExhibitionForm.scss';
 
 // React
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //Redux
-import { AdminRootState } from '../../slices/adminSlice';
 import {
+  AdminRootState,
   setExhibitions,
   setExhibitionFormShowed,
   clearExhibitionForm,
@@ -45,11 +45,6 @@ export default function AdminExhibitionForm(): JSX.Element {
     isActive
   } = exhibitionToDisplay;
 
-  // when exhibitions list updated, update the number in form
-  useEffect(() => {
-    dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, id: exhibitions.length + 1 }));
-  }, [exhibitions]);
-
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value }));
@@ -79,6 +74,43 @@ export default function AdminExhibitionForm(): JSX.Element {
         console.log(error);
         setIsFormDisabled(false);
       });
+  };
+
+  const handleUpdateExhibition = () => {
+    setIsFormDisabled(true);
+    api
+      .updateExhibition(exhibitionToDisplay)
+      .then(response => {
+        const newExhibitions = exhibitions.map(exhibition => {
+          return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
+        });
+        dispatch(setExhibitions(newExhibitions));
+        setIsFormDisabled(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setIsFormDisabled(false);
+      });
+  };
+
+  const handleDeleteExhibition = () => {
+    api
+      .deleteExhibition(exhibitionToDisplay)
+      .then(response => {
+        const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
+        dispatch(setExhibitions(newExhibitions));
+        handleCloseExhibitionForm();
+        setIsFormDisabled(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setIsFormDisabled(false);
+      });
+  };
+
+  const handleCloseExhibitionForm = () => {
+    dispatch(setExhibitionFormShowed(false));
+    dispatch(clearExhibitionForm());
   };
 
   return (
@@ -301,37 +333,37 @@ export default function AdminExhibitionForm(): JSX.Element {
 
           <div className="admin-exhibition-form__fields-row">
             <div className="admin-exhibition-form__field admin-exhibition-form__field-submit">
-              <button
-                className="button"
-                type="button"
-                onClick={() => dispatch(clearExhibitionForm())}
-              >
-                Очистить
-              </button>
               {!isExistingExhibitionEdited ? (
                 <>
-                  <button className="button" type="submit">
-                    Создать
-                  </button>
-
                   <button
                     className="button"
                     type="button"
-                    onClick={() => dispatch(setExhibitionFormShowed(false))}
+                    onClick={() => dispatch(clearExhibitionForm())}
                   >
-                    Скрыть
+                    Очистить
+                  </button>
+                  <button className="button" type="submit">
+                    Создать
                   </button>
                 </>
               ) : (
                 <>
-                  <button className="button" type="submit">
-                    Обновить
+                  <button
+                    className="button"
+                    type="button"
+                    onClick={handleUpdateExhibition}
+                    disabled={isFormDisabled}
+                  >
+                    Сохранить
                   </button>
-                  <button className="button" type="submit">
-                    Сбросить
+                  <button className="button" type="button" onClick={handleDeleteExhibition}>
+                    Удалить
                   </button>
                 </>
               )}
+              <button className="button" type="button" onClick={handleCloseExhibitionForm}>
+                Закрыть
+              </button>
             </div>
           </div>
         </fieldset>
