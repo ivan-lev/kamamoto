@@ -207,10 +207,15 @@
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
-}
 
-.checkbox-label_checked {
-  background-image: url('/icons/check.svg');
+  &_checked {
+    background-image: url('/icons/check.svg');
+  }
+
+  &_disabled {
+    background-color: var(--background-hover);
+    color: var(--text-disabled);
+  }
 }
 
 .checkbox-input {
