@@ -1,3 +1,5 @@
+import Exhibit from '../components/Exhibit/Exhibit';
+
 export type Exhibition = {
   id: number;
   year: number;
@@ -16,3 +18,20 @@ export type Exhibition = {
 };
 
 export type Exhibitions = Exhibition[];
+
+export const defaultExhibition: Exhibition = {
+  id: 0,
+  year: 2024,
+  dates: '',
+  city: '',
+  place: '',
+  address: '',
+  name: '',
+  link: '',
+  description: '',
+  photosCount: 0,
+  poster: false,
+  curators: '',
+  organisators: '',
+  isActive: false
+};

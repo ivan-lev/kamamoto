@@ -34,3 +34,27 @@ export type Exhibit = {
 };
 
 export type Exhibits = Exhibit[];
+
+export const defaultExhibit: Exhibit = {
+  id: 0,
+  name: '',
+  age: '',
+  potterName: '',
+  potterJapaneseName: '',
+  potterLifeDates: '',
+  category: 'other',
+  style: 'other',
+  description: '',
+
+  potterPhoto: '',
+  potterInfo: '',
+
+  additionalDescription: '',
+  additionalPhotos: false,
+  additionalPhotosCount: 0,
+
+  price: 0,
+
+  complectation: [],
+  preservation: ''
+};
