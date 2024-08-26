@@ -56,10 +56,18 @@ const checkResponseStatus = (res: any) => {
   return res.json();
 };
 
+const getStatistics = () => {
+  return fetch(`${BASE_URL}/statistics/`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${TOKEN}` }
+  }).then((response: any) => checkResponseStatus(response));
+};
+
 export const api = {
   getExhibits,
   getExhibitions,
   createExhibition,
   updateExhibition,
-  deleteExhibition
+  deleteExhibition,
+  getStatistics
 };
