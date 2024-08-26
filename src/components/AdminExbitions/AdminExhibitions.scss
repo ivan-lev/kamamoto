@@ -3,9 +3,19 @@
   flex-direction: column;
   gap: 30px;
 
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
   &__row {
     display: grid;
     grid-template-columns: 30px 1fr 150px 50px 60px 20px;
+  }
+
+  &__row:not(:first-child):not(:last-child) {
+    border-bottom: 1px dashed var(--text-muted);
   }
 
   &__fields-row {

@@ -44,7 +44,7 @@ export default function AdminExhibitions(): JSX.Element {
         </div>
         {exhibitions.map(exhibition => {
           return (
-            <div key={exhibition.id} className="admin-exhibitions__row">
+            <div key={exhibition.id} className="muted admin-exhibitions__row">
               <span>{exhibition.id}</span>
               <span>{exhibition.name}</span>
               <span>{exhibition.city}</span>
