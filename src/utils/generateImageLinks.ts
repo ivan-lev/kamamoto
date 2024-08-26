@@ -2,15 +2,15 @@ import { Images } from '../types/imageType';
 
 export const generateImageLinks = (
   path: string,
-  id: number,
-  photosCount: number = 10,
+  photos: string[],
   additional: boolean = false
 ): Images => {
   let images: Images = [];
 
-  for (let i = 0; i < photosCount; i++) {
-    const link = `${path}${id}/${additional ? 'additional/' : ''}${i}.jpg`;
+  photos.forEach(photo => {
+    const link = `${path}/${additional ? 'additional/' : ''}${photo}`;
     images.push({ original: link, thumbnail: link });
-  }
+  });
+
   return images;
 };

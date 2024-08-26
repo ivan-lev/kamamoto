@@ -39,6 +39,7 @@ export default function AdminExhibitionForm(): JSX.Element {
     link,
     description,
     photosCount,
+    photos,
     poster,
     curators,
     organisators,
@@ -48,6 +49,12 @@ export default function AdminExhibitionForm(): JSX.Element {
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value }));
+  };
+
+  const handleChangePhotos = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    const photosArray = value.split(', ');
+    dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: photosArray }));
   };
 
   const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
@@ -265,6 +272,22 @@ export default function AdminExhibitionForm(): JSX.Element {
 
           <div className="admin-exhibition-form__fields-row">
             <div className="admin-exhibition-form__field admin-exhibition-form__field-link">
+              <span>фотографии</span>
+              <input
+                className={`background-muted bordered input ${
+                  isFormDisabled ? 'input_disabled' : ''
+                }`}
+                type="text"
+                name="photos"
+                placeholder="фотографии"
+                value={photos.join(', ')}
+                onChange={handleChangePhotos}
+              />
+            </div>
+          </div>
+
+          <div className="admin-exhibition-form__fields-row">
+            <div className="admin-exhibition-form__field admin-exhibition-form__field-link">
               <span>ссылка</span>
               <input
                 className={`background-muted bordered input ${
@@ -274,20 +297,6 @@ export default function AdminExhibitionForm(): JSX.Element {
                 name="link"
                 placeholder="ссылка"
                 value={link}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-photos-count">
-              <span>кол-во фото</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="photosCount"
-                placeholder="кол-во фотографий"
-                value={photosCount}
                 onChange={handleChange}
               />
             </div>

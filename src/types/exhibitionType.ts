@@ -1,5 +1,3 @@
-import Exhibit from '../components/Exhibit/Exhibit';
-
 export type Exhibition = {
   id: number;
   year: number;
@@ -11,6 +9,7 @@ export type Exhibition = {
   link?: string;
   description: string;
   photosCount?: number;
+  photos: string[];
   poster: boolean;
   curators?: string;
   organisators?: string;
@@ -29,7 +28,7 @@ export const defaultExhibition: Exhibition = {
   name: '',
   link: '',
   description: '',
-  photosCount: 0,
+  photos: [],
   poster: false,
   curators: '',
   organisators: '',

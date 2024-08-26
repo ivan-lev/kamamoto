@@ -16,6 +16,13 @@ const getExhibitions = () => {
   }).then((response: any) => checkResponseStatus(response));
 };
 
+const getExhibitionById = (id: string) => {
+  return fetch(`${BASE_URL}/exhibitions/${id}`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${TOKEN}` }
+  }).then((response: any) => checkResponseStatus(response));
+};
+
 const createExhibition = (exhibition: Exhibition) => {
   return fetch(`${BASE_URL}/exhibitions`, {
     method: 'POST',
@@ -66,6 +73,7 @@ const getStatistics = () => {
 export const api = {
   getExhibits,
   getExhibitions,
+  getExhibitionById,
   createExhibition,
   updateExhibition,
   deleteExhibition,

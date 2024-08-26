@@ -2,21 +2,14 @@ import './Exhibition.scss';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 // React
-import { useEffect, useLayoutEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
 import { RootState } from '../../slices';
 
-import {
-  setExhibitionId,
-  resetExhibitionId,
-  setExhibition,
-  resetExhibition,
-  setExhibitionImages,
-  resetExhibitionImages
-} from '../../slices/exhibitionSlice';
+import { setExhibition, resetExhibition } from '../../slices/exhibitionSlice';
 
 // Other packages
 import parse from 'html-react-parser';
@@ -25,50 +18,40 @@ import { Helmet } from 'react-helmet-async';
 
 // Utils and variables
 import { generateImageLinks } from '../../utils/generateImageLinks';
-import { getExhibitionId } from '../../utils/getExhibitionId';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { PATHS } from '../../variables/variables';
+import { api } from '../../utils/api';
+import { Images } from '../../types/imageType';
 
 export default function Exhibit(): JSX.Element {
   const id = useSelector((state: RootState) => state.exhibition.id);
-  const exhibition = useSelector((state: RootState) => state.exhibition.info);
-  const images = useSelector((state: RootState) => state.exhibition.images);
+  const exhibition = useSelector((state: RootState) => state.exhibition);
+  const photos = useSelector((state: RootState) => state.exhibition.photos);
   const dispatch = useDispatch();
-  const location = useLocation().pathname;
   const options = htmlParserOptions;
+
+  const { exhId } = useParams();
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
 
   useEffect(() => {
-    if (!id) {
-      dispatch(setExhibitionId(getExhibitionId(location)));
-    }
+    api.getExhibitionById(exhId || '0').then(response => {
+      dispatch(setExhibition(response));
+    });
 
     return () => {
-      dispatch(resetExhibitionId());
       dispatch(resetExhibition());
-      dispatch(resetExhibitionImages());
     };
   }, []);
 
-  useEffect(() => {
-    if (id) {
-      dispatch(setExhibition(id));
-      dispatch(setExhibitionImages(generateImageLinks(PATHS.EXHIBITION_PATH, id)));
-    }
-  }, [id]);
+  const [photosToDisplay, setPhotosToDisplay] = useState<Images>([]);
 
   useEffect(() => {
-    if (exhibition) {
-      dispatch(setExhibition(id));
-      dispatch(
-        setExhibitionImages(
-          generateImageLinks(PATHS.EXHIBITION_PATH, exhibition.id, exhibition.photosCount)
-        )
-      );
-    }
+    const path = `${PATHS.BASE_URL}/${PATHS.EXHIBITION_PATH}/${id}`;
+    const newPhotosToDisplay = generateImageLinks(path, photos);
+    setPhotosToDisplay(newPhotosToDisplay);
   }, [exhibition]);
 
   const pageTitle = `Камамото: ${exhibition?.name}`;
@@ -129,10 +112,10 @@ export default function Exhibit(): JSX.Element {
           )}
         </div>
 
-        {images?.length !== 0 && (
+        {photosToDisplay.length !== 0 && (
           <div className="exhibition__photos">
             <ImageGallery
-              items={images || []}
+              items={photosToDisplay}
               showFullscreenButton={false}
               showPlayButton={false}
               showBullets={true}
@@ -145,7 +128,7 @@ export default function Exhibit(): JSX.Element {
           {exhibition?.poster && (
             <img
               className="exhibition__poster"
-              src={`${PATHS.EXHIBITION_PATH}${exhibition?.id}/poster.jpg`}
+              src={`${PATHS.BASE_URL}/${PATHS.EXHIBITION_PATH}/${exhibition?.id}/poster.jpg`}
             ></img>
           )}
           {parse(exhibition?.description || '', options)}

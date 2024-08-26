@@ -61,7 +61,7 @@ export default function App() {
           <Route path="collection/:category/" element={<Category />} />
           <Route path="collection/:category/:exhibit" element={<Exhibit />} />
           <Route path="expos/" element={<Expos />} />
-          <Route path="expos/:exhibition" element={<Exhibition />} />
+          <Route path="expos/:exhId" element={<Exhibition />} />
           <Route path="contacts/" element={<Contacts />} />
           <Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
           <Route
