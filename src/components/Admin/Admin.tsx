@@ -1,7 +1,9 @@
 import './Admin.scss';
 
+//React
 import { Link, Outlet } from 'react-router-dom';
 
+//Components
 import Logo from '../Logo/Logo';
 
 export default function Admin(): JSX.Element {
