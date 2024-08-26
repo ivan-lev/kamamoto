@@ -1,0 +1,26 @@
+.admin-statistics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 170px);
+    gap: 20px;
+  }
+
+  &__element {
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__element-icon {
+    width: 30px;
+    height: auto;
+    opacity: 0.8;
+  }
+}
