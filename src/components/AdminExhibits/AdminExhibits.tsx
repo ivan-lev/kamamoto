@@ -10,22 +10,21 @@ export default function AdminExhibits(): JSX.Element {
   const [exhibits, setExhibits] = useState<Exhibits>([]);
 
   useEffect(() => {
-    const someExhibits: Exhibits = [];
+    const exhibitsList: Exhibits = [];
     api.getExhibits().then(response => {
       response.forEach((exhibit: any) => {
         const someExhibit: Exhibit = {
           ...exhibit,
           category: exhibit.category.title
         };
-        someExhibits.push(someExhibit);
+        exhibitsList.push(someExhibit);
       });
-      //   setExhibits(response);
-      setExhibits(someExhibits);
+      setExhibits(exhibitsList);
     });
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <div className="admin-exhibit__list">
         <span>ID</span>
         <span>Название</span>
