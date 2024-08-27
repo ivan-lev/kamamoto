@@ -23,6 +23,8 @@ export default function Login() {
 
   const isLoggedIn = useSelector((state: AdminRootState) => state.admin.isLoggedIn);
 
+  const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [isMessageSending, setIsMessageSending] = useState<boolean>(false);
   const [loginError, setLoginError] = useState<string>('');
   const [isPasswordShowed, setIsPasswordShowed] = useState(false);
   const [values, setValues] = useState({ email: '', password: '' });
@@ -56,10 +58,14 @@ export default function Login() {
 
   const handleLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsFormDisabled(true);
+    setIsMessageSending(true);
     api
       .authorize(email, password)
       .then(response => {
         dispatch(login(response.token));
+        setIsFormDisabled(false);
+        setIsMessageSending(false);
         navigate('/admin/');
       })
       .catch(error => {
@@ -75,6 +81,8 @@ export default function Login() {
           default:
             setLoginError('Неизвестная ошибка');
         }
+        setIsFormDisabled(false);
+        setIsMessageSending(false);
         return error.status;
       });
   };
@@ -88,13 +96,15 @@ export default function Login() {
         onSubmit={handleLogin}
       >
         <Logo />
-        <fieldset className="login__fieldset" disabled={false}>
+        <fieldset className="login__fieldset" disabled={isFormDisabled}>
           <div className="login__submit-block">
             <label htmlFor="email" className="muted login__label">
               Email
             </label>
             <input
-              className="background-muted bordered input"
+              className={`background-muted bordered input ${
+                isMessageSending ? 'input_disabled' : ''
+              }`}
               type="email"
               name="email"
               id="email"
@@ -113,7 +123,9 @@ export default function Login() {
             </label>
             <div className="login__password-block">
               <input
-                className="background-muted bordered input login__password-input"
+                className={`login__password-input background-muted bordered input ${
+                  isMessageSending ? 'input_disabled' : ''
+                }`}
                 type={!isPasswordShowed ? 'password' : 'text'}
                 name="password"
                 id="password"
@@ -138,7 +150,11 @@ export default function Login() {
           </div>
 
           <div className="login__submit-block">
-            <button className="button login__button" type="submit">
+            <button
+              className={`button ${isMessageSending ? 'button_sending' : ''}
+            ${isFormDisabled ? 'muted' : ''} login__button`}
+              type="submit"
+            >
               Войти
             </button>
             <span className="login__error-message">{loginError}</span>
