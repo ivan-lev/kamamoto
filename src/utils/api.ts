@@ -70,6 +70,28 @@ const getStatistics = () => {
   }).then((response: any) => checkResponseStatus(response));
 };
 
+// USER SECTION
+
+const authorize = (email: string, password: string) => {
+  return fetch(`${BASE_URL}/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  }).then(response => checkResponseStatus(response));
+};
+
+const checkToken = (token: string) => {
+  return fetch(`${BASE_URL}/users/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  }).then(response => checkResponseStatus(response));
+};
+
 export const api = {
   getExhibits,
   getExhibitions,
@@ -77,5 +99,7 @@ export const api = {
   createExhibition,
   updateExhibition,
   deleteExhibition,
-  getStatistics
+  getStatistics,
+  authorize,
+  checkToken
 };
