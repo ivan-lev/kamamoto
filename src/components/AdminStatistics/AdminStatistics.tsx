@@ -29,7 +29,7 @@ export default function AdminStatistics(): JSX.Element {
         <div className="bordered background-muted admin-statistics__element">
           <img
             className="admin-statistics__element-icon"
-            src="/public/icons/exhibitions.svg"
+            src="/icons/exhibitions.svg"
             alt="иконка"
           />
           <span className="admin-statistics__element-title">
@@ -37,11 +37,7 @@ export default function AdminStatistics(): JSX.Element {
           </span>
         </div>
         <div className="bordered background-muted admin-statistics__element">
-          <img
-            className="admin-statistics__element-icon"
-            src="/public/icons/exhibits.svg"
-            alt="иконка"
-          />
+          <img className="admin-statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
           <span className="admin-statistics__element-title">Экспонаты: {statistics.exhibits}</span>
         </div>
       </div>
