@@ -8,8 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
 import { RootState } from '../../slices';
-
-import { setExhibition, resetExhibition } from '../../slices/exhibitionSlice';
+import { setExhibitionToDisplay } from '../../slices/exhibitionsSlice';
 
 // Other packages
 import parse from 'html-react-parser';
@@ -24,27 +23,46 @@ import { api } from '../../utils/api';
 import { Images } from '../../types/imageType';
 
 export default function Exhibit(): JSX.Element {
-  const id = useSelector((state: RootState) => state.exhibition.id);
-  const exhibition = useSelector((state: RootState) => state.exhibition);
-  const photos = useSelector((state: RootState) => state.exhibition.photos);
   const dispatch = useDispatch();
   const options = htmlParserOptions;
-
   const { exhId } = useParams();
+
+  const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
+  const exhibitionToDisplay = useSelector(
+    (state: RootState) => state.exhibitions.exhibitionToDisplay
+  );
+
+  const {
+    id,
+    name,
+    city,
+    address,
+    place,
+    year,
+    dates,
+    link,
+    organisators,
+    curators,
+    poster,
+    description,
+    photos
+  } = exhibitionToDisplay;
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
 
   useEffect(() => {
-    api.getExhibitionById(exhId || '0').then(response => {
-      dispatch(setExhibition(response));
-    });
+    if (exhibitions.length !== 0) {
+      const exhibition = exhibitions.find(exhibition => exhibition.id === parseInt(exhId || '0'));
+      dispatch(setExhibitionToDisplay(exhibition));
+      return;
+    }
 
-    return () => {
-      dispatch(resetExhibition());
-    };
-  }, []);
+    api.getExhibitionById(exhId || '0').then(response => {
+      dispatch(setExhibitionToDisplay(response));
+    });
+  }, [exhId]);
 
   const [photosToDisplay, setPhotosToDisplay] = useState<Images>([]);
 
@@ -52,9 +70,9 @@ export default function Exhibit(): JSX.Element {
     const path = `${PATHS.BASE_URL}/${PATHS.EXHIBITION_PATH}/${id}`;
     const newPhotosToDisplay = generateImageLinks(path, photos);
     setPhotosToDisplay(newPhotosToDisplay);
-  }, [exhibition]);
+  }, [exhibitionToDisplay]);
 
-  const pageTitle = `Камамото: ${exhibition?.name}`;
+  const pageTitle = `Камамото: ${name}`;
   const pagePreview = `https://kamamoto.ru/images/og-image.jpg`;
 
   return (
@@ -76,21 +94,21 @@ export default function Exhibit(): JSX.Element {
           </Link>
         </div>
 
-        <h3 className="title title3 exhibition__title">{`«${exhibition?.name}»`}</h3>
+        <h3 className="title title3 exhibition__title">{`«${name}»`}</h3>
 
         <div className="container exhibition__place">
           <span className="muted">Место проведения: </span>
           <span className="text">
-            {exhibition?.city}, {exhibition?.address}, {exhibition?.place}
+            {city}, {address}, {place}
           </span>
           <span className="muted">Даты: </span>
           <span>
-            {exhibition?.year} год, {exhibition?.dates}
+            {year} год, {dates}
           </span>
-          {exhibition?.link && (
+          {link && (
             <span className="muted">
               Ссылка на{' '}
-              <a className="link exhibition__link" href={exhibition?.link}>
+              <a className="link exhibition__link" href={link}>
                 мероприятие
               </a>
             </span>
@@ -98,16 +116,16 @@ export default function Exhibit(): JSX.Element {
         </div>
 
         <div className="container bordered background-muted muted exhibition__participants">
-          {exhibition?.organisators && (
+          {organisators && (
             <div>
               <span>Организаторы:</span>
-              {parse(exhibition?.organisators || '', options)}
+              {parse(organisators || '', options)}
             </div>
           )}
-          {exhibition?.curators && (
+          {curators && (
             <div>
               <span>Кураторы:</span>
-              {parse(exhibition?.curators || '', options)}
+              {parse(curators || '', options)}
             </div>
           )}
         </div>
@@ -125,13 +143,13 @@ export default function Exhibit(): JSX.Element {
         )}
 
         <div className="text-block exhibition__description">
-          {exhibition?.poster && (
+          {poster && (
             <img
               className="exhibition__poster"
-              src={`${PATHS.BASE_URL}/${PATHS.EXHIBITION_PATH}/${exhibition?.id}/poster.jpg`}
+              src={`${PATHS.BASE_URL}/${PATHS.EXHIBITION_PATH}/${id}/poster.jpg`}
             ></img>
           )}
-          {parse(exhibition?.description || '', options)}
+          {parse(description || '', options)}
         </div>
       </section>
     </>

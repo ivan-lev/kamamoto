@@ -1,14 +1,36 @@
 import './Expos.scss';
 
+//React
+import { useEffect } from 'react';
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { setExhibitionsList } from '../../slices/exhibitionsSlice';
+import { RootState } from '../../slices';
+
 // Other packages
 import { Helmet } from 'react-helmet-async';
 
+// Components
 import ExhibitionCard from '../ExhibitionCard/ExhibitionCard';
-import { exhibitions } from '../../variables/exhibitions';
 
-export default function Expos() {
+// Utils
+import { api } from '../../utils/api';
+
+export default function Expos(): JSX.Element {
+  const dispatch = useDispatch();
+  const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
+
   const pageTitle = `Камамото: мероприятия, на каторых представлена коллекция`;
   const pagePreview = 'https://kamamoto.ru/images/og-image.jpg';
+
+  useEffect(() => {
+    if (exhibitions.length === 0) {
+      api.getExhibitions().then(response => {
+        dispatch(setExhibitionsList(response));
+      });
+    }
+  }, []);
 
   return (
     <>

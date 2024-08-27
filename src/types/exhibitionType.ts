@@ -8,7 +8,6 @@ export type Exhibition = {
   name: string;
   link?: string;
   description: string;
-  photosCount?: number;
   photos: string[];
   poster: boolean;
   curators?: string;
