@@ -38,7 +38,6 @@ export default function AdminExhibitionForm(): JSX.Element {
     name,
     link,
     description,
-    photosCount,
     photos,
     poster,
     curators,
@@ -69,8 +68,7 @@ export default function AdminExhibitionForm(): JSX.Element {
       .createExhibition({
         ...exhibitionToDisplay,
         id: Number(id),
-        year: Number(year),
-        photosCount: Number(photosCount)
+        year: Number(year)
       })
       .then(response => {
         dispatch(setExhibitions([...exhibitions, response]));
