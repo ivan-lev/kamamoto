@@ -30,6 +30,7 @@ import ThanksLetters from '../ThanksLetters/ThanksLetters';
 import NotFound from '../NotFound/NotFound';
 import Benefactors from '../Benefactors/Benefactors';
 
+import Login from '../Login/Login.tsx';
 import Admin from '../Admin/Admin';
 import AdminStatistics from '../AdminStatistics/AdminStatistics';
 import AdminExhibits from '../AdminExhibits/AdminExhibits';
@@ -72,6 +73,14 @@ export default function App() {
           <Route path="benefactors/" element={<Benefactors />} />
         </Route>
 
+        <Route
+          path="login/"
+          element={
+            <Provider store={adminStore}>
+              <Login />
+            </Provider>
+          }
+        />
         <Route
           path="admin/"
           element={
