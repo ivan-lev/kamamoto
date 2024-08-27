@@ -1,19 +1,51 @@
 import './Admin.scss';
 
 //React
-import { Link, Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { AdminRootState, logout } from '../../slices/adminSlice';
+
+// Utils
+import { api } from '../../utils/api';
+
+// Variables
+import { LOGIN_MESSAGES } from '../../variables/variables';
 
 //Components
 import Logo from '../Logo/Logo';
 
 export default function Admin(): JSX.Element {
-  return (
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const isLoggedIn = useSelector((state: AdminRootState) => state.admin.isLoggedIn);
+
+  useEffect(() => {
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .checkToken(token)
+        .then(response => {
+          console.log(response.answer);
+        })
+        .catch(error => {
+          console.log(LOGIN_MESSAGES.TOKEN_ERROR, error);
+          dispatch(logout());
+          navigate('/login/');
+        });
+    }
+  }, []);
+
+  return isLoggedIn ? (
     <section className="admin">
       <div className="admin__sidebar bordered background-muted">
         <Logo />
         <ul className="admin__list">
           <li>
-            <Link to="/admin" className="link">
+            <Link to="/admin/" className="link">
               Статистика
             </Link>
           </li>
@@ -46,11 +78,27 @@ export default function Admin(): JSX.Element {
             </Link>
           </li>
         </ul>
+
+        <ul className="admin__list">
+          <li>
+            <button
+              className="button"
+              onClick={() => {
+                dispatch(logout());
+                navigate('/login');
+              }}
+            >
+              Выйти
+            </button>
+          </li>
+        </ul>
       </div>
 
       <div className="admin__content bordered background-muted">
         <Outlet />
       </div>
     </section>
+  ) : (
+    <Navigate to="/login/" replace />
   );
 }
