@@ -4,6 +4,7 @@ import { Exhibit, Exhibits, defaultExhibit } from '../types/exhibitType';
 import { Exhibition, Exhibitions, defaultExhibition } from '../types/exhibitionType';
 
 interface adminState {
+  isLoggedIn: boolean;
   exhibits: Exhibits;
   exhibitToDisplay: Exhibit;
   exhibitions: Exhibitions;
@@ -13,6 +14,7 @@ interface adminState {
 }
 
 const initialState: adminState = {
+  isLoggedIn: JSON.parse(localStorage.getItem('kmmtlgn') || 'false'),
   exhibits: [],
   exhibitToDisplay: { ...defaultExhibit },
   exhibitions: [],
@@ -25,6 +27,18 @@ const adminSlice = createSlice({
   name: 'exhibition',
   initialState,
   reducers: {
+    login: (state, action) => {
+      state.isLoggedIn = true;
+      localStorage.setItem('kmmttkn', action.payload);
+      localStorage.setItem('kmmtlgn', 'true');
+    },
+
+    logout: state => {
+      state.isLoggedIn = false;
+      localStorage.removeItem('kmmttkn');
+      localStorage.removeItem('kmmtlgn');
+    },
+
     setExhibitions: (state, action) => {
       state.exhibitions = action.payload;
     },
@@ -60,6 +74,8 @@ const adminSlice = createSlice({
 });
 
 export const {
+  login,
+  logout,
   setExhibitions,
   setExhibitionFormShowed,
   openEmptyExhibitionForm,
