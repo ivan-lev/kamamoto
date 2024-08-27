@@ -3,6 +3,9 @@ import './AdminStatistics.scss';
 // React
 import { useEffect, useState } from 'react';
 
+// Components
+import Preloader from '../Preloader/Preloader';
+
 // Utils
 import { api } from '../../utils/api';
 
@@ -15,14 +18,21 @@ const defaultStatistics = { exhibits: 0, exhibitions: 0 };
 
 export default function AdminStatistics(): JSX.Element {
   const [statistics, setStatistics] = useState<Statistics>(defaultStatistics);
+  const [showPreloader, setShowPreloader] = useState<boolean>(true);
+
   useEffect(() => {
     api
       .getStatistics()
-      .then(response => setStatistics(response))
+      .then(response => {
+        setStatistics(response);
+        setShowPreloader(false);
+      })
       .catch(error => console.log(error));
   }, []);
 
-  return (
+  return showPreloader ? (
+    <Preloader />
+  ) : (
     <div className="admin-statistics container">
       <h2 className="title3">Статистика</h2>
       <div className="admin-statistics__grid">

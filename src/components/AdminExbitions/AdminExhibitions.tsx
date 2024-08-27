@@ -1,7 +1,7 @@
 import './AdminExhibitions.scss';
 
 // React
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
@@ -14,11 +14,14 @@ import {
 
 // Components
 import AdminExhibitionForm from '../AdminExhibitionForm/AdminExhibitionForm';
+import Preloader from '../Preloader/Preloader';
 
 // Utils
 import { api } from '../../utils/api';
 
 export default function AdminExhibitions(): JSX.Element {
+  const [showPreloader, setShowPreloader] = useState<boolean>(true);
+
   const dispatch = useDispatch();
   const exhibitions = useSelector((state: AdminRootState) => state.admin.exhibitions);
   const isExhibitionFormShowed = useSelector(
@@ -28,10 +31,13 @@ export default function AdminExhibitions(): JSX.Element {
   useEffect(() => {
     api.getExhibitions().then(exhibitions => {
       dispatch(setExhibitions(exhibitions));
+      setShowPreloader(false);
     });
   }, []);
 
-  return (
+  return showPreloader ? (
+    <Preloader />
+  ) : (
     <div className="container admin-exhibitions">
       <div className="admin-exhibitions__list">
         <div className="admin-exhibitions__row">
