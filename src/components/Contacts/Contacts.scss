@@ -5,13 +5,17 @@
   }
 
   &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
     width: 100%;
     max-width: 600px;
     box-sizing: border-box;
     position: relative;
+  }
+
+  &__fieldset {
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   &__agreement {

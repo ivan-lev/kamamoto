@@ -1,7 +1,7 @@
 import './Contacts.scss';
 
 // React
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 // Components
 import SocialLinks from '../SocialLinks/SocialLinks';
@@ -32,7 +32,7 @@ export default function Contacts() {
     setIsButtonDisabled(!isButtonDisabled);
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.currentTarget;
     setMailData({ ...mailData, [name]: value });
   };
@@ -86,77 +86,76 @@ export default function Contacts() {
         </p>
 
         <form className="container background-muted bordered contacts__form" onSubmit={sendEmail}>
-          <input
-            className={`background-muted bordered input ${
-              isMessageSending ? 'input_disabled' : ''
-            }`}
-            placeholder="Имя"
-            name="name"
-            value={name}
-            type="text"
-            required
-            onChange={handleChange}
-            disabled={isMessageSending}
-            minLength={3}
-            maxLength={40}
-          ></input>
-          <input
-            className={`background-muted bordered input ${
-              isMessageSending ? 'input_disabled' : ''
-            }`}
-            placeholder="Почта"
-            name="email"
-            value={email}
-            type="email"
-            required
-            onChange={handleChange}
-            disabled={isMessageSending}
-          ></input>
-          <textarea
-            className={`background-muted bordered textarea input${
-              isMessageSending ? ' input_disabled' : ''
-            }`}
-            placeholder="Сообщение"
-            name="message"
-            value={message}
-            rows={5}
-            required
-            onChange={handleChange}
-            disabled={isMessageSending}
-          ></textarea>
-
-          <p>
-            <span className="muted contacts__agreement">
-              Вместе с текстом сообщения вы передаёте ваши персональные данные. Я не собираю и не
-              храню их, но прошу подтвердить своё согласие на их передачу&nbsp;&nbsp;&nbsp;
-            </span>
+          <fieldset className="contacts__fieldset" disabled={isMessageSending}>
             <input
-              className="contacts__agreement"
-              type="checkbox"
-              checked={!isButtonDisabled}
-              disabled={isMessageSending}
-              onClick={handleAgree}
+              className={`background-muted bordered input ${
+                isMessageSending ? 'input_disabled' : ''
+              }`}
+              placeholder="Имя"
+              name="name"
+              value={name}
+              type="text"
+              required
+              onChange={handleChange}
+              minLength={3}
+              maxLength={40}
             ></input>
-          </p>
+            <input
+              className={`background-muted bordered input ${
+                isMessageSending ? 'input_disabled' : ''
+              }`}
+              placeholder="Почта"
+              name="email"
+              value={email}
+              type="email"
+              required
+              onChange={handleChange}
+            ></input>
+            <textarea
+              className={`background-muted bordered textarea input${
+                isMessageSending ? ' input_disabled' : ''
+              }`}
+              placeholder="Сообщение"
+              name="message"
+              value={message}
+              rows={5}
+              required
+              onChange={handleChange}
+            ></textarea>
 
-          <button
-            className={`button ${isMessageSending ? 'button_sending' : ''}
+            <p>
+              <span className="muted contacts__agreement">
+                Вместе с текстом сообщения вы передаёте ваши персональные данные. Я не собираю и не
+                храню их, но прошу подтвердить своё согласие на их передачу&nbsp;&nbsp;&nbsp;
+              </span>
+              <input
+                className="contacts__agreement"
+                type="checkbox"
+                checked={!isButtonDisabled}
+                disabled={isMessageSending}
+                onChange={handleAgree}
+              ></input>
+            </p>
+
+            <button
+              className={`button ${isMessageSending ? 'button_sending' : ''}
             ${isButtonDisabled ? 'muted' : ''}`}
-            type="submit"
-            disabled={isButtonDisabled}
-          >
-            Отправить
-          </button>
-          {showAlert && isSuccessSended && (
-            <span className="contacts__submit-message contacts__submit-message_success ">
-              Сообщение отправлено
-            </span>
-          )}
-          {showAlert && !isSuccessSended && (
-            <span className="contacts__submit-message contacts__submit-message_error">
-              Произошла ошибка
-            </span>
-          )}
+              type="submit"
+            >
+              Отправить
+            </button>
+
+            {showAlert && isSuccessSended && (
+              <span className="contacts__submit-message contacts__submit-message_success ">
+                Сообщение отправлено
+              </span>
+            )}
+            {showAlert && !isSuccessSended && (
+              <span className="contacts__submit-message contacts__submit-message_error">
+                Произошла ошибка
+              </span>
+            )}
+          </fieldset>
         </form>
       </section>
     </>
