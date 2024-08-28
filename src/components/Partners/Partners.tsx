@@ -1,47 +1,36 @@
 import './Partners.scss';
 
+// React
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
+import { RootState } from '../../slices';
+import { setPartnersList } from '../../slices/partnersSlice';
+
 // Components
 import Partner from '../Partner/Partner';
 
-import type { Partner as PartnerType } from '../../types/partnerType';
-
-const partnersList: PartnerType[] = [
-  {
-    _id: '',
-    link: 'https://vk.com/ru_jp_74',
-    logo: '/images/partners/rakuda.svg',
-    title: 'АНО Информационно-культурный центр «РАКУДА»',
-    isActive: true
-  },
-  {
-    _id: '',
-    link: 'https://vk.com/yume.center',
-    logo: '/images/partners/ume.svg',
-    title: 'Центр восточных языков и культуры «ЮМЭ»',
-    isActive: true
-  },
-  {
-    _id: '',
-    link: 'https://vk.com/public193971791',
-    logo: '/images/partners/midori.svg',
-    title: 'Информационный Культурный Центр «МИДОРИ»',
-    isActive: true
-  },
-  {
-    _id: '',
-    link: 'https://vk.com/kodnt45',
-    logo: '/images/partners/kodnt.svg',
-    title: 'ГБУК «Курганский областной Дом народного творчества»',
-    isActive: true
-  }
-];
+// Variables
+import { api } from '../../utils/api';
 
 export default function Partners(): JSX.Element {
+  const dispatch = useDispatch();
+  const partnersList = useSelector((state: RootState) => state.partners);
+
+  useEffect(() => {
+    api
+      .getPartners()
+      .then(partners => dispatch(setPartnersList(partners)))
+      .catch(error => console.log(error));
+  }, []);
+
   return (
     <div className="partners">
-      {partnersList.map(partner => (
-        <Partner partner={partner} />
-      ))}
+      {partnersList.map(partner => {
+        const partnerToRender = { ...partner, logo: `./images/partners/${partner.logo}` };
+        return <Partner key={partner._id} partner={partnerToRender} />;
+      })}
     </div>
   );
 }
