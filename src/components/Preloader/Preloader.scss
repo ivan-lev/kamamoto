@@ -1,5 +1,8 @@
 .preloader {
   height: 100%;
+  min-height: 100px;
+  width: 100%;
+  min-width: 100px;
   background-color: transparent;
   background-image: url(/public/icons/preloader.svg);
   background-position: center;
