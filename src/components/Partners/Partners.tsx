@@ -25,12 +25,17 @@ export default function Partners(): JSX.Element {
       .catch(error => console.log(error));
   }, []);
 
-  return (
-    <div className="partners">
-      {partnersList.map(partner => {
-        const partnerToRender = { ...partner, logo: `./images/partners/${partner.logo}` };
-        return <Partner key={partner._id} partner={partnerToRender} />;
-      })}
+  return partnersList.length !== 0 ? (
+    <div className="container partners">
+      <span className="muted partners__title">Организации-партнёры</span>
+      <div className="partners__grid">
+        {partnersList.map(partner => {
+          const partnerToRender = { ...partner, logo: `./images/partners/${partner.logo}` };
+          return <Partner key={partner._id} partner={partnerToRender} />;
+        })}
+      </div>
     </div>
+  ) : (
+    <></>
   );
 }
