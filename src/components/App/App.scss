@@ -16,4 +16,8 @@
   min-height: 100vh;
 
   box-sizing: border-box;
+
+  @media screen and (max-width: 768px) {
+    gap: 50px;
+  }
 }
