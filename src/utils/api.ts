@@ -82,6 +82,35 @@ const authorize = (email: string, password: string) => {
   }).then(response => checkResponseStatus(response));
 };
 
+// Partners
+const getPartners = () => {
+  return fetch(`${BASE_URL}/partners/`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${TOKEN}` }
+  }).then((response: any) => checkResponseStatus(response));
+};
+
+const createPartner = ({
+  title,
+  link,
+  logo,
+  isActive
+}: {
+  title: string;
+  link: string;
+  logo: string;
+  isActive: boolean;
+}) => {
+  return fetch(`${BASE_URL}/partners/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify({ title, link, logo, isActive })
+  }).then((response: any) => checkResponseStatus(response));
+};
+
 const checkToken = (token: string) => {
   return fetch(`${BASE_URL}/users/`, {
     method: 'GET',
@@ -101,5 +130,7 @@ export const api = {
   deleteExhibition,
   getStatistics,
   authorize,
+  getPartners,
+  createPartner,
   checkToken
 };
