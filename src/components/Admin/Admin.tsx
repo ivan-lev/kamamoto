@@ -56,12 +56,17 @@ export default function Admin(): JSX.Element {
               </li>
               <li>
                 <Link to="exhibits/" className="link">
-                  Все лоты
+                  Лоты
                 </Link>
               </li>
               <li>
                 <Link to="exhibitions/" className="link">
                   Выставки
+                </Link>
+              </li>
+              <li>
+                <Link to="partners/" className="link">
+                  Партнёры
                 </Link>
               </li>
             </ul>
