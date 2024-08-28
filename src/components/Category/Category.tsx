@@ -11,16 +11,16 @@ import { resetCategory } from '../../slices/categorySlice';
 import { setDisplayList } from '../../slices/listSlice';
 import { resetDisplayList } from '../../slices/listSlice';
 
-// Other packages
-import { Helmet } from 'react-helmet-async';
-
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
+import Seo from '../Seo/Seo';
 
-// Utils and variables
-import { exhibits } from '../../variables/exhibits';
+// Utils
 import { generateListToDisplay } from '../../utils/generateListToDisplay';
 import { getCategory } from '../../utils/getCategory';
+
+//Variables
+import { exhibits } from '../../variables/exhibits';
 
 import { ExhibitCategory } from '../../types/exhibitCategory';
 
@@ -46,16 +46,10 @@ export default function Category(): JSX.Element {
     };
   }, []);
 
-  const pageTitle = `Камамото: ${categoryName.charAt(0).toLowerCase()}${categoryName.slice(1)}`;
-  const pagePreview = `https://kamamoto.ru/images/categories/${category}.jpg`;
-
   return (
     <>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:image" content={pagePreview} />
-      </Helmet>
+      <Seo title={`Камамото: ${categoryName.toLowerCase()}`} />
+
       <section className="section category">
         <div className="exhibit__breadcrumbs">
           <Link to=".." className="link link_navigational muted exhibit__link" relative="path">

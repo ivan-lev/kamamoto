@@ -15,6 +15,7 @@ import {
 // Components
 import AdminExhibitionForm from '../AdminExhibitionForm/AdminExhibitionForm';
 import Preloader from '../Preloader/Preloader';
+import Seo from '../Seo/Seo';
 
 // Utils
 import { api } from '../../utils/api';
@@ -35,45 +36,51 @@ export default function AdminExhibitions(): JSX.Element {
     });
   }, []);
 
-  return showPreloader ? (
-    <Preloader />
-  ) : (
-    <div className="container admin-exhibitions">
-      <div className="admin-exhibitions__list">
-        <div className="admin-exhibitions__row">
-          <span>ID</span>
-          <span>Название</span>
-          <span>Город</span>
-          <span>Год</span>
-          <span>Акт-сть</span>
-          <span></span>
-        </div>
-        {exhibitions.map(exhibition => {
-          return (
-            <div key={exhibition.id} className="muted admin-exhibitions__row">
-              <span>{exhibition.id}</span>
-              <span>{exhibition.name}</span>
-              <span>{exhibition.city}</span>
-              <span>{exhibition.year}</span>
-              <span>{exhibition.isActive ? 'Да' : 'Нет'}</span>
-              <span>
-                <button
-                  className="admin-exhibitions__edit-button"
-                  onClick={() => dispatch(setExhibitionToEdit(exhibition.id))}
-                ></button>
-              </span>
-            </div>
-          );
-        })}
-      </div>
+  return (
+    <>
+      <Seo title="Камамото: выставки" />
 
-      {isExhibitionFormShowed ? (
-        <AdminExhibitionForm />
+      {showPreloader ? (
+        <Preloader />
       ) : (
-        <button className="button" onClick={() => dispatch(openEmptyExhibitionForm())}>
-          Создать
-        </button>
+        <div className="container admin-exhibitions">
+          <div className="admin-exhibitions__list">
+            <div className="admin-exhibitions__row">
+              <span>ID</span>
+              <span>Название</span>
+              <span>Город</span>
+              <span>Год</span>
+              <span>Акт-сть</span>
+              <span></span>
+            </div>
+            {exhibitions.map(exhibition => {
+              return (
+                <div key={exhibition.id} className="muted admin-exhibitions__row">
+                  <span>{exhibition.id}</span>
+                  <span>{exhibition.name}</span>
+                  <span>{exhibition.city}</span>
+                  <span>{exhibition.year}</span>
+                  <span>{exhibition.isActive ? 'Да' : 'Нет'}</span>
+                  <span>
+                    <button
+                      className="admin-exhibitions__edit-button"
+                      onClick={() => dispatch(setExhibitionToEdit(exhibition.id))}
+                    ></button>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {isExhibitionFormShowed ? (
+            <AdminExhibitionForm />
+          ) : (
+            <button className="button" onClick={() => dispatch(openEmptyExhibitionForm())}>
+              Создать
+            </button>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }

@@ -6,6 +6,9 @@ import { useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Components
+import Seo from '../Seo/Seo';
+
 // Redux
 import { RootState } from '../../slices';
 import { setCategory } from '../../slices/categorySlice';
@@ -73,16 +76,10 @@ export default function Exhibit(): JSX.Element {
     }
   }, [exhibit]);
 
-  const pageTitle = `Камамото: ${exhibit?.name.charAt(0).toLowerCase()}${exhibit?.name.slice(1)}`;
-  const pagePreview = `https://kamamoto.ru/exhibits/${exhibitNumber}/0.jpg`;
-
   return (
     <>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:image" content={pagePreview} />
-      </Helmet>
+      <Seo title={`Камамото: ${exhibit?.name.charAt(0).toLowerCase()}${exhibit?.name.slice(1)}`} />
+
       <section className="section exhibit">
         <div className="exhibit__breadcrumbs">
           <Link to=".." className="link link_navigational muted exhibit__link" relative="path">

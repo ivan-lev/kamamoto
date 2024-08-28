@@ -10,6 +10,7 @@ import { AdminRootState, login, logout } from '../../slices/adminSlice';
 
 // Components
 import Logo from '../Logo/Logo';
+import Seo from '../Seo/Seo';
 
 // Utils
 import { api } from '../../utils/api';
@@ -88,79 +89,83 @@ export default function Login() {
   };
 
   return (
-    <div className="login">
-      <form
-        name="login__form"
-        className="bordered background-muted container login__form"
-        autoComplete="off"
-        onSubmit={handleLogin}
-      >
-        <Logo />
-        <fieldset className="login__fieldset" disabled={isFormDisabled}>
-          <div className="login__submit-block">
-            <label htmlFor="email" className="muted login__label">
-              Email
-            </label>
-            <input
-              className={`background-muted bordered input ${
-                isMessageSending ? 'input_disabled' : ''
-              }`}
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Введите email"
-              autoComplete="none"
-              required
-              value={email}
-              onChange={handleChange}
-              autoFocus
-            />
-          </div>
+    <>
+      <Seo title="Камамото: страница логина" />
 
-          <div className="login__submit-block">
-            <label htmlFor="password" className="muted login__label">
-              Пароль
-            </label>
-            <div className="login__password-block">
+      <div className="login">
+        <form
+          name="login__form"
+          className="bordered background-muted container login__form"
+          autoComplete="off"
+          onSubmit={handleLogin}
+        >
+          <Logo />
+          <fieldset className="login__fieldset" disabled={isFormDisabled}>
+            <div className="login__submit-block">
+              <label htmlFor="email" className="muted login__label">
+                Email
+              </label>
               <input
-                className={`login__password-input background-muted bordered input ${
+                className={`background-muted bordered input ${
                   isMessageSending ? 'input_disabled' : ''
                 }`}
-                type={!isPasswordShowed ? 'password' : 'text'}
-                name="password"
-                id="password"
-                placeholder="Введите пароль"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Введите email"
                 autoComplete="none"
                 required
-                value={password}
+                value={email}
                 onChange={handleChange}
+                autoFocus
               />
-              <button
-                className="muted login__button_show-password"
-                type="button"
-                onClick={() => setIsPasswordShowed(!isPasswordShowed)}
-              >
-                {isPasswordShowed ? (
-                  <img className="login__button-img" src="/public/icons/eye-opened.svg"></img>
-                ) : (
-                  <img className="login__button-img" src="/public/icons/eye-closed.svg"></img>
-                )}
-              </button>
             </div>
-          </div>
 
-          <div className="login__submit-block">
-            <button
-              className={`button ${isMessageSending ? 'button_sending' : ''}
+            <div className="login__submit-block">
+              <label htmlFor="password" className="muted login__label">
+                Пароль
+              </label>
+              <div className="login__password-block">
+                <input
+                  className={`login__password-input background-muted bordered input ${
+                    isMessageSending ? 'input_disabled' : ''
+                  }`}
+                  type={!isPasswordShowed ? 'password' : 'text'}
+                  name="password"
+                  id="password"
+                  placeholder="Введите пароль"
+                  autoComplete="none"
+                  required
+                  value={password}
+                  onChange={handleChange}
+                />
+                <button
+                  className="muted login__button_show-password"
+                  type="button"
+                  onClick={() => setIsPasswordShowed(!isPasswordShowed)}
+                >
+                  {isPasswordShowed ? (
+                    <img className="login__button-img" src="/public/icons/eye-opened.svg"></img>
+                  ) : (
+                    <img className="login__button-img" src="/public/icons/eye-closed.svg"></img>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div className="login__submit-block">
+              <button
+                className={`button ${isMessageSending ? 'button_sending' : ''}
             ${isFormDisabled ? 'muted' : ''} login__button`}
-              type="submit"
-            >
-              Войти
-            </button>
-            <span className="login__error-message">{loginError}</span>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+                type="submit"
+              >
+                Войти
+              </button>
+              <span className="login__error-message">{loginError}</span>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </>
   );
 }

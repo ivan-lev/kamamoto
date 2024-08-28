@@ -13,10 +13,10 @@ import { setExhibitionToDisplay } from '../../slices/exhibitionsSlice';
 // Other packages
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
-import { Helmet } from 'react-helmet-async';
 
 // Components
 import Preloader from '../Preloader/Preloader';
+import Seo from '../Seo/Seo';
 
 // Utils and variables
 import { generateImageLinks } from '../../utils/generateImageLinks';
@@ -88,16 +88,9 @@ export default function Exhibit(): JSX.Element {
     setPhotosToDisplay(newPhotosToDisplay);
   }, [exhibitionToDisplay]);
 
-  const pageTitle = `Камамото: ${name}`;
-  const pagePreview = `https://kamamoto.ru/images/og-image.jpg`;
-
   return (
     <>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:image" content={pagePreview} />
-      </Helmet>
+      <Seo title={`Камамото: ${name}`} />
 
       {showPreloader ? (
         <section className="section">

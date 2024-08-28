@@ -1,10 +1,10 @@
 import './Benefactors.scss';
 
-// React hooks
+// React
 import { useLayoutEffect } from 'react';
 
-// Other packages
-import { Helmet } from 'react-helmet-async';
+// Components
+import Seo from '../Seo/Seo';
 
 export default function Benefactors() {
   useLayoutEffect(() => {
@@ -13,11 +13,7 @@ export default function Benefactors() {
 
   return (
     <>
-      <Helmet>
-        <title>{`Камамото: страница о людях, внесших вклад в развитие коллекции`}</title>
-        <meta property="og:title" content={`Камамото: о благодетелях`} />
-        <meta property="og:image" content={`https://kamamoto.ru/about-avatar.jpg`} />
-      </Helmet>
+      <Seo title="Камамото: страница о людях, внесших вклад в развитие коллекции" />
       <section className="section">
         <h2 className="title title2">Помощники проекта</h2>
         <p className="subtitle">

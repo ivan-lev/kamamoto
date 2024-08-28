@@ -1,10 +1,8 @@
 import './About.scss';
 
-// Other packages
-import { Helmet } from 'react-helmet-async';
-
 // Components
 import SocialLinks from '../SocialLinks/SocialLinks';
+import Seo from '../Seo/Seo';
 
 // Variables
 import { personalSocialLinks } from '../../variables/socialLinks';
@@ -12,11 +10,7 @@ import { personalSocialLinks } from '../../variables/socialLinks';
 export default function About() {
   return (
     <>
-      <Helmet>
-        <title>{`Камамото: коллекция японской керамики по категориям`}</title>
-        <meta property="og:title" content={`Камамото: о хранителе коллекции`} />
-        <meta property="og:image" content={`https://kamamoto.ru/about-avatar.jpg`} />
-      </Helmet>
+      <Seo title={`Камамото: о коллекционере`} />
       <section className="section about">
         <img className="about__avatar" src="/images/about-avatar.jpg" alt=""></img>
         <div className="about__heading">

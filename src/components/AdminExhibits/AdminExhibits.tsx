@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 // Components
 import Preloader from '../Preloader/Preloader';
+import Seo from '../Seo/Seo';
 
 // Types
 import type { Exhibit, Exhibits } from '../../types/exhibitType';
@@ -34,24 +35,30 @@ export default function AdminExhibits(): JSX.Element {
       .catch(error => console.log(error));
   }, []);
 
-  return showPreloader ? (
-    <Preloader />
-  ) : (
-    <div className="container">
-      <div className="admin-exhibit__list">
-        <span>ID</span>
-        <span>Название</span>
-        <span>Категория</span>
-        <span>Стиль</span>
-      </div>
-      {exhibits.map(exhibit => (
-        <div className="admin-exhibit__list" key={exhibit.id}>
-          <span>{exhibit.id}</span>
-          <span>{exhibit.name}</span>
-          <span>{exhibit.category}</span>
-          <span>{exhibit.style}</span>
+  return (
+    <>
+      <Seo title="Камамото: лоты" />
+
+      {showPreloader ? (
+        <Preloader />
+      ) : (
+        <div className="container">
+          <div className="admin-exhibit__list">
+            <span>ID</span>
+            <span>Название</span>
+            <span>Категория</span>
+            <span>Стиль</span>
+          </div>
+          {exhibits.map(exhibit => (
+            <div className="admin-exhibit__list" key={exhibit.id}>
+              <span>{exhibit.id}</span>
+              <span>{exhibit.name}</span>
+              <span>{exhibit.category}</span>
+              <span>{exhibit.style}</span>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 }

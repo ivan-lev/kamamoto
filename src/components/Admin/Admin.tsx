@@ -16,6 +16,7 @@ import { LOGIN_MESSAGES } from '../../variables/variables';
 
 //Components
 import Logo from '../Logo/Logo';
+import Seo from '../Seo/Seo';
 
 export default function Admin(): JSX.Element {
   const dispatch = useDispatch();
@@ -39,66 +40,72 @@ export default function Admin(): JSX.Element {
     }
   }, []);
 
-  return isLoggedIn ? (
-    <section className="admin">
-      <div className="admin__sidebar bordered background-muted">
-        <Logo />
-        <ul className="admin__list">
-          <li>
-            <Link to="/admin/" className="link">
-              Статистика
-            </Link>
-          </li>
-          <li>
-            <Link to="exhibits/" className="link">
-              Все лоты
-            </Link>
-          </li>
-          <li>
-            <Link to="exhibitions/" className="link">
-              Выставки
-            </Link>
-          </li>
-        </ul>
+  return (
+    <>
+      <Seo title="Камамото: статистика" />
 
-        <ul className="admin__list">
-          <li>
-            <Link to="#" className="link">
-              Добавить лот
-            </Link>
-          </li>
-          <li>
-            <Link to="#" className="link">
-              Добавить выставку
-            </Link>
-          </li>
-          <li>
-            <Link to="#" className="link">
-              Изменить лот
-            </Link>
-          </li>
-        </ul>
+      {isLoggedIn ? (
+        <section className="admin">
+          <div className="admin__sidebar bordered background-muted">
+            <Logo />
+            <ul className="admin__list">
+              <li>
+                <Link to="/admin/" className="link">
+                  Статистика
+                </Link>
+              </li>
+              <li>
+                <Link to="exhibits/" className="link">
+                  Все лоты
+                </Link>
+              </li>
+              <li>
+                <Link to="exhibitions/" className="link">
+                  Выставки
+                </Link>
+              </li>
+            </ul>
 
-        <ul className="admin__list">
-          <li>
-            <button
-              className="button"
-              onClick={() => {
-                dispatch(logout());
-                navigate('/login');
-              }}
-            >
-              Выйти
-            </button>
-          </li>
-        </ul>
-      </div>
+            <ul className="admin__list">
+              <li>
+                <Link to="#" className="link">
+                  Добавить лот
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="link">
+                  Добавить выставку
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="link">
+                  Изменить лот
+                </Link>
+              </li>
+            </ul>
 
-      <div className="admin__content bordered background-muted">
-        <Outlet />
-      </div>
-    </section>
-  ) : (
-    <Navigate to="/login/" replace />
+            <ul className="admin__list">
+              <li>
+                <button
+                  className="button"
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate('/login');
+                  }}
+                >
+                  Выйти
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div className="admin__content bordered background-muted">
+            <Outlet />
+          </div>
+        </section>
+      ) : (
+        <Navigate to="/login/" replace />
+      )}
+    </>
   );
 }
