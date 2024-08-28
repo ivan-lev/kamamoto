@@ -6,6 +6,7 @@ import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 //components
 import Statistics from '../Statistics/Statistics';
+import Partners from '../Partners/Partners';
 
 // variables
 import { homepageSliderImages } from '../../variables/homepageSliderImages';
@@ -26,6 +27,7 @@ export default function HomePage() {
       <div className="container">
         <Statistics />
       </div>
+      <Partners />
     </section>
   );
 }
