@@ -1,7 +1,7 @@
 import './AdminExhibitionForm.scss';
 
 // React
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //Redux
@@ -18,6 +18,7 @@ import { api } from '../../utils/api';
 
 export default function AdminExhibitionForm(): JSX.Element {
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [saveMessage, setSaveMessage] = useState<string>('');
   const dispatch = useDispatch();
 
   const exhibitions = useSelector((state: AdminRootState) => state.admin.exhibitions);
@@ -74,10 +75,12 @@ export default function AdminExhibitionForm(): JSX.Element {
         dispatch(setExhibitions([...exhibitions, response]));
         dispatch(clearExhibitionForm());
         setIsFormDisabled(false);
+        setSaveMessage('Выставка создана');
       })
       .catch(error => {
         console.log(error);
         setIsFormDisabled(false);
+        setSaveMessage('Что-то пошло не так :(');
       });
   };
 
@@ -91,10 +94,12 @@ export default function AdminExhibitionForm(): JSX.Element {
         });
         dispatch(setExhibitions(newExhibitions));
         setIsFormDisabled(false);
+        setSaveMessage('Данные обновлены');
       })
       .catch(error => {
         console.log(error);
         setIsFormDisabled(false);
+        setSaveMessage('Что-то пошло не так :(');
       });
   };
 
@@ -118,17 +123,23 @@ export default function AdminExhibitionForm(): JSX.Element {
     dispatch(clearExhibitionForm());
   };
 
+  useEffect(() => {
+    if (saveMessage) {
+      setTimeout(() => setSaveMessage(''), 3000);
+    }
+  }, [saveMessage]);
+
   return (
-    <div className="admin-exhibition-form">
+    <div className="admin-section-form">
       <form
-        className="background-muted bordered admin-exhibition-form__form"
+        className="background-muted bordered admin-section-form__form"
         onSubmit={handleCreateExhibition}
       >
-        <fieldset className="admin-exhibition-form__fieldset" disabled={isFormDisabled}>
-          <legend className="admin-exhibition-form__field-legend">Добавить выставку</legend>
+        <fieldset className="admin-section-form__fieldset" disabled={isFormDisabled}>
+          <legend className="admin-section-form__field-legend">Добавить выставку</legend>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-id">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-id">
               <span>номер</span>
               <input
                 className={`background-muted bordered input ${
@@ -142,7 +153,7 @@ export default function AdminExhibitionForm(): JSX.Element {
               />
             </div>
 
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-year">
+            <div className="admin-section-form__field admin-exhibition-form__field-year">
               <span>год</span>
               <input
                 className={`background-muted bordered input ${
@@ -156,7 +167,7 @@ export default function AdminExhibitionForm(): JSX.Element {
               />
             </div>
 
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-date">
+            <div className="admin-section-form__field admin-exhibition-form__field-date">
               <span>даты</span>
               <input
                 className={`background-muted bordered input ${
@@ -171,8 +182,8 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-name">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-name">
               <span>название</span>
               <input
                 className={`background-muted bordered input ${
@@ -186,7 +197,7 @@ export default function AdminExhibitionForm(): JSX.Element {
               />
             </div>
 
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-city">
+            <div className="admin-section-form__field admin-exhibition-form__field-city">
               <span>город</span>
               <input
                 className={`background-muted bordered input ${
@@ -201,8 +212,8 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-address">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-address">
               <span>адрес</span>
               <input
                 className={`background-muted bordered input ${
@@ -216,7 +227,7 @@ export default function AdminExhibitionForm(): JSX.Element {
               />
             </div>
 
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-place">
+            <div className="admin-section-form__field admin-exhibition-form__field-place">
               <span>место проведения</span>
               <input
                 className={`background-muted bordered input ${
@@ -231,8 +242,8 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-curators">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-curators">
               <span>кураторы</span>
               <textarea
                 className="background-muted bordered textarea input"
@@ -243,7 +254,7 @@ export default function AdminExhibitionForm(): JSX.Element {
               />
             </div>
 
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-organisators">
+            <div className="admin-section-form__field admin-exhibition-form__field-organisators">
               <span>организаторы</span>
               <textarea
                 className="background-muted bordered textarea input"
@@ -255,8 +266,8 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-description">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-description">
               <span>описание</span>
               <textarea
                 className="background-muted bordered textarea input"
@@ -268,8 +279,8 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-link">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-link">
               <span>фотографии</span>
               <input
                 className={`background-muted bordered input ${
@@ -284,8 +295,8 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-link">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-link">
               <span>ссылка</span>
               <input
                 className={`background-muted bordered input ${
@@ -294,12 +305,12 @@ export default function AdminExhibitionForm(): JSX.Element {
                 type="text"
                 name="link"
                 placeholder="ссылка"
-                value={link}
+                value={link || ''}
                 onChange={handleChange}
               />
             </div>
 
-            <div className="checkbox admin-exhibition-form__field admin-exhibition-form__field-poster">
+            <div className="checkbox admin-section-form__field admin-exhibition-form__field-poster">
               <span>постер</span>
               <label
                 className={`background-muted bordered input checkbox-label ${
@@ -318,7 +329,7 @@ export default function AdminExhibitionForm(): JSX.Element {
               </label>
             </div>
 
-            <div className="checkbox admin-exhibition-form__field admin-exhibition-form__field-is-active">
+            <div className="checkbox admin-section-form__field admin-exhibition-form__field-is-active">
               <span>на сайте</span>
               <label
                 className={`background-muted bordered input checkbox-label ${
@@ -338,8 +349,8 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="admin-exhibition-form__fields-row">
-            <div className="admin-exhibition-form__field admin-exhibition-form__field-submit">
+          <div className="admin-section-form__fields-row">
+            <div className="admin-section-form__field admin-exhibition-form__field-submit">
               {!isExistingExhibitionEdited ? (
                 <>
                   <button
@@ -374,6 +385,7 @@ export default function AdminExhibitionForm(): JSX.Element {
             </div>
           </div>
         </fieldset>
+        <span className="admin-exhibition-form__save-status">{saveMessage}</span>
       </form>
     </div>
   );

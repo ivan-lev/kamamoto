@@ -261,6 +261,94 @@
   }
 }
 
+.text,
+.blockquote,
+.list,
+.link {
+  @media screen and (max-width: 900px) {
+    font-size: 14px;
+  }
+}
+
+// Admin section
+
+.admin-section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &__row {
+    display: grid;
+  }
+
+  &__row:not(:first-child):not(:last-child) {
+    border-bottom: 1px dashed var(--text-muted);
+  }
+
+  &__fields-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__edit-button {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 0;
+    background-image: url('/icons/edit.svg');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+}
+
+.admin-section-form {
+  &__form {
+    padding: 30px;
+    position: relative;
+  }
+
+  &__fieldset {
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__fields-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+
+    & span {
+      font-size: 14px;
+    }
+
+    & input {
+      height: 45px;
+    }
+  }
+
+  &__checkbox-label {
+    width: 45px;
+    height: 45px;
+  }
+
+  &__save-status {
+    position: absolute;
+    bottom: 5px;
+    right: 30px;
+    font-size: 12px;
+  }
+}
+
+// Other styles
+
 .image-gallery-slide-wrapper {
   width: 100%;
 }
@@ -282,13 +370,4 @@
 .image-gallery-thumbnail:hover {
   outline: none;
   border: 4px solid var(--text-default) !important;
-}
-
-.text,
-.blockquote,
-.list,
-.link {
-  @media screen and (max-width: 900px) {
-    font-size: 14px;
-  }
 }

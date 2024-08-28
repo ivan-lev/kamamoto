@@ -1,6 +1,7 @@
 .admin-exhibition-form {
   &__form {
     padding: 30px;
+    position: relative;
   }
 
   &__fieldset {
@@ -107,5 +108,12 @@
   &__checkbox-label {
     width: 45px;
     height: 45px;
+  }
+
+  &__save-status {
+    position: absolute;
+    bottom: 5px;
+    right: 30px;
+    font-size: 12px;
   }
 }
