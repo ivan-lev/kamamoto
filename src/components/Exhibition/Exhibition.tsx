@@ -121,7 +121,7 @@ export default function Exhibit(): JSX.Element {
             {link && (
               <span className="muted">
                 Ссылка на{' '}
-                <a className="link exhibition__link" href={link}>
+                <a className="link exhibition__link" href={link} target="_blank">
                   мероприятие
                 </a>
               </span>
