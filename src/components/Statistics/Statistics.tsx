@@ -4,7 +4,7 @@ import { statistics } from '../../variables/statistics';
 
 export default function Statistics(): JSX.Element {
   return (
-    <section className="statistics">
+    <div className="statistics">
       <ul className="statistics__list">
         {statistics.map(element => {
           return (
@@ -15,6 +15,6 @@ export default function Statistics(): JSX.Element {
           );
         })}
       </ul>
-    </section>
+    </div>
   );
 }
