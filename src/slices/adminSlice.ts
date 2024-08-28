@@ -1,7 +1,9 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
+// Types
 import { Exhibit, Exhibits, defaultExhibit } from '../types/exhibitType';
 import { Exhibition, Exhibitions, defaultExhibition } from '../types/exhibitionType';
+import { Partner, defaultPartner } from '../types/partnerType';
 
 interface adminState {
   isLoggedIn: boolean;
@@ -11,6 +13,8 @@ interface adminState {
   exhibitionToDisplay: Exhibition;
   isExhibitionFormShowed: boolean;
   isExistingExhibitionEdited: boolean;
+  partners: Partner[];
+  partnerToDisplay: Partner;
 }
 
 const initialState: adminState = {
@@ -20,7 +24,9 @@ const initialState: adminState = {
   exhibitions: [],
   exhibitionToDisplay: { ...defaultExhibition },
   isExhibitionFormShowed: false,
-  isExistingExhibitionEdited: false
+  isExistingExhibitionEdited: false,
+  partners: [],
+  partnerToDisplay: { ...defaultPartner }
 };
 
 const adminSlice = createSlice({
@@ -69,6 +75,18 @@ const adminSlice = createSlice({
 
     setExhibitionToDisplay: (state, action) => {
       state.exhibitionToDisplay = { ...action.payload };
+    },
+
+    setPartners: (state, action) => {
+      state.partners = [...action.payload];
+    },
+
+    setPartnerToDisplay: (state, action) => {
+      state.partnerToDisplay = { ...action.payload };
+    },
+
+    clearPartnerForm: state => {
+      state.partnerToDisplay = { ...defaultPartner };
     }
   }
 });
@@ -82,7 +100,10 @@ export const {
   clearExhibitionForm,
   setExhibitionToEdit,
   setIsExistingExhibitionEdited,
-  setExhibitionToDisplay
+  setExhibitionToDisplay,
+  setPartners,
+  setPartnerToDisplay,
+  clearPartnerForm
 } = adminSlice.actions;
 
 const adminStore = configureStore({
