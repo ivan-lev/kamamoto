@@ -20,7 +20,7 @@ import { api } from '../../utils/api';
 
 export default function Expos(): JSX.Element {
   const dispatch = useDispatch();
-  const [showPreloader, setShowPreloader] = useState<boolean>(false);
+  const [showPreloader, setShowPreloader] = useState<boolean>(true);
   const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
 
   const pageTitle = `Камамото: мероприятия, на каторых представлена коллекция`;
@@ -28,7 +28,6 @@ export default function Expos(): JSX.Element {
 
   useEffect(() => {
     if (exhibitions.length === 0) {
-      setShowPreloader(true);
       api
         .getExhibitions()
         .then(response => {

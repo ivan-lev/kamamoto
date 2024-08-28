@@ -30,7 +30,7 @@ import { PATHS } from '../../variables/variables';
 import type { Images } from '../../types/imageType';
 
 export default function Exhibit(): JSX.Element {
-  const [showPreloader, setShowPreloader] = useState<boolean>(false);
+  const [showPreloader, setShowPreloader] = useState<boolean>(true);
   const dispatch = useDispatch();
   const options = htmlParserOptions;
   const { exhId } = useParams();
@@ -61,7 +61,6 @@ export default function Exhibit(): JSX.Element {
   });
 
   useEffect(() => {
-    setShowPreloader(true);
     if (exhibitions.length !== 0) {
       const exhibition = exhibitions.find(exhibition => exhibition.id === parseInt(exhId || '0'));
       dispatch(setExhibitionToDisplay(exhibition));
