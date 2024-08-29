@@ -68,16 +68,19 @@ export default function Exhibit(): JSX.Element {
       return;
     }
 
-    api
-      .getExhibitionById(exhId || '0')
-      .then(response => {
-        dispatch(setExhibitionToDisplay(response));
-        setShowPreloader(false);
-      })
-      .catch(error => {
-        console.log(error);
-        setShowPreloader(false);
-      });
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .getExhibitionById(token, exhId || '0')
+        .then(response => {
+          dispatch(setExhibitionToDisplay(response));
+          setShowPreloader(false);
+        })
+        .catch(error => {
+          console.log(error);
+          setShowPreloader(false);
+        });
+    }
   }, [exhId]);
 
   const [photosToDisplay, setPhotosToDisplay] = useState<Images>([]);

@@ -32,10 +32,16 @@ export default function AdminPartners(): JSX.Element {
   const { title, link, logo, isActive } = partnerToDisplay;
 
   useEffect(() => {
-    api.getPartners().then(partners => {
-      dispatch(setPartners(partners));
-      setShowPreloader(false);
-    });
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .getPartners(token)
+        .then(partners => {
+          dispatch(setPartners(partners));
+          setShowPreloader(false);
+        })
+        .catch(error => console.log(error));
+    }
   }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -51,19 +57,22 @@ export default function AdminPartners(): JSX.Element {
   const handleCreatePartner = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsFormDisabled(true);
-    api
-      .createPartner({ title, link, logo, isActive })
-      .then(response => {
-        dispatch(setPartners([...partners, response]));
-        dispatch(clearPartnerForm());
-        setIsFormDisabled(false);
-        setSaveMessage('Новый партнёр в базе');
-      })
-      .catch(error => {
-        console.log(error);
-        setIsFormDisabled(false);
-        setSaveMessage('Что-то пошло не так :(');
-      });
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .createPartner(token, title, link, logo, isActive)
+        .then(response => {
+          dispatch(setPartners([...partners, response]));
+          dispatch(clearPartnerForm());
+          setIsFormDisabled(false);
+          setSaveMessage('Новый партнёр в базе');
+        })
+        .catch(error => {
+          console.log(error);
+          setIsFormDisabled(false);
+          setSaveMessage('Что-то пошло не так :(');
+        });
+    }
   };
 
   return (

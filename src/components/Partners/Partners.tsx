@@ -19,10 +19,13 @@ export default function Partners(): JSX.Element {
   const partnersList = useSelector((state: RootState) => state.partners);
 
   useEffect(() => {
-    api
-      .getPartners()
-      .then(partners => dispatch(setPartnersList(partners)))
-      .catch(error => console.log(error));
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .getPartners(token)
+        .then(partners => dispatch(setPartnersList(partners)))
+        .catch(error => console.log(error));
+    }
   }, []);
 
   return partnersList.length !== 0 ? (

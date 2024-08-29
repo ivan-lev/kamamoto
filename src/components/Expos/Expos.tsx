@@ -22,19 +22,22 @@ export default function Expos(): JSX.Element {
   const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
 
   useEffect(() => {
-    if (exhibitions.length === 0) {
-      api
-        .getExhibitions()
-        .then(response => {
-          dispatch(setExhibitionsList(response));
-          setShowPreloader(false);
-        })
-        .catch(error => {
-          console.log(error);
-          setShowPreloader(false);
-        });
-    } else {
-      setShowPreloader(false);
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      if (exhibitions.length === 0) {
+        api
+          .getExhibitions(token)
+          .then(response => {
+            dispatch(setExhibitionsList(response));
+            setShowPreloader(false);
+          })
+          .catch(error => {
+            console.log(error);
+            setShowPreloader(false);
+          });
+      } else {
+        setShowPreloader(false);
+      }
     }
   }, []);
 

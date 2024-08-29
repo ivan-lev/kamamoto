@@ -19,20 +19,23 @@ export default function AdminExhibits(): JSX.Element {
 
   useEffect(() => {
     const exhibitsList: Exhibits = [];
-    api
-      .getExhibits()
-      .then(response => {
-        response.forEach((exhibit: any) => {
-          const someExhibit: Exhibit = {
-            ...exhibit,
-            category: exhibit.category.title
-          };
-          exhibitsList.push(someExhibit);
-        });
-        setExhibits(exhibitsList);
-        setShowPreloader(false);
-      })
-      .catch(error => console.log(error));
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .getExhibits(token)
+        .then(response => {
+          response.forEach((exhibit: any) => {
+            const someExhibit: Exhibit = {
+              ...exhibit,
+              category: exhibit.category.title
+            };
+            exhibitsList.push(someExhibit);
+          });
+          setExhibits(exhibitsList);
+          setShowPreloader(false);
+        })
+        .catch(error => console.log(error));
+    }
   }, []);
 
   return (

@@ -1,7 +1,11 @@
 export const PATHS = {
   BASE_URL: 'http://localhost:5173',
-  EXHIBIT_PATH: 'exhibits',
-  EXHIBITION_PATH: 'exhibitions'
+  EXHIBITS: 'exhibits',
+  EXHIBITIONS: 'exhibitions',
+  PARTNERS: 'partners',
+  SIGNIN: 'signin',
+  STATISTICS: 'statistics',
+  USERS: 'users'
 };
 
 export const LOGIN_MESSAGES = {

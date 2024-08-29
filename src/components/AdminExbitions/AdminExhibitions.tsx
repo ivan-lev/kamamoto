@@ -30,10 +30,16 @@ export default function AdminExhibitions(): JSX.Element {
   );
 
   useEffect(() => {
-    api.getExhibitions().then(exhibitions => {
-      dispatch(setExhibitions(exhibitions));
-      setShowPreloader(false);
-    });
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .getExhibitions(token)
+        .then(exhibitions => {
+          dispatch(setExhibitions(exhibitions));
+          setShowPreloader(false);
+        })
+        .catch(error => console.log(error));
+    }
   }, []);
 
   return (

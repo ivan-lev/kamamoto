@@ -65,57 +65,66 @@ export default function AdminExhibitionForm(): JSX.Element {
   const handleCreateExhibition = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsFormDisabled(true);
-    api
-      .createExhibition({
-        ...exhibitionToDisplay,
-        id: Number(id),
-        year: Number(year)
-      })
-      .then(response => {
-        dispatch(setExhibitions([...exhibitions, response]));
-        dispatch(clearExhibitionForm());
-        setIsFormDisabled(false);
-        setSaveMessage('Выставка создана');
-      })
-      .catch(error => {
-        console.log(error);
-        setIsFormDisabled(false);
-        setSaveMessage('Что-то пошло не так :(');
-      });
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .createExhibition(token, {
+          ...exhibitionToDisplay,
+          id: Number(id),
+          year: Number(year)
+        })
+        .then(response => {
+          dispatch(setExhibitions([...exhibitions, response]));
+          dispatch(clearExhibitionForm());
+          setIsFormDisabled(false);
+          setSaveMessage('Выставка создана');
+        })
+        .catch(error => {
+          console.log(error);
+          setIsFormDisabled(false);
+          setSaveMessage('Что-то пошло не так :(');
+        });
+    }
   };
 
   const handleUpdateExhibition = () => {
     setIsFormDisabled(true);
-    api
-      .updateExhibition(exhibitionToDisplay)
-      .then(response => {
-        const newExhibitions = exhibitions.map(exhibition => {
-          return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .updateExhibition(token, exhibitionToDisplay)
+        .then(response => {
+          const newExhibitions = exhibitions.map(exhibition => {
+            return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
+          });
+          dispatch(setExhibitions(newExhibitions));
+          setIsFormDisabled(false);
+          setSaveMessage('Данные обновлены');
+        })
+        .catch(error => {
+          console.log(error);
+          setIsFormDisabled(false);
+          setSaveMessage('Что-то пошло не так :(');
         });
-        dispatch(setExhibitions(newExhibitions));
-        setIsFormDisabled(false);
-        setSaveMessage('Данные обновлены');
-      })
-      .catch(error => {
-        console.log(error);
-        setIsFormDisabled(false);
-        setSaveMessage('Что-то пошло не так :(');
-      });
+    }
   };
 
   const handleDeleteExhibition = () => {
-    api
-      .deleteExhibition(exhibitionToDisplay)
-      .then(response => {
-        const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
-        dispatch(setExhibitions(newExhibitions));
-        handleCloseExhibitionForm();
-        setIsFormDisabled(false);
-      })
-      .catch(error => {
-        console.log(error);
-        setIsFormDisabled(false);
-      });
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .deleteExhibition(token, exhibitionToDisplay)
+        .then(response => {
+          const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
+          dispatch(setExhibitions(newExhibitions));
+          handleCloseExhibitionForm();
+          setIsFormDisabled(false);
+        })
+        .catch(error => {
+          console.log(error);
+          setIsFormDisabled(false);
+        });
+    }
   };
 
   const handleCloseExhibitionForm = () => {
