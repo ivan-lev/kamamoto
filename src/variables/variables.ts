@@ -1,5 +1,5 @@
 export const PATHS = {
-  BASE_URL: 'http://localhost:5173',
+  BASE_URL: 'http://localhost:3000',
   EXHIBITS: 'exhibits',
   EXHIBITIONS: 'exhibitions',
   PARTNERS: 'partners',
