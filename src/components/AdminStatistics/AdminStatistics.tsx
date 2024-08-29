@@ -21,16 +21,13 @@ export default function AdminStatistics(): JSX.Element {
   const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('kmmttkn');
-    if (token) {
-      api
-        .getStatistics(token)
-        .then(response => {
-          setStatistics(response);
-          setShowPreloader(false);
-        })
-        .catch(error => console.log(error));
-    }
+    api
+      .getStatistics()
+      .then(response => {
+        setStatistics(response);
+        setShowPreloader(false);
+      })
+      .catch(error => console.log(error));
   }, []);
 
   return showPreloader ? (

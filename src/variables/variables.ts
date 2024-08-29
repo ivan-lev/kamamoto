@@ -2,7 +2,9 @@ export const PATHS = {
   BASE_URL: 'http://localhost:3000',
   EXHIBITS: 'exhibits',
   EXHIBITIONS: 'exhibitions',
+  IMAGES: 'images',
   PARTNERS: 'partners',
+  RESOURSES: 'http://localhost:5173',
   SIGNIN: 'signin',
   STATISTICS: 'statistics',
   USERS: 'users'

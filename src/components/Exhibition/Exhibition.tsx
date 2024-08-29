@@ -25,6 +25,7 @@ import { api } from '../../utils/api';
 //Variables
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { PATHS } from '../../variables/variables';
+const { EXHIBITIONS, RESOURSES } = PATHS;
 
 // Types
 import type { Images } from '../../types/imageType';
@@ -68,25 +69,22 @@ export default function Exhibit(): JSX.Element {
       return;
     }
 
-    const token = localStorage.getItem('kmmttkn');
-    if (token) {
-      api
-        .getExhibitionById(token, exhId || '0')
-        .then(response => {
-          dispatch(setExhibitionToDisplay(response));
-          setShowPreloader(false);
-        })
-        .catch(error => {
-          console.log(error);
-          setShowPreloader(false);
-        });
-    }
+    api
+      .getExhibitionById(exhId || '0')
+      .then(response => {
+        dispatch(setExhibitionToDisplay(response));
+        setShowPreloader(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setShowPreloader(false);
+      });
   }, [exhId]);
 
   const [photosToDisplay, setPhotosToDisplay] = useState<Images>([]);
 
   useEffect(() => {
-    const path = `${PATHS.BASE_URL}/${PATHS.EXHIBITION_PATH}/${id}`;
+    const path = `${RESOURSES}/${EXHIBITIONS}/${id}`;
     const newPhotosToDisplay = generateImageLinks(path, photos);
     setPhotosToDisplay(newPhotosToDisplay);
   }, [exhibitionToDisplay]);
@@ -162,7 +160,7 @@ export default function Exhibit(): JSX.Element {
             {poster && (
               <img
                 className="exhibition__poster"
-                src={`${PATHS.BASE_URL}/${PATHS.EXHIBITION_PATH}/${id}/poster.jpg`}
+                src={`${RESOURSES}/${EXHIBITIONS}/${id}/poster.jpg`}
               ></img>
             )}
             {parse(description || '', options)}

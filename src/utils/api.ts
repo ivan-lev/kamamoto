@@ -28,38 +28,33 @@ const checkToken = (token: string) => {
 
 // Get requests
 
-const getExhibits = (token: string) => {
+const getExhibits = () => {
   return fetch(`${BASE_URL}/${EXHIBITS}/`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` }
+    method: 'GET'
   }).then((response: any) => checkResponseStatus(response));
 };
 
-const getExhibitions = (token: string) => {
+const getExhibitions = () => {
   return fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` }
+    method: 'GET'
   }).then((response: any) => checkResponseStatus(response));
 };
 
-const getExhibitionById = (token: string, id: string) => {
+const getExhibitionById = (id: string) => {
   return fetch(`${BASE_URL}/${EXHIBITIONS}/${id}`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` }
+    method: 'GET'
   }).then((response: any) => checkResponseStatus(response));
 };
 
-const getStatistics = (token: string) => {
+const getStatistics = () => {
   return fetch(`${BASE_URL}/${STATISTICS}/`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` }
+    method: 'GET'
   }).then((response: any) => checkResponseStatus(response));
 };
 
-const getPartners = (token: string) => {
+const getPartners = () => {
   return fetch(`${BASE_URL}/${PARTNERS}/`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` }
+    method: 'GET'
   }).then((response: any) => checkResponseStatus(response));
 };
 
