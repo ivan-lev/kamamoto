@@ -13,6 +13,8 @@ import Partner from '../Partner/Partner';
 
 // Variables
 import { api } from '../../utils/api';
+import { PATHS } from '../../variables/variables';
+const { IMAGES, PARTNERS, RESOURSES } = PATHS;
 
 export default function Partners(): JSX.Element {
   const dispatch = useDispatch();
@@ -30,8 +32,13 @@ export default function Partners(): JSX.Element {
       <span className="muted partners__title">Организации-партнёры</span>
       <div className="partners__grid">
         {partnersList.map(partner => {
-          const partnerToRender = { ...partner, logo: `./images/partners/${partner.logo}` };
-          return <Partner key={partner._id} partner={partnerToRender} />;
+          if (partner.isActive) {
+            const partnerToRender = {
+              ...partner,
+              logo: `${RESOURSES}/${IMAGES}/${PARTNERS}/${partner.logo}`
+            };
+            return <Partner key={partner._id} partner={partnerToRender} />;
+          }
         })}
       </div>
     </div>
