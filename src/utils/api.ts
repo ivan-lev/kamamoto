@@ -3,6 +3,7 @@ import { PATHS } from '../variables/variables';
 const { BASE_URL, EXHIBITIONS, EXHIBITS, PARTNERS, SIGNIN, STATISTICS, USERS } = PATHS;
 
 import type { Exhibition } from '../types/exhibitionType';
+import type { Partner } from '../types/partnerType';
 
 // Authorization logic
 
@@ -20,8 +21,8 @@ const checkToken = (token: string) => {
   return fetch(`${BASE_URL}/${USERS}/`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
     }
   }).then(response => checkResponseStatus(response));
 };
@@ -109,6 +110,27 @@ const createPartner = (
   }).then((response: any) => checkResponseStatus(response));
 };
 
+const updatePartner = (token: string, partner: Partner) => {
+  return fetch(`${BASE_URL}/${PARTNERS}/${partner._id}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(partner)
+  }).then((response: any) => checkResponseStatus(response));
+};
+
+const deletePartner = (token: string, id: string) => {
+  return fetch(`${BASE_URL}/${PARTNERS}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  }).then(response => checkResponseStatus(response));
+};
+
 // Common api logic
 
 const checkResponseStatus = (res: any) => {
@@ -130,5 +152,7 @@ export const api = {
   authorize,
   getPartners,
   createPartner,
-  checkToken
+  updatePartner,
+  checkToken,
+  deletePartner
 };
