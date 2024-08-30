@@ -15,6 +15,7 @@ interface adminState {
   isExistingExhibitionEdited: boolean;
   partners: Partner[];
   partnerToDisplay: Partner;
+  isExistingPartnerEdited: boolean;
 }
 
 const initialState: adminState = {
@@ -26,7 +27,8 @@ const initialState: adminState = {
   isExhibitionFormShowed: false,
   isExistingExhibitionEdited: false,
   partners: [],
-  partnerToDisplay: { ...defaultPartner }
+  partnerToDisplay: { ...defaultPartner },
+  isExistingPartnerEdited: false
 };
 
 const adminSlice = createSlice({
@@ -87,6 +89,10 @@ const adminSlice = createSlice({
 
     clearPartnerForm: state => {
       state.partnerToDisplay = { ...defaultPartner };
+    },
+
+    setIsExistingPartnerEdited: (state, action) => {
+      state.isExistingPartnerEdited = action.payload;
     }
   }
 });
@@ -103,7 +109,8 @@ export const {
   setExhibitionToDisplay,
   setPartners,
   setPartnerToDisplay,
-  clearPartnerForm
+  clearPartnerForm,
+  setIsExistingPartnerEdited
 } = adminSlice.actions;
 
 const adminStore = configureStore({
