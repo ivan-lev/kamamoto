@@ -1,7 +1,7 @@
 import './AdminPartners.scss';
 
 // React
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
@@ -9,7 +9,8 @@ import {
   AdminRootState,
   setPartners,
   setPartnerToDisplay,
-  clearPartnerForm
+  clearPartnerForm,
+  setIsExistingPartnerEdited
 } from '../../slices/adminSlice';
 
 // Components
@@ -18,6 +19,7 @@ import Seo from '../Seo/Seo';
 
 // Utils
 import { api } from '../../utils/api';
+import { Partner } from '../../types/partnerType';
 
 export default function AdminPartners(): JSX.Element {
   const dispatch = useDispatch();
@@ -28,21 +30,28 @@ export default function AdminPartners(): JSX.Element {
 
   const partners = useSelector((state: AdminRootState) => state.admin.partners);
   const partnerToDisplay = useSelector((state: AdminRootState) => state.admin.partnerToDisplay);
+  const isExistingPartnerEdited = useSelector(
+    (state: AdminRootState) => state.admin.isExistingPartnerEdited
+  );
 
   const { title, link, logo, isActive } = partnerToDisplay;
 
   useEffect(() => {
-    const token = localStorage.getItem('kmmttkn');
-    if (token) {
-      api
-        .getPartners(token)
-        .then(partners => {
-          dispatch(setPartners(partners));
-          setShowPreloader(false);
-        })
-        .catch(error => console.log(error));
-    }
+    dispatch(clearPartnerForm());
+    api
+      .getPartners()
+      .then(partners => {
+        dispatch(setPartners(partners));
+        setShowPreloader(false);
+      })
+      .catch(error => console.log(error));
   }, []);
+
+  useEffect(() => {
+    if (saveMessage) {
+      setTimeout(() => setSaveMessage(''), 3000);
+    }
+  }, [saveMessage]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -54,8 +63,7 @@ export default function AdminPartners(): JSX.Element {
     dispatch(setPartnerToDisplay({ ...partnerToDisplay, [name]: checked }));
   };
 
-  const handleCreatePartner = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleCreatePartner = () => {
     setIsFormDisabled(true);
     const token = localStorage.getItem('kmmttkn');
     if (token) {
@@ -64,6 +72,7 @@ export default function AdminPartners(): JSX.Element {
         .then(response => {
           dispatch(setPartners([...partners, response]));
           dispatch(clearPartnerForm());
+          dispatch(setIsExistingPartnerEdited(false));
           setIsFormDisabled(false);
           setSaveMessage('Новый партнёр в базе');
         })
@@ -72,6 +81,60 @@ export default function AdminPartners(): JSX.Element {
           setIsFormDisabled(false);
           setSaveMessage('Что-то пошло не так :(');
         });
+    } else {
+      alert('Что-то не так с токеном');
+    }
+  };
+
+  const handleEditPartner = (partner: Partner) => {
+    dispatch(setPartnerToDisplay(partner));
+    dispatch(setIsExistingPartnerEdited(true));
+  };
+
+  const handleUpdatePartner = () => {
+    setIsFormDisabled(true);
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .updatePartner(token, partnerToDisplay)
+        .then(response => {
+          const newPartnersList = partners.map(partner => {
+            return response._id !== partner._id ? partner : response;
+          });
+          dispatch(setPartners(newPartnersList));
+          dispatch(clearPartnerForm());
+          dispatch(setIsExistingPartnerEdited(false));
+          setIsFormDisabled(false);
+          setSaveMessage('Данные обновлены');
+        })
+        .catch(error => {
+          console.log(error);
+          setIsFormDisabled(false);
+          setSaveMessage('Что-то пошло не так :(');
+        });
+    } else {
+      alert('Что-то не так с токеном');
+    }
+  };
+
+  const handleDeletePartner = () => {
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .deletePartner(token, partnerToDisplay._id)
+        .then(response => {
+          const newPartnersList = partners.filter(partner => partner._id !== response._id);
+          dispatch(setPartners(newPartnersList));
+          dispatch(clearPartnerForm());
+          dispatch(setIsExistingPartnerEdited(false));
+          setIsFormDisabled(false);
+        })
+        .catch(error => {
+          console.log(error);
+          setIsFormDisabled(false);
+        });
+    } else {
+      alert('Что-то не так с токеном');
     }
   };
 
@@ -90,17 +153,15 @@ export default function AdminPartners(): JSX.Element {
               <span></span>
             </div>
             {partners.map(partner => {
+              const { _id, title, isActive } = partner;
               return (
-                <div
-                  key={partner._id}
-                  className="muted admin-section-list__row admin-partners__row"
-                >
-                  <span>{partner.title}</span>
-                  <span>{partner.isActive ? 'Да' : 'Нет'}</span>
+                <div key={_id} className="muted admin-section-list__row admin-partners__row">
+                  <span>{title}</span>
+                  <span>{isActive ? 'Да' : 'Нет'}</span>
                   <span>
                     <button
                       className="admin-section-list__edit-button"
-                      //   onClick={() => dispatch(setPartnerToEdit(partner._id))}
+                      onClick={() => handleEditPartner(partner)}
                     ></button>
                   </span>
                 </div>
@@ -109,12 +170,11 @@ export default function AdminPartners(): JSX.Element {
           </div>
 
           <div className="admin-section-form">
-            <form
-              className="background-muted bordered admin-section-form__form"
-              onSubmit={handleCreatePartner}
-            >
+            <form className="background-muted bordered admin-section-form__form">
               <fieldset className="admin-section-form__fieldset" disabled={isFormDisabled}>
-                <legend className="admin-section-form__field-legend">Добавить партнёра</legend>
+                <legend className="admin-section-form__field-legend">
+                  {!isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра'}
+                </legend>
 
                 <div className="admin-section-form__fields-row">
                   <div className="admin-section-form__field admin-partners__title-field">
@@ -183,8 +243,7 @@ export default function AdminPartners(): JSX.Element {
 
                 <div className="admin-section-form__fields-row">
                   <div className="admin-section-form__field admin-partners__submit-field">
-                    {/* {!isExistingExhibitionEdited ? ( */}
-                    {!false ? (
+                    {!isExistingPartnerEdited ? (
                       <>
                         <button
                           className="button"
@@ -193,7 +252,7 @@ export default function AdminPartners(): JSX.Element {
                         >
                           Очистить
                         </button>
-                        <button className="button" type="submit">
+                        <button className="button" type="submit" onClick={handleCreatePartner}>
                           Создать
                         </button>
                       </>
@@ -202,16 +261,12 @@ export default function AdminPartners(): JSX.Element {
                         <button
                           className="button"
                           type="button"
-                          //   onClick={handleUpdateExhibition}
+                          onClick={handleUpdatePartner}
                           disabled={isFormDisabled}
                         >
                           Сохранить
                         </button>
-                        <button
-                          className="button"
-                          type="button"
-                          // onClick={handleDeleteExhibition}
-                        >
+                        <button className="button" type="button" onClick={handleDeletePartner}>
                           Удалить
                         </button>
                       </>
