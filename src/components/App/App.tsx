@@ -36,6 +36,7 @@ import AdminStatistics from '../AdminStatistics/AdminStatistics';
 import AdminExhibits from '../AdminExhibits/AdminExhibits';
 import AdminExhibitions from '../AdminExbitions/AdminExhibitions';
 import AdminPartners from '../AdminPartners/AdminPartners.tsx';
+import AdminCategories from '../AdminCategories/AdminCategories.tsx';
 
 export default function App() {
   return (
@@ -94,6 +95,7 @@ export default function App() {
           <Route path="exhibits/" element={<AdminExhibits />} />
           <Route path="exhibitions/" element={<AdminExhibitions />} />
           <Route path="partners/" element={<AdminPartners />} />
+          <Route path="categories/" element={<AdminCategories />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
