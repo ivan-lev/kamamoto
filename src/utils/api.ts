@@ -1,6 +1,6 @@
 import { PATHS } from '../variables/variables';
 
-const { BASE_URL, EXHIBITIONS, EXHIBITS, PARTNERS, SIGNIN, STATISTICS, USERS } = PATHS;
+const { BASE_URL, CATEGORIES, EXHIBITIONS, EXHIBITS, PARTNERS, SIGNIN, STATISTICS, USERS } = PATHS;
 
 import type { Exhibition } from '../types/exhibitionType';
 import type { Partner } from '../types/partnerType';
@@ -55,6 +55,12 @@ const getStatistics = () => {
 
 const getPartners = () => {
   return fetch(`${BASE_URL}/${PARTNERS}/`, {
+    method: 'GET'
+  }).then((response: any) => checkResponseStatus(response));
+};
+
+const getCategories = () => {
+  return fetch(`${BASE_URL}/${CATEGORIES}/`, {
     method: 'GET'
   }).then((response: any) => checkResponseStatus(response));
 };
@@ -142,6 +148,7 @@ const checkResponseStatus = (res: any) => {
 };
 
 export const api = {
+  getCategories,
   getExhibits,
   getExhibitions,
   getExhibitionById,
