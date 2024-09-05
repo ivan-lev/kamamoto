@@ -114,6 +114,27 @@ export default function AdminCategories(): JSX.Element {
     }
   };
 
+  const handleDeleteCategory = () => {
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .deleteCategory(token, category)
+        .then(response => {
+          const newCategoriesList = categories.filter(cat => cat.category !== response.category);
+          dispatch(setCategories(newCategoriesList));
+          dispatch(clearCategoryForm());
+          dispatch(setIsExistingCategoryEdited(false));
+          setIsFormDisabled(false);
+        })
+        .catch(error => {
+          console.log(error);
+          setIsFormDisabled(false);
+        });
+    } else {
+      alert('Что-то не так с токеном');
+    }
+  };
+
   return (
     <>
       <Seo title="Камамото: список партнёров" />
@@ -223,22 +244,11 @@ export default function AdminCategories(): JSX.Element {
                         >
                           Сохранить
                         </button>
-                        <button
-                          className="button"
-                          type="button"
-                          // onClick={handleDeletePartner}
-                        >
+                        <button className="button" type="button" onClick={handleDeleteCategory}>
                           Удалить
                         </button>
                       </>
                     )}
-                    {/* <button
-                      className="button"
-                      type="button"
-                      // onClick={handleCloseExhibitionForm}
-                    >
-                      Закрыть
-                    </button> */}
                   </div>
                 </div>
               </fieldset>

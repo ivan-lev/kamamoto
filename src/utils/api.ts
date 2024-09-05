@@ -160,6 +160,16 @@ const updateCategory = (token: string, category: Category) => {
   }).then((response: any) => checkResponseStatus(response));
 };
 
+const deleteCategory = (token: string, category: string) => {
+  return fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  }).then(response => checkResponseStatus(response));
+};
+
 // Common api logic
 
 const checkResponseStatus = (res: any) => {
@@ -186,5 +196,6 @@ export const api = {
   checkToken,
   deletePartner,
   createCategory,
-  updateCategory
+  updateCategory,
+  deleteCategory
 };
