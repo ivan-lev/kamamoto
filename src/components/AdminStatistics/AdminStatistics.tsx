@@ -12,9 +12,11 @@ import { api } from '../../utils/api';
 type Statistics = {
   exhibits: number;
   exhibitions: number;
+  categories: number;
+  partners: number;
 };
 
-const defaultStatistics = { exhibits: 0, exhibitions: 0 };
+const defaultStatistics: Statistics = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0 };
 
 export default function AdminStatistics(): JSX.Element {
   const [statistics, setStatistics] = useState<Statistics>(defaultStatistics);
@@ -46,9 +48,26 @@ export default function AdminStatistics(): JSX.Element {
             Выставки: {statistics.exhibitions}
           </span>
         </div>
+
         <div className="bordered background-muted admin-statistics__element">
           <img className="admin-statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
           <span className="admin-statistics__element-title">Экспонаты: {statistics.exhibits}</span>
+        </div>
+
+        <div className="bordered background-muted admin-statistics__element">
+          <img
+            className="admin-statistics__element-icon"
+            src="/icons/categories.svg"
+            alt="иконка"
+          />
+          <span className="admin-statistics__element-title">
+            Категории: {statistics.categories}
+          </span>
+        </div>
+
+        <div className="bordered background-muted admin-statistics__element">
+          <img className="admin-statistics__element-icon" src="/icons/partners.svg" alt="иконка" />
+          <span className="admin-statistics__element-title">Партнёры: {statistics.partners}</span>
         </div>
       </div>
     </div>
