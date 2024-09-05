@@ -4,6 +4,7 @@ import { createSlice, configureStore } from '@reduxjs/toolkit';
 import { Exhibit, Exhibits, defaultExhibit } from '../types/exhibitType';
 import { Exhibition, Exhibitions, defaultExhibition } from '../types/exhibitionType';
 import { Partner, defaultPartner } from '../types/partnerType';
+import { Category, defaultCategory } from '../types/category';
 
 interface adminState {
   isLoggedIn: boolean;
@@ -16,6 +17,9 @@ interface adminState {
   partners: Partner[];
   partnerToDisplay: Partner;
   isExistingPartnerEdited: boolean;
+  categories: Category[];
+  categoryToDisplay: Category;
+  isExistingCategoryEdited: boolean;
 }
 
 const initialState: adminState = {
@@ -28,7 +32,10 @@ const initialState: adminState = {
   isExistingExhibitionEdited: false,
   partners: [],
   partnerToDisplay: { ...defaultPartner },
-  isExistingPartnerEdited: false
+  isExistingPartnerEdited: false,
+  categories: [],
+  categoryToDisplay: { ...defaultCategory },
+  isExistingCategoryEdited: false
 };
 
 const adminSlice = createSlice({
@@ -93,6 +100,22 @@ const adminSlice = createSlice({
 
     setIsExistingPartnerEdited: (state, action) => {
       state.isExistingPartnerEdited = action.payload;
+    },
+
+    setCategories: (state, action) => {
+      state.categories = [...action.payload];
+    },
+
+    setCategoryToDisplay: (state, action) => {
+      state.categoryToDisplay = { ...action.payload };
+    },
+
+    clearCategoryForm: state => {
+      state.categoryToDisplay = { ...defaultCategory };
+    },
+
+    setIsExistingCategoryEdited: (state, action) => {
+      state.isExistingCategoryEdited = action.payload;
     }
   }
 });
@@ -110,7 +133,11 @@ export const {
   setPartners,
   setPartnerToDisplay,
   clearPartnerForm,
-  setIsExistingPartnerEdited
+  setIsExistingPartnerEdited,
+  setCategories,
+  setCategoryToDisplay,
+  clearCategoryForm,
+  setIsExistingCategoryEdited
 } = adminSlice.actions;
 
 const adminStore = configureStore({

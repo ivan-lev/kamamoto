@@ -4,6 +4,7 @@ const { BASE_URL, CATEGORIES, EXHIBITIONS, EXHIBITS, PARTNERS, SIGNIN, STATISTIC
 
 import type { Exhibition } from '../types/exhibitionType';
 import type { Partner } from '../types/partnerType';
+import { Category } from '../types/category';
 
 // Authorization logic
 
@@ -137,6 +138,28 @@ const deletePartner = (token: string, id: string) => {
   }).then(response => checkResponseStatus(response));
 };
 
+const createCategory = (token: string, category: string, title: string, thumbnail: string) => {
+  return fetch(`${BASE_URL}/${CATEGORIES}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ category, title, thumbnail })
+  }).then((response: any) => checkResponseStatus(response));
+};
+
+const updateCategory = (token: string, category: Category) => {
+  return fetch(`${BASE_URL}/${CATEGORIES}/${category.category}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(category)
+  }).then((response: any) => checkResponseStatus(response));
+};
+
 // Common api logic
 
 const checkResponseStatus = (res: any) => {
@@ -161,5 +184,7 @@ export const api = {
   createPartner,
   updatePartner,
   checkToken,
-  deletePartner
+  deletePartner,
+  createCategory,
+  updateCategory
 };
