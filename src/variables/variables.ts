@@ -12,7 +12,8 @@ export const PATHS = {
 };
 
 export const LOGIN_MESSAGES = {
-  WRONG_CREDEINTIALS: 'Неправильный логин или пароль.',
+  WRONG_CREDEINTIALS: 'Неправильный email или пароль.',
   LOGIN_ERROR: 'Ошибка логина...',
-  TOKEN_ERROR: 'Ошибка проверки токена.'
+  TOKEN_ERROR: 'Ошибка проверки токена.',
+  WRONG_EMAIL_FORMAT: 'Неправильный фармат email-адреса'
 };

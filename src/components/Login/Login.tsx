@@ -73,6 +73,9 @@ export default function Login() {
         console.log(error);
         const errorStatus = error.status;
         switch (errorStatus) {
+          case 400:
+            setLoginError(LOGIN_MESSAGES.WRONG_EMAIL_FORMAT);
+            break;
           case 401:
             setLoginError(LOGIN_MESSAGES.WRONG_CREDEINTIALS);
             break;
