@@ -1,6 +1,5 @@
+import type { Partner } from '../types/partnerType';
 import { createSlice } from '@reduxjs/toolkit';
-
-import { Partner } from '../types/partnerType';
 
 const initialState: Partner[] = [];
 
@@ -12,8 +11,8 @@ const partnersSlice = createSlice({
       if (state.length === 0) {
         return [...action.payload];
       }
-    }
-  }
+    },
+  },
 });
 
 export const { setPartnersList } = partnersSlice.actions;
