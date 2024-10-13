@@ -1,6 +1,12 @@
+import type { Statistics as StatisticsType } from '../types/statistics';
+
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { isInitial: true, exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
+interface StatisticsStateType extends StatisticsType {
+  isInitial: boolean;
+}
+
+const initialState: StatisticsStateType = { isInitial: true, exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
 
 const statisticsSlice = createSlice({
   name: 'statistics',
