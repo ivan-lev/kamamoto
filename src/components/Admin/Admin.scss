@@ -12,15 +12,15 @@
 
   &__sidebar {
     grid-area: sidebar;
-    padding: 30px;
+    padding: var(--gap-32);
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: var(--gap-16);
   }
 
   &__content {
-    margin: 30px;
+    margin: var(--gap-32);
     grid-area: content;
   }
 
@@ -28,6 +28,14 @@
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--gap-8);
+
+    &:not(:last-of-type)::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: var(--border-color);
+    }
   }
 }

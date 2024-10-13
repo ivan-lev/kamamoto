@@ -1,7 +1,7 @@
 .exhibition-card {
   &__upper-line {
     width: 1px;
-    background: var(--border-default, rgba(218, 197, 167, 0.15));
+    background: var(--border-color, rgba(218, 197, 167, 0.15));
     box-sizing: border-box;
     grid-area: upper-line;
     justify-self: center;
@@ -9,7 +9,7 @@
 
   &__lower-line {
     width: 1px;
-    background: var(--border-default, rgba(218, 197, 167, 0.15));
+    background: var(--border-color, rgba(218, 197, 167, 0.15));
     box-sizing: border-box;
     grid-area: lower-line;
     justify-self: center;
@@ -24,7 +24,7 @@
     justify-content: center;
     border-radius: 50%;
 
-    border: 1px solid var(--border-default, rgba(218, 197, 167, 0.15));
+    border: 1px solid var(--border-color, rgba(218, 197, 167, 0.15));
     background: var(--background-muted, rgba(218, 197, 167, 0.05));
     box-sizing: border-box;
   }

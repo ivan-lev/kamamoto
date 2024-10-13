@@ -7,19 +7,19 @@
 
   &__element {
     display: flex;
-    gap: 100px;
-    padding: 48px 0;
+    gap: var(--gap-96);
+    padding: var(--gap-48) 0;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--border-default, rgba(218, 197, 167, 0.15));
+    border-bottom: 1px solid var(--border-color);
 
     @media screen and (max-width: 1100px) {
-      gap: 50px;
+      gap: var(--gap-48);
     }
 
     @media screen and (max-width: 768px) {
       flex-direction: column-reverse;
       align-items: center;
-      gap: 30px;
+      gap: var(--gap-32);
     }
 
     &:last-child {
@@ -34,12 +34,12 @@
 
     @media screen and (max-width: 768px) {
       flex-direction: column;
-      gap: 30px;
+      gap: var(--gap-32);
     }
   }
 
   &__preview {
-    max-height: 400px;
+    max-height: 300px;
 
     @media screen and (max-width: 600px) {
       max-height: unset;
