@@ -43,24 +43,29 @@ export default function Expos(): JSX.Element {
     <>
       <Seo title="Камамото: мероприятия, на каторых представлена коллекция" />
 
-      <section className="section exposs">
+      <section className="section">
         <h2 className="title title2">Выставки</h2>
         {showPreloader
           ? (
               <Preloader />
             )
           : (
-              <ul className="expos__list">
-                {exhibitions
-                  .map((exhibition) => {
-                    return (
-                      <li className="expos__element" key={exhibition.id}>
-                        <ExhibitionCard exhibition={exhibition} />
-                      </li>
-                    );
-                  })
-                  .reverse()}
-              </ul>
+              <div className="expos">
+                <ul className="expos__list">
+                  {exhibitions
+                    .map((exhibition) => {
+                      return (
+                        <li className="expos__element" key={exhibition.id}>
+                          <div className="expos__element-upper-line"></div>
+                          <div className="expos__element-year">{exhibition.year}</div>
+                          <div className="expos__element-lower-line"></div>
+                          <ExhibitionCard exhibition={exhibition} />
+                        </li>
+                      );
+                    })
+                    .reverse()}
+                </ul>
+              </div>
             )}
       </section>
     </>

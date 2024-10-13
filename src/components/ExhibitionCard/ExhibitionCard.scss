@@ -1,48 +1,19 @@
 .exhibition-card {
-  &__upper-line {
-    width: 1px;
-    background: var(--border-color, rgba(218, 197, 167, 0.15));
-    box-sizing: border-box;
-    grid-area: upper-line;
-    justify-self: center;
-  }
+  grid-area: card;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-16);
+  position: relative;
+  box-sizing: border-box;
+  padding: 40px 40px 30px 40px;
+  background: var(--background-muted);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
 
-  &__lower-line {
-    width: 1px;
-    background: var(--border-color, rgba(218, 197, 167, 0.15));
-    box-sizing: border-box;
-    grid-area: lower-line;
-    justify-self: center;
-  }
-  &__year {
-    grid-area: year;
-    place-self: center;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-
-    border: 1px solid var(--border-color, rgba(218, 197, 167, 0.15));
-    background: var(--background-muted, rgba(218, 197, 167, 0.05));
-    box-sizing: border-box;
-  }
-
-  &__card {
-    grid-area: card;
-    width: 100%;
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    position: relative;
-    box-sizing: border-box;
-    padding: 40px 40px 30px 40px;
-  }
-
-  &__card:hover {
-    transition: all 0.2s;
+  &:hover {
+    transition: all 0.5s;
     background-color: var(--background-hover-card);
   }
 
@@ -55,7 +26,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    padding: 8px;
+    padding: var(--gap-8);
   }
 
   &__city {
@@ -99,7 +70,7 @@
   }
 
   &__place {
-    color: var(--text-muted, rgba(218, 197, 167, 0.6));
+    color: var(--text-muted);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
