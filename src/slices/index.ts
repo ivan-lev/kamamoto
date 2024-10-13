@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import exhibitsReducer from './exhibitSlice';
-import exhibitionsReducer from './exhibitionsSlice';
-import listReducer from './listSlice';
 import categoryReducer from './categorySlice';
+import exhibitionsReducer from './exhibitionsSlice';
+import exhibitsReducer from './exhibitSlice';
+import letterReducer from './lettersSlice';
+import listReducer from './listSlice';
 import partnersReducer from './partnersSlice';
-import letterReducer from './lettersSlice'
+import statisticsReducer from './statisticsSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,8 +15,9 @@ const store = configureStore({
     exhibitions: exhibitionsReducer,
     letters: letterReducer,
     list: listReducer,
-    partners: partnersReducer
-  }
+    partners: partnersReducer,
+    statistics: statisticsReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
