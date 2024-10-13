@@ -1,22 +1,20 @@
-import './Login.scss';
-
-// React
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-//Redux
+// React and Redux
+import type { ChangeEvent, FormEvent } from 'react';
+import type { AdminRootState } from '../../slices/adminSlice';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AdminRootState, login, logout } from '../../slices/adminSlice';
+import { useNavigate } from 'react-router-dom';
+import { login, logout } from '../../slices/adminSlice';
 
 // Components
 import Logo from '../Logo/Logo';
 import Seo from '../Seo/Seo';
 
-// Utils
+// Utils and variables
 import { api } from '../../utils/api';
-
-// Variables
 import { LOGIN_MESSAGES } from '../../variables/variables';
+
+import './Login.scss';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -36,11 +34,8 @@ export default function Login() {
     if (token) {
       api
         .checkToken(token)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(LOGIN_MESSAGES.TOKEN_ERROR, error);
+        .catch((error) => {
+          console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
           dispatch(logout());
         });
     }
@@ -63,14 +58,14 @@ export default function Login() {
     setIsMessageSending(true);
     api
       .authorize(email, password)
-      .then(response => {
+      .then((response) => {
         dispatch(login(response.token));
         setIsFormDisabled(false);
         setIsMessageSending(false);
         navigate('/admin/');
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.error(error);
         const errorStatus = error.status;
         switch (errorStatus) {
           case 400:
@@ -147,11 +142,13 @@ export default function Login() {
                   type="button"
                   onClick={() => setIsPasswordShowed(!isPasswordShowed)}
                 >
-                  {isPasswordShowed ? (
-                    <img className="login__button-img" src="/public/icons/eye-opened.svg"></img>
-                  ) : (
-                    <img className="login__button-img" src="/public/icons/eye-closed.svg"></img>
-                  )}
+                  {isPasswordShowed
+                    ? (
+                        <img className="login__button-img" src="/public/icons/eye-opened.svg"></img>
+                      )
+                    : (
+                        <img className="login__button-img" src="/public/icons/eye-closed.svg"></img>
+                      )}
                 </button>
               </div>
             </div>

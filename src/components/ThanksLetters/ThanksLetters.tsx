@@ -1,11 +1,9 @@
-import './ThanksLetters.scss';
+// Types
+import type { RootState } from '../../slices';
 
-// React
+// React and Redux
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-// Redux
-import { RootState } from '../../slices';
 import { setLettersList } from '../../slices/lettersSlice';
 
 // Components
@@ -14,6 +12,8 @@ import Seo from '../Seo/Seo';
 
 // Variables
 import { api } from '../../utils/api';
+
+import './ThanksLetters.scss';
 
 export default function ThanksLetters(): JSX.Element {
   const dispatch = useDispatch();
@@ -28,18 +28,19 @@ export default function ThanksLetters(): JSX.Element {
     if (letters.length === 0) {
       api
         .getLetters()
-        .then(letters => {
-          dispatch(setLettersList(letters))
-          setShowPreloader(false)
-        })
-        .catch(error => {
-          console.log(error)
-        
+        .then((letters) => {
+          dispatch(setLettersList(letters));
           setShowPreloader(false);
         })
-      } else {
-        setShowPreloader(false);
-      }
+        .catch((error) => {
+          console.error(error);
+
+          setShowPreloader(false);
+        });
+    }
+    else {
+      setShowPreloader(false);
+    }
   }, []);
 
   return (
@@ -52,22 +53,24 @@ export default function ThanksLetters(): JSX.Element {
           Письма от организаций и людей, с которыми мы совместно организовывали выставки и
           мероприятия.
         </span>
-        {showPreloader ? (
-          <Preloader />
-        ) : (
-        <div className="container background-muted bordered thanks-letters__list">
-          {letters.map(letter => {
-            return (
-              <div className="thanks-letters__element" key={letter.id}>
-                <a className="thanks-letters__link" href={letter.name} target="_blank">
-                  <img className="thanks-letters__preview" src={letter.preview}></img>
-                </a>
-                <p className="thanks-letters__description">{letter.description}</p>
+        {showPreloader
+          ? (
+              <Preloader />
+            )
+          : (
+              <div className="container background-muted bordered thanks-letters__list">
+                {letters.map((letter) => {
+                  return (
+                    <div className="thanks-letters__element" key={letter.id}>
+                      <a className="thanks-letters__link" href={letter.name} target="_blank">
+                        <img className="thanks-letters__preview" src={letter.preview}></img>
+                      </a>
+                      <p className="thanks-letters__description">{letter.description}</p>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-        )}
+            )}
       </section>
     </>
   );

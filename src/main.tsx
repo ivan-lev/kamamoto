@@ -1,15 +1,13 @@
-import './index.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Provider } from 'react-redux';
+import App from './components/App/App.tsx';
 import store from './slices/index.ts';
 
-import { HelmetProvider } from 'react-helmet-async';
-
-import App from './components/App/App.tsx';
+import './index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -20,5 +18,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </BrowserRouter>
       </HelmetProvider>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

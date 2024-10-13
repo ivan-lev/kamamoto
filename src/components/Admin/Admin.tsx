@@ -1,22 +1,21 @@
-import './Admin.scss';
+// Types
+import type { AdminRootState } from '../../slices/adminSlice';
 
-//React
+// React and Redux
 import { useEffect } from 'react';
-import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
-
-// Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { AdminRootState, logout } from '../../slices/adminSlice';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { logout } from '../../slices/adminSlice';
 
-// Utils
-import { api } from '../../utils/api';
-
-// Variables
-import { LOGIN_MESSAGES } from '../../variables/variables';
-
-//Components
+// Components
 import Logo from '../Logo/Logo';
 import Seo from '../Seo/Seo';
+
+// Utils and variables
+import { api } from '../../utils/api';
+import { LOGIN_MESSAGES } from '../../variables/variables';
+
+import './Admin.scss';
 
 export default function Admin(): JSX.Element {
   const dispatch = useDispatch();
@@ -29,11 +28,8 @@ export default function Admin(): JSX.Element {
     if (token) {
       api
         .checkToken(token)
-        .then(response => {
-          console.log(response.answer);
-        })
-        .catch(error => {
-          console.log(LOGIN_MESSAGES.TOKEN_ERROR, error);
+        .catch((error) => {
+          console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
           dispatch(logout());
           navigate('/login/');
         });
@@ -44,60 +40,64 @@ export default function Admin(): JSX.Element {
     <>
       <Seo title="Камамото: статистика" />
 
-      {isLoggedIn ? (
-        <section className="admin">
-          <div className="admin__sidebar bordered background-muted">
-            <Logo />
-            <ul className="admin__list">
-              <li>
-                <Link to="/admin/" className="link">
-                  Статистика
-                </Link>
-              </li>
-              <li></li>
-              <li>
-                <Link to="categories/" className="link">
-                  Категории
-                </Link>
-              </li>
-              <li>
-                <Link to="exhibits/" className="link">
-                  Лоты
-                </Link>
-              </li>
-              <li></li>
-              <li>
-                <Link to="exhibitions/" className="link">
-                  Выставки
-                </Link>
-              </li>
-              <li>
-                <Link to="partners/" className="link">
-                  Партнёры
-                </Link>
-              </li>
-            </ul>
+      {isLoggedIn
+        ? (
+            <section className="admin">
+              <div className="admin__sidebar bordered background-muted">
+                <Logo />
+                <ul className="admin__list">
+                  <li>
+                    <Link to="/admin/" className="link">
+                      Статистика
+                    </Link>
+                  </li>
+                </ul>
+                <ul className="admin__list">
+                  <li>
+                    <Link to="categories/" className="link">
+                      Категории
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="exhibits/" className="link">
+                      Лоты
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="exhibitions/" className="link">
+                      Выставки
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="partners/" className="link">
+                      Партнёры
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="letters/" className="link">
+                      Благодарственные письма
+                    </Link>
+                  </li>
+                </ul>
 
-            <ul className="admin__list">
-              <li>
-                <Link to="#" className="link">
-                  Добавить лот
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="link">
-                  Добавить выставку
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="link">
-                  Изменить лот
-                </Link>
-              </li>
-            </ul>
+                <ul className="admin__list">
+                  <li>
+                    <Link to="#" className="link">
+                      Добавить лот
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="#" className="link">
+                      Добавить выставку
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="#" className="link">
+                      Изменить лот
+                    </Link>
+                  </li>
+                </ul>
 
-            <ul className="admin__list">
-              <li>
                 <button
                   className="button"
                   onClick={() => {
@@ -107,17 +107,16 @@ export default function Admin(): JSX.Element {
                 >
                   Выйти
                 </button>
-              </li>
-            </ul>
-          </div>
+              </div>
 
-          <div className="admin__content bordered background-muted">
-            <Outlet />
-          </div>
-        </section>
-      ) : (
-        <Navigate to="/login/" replace />
-      )}
+              <div className="admin__content bordered background-muted">
+                <Outlet />
+              </div>
+            </section>
+          )
+        : (
+            <Navigate to="/login/" replace />
+          )}
     </>
   );
 }

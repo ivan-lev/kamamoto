@@ -1,15 +1,14 @@
-import './Card.scss';
-
+// React and Redux
 import { useState } from 'react';
-
 import { Link } from 'react-router-dom';
 
+import './Card.scss';
 import preloader from '/icons/preloader.svg';
 
 export default function Card({
   link,
   name,
-  image
+  image,
 }: {
   link: string;
   name: string;
@@ -22,13 +21,13 @@ export default function Card({
       <div className="card__image-wrapper">
         {loading && <img className="card__preloader" alt="Exhibit preview" src={preloader}></img>}
         <Link className="link" to={link} style={{ display: loading ? 'none' : 'flex' }}>
-          <div className="card__image-shadow"></div>
           <img
             className="card__image"
             alt="Exhibit preview"
             src={image}
             onLoad={() => setLoading(false)}
-          ></img>
+          >
+          </img>
         </Link>
       </div>
 

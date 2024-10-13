@@ -26,7 +26,8 @@ export default function Benefactors() {
               className="benefactors__photo"
               src="/people/smirnova-n.jpg"
               alt="Фото помощника проекта"
-            ></img>
+            >
+            </img>
 
             <a className="link link_usual benefactors__name" href="https://vk.com/id18845601">
               Смирнова Наталья
@@ -48,7 +49,8 @@ export default function Benefactors() {
               className="benefactors__photo"
               src="/people/tretyakova-m.jpg"
               alt="Фото помощника проекта"
-            ></img>
+            >
+            </img>
 
             <a className="link link_usual benefactors__name" href="https://vk.com/id246244448">
               Третьякова Мария
