@@ -1,80 +1,80 @@
-import { PATHS } from '../variables/variables'
+import type { Category } from '../types/category';
+import type { Exhibition } from '../types/exhibitionType';
+import type { Partner } from '../types/partnerType';
 
-const { BASE_URL, CATEGORIES, EXHIBITIONS, EXHIBITS, LETTERS, PARTNERS, SIGNIN, STATISTICS, USERS } = PATHS
+import { PATHS } from '../variables/variables';
 
-import { type Exhibition } from '../types/exhibitionType'
-import { type Partner } from '../types/partnerType'
-import { type Category } from '../types/category'
+const { BASE_URL, CATEGORIES, EXHIBITIONS, EXHIBITS, LETTERS, PARTNERS, SIGNIN, STATISTICS, USERS } = PATHS;
 
 // Authorization logic
 
-const authorize = (email: string, password: string) => {
+function authorize(email: string, password: string) {
   return fetch(`${BASE_URL}/${SIGNIN}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  }).then(response => checkResponseStatus(response))
+  }).then(response => checkResponseStatus(response));
 }
 
-const checkToken = (token: string) => {
+function checkToken(token: string) {
   return fetch(`${BASE_URL}/${USERS}/`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-  }).then(response => checkResponseStatus(response))
+  }).then(response => checkResponseStatus(response));
 }
 
 // Get requests
 
-const getExhibits = () => {
+function getExhibits() {
   return fetch(`${BASE_URL}/${EXHIBITS}/`, {
     method: 'GET',
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const getExhibitions = () => {
+function getExhibitions() {
   return fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
     method: 'GET',
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const getExhibitionById = (id: string) => {
+function getExhibitionById(id: string) {
   return fetch(`${BASE_URL}/${EXHIBITIONS}/${id}`, {
     method: 'GET',
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const getStatistics = () => {
+function getStatistics() {
   return fetch(`${BASE_URL}/${STATISTICS}/`, {
     method: 'GET',
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const getPartners = () => {
+function getPartners() {
   return fetch(`${BASE_URL}/${PARTNERS}/`, {
     method: 'GET',
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const getCategories = () => {
+function getCategories() {
   return fetch(`${BASE_URL}/${CATEGORIES}/`, {
     method: 'GET',
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const getLetters = () => {
+function getLetters() {
   return fetch(`${BASE_URL}/${LETTERS}/`, {
     method: 'GET',
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
 // Admin requests
 
-const createExhibition = (token: string, exhibition: Exhibition) => {
+function createExhibition(token: string, exhibition: Exhibition) {
   return fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
     method: 'POST',
     headers: {
@@ -82,10 +82,10 @@ const createExhibition = (token: string, exhibition: Exhibition) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(exhibition),
-  }).then(response => checkResponseStatus(response))
+  }).then(response => checkResponseStatus(response));
 }
 
-const updateExhibition = (token: string, exhibition: Exhibition) => {
+function updateExhibition(token: string, exhibition: Exhibition) {
   return fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
     method: 'PATCH',
     headers: {
@@ -93,26 +93,20 @@ const updateExhibition = (token: string, exhibition: Exhibition) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(exhibition),
-  }).then(response => checkResponseStatus(response))
+  }).then(response => checkResponseStatus(response));
 }
 
-const deleteExhibition = (token: string, exhibition: Exhibition) => {
+function deleteExhibition(token: string, exhibition: Exhibition) {
   return fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-  }).then(response => checkResponseStatus(response))
+  }).then(response => checkResponseStatus(response));
 }
 
-const createPartner = (
-  token: string,
-  title: string,
-  link: string,
-  logo: string,
-  isActive: boolean,
-) => {
+function createPartner(token: string, title: string, link: string, logo: string, isActive: boolean) {
   return fetch(`${BASE_URL}/${PARTNERS}/`, {
     method: 'POST',
     headers: {
@@ -120,10 +114,10 @@ const createPartner = (
       'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify({ title, link, logo, isActive }),
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const updatePartner = (token: string, partner: Partner) => {
+function updatePartner(token: string, partner: Partner) {
   return fetch(`${BASE_URL}/${PARTNERS}/${partner._id}`, {
     method: 'PATCH',
     headers: {
@@ -131,20 +125,20 @@ const updatePartner = (token: string, partner: Partner) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(partner),
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const deletePartner = (token: string, id: string) => {
+function deletePartner(token: string, id: string) {
   return fetch(`${BASE_URL}/${PARTNERS}/${id}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-  }).then(response => checkResponseStatus(response))
+  }).then(response => checkResponseStatus(response));
 }
 
-const createCategory = (token: string, category: string, title: string, thumbnail: string) => {
+function createCategory(token: string, category: string, title: string, thumbnail: string) {
   return fetch(`${BASE_URL}/${CATEGORIES}/`, {
     method: 'POST',
     headers: {
@@ -152,10 +146,10 @@ const createCategory = (token: string, category: string, title: string, thumbnai
       'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify({ category, title, thumbnail }),
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const updateCategory = (token: string, category: Category) => {
+function updateCategory(token: string, category: Category) {
   return fetch(`${BASE_URL}/${CATEGORIES}/${category.category}`, {
     method: 'PATCH',
     headers: {
@@ -163,27 +157,27 @@ const updateCategory = (token: string, category: Category) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(category),
-  }).then((response: any) => checkResponseStatus(response))
+  }).then((response: any) => checkResponseStatus(response));
 }
 
-const deleteCategory = (token: string, category: string) => {
+function deleteCategory(token: string, category: string) {
   return fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-  }).then(response => checkResponseStatus(response))
+  }).then(response => checkResponseStatus(response));
 }
 
 // Common api logic
 
-const checkResponseStatus = (res: any) => {
+function checkResponseStatus(res: any) {
   if (!res.ok) {
-    console.log(`Ошибка: ${res.status}`)
-    return Promise.reject(res)
+    console.error(`Ошибка: ${res.status}`);
+    return Promise.reject(res);
   }
-  return res.json()
+  return res.json();
 }
 
 export const api = {
@@ -205,4 +199,4 @@ export const api = {
   createCategory,
   updateCategory,
   deleteCategory,
-}
+};
