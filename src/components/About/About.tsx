@@ -1,11 +1,11 @@
-import Seo from '../Seo/Seo';
-
-import './About.scss';
 // Components
+import Seo from '../Seo/Seo';
 import SocialLinks from '../SocialLinks/SocialLinks';
 
 // Variables
 import { personalSocialLinks } from '../../variables/socialLinks';
+
+import './About.scss';
 
 export default function About() {
   return (

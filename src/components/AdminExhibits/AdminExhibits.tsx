@@ -1,4 +1,5 @@
-import './AdminExhibits.scss';
+// Types
+import type { Exhibit, Exhibits } from '../../types/exhibitType';
 
 // React
 import { useEffect, useState } from 'react';
@@ -7,11 +8,10 @@ import { useEffect, useState } from 'react';
 import Preloader from '../Preloader/Preloader';
 import Seo from '../Seo/Seo';
 
-// Types
-import type { Exhibit, Exhibits } from '../../types/exhibitType';
-
 // Utils
 import { api } from '../../utils/api';
+
+import './AdminExhibits.scss';
 
 export default function AdminExhibits(): JSX.Element {
   const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -22,19 +22,19 @@ export default function AdminExhibits(): JSX.Element {
     const token = localStorage.getItem('kmmttkn');
     if (token) {
       api
-        .getExhibits(token)
-        .then(response => {
+        .getExhibits()
+        .then((response) => {
           response.forEach((exhibit: any) => {
             const someExhibit: Exhibit = {
               ...exhibit,
-              category: exhibit.category.title
+              category: exhibit.category.title,
             };
             exhibitsList.push(someExhibit);
           });
           setExhibits(exhibitsList);
           setShowPreloader(false);
         })
-        .catch(error => console.log(error));
+        .catch(error => console.error(error));
     }
   }, []);
 
@@ -42,26 +42,28 @@ export default function AdminExhibits(): JSX.Element {
     <>
       <Seo title="Камамото: лоты" />
 
-      {showPreloader ? (
-        <Preloader />
-      ) : (
-        <div className="container">
-          <div className="admin-exhibit__list">
-            <span>ID</span>
-            <span>Название</span>
-            <span>Категория</span>
-            <span>Стиль</span>
-          </div>
-          {exhibits.map(exhibit => (
-            <div className="admin-exhibit__list" key={exhibit.id}>
-              <span>{exhibit.id}</span>
-              <span>{exhibit.name}</span>
-              <span>{exhibit.category}</span>
-              <span>{exhibit.style}</span>
+      {showPreloader
+        ? (
+            <Preloader />
+          )
+        : (
+            <div className="container">
+              <div className="admin-exhibit__list">
+                <span>ID</span>
+                <span>Название</span>
+                <span>Категория</span>
+                <span>Стиль</span>
+              </div>
+              {exhibits.map(exhibit => (
+                <div className="admin-exhibit__list" key={exhibit.id}>
+                  <span>{exhibit.id}</span>
+                  <span>{exhibit.name}</span>
+                  <span>{exhibit.category}</span>
+                  <span>{exhibit.style}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          )}
     </>
   );
 }

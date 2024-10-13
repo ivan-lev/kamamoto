@@ -1,40 +1,37 @@
-import './Exhibit.scss';
-import 'react-image-gallery/styles/scss/image-gallery.scss';
+// Types
+import type { RootState } from '../../slices';
 
-// React
+// React and redux
 import { useEffect, useLayoutEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-// Components
-import Seo from '../Seo/Seo';
-
-// Redux
-import { RootState } from '../../slices';
+import { Link, useLocation } from 'react-router-dom';
 import { setCategory } from '../../slices/categorySlice';
 import {
-  setExhibit,
+  resetAdditionalImages,
   resetExhibit,
-  setImages,
   resetImages,
   setAdditionalImages,
-  resetAdditionalImages
+  setExhibit,
+  setImages,
 } from '../../slices/exhibitSlice';
+
+// Components
+import ExhibitTechInfo from '../ExhibitTechInfo/ExhibitTechInfo';
+import Seo from '../Seo/Seo';
 
 // Other packages
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
-import { Helmet } from 'react-helmet-async';
-
-// Components
-import ExhibitTechInfo from '../ExhibitTechInfo/ExhibitTechInfo';
 
 // Utils and variables
 import { generateImageLinks } from '../../utils/generateImageLinks';
-import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
 import { ceramicStylesDescriptions } from '../../variables/ceramisStylesDescriptions';
+import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { PATHS } from '../../variables/variables';
+
+import './Exhibit.scss';
+import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 export default function Exhibit(): JSX.Element {
   const category = useSelector((state: RootState) => state.category.category);
@@ -67,11 +64,11 @@ export default function Exhibit(): JSX.Element {
 
   useEffect(() => {
     if (exhibit) {
-      dispatch(setImages(generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id)));
+      dispatch(setImages(generateImageLinks(PATHS.EXHIBITS, exhibit.id)));
       dispatch(
         setAdditionalImages(
-          generateImageLinks(PATHS.EXHIBIT_PATH, exhibit.id, exhibit.additionalPhotosCount, true)
-        )
+          generateImageLinks(PATHS.EXHIBITS, exhibit.id, true),
+        ),
       );
     }
   }, [exhibit]);
@@ -100,11 +97,13 @@ export default function Exhibit(): JSX.Element {
 
         {/* Exhibit description section */}
         <div className="text-block">
-          {exhibit?.description ? (
-            parse(exhibit?.description || '', options)
-          ) : (
-            <p className="text">Описание в процессе подготовки</p>
-          )}
+          {exhibit?.description
+            ? (
+                parse(exhibit?.description || '', options)
+              )
+            : (
+                <p className="text">Описание в процессе подготовки</p>
+              )}
         </div>
 
         {/* Potter description section */}
@@ -113,8 +112,9 @@ export default function Exhibit(): JSX.Element {
             {exhibit?.potterPhoto && (
               <img
                 className="exhibit__potter-photo"
-                src={`${PATHS.EXHIBIT_PATH}${exhibit?.id}/${exhibit.potterPhoto}`}
-              ></img>
+                src={`${PATHS.EXHIBITS}${exhibit?.id}/${exhibit.potterPhoto}`}
+              >
+              </img>
             )}
 
             {exhibit?.potterInfo && parse(exhibit?.potterInfo || '', options)}
@@ -143,9 +143,9 @@ export default function Exhibit(): JSX.Element {
         {ceramicStyle && ceramicStyle !== 'other' && (
           <div className="container bordered background-muted text-block">
             {parse(
-              ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions] ||
-                '',
-              options
+              ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions]
+              || '',
+              options,
             )}
           </div>
         )}

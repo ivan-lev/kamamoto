@@ -1,4 +1,5 @@
-import './AdminStatistics.scss';
+// Types
+import type { Statistics } from '../../types/statistics';
 
 // React
 import { useEffect, useState } from 'react';
@@ -9,13 +10,7 @@ import Preloader from '../Preloader/Preloader';
 // Utils
 import { api } from '../../utils/api';
 
-interface Statistics {
-  exhibits: number;
-  exhibitions: number;
-  categories: number;
-  partners: number;
-  letters: number;
-};
+import './AdminStatistics.scss';
 
 const defaultStatistics: Statistics = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
 

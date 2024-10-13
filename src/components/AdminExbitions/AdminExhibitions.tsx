@@ -1,11 +1,9 @@
-import './AdminExhibitions.scss';
+// Types
+import type { AdminRootState } from '../../slices/adminSlice';
 
-// React
+// React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-// Redux
-import type { AdminRootState } from '../../slices/adminSlice';
 import { openEmptyExhibitionForm, setExhibitions, setExhibitionToEdit,
 } from '../../slices/adminSlice';
 
@@ -16,6 +14,8 @@ import Seo from '../Seo/Seo';
 
 // Utils
 import { api } from '../../utils/api';
+
+import './AdminExhibitions.scss';
 
 export default function AdminExhibitions(): JSX.Element {
   const [showPreloader, setShowPreloader] = useState<boolean>(true);

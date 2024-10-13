@@ -1,9 +1,10 @@
-import './ExhibitionCard.scss';
+// Types
+import type { Exhibition } from '../../types/exhibitionType';
 
 // React
 import { Link } from 'react-router-dom';
 
-import type { Exhibition } from '../../types/exhibitionType';
+import './ExhibitionCard.scss';
 
 export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition }): JSX.Element {
   const { id, name, year, dates, city, place, isActive } = exhibition;

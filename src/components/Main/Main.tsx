@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+
 import './Main.scss';
 
 // Outlet component render the children components

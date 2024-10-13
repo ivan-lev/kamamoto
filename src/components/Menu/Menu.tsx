@@ -1,14 +1,14 @@
-import './Menu.scss';
-
 import { NavLink } from 'react-router-dom';
 
 import { menu } from '../../variables/menu';
+
+import './Menu.scss';
 
 export default function Menu(): JSX.Element {
   return (
     <nav className="menu">
       <ul className="menu__list">
-        {menu.map(element => {
+        {menu.map((element) => {
           return (
             <li key={element.name}>
               <NavLink

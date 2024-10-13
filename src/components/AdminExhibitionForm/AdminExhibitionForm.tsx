@@ -1,20 +1,17 @@
-import './AdminExhibitionForm.scss';
+// Types
+import type { ChangeEvent, FormEvent } from 'react';
+import type { AdminRootState } from '../../slices/adminSlice';
 
-// React
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+// React and Redux
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-//Redux
-import {
-  AdminRootState,
-  setExhibitions,
-  setExhibitionFormShowed,
-  clearExhibitionForm,
-  setExhibitionToDisplay
+import { clearExhibitionForm, setExhibitionFormShowed, setExhibitions, setExhibitionToDisplay,
 } from '../../slices/adminSlice';
 
-//Utils
+// Utils
 import { api } from '../../utils/api';
+
+import './AdminExhibitionForm.scss';
 
 export default function AdminExhibitionForm(): JSX.Element {
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -23,10 +20,10 @@ export default function AdminExhibitionForm(): JSX.Element {
 
   const exhibitions = useSelector((state: AdminRootState) => state.admin.exhibitions);
   const isExistingExhibitionEdited = useSelector(
-    (state: AdminRootState) => state.admin.isExistingExhibitionEdited
+    (state: AdminRootState) => state.admin.isExistingExhibitionEdited,
   );
   const exhibitionToDisplay = useSelector(
-    (state: AdminRootState) => state.admin.exhibitionToDisplay
+    (state: AdminRootState) => state.admin.exhibitionToDisplay,
   );
 
   const {
@@ -43,7 +40,7 @@ export default function AdminExhibitionForm(): JSX.Element {
     poster,
     curators,
     organisators,
-    isActive
+    isActive,
   } = exhibitionToDisplay;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,16 +68,16 @@ export default function AdminExhibitionForm(): JSX.Element {
         .createExhibition(token, {
           ...exhibitionToDisplay,
           id: Number(id),
-          year: Number(year)
+          year: Number(year),
         })
-        .then(response => {
+        .then((response) => {
           dispatch(setExhibitions([...exhibitions, response]));
           dispatch(clearExhibitionForm());
           setIsFormDisabled(false);
           setSaveMessage('Выставка создана');
         })
-        .catch(error => {
-          console.log(error);
+        .catch((error) => {
+          console.error(error);
           setIsFormDisabled(false);
           setSaveMessage('Что-то пошло не так :(');
         });
@@ -93,36 +90,18 @@ export default function AdminExhibitionForm(): JSX.Element {
     if (token) {
       api
         .updateExhibition(token, exhibitionToDisplay)
-        .then(response => {
-          const newExhibitions = exhibitions.map(exhibition => {
+        .then((response) => {
+          const newExhibitions = exhibitions.map((exhibition) => {
             return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
           });
           dispatch(setExhibitions(newExhibitions));
           setIsFormDisabled(false);
           setSaveMessage('Данные обновлены');
         })
-        .catch(error => {
-          console.log(error);
+        .catch((error) => {
+          console.error(error);
           setIsFormDisabled(false);
           setSaveMessage('Что-то пошло не так :(');
-        });
-    }
-  };
-
-  const handleDeleteExhibition = () => {
-    const token = localStorage.getItem('kmmttkn');
-    if (token) {
-      api
-        .deleteExhibition(token, exhibitionToDisplay)
-        .then(response => {
-          const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
-          dispatch(setExhibitions(newExhibitions));
-          handleCloseExhibitionForm();
-          setIsFormDisabled(false);
-        })
-        .catch(error => {
-          console.log(error);
-          setIsFormDisabled(false);
         });
     }
   };
@@ -130,6 +109,24 @@ export default function AdminExhibitionForm(): JSX.Element {
   const handleCloseExhibitionForm = () => {
     dispatch(setExhibitionFormShowed(false));
     dispatch(clearExhibitionForm());
+  };
+
+  const handleDeleteExhibition = () => {
+    const token = localStorage.getItem('kmmttkn');
+    if (token) {
+      api
+        .deleteExhibition(token, exhibitionToDisplay)
+        .then((response) => {
+          const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
+          dispatch(setExhibitions(newExhibitions));
+          handleCloseExhibitionForm();
+          setIsFormDisabled(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setIsFormDisabled(false);
+        });
+    }
   };
 
   useEffect(() => {
@@ -360,34 +357,36 @@ export default function AdminExhibitionForm(): JSX.Element {
 
           <div className="admin-section-form__fields-row">
             <div className="admin-section-form__field admin-exhibition-form__field-submit">
-              {!isExistingExhibitionEdited ? (
-                <>
-                  <button
-                    className="button"
-                    type="button"
-                    onClick={() => dispatch(clearExhibitionForm())}
-                  >
-                    Очистить
-                  </button>
-                  <button className="button" type="submit">
-                    Создать
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    className="button"
-                    type="button"
-                    onClick={handleUpdateExhibition}
-                    disabled={isFormDisabled}
-                  >
-                    Сохранить
-                  </button>
-                  <button className="button" type="button" onClick={handleDeleteExhibition}>
-                    Удалить
-                  </button>
-                </>
-              )}
+              {!isExistingExhibitionEdited
+                ? (
+                    <>
+                      <button
+                        className="button"
+                        type="button"
+                        onClick={() => dispatch(clearExhibitionForm())}
+                      >
+                        Очистить
+                      </button>
+                      <button className="button" type="submit">
+                        Создать
+                      </button>
+                    </>
+                  )
+                : (
+                    <>
+                      <button
+                        className="button"
+                        type="button"
+                        onClick={handleUpdateExhibition}
+                        disabled={isFormDisabled}
+                      >
+                        Сохранить
+                      </button>
+                      <button className="button" type="button" onClick={handleDeleteExhibition}>
+                        Удалить
+                      </button>
+                    </>
+                  )}
               <button className="button" type="button" onClick={handleCloseExhibitionForm}>
                 Закрыть
               </button>

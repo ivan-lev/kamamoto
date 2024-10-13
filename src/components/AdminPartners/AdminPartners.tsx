@@ -1,15 +1,11 @@
-import './AdminPartners.scss';
-
-// React
+// Types
 import type { ChangeEvent } from 'react';
+import type { AdminRootState } from '../../slices/adminSlice';
+import type { Partner } from '../../types/partnerType';
+
+// React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-// Redux
-import type {
-  AdminRootState,
-} from '../../slices/adminSlice';
-import type { Partner } from '../../types/partnerType';
 
 import {
   clearPartnerForm,
@@ -17,12 +13,15 @@ import {
   setPartners,
   setPartnerToDisplay,
 } from '../../slices/adminSlice';
+
 // Components
 import Preloader from '../Preloader/Preloader';
-
 import Seo from '../Seo/Seo';
+
 // Utils
 import { api } from '../../utils/api';
+
+import './AdminPartners.scss';
 
 export default function AdminPartners(): JSX.Element {
   const dispatch = useDispatch();

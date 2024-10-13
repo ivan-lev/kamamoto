@@ -1,14 +1,14 @@
-import './ExhibitTechInfo.scss';
-
-// React
-import { useState } from 'react';
-
 // Types
 import type { Exhibit } from '../../types/exhibitType';
 import { CeramicStyleType } from '../../types/ceramicStyleType';
 
+// React
+import { useState } from 'react';
+
+import './ExhibitTechInfo.scss';
+
 export default function ExhibitTechInfo({
-  exhibit
+  exhibit,
 }: {
   exhibit: Exhibit | undefined;
 }): JSX.Element {
@@ -135,11 +135,16 @@ export default function ExhibitTechInfo({
             )}
 
             <li className="tech-info__list-element tech-info__list-element_justify">
-              {exhibit?.complectation.length === 1 ? (
-                <>Комплектность: {exhibit?.complectation.join(', ')}</>
-              ) : (
-                <>{`Комплектность: ${exhibit?.complectation.join(', ')}`}</>
-              )}
+              {exhibit?.complectation.length === 1
+                ? (
+                    <>
+                      Комплектность:
+                      {exhibit?.complectation.join(', ')}
+                    </>
+                  )
+                : (
+                    <>{`Комплектность: ${exhibit?.complectation.join(', ')}`}</>
+                  )}
             </li>
 
             <li className="tech-info__list-element tech-info__list-element_justify">

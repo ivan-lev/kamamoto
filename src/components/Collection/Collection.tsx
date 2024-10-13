@@ -1,12 +1,7 @@
-import './Collection.scss';
-
-// React
+// React and redux
 import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
-// Redux
-import { setDisplayList } from '../../slices/listSlice';
-import { resetDisplayList } from '../../slices/listSlice';
+import { resetDisplayList, setDisplayList } from '../../slices/listSlice';
 
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
@@ -14,6 +9,8 @@ import Seo from '../Seo/Seo';
 
 // Utils and variables
 import { categories } from '../../variables/categories';
+
+import './Collection.scss';
 
 export default function Collection() {
   const dispatch = useDispatch();

@@ -1,28 +1,23 @@
-import './Category.scss';
+// Types and enums
+import { ExhibitCategory } from '../../types/exhibitCategory';
 
-// React
+// React and Redux
 import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-
-// Redux
-import { setCategory } from '../../slices/categorySlice';
-import { resetCategory } from '../../slices/categorySlice';
-import { setDisplayList } from '../../slices/listSlice';
-import { resetDisplayList } from '../../slices/listSlice';
+import { resetCategory, setCategory } from '../../slices/categorySlice';
+import { resetDisplayList, setDisplayList } from '../../slices/listSlice';
 
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
 import Seo from '../Seo/Seo';
 
-// Utils
+// Utils and variables
 import { generateListToDisplay } from '../../utils/generateListToDisplay';
 import { getCategory } from '../../utils/getCategory';
-
-//Variables
 import { exhibits } from '../../variables/exhibits';
 
-import { ExhibitCategory } from '../../types/exhibitCategory';
+import './Category.scss';
 
 export default function Category(): JSX.Element {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
-import './File.scss';
+import type { Resource } from '../../types/fileType';
 
-import { Resource } from '../../types/fileType';
+import './File.scss';
 
 export default function File({ file }: { file: Resource }) {
   return (

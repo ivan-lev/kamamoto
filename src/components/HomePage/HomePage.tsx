@@ -1,15 +1,15 @@
-import './HomePage.scss';
-
-//vendor components
+// Vendor components
 import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/scss/image-gallery.scss';
 
-//components
-import Statistics from '../Statistics/Statistics';
+// Components
 import Partners from '../Partners/Partners';
+import Statistics from '../Statistics/Statistics';
 
-// variables
+// Utils and variables
 import { homepageSliderImages } from '../../variables/homepageSliderImages';
+
+import 'react-image-gallery/styles/scss/image-gallery.scss';
+import './HomePage.scss';
 
 export default function HomePage() {
   return (

@@ -1,4 +1,5 @@
-import './Files.scss';
+// Types
+import type { Resources } from '../../types/fileType';
 
 // React
 import { useLayoutEffect } from 'react';
@@ -7,8 +8,7 @@ import { useLayoutEffect } from 'react';
 import File from '../File/File';
 import Seo from '../Seo/Seo';
 
-// Types
-import type { Resources } from '../../types/fileType';
+import './Files.scss';
 
 export default function Files({ title, files }: { title: string; files: Resources }): JSX.Element {
   useLayoutEffect(() => {
@@ -22,7 +22,7 @@ export default function Files({ title, files }: { title: string; files: Resource
       <section className="section files">
         <h2 className="title title2">{title}</h2>
         <div className="container background-muted bordered files__list">
-          {files.map(file => {
+          {files.map((file) => {
             return <File key={file.id} file={file} />;
           })}
         </div>

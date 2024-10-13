@@ -1,8 +1,8 @@
+import type { Partner as PartnerType } from '../../types/partnerType';
+
 import './Partner.scss';
 
-import type { Partner } from '../../types/partnerType';
-
-export default function Partner({ partner }: { partner: Partner }): JSX.Element {
+export default function Partner({ partner }: { partner: PartnerType }): JSX.Element {
   const { link, logo, title } = partner;
   return (
     <div className="partner">

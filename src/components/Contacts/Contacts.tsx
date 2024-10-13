@@ -1,17 +1,20 @@
-import './Contacts.scss';
+// Types
+import type { ChangeEvent } from 'react';
 
 // React
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Components
-import SocialLinks from '../SocialLinks/SocialLinks';
 import Seo from '../Seo/Seo';
+import SocialLinks from '../SocialLinks/SocialLinks';
 
 // Other packages
 import emailjs from '@emailjs/browser';
 
 // Variables
 import { socialLinks } from '../../variables/socialLinks';
+
+import './Contacts.scss';
 
 export default function Contacts() {
   const [mailData, setMailData] = useState({ name: '', email: '', message: '' });
@@ -49,22 +52,22 @@ export default function Contacts() {
     setShowAlert(false);
     emailjs
       .sendForm('service_j8t6eu8', 'template_f2efm3h', event.currentTarget, {
-        publicKey: 'jtX7nvhSOFpKkSfnY'
+        publicKey: 'jtX7nvhSOFpKkSfnY',
       })
       .then(
-        result => {
-          console.log(result.text);
+        (result) => {
+          console.error(result.text);
           setIsSuccessSended(true);
           setShowAlert(true);
           setIsMessageSending(false);
           setMailData({ name: '', email: '', message: '' });
         },
-        error => {
-          console.log(error.text);
+        (error) => {
+          console.error(error.text);
           setIsSuccessSended(false);
           setShowAlert(true);
           setIsMessageSending(false);
-        }
+        },
       );
   };
 
@@ -99,7 +102,8 @@ export default function Contacts() {
               onChange={handleChange}
               minLength={3}
               maxLength={40}
-            ></input>
+            >
+            </input>
             <input
               className={`background-muted bordered input ${
                 isMessageSending ? 'input_disabled' : ''
@@ -110,7 +114,8 @@ export default function Contacts() {
               type="email"
               required
               onChange={handleChange}
-            ></input>
+            >
+            </input>
             <textarea
               className={`background-muted bordered textarea input${
                 isMessageSending ? ' input_disabled' : ''
@@ -121,7 +126,8 @@ export default function Contacts() {
               rows={5}
               required
               onChange={handleChange}
-            ></textarea>
+            >
+            </textarea>
 
             <p>
               <span className="muted contacts__agreement">
@@ -134,7 +140,8 @@ export default function Contacts() {
                 checked={!isButtonDisabled}
                 disabled={isMessageSending}
                 onChange={handleAgree}
-              ></input>
+              >
+              </input>
             </p>
 
             <button

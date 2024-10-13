@@ -1,12 +1,11 @@
-import './AdminCategories.scss';
-
-// React
+// Types
 import type { ChangeEvent } from 'react';
+import type { AdminRootState } from '../../slices/adminSlice';
+import type { Category } from '../../types/category';
+
+// React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-// redux
-import type { AdminRootState } from '../../slices/adminSlice';
 import { clearCategoryForm, setCategories, setCategoryToDisplay, setIsExistingCategoryEdited,
 } from '../../slices/adminSlice';
 
@@ -17,11 +16,9 @@ import Seo from '../Seo/Seo';
 // Utils
 import { api } from '../../utils/api';
 
-// Types
-import type { Category } from '../../types/category';
+import './AdminCategories.scss';
 
 export default function AdminCategories(): JSX.Element {
-  //   const [categories, setCatsegories] = useState<Array<Category>>([]);
   const dispatch = useDispatch();
 
   const [showPreloader, setShowPreloader] = useState<boolean>(true);

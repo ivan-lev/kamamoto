@@ -1,12 +1,10 @@
-import './Expos.scss';
+// Types
+import type { RootState } from '../../slices';
 
-//React
+// React and Redux
 import { useEffect, useState } from 'react';
-
-// Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { setExhibitionsList } from '../../slices/exhibitionsSlice';
-import { RootState } from '../../slices';
 
 // Components
 import ExhibitionCard from '../ExhibitionCard/ExhibitionCard';
@@ -15,6 +13,8 @@ import Seo from '../Seo/Seo';
 
 // Utils
 import { api } from '../../utils/api';
+
+import './Expos.scss';
 
 export default function Expos(): JSX.Element {
   const dispatch = useDispatch();
@@ -25,15 +25,16 @@ export default function Expos(): JSX.Element {
     if (exhibitions.length === 0) {
       api
         .getExhibitions()
-        .then(response => {
+        .then((response) => {
           dispatch(setExhibitionsList(response));
           setShowPreloader(false);
         })
-        .catch(error => {
-          console.log(error);
+        .catch((error) => {
+          console.error(error);
           setShowPreloader(false);
         });
-    } else {
+    }
+    else {
       setShowPreloader(false);
     }
   }, []);
@@ -44,21 +45,23 @@ export default function Expos(): JSX.Element {
 
       <section className="section exposs">
         <h2 className="title title2">Выставки</h2>
-        {showPreloader ? (
-          <Preloader />
-        ) : (
-          <ul className="expos__list">
-            {exhibitions
-              .map(exhibition => {
-                return (
-                  <li className="expos__element" key={exhibition.id}>
-                    <ExhibitionCard exhibition={exhibition} />
-                  </li>
-                );
-              })
-              .reverse()}
-          </ul>
-        )}
+        {showPreloader
+          ? (
+              <Preloader />
+            )
+          : (
+              <ul className="expos__list">
+                {exhibitions
+                  .map((exhibition) => {
+                    return (
+                      <li className="expos__element" key={exhibition.id}>
+                        <ExhibitionCard exhibition={exhibition} />
+                      </li>
+                    );
+                  })
+                  .reverse()}
+              </ul>
+            )}
       </section>
     </>
   );

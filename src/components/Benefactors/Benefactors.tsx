@@ -1,10 +1,10 @@
-import './Benefactors.scss';
-
 // React
 import { useLayoutEffect } from 'react';
 
 // Components
 import Seo from '../Seo/Seo';
+
+import './Benefactors.scss';
 
 export default function Benefactors() {
   useLayoutEffect(() => {
