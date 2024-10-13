@@ -2,39 +2,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: var(--gap-48);
   box-sizing: border-box;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: var(--gap-48);
+  padding-right: var(--gap-48);
   width: 100%;
 
   @media screen and (max-width: 768px) {
-    padding: 30px;
+    padding: var(--gap-32);
   }
 
   @media screen and (max-width: 600px) {
-    padding: 20px;
+    padding: var(--gap-24);
   }
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 48px;
+  gap: var(--gap-32);
+  padding: var(--gap-48);
 
   @media screen and (max-width: 768px) {
-    padding: 30px;
+    padding: var(--gap-32);
   }
 }
 
 .bordered {
-  border: 1px solid var(--border, rgba(218, 197, 167, 0.15));
+  border: 1px solid var(--border-color);
   border-radius: 2px;
 }
 
 .background-muted {
-  background: var(--background-muted, rgba(218, 197, 167, 0.05));
+  background: var(--background-muted);
 }
 
 .muted-8 {
@@ -69,12 +69,12 @@
   }
 
   @media screen and (max-width: 600px) {
-    font-size: 30px;
+    font-size: 32px;
   }
 }
 
 .title2 {
-  font-size: 50px;
+  font-size: 32px;
 
   @media screen and (max-width: 900px) {
     font-size: 45px;
@@ -98,8 +98,8 @@
 }
 
 .subtitle {
-  color: var(--text-muted, rgba(218, 197, 167, 0.6));
-  font-size: 20px;
+  color: var(--text-muted);
+  font-size: 24px;
 
   @media screen and (max-width: 600px) {
     text-align: center;
@@ -114,7 +114,7 @@
   & p,
   & ul,
   & blockquote {
-    margin-bottom: 20px;
+    margin-bottom: var(--gap-24);
   }
 
   & *:last-child {
@@ -123,19 +123,19 @@
 }
 
 .text {
-  color: var(--text-default, rgba(218, 197, 167, 0.6));
+  color: var(--text-default);
   font-size: 16px;
 
   &_muted {
-    color: var(--text-muted, rgba(218, 197, 167, 0.6));
+    color: var(--text-muted);
   }
 }
 
 .link {
   display: flex;
   align-items: center;
-  gap: 16px;
-  color: var(--text-default, #dac5a7);
+  gap: var(--gap-16);
+  color: var(--text-default);
   text-decoration: none;
   box-sizing: border-box;
   width: fit-content;
@@ -149,7 +149,7 @@
 .link_usual {
   display: inline;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: var(--gap-4);
 }
 
 .link_navigational {
@@ -161,28 +161,30 @@
   width: 38px;
   height: 38px;
   box-sizing: border-box;
-  padding: 10px;
+  padding: var(--gap-8);
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  background: var(--background-muted);
+  border: 1px solid var(--border-color);
 }
 
 .list {
-  color: var(--text-default, #dac5a7);
+  color: var(--text-default);
   font-size: 16px;
-  padding-left: 17px;
+  padding-left: var(--gap-16);
 }
 
 .blockquote {
-  border-left: 6px solid var(--border);
+  border-left: 6px solid var(--border-color);
   display: inline-block;
 }
 
 .input {
   height: 55px;
   width: 100%;
-  padding: 0 24px;
-  color: var(--text-default, #dac5a7);
+  padding: 0 var(--gap-24);
+  color: var(--text-default);
   font-size: 13px;
   letter-spacing: 1.5px;
   box-sizing: border-box;
@@ -225,26 +227,26 @@
 }
 
 .textarea {
-  padding-top: 16px;
-  padding-bottom: 15px;
+  padding-top: var(--gap-16);
+  padding-bottom: var(--gap-16);
   resize: none;
-  height: 200px;
+  height: 150px;
   font-family: var(--main-font);
 }
 
 .button {
-  height: 40px;
+  min-height: 40px;
   box-sizing: border-box;
   display: flex;
-  padding: 10px 16px;
+  padding: var(--gap-8) var(--gap-16);
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: var(--gap-8);
   align-self: stretch;
   border: 0;
   border-radius: 2px;
-  background: var(--text-default, #dac5a7);
-  color: var(--text-inverse, #0e0e0e);
+  background: var(--text-default);
+  color: var(--text-inverse);
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -275,7 +277,7 @@
 .admin-section-list {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--gap-4);
 
   &__row {
     display: grid;
@@ -287,12 +289,12 @@
 
   &__fields-row {
     display: flex;
-    gap: 10px;
+    gap: var(--gap-8);
   }
 
   &__edit-button {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     background-color: transparent;
     border: 0;
     background-image: url('/icons/edit.svg');
@@ -305,7 +307,7 @@
 
 .admin-section-form {
   &__form {
-    padding: 30px;
+    padding: var(--gap-32);
     position: relative;
   }
 
@@ -313,12 +315,12 @@
     border: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--gap-8);
   }
 
   &__fields-row {
     display: flex;
-    gap: 10px;
+    gap: var(--gap-8);
   }
 
   &__field {
@@ -342,7 +344,7 @@
   &__save-status {
     position: absolute;
     bottom: 5px;
-    right: 30px;
+    right: 32px;
     font-size: 12px;
   }
 }
