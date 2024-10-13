@@ -4,7 +4,7 @@
   grid-template-columns: 1fr;
   gap: 32px;
 
-  &__card {
+  &__card.container {
     display: grid;
     grid-template-columns: 30% 1fr;
     grid-template-rows: auto auto 1fr;
