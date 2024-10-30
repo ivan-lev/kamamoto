@@ -14,387 +14,387 @@ import { api } from '../../utils/api';
 import './AdminExhibitionForm.scss';
 
 export default function AdminExhibitionForm(): JSX.Element {
-  const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
-  const [saveMessage, setSaveMessage] = useState<string>('');
-  const dispatch = useDispatch();
+	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+	const [saveMessage, setSaveMessage] = useState<string>('');
+	const dispatch = useDispatch();
 
-  const exhibitions = useSelector((state: AdminRootState) => state.admin.exhibitions);
-  const isExistingExhibitionEdited = useSelector(
-    (state: AdminRootState) => state.admin.isExistingExhibitionEdited,
-  );
-  const exhibitionToDisplay = useSelector(
-    (state: AdminRootState) => state.admin.exhibitionToDisplay,
-  );
+	const exhibitions = useSelector((state: AdminRootState) => state.admin.exhibitions);
+	const isExistingExhibitionEdited = useSelector(
+		(state: AdminRootState) => state.admin.isExistingExhibitionEdited,
+	);
+	const exhibitionToDisplay = useSelector(
+		(state: AdminRootState) => state.admin.exhibitionToDisplay,
+	);
 
-  const {
-    id,
-    year,
-    dates,
-    city,
-    address,
-    place,
-    name,
-    link,
-    description,
-    photos,
-    poster,
-    curators,
-    organisators,
-    isActive,
-  } = exhibitionToDisplay;
+	const {
+		id,
+		year,
+		dates,
+		city,
+		address,
+		place,
+		name,
+		link,
+		description,
+		photos,
+		poster,
+		curators,
+		organisators,
+		isActive,
+	} = exhibitionToDisplay;
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value }));
-  };
+	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = event.target;
+		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value }));
+	};
 
-  const handleChangePhotos = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    const photosArray = value.split(', ');
-    dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: photosArray }));
-  };
+	const handleChangePhotos = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = event.target;
+		const photosArray = value.split(', ');
+		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: photosArray }));
+	};
 
-  const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
-    dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: checked }));
-  };
+	const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
+		const { name, checked } = event.target;
+		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: checked }));
+	};
 
-  const handleCreateExhibition = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsFormDisabled(true);
-    const token = localStorage.getItem('kmmttkn');
-    if (token) {
-      api
-        .createExhibition(token, {
-          ...exhibitionToDisplay,
-          id: Number(id),
-          year: Number(year),
-        })
-        .then((response) => {
-          dispatch(setExhibitions([...exhibitions, response]));
-          dispatch(clearExhibitionForm());
-          setIsFormDisabled(false);
-          setSaveMessage('Выставка создана');
-        })
-        .catch((error) => {
-          console.error(error);
-          setIsFormDisabled(false);
-          setSaveMessage('Что-то пошло не так :(');
-        });
-    }
-  };
+	const handleCreateExhibition = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api
+				.createExhibition(token, {
+					...exhibitionToDisplay,
+					id: Number(id),
+					year: Number(year),
+				})
+				.then((response) => {
+					dispatch(setExhibitions([...exhibitions, response]));
+					dispatch(clearExhibitionForm());
+					setIsFormDisabled(false);
+					setSaveMessage('Выставка создана');
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					setSaveMessage('Что-то пошло не так :(');
+				});
+		}
+	};
 
-  const handleUpdateExhibition = () => {
-    setIsFormDisabled(true);
-    const token = localStorage.getItem('kmmttkn');
-    if (token) {
-      api
-        .updateExhibition(token, exhibitionToDisplay)
-        .then((response) => {
-          const newExhibitions = exhibitions.map((exhibition) => {
-            return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
-          });
-          dispatch(setExhibitions(newExhibitions));
-          setIsFormDisabled(false);
-          setSaveMessage('Данные обновлены');
-        })
-        .catch((error) => {
-          console.error(error);
-          setIsFormDisabled(false);
-          setSaveMessage('Что-то пошло не так :(');
-        });
-    }
-  };
+	const handleUpdateExhibition = () => {
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api
+				.updateExhibition(token, exhibitionToDisplay)
+				.then((response) => {
+					const newExhibitions = exhibitions.map((exhibition) => {
+						return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
+					});
+					dispatch(setExhibitions(newExhibitions));
+					setIsFormDisabled(false);
+					setSaveMessage('Данные обновлены');
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					setSaveMessage('Что-то пошло не так :(');
+				});
+		}
+	};
 
-  const handleCloseExhibitionForm = () => {
-    dispatch(setExhibitionFormShowed(false));
-    dispatch(clearExhibitionForm());
-  };
+	const handleCloseExhibitionForm = () => {
+		dispatch(setExhibitionFormShowed(false));
+		dispatch(clearExhibitionForm());
+	};
 
-  const handleDeleteExhibition = () => {
-    const token = localStorage.getItem('kmmttkn');
-    if (token) {
-      api
-        .deleteExhibition(token, exhibitionToDisplay)
-        .then((response) => {
-          const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
-          dispatch(setExhibitions(newExhibitions));
-          handleCloseExhibitionForm();
-          setIsFormDisabled(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setIsFormDisabled(false);
-        });
-    }
-  };
+	const handleDeleteExhibition = () => {
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api
+				.deleteExhibition(token, exhibitionToDisplay)
+				.then((response) => {
+					const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
+					dispatch(setExhibitions(newExhibitions));
+					handleCloseExhibitionForm();
+					setIsFormDisabled(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+				});
+		}
+	};
 
-  useEffect(() => {
-    if (saveMessage) {
-      setTimeout(() => setSaveMessage(''), 3000);
-    }
-  }, [saveMessage]);
+	useEffect(() => {
+		if (saveMessage) {
+			setTimeout(() => setSaveMessage(''), 3000);
+		}
+	}, [saveMessage]);
 
-  return (
-    <div className="admin-section-form">
-      <form
-        className="background-muted bordered admin-section-form__form"
-        onSubmit={handleCreateExhibition}
-      >
-        <fieldset className="admin-section-form__fieldset" disabled={isFormDisabled}>
-          <legend className="admin-section-form__field-legend">Добавить выставку</legend>
+	return (
+		<div className="admin-section-form">
+			<form
+				className="background-muted bordered admin-section-form__form"
+				onSubmit={handleCreateExhibition}
+			>
+				<fieldset className="admin-section-form__fieldset" disabled={isFormDisabled}>
+					<legend className="admin-section-form__field-legend">Добавить выставку</legend>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-id">
-              <span>номер</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="id"
-                placeholder="id"
-                value={id}
-                onChange={handleChange}
-              />
-            </div>
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-id">
+							<span>номер</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="id"
+								placeholder="id"
+								value={id}
+								onChange={handleChange}
+							/>
+						</div>
 
-            <div className="admin-section-form__field admin-exhibition-form__field-year">
-              <span>год</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="year"
-                placeholder="год"
-                value={year}
-                onChange={handleChange}
-              />
-            </div>
+						<div className="admin-section-form__field admin-exhibition-form__field-year">
+							<span>год</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="year"
+								placeholder="год"
+								value={year}
+								onChange={handleChange}
+							/>
+						</div>
 
-            <div className="admin-section-form__field admin-exhibition-form__field-date">
-              <span>даты</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="dates"
-                placeholder="даты"
-                value={dates}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+						<div className="admin-section-form__field admin-exhibition-form__field-date">
+							<span>даты</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="dates"
+								placeholder="даты"
+								value={dates}
+								onChange={handleChange}
+							/>
+						</div>
+					</div>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-name">
-              <span>название</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="name"
-                placeholder="название выставки"
-                value={name}
-                onChange={handleChange}
-              />
-            </div>
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-name">
+							<span>название</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="name"
+								placeholder="название выставки"
+								value={name}
+								onChange={handleChange}
+							/>
+						</div>
 
-            <div className="admin-section-form__field admin-exhibition-form__field-city">
-              <span>город</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="city"
-                placeholder="город"
-                value={city}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+						<div className="admin-section-form__field admin-exhibition-form__field-city">
+							<span>город</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="city"
+								placeholder="город"
+								value={city}
+								onChange={handleChange}
+							/>
+						</div>
+					</div>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-address">
-              <span>адрес</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="address"
-                placeholder="адрес"
-                value={address}
-                onChange={handleChange}
-              />
-            </div>
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-address">
+							<span>адрес</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="address"
+								placeholder="адрес"
+								value={address}
+								onChange={handleChange}
+							/>
+						</div>
 
-            <div className="admin-section-form__field admin-exhibition-form__field-place">
-              <span>место проведения</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="place"
-                placeholder="место проведения"
-                value={place}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+						<div className="admin-section-form__field admin-exhibition-form__field-place">
+							<span>место проведения</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="place"
+								placeholder="место проведения"
+								value={place}
+								onChange={handleChange}
+							/>
+						</div>
+					</div>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-curators">
-              <span>кураторы</span>
-              <textarea
-                className="background-muted bordered textarea input"
-                name="curators"
-                placeholder="кураторы"
-                value={curators}
-                onChange={handleChange}
-              />
-            </div>
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-curators">
+							<span>кураторы</span>
+							<textarea
+								className="background-muted bordered textarea input"
+								name="curators"
+								placeholder="кураторы"
+								value={curators}
+								onChange={handleChange}
+							/>
+						</div>
 
-            <div className="admin-section-form__field admin-exhibition-form__field-organisators">
-              <span>организаторы</span>
-              <textarea
-                className="background-muted bordered textarea input"
-                name="organisators"
-                placeholder="организаторы"
-                value={organisators}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+						<div className="admin-section-form__field admin-exhibition-form__field-organisators">
+							<span>организаторы</span>
+							<textarea
+								className="background-muted bordered textarea input"
+								name="organisators"
+								placeholder="организаторы"
+								value={organisators}
+								onChange={handleChange}
+							/>
+						</div>
+					</div>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-description">
-              <span>описание</span>
-              <textarea
-                className="background-muted bordered textarea input"
-                name="description"
-                placeholder="описание"
-                value={description}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-description">
+							<span>описание</span>
+							<textarea
+								className="background-muted bordered textarea input"
+								name="description"
+								placeholder="описание"
+								value={description}
+								onChange={handleChange}
+							/>
+						</div>
+					</div>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-link">
-              <span>фотографии</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="photos"
-                placeholder="фотографии"
-                value={photos.join(', ')}
-                onChange={handleChangePhotos}
-              />
-            </div>
-          </div>
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-link">
+							<span>фотографии</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="photos"
+								placeholder="фотографии"
+								value={photos.join(', ')}
+								onChange={handleChangePhotos}
+							/>
+						</div>
+					</div>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-link">
-              <span>ссылка</span>
-              <input
-                className={`background-muted bordered input ${
-                  isFormDisabled ? 'input_disabled' : ''
-                }`}
-                type="text"
-                name="link"
-                placeholder="ссылка"
-                value={link || ''}
-                onChange={handleChange}
-              />
-            </div>
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-link">
+							<span>ссылка</span>
+							<input
+								className={`background-muted bordered input ${
+									isFormDisabled ? 'input_disabled' : ''
+								}`}
+								type="text"
+								name="link"
+								placeholder="ссылка"
+								value={link || ''}
+								onChange={handleChange}
+							/>
+						</div>
 
-            <div className="checkbox admin-section-form__field admin-exhibition-form__field-poster">
-              <span>постер</span>
-              <label
-                className={`background-muted bordered input checkbox-label ${
-                  poster ? 'checkbox-label_checked' : ''
-                } ${
-                  isFormDisabled ? 'checkbox-label_disabled' : ''
-                } admin-exhibition-form__checkbox-label`}
-              >
-                <input
-                  className="checkbox-input"
-                  type="checkbox"
-                  checked={poster}
-                  name="poster"
-                  onChange={handleCheckBox}
-                />
-              </label>
-            </div>
+						<div className="checkbox admin-section-form__field admin-exhibition-form__field-poster">
+							<span>постер</span>
+							<label
+								className={`background-muted bordered input checkbox-label ${
+									poster ? 'checkbox-label_checked' : ''
+								} ${
+									isFormDisabled ? 'checkbox-label_disabled' : ''
+								} admin-exhibition-form__checkbox-label`}
+							>
+								<input
+									className="checkbox-input"
+									type="checkbox"
+									checked={poster}
+									name="poster"
+									onChange={handleCheckBox}
+								/>
+							</label>
+						</div>
 
-            <div className="checkbox admin-section-form__field admin-exhibition-form__field-is-active">
-              <span>на сайте</span>
-              <label
-                className={`background-muted bordered input checkbox-label ${
-                  isActive ? 'checkbox-label_checked' : ''
-                } ${
-                  isFormDisabled ? 'checkbox-label_disabled' : ''
-                } admin-exhibition-form__checkbox-label`}
-              >
-                <input
-                  className="checkbox-input"
-                  type="checkbox"
-                  checked={isActive}
-                  name="isActive"
-                  onChange={handleCheckBox}
-                />
-              </label>
-            </div>
-          </div>
+						<div className="checkbox admin-section-form__field admin-exhibition-form__field-is-active">
+							<span>на сайте</span>
+							<label
+								className={`background-muted bordered input checkbox-label ${
+									isActive ? 'checkbox-label_checked' : ''
+								} ${
+									isFormDisabled ? 'checkbox-label_disabled' : ''
+								} admin-exhibition-form__checkbox-label`}
+							>
+								<input
+									className="checkbox-input"
+									type="checkbox"
+									checked={isActive}
+									name="isActive"
+									onChange={handleCheckBox}
+								/>
+							</label>
+						</div>
+					</div>
 
-          <div className="admin-section-form__fields-row">
-            <div className="admin-section-form__field admin-exhibition-form__field-submit">
-              {!isExistingExhibitionEdited
-                ? (
-                    <>
-                      <button
-                        className="button"
-                        type="button"
-                        onClick={() => dispatch(clearExhibitionForm())}
-                      >
-                        Очистить
-                      </button>
-                      <button className="button" type="submit">
-                        Создать
-                      </button>
-                    </>
-                  )
-                : (
-                    <>
-                      <button
-                        className="button"
-                        type="button"
-                        onClick={handleUpdateExhibition}
-                        disabled={isFormDisabled}
-                      >
-                        Сохранить
-                      </button>
-                      <button className="button" type="button" onClick={handleDeleteExhibition}>
-                        Удалить
-                      </button>
-                    </>
-                  )}
-              <button className="button" type="button" onClick={handleCloseExhibitionForm}>
-                Закрыть
-              </button>
-            </div>
-          </div>
-        </fieldset>
-        <span className="admin-exhibition-form__save-status">{saveMessage}</span>
-      </form>
-    </div>
-  );
+					<div className="admin-section-form__fields-row">
+						<div className="admin-section-form__field admin-exhibition-form__field-submit">
+							{!isExistingExhibitionEdited
+								? (
+										<>
+											<button
+												className="button"
+												type="button"
+												onClick={() => dispatch(clearExhibitionForm())}
+											>
+												Очистить
+											</button>
+											<button className="button" type="submit">
+												Создать
+											</button>
+										</>
+									)
+								: (
+										<>
+											<button
+												className="button"
+												type="button"
+												onClick={handleUpdateExhibition}
+												disabled={isFormDisabled}
+											>
+												Сохранить
+											</button>
+											<button className="button" type="button" onClick={handleDeleteExhibition}>
+												Удалить
+											</button>
+										</>
+									)}
+							<button className="button" type="button" onClick={handleCloseExhibitionForm}>
+								Закрыть
+							</button>
+						</div>
+					</div>
+				</fieldset>
+				<span className="admin-exhibition-form__save-status">{saveMessage}</span>
+			</form>
+		</div>
+	);
 }
