@@ -14,7 +14,12 @@ export default function ({
 			{links.map((linkObject) => {
 				const { link, id, icon, title } = linkObject;
 				return (
-					<a className="link background-muted bordered social-links__link" href={link} key={id}>
+					<a
+						className="link background-muted bordered social-links__link"
+						target="_blank"
+						href={link}
+						key={id}
+					>
 						<img className="social-links__icon" src={icon} />
 						{title}
 					</a>

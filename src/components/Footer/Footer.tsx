@@ -14,7 +14,12 @@ export default function Footer() {
 				<span className="footer__column-element footer__column-title">Ссылки на проект</span>
 				{socialLinks.map((socialLink) => {
 					return (
-						<a className="link footer__column-element" href={socialLink.link} key={socialLink.id}>
+						<a
+							className="link footer__column-element"
+							target="_blank"
+							href={socialLink.link}
+							key={socialLink.id}
+						>
 							<div className="footer__icon-wrapper">
 								<img className="footer__icon" src={socialLink.icon} />
 							</div>
