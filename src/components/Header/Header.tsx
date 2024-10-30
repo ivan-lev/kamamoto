@@ -4,10 +4,10 @@ import Menu from '../Menu/Menu';
 import './Header.scss';
 
 export default function Header(): JSX.Element {
-  return (
-    <header className="header bordered">
-      <Logo />
-      <Menu />
-    </header>
-  );
+	return (
+		<header className="header bordered">
+			<Logo />
+			<Menu />
+		</header>
+	);
 }

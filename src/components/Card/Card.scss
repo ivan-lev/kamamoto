@@ -1,47 +1,47 @@
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-16);
+	position: relative;
 
-  &__image-wrapper {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    border-radius: 5px;
-    overflow: hidden;
-    box-sizing: border-box;
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 100;
-  }
+	&__image-wrapper {
+		width: 100%;
+		aspect-ratio: 3 / 2;
+		border-radius: 5px;
+		overflow: hidden;
+		box-sizing: border-box;
+		border: 1px solid var(--border-color);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		z-index: 100;
+	}
 
-  &:hover &__image-wrapper {
-    border: 1px solid var(--color-secondary-060);
-  }
+	&:hover &__image-wrapper {
+		border: 1px solid var(--color-secondary-060);
+	}
 
-  &__preloader {
-    width: 15%;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+	&__preloader {
+		width: 15%;
+		height: auto;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 
-  &__image {
-    width: 100%;
-    object-fit: cover;
-    aspect-ratio: 3 / 2;
-  }
+	&__image {
+		width: 100%;
+		object-fit: cover;
+		aspect-ratio: 3 / 2;
+	}
 
-  &__link {
-    font-size: 16px;
-  }
+	&__link {
+		font-size: 16px;
+	}
 
-  &__name::first-letter {
-    text-transform: uppercase;
-  }
+	&__name::first-letter {
+		text-transform: uppercase;
+	}
 }

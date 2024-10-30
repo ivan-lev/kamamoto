@@ -9,15 +9,15 @@ import partnersReducer from './partnersSlice';
 import statisticsReducer from './statisticsSlice';
 
 const store = configureStore({
-  reducer: {
-    category: categoryReducer,
-    exhibit: exhibitsReducer,
-    exhibitions: exhibitionsReducer,
-    letters: letterReducer,
-    list: listReducer,
-    partners: partnersReducer,
-    statistics: statisticsReducer,
-  },
+	reducer: {
+		category: categoryReducer,
+		exhibit: exhibitsReducer,
+		exhibitions: exhibitionsReducer,
+		letters: letterReducer,
+		list: listReducer,
+		partners: partnersReducer,
+		statistics: statisticsReducer,
+	},
 });
 
 export type RootState = ReturnType<typeof store.getState>;

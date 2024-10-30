@@ -20,45 +20,45 @@ import { exhibits } from '../../variables/exhibits';
 import './Category.scss';
 
 export default function Category(): JSX.Element {
-  const dispatch = useDispatch();
-  const location = useLocation().pathname;
-  const category = getCategory(location);
-  const categoryName = ExhibitCategory[category as keyof typeof ExhibitCategory];
+	const dispatch = useDispatch();
+	const location = useLocation().pathname;
+	const category = getCategory(location);
+	const categoryName = ExhibitCategory[category as keyof typeof ExhibitCategory];
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  });
+	useLayoutEffect(() => {
+		window.scrollTo(0, 0);
+	});
 
-  useEffect(() => {
-    dispatch(setCategory(category));
-    dispatch(setDisplayList(generateListToDisplay(category, exhibits)));
+	useEffect(() => {
+		dispatch(setCategory(category));
+		dispatch(setDisplayList(generateListToDisplay(category, exhibits)));
 
-    return () => {
-      if (category) {
-        dispatch(resetCategory());
-        dispatch(resetDisplayList());
-      }
-    };
-  }, []);
+		return () => {
+			if (category) {
+				dispatch(resetCategory());
+				dispatch(resetDisplayList());
+			}
+		};
+	}, []);
 
-  return (
-    <>
-      <Seo title={`Камамото: ${categoryName.toLowerCase()}`} />
+	return (
+		<>
+			<Seo title={`Камамото: ${categoryName.toLowerCase()}`} />
 
-      <section className="section category">
-        <div className="exhibit__breadcrumbs">
-          <Link to=".." className="link link_navigational muted exhibit__link" relative="path">
-            <img
-              className="background-muted bordered link__icon"
-              src="/icons/link-arrow-left.svg"
-            />
-            Назад
-          </Link>
-        </div>
+			<section className="section category">
+				<div className="exhibit__breadcrumbs">
+					<Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+						<img
+							className="background-muted bordered link__icon"
+							src="/icons/link-arrow-left.svg"
+						/>
+						Назад
+					</Link>
+				</div>
 
-        <h3 className="title title3 category__title">{categoryName}</h3>
-        <DisplayGrid />
-      </section>
-    </>
-  );
+				<h3 className="title title3 category__title">{categoryName}</h3>
+				<DisplayGrid />
+			</section>
+		</>
+	);
 }

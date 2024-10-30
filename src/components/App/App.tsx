@@ -36,67 +36,67 @@ import NotFound from '../NotFound/NotFound';
 import ThanksLetters from '../ThanksLetters/ThanksLetters';
 
 export default function App() {
-  return (
-    <>
-      <Helmet>
-        <title>Камамото - японская керамика</title>
-        <meta property="og:title" content="Камамото - японская керамика" />
-        <meta property="og:image" content="https://kamamoto.ru/images/og-image.jpg" />
-      </Helmet>
+	return (
+		<>
+			<Helmet>
+				<title>Камамото - японская керамика</title>
+				<meta property="og:title" content="Камамото - японская керамика" />
+				<meta property="og:image" content="https://kamamoto.ru/images/og-image.jpg" />
+			</Helmet>
 
-      <Routes>
-        <Route
-          path="/"
-          element={(
-            <>
-              <Header />
-              <Main />
-              <Footer />
-            </>
-          )}
-        >
-          <Route index element={<HomePage />} />
-          <Route path="about/" element={<About />} />
-          <Route path="collection/" element={<Collection />} />
-          <Route path="collection/:category/" element={<Category />} />
-          <Route path="collection/:category/:exhibit" element={<Exhibit />} />
-          <Route path="expos/" element={<Expos />} />
-          <Route path="expos/:exhId" element={<Exhibition />} />
-          <Route path="contacts/" element={<Contacts />} />
-          <Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
-          <Route
-            path="documents/"
-            element={<Files title="Шаблоны документов" files={documents} />}
-          />
-          <Route path="thanksletters/" element={<ThanksLetters />} />
-          <Route path="benefactors/" element={<Benefactors />} />
-        </Route>
+			<Routes>
+				<Route
+					path="/"
+					element={(
+						<>
+							<Header />
+							<Main />
+							<Footer />
+						</>
+					)}
+				>
+					<Route index element={<HomePage />} />
+					<Route path="about/" element={<About />} />
+					<Route path="collection/" element={<Collection />} />
+					<Route path="collection/:category/" element={<Category />} />
+					<Route path="collection/:category/:exhibit" element={<Exhibit />} />
+					<Route path="expos/" element={<Expos />} />
+					<Route path="expos/:exhId" element={<Exhibition />} />
+					<Route path="contacts/" element={<Contacts />} />
+					<Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
+					<Route
+						path="documents/"
+						element={<Files title="Шаблоны документов" files={documents} />}
+					/>
+					<Route path="thanksletters/" element={<ThanksLetters />} />
+					<Route path="benefactors/" element={<Benefactors />} />
+				</Route>
 
-        <Route
-          path="login/"
-          element={(
-            <Provider store={adminStore}>
-              <Login />
-            </Provider>
-          )}
-        />
-        <Route
-          path="admin/"
-          element={(
-            <Provider store={adminStore}>
-              <Admin />
-            </Provider>
-          )}
-        >
-          <Route index element={<AdminStatistics />} />
-          <Route path="exhibits/" element={<AdminExhibits />} />
-          <Route path="exhibitions/" element={<AdminExhibitions />} />
-          <Route path="partners/" element={<AdminPartners />} />
-          <Route path="categories/" element={<AdminCategories />} />
-          <Route path="letters/" element={<AdminLetters />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
-  );
+				<Route
+					path="login/"
+					element={(
+						<Provider store={adminStore}>
+							<Login />
+						</Provider>
+					)}
+				/>
+				<Route
+					path="admin/"
+					element={(
+						<Provider store={adminStore}>
+							<Admin />
+						</Provider>
+					)}
+				>
+					<Route index element={<AdminStatistics />} />
+					<Route path="exhibits/" element={<AdminExhibits />} />
+					<Route path="exhibitions/" element={<AdminExhibitions />} />
+					<Route path="partners/" element={<AdminPartners />} />
+					<Route path="categories/" element={<AdminCategories />} />
+					<Route path="letters/" element={<AdminLetters />} />
+				</Route>
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+		</>
+	);
 }

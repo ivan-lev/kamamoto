@@ -1,70 +1,70 @@
 .exhibition {
-  display: grid!important;
-  grid-template-areas:
-    'breadcrumbs breadcrumbs'
-    'title title'
-    'place participants'
-    'description description'
-    'photos photos';
-  grid-template-columns: 30% auto;
+	display: grid!important;
+	grid-template-areas:
+		'breadcrumbs breadcrumbs'
+		'title title'
+		'place participants'
+		'description description'
+		'photos photos';
+	grid-template-columns: 30% auto;
 
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'breadcrumbs'
-      'title'
-      'place'
-      'participants'
-      'description'
-      'photos';
-  }
+	@media screen and (max-width: 768px) {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'breadcrumbs'
+			'title'
+			'place'
+			'participants'
+			'description'
+			'photos';
+	}
 
-  &__breadcrumbs {
-    grid-area: breadcrumbs;
-  }
+	&__breadcrumbs {
+		grid-area: breadcrumbs;
+	}
 
-  &__title {
-    grid-area: title;
-  }
+	&__title {
+		grid-area: title;
+	}
 
-  &__place {
-    grid-area: place;
-    align-self: start;
-    padding: 0 0 0 0;
-    gap: 15px;
-  }
+	&__place {
+		grid-area: place;
+		align-self: start;
+		padding: 0 0 0 0;
+		gap: var(--gap-16);
+	}
 
-  &__participants {
-    grid-area: participants;
-    align-self: flex-start;
-  }
+	&__participants {
+		grid-area: participants;
+		align-self: flex-start;
+	}
 
-  &__photos {
-    grid-area: photos;
-  }
+	&__photos {
+		grid-area: photos;
+	}
 
-  &__description {
-    grid-area: description;
-    display: block;
-  }
+	&__description {
+		grid-area: description;
+		display: block;
+	}
 
-  &__poster {
-    grid-area: poster;
-    max-width: 30%;
-    float: left;
-    padding-right: 48px;
-    padding-bottom: 40px;
+	&__poster {
+		grid-area: poster;
+		max-width: 30%;
+		float: left;
+		padding-right: var(--gap-48);
+		padding-bottom: var(--gap-48);
 
-    @media screen and (max-width: 768px) {
-      float: unset;
-      max-width: unset;
-      width: 100%;
-      padding-right: 0;
-    }
-  }
+		@media screen and (max-width: 768px) {
+			float: unset;
+			max-width: unset;
+			width: 100%;
+			padding-right: 0;
+		}
+	}
 
-  &__link {
-    text-decoration: underline;
-    display: inline;
-  }
+	&__link {
+		text-decoration: underline;
+		display: inline;
+	}
 }

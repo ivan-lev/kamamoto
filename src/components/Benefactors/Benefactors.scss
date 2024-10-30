@@ -1,70 +1,70 @@
 .benefactors {
-  max-width: 900px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
+	max-width: 900px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--gap-32);
 
-  &__card.container {
-    display: grid;
-    grid-template-columns: 30% 1fr;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-      'photo name'
-      'photo about'
-      'photo content';
-    gap: 16px 32px;
-  }
+	&__card.container {
+		display: grid;
+		grid-template-columns: 30% 1fr;
+		grid-template-rows: auto auto 1fr;
+		grid-template-areas:
+			'photo name'
+			'photo about'
+			'photo content';
+		gap: var(--gap-16) var(--gap-32);
+	}
 
-  &__card:nth-child(even) {
-    grid-template-columns: 1fr 30%;
-    grid-template-areas:
-      'name photo'
-      'about photo'
-      'content photo';
-  }
+	&__card:nth-child(even) {
+		grid-template-columns: 1fr 30%;
+		grid-template-areas:
+			'name photo'
+			'about photo'
+			'content photo';
+	}
 
-  @media screen and (max-width: 500px) {
-    &__card:nth-child(n + 1) {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        'photo'
-        'name'
-        'about'
-        'content';
-    }
-  }
+	@media screen and (max-width: 500px) {
+		&__card:nth-child(n + 1) {
+			grid-template-columns: 1fr;
+			grid-template-areas:
+				'photo'
+				'name'
+				'about'
+				'content';
+		}
+	}
 
-  &__photo {
-    width: 100%;
-    border: 0;
-    border-radius: 2px;
-    grid-area: photo;
-    aspect-ratio: 2 / 3;
+	&__photo {
+		width: 100%;
+		border: 0;
+		border-radius: 2px;
+		grid-area: photo;
+		aspect-ratio: 2 / 3;
 
-    @media screen and (max-width: 500px) {
-      border-radius: 50%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      object-position: top;
-    }
-  }
+		@media screen and (max-width: 500px) {
+			border-radius: 50%;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			object-position: top;
+		}
+	}
 
-  &__name {
-    text-transform: uppercase;
-    grid-area: name;
+	&__name {
+		text-transform: uppercase;
+		grid-area: name;
 
-    @media screen and (max-width: 500px) {
-      margin: auto;
-      font-size: 20px;
-    }
-  }
+		@media screen and (max-width: 500px) {
+			margin: auto;
+			font-size: 20px;
+		}
+	}
 
-  &__about {
-    font-size: 14px;
-    grid-area: about;
-  }
+	&__about {
+		font-size: 14px;
+		grid-area: about;
+	}
 
-  &__content {
-    grid-area: content;
-  }
+	&__content {
+		grid-area: content;
+	}
 }

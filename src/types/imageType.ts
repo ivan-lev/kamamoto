@@ -1,6 +1,6 @@
-type Image = {
-  original: string;
-  thumbnail: string;
-};
+interface Image {
+	original: string;
+	thumbnail: string;
+}
 
 export type Images = Image[];

@@ -1,36 +1,36 @@
 .social-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--gap-16);
 
-  @media screen and (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
+	@media screen and (max-width: 600px) {
+		grid-template-columns: 1fr;
+	}
 
-  &__link {
-    padding: 0 24px;
-    height: 56px;
-    width: auto;
-    transition: all 0.1s;
+	&__link {
+		padding: 0 var(--gap-24);
+		height: 56px;
+		width: auto;
+		transition: all 0.1s;
 
-    &:hover {
-      background: var(--background-hover);
-    }
+		&:hover {
+			background: var(--background-hover);
+		}
 
-    &::after {
-      content: '';
-      width: 16px;
-      height: 16px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 16px;
-      background-image: url('/icons/link-arrow-up-right.svg');
-      margin-left: auto;
-    }
-  }
+		&::after {
+			content: '';
+			width: 16px;
+			height: 16px;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 16px;
+			background-image: url('/icons/link-arrow-up-right.svg');
+			margin-left: auto;
+		}
+	}
 
-  &__icon {
-    width: 16px;
-    height: 16px;
-  }
+	&__icon {
+		width: 16px;
+		height: 16px;
+	}
 }

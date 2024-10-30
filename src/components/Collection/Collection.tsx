@@ -13,28 +13,28 @@ import { categories } from '../../variables/categories';
 import './Collection.scss';
 
 export default function Collection() {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  });
+	useLayoutEffect(() => {
+		window.scrollTo(0, 0);
+	});
 
-  useEffect(() => {
-    dispatch(setDisplayList(categories));
+	useEffect(() => {
+		dispatch(setDisplayList(categories));
 
-    return () => {
-      dispatch(resetDisplayList());
-    };
-  }, []);
+		return () => {
+			dispatch(resetDisplayList());
+		};
+	}, []);
 
-  return (
-    <>
-      <Seo title="Камамото: коллекция японской керамики" />
+	return (
+		<>
+			<Seo title="Камамото: коллекция японской керамики" />
 
-      <section className="section collection">
-        <h2 className="title title2">Коллекция</h2>
-        <DisplayGrid />
-      </section>
-    </>
-  );
+			<section className="section collection">
+				<h2 className="title title2">Коллекция</h2>
+				<DisplayGrid />
+			</section>
+		</>
+	);
 }

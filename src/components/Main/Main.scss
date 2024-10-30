@@ -1,8 +1,8 @@
 .content {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-  width: 100%;
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--gap-48);
+	width: 100%;
 }

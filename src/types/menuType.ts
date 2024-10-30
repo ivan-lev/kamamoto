@@ -1,6 +1,6 @@
-type MenuElement = {
-  name: string;
-  link: string;
-};
+interface MenuElement {
+	name: string;
+	link: string;
+}
 
 export type Menu = MenuElement[];

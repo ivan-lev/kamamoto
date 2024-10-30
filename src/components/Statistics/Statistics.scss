@@ -1,46 +1,46 @@
 .statistics {
-  &__list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 50px;
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-column-gap: var(--gap-48);
 
-    @media screen and (max-width: 768px) {
-      grid-column-gap: 35px;
-    }
+		@media screen and (max-width: 768px) {
+			grid-column-gap: var(--gap-32);
+		}
 
-    @media screen and (max-width: 600px) {
-      grid-column-gap: 20px;
-    }
-  }
+		@media screen and (max-width: 600px) {
+			grid-column-gap: var(--gap-16);
+		}
+	}
 
-  &__element {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+	&__element {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
-  &__header {
-    color: var(--text-muted, rgba(218, 197, 167, 0.6));
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
+	&__header {
+		color: var(--text-muted, rgba(218, 197, 167, 0.6));
+		font-size: 13px;
+		font-style: normal;
+		font-weight: 400;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+	}
 
-  &__number {
-    color: var(--text-default, #dac5a7);
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 300;
-    text-transform: uppercase;
+	&__number {
+		color: var(--text-default, #dac5a7);
+		font-size: 64px;
+		font-style: normal;
+		font-weight: 300;
+		text-transform: uppercase;
 
-    @media screen and (max-width: 768px) {
-      font-size: 50px;
-    }
+		@media screen and (max-width: 768px) {
+			font-size: 50px;
+		}
 
-    @media screen and (max-width: 600px) {
-      font-size: 30px;
-    }
-  }
+		@media screen and (max-width: 600px) {
+			font-size: 30px;
+		}
+	}
 }

@@ -1,24 +1,24 @@
 .header {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  height: 65px;
-  padding: 12px 32px;
-  box-sizing: border-box;
-  background-color: var(--background-secondary);
-  margin-top: 50px;
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--gap-32);
+	height: 65px;
+	padding: var(--gap-12) var(--gap-32);
+	box-sizing: border-box;
+	background-color: var(--background-secondary);
+	margin-top: var(--gap-48);
 
-  @media screen and (max-width: 900px) {
-    flex-direction: column;
-    height: unset;
-    padding: 32px;
-  }
+	@media screen and (max-width: 900px) {
+		flex-direction: column;
+		height: unset;
+		padding: var(--gap-32);
+	}
 
-  @media screen and (max-width: 768px) {
-    max-width: calc(100% - 80px);
-    padding-left: 80px;
-    padding-right: 80px;
-  }
+	@media screen and (max-width: 768px) {
+		max-width: calc(100% - 80px);
+		padding-left: var(--gap-72);
+		padding-right: var(--gap-72);
+	}
 }

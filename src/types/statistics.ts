@@ -1,7 +1,7 @@
 export interface Statistics {
-  exhibits: number;
-  exhibitions: number;
-  categories: number;
-  partners: number;
-  letters: number;
+	exhibits: number;
+	exhibitions: number;
+	categories: number;
+	partners: number;
+	letters: number;
 }

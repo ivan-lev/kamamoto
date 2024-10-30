@@ -3,21 +3,21 @@
 @import url('./variables/globalStyles.scss');
 
 body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	min-width: 320px;
+	min-height: 100vh;
 
-  background-color: var(--background-primary);
-  color: var(--text-default);
-  font-family: var(--main-font);
+	background-color: var(--background-primary);
+	color: var(--text-default);
+	font-family: var(--main-font);
 
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }

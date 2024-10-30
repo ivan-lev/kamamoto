@@ -1,27 +1,27 @@
+import type { displayListType } from '../types/displayListType';
+
 import { createSlice } from '@reduxjs/toolkit';
 
-import { displayListType } from '../types/displayListType';
-
 interface listState {
-  displayList: displayListType[];
+	displayList: displayListType[];
 }
 
 const initialState: listState = {
-  displayList: []
+	displayList: [],
 };
 
 const listSlice = createSlice({
-  name: 'list',
-  initialState,
-  reducers: {
-    setDisplayList: (state, action) => {
-      state.displayList = action.payload;
-    },
+	name: 'list',
+	initialState,
+	reducers: {
+		setDisplayList: (state, action) => {
+			state.displayList = action.payload;
+		},
 
-    resetDisplayList: state => {
-      state.displayList = [];
-    }
-  }
+		resetDisplayList: (state) => {
+			state.displayList = [];
+		},
+	},
 });
 
 export const { setDisplayList, resetDisplayList } = listSlice.actions;

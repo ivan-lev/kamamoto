@@ -1,21 +1,21 @@
 .not-found {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  box-sizing: border-box;
-  background-image: linear-gradient(0deg, rgba(14, 14, 14, 0.7), rgba(14, 14, 14, 0.7)),
-    url('/images/not-found-page.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border-radius: 10px;
-  overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	box-sizing: border-box;
+	background-image: linear-gradient(0deg, rgba(14, 14, 14, 0.7), rgba(14, 14, 14, 0.7)),
+		url('/images/not-found-page.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	border-radius: 10px;
+	overflow: hidden;
 
-  &__text {
-    font-size: 40px;
-    text-transform: uppercase;
-    text-align: center;
-  }
+	&__text {
+		font-size: 40px;
+		text-transform: uppercase;
+		text-align: center;
+	}
 }

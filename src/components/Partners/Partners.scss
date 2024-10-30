@@ -1,21 +1,21 @@
 .partners {
-  align-items: center;
+	align-items: center;
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(min-content, auto));
-    grid-auto-rows: minmax(min-content, auto);
-    gap: 50px;
-    justify-content: space-around;
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(min-content, auto));
+		grid-auto-rows: minmax(min-content, auto);
+		gap: var(--gap-48);
+		justify-content: space-around;
 
-    @media screen and (max-width: 768px) {
-      grid-template-columns: repeat(3, minmax(min-content, auto));
-      gap: 40px;
-    }
+		@media screen and (max-width: 768px) {
+			grid-template-columns: repeat(3, minmax(min-content, auto));
+			gap: var(--gap-40);
+		}
 
-    @media screen and (max-width: 600px) {
-      grid-template-columns: repeat(2, minmax(min-content, auto));
-      gap: 30px;
-    }
-  }
+		@media screen and (max-width: 600px) {
+			grid-template-columns: repeat(2, minmax(min-content, auto));
+			gap: var(--gap-32);
+		}
+	}
 }

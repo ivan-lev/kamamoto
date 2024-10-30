@@ -1,37 +1,40 @@
 :root {
 // Margins, paddings, gaps
-  --gap-4: 4px;
-  --gap-8: 8px;
-  --gap-12: 12px;
-  --gap-16: 16px;
-  --gap-24: 24px;
-  --gap-32: 32px;
-  --gap-48: 48px;
-  --gap-96: 96px;
+	--gap-4: 4px;
+	--gap-8: 8px;
+	--gap-12: 12px;
+	--gap-16: 16px;
+	--gap-24: 24px;
+	--gap-32: 32px;
+	--gap-40: 40px;
+	--gap-48: 48px;
+	--gap-60: 60px;
+	--gap-72: 72px;
+	--gap-96: 96px;
 
 // Colors
-  --color-primary-100: #0e0e0e;
-  --color-primary-200: #1a1a1a;
-  --color-secondary-005: #dac5a70d; // 0.05 opacity
-  --color-secondary-007: #dac5a712; // 0.07 opacity
-  --color-secondary-010: #dac5a71a; // 0.10 opacity
-  --color-secondary-015: #dac5a726; // 0.15 opacity
-  --color-secondary-030: #dac5a74d; // 0.30 opacity
-  --color-secondary-060: #dac5a799; // 0.60 opacity
-  --color-secondary-100: #dac5a7; // 1 opacity
+	--color-primary-100: #0e0e0e;
+	--color-primary-200: #1a1a1a;
+	--color-secondary-005: #dac5a70d; // 0.05 opacity
+	--color-secondary-007: #dac5a712; // 0.07 opacity
+	--color-secondary-010: #dac5a71a; // 0.10 opacity
+	--color-secondary-015: #dac5a726; // 0.15 opacity
+	--color-secondary-030: #dac5a74d; // 0.30 opacity
+	--color-secondary-060: #dac5a799; // 0.60 opacity
+	--color-secondary-100: #dac5a7; // 1 opacity
 
-  --background-primary: var(--color-primary-100);
-  --background-secondary: var(--color-primary-200);
-  --background-muted: var(--color-secondary-005);
-  --background-hover: var(--color-secondary-010);
-  --background-hover-card: var(--color-secondary-007);
+	--background-primary: var(--color-primary-100);
+	--background-secondary: var(--color-primary-200);
+	--background-muted: var(--color-secondary-005);
+	--background-hover: var(--color-secondary-010);
+	--background-hover-card: var(--color-secondary-007);
 
-  --border-color: var(--color-secondary-015);
-  --border-hover: var(--color-secondary-005);
-  --box-shadow: var(--color-primary-200);
+	--border-color: var(--color-secondary-015);
+	--border-hover: var(--color-secondary-005);
+	--box-shadow: var(--color-primary-200);
 
-  --text-default: var(--color-secondary-100);
-  --text-muted: var(--color-secondary-060);
-  --text-disabled: var(--color-secondary-030);
-  --text-inverse: var(--color-primary-100);
+	--text-default: var(--color-secondary-100);
+	--text-muted: var(--color-secondary-060);
+	--text-disabled: var(--color-secondary-030);
+	--text-inverse: var(--color-primary-100);
 }
