@@ -2,6 +2,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: var(--gap-32);
+    padding: var(--gap-32);
 
 	&__grid {
 		display: grid;
@@ -16,6 +18,9 @@
 		flex-direction: column;
 		align-items: center;
 		gap: var(--gap-16);
+		background: var(--background-muted);
+		border: 1px solid var(--border-color);
+		border-radius: 2px;
 	}
 
 	&__element-icon {

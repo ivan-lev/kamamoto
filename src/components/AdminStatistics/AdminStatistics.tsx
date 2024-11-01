@@ -33,10 +33,10 @@ export default function AdminStatistics(): JSX.Element {
 				<Preloader />
 			)
 		: (
-				<div className="admin-statistics container">
+				<div className="admin-statistics">
 					<h2 className="title3">Статистика</h2>
 					<div className="admin-statistics__grid">
-						<div className="bordered background-muted admin-statistics__element">
+						<div className="admin-statistics__element">
 							<img
 								className="admin-statistics__element-icon"
 								src="/icons/exhibitions.svg"
@@ -48,7 +48,7 @@ export default function AdminStatistics(): JSX.Element {
 							</span>
 						</div>
 
-						<div className="bordered background-muted admin-statistics__element">
+						<div className="admin-statistics__element">
 							<img className="admin-statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
 							<span className="admin-statistics__element-title">
 								Экспонаты:&nbsp;
@@ -56,7 +56,7 @@ export default function AdminStatistics(): JSX.Element {
 							</span>
 						</div>
 
-						<div className="bordered background-muted admin-statistics__element">
+						<div className="admin-statistics__element">
 							<img
 								className="admin-statistics__element-icon"
 								src="/icons/categories.svg"
@@ -68,7 +68,7 @@ export default function AdminStatistics(): JSX.Element {
 							</span>
 						</div>
 
-						<div className="bordered background-muted admin-statistics__element">
+						<div className="admin-statistics__element">
 							<img className="admin-statistics__element-icon" src="/icons/partners.svg" alt="иконка" />
 							<span className="admin-statistics__element-title">
 								Партнёры:&nbsp;
@@ -76,7 +76,7 @@ export default function AdminStatistics(): JSX.Element {
 							</span>
 						</div>
 
-						<div className="bordered background-muted admin-statistics__element">
+						<div className="admin-statistics__element">
 							<img className="admin-statistics__element-icon" src="/icons/letter.svg" alt="иконка" />
 							<span className="admin-statistics__element-title">
 								Письма:&nbsp;

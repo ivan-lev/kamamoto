@@ -51,7 +51,7 @@ export default function AdminExhibitions(): JSX.Element {
 						<div className="container admin-exhibitions">
 							<h2 className="title3">Выставки</h2>
 							<div className="admin-section-list">
-								<div className="admin-section-list__row admin-exhibitions__row">
+								<div className="admin-exhibitions__row">
 									<span>ID</span>
 									<span>Название</span>
 									<span>Город</span>
@@ -63,7 +63,7 @@ export default function AdminExhibitions(): JSX.Element {
 									return (
 										<div
 											key={exhibition.id}
-											className="muted admin-section-list__row admin-exhibitions__row"
+											className="admin-exhibitions__row"
 										>
 											<span>{exhibition.id}</span>
 											<span>{exhibition.name}</span>

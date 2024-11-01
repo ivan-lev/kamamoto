@@ -135,7 +135,7 @@ export default function AdminCategories(): JSX.Element {
 						<div className="container admin-categories">
 							<h2 className="title3">Категории</h2>
 							<div className="admin-section-list">
-								<div className="admin-section-list__row admin-categories__row">
+								<div className="admin-categories__row">
 									<span>Название</span>
 									<span>Ссылка</span>
 									<span>Файл предпросмотра</span>
@@ -144,7 +144,7 @@ export default function AdminCategories(): JSX.Element {
 								{categories.map((cat) => {
 									const { category, title, thumbnail } = cat;
 									return (
-										<div key={category} className="muted admin-section-list__row admin-categories__row">
+										<div key={category} className="admin-categories__row">
 											<span>{title}</span>
 											<span>{category}</span>
 											<span>{thumbnail}</span>
@@ -160,95 +160,91 @@ export default function AdminCategories(): JSX.Element {
 								})}
 							</div>
 
-							<div className="admin-section-form">
-								<form className="background-muted bordered admin-section-form__form">
-									<fieldset className="admin-section-form__fieldset" disabled={isFormDisabled}>
-										<legend className="admin-section-form__field-legend">
-											{!isExistingCategoryEdited ? 'Добавить категорию' : 'Редактировать категорию'}
-										</legend>
+							<form className="form">
+								<fieldset className="form__fieldset" disabled={isFormDisabled}>
+									<legend className="form__legend">
+										{!isExistingCategoryEdited ? 'Добавить категорию' : 'Редактировать категорию'}
+									</legend>
 
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field">
-												<span>Название</span>
-												<input
-													className={`background-muted bordered input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="title"
-													placeholder="по-русски"
-													value={title}
-													onChange={handleChange}
-												/>
-											</div>
-
-											<div className="admin-section-form__field">
-												<span>путь</span>
-												<input
-													className={`background-muted bordered input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="category"
-													placeholder="по-английски"
-													value={category}
-													onChange={handleChange}
-												/>
-											</div>
-
-											<div className="admin-section-form__field">
-												<span>файл картинки</span>
-												<input
-													className={`background-muted bordered input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="thumbnail"
-													placeholder="в галерею"
-													value={thumbnail}
-													onChange={handleChange}
-												/>
-											</div>
+									<div className="form__grid">
+										<div className="form__row-4">
+											<span>Название</span>
+											<input
+												className={`background-muted bordered input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="title"
+												placeholder="по-русски"
+												value={title}
+												onChange={handleChange}
+											/>
 										</div>
 
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field admin-partners__submit-field">
-												{!isExistingCategoryEdited
-													? (
-															<>
-																<button
-																	className="button"
-																	type="button"
-																	onClick={() => dispatch(clearCategoryForm())}
-																>
-																	Очистить
-																</button>
-																<button className="button" type="submit" onClick={handleCreateCategory}>
-																	Создать
-																</button>
-															</>
-														)
-													: (
-															<>
-																<button
-																	className="button"
-																	type="button"
-																	onClick={handleUpdateCategory}
-																	disabled={isFormDisabled}
-																>
-																	Сохранить
-																</button>
-																<button className="button" type="button" onClick={handleDeleteCategory}>
-																	Удалить
-																</button>
-															</>
-														)}
-											</div>
+										<div className="form__row-4">
+											<span>путь</span>
+											<input
+												className={`background-muted bordered input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="category"
+												placeholder="по-английски"
+												value={category}
+												onChange={handleChange}
+											/>
 										</div>
-									</fieldset>
-									<span className="admin-section-form__save-status">{saveMessage}</span>
-								</form>
-							</div>
+
+										<div className="form__row-4">
+											<span>файл картинки</span>
+											<input
+												className={`background-muted bordered input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="thumbnail"
+												placeholder="в галерею"
+												value={thumbnail}
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className="form__row-12--inline">
+											{!isExistingCategoryEdited
+												? (
+														<>
+															<button
+																className="button"
+																type="button"
+																onClick={() => dispatch(clearCategoryForm())}
+															>
+																Очистить
+															</button>
+															<button className="button" type="submit" onClick={handleCreateCategory}>
+																Создать
+															</button>
+														</>
+													)
+												: (
+														<>
+															<button
+																className="button"
+																type="button"
+																onClick={handleUpdateCategory}
+																disabled={isFormDisabled}
+															>
+																Сохранить
+															</button>
+															<button className="button" type="button" onClick={handleDeleteCategory}>
+																Удалить
+															</button>
+														</>
+													)}
+										</div>
+									</div>
+								</fieldset>
+								<span className="admin-section-form__save-status">{saveMessage}</span>
+							</form>
 						</div>
 					)}
 		</>

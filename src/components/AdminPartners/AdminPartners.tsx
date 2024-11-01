@@ -146,7 +146,7 @@ export default function AdminPartners(): JSX.Element {
 						<div className="container admin-partners">
 							<h2 className="title3">Партнёры</h2>
 							<div className="admin-section-list">
-								<div className="admin-section-list__row admin-partners__row">
+								<div className="admin-partners__row">
 									<span>Название</span>
 									<span>Акт-сть</span>
 									<span></span>
@@ -154,7 +154,7 @@ export default function AdminPartners(): JSX.Element {
 								{partners.map((partner) => {
 									const { _id, title, isActive } = partner;
 									return (
-										<div key={_id} className="muted admin-section-list__row admin-partners__row">
+										<div key={_id} className="admin-partners__row">
 											<span>{title}</span>
 											<span>{isActive ? 'Да' : 'Нет'}</span>
 											<span>
@@ -169,123 +169,117 @@ export default function AdminPartners(): JSX.Element {
 								})}
 							</div>
 
-							<div className="admin-section-form">
-								<form className="background-muted bordered admin-section-form__form">
-									<fieldset className="admin-section-form__fieldset" disabled={isFormDisabled}>
-										<legend className="admin-section-form__field-legend">
-											{!isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра'}
-										</legend>
+							<form className="form">
+								<fieldset className="form__fieldset" disabled={isFormDisabled}>
+									<legend className="form__legend">
+										{!isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра'}
+									</legend>
 
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field admin-partners__title-field">
-												<span>наименование</span>
-												<input
-													className={`background-muted bordered input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="title"
-													placeholder="название организации"
-													value={title}
-													onChange={handleChange}
-												/>
-											</div>
-
-											<div className="checkbox admin-section-form__field admin-partners__is-active-field">
-												<span>на сайте</span>
-												<label
-													className={`background-muted bordered input checkbox-label ${
-														isActive ? 'checkbox-label_checked' : ''
-													} ${
-														isFormDisabled ? 'checkbox-label_disabled' : ''
-													} admin-section-form__checkbox-label`}
-												>
-													<input
-														className="checkbox-input"
-														type="checkbox"
-														checked={isActive}
-														name="isActive"
-														onChange={handleCheckBox}
-													/>
-												</label>
-											</div>
+									<div className="form__grid">
+										<div className="form__row-10">
+											<span>наименование</span>
+											<input
+												className={`input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="title"
+												placeholder="название организации"
+												value={title}
+												onChange={handleChange}
+											/>
 										</div>
 
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field admin-partners__link-field">
-												<span>ссылка на ресурс партнёра</span>
+										<div className="form__row-2">
+											<span>на сайте</span>
+											<label
+												className={`checkbox-label ${
+													isActive ? 'checkbox-label--checked' : ''
+												} ${
+													isFormDisabled ? 'checkbox-label_disabled' : ''
+												}`}
+											>
 												<input
-													className={`background-muted bordered input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="link"
-													placeholder="сайт, вк, канал в телеграме"
-													value={link}
-													onChange={handleChange}
+													className="checkbox-input"
+													type="checkbox"
+													checked={isActive}
+													name="isActive"
+													onChange={handleCheckBox}
 												/>
-											</div>
-
-											<div className="admin-section-form__field admin-partners__logo-field">
-												<span>файл логотипа</span>
-												<input
-													className={`background-muted bordered input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="logo"
-													placeholder="название файла"
-													value={logo}
-													onChange={handleChange}
-												/>
-											</div>
+											</label>
 										</div>
 
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field admin-partners__submit-field">
-												{!isExistingPartnerEdited
-													? (
-															<>
-																<button
-																	className="button"
-																	type="button"
-																	onClick={() => dispatch(clearPartnerForm())}
-																>
-																	Очистить
-																</button>
-																<button className="button" type="submit" onClick={handleCreatePartner}>
-																	Создать
-																</button>
-															</>
-														)
-													: (
-															<>
-																<button
-																	className="button"
-																	type="button"
-																	onClick={handleUpdatePartner}
-																	disabled={isFormDisabled}
-																>
-																	Сохранить
-																</button>
-																<button className="button" type="button" onClick={handleDeletePartner}>
-																	Удалить
-																</button>
-															</>
-														)}
-												{/* <button
+										<div className="form__row-8">
+											<span>ссылка на ресурс партнёра</span>
+											<input
+												className={`input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="link"
+												placeholder="сайт, вк, канал в телеграме"
+												value={link}
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className="form__row-4">
+											<span>файл логотипа</span>
+											<input
+												className={`input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="logo"
+												placeholder="название файла"
+												value={logo}
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className="form__row-12--inline">
+											{!isExistingPartnerEdited
+												? (
+														<>
+															<button
+																className="button"
+																type="button"
+																onClick={() => dispatch(clearPartnerForm())}
+															>
+																Очистить
+															</button>
+															<button className="button" type="submit" onClick={handleCreatePartner}>
+																Создать
+															</button>
+														</>
+													)
+												: (
+														<>
+															<button
+																className="button"
+																type="button"
+																onClick={handleUpdatePartner}
+																disabled={isFormDisabled}
+															>
+																Сохранить
+															</button>
+															<button className="button" type="button" onClick={handleDeletePartner}>
+																Удалить
+															</button>
+														</>
+													)}
+											{/* <button
                       className="button"
                       type="button"
                       // onClick={handleCloseExhibitionForm}
                     >
                       Закрыть
                     </button> */}
-											</div>
 										</div>
-									</fieldset>
-									<span className="admin-section-form__save-status">{saveMessage}</span>
-								</form>
-							</div>
+									</div>
+								</fieldset>
+								<span className="admin-section-form__save-status">{saveMessage}</span>
+							</form>
 						</div>
 					)}
 		</>

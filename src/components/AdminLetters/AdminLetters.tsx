@@ -139,7 +139,7 @@ export default function AdminLetters(): JSX.Element {
 					)
 				: (
 						<section className="container admin-partners">
-							<h2 className="title3">Благодарственные письма</h2>
+							<h2 className="title3">Благодарственные письма (в разработке)</h2>
 
 							<div className="admin-section-list">
 								<div className="admin-section-list__row admin-partners__row">

@@ -1,29 +1,15 @@
 .admin-partners {
 	&__row {
+		display: grid;
 		grid-template-columns: 1fr 60px 20px;
-	}
+		opacity: 0.6;
 
-	&__title-field {
-		width: 100%;
-	}
+		&:first-child {
+			opacity: 1;
+		}
 
-	&__is-active-field {
-		width: 80px;
-		align-items: end;
-	}
-
-	&__link-field {
-		width: 50%;
-	}
-
-	&__logo-field {
-		width: 50%;
-	}
-
-	&__submit-field {
-		flex-grow: 1;
-		flex-direction: row;
-		justify-content: end;
-		gap: var(--gap-8);
+		&:not(:first-child):not(:last-child) {
+			border-bottom: 1px dashed var(--text-muted);
+		}
 	}
 }

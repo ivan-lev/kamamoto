@@ -48,20 +48,23 @@ export default function AdminExhibits(): JSX.Element {
 					)
 				: (
 						<div className="container">
-							<div className="admin-exhibit__list">
-								<span>ID</span>
-								<span>Название</span>
-								<span>Категория</span>
-								<span>Стиль</span>
-							</div>
-							{exhibits.map(exhibit => (
-								<div className="admin-exhibit__list" key={exhibit.id}>
-									<span>{exhibit.id}</span>
-									<span>{exhibit.name}</span>
-									<span>{exhibit.category}</span>
-									<span>{exhibit.style}</span>
+							<h2 className="title3">Лоты</h2>
+							<div className="admin-section-list">
+								<div className="admin-exhibit__list">
+									<span>ID</span>
+									<span>Название</span>
+									<span>Категория</span>
+									<span>Стиль</span>
 								</div>
-							))}
+								{exhibits.map(exhibit => (
+									<div className="admin-exhibit__list" key={exhibit.id}>
+										<span>{exhibit.id}</span>
+										<span>{exhibit.name}</span>
+										<span>{exhibit.category}</span>
+										<span>{exhibit.style}</span>
+									</div>
+								))}
+							</div>
 						</div>
 					)}
 		</>
