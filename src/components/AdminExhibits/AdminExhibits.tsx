@@ -5,6 +5,7 @@ import type { Exhibit, Exhibits } from '../../types/exhibitType';
 import { useEffect, useState } from 'react';
 
 // Components
+import AdminExhibitForm from '../AdminExhibitForm/AdminExhibitForm';
 import Preloader from '../Preloader/Preloader';
 import Seo from '../Seo/Seo';
 
@@ -65,6 +66,8 @@ export default function AdminExhibits(): JSX.Element {
 									</div>
 								))}
 							</div>
+
+							<AdminExhibitForm />
 						</div>
 					)}
 		</>
