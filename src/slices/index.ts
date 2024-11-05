@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import categoriesReducer from './categories';
 import categoryReducer from './categorySlice';
 import exhibitionsReducer from './exhibitionsSlice';
 import exhibitsReducer from './exhibitSlice';
@@ -10,6 +11,7 @@ import statisticsReducer from './statisticsSlice';
 
 const store = configureStore({
 	reducer: {
+		categories: categoriesReducer,
 		category: categoryReducer,
 		exhibit: exhibitsReducer,
 		exhibitions: exhibitionsReducer,
