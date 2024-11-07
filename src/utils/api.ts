@@ -36,6 +36,12 @@ function getExhibits() {
 	}).then((response: any) => checkResponseStatus(response));
 }
 
+function getExhibitsByCategory(category: string) {
+	return fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
+		method: 'GET',
+	}).then((response: any) => checkResponseStatus(response));
+}
+
 function getExhibitions() {
 	return fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
 		method: 'GET',
@@ -183,6 +189,7 @@ function checkResponseStatus(res: any) {
 export const api = {
 	getCategories,
 	getExhibits,
+	getExhibitsByCategory,
 	getExhibitions,
 	getExhibitionById,
 	getLetters,

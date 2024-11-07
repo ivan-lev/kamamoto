@@ -1,45 +1,54 @@
 // Types and enums
+import type { RootState } from '../../slices';
 import { ExhibitCategory } from '../../types/exhibitCategory';
 
 // React and Redux
-import { useEffect, useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import { resetCategory, setCategory } from '../../slices/categorySlice';
 import { resetDisplayList, setDisplayList } from '../../slices/listSlice';
 
 // Components
 import DisplayGrid from '../DisplayGrid/DisplayGrid';
+import Preloader from '../Preloader/Preloader';
 import Seo from '../Seo/Seo';
 
 // Utils and variables
-import { generateListToDisplay } from '../../utils/generateListToDisplay';
-import { getCategory } from '../../utils/getCategory';
-import { exhibits } from '../../variables/exhibits';
+import { api } from '../../utils/api';
 
 import './Category.scss';
 
 export default function Category(): JSX.Element {
+	const category = useParams().category;
 	const dispatch = useDispatch();
-	const location = useLocation().pathname;
-	const category = getCategory(location);
 	const categoryName = ExhibitCategory[category as keyof typeof ExhibitCategory];
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
 
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
 	});
 
 	useEffect(() => {
-		dispatch(setCategory(category));
-		dispatch(setDisplayList(generateListToDisplay(category, exhibits)));
+		if (category) {
+			dispatch(setCategory(category));
+			api.getExhibitsByCategory(category)
+				.then((response) => {
+					dispatch(setDisplayList(response));
+					setShowPreloader(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setShowPreloader(false);
+				});
+		}
 
 		return () => {
-			if (category) {
-				dispatch(resetCategory());
-				dispatch(resetDisplayList());
-			}
+			dispatch(resetCategory());
+			dispatch(resetDisplayList());
 		};
-	}, []);
+	}, [category]);
 
 	return (
 		<>
@@ -56,8 +65,14 @@ export default function Category(): JSX.Element {
 					</Link>
 				</div>
 
-				<h3 className="title title3 category__title">{categoryName}</h3>
-				<DisplayGrid />
+				<h2 className="title title2 category__title">{categoryName}</h2>
+				{listToDisplay.length === 0 && showPreloader
+					? (
+							<Preloader />
+						)
+					: (
+							<DisplayGrid />
+						)}
 			</section>
 		</>
 	);
