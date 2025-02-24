@@ -134,6 +134,11 @@ export default function AdminPartners(): JSX.Element {
 		}
 	};
 
+	const handleCancelEditPartner = () => {
+		dispatch(clearPartnerForm());
+		dispatch(setIsExistingPartnerEdited(false));
+	};
+
 	return (
 		<>
 			<Seo title="Камамото: список партнёров" />
@@ -190,13 +195,13 @@ export default function AdminPartners(): JSX.Element {
 											/>
 										</div>
 
-										<div className="form__row-2">
+										<div className="form__row-2 form__row--centered">
 											<span>на сайте</span>
 											<label
 												className={`checkbox-label ${
 													isActive ? 'checkbox-label--checked' : ''
 												} ${
-													isFormDisabled ? 'checkbox-label_disabled' : ''
+													isFormDisabled ? 'checkbox-label--disabled' : ''
 												}`}
 											>
 												<input
@@ -255,6 +260,14 @@ export default function AdminPartners(): JSX.Element {
 													)
 												: (
 														<>
+															<button
+																className="button"
+																type="button"
+																onClick={handleCancelEditPartner}
+																disabled={isFormDisabled}
+															>
+																Отменить
+															</button>
 															<button
 																className="button"
 																type="button"

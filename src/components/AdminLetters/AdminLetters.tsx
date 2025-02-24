@@ -129,6 +129,11 @@ export default function AdminLetters(): JSX.Element {
 		}
 	};
 
+	const handleCancelEditLetter = () => {
+		dispatch(clearPartnerForm());
+		dispatch(setIsExistingPartnerEdited(false));
+	};
+
 	return (
 		<>
 			<Seo title="Камамото: благодарственные письма" />
@@ -139,7 +144,7 @@ export default function AdminLetters(): JSX.Element {
 					)
 				: (
 						<section className="container admin-partners">
-							<h2 className="title3">Благодарственные письма (в разработке)</h2>
+							<h2 className="title3">Благодарственные письма (в разработке - загружает партнеров)</h2>
 
 							<div className="admin-section-list">
 								<div className="admin-section-list__row admin-partners__row">
@@ -166,17 +171,16 @@ export default function AdminLetters(): JSX.Element {
 							</div>
 
 							<div className="admin-section-form">
-								<form className="background-muted bordered admin-section-form__form">
-									<fieldset className="admin-section-form__fieldset" disabled={isFormDisabled}>
-										<legend className="admin-section-form__field-legend">
+								<form className="form">
+									<fieldset className="form__fieldset" disabled={isFormDisabled}>
+										<legend className="form__field-legend">
 											{!isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра'}
 										</legend>
-
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field admin-partners__title-field">
+										<div className="form__grid">
+											<div className="form__row-10">
 												<span>наименование</span>
 												<input
-													className={`background-muted bordered input ${
+													className={`input ${
 														isFormDisabled ? 'input_disabled' : ''
 													}`}
 													type="text"
@@ -187,14 +191,14 @@ export default function AdminLetters(): JSX.Element {
 												/>
 											</div>
 
-											<div className="checkbox admin-section-form__field admin-partners__is-active-field">
+											<div className="form__row-2 form__row--centered">
 												<span>на сайте</span>
 												<label
-													className={`background-muted bordered input checkbox-label ${
-														isActive ? 'checkbox-label_checked' : ''
+													className={`input checkbox-label ${
+														isActive ? 'checkbox-label--checked' : ''
 													} ${
-														isFormDisabled ? 'checkbox-label_disabled' : ''
-													} admin-section-form__checkbox-label`}
+														isFormDisabled ? 'checkbox-label--disabled' : ''
+													}`}
 												>
 													<input
 														className="checkbox-input"
@@ -205,13 +209,11 @@ export default function AdminLetters(): JSX.Element {
 													/>
 												</label>
 											</div>
-										</div>
 
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field admin-partners__link-field">
+											<div className="form__row-6">
 												<span>ссылка на ресурс партнёра</span>
 												<input
-													className={`background-muted bordered input ${
+													className={`input ${
 														isFormDisabled ? 'input_disabled' : ''
 													}`}
 													type="text"
@@ -222,10 +224,10 @@ export default function AdminLetters(): JSX.Element {
 												/>
 											</div>
 
-											<div className="admin-section-form__field admin-partners__logo-field">
+											<div className="form__row-6">
 												<span>файл логотипа</span>
 												<input
-													className={`background-muted bordered input ${
+													className={`input ${
 														isFormDisabled ? 'input_disabled' : ''
 													}`}
 													type="text"
@@ -235,10 +237,9 @@ export default function AdminLetters(): JSX.Element {
 													onChange={handleChange}
 												/>
 											</div>
-										</div>
 
-										<div className="admin-section-form__fields-row">
-											<div className="admin-section-form__field admin-partners__submit-field">
+											<div className="form__row-12 form__row-12--inline">
+
 												{!isExistingPartnerEdited
 													? (
 															<>
@@ -249,7 +250,11 @@ export default function AdminLetters(): JSX.Element {
 																>
 																	Очистить
 																</button>
-																<button className="button" type="submit" onClick={handleCreatePartner}>
+																<button
+																	className="button"
+																	type="submit"
+																	onClick={handleCreatePartner}
+																>
 																	Создать
 																</button>
 															</>
@@ -259,12 +264,24 @@ export default function AdminLetters(): JSX.Element {
 																<button
 																	className="button"
 																	type="button"
+																	onClick={handleCancelEditLetter}
+																	disabled={isFormDisabled}
+																>
+																	Отменить
+																</button>
+																<button
+																	className="button"
+																	type="button"
 																	onClick={handleUpdatePartner}
 																	disabled={isFormDisabled}
 																>
 																	Сохранить
 																</button>
-																<button className="button" type="button" onClick={handleDeletePartner}>
+																<button
+																	className="button"
+																	type="button"
+																	onClick={handleDeletePartner}
+																>
 																	Удалить
 																</button>
 															</>
@@ -276,6 +293,7 @@ export default function AdminLetters(): JSX.Element {
                     >
                       Закрыть
                     </button> */}
+
 											</div>
 										</div>
 									</fieldset>
