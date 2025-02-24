@@ -412,6 +412,13 @@
 		gap: var(--gap-8);
 		justify-content: flex-end;
 	}
+
+	&__row--centered {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+	}
 }
 
 // .admin-section-form {
