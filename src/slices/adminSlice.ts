@@ -2,6 +2,7 @@
 import type { Category } from '../types/category';
 import type { Exhibition, Exhibitions } from '../types/exhibitionType';
 import type { Exhibit, Exhibits } from '../types/exhibitType';
+import type { File } from '../types/file';
 import type { Partner } from '../types/partnerType';
 
 import { configureStore, createSlice } from '@reduxjs/toolkit';
@@ -20,6 +21,7 @@ interface adminState {
 	isExistingExhibitionEdited: boolean;
 	partners: Partner[];
 	partnerToDisplay: Partner;
+	letters: File[];
 	isExistingPartnerEdited: boolean;
 	categories: Category[];
 	categoryToDisplay: Category;
@@ -36,6 +38,7 @@ const initialState: adminState = {
 	isExistingExhibitionEdited: false,
 	partners: [],
 	partnerToDisplay: { ...defaultPartner },
+	letters: [],
 	isExistingPartnerEdited: false,
 	categories: [],
 	categoryToDisplay: { ...defaultCategory },
@@ -43,7 +46,7 @@ const initialState: adminState = {
 };
 
 const adminSlice = createSlice({
-	name: 'exhibition',
+	name: 'admin',
 	initialState,
 	reducers: {
 		login: (state, action) => {
@@ -102,6 +105,10 @@ const adminSlice = createSlice({
 			state.partnerToDisplay = { ...defaultPartner };
 		},
 
+		setLetters: (state, action) => {
+			state.letters = [...action.payload];
+		},
+
 		setIsExistingPartnerEdited: (state, action) => {
 			state.isExistingPartnerEdited = action.payload;
 		},
@@ -137,6 +144,7 @@ export const {
 	setPartners,
 	setPartnerToDisplay,
 	clearPartnerForm,
+	setLetters,
 	setIsExistingPartnerEdited,
 	setCategories,
 	setCategoryToDisplay,

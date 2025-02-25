@@ -1,12 +1,11 @@
 // Types
 import type { ChangeEvent } from 'react';
 import type { AdminRootState } from '../../slices/adminSlice';
-import type { Partner } from '../../types/partnerType';
 
 // React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearPartnerForm, setIsExistingPartnerEdited, setPartners, setPartnerToDisplay,
+import { clearPartnerForm, setIsExistingPartnerEdited, setLetters, setPartnerToDisplay,
 } from '../../slices/adminSlice';
 
 // Components
@@ -25,7 +24,7 @@ export default function AdminLetters(): JSX.Element {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
-	const partners = useSelector((state: AdminRootState) => state.admin.partners);
+	const letters = useSelector((state: AdminRootState) => state.admin.letters);
 	const partnerToDisplay = useSelector((state: AdminRootState) => state.admin.partnerToDisplay);
 	const isExistingPartnerEdited = useSelector(
 		(state: AdminRootState) => state.admin.isExistingPartnerEdited,
@@ -34,11 +33,11 @@ export default function AdminLetters(): JSX.Element {
 	const { title, link, logo, isActive } = partnerToDisplay;
 
 	useEffect(() => {
-		dispatch(clearPartnerForm());
+		// dispatch(clearPartnerForm());
 		api
-			.getPartners()
-			.then((partners) => {
-				dispatch(setPartners(partners));
+			.getLetters()
+			.then((letters) => {
+				dispatch(setLetters(letters));
 				setShowPreloader(false);
 			})
 			.catch(error => console.error(error));
@@ -60,79 +59,79 @@ export default function AdminLetters(): JSX.Element {
 		dispatch(setPartnerToDisplay({ ...partnerToDisplay, [name]: checked }));
 	};
 
-	const handleCreatePartner = () => {
-		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
-		if (token) {
-			api
-				.createPartner(token, title, link, logo, isActive)
-				.then((response) => {
-					dispatch(setPartners([...partners, response]));
-					dispatch(clearPartnerForm());
-					dispatch(setIsExistingPartnerEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Новый партнёр в базе');
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
-				});
-		}
-	};
+	// const handleCreatePartner = () => {
+	// 	setIsFormDisabled(true);
+	// 	const token = localStorage.getItem('kmmttkn');
+	// 	if (token) {
+	// 		api
+	// 			.createPartner(token, title, link, logo, isActive)
+	// 			.then((response) => {
+	// 				dispatch(setLetters([...partners, response]));
+	// 				dispatch(clearPartnerForm());
+	// 				dispatch(setIsExistingPartnerEdited(false));
+	// 				setIsFormDisabled(false);
+	// 				setSaveMessage('Новый партнёр в базе');
+	// 			})
+	// 			.catch((error) => {
+	// 				console.error(error);
+	// 				setIsFormDisabled(false);
+	// 				setSaveMessage('Что-то пошло не так :(');
+	// 			});
+	// 	}
+	// };
 
-	const handleEditPartner = (partner: Partner) => {
-		dispatch(setPartnerToDisplay(partner));
-		dispatch(setIsExistingPartnerEdited(true));
-	};
+	// const handleEditPartner = (partner: Partner) => {
+	// 	dispatch(setPartnerToDisplay(partner));
+	// 	dispatch(setIsExistingPartnerEdited(true));
+	// };
 
-	const handleUpdatePartner = () => {
-		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
-		if (token) {
-			api
-				.updatePartner(token, partnerToDisplay)
-				.then((response) => {
-					const newPartnersList = partners.map((partner) => {
-						return response._id !== partner._id ? partner : response;
-					});
-					dispatch(setPartners(newPartnersList));
-					dispatch(clearPartnerForm());
-					dispatch(setIsExistingPartnerEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
-				});
-		}
-	};
+	// const handleUpdatePartner = () => {
+	// 	setIsFormDisabled(true);
+	// 	const token = localStorage.getItem('kmmttkn');
+	// 	if (token) {
+	// 		api
+	// 			.updatePartner(token, partnerToDisplay)
+	// 			.then((response) => {
+	// 				const newPartnersList = partners.map((partner) => {
+	// 					return response._id !== partner._id ? partner : response;
+	// 				});
+	// 				dispatch(setLetters(newPartnersList));
+	// 				dispatch(clearPartnerForm());
+	// 				dispatch(setIsExistingPartnerEdited(false));
+	// 				setIsFormDisabled(false);
+	// 				setSaveMessage('Данные обновлены');
+	// 			})
+	// 			.catch((error) => {
+	// 				console.error(error);
+	// 				setIsFormDisabled(false);
+	// 				setSaveMessage('Что-то пошло не так :(');
+	// 			});
+	// 	}
+	// };
 
-	const handleDeletePartner = () => {
-		const token = localStorage.getItem('kmmttkn');
-		if (token) {
-			api
-				.deletePartner(token, partnerToDisplay._id)
-				.then((response) => {
-					const newPartnersList = partners.filter(partner => partner._id !== response._id);
-					dispatch(setPartners(newPartnersList));
-					dispatch(clearPartnerForm());
-					dispatch(setIsExistingPartnerEdited(false));
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-				});
-		}
-	};
+	// const handleDeletePartner = () => {
+	// 	const token = localStorage.getItem('kmmttkn');
+	// 	if (token) {
+	// 		api
+	// 			.deletePartner(token, partnerToDisplay._id)
+	// 			.then((response) => {
+	// 				const newPartnersList = partners.filter(partner => partner._id !== response._id);
+	// 				dispatch(setLetters(newPartnersList));
+	// 				dispatch(clearPartnerForm());
+	// 				dispatch(setIsExistingPartnerEdited(false));
+	// 				setIsFormDisabled(false);
+	// 			})
+	// 			.catch((error) => {
+	// 				console.error(error);
+	// 				setIsFormDisabled(false);
+	// 			});
+	// 	}
+	// };
 
-	const handleCancelEditLetter = () => {
-		dispatch(clearPartnerForm());
-		dispatch(setIsExistingPartnerEdited(false));
-	};
+	// const handleCancelEditLetter = () => {
+	// 	dispatch(clearPartnerForm());
+	// 	dispatch(setIsExistingPartnerEdited(false));
+	// };
 
 	return (
 		<>
@@ -144,24 +143,24 @@ export default function AdminLetters(): JSX.Element {
 					)
 				: (
 						<section className="container admin-partners">
-							<h2 className="title3">Благодарственные письма (в разработке - загружает партнеров)</h2>
+							<h2 className="title3">Благодарственные письма (в разработке)</h2>
 
 							<div className="admin-section-list">
 								<div className="admin-section-list__row admin-partners__row">
-									<span>Название</span>
+									<span>Описание</span>
 									<span>Акт-сть</span>
 									<span></span>
 								</div>
-								{partners.map((partner) => {
-									const { _id, title, isActive } = partner;
+								{letters.map((letter) => {
+									const { id, description, isActive } = letter;
 									return (
-										<div key={_id} className="muted admin-section-list__row admin-partners__row">
-											<span>{title}</span>
+										<div key={id} className="muted admin-section-list__row admin-partners__row">
+											<span>{description}</span>
 											<span>{isActive ? 'Да' : 'Нет'}</span>
 											<span>
 												<button
 													className="admin-section-list__edit-button"
-													onClick={() => handleEditPartner(partner)}
+													// onClick={() => handleEditPartner(partner)}
 												>
 												</button>
 											</span>
@@ -253,7 +252,7 @@ export default function AdminLetters(): JSX.Element {
 																<button
 																	className="button"
 																	type="submit"
-																	onClick={handleCreatePartner}
+																	// onClick={handleCreatePartner}
 																>
 																	Создать
 																</button>
@@ -264,7 +263,7 @@ export default function AdminLetters(): JSX.Element {
 																<button
 																	className="button"
 																	type="button"
-																	onClick={handleCancelEditLetter}
+																	// onClick={handleCancelEditLetter}
 																	disabled={isFormDisabled}
 																>
 																	Отменить
@@ -272,7 +271,7 @@ export default function AdminLetters(): JSX.Element {
 																<button
 																	className="button"
 																	type="button"
-																	onClick={handleUpdatePartner}
+																	// onClick={handleUpdatePartner}
 																	disabled={isFormDisabled}
 																>
 																	Сохранить
@@ -280,7 +279,7 @@ export default function AdminLetters(): JSX.Element {
 																<button
 																	className="button"
 																	type="button"
-																	onClick={handleDeletePartner}
+																	// onClick={handleDeletePartner}
 																>
 																	Удалить
 																</button>
