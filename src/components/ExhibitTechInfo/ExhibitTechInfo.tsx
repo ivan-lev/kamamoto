@@ -135,7 +135,7 @@ export default function ExhibitTechInfo({
 						)}
 
 						<li className="tech-info__list-element tech-info__list-element_justify">
-							{exhibit?.complectation.length === 1
+							{exhibit?.complectation?.length === 1
 								? (
 										<>
 											Комплектность:
@@ -143,7 +143,8 @@ export default function ExhibitTechInfo({
 										</>
 									)
 								: (
-										<>{`Комплектность: ${exhibit?.complectation.join(', ')}`}</>
+										// <>{`Комплектность: ${exhibit?.complectation.join(', ')}`}</>
+										<>{`Комплектность: ${exhibit?.complectation}`}</>
 									)}
 						</li>
 

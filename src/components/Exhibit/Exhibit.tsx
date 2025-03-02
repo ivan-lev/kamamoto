@@ -2,30 +2,24 @@
 import type { RootState } from '../../slices';
 
 // React and redux
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
-import { setCategory } from '../../slices/categorySlice';
-import {
-	resetAdditionalImages,
-	resetExhibit,
-	resetImages,
-	setAdditionalImages,
-	setExhibit,
-	setImages,
-} from '../../slices/exhibitSlice';
+import { Link, useParams } from 'react-router-dom';
+import { resetExhibit, setExhibit } from '../../slices/exhibitSlice';
 
 // Components
 import ExhibitTechInfo from '../ExhibitTechInfo/ExhibitTechInfo';
+import Preloader from '../Preloader/Preloader';
 import Seo from '../Seo/Seo';
+
+// Utils and variables
+import { api } from '../../utils/api';
 
 // Other packages
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
 
 // Utils and variables
-import { generateImageLinks } from '../../utils/generateImageLinks';
-import { getExhibitNumberAndCategory } from '../../utils/getExhibitNumberAndCategory';
 import { ceramicStylesDescriptions } from '../../variables/ceramisStylesDescriptions';
 import { htmlParserOptions } from '../../variables/htmlParserOptions';
 import { PATHS } from '../../variables/variables';
@@ -34,125 +28,150 @@ import './Exhibit.scss';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 export default function Exhibit(): JSX.Element {
-	const category = useSelector((state: RootState) => state.category.category);
-	const exhibit = useSelector((state: RootState) => state.exhibit.info);
+	const exhibitId = useParams().exhibit;
+	const exhibit = useSelector((state: RootState) => state.exhibit);
 	const images = useSelector((state: RootState) => state.exhibit.images);
-	const ceramicStyle = useSelector((state: RootState) => state.exhibit.info?.style);
 	const additionalImages = useSelector((state: RootState) => state.exhibit.additionalImages);
 	const dispatch = useDispatch();
-	const location = useLocation().pathname;
-	const { exhibitCategory, exhibitNumber } = getExhibitNumberAndCategory(location);
-	const options = htmlParserOptions;
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+
+	const { additionalDescription, description, name, potterInfo, style } = exhibit;
+
+	interface GalleryImage {
+		original: string;
+		thumbnail: string;
+	}
+	const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+	const [galleryAdditionalImages, setGalleryAdditionalImages] = useState<GalleryImage[]>([]);
+
+	useEffect(() => {
+		if (galleryImages.length === 0) {
+			const imagesToDisplay: GalleryImage[] = [];
+			images?.forEach((image) => {
+				imagesToDisplay[imagesToDisplay.length] = { original: image, thumbnail: image };
+			});
+			setGalleryImages(imagesToDisplay);
+		}
+	}, [images]);
+
+	useEffect(() => {
+		if (galleryAdditionalImages.length === 0) {
+			const imagesToDisplay: GalleryImage[] = [];
+			additionalImages?.forEach((image) => {
+				imagesToDisplay[imagesToDisplay.length] = { original: image, thumbnail: image };
+			});
+			setGalleryAdditionalImages(imagesToDisplay);
+		}
+	}, [additionalImages]);
 
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
 	});
 
 	useEffect(() => {
-		if (!category) {
-			dispatch(setCategory(exhibitCategory));
+		if (exhibitId) {
+			api.getExhibitById(exhibitId)
+				.then((response) => {
+					dispatch(setExhibit(response));
+					// dispatch(setDisplayList(response));
+					setShowPreloader(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setShowPreloader(false);
+				});
 		}
-
-		dispatch(setExhibit(exhibitNumber));
 
 		return () => {
-			dispatch(resetExhibit());
-			dispatch(resetImages());
-			dispatch(resetAdditionalImages());
+			if (exhibitId)
+				dispatch(resetExhibit());
 		};
-	}, []);
-
-	useEffect(() => {
-		if (exhibit) {
-			dispatch(setImages(generateImageLinks(PATHS.EXHIBITS, exhibit.id)));
-			dispatch(
-				setAdditionalImages(
-					generateImageLinks(PATHS.EXHIBITS, exhibit.id, true),
-				),
-			);
-		}
-	}, [exhibit]);
+	}, [exhibitId]);
 
 	return (
 		<>
-			<Seo title={`Камамото: ${exhibit?.name.charAt(0).toLowerCase()}${exhibit?.name.slice(1)}`} />
+			<Seo title={`Камамото: ${name?.charAt(0).toLowerCase()}${name?.slice(1)}`} />
 
-			<section className="section exhibit">
-				<div className="exhibit__breadcrumbs">
-					<Link to=".." className="link link_navigational muted exhibit__link" relative="path">
-						<img
-							className="background-muted bordered link__icon"
-							src="/icons/link-arrow-left.svg"
-						/>
-						Назад
-					</Link>
-				</div>
-
-				<h3 className="title title3">{exhibit?.name}</h3>
-
-				{/* Main image gallery */}
-				{images && (
-					<ImageGallery items={images || []} showFullscreenButton={false} showPlayButton={false} />
-				)}
-
-				{/* Exhibit description section */}
-				<div className="text-block">
-					{exhibit?.description
-						? (
-								parse(exhibit?.description || '', options)
-							)
-						: (
-								<p className="text">Описание в процессе подготовки</p>
-							)}
-				</div>
-
-				{/* Potter description section */}
-				{exhibit?.potterInfo && (
-					<div className="text-block">
-						{exhibit?.potterPhoto && (
+			{ showPreloader && <Preloader />}
+			{!showPreloader
+			&& (
+				<section className="section exhibit">
+					<div className="exhibit__breadcrumbs">
+						<Link to=".." className="link link_navigational muted exhibit__link" relative="path">
 							<img
-								className="exhibit__potter-photo"
-								src={`${PATHS.EXHIBITS}${exhibit?.id}/${exhibit.potterPhoto}`}
-							>
-							</img>
-						)}
-
-						{exhibit?.potterInfo && parse(exhibit?.potterInfo || '', options)}
+								className="background-muted bordered link__icon"
+								src="/icons/link-arrow-left.svg"
+							/>
+							Назад
+						</Link>
 					</div>
-				)}
 
-				{/* Additional info */}
-				{exhibit?.additionalDescription && (
+					<h3 className="title title3">{name}</h3>
+
+					{/* Main image gallery */}
+					{images && (
+						<ImageGallery items={galleryImages || []} showFullscreenButton={false} showPlayButton={false} />
+					)}
+
+					{/* Exhibit description section */}
 					<div className="text-block">
-						{exhibit?.additionalDescription && parse(exhibit?.additionalDescription || '', options)}
+						{description
+							? (
+									parse(description || '', htmlParserOptions)
+								)
+							: (
+									<p className="text">Описание в процессе подготовки</p>
+								)}
 					</div>
-				)}
 
-				{/* Additional photo gallery */}
-				{exhibit?.additionalPhotos && (
-					<ImageGallery
-						items={additionalImages || []}
-						showFullscreenButton={false}
-						showPlayButton={false}
-						showThumbnails={false}
-						showBullets={true}
-					/>
-				)}
+					{/* Potter description section */}
+					{potterInfo && (
+						<div className="text-block">
+							{exhibit?.potterPhoto && (
+								<img
+									className="exhibit__potter-photo"
+									src={`${PATHS.EXHIBITS}${exhibit?.id}/${exhibit.potterPhoto}`}
+								>
+								</img>
+							)}
 
-				{/* Ceramic style description section */}
-				{ceramicStyle && ceramicStyle !== 'other' && (
-					<div className="container bordered background-muted text-block">
-						{parse(
-							ceramicStylesDescriptions[ceramicStyle as keyof typeof ceramicStylesDescriptions]
-							|| '',
-							options,
-						)}
-					</div>
-				)}
+							{exhibit?.potterInfo && parse(exhibit?.potterInfo || '', htmlParserOptions)}
+						</div>
+					)}
 
-				{/* Technical info */}
-				{exhibit && <ExhibitTechInfo exhibit={exhibit} />}
-			</section>
+					{/* Additional info */}
+					{additionalDescription && (
+						<div className="text-block">
+							{additionalDescription && parse(additionalDescription || '', htmlParserOptions)}
+						</div>
+					)}
+
+					{/* Additional photo gallery */}
+					{additionalImages && (
+						<ImageGallery
+							items={galleryAdditionalImages || []}
+							showFullscreenButton={false}
+							showPlayButton={false}
+							showThumbnails={false}
+							showBullets={true}
+						/>
+					)}
+
+					{/* Ceramic style description section */}
+					{style !== 'other' && (
+						<div className="container bordered background-muted text-block">
+							{parse(
+								ceramicStylesDescriptions[style as keyof typeof ceramicStylesDescriptions]
+								|| '',
+								htmlParserOptions,
+							)}
+						</div>
+					)}
+
+					{/* Technical info */}
+					{exhibit && <ExhibitTechInfo exhibit={exhibit} />}
+				</section>
+			)}
 		</>
 	);
 }

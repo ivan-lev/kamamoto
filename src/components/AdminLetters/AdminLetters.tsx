@@ -5,7 +5,7 @@ import type { AdminRootState } from '../../slices/adminSlice';
 // React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearPartnerForm, setIsExistingPartnerEdited, setLetters, setPartnerToDisplay,
+import { clearPartnerForm, setLetters, setPartnerToDisplay,
 } from '../../slices/adminSlice';
 
 // Components
@@ -31,6 +31,11 @@ export default function AdminLetters(): JSX.Element {
 	);
 
 	const { title, link, logo, isActive } = partnerToDisplay;
+
+	// delete this. it is just for testing
+	useEffect(() => {
+		setIsFormDisabled(false);
+	});
 
 	useEffect(() => {
 		// dispatch(clearPartnerForm());

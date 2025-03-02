@@ -30,6 +30,12 @@ function checkToken(token: string) {
 
 // Get requests
 
+function getExhibitById(id: string) {
+	return fetch(`${BASE_URL}/${EXHIBITS}/${id}`, {
+		method: 'GET',
+	}).then((response: any) => checkResponseStatus(response));
+}
+
 function getExhibits() {
 	return fetch(`${BASE_URL}/${EXHIBITS}/`, {
 		method: 'GET',
@@ -188,6 +194,7 @@ function checkResponseStatus(res: any) {
 
 export const api = {
 	getCategories,
+	getExhibitById,
 	getExhibits,
 	getExhibitsByCategory,
 	getExhibitions,

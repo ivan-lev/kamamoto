@@ -3,24 +3,26 @@ import type { ExhibitCategory } from './exhibitCategory';
 import type { ExhibitComplectation } from './exhibitComplectationType';
 
 export interface Exhibit {
-	id: number;
-	name: string;
+	id?: number;
+	name?: string;
 	age?: string;
 	potterName?: string;
 	potterJapaneseName?: string;
 	potterLifeDates?: string;
-	category: keyof typeof ExhibitCategory;
-	style: keyof typeof CeramicStyleType;
-	description: string;
+	category?: keyof typeof ExhibitCategory;
+	style?: keyof typeof CeramicStyleType;
+	images?: string[];
+	description?: string;
 
 	potterPhoto?: string;
 	potterInfo?: string;
 
+	additionalImages?: string[];
 	additionalDescription?: string;
-	additionalPhotos: boolean;
+	additionalPhotos?: boolean;
 	additionalPhotosCount?: number;
 
-	price: number;
+	price?: number;
 	height?: number;
 	length?: number;
 	width?: number;
@@ -29,32 +31,34 @@ export interface Exhibit {
 	weigth?: number;
 	volume?: number;
 	weightOfSet?: number;
-	complectation: ExhibitComplectation[];
+	complectation?: ExhibitComplectation[];
 	preservation?: string;
 }
 
 export type Exhibits = Exhibit[];
 
 export const defaultExhibit: Exhibit = {
-	id: 0,
-	name: '',
-	age: '',
-	potterName: '',
-	potterJapaneseName: '',
-	potterLifeDates: '',
-	category: 'other',
-	style: 'other',
-	description: '',
+	id: undefined,
+	name: undefined,
+	age: undefined,
+	potterName: undefined,
+	potterJapaneseName: undefined,
+	potterLifeDates: undefined,
+	category: undefined,
+	style: undefined,
+	images: undefined,
+	description: undefined,
 
-	potterPhoto: '',
-	potterInfo: '',
+	potterPhoto: undefined,
+	potterInfo: undefined,
 
-	additionalDescription: '',
-	additionalPhotos: false,
-	additionalPhotosCount: 0,
+	additionalImages: undefined,
+	additionalDescription: undefined,
+	additionalPhotos: undefined,
+	additionalPhotosCount: undefined,
 
-	price: 0,
+	price: undefined,
 
-	complectation: [],
-	preservation: '',
+	complectation: undefined,
+	preservation: undefined,
 };
