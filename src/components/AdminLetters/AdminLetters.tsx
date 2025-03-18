@@ -1,12 +1,18 @@
 // Types
 import type { ChangeEvent } from 'react';
 import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index';
 
 // React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearPartnerForm, setLetters, setPartnerToDisplay,
-} from '../../slices/adminSlice';
+import { setLetters } from '../../slices/adminSlice';
+import {
+	clearPartnerForm,
+	setIsExistingPartnerEdited,
+	setPartners,
+	setPartnerToEdit,
+} from '../../slices/adminSlice/partners';
 
 // Components
 import Preloader from '../Preloader/Preloader';
@@ -25,12 +31,13 @@ export default function AdminLetters(): JSX.Element {
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
 	const letters = useSelector((state: AdminRootState) => state.admin.letters);
-	const partnerToDisplay = useSelector((state: AdminRootState) => state.admin.partnerToDisplay);
+
 	const isExistingPartnerEdited = useSelector(
-		(state: AdminRootState) => state.admin.isExistingPartnerEdited,
+		(state: RootState) => state.partners.isExistingPartnerEdited,
 	);
 
-	const { title, link, logo, isActive } = partnerToDisplay;
+	const partnerToEdit = useSelector((state: RootState) => state.partners.partnerToEdit);
+	const { title, link, logo, isActive } = partnerToEdit;
 
 	// delete this. it is just for testing
 	useEffect(() => {
@@ -56,12 +63,12 @@ export default function AdminLetters(): JSX.Element {
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = event.target;
-		dispatch(setPartnerToDisplay({ ...partnerToDisplay, [name]: value }));
+		dispatch(setPartnerToEdit({ ...partnerToEdit, [name]: value }));
 	};
 
 	const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, checked } = event.target;
-		dispatch(setPartnerToDisplay({ ...partnerToDisplay, [name]: checked }));
+		dispatch(setPartnerToEdit({ ...partnerToEdit, [name]: checked }));
 	};
 
 	// const handleCreatePartner = () => {
@@ -86,7 +93,7 @@ export default function AdminLetters(): JSX.Element {
 	// };
 
 	// const handleEditPartner = (partner: Partner) => {
-	// 	dispatch(setPartnerToDisplay(partner));
+	// 	dispatch(setpartnerToEdit(partner));
 	// 	dispatch(setIsExistingPartnerEdited(true));
 	// };
 
@@ -95,7 +102,7 @@ export default function AdminLetters(): JSX.Element {
 	// 	const token = localStorage.getItem('kmmttkn');
 	// 	if (token) {
 	// 		api
-	// 			.updatePartner(token, partnerToDisplay)
+	// 			.updatePartner(token, partnerToEdit)
 	// 			.then((response) => {
 	// 				const newPartnersList = partners.map((partner) => {
 	// 					return response._id !== partner._id ? partner : response;
@@ -118,7 +125,7 @@ export default function AdminLetters(): JSX.Element {
 	// 	const token = localStorage.getItem('kmmttkn');
 	// 	if (token) {
 	// 		api
-	// 			.deletePartner(token, partnerToDisplay._id)
+	// 			.deletePartner(token, partnerToEdit._id)
 	// 			.then((response) => {
 	// 				const newPartnersList = partners.filter(partner => partner._id !== response._id);
 	// 				dispatch(setLetters(newPartnersList));

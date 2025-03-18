@@ -1,11 +1,11 @@
 // Types
-import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index';
 
 // React and Redux
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
-import { logout } from '../../slices/adminSlice';
+import { logout } from '../../slices/adminSlice/user.ts';
 
 // Components
 import Logo from '../Logo/Logo';
@@ -21,7 +21,7 @@ export default function Admin(): JSX.Element {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const isLoggedIn = useSelector((state: AdminRootState) => state.admin.isLoggedIn);
+	const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');

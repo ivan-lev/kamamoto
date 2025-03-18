@@ -1,10 +1,12 @@
 // React and Redux
 import type { ChangeEvent, FormEvent } from 'react';
-import type { AdminRootState } from '../../slices/adminSlice';
+// import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index.ts';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login, logout } from '../../slices/adminSlice';
+// import { login, logout } from '../../slices/adminSlice';
+import { login, logout } from '../../slices/adminSlice/user';
 
 // Components
 import Logo from '../Logo/Logo';
@@ -20,7 +22,9 @@ export default function Login() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const isLoggedIn = useSelector((state: AdminRootState) => state.admin.isLoggedIn);
+	// const isLoggedIn = useSelector((state: AdminRootState) => state.admin.isLoggedIn);
+
+	const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [isMessageSending, setIsMessageSending] = useState<boolean>(false);

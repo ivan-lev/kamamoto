@@ -1,7 +1,7 @@
 .admin-exhibit {
 	&__list {
 		display: grid;
-		grid-template-columns: 50px 1fr 100px 100px;
+		grid-template-columns: 50px 1fr 100px 100px 30px;
 		opacity: 0.6;
 
 		&:first-child {

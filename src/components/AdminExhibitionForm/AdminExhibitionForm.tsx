@@ -1,12 +1,13 @@
 // Types
 import type { ChangeEvent, FormEvent } from 'react';
-import type { AdminRootState } from '../../slices/adminSlice';
+// import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index.ts';
 
 // React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearExhibitionForm, setExhibitionFormShowed, setExhibitions, setExhibitionToDisplay,
-} from '../../slices/adminSlice';
+import { clearExhibitionForm, setExhibitionFormShowed, setExhibitionsList, setExhibitionToDisplay,
+} from '../../slices/adminSlice/exhibitions';
 
 // Utils
 import { api } from '../../utils/api';
@@ -18,12 +19,12 @@ export default function AdminExhibitionForm(): JSX.Element {
 	const [saveMessage, setSaveMessage] = useState<string>('');
 	const dispatch = useDispatch();
 
-	const exhibitions = useSelector((state: AdminRootState) => state.admin.exhibitions);
+	const exhibitionsList = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
 	const isExistingExhibitionEdited = useSelector(
-		(state: AdminRootState) => state.admin.isExistingExhibitionEdited,
+		(state: RootState) => state.exhibitions.isExistingExhibitionEdited,
 	);
 	const exhibitionToDisplay = useSelector(
-		(state: AdminRootState) => state.admin.exhibitionToDisplay,
+		(state: RootState) => state.exhibitions.exhibitionToEdit,
 	);
 
 	const {
@@ -71,7 +72,8 @@ export default function AdminExhibitionForm(): JSX.Element {
 					year: Number(year),
 				})
 				.then((response) => {
-					dispatch(setExhibitions([...exhibitions, response]));
+					const updatedExhibitionsList = [...exhibitionsList, response];
+					dispatch(setExhibitionsList(updatedExhibitionsList));
 					dispatch(clearExhibitionForm());
 					setIsFormDisabled(false);
 					setSaveMessage('Выставка создана');
@@ -91,10 +93,10 @@ export default function AdminExhibitionForm(): JSX.Element {
 			api
 				.updateExhibition(token, exhibitionToDisplay)
 				.then((response) => {
-					const newExhibitions = exhibitions.map((exhibition) => {
+					const updatedExhibitionsList = exhibitionsList.map((exhibition) => {
 						return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
 					});
-					dispatch(setExhibitions(newExhibitions));
+					dispatch(setExhibitionsList(updatedExhibitionsList));
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
 				})
@@ -117,8 +119,8 @@ export default function AdminExhibitionForm(): JSX.Element {
 			api
 				.deleteExhibition(token, exhibitionToDisplay)
 				.then((response) => {
-					const newExhibitions = exhibitions.filter(exhibition => exhibition.id !== response.id);
-					dispatch(setExhibitions(newExhibitions));
+					const updatedExhibitionsList = exhibitionsList.filter(exhibition => exhibition.id !== response.id);
+					dispatch(setExhibitionsList(updatedExhibitionsList));
 					handleCloseExhibitionForm();
 					setIsFormDisabled(false);
 				})

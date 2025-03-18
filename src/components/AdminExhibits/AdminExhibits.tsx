@@ -1,8 +1,11 @@
 // Types
+import type { AdminRootState } from '../../slices/adminSlice';
 import type { Exhibit, Exhibits } from '../../types/exhibitType';
 
 // React
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setExhibits, setExhibitToEdit } from '../../slices/adminSlice';
 
 // Components
 import AdminExhibitForm from '../AdminExhibitForm/AdminExhibitForm';
@@ -16,7 +19,9 @@ import './AdminExhibits.scss';
 
 export default function AdminExhibits(): JSX.Element {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
-	const [exhibits, setExhibits] = useState<Exhibits>([]);
+	// const [exhibits, setExhibits] = useState<Exhibits>([]);
+	const dispatch = useDispatch();
+	const exhibits = useSelector((state: AdminRootState) => state.admin.exhibits);
 
 	useEffect(() => {
 		const exhibitsList: Exhibits = [];
@@ -32,12 +37,14 @@ export default function AdminExhibits(): JSX.Element {
 						};
 						exhibitsList.push(someExhibit);
 					});
-					setExhibits(exhibitsList);
+					dispatch(setExhibits(exhibitsList));
 					setShowPreloader(false);
 				})
 				.catch(error => console.error(error));
 		}
 	}, []);
+
+	// useEffect(() => { console.log(exhibits); }, [exhibits]);
 
 	return (
 		<>
@@ -63,6 +70,13 @@ export default function AdminExhibits(): JSX.Element {
 										<span>{exhibit.name}</span>
 										<span>{exhibit.category}</span>
 										<span>{exhibit.style}</span>
+										<span>
+											<button
+												className="admin-section-list__edit-button"
+												onClick={() => dispatch(setExhibitToEdit(exhibit.id))}
+											>
+											</button>
+										</span>
 									</div>
 								))}
 							</div>

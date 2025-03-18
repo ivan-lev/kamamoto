@@ -2,7 +2,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import adminStore from '../../slices/adminSlice.ts';
+import adminStore from '../../slices/adminSlice/index.ts';
 
 // Variables
 import { documents } from '../../variables/documents';

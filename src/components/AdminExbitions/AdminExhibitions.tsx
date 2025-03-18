@@ -1,11 +1,10 @@
 // Types
-import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index.ts';
 
 // React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openEmptyExhibitionForm, setExhibitions, setExhibitionToEdit,
-} from '../../slices/adminSlice';
+import { openEmptyExhibitionForm, setExhibitionsList, setExhibitionToEdit } from '../../slices/adminSlice/exhibitions';
 
 // Components
 import AdminExhibitionForm from '../AdminExhibitionForm/AdminExhibitionForm';
@@ -21,9 +20,9 @@ export default function AdminExhibitions(): JSX.Element {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
 	const dispatch = useDispatch();
-	const exhibitions = useSelector((state: AdminRootState) => state.admin.exhibitions);
+	const exhibitionsList = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
 	const isExhibitionFormShowed = useSelector(
-		(state: AdminRootState) => state.admin.isExhibitionFormShowed,
+		(state: RootState) => state.exhibitions.isExhibitionFormShowed,
 	);
 
 	useEffect(() => {
@@ -32,7 +31,7 @@ export default function AdminExhibitions(): JSX.Element {
 			api
 				.getExhibitions()
 				.then((exhibitions) => {
-					dispatch(setExhibitions(exhibitions));
+					dispatch(setExhibitionsList(exhibitions));
 					setShowPreloader(false);
 				})
 				.catch(error => console.error(error));
@@ -59,7 +58,7 @@ export default function AdminExhibitions(): JSX.Element {
 									<span>Акт-сть</span>
 									<span></span>
 								</div>
-								{exhibitions.map((exhibition) => {
+								{exhibitionsList.map((exhibition) => {
 									return (
 										<div
 											key={exhibition.id}

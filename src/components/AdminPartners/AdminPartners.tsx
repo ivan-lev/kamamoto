@@ -1,6 +1,8 @@
 // Types
 import type { ChangeEvent } from 'react';
-import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index';
+
+// import type { AdminRootState } from '../../slices/adminSlice';
 import type { Partner } from '../../types/partnerType';
 
 // React and Redux
@@ -11,8 +13,8 @@ import {
 	clearPartnerForm,
 	setIsExistingPartnerEdited,
 	setPartners,
-	setPartnerToDisplay,
-} from '../../slices/adminSlice';
+	setPartnerToEdit,
+} from '../../slices/adminSlice/partners';
 
 // Components
 import Preloader from '../Preloader/Preloader';
@@ -30,13 +32,13 @@ export default function AdminPartners(): JSX.Element {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
-	const partners = useSelector((state: AdminRootState) => state.admin.partners);
-	const partnerToDisplay = useSelector((state: AdminRootState) => state.admin.partnerToDisplay);
+	const partners = useSelector((state: RootState) => state.partners.partners);
+	const partnerToEdit = useSelector((state: RootState) => state.partners.partnerToEdit);
 	const isExistingPartnerEdited = useSelector(
-		(state: AdminRootState) => state.admin.isExistingPartnerEdited,
+		(state: RootState) => state.partners.isExistingPartnerEdited,
 	);
 
-	const { title, link, logo, isActive } = partnerToDisplay;
+	const { title, link, logo, isActive } = partnerToEdit;
 
 	useEffect(() => {
 		dispatch(clearPartnerForm());
@@ -57,12 +59,12 @@ export default function AdminPartners(): JSX.Element {
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = event.target;
-		dispatch(setPartnerToDisplay({ ...partnerToDisplay, [name]: value }));
+		dispatch(setPartnerToEdit({ ...partnerToEdit, [name]: value }));
 	};
 
 	const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, checked } = event.target;
-		dispatch(setPartnerToDisplay({ ...partnerToDisplay, [name]: checked }));
+		dispatch(setPartnerToEdit({ ...partnerToEdit, [name]: checked }));
 	};
 
 	const handleCreatePartner = () => {
@@ -87,7 +89,7 @@ export default function AdminPartners(): JSX.Element {
 	};
 
 	const handleEditPartner = (partner: Partner) => {
-		dispatch(setPartnerToDisplay(partner));
+		dispatch(setPartnerToEdit(partner));
 		dispatch(setIsExistingPartnerEdited(true));
 	};
 
@@ -96,7 +98,7 @@ export default function AdminPartners(): JSX.Element {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
 			api
-				.updatePartner(token, partnerToDisplay)
+				.updatePartner(token, partnerToEdit)
 				.then((response) => {
 					const newPartnersList = partners.map((partner) => {
 						return response._id !== partner._id ? partner : response;
@@ -119,7 +121,7 @@ export default function AdminPartners(): JSX.Element {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
 			api
-				.deletePartner(token, partnerToDisplay._id)
+				.deletePartner(token, partnerToEdit._id)
 				.then((response) => {
 					const newPartnersList = partners.filter(partner => partner._id !== response._id);
 					dispatch(setPartners(newPartnersList));

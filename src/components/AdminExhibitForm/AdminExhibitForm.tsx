@@ -1,5 +1,10 @@
 import './AdminExhibitForm.scss';
 
+// Types
+import type { AdminRootState } from '../../slices/adminSlice';
+
+import { useSelector } from 'react-redux';
+
 export default function AdminExhibitForm(): JSX.Element {
 	const isFormDisabled: boolean = false;
 	const handleChange = () => {};
@@ -9,6 +14,8 @@ export default function AdminExhibitForm(): JSX.Element {
 	const handleDeleteExhibit = () => {};
 	const handleCloseExhibitionForm = () => {};
 	const saveMessage = 'Статусное сообщение';
+
+	const exhibitState = useSelector((state: AdminRootState) => state.admin.exhibitState);
 
 	return (
 		<form className="form" onSubmit={() => {}}>
@@ -25,7 +32,7 @@ export default function AdminExhibitForm(): JSX.Element {
 							type="text"
 							name="id"
 							placeholder="id"
-							value="id"
+							value={exhibitState.id}
 							onChange={handleChange}
 						/>
 					</div>
