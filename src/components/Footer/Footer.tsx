@@ -1,6 +1,7 @@
+import { SITE_VERSION } from '../../variables/variables';
+
 // React
 import { Link } from 'react-router-dom';
-
 // Variables
 import { footerLinks } from '../../variables/footerLinks';
 import { socialLinks } from '../../variables/socialLinks';
@@ -39,6 +40,10 @@ export default function Footer() {
 			</div>
 			<div className="footer__bottom-line">
 				<span className="footer__copyright">&copy; 2024 Иван Лев</span>
+				<span className="footer__site-version">
+					Версия сайта:&nbsp;
+					{ SITE_VERSION }
+				</span>
 				<a className="link link_navigational footer__column-element footer__to-top-link" href="#">
 					Вверх
 					<img className="link__icon" src="/icons/link-arrow-up.svg" />

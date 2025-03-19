@@ -19,3 +19,5 @@ export const LOGIN_MESSAGES = {
 	TOKEN_ERROR: 'Ошибка проверки токена.',
 	WRONG_EMAIL_FORMAT: 'Неправильный фармат email-адреса',
 };
+
+export const SITE_VERSION = '1.0.3';
