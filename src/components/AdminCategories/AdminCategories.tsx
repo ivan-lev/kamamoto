@@ -1,13 +1,13 @@
 // Types
 import type { ChangeEvent } from 'react';
-import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index';
 import type { Category } from '../../types/category';
 
 // React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCategoryForm, setCategories, setCategoryToDisplay, setIsExistingCategoryEdited,
-} from '../../slices/adminSlice';
+import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited,
+} from '../../slices/adminSlice/categories';
 
 // Components
 import Preloader from '../Preloader/Preloader';
@@ -25,13 +25,13 @@ export default function AdminCategories(): JSX.Element {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
-	const categories = useSelector((state: AdminRootState) => state.admin.categories);
-	const categoryToDisplay = useSelector((state: AdminRootState) => state.admin.categoryToDisplay);
+	const categories = useSelector((state: RootState) => state.categories.categories);
+	const categoryToEdit = useSelector((state: RootState) => state.categories.categoryToEdit);
 	const isExistingCategoryEdited = useSelector(
-		(state: AdminRootState) => state.admin.isExistingCategoryEdited,
+		(state: RootState) => state.categories.isExistingCategoryEdited,
 	);
 
-	const { category, title, thumbnail } = categoryToDisplay;
+	const { category, title, thumbnail } = categoryToEdit;
 
 	useEffect(() => {
 		api
@@ -51,7 +51,7 @@ export default function AdminCategories(): JSX.Element {
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = event.target;
-		dispatch(setCategoryToDisplay({ ...categoryToDisplay, [name]: value }));
+		dispatch(setCategoryToEdit({ ...categoryToEdit, [name]: value }));
 	};
 
 	const handleCreateCategory = () => {
@@ -76,7 +76,7 @@ export default function AdminCategories(): JSX.Element {
 	};
 
 	const handleEditCategory = (category: Category) => {
-		dispatch(setCategoryToDisplay(category));
+		dispatch(setCategoryToEdit(category));
 		dispatch(setIsExistingCategoryEdited(true));
 	};
 
@@ -85,7 +85,7 @@ export default function AdminCategories(): JSX.Element {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
 			api
-				.updateCategory(token, categoryToDisplay)
+				.updateCategory(token, categoryToEdit)
 				.then((response) => {
 					const newCategoriesList = categories.map((category) => {
 						return response.category !== category.category ? category : response;

@@ -1,18 +1,12 @@
 // Types
 import type { ChangeEvent } from 'react';
-import type { AdminRootState } from '../../slices/adminSlice';
 import type { RootState } from '../../slices/adminSlice/index';
 
 // React and Redux
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLetters } from '../../slices/adminSlice';
-import {
-	clearPartnerForm,
-	setIsExistingPartnerEdited,
-	setPartners,
-	setPartnerToEdit,
-} from '../../slices/adminSlice/partners';
+import { setLetters } from '../../slices/adminSlice/letters.ts';
+import { clearPartnerForm, setPartnerToEdit } from '../../slices/adminSlice/partners';
 
 // Components
 import Preloader from '../Preloader/Preloader';
@@ -30,7 +24,7 @@ export default function AdminLetters(): JSX.Element {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
-	const letters = useSelector((state: AdminRootState) => state.admin.letters);
+	const letters = useSelector((state: RootState) => state.letters.letters);
 
 	const isExistingPartnerEdited = useSelector(
 		(state: RootState) => state.partners.isExistingPartnerEdited,

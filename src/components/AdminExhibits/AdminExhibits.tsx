@@ -1,11 +1,11 @@
 // Types
-import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index.ts';
 import type { Exhibit, Exhibits } from '../../types/exhibitType';
 
 // React
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExhibits, setExhibitToEdit } from '../../slices/adminSlice';
+import { setExhibits, setExhibitToEdit } from '../../slices/adminSlice/exibits.ts';
 
 // Components
 import AdminExhibitForm from '../AdminExhibitForm/AdminExhibitForm';
@@ -21,7 +21,7 @@ export default function AdminExhibits(): JSX.Element {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	// const [exhibits, setExhibits] = useState<Exhibits>([]);
 	const dispatch = useDispatch();
-	const exhibits = useSelector((state: AdminRootState) => state.admin.exhibits);
+	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
 
 	useEffect(() => {
 		const exhibitsList: Exhibits = [];

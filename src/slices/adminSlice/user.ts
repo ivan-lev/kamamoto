@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface UserState {
+interface User {
 	isLoggedIn: boolean;
 }
 
-const initialState: UserState = {
+const initialState: User = {
 	isLoggedIn: JSON.parse(localStorage.getItem('kmmtlgn') || 'false'),
 };
 

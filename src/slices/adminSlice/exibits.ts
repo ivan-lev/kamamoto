@@ -1,23 +1,21 @@
-// Types
-import type { Exhibit, Exhibits } from '../types/exhibitType';
+import type { Exhibit } from '../../types/exhibitType';
+import { createSlice } from '@reduxjs/toolkit';
+import { defaultExhibit } from '../../types/exhibitType';
 
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { defaultExhibit } from '../types/exhibitType';
-
-interface adminState {
-	exhibits: Exhibits;
-	exhibitToDisplay: Exhibit;
+interface Exhibits {
+	exhibits: Exhibit[];
+	exhibitToEdit: Exhibit;
 	exhibitState: Exhibit;
 }
 
-const initialState: adminState = {
+const initialState: Exhibits = {
 	exhibits: [],
-	exhibitToDisplay: { ...defaultExhibit },
+	exhibitToEdit: { ...defaultExhibit },
 	exhibitState: defaultExhibit,
 };
 
-const adminSlice = createSlice({
-	name: 'admin',
+const exhibits = createSlice({
+	name: 'exhibits',
 	initialState,
 	reducers: {
 
@@ -28,9 +26,9 @@ const adminSlice = createSlice({
 			return state;
 		},
 
-		setExhibitToEdit: () => {
-		// console.log('payload', action.payload);
-		// console.log('state:', state);
+		setExhibitToEdit: (state, action) => {
+			console.error('payload', action.payload);
+			console.error('state:', state);
 		// console.log(state.exhibits);
 		// console.log(state.exhibitions);
 		// console.log(state.exhibits.find(exhibit => exhibit.id === action.payload));
@@ -46,14 +44,6 @@ const adminSlice = createSlice({
 export const {
 	setExhibits,
 	setExhibitToEdit,
-} = adminSlice.actions;
+} = exhibits.actions;
 
-const adminStore = configureStore({
-	reducer: {
-		admin: adminSlice.reducer,
-	},
-});
-
-export default adminStore;
-
-export type AdminRootState = ReturnType<typeof adminStore.getState>;
+export default exhibits.reducer;

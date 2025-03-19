@@ -1,7 +1,7 @@
 import './AdminExhibitForm.scss';
 
 // Types
-import type { AdminRootState } from '../../slices/adminSlice';
+import type { RootState } from '../../slices/adminSlice/index.ts';
 
 import { useSelector } from 'react-redux';
 
@@ -15,7 +15,7 @@ export default function AdminExhibitForm(): JSX.Element {
 	const handleCloseExhibitionForm = () => {};
 	const saveMessage = 'Статусное сообщение';
 
-	const exhibitState = useSelector((state: AdminRootState) => state.admin.exhibitState);
+	const exhibitState = useSelector((state: RootState) => state.exhibits.exhibitState);
 
 	return (
 		<form className="form" onSubmit={() => {}}>
