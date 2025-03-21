@@ -1,21 +1,13 @@
-// React and Redux
+import type { RootState } from '@/slices/adminSlice/index.ts';
 import type { ChangeEvent, FormEvent } from 'react';
-// import type { AdminRootState } from '../../slices/adminSlice';
-import type { RootState } from '../../slices/adminSlice/index.ts';
+import Logo from '@/components/Logo/Logo';
+import Seo from '@/components/Seo/Seo';
+import { login, logout } from '@/slices/adminSlice/user';
+import { api } from '@/utils/api';
+import { LOGIN_MESSAGES } from '@/variables/variables';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { login, logout } from '../../slices/adminSlice';
-import { login, logout } from '../../slices/adminSlice/user';
-
-// Components
-import Logo from '../Logo/Logo';
-import Seo from '../Seo/Seo';
-
-// Utils and variables
-import { api } from '../../utils/api';
-import { LOGIN_MESSAGES } from '../../variables/variables';
-
 import './Login.scss';
 
 export default function Login() {

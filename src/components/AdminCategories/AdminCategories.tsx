@@ -1,21 +1,17 @@
-// Types
+import type { RootState } from '@/slices/adminSlice/index';
+import type { Category } from '@/types/category';
 import type { ChangeEvent } from 'react';
-import type { RootState } from '../../slices/adminSlice/index';
-import type { Category } from '../../types/category';
-
-// React and Redux
+import Seo from '@/components/Seo/Seo';
+import {
+	clearCategoryForm,
+	setCategories,
+	setCategoryToEdit,
+	setIsExistingCategoryEdited,
+} from '@/slices/adminSlice/categories';
+import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited,
-} from '../../slices/adminSlice/categories';
-
-// Components
 import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils
-import { api } from '../../utils/api';
-
 import './AdminCategories.scss';
 
 export default function AdminCategories(): JSX.Element {

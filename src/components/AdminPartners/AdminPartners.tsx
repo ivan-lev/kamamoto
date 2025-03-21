@@ -1,27 +1,17 @@
-// Types
+import type { RootState } from '@/slices/adminSlice/index';
+import type { Partner } from '@/types/partnerType';
 import type { ChangeEvent } from 'react';
-import type { RootState } from '../../slices/adminSlice/index';
-
-// import type { AdminRootState } from '../../slices/adminSlice';
-import type { Partner } from '../../types/partnerType';
-
-// React and Redux
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
 import {
 	clearPartnerForm,
 	setIsExistingPartnerEdited,
 	setPartners,
 	setPartnerToEdit,
-} from '../../slices/adminSlice/partners';
-
-// Components
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils
-import { api } from '../../utils/api';
+} from '@/slices/adminSlice/partners';
+import { api } from '@/utils/api';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './AdminPartners.scss';
 

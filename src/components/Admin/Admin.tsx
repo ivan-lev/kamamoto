@@ -1,20 +1,12 @@
-// Types
-import type { RootState } from '../../slices/adminSlice/index';
-
-// React and Redux
+import type { RootState } from '@/slices/adminSlice/index';
+import Logo from '@/components/Logo/Logo';
+import Seo from '@/components/Seo/Seo';
+import { logout } from '@/slices/adminSlice/user.ts';
+import { api } from '@/utils/api';
+import { LOGIN_MESSAGES } from '@/variables/variables';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
-import { logout } from '../../slices/adminSlice/user.ts';
-
-// Components
-import Logo from '../Logo/Logo';
-import Seo from '../Seo/Seo';
-
-// Utils and variables
-import { api } from '../../utils/api';
-import { LOGIN_MESSAGES } from '../../variables/variables';
-
 import './Admin.scss';
 
 export default function Admin(): JSX.Element {

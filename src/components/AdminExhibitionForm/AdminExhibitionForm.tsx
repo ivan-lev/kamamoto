@@ -1,17 +1,14 @@
-// Types
+import type { RootState } from '@/slices/adminSlice/index.ts';
 import type { ChangeEvent, FormEvent } from 'react';
-// import type { AdminRootState } from '../../slices/adminSlice';
-import type { RootState } from '../../slices/adminSlice/index.ts';
-
-// React and Redux
+import {
+	clearExhibitionForm,
+	setExhibitionFormShowed,
+	setExhibitionsList,
+	setExhibitionToDisplay,
+} from '@/slices/adminSlice/exhibitions';
+import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearExhibitionForm, setExhibitionFormShowed, setExhibitionsList, setExhibitionToDisplay,
-} from '../../slices/adminSlice/exhibitions';
-
-// Utils
-import { api } from '../../utils/api';
-
 import './AdminExhibitionForm.scss';
 
 export default function AdminExhibitionForm(): JSX.Element {

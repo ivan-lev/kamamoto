@@ -1,20 +1,12 @@
-// Types
+import type { RootState } from '@/slices/adminSlice/index';
 import type { ChangeEvent } from 'react';
-import type { RootState } from '../../slices/adminSlice/index';
-
-// React and Redux
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { setLetters } from '@/slices/adminSlice/letters.ts';
+import { clearPartnerForm, setPartnerToEdit } from '@/slices/adminSlice/partners';
+import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLetters } from '../../slices/adminSlice/letters.ts';
-import { clearPartnerForm, setPartnerToEdit } from '../../slices/adminSlice/partners';
-
-// Components
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils
-import { api } from '../../utils/api';
-
 import './AdminLetters.scss';
 
 export default function AdminLetters(): JSX.Element {

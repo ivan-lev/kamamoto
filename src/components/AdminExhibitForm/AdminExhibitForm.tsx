@@ -1,9 +1,6 @@
-import './AdminExhibitForm.scss';
-
-// Types
-import type { RootState } from '../../slices/adminSlice/index.ts';
-
+import type { RootState } from '@/slices/adminSlice/index.ts';
 import { useSelector } from 'react-redux';
+import './AdminExhibitForm.scss';
 
 export default function AdminExhibitForm(): JSX.Element {
 	const isFormDisabled: boolean = false;

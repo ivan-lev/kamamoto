@@ -1,15 +1,7 @@
-// Types
-import type { Statistics } from '../../types/statistics';
-
-// React
+import type { Statistics } from '@/types/statistics';
+import Preloader from '@/components/Preloader/Preloader';
+import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
-
-// Components
-import Preloader from '../Preloader/Preloader';
-
-// Utils
-import { api } from '../../utils/api';
-
 import './AdminStatistics.scss';
 
 const defaultStatistics: Statistics = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
