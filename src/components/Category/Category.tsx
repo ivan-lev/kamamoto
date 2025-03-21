@@ -1,22 +1,15 @@
 // Types and enums
-import type { RootState } from '../../slices';
-import { ExhibitCategory } from '../../types/exhibitCategory';
-
-// React and Redux
+import type { RootState } from '@/slices';
+import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { resetCategory, setCategory } from '@/slices/categorySlice';
+import { resetDisplayList, setDisplayList } from '@/slices/listSlice';
+import { ExhibitCategory } from '@/types/exhibitCategory';
+import { api } from '@/utils/api';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { resetCategory, setCategory } from '../../slices/categorySlice';
-import { resetDisplayList, setDisplayList } from '../../slices/listSlice';
-
-// Components
-import DisplayGrid from '../DisplayGrid/DisplayGrid';
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils and variables
-import { api } from '../../utils/api';
-
 import './Category.scss';
 
 export default function Category(): JSX.Element {

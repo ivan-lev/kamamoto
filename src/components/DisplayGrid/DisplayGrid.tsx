@@ -1,12 +1,6 @@
-// Types
-import type { RootState } from '../../slices';
-
-// React and Redux
+import type { RootState } from '@/slices';
+import Card from '@/components/Card/Card';
 import { useSelector } from 'react-redux';
-
-// Components
-import Card from '../Card/Card';
-
 import './DisplayGrid.scss';
 
 export default function DisplayGrid(): JSX.Element {

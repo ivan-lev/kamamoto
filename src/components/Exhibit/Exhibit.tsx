@@ -1,29 +1,17 @@
-// Types
-import type { RootState } from '../../slices';
-
-// React and redux
+import type { RootState } from '@/slices';
+import ExhibitTechInfo from '@/components/ExhibitTechInfo/ExhibitTechInfo';
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { resetExhibit, setExhibit } from '@/slices/exhibitSlice';
+import { api } from '@/utils/api';
+import { ceramicStylesDescriptions } from '@/variables/ceramisStylesDescriptions';
+import { htmlParserOptions } from '@/variables/htmlParserOptions';
+import { PATHS } from '@/variables/variables';
+import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import ImageGallery from 'react-image-gallery';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { resetExhibit, setExhibit } from '../../slices/exhibitSlice';
-
-// Components
-import ExhibitTechInfo from '../ExhibitTechInfo/ExhibitTechInfo';
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils and variables
-import { api } from '../../utils/api';
-
-// Other packages
-import parse from 'html-react-parser';
-import ImageGallery from 'react-image-gallery';
-
-// Utils and variables
-import { ceramicStylesDescriptions } from '../../variables/ceramisStylesDescriptions';
-import { htmlParserOptions } from '../../variables/htmlParserOptions';
-import { PATHS } from '../../variables/variables';
-
 import './Exhibit.scss';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 

@@ -1,19 +1,9 @@
-// Types
 import type { ChangeEvent } from 'react';
-
-// React
-import { useEffect, useState } from 'react';
-
-// Components
-import Seo from '../Seo/Seo';
-import SocialLinks from '../SocialLinks/SocialLinks';
-
-// Other packages
+import Seo from '@/components/Seo/Seo';
+import SocialLinks from '@/components/SocialLinks/SocialLinks';
+import { socialLinks } from '@/variables/socialLinks';
 import emailjs from '@emailjs/browser';
-
-// Variables
-import { socialLinks } from '../../variables/socialLinks';
-
+import { useEffect, useState } from 'react';
 import './Contacts.scss';
 
 export default function Contacts() {

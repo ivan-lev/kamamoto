@@ -1,19 +1,11 @@
-// Types
-import type { RootState } from '../../slices';
-
-// React and Redux
+import type { RootState } from '@/slices';
+import ExhibitionCard from '@/components/ExhibitionCard/ExhibitionCard';
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { setExhibitionsList } from '@/slices/exhibitionsSlice';
+import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExhibitionsList } from '../../slices/exhibitionsSlice';
-
-// Components
-import ExhibitionCard from '../ExhibitionCard/ExhibitionCard';
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils
-import { api } from '../../utils/api';
-
 import './Expos.scss';
 
 export default function Expos(): JSX.Element {

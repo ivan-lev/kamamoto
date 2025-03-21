@@ -1,20 +1,12 @@
-// Types
-import type { RootState } from '../../slices';
-
-// React and redux
+import type { RootState } from '@/slices';
+import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { setCategories } from '@/slices/categories';
+import { resetDisplayList, setDisplayList } from '@/slices/listSlice';
+import { api } from '@/utils/api';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategories } from '../../slices/categories';
-import { resetDisplayList, setDisplayList } from '../../slices/listSlice';
-
-// Components
-import DisplayGrid from '../DisplayGrid/DisplayGrid';
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils and variables
-import { api } from '../../utils/api';
-
 import './Collection.scss';
 
 export default function Collection() {

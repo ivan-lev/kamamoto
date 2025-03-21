@@ -1,29 +1,17 @@
-// Types
-import type { RootState } from '../../slices';
-import type { Images } from '../../types/imageType';
-
-// React and redux
+import type { RootState } from '@/slices';
+import type { Images } from '@/types/imageType';
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { setExhibitionToDisplay } from '@/slices/exhibitionsSlice';
+import { api } from '@/utils/api';
+import { generateImageLinks } from '@/utils/generateImageLinks';
+import { htmlParserOptions } from '@/variables/htmlParserOptions';
+import { PATHS } from '@/variables/variables';
+import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import ImageGallery from 'react-image-gallery';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { setExhibitionToDisplay } from '../../slices/exhibitionsSlice';
-
-// Other packages
-import parse from 'html-react-parser';
-import ImageGallery from 'react-image-gallery';
-
-// Components
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Utils and variables
-import { api } from '../../utils/api';
-import { generateImageLinks } from '../../utils/generateImageLinks';
-
-// Variables
-import { htmlParserOptions } from '../../variables/htmlParserOptions';
-import { PATHS } from '../../variables/variables';
-
 import './Exhibition.scss';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 

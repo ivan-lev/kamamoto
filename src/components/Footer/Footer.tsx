@@ -1,10 +1,7 @@
-import { SITE_VERSION } from '@/variables/variables';
-
-// React
-import { Link } from 'react-router-dom';
-// Variables
 import { footerLinks } from '@/variables/footerLinks';
 import { socialLinks } from '@/variables/socialLinks';
+import { SITE_VERSION } from '@/variables/variables';
+import { Link } from 'react-router-dom';
 
 import './Footer.scss';
 

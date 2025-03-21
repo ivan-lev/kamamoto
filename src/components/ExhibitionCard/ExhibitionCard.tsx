@@ -1,9 +1,5 @@
-// Types
-import type { Exhibition } from '../../types/exhibitionType';
-
-// React
+import type { Exhibition } from '@/types/exhibitionType';
 import { Link } from 'react-router-dom';
-
 import './ExhibitionCard.scss';
 
 export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition }): JSX.Element {

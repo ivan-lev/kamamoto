@@ -1,4 +1,4 @@
-import type { Resource } from '../../types/fileType';
+import type { Resource } from '@/types/fileType';
 
 import './File.scss';
 
