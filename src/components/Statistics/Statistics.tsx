@@ -1,14 +1,8 @@
-// Types
-import type { RootState } from '../../slices';
-
-// React and Redux
+import type { RootState } from '@/slices';
+import { setStatistics } from '@/slices/statisticsSlice';
+import { api } from '@/utils/api';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStatistics } from '../../slices/statisticsSlice';
-
-// Utils and variables
-import { api } from '../../utils/api';
-
 import './Statistics.scss';
 
 export default function Statistics(): JSX.Element {

@@ -1,10 +1,6 @@
-// Components
-import Seo from '../Seo/Seo';
-import SocialLinks from '../SocialLinks/SocialLinks';
-
-// Variables
-import { personalSocialLinks } from '../../variables/socialLinks';
-
+import Seo from '@/components/Seo/Seo';
+import SocialLinks from '@/components/SocialLinks/SocialLinks';
+import { personalSocialLinks } from '@/variables/socialLinks';
 import './About.scss';
 
 export default function About() {

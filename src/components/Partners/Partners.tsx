@@ -1,18 +1,10 @@
-// Types
 import type { RootState } from '../../slices';
-
-// React and Redux
+import Partner from '@/components/Partner/Partner';
+import { setPartnersList } from '@/slices/partnersSlice';
+import { api } from '@/utils/api';
+import { PATHS } from '@/variables/variables';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPartnersList } from '../../slices/partnersSlice';
-
-// Components
-import Partner from '../Partner/Partner';
-
-// Utils and variables
-import { api } from '../../utils/api';
-import { PATHS } from '../../variables/variables';
-
 import './Partners.scss';
 
 const { IMAGES, PARTNERS, RESOURSES } = PATHS;

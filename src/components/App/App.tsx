@@ -1,39 +1,33 @@
-// React and Redux
+import About from '@/components/About/About';
+import Admin from '@/components/Admin/Admin';
+import AdminCategories from '@/components/AdminCategories/AdminCategories.tsx';
+import AdminExhibitions from '@/components/AdminExbitions/AdminExhibitions';
+import AdminExhibits from '@/components/AdminExhibits/AdminExhibits';
+import AdminLetters from '@/components/AdminLetters/AdminLetters.tsx';
+import AdminPartners from '@/components/AdminPartners/AdminPartners.tsx';
+import AdminStatistics from '@/components/AdminStatistics/AdminStatistics';
+import Benefactors from '@/components/Benefactors/Benefactors';
+import Category from '@/components/Category/Category';
+import Collection from '@/components/Collection/Collection';
+import Contacts from '@/components/Contacts/Contacts';
+import Exhibit from '@/components/Exhibit/Exhibit';
+import Exhibition from '@/components/Exhibition/Exhibition';
+import Expos from '@/components/Expos/Expos';
+import Files from '@/components/Files/Files';
+import Footer from '@/components/Footer/Footer';
+import Header from '@/components/Header/Header';
+import HomePage from '@/components/HomePage/HomePage';
+import Login from '@/components/Login/Login.tsx';
+import Main from '@/components/Main/Main';
+import NotFound from '@/components/NotFound/NotFound';
+import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
+import adminStore from '@/slices/adminSlice/index.ts';
+import { documents } from '@/variables/documents';
+import { files } from '@/variables/files';
 import { Helmet } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import adminStore from '../../slices/adminSlice/index.ts';
-
-// Variables
-import { documents } from '../../variables/documents';
-import { files } from '../../variables/files';
-
 import './App.scss';
-
-// Components
-import About from '../About/About';
-import Admin from '../Admin/Admin';
-import AdminCategories from '../AdminCategories/AdminCategories.tsx';
-import AdminExhibitions from '../AdminExbitions/AdminExhibitions';
-import AdminExhibits from '../AdminExhibits/AdminExhibits';
-import AdminLetters from '../AdminLetters/AdminLetters.tsx';
-import AdminPartners from '../AdminPartners/AdminPartners.tsx';
-import AdminStatistics from '../AdminStatistics/AdminStatistics';
-import Benefactors from '../Benefactors/Benefactors';
-import Category from '../Category/Category';
-import Collection from '../Collection/Collection';
-import Contacts from '../Contacts/Contacts';
-import Exhibit from '../Exhibit/Exhibit';
-import Exhibition from '../Exhibition/Exhibition';
-import Expos from '../Expos/Expos';
-import Files from '../Files/Files';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import HomePage from '../HomePage/HomePage';
-import Login from '../Login/Login.tsx';
-import Main from '../Main/Main';
-import NotFound from '../NotFound/NotFound';
-import ThanksLetters from '../ThanksLetters/ThanksLetters';
 
 export default function App() {
 	return (

@@ -1,13 +1,7 @@
-// Vendor components
+import Statistics from '@/components/Statistics/Statistics';
+import { homepageSliderImages } from '@/variables/homepageSliderImages';
 import ImageGallery from 'react-image-gallery';
-
-// Components
 import Partners from '../Partners/Partners';
-import Statistics from '../Statistics/Statistics';
-
-// Utils and variables
-import { homepageSliderImages } from '../../variables/homepageSliderImages';
-
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 import './HomePage.scss';
 

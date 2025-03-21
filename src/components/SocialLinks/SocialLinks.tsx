@@ -1,5 +1,4 @@
-import type { SocialLinks } from '../../types/socialLinkType';
-
+import type { SocialLinks } from '@/types/socialLinkType';
 import './SocialLinks.scss';
 
 export default function ({

@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-
 import './Logo.scss';
 
 export default function Logo(): JSX.Element {

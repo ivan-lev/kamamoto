@@ -1,4 +1,4 @@
-import type { Partner as PartnerType } from '../../types/partnerType';
+import type { Partner as PartnerType } from '@/types/partnerType';
 
 import './Partner.scss';
 

@@ -1,18 +1,10 @@
-// Types
-import type { RootState } from '../../slices';
-
-// React and Redux
+import type { RootState } from '@/slices';
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { setLettersList } from '@/slices/lettersSlice';
+import { api } from '@/utils/api';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLettersList } from '../../slices/lettersSlice';
-
-// Components
-import Preloader from '../Preloader/Preloader';
-import Seo from '../Seo/Seo';
-
-// Variables
-import { api } from '../../utils/api';
-
 import './ThanksLetters.scss';
 
 export default function ThanksLetters(): JSX.Element {
