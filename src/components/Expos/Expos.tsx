@@ -1,8 +1,8 @@
-import type { RootState } from '@/slices';
+import type { RootState } from '@/slices/visitor';
 import ExhibitionCard from '@/components/ExhibitionCard/ExhibitionCard';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { setExhibitionsList } from '@/slices/exhibitionsSlice';
+import { setExhibitionsList } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,7 +1,6 @@
-import type { Exhibition, Exhibitions } from '../types/exhibitionType';
-
+import type { Exhibition, Exhibitions } from '@/types/exhibitionType';
+import { defaultExhibition } from '@/types/exhibitionType';
 import { createSlice } from '@reduxjs/toolkit';
-import { defaultExhibition } from '../types/exhibitionType';
 
 interface exhibitionsState {
 	exhibitionsList: Exhibitions;

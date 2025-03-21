@@ -1,5 +1,4 @@
-import type { displayListType } from '../types/displayListType';
-
+import type { displayListType } from '@/types/displayListType';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface listState {

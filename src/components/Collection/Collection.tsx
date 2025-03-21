@@ -1,9 +1,9 @@
-import type { RootState } from '@/slices';
+import type { RootState } from '@/slices/visitor';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { setCategories } from '@/slices/categories';
-import { resetDisplayList, setDisplayList } from '@/slices/listSlice';
+import { setCategories } from '@/slices/visitor/categories';
+import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,5 +1,4 @@
-import type { File } from '../types/file';
-
+import type { File } from '@/types/file';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: File[] = [];

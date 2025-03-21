@@ -1,6 +1,6 @@
-import type { RootState } from '../../slices';
+import type { RootState } from '../../slices/visitor';
 import Partner from '@/components/Partner/Partner';
-import { setPartnersList } from '@/slices/partnersSlice';
+import { setPartnersList } from '@/slices/visitor/partners';
 import { api } from '@/utils/api';
 import { PATHS } from '@/variables/variables';
 import { useEffect } from 'react';

@@ -1,5 +1,4 @@
-import type { Statistics as StatisticsType } from '../types/statistics';
-
+import type { Statistics as StatisticsType } from '@/types/statistics';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface StatisticsStateType extends StatisticsType {

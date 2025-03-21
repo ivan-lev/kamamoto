@@ -1,4 +1,4 @@
-import type { RootState } from '@/slices';
+import type { RootState } from '@/slices/visitor';
 import Card from '@/components/Card/Card';
 import { useSelector } from 'react-redux';
 import './DisplayGrid.scss';

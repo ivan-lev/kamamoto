@@ -1,5 +1,4 @@
-import type { Partner } from '../types/partnerType';
-
+import type { Partner } from '@/types/partnerType';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: Partner[] = [];

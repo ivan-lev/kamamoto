@@ -1,5 +1,5 @@
-import type { RootState } from '@/slices';
-import { setStatistics } from '@/slices/statisticsSlice';
+import type { RootState } from '@/slices/visitor';
+import { setStatistics } from '@/slices/visitor/statistics';
 import { api } from '@/utils/api';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

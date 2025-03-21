@@ -1,8 +1,8 @@
-import type { RootState } from '@/slices';
+import type { RootState } from '@/slices/visitor';
 import ExhibitTechInfo from '@/components/ExhibitTechInfo/ExhibitTechInfo';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { resetExhibit, setExhibit } from '@/slices/exhibitSlice';
+import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api';
 import { ceramicStylesDescriptions } from '@/variables/ceramisStylesDescriptions';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';

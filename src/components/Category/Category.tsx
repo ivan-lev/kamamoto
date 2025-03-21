@@ -1,10 +1,10 @@
 // Types and enums
-import type { RootState } from '@/slices';
+import type { RootState } from '@/slices/visitor';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { resetCategory, setCategory } from '@/slices/categorySlice';
-import { resetDisplayList, setDisplayList } from '@/slices/listSlice';
+import { resetCategory, setCategory } from '@/slices/visitor/category';
+import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { ExhibitCategory } from '@/types/exhibitCategory';
 import { api } from '@/utils/api';
 import { useEffect, useLayoutEffect, useState } from 'react';

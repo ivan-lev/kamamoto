@@ -1,5 +1,4 @@
-import type { ExhibitCategory } from '../types/exhibitCategory';
-
+import type { ExhibitCategory } from '@/types/exhibitCategory';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface categoryState {
