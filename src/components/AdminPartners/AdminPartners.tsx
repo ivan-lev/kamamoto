@@ -1,4 +1,4 @@
-import type { RootState } from '@/slices/adminSlice/index';
+import type { RootState } from '@/slices/admin/index';
 import type { Partner } from '@/types/partnerType';
 import type { ChangeEvent } from 'react';
 import Preloader from '@/components/Preloader/Preloader';
@@ -8,11 +8,10 @@ import {
 	setIsExistingPartnerEdited,
 	setPartners,
 	setPartnerToEdit,
-} from '@/slices/adminSlice/partners';
+} from '@/slices/admin/partners';
 import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import './AdminPartners.scss';
 
 export default function AdminPartners(): JSX.Element {

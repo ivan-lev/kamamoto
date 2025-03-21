@@ -1,4 +1,4 @@
-import type { RootState } from '@/slices/adminSlice/index.ts';
+import type { RootState } from '@/slices/admin';
 import AdminExhibitionForm from '@/components/AdminExhibitionForm/AdminExhibitionForm';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
@@ -6,7 +6,7 @@ import {
 	openEmptyExhibitionForm,
 	setExhibitionsList,
 	setExhibitionToEdit,
-} from '@/slices/adminSlice/exhibitions';
+} from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

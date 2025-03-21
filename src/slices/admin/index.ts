@@ -1,11 +1,10 @@
+import categoriesReducer from '@/slices/admin/categories';
+import exhibitionsReducer from '@/slices/admin/exhibitions';
+import exhibitsReducer from '@/slices/admin/exibits';
+import lettersReducer from '@/slices/admin/letters';
+import partnersReducer from '@/slices/admin/partners';
+import useReducer from '@/slices/admin/user';
 import { configureStore } from '@reduxjs/toolkit';
-
-import categoriesReducer from './categories';
-import exhibitionsReducer from './exhibitions';
-import exhibitsReducer from './exibits';
-import lettersReducer from './letters';
-import partnersReducer from './partners';
-import useReducer from './user';
 
 const store = configureStore({
 	reducer: {

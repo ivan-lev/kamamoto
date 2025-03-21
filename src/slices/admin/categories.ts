@@ -1,6 +1,6 @@
-import type { Category } from '../../types/category';
+import type { Category } from '@/types/category';
+import { defaultCategory } from '@/types/category';
 import { createSlice } from '@reduxjs/toolkit';
-import { defaultCategory } from '../../types/category';
 
 interface Categories {
 	categories: Category[];

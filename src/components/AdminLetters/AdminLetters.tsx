@@ -1,9 +1,9 @@
-import type { RootState } from '@/slices/adminSlice/index';
+import type { RootState } from '@/slices/admin/index';
 import type { ChangeEvent } from 'react';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { setLetters } from '@/slices/adminSlice/letters.ts';
-import { clearPartnerForm, setPartnerToEdit } from '@/slices/adminSlice/partners';
+import { setLetters } from '@/slices/admin/letters';
+import { clearPartnerForm, setPartnerToEdit } from '@/slices/admin/partners';
 import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

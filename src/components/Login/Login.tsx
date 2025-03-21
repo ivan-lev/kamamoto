@@ -1,8 +1,8 @@
-import type { RootState } from '@/slices/adminSlice/index.ts';
+import type { RootState } from '@/slices/admin';
 import type { ChangeEvent, FormEvent } from 'react';
 import Logo from '@/components/Logo/Logo';
 import Seo from '@/components/Seo/Seo';
-import { login, logout } from '@/slices/adminSlice/user';
+import { login, logout } from '@/slices/admin/user';
 import { api } from '@/utils/api';
 import { LOGIN_MESSAGES } from '@/variables/variables';
 import { useEffect, useState } from 'react';

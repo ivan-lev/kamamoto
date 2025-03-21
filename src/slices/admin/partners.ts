@@ -1,6 +1,6 @@
-import type { Partner } from '../../types/partnerType';
+import type { Partner } from '@/types/partnerType';
+import { defaultPartner } from '@/types/partnerType';
 import { createSlice } from '@reduxjs/toolkit';
-import { defaultPartner } from '../../types/partnerType';
 
 interface PartnersState {
 	partners: Partner[];

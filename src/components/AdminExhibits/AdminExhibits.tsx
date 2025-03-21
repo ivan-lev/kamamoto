@@ -1,9 +1,9 @@
-import type { RootState } from '@/slices/adminSlice/index.ts';
+import type { RootState } from '@/slices/admin';
 import type { Exhibit, Exhibits } from '@/types/exhibitType';
 import AdminExhibitForm from '@/components/AdminExhibitForm/AdminExhibitForm';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { setExhibits, setExhibitToEdit } from '@/slices/adminSlice/exibits.ts';
+import { setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
 import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

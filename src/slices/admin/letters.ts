@@ -1,4 +1,4 @@
-import type { File } from '../../types/file';
+import type { File } from '@/types/file';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface Letters {

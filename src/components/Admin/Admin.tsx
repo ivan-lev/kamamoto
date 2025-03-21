@@ -1,7 +1,7 @@
-import type { RootState } from '@/slices/adminSlice/index';
+import type { RootState } from '@/slices/admin/index';
 import Logo from '@/components/Logo/Logo';
 import Seo from '@/components/Seo/Seo';
-import { logout } from '@/slices/adminSlice/user.ts';
+import { logout } from '@/slices/admin/user';
 import { api } from '@/utils/api';
 import { LOGIN_MESSAGES } from '@/variables/variables';
 import { useEffect } from 'react';

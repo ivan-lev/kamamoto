@@ -1,11 +1,11 @@
-import type { RootState } from '@/slices/adminSlice/index.ts';
+import type { RootState } from '@/slices/admin';
 import type { ChangeEvent, FormEvent } from 'react';
 import {
 	clearExhibitionForm,
 	setExhibitionFormShowed,
 	setExhibitionsList,
 	setExhibitionToDisplay,
-} from '@/slices/adminSlice/exhibitions';
+} from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

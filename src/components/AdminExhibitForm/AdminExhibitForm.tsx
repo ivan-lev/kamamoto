@@ -1,4 +1,4 @@
-import type { RootState } from '@/slices/adminSlice/index.ts';
+import type { RootState } from '@/slices/admin';
 import { useSelector } from 'react-redux';
 import './AdminExhibitForm.scss';
 
