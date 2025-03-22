@@ -167,7 +167,7 @@ export default function AdminLetters(): JSX.Element {
 								})}
 							</div>
 
-							<div className="admin-section-form">
+							<div className="form">
 								<form className="form">
 									<fieldset className="form__fieldset" disabled={isFormDisabled}>
 										<legend className="form__field-legend">
@@ -294,7 +294,7 @@ export default function AdminLetters(): JSX.Element {
 											</div>
 										</div>
 									</fieldset>
-									<span className="admin-section-form__save-status">{saveMessage}</span>
+									<span className="form__save-status">{saveMessage}</span>
 								</form>
 							</div>
 						</section>

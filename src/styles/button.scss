@@ -1,0 +1,28 @@
+.button {
+	min-height: 40px;
+	box-sizing: border-box;
+	display: flex;
+	padding: var(--gap-8) var(--gap-16);
+	justify-content: center;
+	align-items: center;
+	gap: var(--gap-8);
+	align-self: stretch;
+	border: 0;
+	border-radius: 2px;
+	background: var(--text-default);
+	color: var(--text-inverse);
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	&_sending {
+		color: transparent;
+		background-image: url('/icons/preloader.svg');
+		background-size: 60% 60%;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+}

@@ -14,7 +14,7 @@ export default function ({
 				const { link, id, icon, title } = linkObject;
 				return (
 					<a
-						className="link background-muted bordered social-links__link"
+						className="social-links__link"
 						target="_blank"
 						href={link}
 						key={id}

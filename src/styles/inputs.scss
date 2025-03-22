@@ -1,0 +1,45 @@
+.input {
+	height: 45px;
+	width: 100%;
+	padding: 0 var(--gap-24);
+	color: var(--text-default);
+	font-size: 13px;
+	letter-spacing: 1.5px;
+	box-sizing: border-box;
+	background: var(--background-muted);
+	border: 1px solid var(--border-color);
+	border-radius: 2px;
+
+	&::placeholder {
+		text-transform: uppercase;
+	}
+
+	&:focus-visible {
+		outline: 1px solid var(--text-muted);
+	}
+
+	&_disabled {
+		background-color: var(--background-hover);
+		color: var(--text-disabled);
+		cursor: default;
+	}
+}
+
+.textarea {
+	padding: var(--gap-16) var(--gap-24);
+	resize: none;
+	height: 150px;
+	font-family: var(--main-font);
+	width: 100%;
+    color: var(--text-default);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    box-sizing: border-box;
+    background: var(--background-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+
+	&::placeholder {
+		text-transform: uppercase;
+	}
+}

@@ -1,0 +1,22 @@
+.image-gallery {
+	width: 100%;
+}
+
+.image-gallery-slide-wrapper {
+	width: 100%;
+}
+
+.image-gallery-content {
+	width: 100%;
+}
+
+.image-gallery-thumbnail.active,
+.image-gallery-thumbnail:focus {
+	outline: none;
+	border: 4px solid var(--text-muted) !important;
+}
+
+.image-gallery-thumbnail:hover {
+	outline: none;
+	border: 4px solid var(--text-default) !important;
+}

@@ -239,7 +239,7 @@ export default function AdminCategories(): JSX.Element {
 										</div>
 									</div>
 								</fieldset>
-								<span className="admin-section-form__save-status">{saveMessage}</span>
+								<span className="form__save-status">{saveMessage}</span>
 							</form>
 						</div>
 					)}

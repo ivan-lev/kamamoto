@@ -17,9 +17,9 @@ export default function About() {
 							<li>Ценитель китайского чая</li>
 							<li>Веб-разработчик</li>
 						</ul>
-						<a className="link about__anchor-link" href="#about-author">
+						<a className="link link--muted" href="#about-author">
 							<img
-								className="background-muted bordered link__icon"
+								className="link__icon"
 								src="/icons/link-arrow-down.svg"
 							/>
 							Обо мне

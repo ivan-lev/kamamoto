@@ -51,7 +51,7 @@ export default function Category(): JSX.Element {
 				<div className="exhibit__breadcrumbs">
 					<Link to=".." className="link link_navigational muted exhibit__link" relative="path">
 						<img
-							className="background-muted bordered link__icon"
+							className="link__icon"
 							src="/icons/link-arrow-left.svg"
 						/>
 						Назад
