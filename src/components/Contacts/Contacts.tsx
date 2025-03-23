@@ -78,7 +78,7 @@ export default function Contacts() {
 					Также можно заполнить форму ниже, я получу оповещение и свяжусь с вами:
 				</p>
 
-				<form className="container background-muted bordered contacts__form" onSubmit={sendEmail}>
+				<form className="container contacts__form" onSubmit={sendEmail}>
 					<fieldset className="contacts__fieldset" disabled={isMessageSending}>
 						<input
 							className={`background-muted bordered input ${

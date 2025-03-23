@@ -139,7 +139,7 @@ export default function AdminPartners(): JSX.Element {
 						<Preloader />
 					)
 				: (
-						<div className="container admin-partners">
+						<div className="container container--background-transparent admin-partners">
 							<h2 className="title3">Партнёры</h2>
 							<div className="admin-section-list">
 								<div className="admin-partners__row">

@@ -128,7 +128,7 @@ export default function AdminCategories(): JSX.Element {
 						<Preloader />
 					)
 				: (
-						<div className="container admin-categories">
+						<div className="container container--background-transparent admin-categories">
 							<h2 className="title3">Категории</h2>
 							<div className="admin-section-list">
 								<div className="admin-categories__row">

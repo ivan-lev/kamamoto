@@ -89,9 +89,9 @@ export default function Exhibit(): JSX.Element {
 				: (
 						<section className="section exhibition">
 							<div className="exhibition__breadcrumbs">
-								<Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+								<Link to=".." className="link link_navigational" relative="path">
 									<img
-										className="background-muted bordered link__icon"
+										className="link__icon"
 										src="/icons/link-arrow-left.svg"
 									/>
 									Назад
@@ -99,7 +99,7 @@ export default function Exhibit(): JSX.Element {
 							</div>
 							<h3 className="title title3 exhibition__title">{`«${name}»`}</h3>
 
-							<div className="container exhibition__place">
+							<div className="exhibition__place">
 								<span className="muted">Место проведения: </span>
 								<span className="text">
 									{city}
@@ -126,15 +126,15 @@ export default function Exhibit(): JSX.Element {
 								)}
 							</div>
 
-							<div className="container bordered background-muted muted exhibition__participants">
+							<div className="container exhibition__participants">
 								{organisators && (
-									<div>
+									<div className="muted">
 										<span>Организаторы:</span>
 										{parse(organisators || '', options)}
 									</div>
 								)}
 								{curators && (
-									<div>
+									<div className="muted">
 										<span>Кураторы:</span>
 										{parse(curators || '', options)}
 									</div>
@@ -152,15 +152,15 @@ export default function Exhibit(): JSX.Element {
 									/>
 								</div>
 							)}
+							{poster && (
+								<img
+									className="exhibition__poster"
+									src={`${RESOURSES}/${EXHIBITIONS}/${id}/poster.jpg`}
+								>
+								</img>
+							)}
+							<div className="description exhibition__description">
 
-							<div className="text-block exhibition__description">
-								{poster && (
-									<img
-										className="exhibition__poster"
-										src={`${RESOURSES}/${EXHIBITIONS}/${id}/poster.jpg`}
-									>
-									</img>
-								)}
 								{parse(description || '', options)}
 							</div>
 						</section>

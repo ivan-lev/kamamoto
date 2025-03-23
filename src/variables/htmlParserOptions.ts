@@ -14,7 +14,6 @@ export const htmlParserOptions = {
 
 		if (domNode instanceof Element && domNode.name === 'span') {
 			domNode.attribs.class = 'text';
-			domNode.attribs.target = '_blank';
 			return domNode;
 		}
 
@@ -25,8 +24,7 @@ export const htmlParserOptions = {
 		}
 
 		if (domNode instanceof Element && domNode.name === 'blockquote') {
-			domNode.attribs.class = 'blockquote container background-muted';
-			domNode.attribs.target = '_blank';
+			domNode.attribs.class = 'blockquote';
 			return domNode;
 		}
 	},

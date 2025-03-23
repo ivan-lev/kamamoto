@@ -23,16 +23,3 @@
 		}
 	}
 }
-
-.image-gallery-thumbnails-container {
-	display: grid;
-	grid-template-columns: repeat(10, 1fr);
-
-	@media screen and (max-width: 600px) {
-		grid-template-columns: repeat(5, 1fr);
-	}
-}
-
-.image-gallery-thumbnail {
-	width: 100%;
-}

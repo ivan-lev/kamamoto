@@ -47,7 +47,7 @@ export default function AdminExhibits(): JSX.Element {
 						<Preloader />
 					)
 				: (
-						<div className="container">
+						<div className="container container--background-transparent">
 							<h2 className="title3">Лоты</h2>
 							<div className="admin-section-list">
 								<div className="admin-exhibit__list">

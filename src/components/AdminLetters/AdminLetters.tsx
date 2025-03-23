@@ -140,7 +140,7 @@ export default function AdminLetters(): JSX.Element {
 						<Preloader />
 					)
 				: (
-						<section className="container admin-partners">
+						<section className="container container--background-transparent admin-partners">
 							<h2 className="title3">Благодарственные письма (в разработке)</h2>
 
 							<div className="admin-section-list">

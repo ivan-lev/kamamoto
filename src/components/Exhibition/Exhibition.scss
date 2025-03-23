@@ -4,7 +4,7 @@
 		'breadcrumbs breadcrumbs'
 		'title title'
 		'place participants'
-		'description description'
+		'poster description'
 		'photos photos';
 	grid-template-columns: 30% auto;
 
@@ -15,6 +15,7 @@
 			'title'
 			'place'
 			'participants'
+			'poster'
 			'description'
 			'photos';
 	}
@@ -32,6 +33,10 @@
 		align-self: start;
 		padding: 0 0 0 0;
 		gap: var(--gap-16);
+		display: flex;
+    flex-direction: column;
+    gap: var(--gap-32);
+    padding: var(--gap-48);
 	}
 
 	&__participants {
@@ -45,22 +50,11 @@
 
 	&__description {
 		grid-area: description;
-		display: block;
 	}
 
 	&__poster {
 		grid-area: poster;
-		max-width: 30%;
-		float: left;
-		padding-right: var(--gap-48);
-		padding-bottom: var(--gap-48);
-
-		@media screen and (max-width: 768px) {
-			float: unset;
-			max-width: unset;
-			width: 100%;
-			padding-right: 0;
-		}
+		width: 100%;
 	}
 
 	&__link {

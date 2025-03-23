@@ -50,7 +50,7 @@ export default function ThanksLetters(): JSX.Element {
 							<Preloader />
 						)
 					: (
-							<div className="container background-muted bordered thanks-letters__list">
+							<div className="container thanks-letters__list">
 								{letters.map((letter) => {
 									return (
 										<div className="thanks-letters__element" key={letter.id}>

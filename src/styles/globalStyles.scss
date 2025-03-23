@@ -1,15 +1,3 @@
-
-.container {
-	display: flex;
-	flex-direction: column;
-	gap: var(--gap-32);
-	padding: var(--gap-48);
-
-	@media screen and (max-width: 768px) {
-		padding: var(--gap-32);
-	}
-}
-
 .bordered {
 	border: 1px solid var(--border-color);
 	border-radius: 2px;
@@ -19,53 +7,15 @@
 	background: var(--background-muted);
 }
 
-.muted-8 {
-	opacity: 0.8;
-}
-
 .muted {
 	opacity: 0.6;
-}
-
-.text-block {
-	display: block;
-	width: 100%;
-	box-sizing: border-box;
-
-	& p,
-	& ul,
-	& blockquote {
-		margin-bottom: var(--gap-24);
-	}
-
-	& *:last-child {
-		margin-bottom: 0;
-	}
-}
-
-.text {
-	color: var(--text-default);
-	font-size: 16px;
-
-	&_muted {
-		color: var(--text-muted);
-	}
 }
 
 .list {
 	color: var(--text-default);
 	font-size: 16px;
 	padding-left: var(--gap-16);
-}
 
-.blockquote {
-	border-left: 6px solid var(--border-color);
-	display: inline-block;
-}
-
-.text,
-.blockquote,
-.list {
 	@media screen and (max-width: 900px) {
 		font-size: 14px;
 	}
@@ -103,47 +53,3 @@
 		cursor: pointer;
 	}
 }
-
-// .admin-section-form {
-// 	&__form {
-// 		padding: var(--gap-32);
-// 		position: relative;
-// 	}
-
-// 	&__fieldset {
-// 		border: 0;
-// 		display: flex;
-// 		flex-direction: column;
-// 		gap: var(--gap-8);
-// 	}
-
-// 	&__fields-row {
-// 		display: flex;
-// 		gap: var(--gap-8);
-// 	}
-
-// 	&__field {
-// 		display: flex;
-// 		flex-direction: column;
-
-// 		& span {
-// 			font-size: 14px;
-// 		}
-
-// 		& input {
-// 			height: 45px;
-// 		}
-// 	}
-
-// 	&__checkbox-label {
-// 		width: 45px;
-// 		height: 45px;
-// 	}
-
-// 	&__save-status {
-// 		position: absolute;
-// 		bottom: 5px;
-// 		right: 32px;
-// 		font-size: 12px;
-// 	}
-// }

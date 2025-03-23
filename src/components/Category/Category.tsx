@@ -49,7 +49,7 @@ export default function Category(): JSX.Element {
 
 			<section className="section category">
 				<div className="exhibit__breadcrumbs">
-					<Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+					<Link to=".." className="link link_navigational" relative="path">
 						<img
 							className="link__icon"
 							src="/icons/link-arrow-left.svg"

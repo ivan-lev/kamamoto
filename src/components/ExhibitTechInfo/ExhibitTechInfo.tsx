@@ -15,7 +15,7 @@ export default function ExhibitTechInfo({
 	};
 
 	return (
-		<div className="spoiler container bordered background-muted tech-info">
+		<div className="spoiler container tech-info">
 			<button
 				className={`tech-info__button ${showTechInfo ? 'tech-info__button_opened' : ''}`}
 				onClick={handleShowTechinfo}

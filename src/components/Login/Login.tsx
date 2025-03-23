@@ -89,7 +89,7 @@ export default function Login() {
 			<div className="login">
 				<form
 					name="login__form"
-					className="bordered background-muted container login__form"
+					className="container login__form"
 					autoComplete="off"
 					onSubmit={handleLogin}
 				>

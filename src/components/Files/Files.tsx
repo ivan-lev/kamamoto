@@ -15,7 +15,7 @@ export default function Files({ title, files }: { title: string; files: Resource
 
 			<section className="section files">
 				<h2 className="title title2">{title}</h2>
-				<div className="container background-muted bordered files__list">
+				<div className="container files__list">
 					{files.map((file) => {
 						return <File key={file.id} file={file} />;
 					})}

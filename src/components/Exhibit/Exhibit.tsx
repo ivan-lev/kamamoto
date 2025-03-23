@@ -85,9 +85,9 @@ export default function Exhibit(): JSX.Element {
 			&& (
 				<section className="section exhibit">
 					<div className="exhibit__breadcrumbs">
-						<Link to=".." className="link link_navigational muted exhibit__link" relative="path">
+						<Link to=".." className="link link_navigational" relative="path">
 							<img
-								className="background-muted bordered link__icon"
+								className="link__icon"
 								src="/icons/link-arrow-left.svg"
 							/>
 							Назад
@@ -102,7 +102,7 @@ export default function Exhibit(): JSX.Element {
 					)}
 
 					{/* Exhibit description section */}
-					<div className="text-block">
+					<div className="description">
 						{description
 							? (
 									parse(description || '', htmlParserOptions)
@@ -114,7 +114,7 @@ export default function Exhibit(): JSX.Element {
 
 					{/* Potter description section */}
 					{potterInfo && (
-						<div className="text-block">
+						<div className="description">
 							{exhibit?.potterPhoto && (
 								<img
 									className="exhibit__potter-photo"
@@ -129,7 +129,7 @@ export default function Exhibit(): JSX.Element {
 
 					{/* Additional info */}
 					{additionalDescription && (
-						<div className="text-block">
+						<div className="description">
 							{additionalDescription && parse(additionalDescription || '', htmlParserOptions)}
 						</div>
 					)}
@@ -147,12 +147,14 @@ export default function Exhibit(): JSX.Element {
 
 					{/* Ceramic style description section */}
 					{style !== 'other' && (
-						<div className="container bordered background-muted text-block">
-							{parse(
-								ceramicStylesDescriptions[style as keyof typeof ceramicStylesDescriptions]
-								|| '',
-								htmlParserOptions,
-							)}
+						<div className="container">
+							<div className="description">
+								{parse(
+									ceramicStylesDescriptions[style as keyof typeof ceramicStylesDescriptions]
+									|| '',
+									htmlParserOptions,
+								)}
+							</div>
 						</div>
 					)}
 

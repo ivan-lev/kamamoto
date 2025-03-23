@@ -26,7 +26,7 @@ export default function About() {
 						</a>
 					</div>
 
-					<div id="about-author" className="about__content container background-muted bordered">
+					<div id="about-author" className="about__content container">
 						<h3 className="title title3">Созерцая красоту</h3>
 						<p className="text text_muted">
 							Меня зовут Иван. Я коллекционирую вещи, созданные японскими мастерами.

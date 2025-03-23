@@ -17,7 +17,7 @@ export default function Benefactors() {
 					коллекции
 				</p>
 				<div className="benefactors">
-					<div className="container bordered background-muted benefactors__card">
+					<div className="container benefactors__card">
 						<img
 							className="benefactors__photo"
 							src="/people/smirnova-n.jpg"
@@ -40,7 +40,7 @@ export default function Benefactors() {
 						</p>
 					</div>
 
-					<div className="container bordered background-muted benefactors__card">
+					<div className="container benefactors__card">
 						<img
 							className="benefactors__photo"
 							src="/people/tretyakova-m.jpg"

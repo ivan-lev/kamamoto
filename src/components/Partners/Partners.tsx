@@ -24,7 +24,7 @@ export default function Partners(): JSX.Element {
 
 	return partnersList.length !== 0
 		? (
-				<div className="container partners">
+				<div className="container container--background-transparent partners">
 					<span className="muted partners__title">Организации-партнёры</span>
 					<div className="partners__grid">
 						{partnersList.map((partner) => {
