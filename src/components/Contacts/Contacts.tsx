@@ -67,14 +67,14 @@ export default function Contacts() {
 
 			<section className="section contacts">
 				<h2 className="title title2">Контакты</h2>
-				<p className="text muted">
+				<p className="text text--muted">
 					Для связи со мной можно использовать одну из следующих ссылок, ведущих на реурсы
 					коллекции:
 				</p>
 
 				<SocialLinks links={socialLinks} additionalClassNames="contacts__links" />
 
-				<p className="text muted">
+				<p className="text text--muted">
 					Также можно заполнить форму ниже, я получу оповещение и свяжусь с вами:
 				</p>
 
@@ -120,7 +120,7 @@ export default function Contacts() {
 						</textarea>
 
 						<p>
-							<span className="muted contacts__agreement">
+							<span className="contacts__agreement">
 								Вместе с текстом сообщения вы передаёте ваши персональные данные. Я не собираю и не
 								храню их, но прошу подтвердить своё согласие на их передачу&nbsp;&nbsp;&nbsp;
 							</span>
@@ -135,8 +135,8 @@ export default function Contacts() {
 						</p>
 
 						<button
-							className={`button ${isMessageSending ? 'button_sending' : ''}
-            ${isButtonDisabled ? 'muted' : ''}`}
+							className={`button ${isMessageSending ? 'button--sending' : ''}
+            ${isButtonDisabled ? 'button--muted' : ''}`}
 							type="submit"
 						>
 							Отправить

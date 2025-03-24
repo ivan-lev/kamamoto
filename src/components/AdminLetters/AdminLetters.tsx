@@ -167,123 +167,122 @@ export default function AdminLetters(): JSX.Element {
 								})}
 							</div>
 
-							<div className="form">
-								<form className="form">
-									<fieldset className="form__fieldset" disabled={isFormDisabled}>
-										<legend className="form__field-legend">
-											{!isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра'}
-										</legend>
-										<div className="form__grid">
-											<div className="form__row-10">
-												<span>наименование</span>
+							<form className="form">
+								<fieldset className="form__fieldset" disabled={isFormDisabled}>
+									<legend className="form__field-legend">
+										{!isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра'}
+									</legend>
+									<div className="form__grid">
+										<div className="form__row-10">
+											<span>наименование</span>
+											<input
+												className={`input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="title"
+												placeholder="название организации"
+												value={title}
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className="form__row-2 form__row--centered">
+											<span>на сайте</span>
+											<label
+												className={`input checkbox-label ${
+													isActive ? 'checkbox-label--checked' : ''
+												} ${
+													isFormDisabled ? 'checkbox-label--disabled' : ''
+												}`}
+											>
 												<input
-													className={`input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="title"
-													placeholder="название организации"
-													value={title}
-													onChange={handleChange}
+													className="checkbox-input"
+													type="checkbox"
+													checked={isActive}
+													name="isActive"
+													onChange={handleCheckBox}
 												/>
-											</div>
+											</label>
+										</div>
 
-											<div className="form__row-2 form__row--centered">
-												<span>на сайте</span>
-												<label
-													className={`input checkbox-label ${
-														isActive ? 'checkbox-label--checked' : ''
-													} ${
-														isFormDisabled ? 'checkbox-label--disabled' : ''
-													}`}
-												>
-													<input
-														className="checkbox-input"
-														type="checkbox"
-														checked={isActive}
-														name="isActive"
-														onChange={handleCheckBox}
-													/>
-												</label>
-											</div>
+										<div className="form__row-6">
+											<span>ссылка на ресурс партнёра</span>
+											<input
+												className={`input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="link"
+												placeholder="сайт, вк, канал в телеграме"
+												value={link}
+												onChange={handleChange}
+											/>
+										</div>
 
-											<div className="form__row-6">
-												<span>ссылка на ресурс партнёра</span>
-												<input
-													className={`input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="link"
-													placeholder="сайт, вк, канал в телеграме"
-													value={link}
-													onChange={handleChange}
-												/>
-											</div>
+										<div className="form__row-6">
+											<span>файл логотипа</span>
+											<input
+												className={`input ${
+													isFormDisabled ? 'input_disabled' : ''
+												}`}
+												type="text"
+												name="logo"
+												placeholder="название файла"
+												value={logo}
+												onChange={handleChange}
+											/>
+										</div>
 
-											<div className="form__row-6">
-												<span>файл логотипа</span>
-												<input
-													className={`input ${
-														isFormDisabled ? 'input_disabled' : ''
-													}`}
-													type="text"
-													name="logo"
-													placeholder="название файла"
-													value={logo}
-													onChange={handleChange}
-												/>
-											</div>
+										<div className="form__row-12 form__row-12--inline">
 
-											<div className="form__row-12 form__row-12--inline">
-
-												{!isExistingPartnerEdited
-													? (
-															<>
-																<button
-																	className="button"
-																	type="button"
-																	onClick={() => dispatch(clearPartnerForm())}
-																>
-																	Очистить
-																</button>
-																<button
-																	className="button"
-																	type="submit"
-																	// onClick={handleCreatePartner}
-																>
-																	Создать
-																</button>
-															</>
-														)
-													: (
-															<>
-																<button
-																	className="button"
-																	type="button"
-																	// onClick={handleCancelEditLetter}
-																	disabled={isFormDisabled}
-																>
-																	Отменить
-																</button>
-																<button
-																	className="button"
-																	type="button"
-																	// onClick={handleUpdatePartner}
-																	disabled={isFormDisabled}
-																>
-																	Сохранить
-																</button>
-																<button
-																	className="button"
-																	type="button"
-																	// onClick={handleDeletePartner}
-																>
-																	Удалить
-																</button>
-															</>
-														)}
-												{/* <button
+											{!isExistingPartnerEdited
+												? (
+														<>
+															<button
+																className="button"
+																type="button"
+																onClick={() => dispatch(clearPartnerForm())}
+															>
+																Очистить
+															</button>
+															<button
+																className="button"
+																type="submit"
+																// onClick={handleCreatePartner}
+															>
+																Создать
+															</button>
+														</>
+													)
+												: (
+														<>
+															<button
+																className="button"
+																type="button"
+																// onClick={handleCancelEditLetter}
+																disabled={isFormDisabled}
+															>
+																Отменить
+															</button>
+															<button
+																className="button"
+																type="button"
+																// onClick={handleUpdatePartner}
+																disabled={isFormDisabled}
+															>
+																Сохранить
+															</button>
+															<button
+																className="button"
+																type="button"
+																// onClick={handleDeletePartner}
+															>
+																Удалить
+															</button>
+														</>
+													)}
+											{/* <button
                       className="button"
                       type="button"
                       // onClick={handleCloseExhibitionForm}
@@ -291,12 +290,11 @@ export default function AdminLetters(): JSX.Element {
                       Закрыть
                     </button> */}
 
-											</div>
 										</div>
-									</fieldset>
-									<span className="form__save-status">{saveMessage}</span>
-								</form>
-							</div>
+									</div>
+								</fieldset>
+								<span className="form__save-status">{saveMessage}</span>
+							</form>
 						</section>
 					)}
 		</>

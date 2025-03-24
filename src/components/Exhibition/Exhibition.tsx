@@ -100,7 +100,7 @@ export default function Exhibit(): JSX.Element {
 							<h3 className="title title3 exhibition__title">{`«${name}»`}</h3>
 
 							<div className="exhibition__place">
-								<span className="muted">Место проведения: </span>
+								<span className="text text--muted">Место проведения: </span>
 								<span className="text">
 									{city}
 									,
@@ -108,7 +108,7 @@ export default function Exhibit(): JSX.Element {
 									,
 									{place}
 								</span>
-								<span className="muted">Даты: </span>
+								<span className="text text--muted">Даты: </span>
 								<span>
 									{year}
 									{' '}
@@ -116,7 +116,7 @@ export default function Exhibit(): JSX.Element {
 									{dates}
 								</span>
 								{link && (
-									<span className="muted">
+									<span className="text text--muted">
 										Ссылка на
 										{' '}
 										<a className="link exhibition__link" href={link} target="_blank">
@@ -128,13 +128,13 @@ export default function Exhibit(): JSX.Element {
 
 							<div className="container exhibition__participants">
 								{organisators && (
-									<div className="muted">
+									<div className="text text--muted">
 										<span>Организаторы:</span>
 										{parse(organisators || '', options)}
 									</div>
 								)}
 								{curators && (
-									<div className="muted">
+									<div className="text text--muted">
 										<span>Кураторы:</span>
 										{parse(curators || '', options)}
 									</div>

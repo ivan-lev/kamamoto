@@ -18,11 +18,15 @@
 	text-transform: uppercase;
 	cursor: pointer;
 
-	&_sending {
+	&--sending {
 		color: transparent;
 		background-image: url('/icons/preloader.svg');
 		background-size: 60% 60%;
 		background-position: center;
 		background-repeat: no-repeat;
+	}
+
+	&--muted {
+		opacity: 0.6;
 	}
 }

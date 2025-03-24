@@ -17,7 +17,7 @@ export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition 
 					<p className="exhibition-card__place">{place}</p>
 				</div>
 				{isActive && (
-					<Link className="link muted exhibition-card__more-link" to={id.toString()}>
+					<Link className="link link--muted exhibition-card__more-link" to={id.toString()}>
 						Подробнее
 					</Link>
 				)}

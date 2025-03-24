@@ -28,11 +28,11 @@ export default function Benefactors() {
 						<a className="link link_usual benefactors__name" href="https://vk.com/id18845601">
 							Смирнова Наталья
 						</a>
-						<span className="benefactors__about muted">
+						<p className="benefactors__about">
 							Председатель Челябинского регионального отделения Всероссийского Общества "Россия -
 							Япония", руководитель АНО ИКЦ урало-японских связей "RAKUDA".
-						</span>
-						<p className="text benefactors__content">
+						</p>
+						<p className="benefactors__content text">
 							Наталья предложила идею проведения первой выставки (и вообще идею выставок как
 							таковых). Таким образом, с её подачи и при её помощи коллекцию впервые увидел широкий
 							круг людей, а она сама стала организатором нескольких мероприятий, на которых была
@@ -51,7 +51,7 @@ export default function Benefactors() {
 						<a className="link link_usual benefactors__name" href="https://vk.com/id246244448">
 							Третьякова Мария
 						</a>
-						<p className="benefactors__about muted">
+						<p className="benefactors__about">
 							Специалист по японскому языку и культуре. Кандидат искусствоведения, Doctor of Fine
 							Arts (Japan), докторантура Киотского университета искусства и дизайна (Япония).
 						</p>

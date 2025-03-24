@@ -96,7 +96,7 @@ export default function Login() {
 					<Logo />
 					<fieldset className="login__fieldset" disabled={isFormDisabled}>
 						<div className="login__submit-block">
-							<label htmlFor="email" className="muted login__label">
+							<label htmlFor="email" className="login__label">
 								Email
 							</label>
 							<input
@@ -116,7 +116,7 @@ export default function Login() {
 						</div>
 
 						<div className="login__submit-block">
-							<label htmlFor="password" className="muted login__label">
+							<label htmlFor="password" className="login__label">
 								Пароль
 							</label>
 							<div className="login__password-block">
@@ -134,7 +134,7 @@ export default function Login() {
 									onChange={handleChange}
 								/>
 								<button
-									className="muted login__button_show-password"
+									className="login__button_show-password"
 									type="button"
 									onClick={() => setIsPasswordShowed(!isPasswordShowed)}
 								>
@@ -151,8 +151,7 @@ export default function Login() {
 
 						<div className="login__submit-block">
 							<button
-								className={`button ${isMessageSending ? 'button_sending' : ''}
-            ${isFormDisabled ? 'muted' : ''} login__button`}
+								className={`button login__button ${isMessageSending ? 'button--sending' : ''} ${isFormDisabled ? 'button--muted' : ''}`}
 								type="submit"
 							>
 								Войти
