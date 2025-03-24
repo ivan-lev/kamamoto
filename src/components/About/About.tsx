@@ -12,7 +12,7 @@ export default function About() {
 					<img className="about__avatar" src="/images/about-avatar.jpg" alt=""></img>
 					<div className="about__heading">
 						<h2 className="title title2 about__title">Иван Лев</h2>
-						<ul className="list about__list">
+						<ul className="about__list">
 							<li>Коллекционер японской керамики</li>
 							<li>Ценитель китайского чая</li>
 							<li>Веб-разработчик</li>

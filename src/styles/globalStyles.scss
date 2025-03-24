@@ -1,24 +1,5 @@
-.bordered {
-	border: 1px solid var(--border-color);
-	border-radius: 2px;
-}
-
-.background-muted {
-	background: var(--background-muted);
-}
-
 .muted {
 	opacity: 0.6;
-}
-
-.list {
-	color: var(--text-default);
-	font-size: 16px;
-	padding-left: var(--gap-16);
-
-	@media screen and (max-width: 900px) {
-		font-size: 14px;
-	}
 }
 
 // Admin section

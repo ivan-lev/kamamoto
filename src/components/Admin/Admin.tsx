@@ -35,7 +35,7 @@ export default function Admin(): JSX.Element {
 			{isLoggedIn
 				? (
 						<section className="admin">
-							<div className="admin__sidebar bordered background-muted">
+							<div className="admin__sidebar">
 								<Logo />
 								<ul className="admin__list">
 									<li>
@@ -101,7 +101,7 @@ export default function Admin(): JSX.Element {
 								</button>
 							</div>
 
-							<div className="admin__content bordered background-muted">
+							<div className="admin__content">
 								<Outlet />
 							</div>
 						</section>

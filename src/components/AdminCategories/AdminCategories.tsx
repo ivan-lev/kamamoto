@@ -166,7 +166,7 @@ export default function AdminCategories(): JSX.Element {
 										<div className="form__row-4">
 											<span>Название</span>
 											<input
-												className={`background-muted bordered input ${
+												className={`input ${
 													isFormDisabled ? 'input_disabled' : ''
 												}`}
 												type="text"
@@ -180,7 +180,7 @@ export default function AdminCategories(): JSX.Element {
 										<div className="form__row-4">
 											<span>путь</span>
 											<input
-												className={`background-muted bordered input ${
+												className={`input ${
 													isFormDisabled ? 'input_disabled' : ''
 												}`}
 												type="text"
@@ -194,7 +194,7 @@ export default function AdminCategories(): JSX.Element {
 										<div className="form__row-4">
 											<span>файл картинки</span>
 											<input
-												className={`background-muted bordered input ${
+												className={`input ${
 													isFormDisabled ? 'input_disabled' : ''
 												}`}
 												type="text"

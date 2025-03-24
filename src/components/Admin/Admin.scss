@@ -17,11 +17,17 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--gap-16);
+		border: 1px solid var(--border-color);
+		border-radius: 2px;
+		background: var(--background-muted);
 	}
 
 	&__content {
 		margin: var(--gap-32);
 		grid-area: content;
+		border: 1px solid var(--border-color);
+		border-radius: 2px;
+		background: var(--background-muted);
 	}
 
 	&__list {

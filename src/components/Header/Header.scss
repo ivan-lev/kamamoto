@@ -9,6 +9,8 @@
 	box-sizing: border-box;
 	background-color: var(--background-secondary);
 	margin-top: var(--gap-48);
+	border: 1px solid var(--border-color);
+  border-radius: 2px;
 
 	@media screen and (max-width: 900px) {
 		flex-direction: column;

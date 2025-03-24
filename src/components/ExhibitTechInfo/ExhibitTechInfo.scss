@@ -29,8 +29,8 @@
 			align-items: center;
 			gap: var(--gap-32);
 			border-radius: 50%;
-			border: 1px solid var(--border-color, rgba(218, 197, 167, 0.15));
-			background: var(--background-muted, rgba(218, 197, 167, 0.05));
+			border: 1px solid var(--border-color);
+			background: var(--background-muted);
 			background-image: url('/icons/plus.svg');
 			background-position: center;
 			background-repeat: no-repeat;

@@ -100,7 +100,7 @@ export default function Login() {
 								Email
 							</label>
 							<input
-								className={`background-muted bordered input ${
+								className={`input ${
 									isMessageSending ? 'input_disabled' : ''
 								}`}
 								type="email"
@@ -121,7 +121,7 @@ export default function Login() {
 							</label>
 							<div className="login__password-block">
 								<input
-									className={`login__password-input background-muted bordered input ${
+									className={`login__password-input input ${
 										isMessageSending ? 'input_disabled' : ''
 									}`}
 									type={!isPasswordShowed ? 'password' : 'text'}

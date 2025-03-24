@@ -4,7 +4,7 @@ import './Header.scss';
 
 export default function Header(): JSX.Element {
 	return (
-		<header className="header bordered">
+		<header className="header">
 			<Logo />
 			<Menu />
 		</header>

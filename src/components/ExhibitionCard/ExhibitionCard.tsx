@@ -10,7 +10,7 @@ export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition 
 			<div className="exhibition-card__year">{year}</div>
 			<div className="exhibition-card__lower-line"></div> */}
 			<div className="exhibition-card">
-				<p className="background-muted bordered exhibition-card__dates">{dates}</p>
+				<p className="exhibition-card__dates">{dates}</p>
 				<p className="exhibition-card__city">{city}</p>
 				<div className="exhibition-card__main-content">
 					<p className="exhibition-card__name">{name}</p>
