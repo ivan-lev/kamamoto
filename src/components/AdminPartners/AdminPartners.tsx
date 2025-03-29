@@ -139,27 +139,27 @@ export default function AdminPartners(): JSX.Element {
 						<Preloader />
 					)
 				: (
-						<div className="container container--background-transparent admin-partners">
+						<div className="container container--background-transparent">
 							<h2 className="title3">Партнёры</h2>
-							<div className="admin-section-list">
-								<div className="admin-partners__row">
-									<span>Название</span>
-									<span>Акт-сть</span>
-									<span></span>
+							<div className="table">
+								<div className="table__row">
+									<span className="table__cell table__cell--span-10">Название</span>
+									<span className="table__cell table__cell--centered">Акт-сть</span>
+									<span className="table__cell table__cell--centered"></span>
 								</div>
 								{partners.map((partner) => {
 									const { _id, title, isActive } = partner;
 									return (
-										<div key={_id} className="admin-partners__row">
-											<span>{title}</span>
-											<span>{isActive ? 'Да' : 'Нет'}</span>
-											<span>
+										<div key={_id} className="table__row">
+											<span className="table__cell table__cell--span-10">{title}</span>
+											<span className="table__cell table__cell--centered">{isActive ? 'Да' : 'Нет'}</span>
+											<div className="table__cell table__cell--centered">
 												<button
-													className="admin-section-list__edit-button"
+													className="table__button table__button--edit"
 													onClick={() => handleEditPartner(partner)}
 												>
 												</button>
-											</span>
+											</div>
 										</div>
 									);
 								})}

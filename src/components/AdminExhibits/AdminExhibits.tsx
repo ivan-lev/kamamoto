@@ -49,26 +49,27 @@ export default function AdminExhibits(): JSX.Element {
 				: (
 						<div className="container container--background-transparent">
 							<h2 className="title3">Лоты</h2>
-							<div className="admin-section-list">
-								<div className="admin-exhibit__list">
-									<span>ID</span>
-									<span>Название</span>
-									<span>Категория</span>
-									<span>Стиль</span>
+							<div className="table">
+								<div className="table__row">
+									<span className="table__cell">ID</span>
+									<span className="table__cell table__cell--span-6">Название</span>
+									<span className="table__cell table__cell--span-2">Категория</span>
+									<span className="table__cell table__cell--span-2">Стиль</span>
+									<span className="table__cell table__cell--centered"></span>
 								</div>
 								{exhibits.map(exhibit => (
-									<div className="admin-exhibit__list" key={exhibit.id}>
-										<span>{exhibit.id}</span>
-										<span>{exhibit.name}</span>
-										<span>{exhibit.category}</span>
-										<span>{exhibit.style}</span>
-										<span>
+									<div className="table__row" key={exhibit.id}>
+										<span className="table__cell">{exhibit.id}</span>
+										<span className="table__cell table__cell--span-6">{exhibit.name}</span>
+										<span className="table__cell table__cell--span-2">{exhibit.category}</span>
+										<span className="table__cell table__cell--span-2">{exhibit.style}</span>
+										<div className="table__cell table__cell--centered">
 											<button
-												className="admin-section-list__edit-button"
+												className="table__button table__button--edit"
 												onClick={() => dispatch(setExhibitToEdit(exhibit.id))}
 											>
 											</button>
-										</span>
+										</div>
 									</div>
 								))}
 							</div>

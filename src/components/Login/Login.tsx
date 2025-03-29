@@ -140,10 +140,10 @@ export default function Login() {
 								>
 									{isPasswordShowed
 										? (
-												<img className="login__button-img" src="/public/icons/eye-opened.svg"></img>
+												<img className="login__button-img" src="/icons/eye-opened.svg"></img>
 											)
 										: (
-												<img className="login__button-img" src="/public/icons/eye-closed.svg"></img>
+												<img className="login__button-img" src="/icons/eye-closed.svg"></img>
 											)}
 								</button>
 							</div>

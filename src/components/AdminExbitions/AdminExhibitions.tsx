@@ -43,35 +43,35 @@ export default function AdminExhibitions(): JSX.Element {
 						<Preloader />
 					)
 				: (
-						<div className="container container--background-transparent admin-exhibitions">
+						<div className="container container--background-transparent">
 							<h2 className="title3">Выставки</h2>
-							<div className="admin-section-list">
-								<div className="admin-exhibitions__row">
-									<span>ID</span>
-									<span>Название</span>
-									<span>Город</span>
-									<span>Год</span>
-									<span>Акт-сть</span>
-									<span></span>
+							<div className="table">
+								<div className="table__row">
+									<span className="table__cell">ID</span>
+									<span className="table__cell table__cell--span-6">Название</span>
+									<span className="table__cell table__cell--span-2">Город</span>
+									<span className="table__cell">Год</span>
+									<span className="table__cell table__cell--centered">Акт-сть</span>
+									<span className="table__cell table__cell--centered"></span>
 								</div>
 								{exhibitionsList.map((exhibition) => {
 									return (
 										<div
 											key={exhibition.id}
-											className="admin-exhibitions__row"
+											className="table__row"
 										>
-											<span>{exhibition.id}</span>
-											<span>{exhibition.name}</span>
-											<span>{exhibition.city}</span>
-											<span>{exhibition.year}</span>
-											<span>{exhibition.isActive ? 'Да' : 'Нет'}</span>
-											<span>
+											<span className="table__cell">{exhibition.id}</span>
+											<span className="table__cell table__cell--span-6">{exhibition.name}</span>
+											<span className="table__cell table__cell--span-2">{exhibition.city}</span>
+											<span className="table__cell">{exhibition.year}</span>
+											<span className="table__cell table__cell--centered">{exhibition.isActive ? 'Да' : 'Нет'}</span>
+											<div className="table__cell table__cell--centered">
 												<button
-													className="admin-section-list__edit-button"
+													className="table__button table__button--edit"
 													onClick={() => dispatch(setExhibitionToEdit(exhibition.id))}
 												>
 												</button>
-											</span>
+											</div>
 										</div>
 									);
 								})}

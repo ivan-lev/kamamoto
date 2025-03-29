@@ -143,21 +143,21 @@ export default function AdminLetters(): JSX.Element {
 						<section className="container container--background-transparent admin-partners">
 							<h2 className="title3">Благодарственные письма (в разработке)</h2>
 
-							<div className="admin-section-list">
-								<div className="admin-section-list__row admin-partners__row">
-									<span>Описание</span>
-									<span>Акт-сть</span>
-									<span></span>
+							<div className="table">
+								<div className="table__row">
+									<span className="table__cell table__cell--span-10">Описание</span>
+									<span className="table__cell table__cell--centered">Акт-сть</span>
+									<span className="table__cell table__cell--centered"></span>
 								</div>
 								{letters.map((letter) => {
 									const { id, description, isActive } = letter;
 									return (
-										<div key={id} className="muted admin-section-list__row admin-partners__row">
-											<span>{description}</span>
-											<span>{isActive ? 'Да' : 'Нет'}</span>
-											<span>
+										<div key={id} className="table__row">
+											<span className="table__cell table__cell--span-10">{description}</span>
+											<span className="table__cell table__cell--centered">{isActive ? 'Да' : 'Нет'}</span>
+											<span className="table__cell table__cell--centered">
 												<button
-													className="admin-section-list__edit-button"
+													className="table__button table__button--edit"
 													// onClick={() => handleEditPartner(partner)}
 												>
 												</button>

@@ -128,34 +128,37 @@ export default function AdminCategories(): JSX.Element {
 						<Preloader />
 					)
 				: (
-						<div className="container container--background-transparent admin-categories">
-							<h2 className="title3">Категории</h2>
-							<div className="admin-section-list">
-								<div className="admin-categories__row">
-									<span>Название</span>
-									<span>Ссылка</span>
-									<span>Файл предпросмотра</span>
-									<span></span>
-								</div>
-								{categories.map((cat) => {
-									const { category, title, thumbnail } = cat;
-									return (
-										<div key={category} className="admin-categories__row">
-											<span>{title}</span>
-											<span>{category}</span>
-											<span>{thumbnail}</span>
-											<span>
-												<button
-													className="admin-section-list__edit-button"
-													onClick={() => handleEditCategory(cat)}
-												>
-												</button>
-											</span>
-										</div>
-									);
-								})}
-							</div>
+						<div className="container container--background-transparent">
+							<div className="admin-categories">
+								<h2 className="title3">Категории</h2>
+								<div className="table">
+									<div className="table__row">
+										<span className="table__cell table__cell--span-3">Название</span>
+										<span className="table__cell table__cell--span-4">Ссылка</span>
+										<span className="table__cell table__cell--span-4">Файл предпросмотра</span>
+										<span className="table__cell table__cell--centered"></span>
+									</div>
 
+									{categories.map((cat) => {
+										const { category, title, thumbnail } = cat;
+										return (
+											<div key={category} className="table__row">
+												<span className="table__cell table__cell--span-3">{title}</span>
+												<span className="table__cell table__cell--span-4">{category}</span>
+												<span className="table__cell table__cell--span-4">{thumbnail}</span>
+												<span className="table__cell table__cell--centered">
+													<button
+														className="table__button table__button--edit"
+														onClick={() => handleEditCategory(cat)}
+													>
+													</button>
+												</span>
+											</div>
+										);
+									})}
+								</div>
+
+							</div>
 							<form className="form">
 								<fieldset className="form__fieldset" disabled={isFormDisabled}>
 									<legend className="form__legend">
