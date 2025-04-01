@@ -1,4 +1,5 @@
 import type { RootState } from '@/slices/visitor';
+import type { File } from '@/types/file';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setLettersList } from '@/slices/visitor/letters';
@@ -51,11 +52,11 @@ export default function ThanksLetters(): JSX.Element {
 						)
 					: (
 							<div className="container thanks-letters__list">
-								{letters.map((letter) => {
+								{letters.map((letter: File) => {
 									return (
 										<div className="thanks-letters__element" key={letter.id}>
 											<a className="thanks-letters__link" href={letter.name} target="_blank">
-												<img className="thanks-letters__preview" src={letter.preview}></img>
+												<img className="thanks-letters__preview" src={letter.thumbnail}></img>
 											</a>
 											<p className="thanks-letters__description">{letter.description}</p>
 										</div>

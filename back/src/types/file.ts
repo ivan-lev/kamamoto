@@ -1,7 +1,7 @@
 export interface File {
-  id: number;
-  name: string;
-  preview: string;
-  description: string;
-  isActive: boolean;
+	id: number;
+	name: string;
+	thumbnail: string;
+	description: string;
+	isActive: boolean;
 }
