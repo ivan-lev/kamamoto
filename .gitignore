@@ -7,14 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-temp
-node_modules
-dist
-dist-ssr
-*.local
-
-public
-rsync-exclude.txt
+# Optional npm cache directory
+.npm
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +20,14 @@ rsync-exclude.txt
 *.njsproj
 *.sln
 *.sw?
+
+#Local files (pictures, temporary, environment)
+public
+.env
+temp
+node_modules
+dist
+dist-ssr
+*.local
+rsync-exclude.txt
+*.code-workspace
