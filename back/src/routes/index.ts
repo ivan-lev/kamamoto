@@ -24,8 +24,9 @@ routes.use('/categories', categoryRouter);
 routes.use('/statistics', statisticsRouter);
 routes.use('/partners', partnerRouter);
 routes.use('/letters', lettersRouter);
+routes.use('/files', lettersRouter);
 routes.all('*', (req, res, next) => {
-  return next(new NotFoundError(ERROR_MESSAGES.PAGE_NOT_FOUND));
+	return next(new NotFoundError(ERROR_MESSAGES.PAGE_NOT_FOUND));
 });
 
 export default routes;
