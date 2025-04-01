@@ -1,6 +1,6 @@
 export interface displayListType {
 	id: number;
-	thumb: string;
+	thumbnail: string;
 	title: string;
 	link: string;
 }

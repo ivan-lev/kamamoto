@@ -11,10 +11,10 @@ export default function DisplayGrid(): JSX.Element {
 			<ul className="display-grid__list">
 				{displayList.length !== 0
 				&& displayList.map((item, index) => {
-					const { link, title, thumb } = item; ;
+					const { link, title, thumbnail } = item; ;
 					return (
 						<li className="display-grid__element" key={index}>
-							<Card link={link} name={title} image={thumb} />
+							<Card link={link} name={title} image={thumbnail} />
 						</li>
 					);
 				})}

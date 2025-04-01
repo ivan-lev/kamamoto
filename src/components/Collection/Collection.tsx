@@ -20,8 +20,8 @@ export default function Collection() {
 
 	useEffect(() => {
 		const listToDisplay = categories.map((cat) => {
-			const { category, title, thumbnailPath } = cat;
-			return { link: category, title, thumb: thumbnailPath };
+			const { category, title, thumbnail } = cat;
+			return { link: category, title, thumbnail };
 		});
 		dispatch(setDisplayList(listToDisplay));
 
