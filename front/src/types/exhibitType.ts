@@ -19,8 +19,8 @@ export interface Exhibit {
 
 	additionalImages?: string[];
 	additionalDescription?: string;
-	additionalPhotos?: boolean;
-	additionalPhotosCount?: number;
+	additionalPhotos?: boolean; // delete after update
+	additionalPhotosCount?: number; // delete after update
 
 	price?: number;
 	height?: number;

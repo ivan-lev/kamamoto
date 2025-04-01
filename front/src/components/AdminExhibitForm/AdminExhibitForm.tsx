@@ -1,18 +1,24 @@
 import type { RootState } from '@/slices/admin';
-import { useSelector } from 'react-redux';
+import type { ChangeEvent } from 'react';
+import { setExhibitToEdit } from '@/slices/admin/exibits';
+import { useDispatch, useSelector } from 'react-redux';
 import './AdminExhibitForm.scss';
 
 export default function AdminExhibitForm(): JSX.Element {
+	const dispatch = useDispatch();
 	const isFormDisabled: boolean = false;
-	const handleChange = () => {};
-	const handleChangePhotos = () => {};
 	const isExistingExhibitEdited = false;
 	const handleUpdateExhibit = () => {};
 	const handleDeleteExhibit = () => {};
 	const handleCloseExhibitionForm = () => {};
 	const saveMessage = 'Статусное сообщение';
 
-	const exhibitState = useSelector((state: RootState) => state.exhibits.exhibitState);
+	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
+
+	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+		const { name, value } = event.target;
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value }));
+	};
 
 	return (
 		<form className="form" onSubmit={() => {}}>
@@ -29,7 +35,7 @@ export default function AdminExhibitForm(): JSX.Element {
 							type="text"
 							name="id"
 							placeholder="id"
-							value={exhibitState.id}
+							value={exhibitToEdit.id}
 							onChange={handleChange}
 						/>
 					</div>
@@ -41,23 +47,23 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="link"
-							placeholder="ссылка"
-							value="ссылка"
+							name="style"
+							placeholder="название стиля"
+							value={exhibitToEdit.style}
 							onChange={handleChange}
 						/>
 					</div>
 
 					<div className="form__row-3">
-						<span>возраст предмета</span>
+						<span>дата создания</span>
 						<input
 							className={`input ${
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="dates"
+							name="age"
 							placeholder="даты"
-							value="даты"
+							value={exhibitToEdit.age}
 							onChange={handleChange}
 						/>
 					</div>
@@ -69,9 +75,9 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="year"
-							placeholder="год"
-							value="год"
+							name="name"
+							placeholder="название"
+							value={exhibitToEdit.name}
 							onChange={handleChange}
 						/>
 					</div>
@@ -83,10 +89,10 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="photos"
+							name="images"
 							placeholder="фотографии"
-							value="фотографии"
-							onChange={handleChangePhotos}
+							value={exhibitToEdit.images}
+							onChange={handleChange}
 						/>
 					</div>
 
@@ -94,9 +100,9 @@ export default function AdminExhibitForm(): JSX.Element {
 						<span>описание лота</span>
 						<textarea
 							className="textarea"
-							name="organisators"
+							name="description"
 							placeholder="организаторы"
-							value="организаторы"
+							value={exhibitToEdit.description}
 							onChange={handleChange}
 						/>
 					</div>
@@ -108,9 +114,9 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="place"
-							placeholder="место проведения"
-							value="место проведения"
+							name="potter-name"
+							placeholder="имя мастера"
+							value={exhibitToEdit.potterName}
 							onChange={handleChange}
 						/>
 					</div>
@@ -122,9 +128,9 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="place"
-							placeholder="место проведения"
-							value="место проведения"
+							name="potter-life-dates"
+							placeholder="годы жизни"
+							value={exhibitToEdit.potterLifeDates}
 							onChange={handleChange}
 						/>
 					</div>
@@ -136,9 +142,9 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="place"
-							placeholder="место проведения"
-							value="место проведения"
+							name="potter-japanese-name"
+							placeholder="имя мастера на японском"
+							value={exhibitToEdit.potterJapaneseName}
 							onChange={handleChange}
 						/>
 					</div>
@@ -150,9 +156,9 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="dates"
-							placeholder="даты"
-							value="даты"
+							name="potter-photo"
+							placeholder="фото  мастера"
+							value={exhibitToEdit.potterPhoto}
 							onChange={handleChange}
 						/>
 					</div>
@@ -161,9 +167,9 @@ export default function AdminExhibitForm(): JSX.Element {
 						<span>информация о мастере</span>
 						<textarea
 							className="textarea"
-							name="organisators"
-							placeholder="организаторы"
-							value="организаторы"
+							name="potter-info"
+							placeholder="информация о мастере"
+							value={exhibitToEdit.potterInfo}
 							onChange={handleChange}
 						/>
 					</div>
@@ -172,9 +178,9 @@ export default function AdminExhibitForm(): JSX.Element {
 						<span>дополнительная информация</span>
 						<textarea
 							className="textarea"
-							name="organisators"
-							placeholder="организаторы"
-							value="организаторы"
+							name="additional-description"
+							placeholder="дополнительная информация"
+							value={exhibitToEdit.additionalDescription}
 							onChange={handleChange}
 						/>
 					</div>
@@ -186,9 +192,9 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="link"
-							placeholder="ссылка"
-							value="ссылка"
+							name="complectation"
+							placeholder="комплектность"
+							value={exhibitToEdit.complectation}
 							onChange={handleChange}
 						/>
 					</div>
@@ -200,9 +206,9 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="link"
-							placeholder="ссылка"
-							value="ссылка"
+							name="preservation"
+							placeholder="сохранность"
+							value={exhibitToEdit.preservation}
 							onChange={handleChange}
 						/>
 					</div>

@@ -26,9 +26,10 @@ const exhibits = createSlice({
 			return state;
 		},
 
-		setExhibitToEdit: (state, action) => {
-			console.error('payload', action.payload);
-			console.error('state:', state);
+		setExhibitToEdit: (state, action: { payload: Exhibit }) => {
+			// console.error('payload', action.payload);
+			state.exhibitToEdit = action.payload;
+			// console.error('exhibitToEdit:', state.exhibitToEdit);
 		// console.log(state.exhibits);
 		// console.log(state.exhibitions);
 		// console.log(state.exhibits.find(exhibit => exhibit.id === action.payload));

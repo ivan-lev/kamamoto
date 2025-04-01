@@ -66,7 +66,7 @@ export default function AdminExhibits(): JSX.Element {
 										<div className="table__cell table__cell--centered">
 											<button
 												className="table__button table__button--edit"
-												onClick={() => dispatch(setExhibitToEdit(exhibit.id))}
+												onClick={() => dispatch(setExhibitToEdit(exhibit))}
 											>
 											</button>
 										</div>
