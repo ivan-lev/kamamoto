@@ -31,7 +31,7 @@ export default function AdminCategories(): JSX.Element {
 
 	useEffect(() => {
 		api
-			.getCategories()
+			.getCategories(true)
 			.then((response) => {
 				dispatch(setCategories(response));
 				setShowPreloader(false);
@@ -81,7 +81,7 @@ export default function AdminCategories(): JSX.Element {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
 			api
-				.updateCategory(token, categoryToEdit)
+				.updateCategory(token, { ...categoryToEdit })
 				.then((response) => {
 					const newCategoriesList = categories.map((category) => {
 						return response.category !== category.category ? category : response;

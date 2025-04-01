@@ -11,12 +11,14 @@ import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 
 function getCategories(req: Request, res: Response, next: NextFunction): void {
+	const isAdmin = req.headers['is-admin']; // check if request was made from admin panel
 	Category.find({}, '-_id')
 		.then((categories) => {
 			return categories.map((cat: CategoryType) => {
 				const { category, title } = cat;
 				const thumbnailPath = `${PATHS.PUBLIC_PATH}/${PATHS.CATEGORIES}/${cat.thumbnail}`;
-				return { category, title, thumbnail: thumbnailPath };
+				// and return thumb in appropriate format
+				return { category, title, thumbnail: isAdmin === 'true' ? cat.thumbnail : thumbnailPath };
 			});
 		})
 		.then(categories => res.send(categories))

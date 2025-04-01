@@ -72,9 +72,10 @@ function getPartners() {
 	}).then((response: any) => checkResponseStatus(response));
 }
 
-function getCategories() {
+function getCategories(isAdmin = false) {
 	return fetch(`${BASE_URL}/${CATEGORIES}/`, {
 		method: 'GET',
+		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
 	}).then((response: any) => checkResponseStatus(response));
 }
 
