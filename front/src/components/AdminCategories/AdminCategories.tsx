@@ -61,7 +61,7 @@ export default function AdminCategories(): JSX.Element {
 					dispatch(clearCategoryForm());
 					dispatch(setIsExistingCategoryEdited(false));
 					setIsFormDisabled(false);
-					setSaveMessage('Новый партнёр в базе');
+					setSaveMessage('Новая категория в базе');
 				})
 				.catch((error) => {
 					console.error(error);
