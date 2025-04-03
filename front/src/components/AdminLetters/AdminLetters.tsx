@@ -32,8 +32,7 @@ export default function AdminLetters(): JSX.Element {
 
 	useEffect(() => {
 		// dispatch(clearPartnerForm());
-		api
-			.getLetters()
+		api.letters.getLetters()
 			.then((letters) => {
 				dispatch(setLetters(letters));
 				setShowPreloader(false);

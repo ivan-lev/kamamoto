@@ -11,8 +11,7 @@ export default function Statistics(): JSX.Element {
 
 	useEffect(() => {
 		if (statistics.isInitial) {
-			api
-				.getStatistics()
+			api.statistics.getStatistics()
 				.then(statistics => dispatch(setStatistics(statistics)))
 				.catch(error => console.error(error));
 		}

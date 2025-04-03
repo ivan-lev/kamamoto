@@ -62,12 +62,11 @@ export default function AdminExhibitionForm(): JSX.Element {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.createExhibition(token, {
-					...exhibitionToDisplay,
-					id: Number(id),
-					year: Number(year),
-				})
+			api.exhibitions.createExhibition(token, {
+				...exhibitionToDisplay,
+				id: Number(id),
+				year: Number(year),
+			})
 				.then((response) => {
 					const updatedExhibitionsList = [...exhibitionsList, response];
 					dispatch(setExhibitionsList(updatedExhibitionsList));
@@ -87,8 +86,7 @@ export default function AdminExhibitionForm(): JSX.Element {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.updateExhibition(token, exhibitionToDisplay)
+			api.exhibitions.updateExhibition(token, exhibitionToDisplay)
 				.then((response) => {
 					const updatedExhibitionsList = exhibitionsList.map((exhibition) => {
 						return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
@@ -113,8 +111,7 @@ export default function AdminExhibitionForm(): JSX.Element {
 	const handleDeleteExhibition = () => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.deleteExhibition(token, exhibitionToDisplay)
+			api.exhibitions.deleteExhibition(token, exhibitionToDisplay)
 				.then((response) => {
 					const updatedExhibitionsList = exhibitionsList.filter(exhibition => exhibition.id !== response.id);
 					dispatch(setExhibitionsList(updatedExhibitionsList));

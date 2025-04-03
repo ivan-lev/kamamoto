@@ -15,8 +15,7 @@ export default function Partners(): JSX.Element {
 
 	useEffect(() => {
 		if (partnersList.length === 0) {
-			api
-				.getPartners()
+			api.partners.getPartners()
 				.then(partners => dispatch(setPartnersList(partners)))
 				.catch(error => console.error(error));
 		}

@@ -24,8 +24,7 @@ export default function AdminExhibitions(): JSX.Element {
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.getExhibitions()
+			api.exhibitions.getExhibitions()
 				.then((exhibitions) => {
 					dispatch(setExhibitionsList(exhibitions));
 					setShowPreloader(false);

@@ -18,8 +18,7 @@ export default function Admin(): JSX.Element {
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.checkToken(token)
+			api.auth.checkToken(token)
 				.catch((error) => {
 					console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
 					dispatch(logout());

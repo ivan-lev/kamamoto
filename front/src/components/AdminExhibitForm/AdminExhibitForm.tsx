@@ -24,7 +24,7 @@ export default function AdminExhibitForm(): JSX.Element {
 		if (token) {
 			// exhibitToEdit.images = exhibitToEdit.images.split(', ');
 			// exhibitToEdit.complectation = [];
-			api.exhibit.updateExhibit(token, { ...exhibitToEdit })
+			api.exhibits.updateExhibit(token, { ...exhibitToEdit })
 				.then((response) => {
 					const newExhibitsList = exhibits.map((exhibit) => {
 						return response.id !== exhibit.id ? exhibit : response;
@@ -70,8 +70,7 @@ export default function AdminExhibitForm(): JSX.Element {
 
 	useEffect(() => {
 		if (categories.length === 0) {
-			api
-				.getCategories(true)
+			api.categories.getCategories(true)
 				.then((response) => {
 					dispatch(setCategories(response));
 				})

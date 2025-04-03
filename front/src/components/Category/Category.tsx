@@ -26,7 +26,7 @@ export default function Category(): JSX.Element {
 	useEffect(() => {
 		if (category) {
 			dispatch(setCategory(category));
-			api.getExhibitsByCategory(category)
+			api.categories.getExhibitsByCategory(category)
 				.then((response) => {
 					dispatch(setDisplayList(response));
 					setShowPreloader(false);

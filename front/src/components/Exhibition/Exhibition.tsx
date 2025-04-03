@@ -56,8 +56,7 @@ export default function Exhibit(): JSX.Element {
 			return;
 		}
 
-		api
-			.getExhibitionById(exhId || '0')
+		api.exhibitions.getExhibitionById(exhId || '0')
 			.then((response) => {
 				dispatch(setExhibitionToDisplay(response));
 				setShowPreloader(false);

@@ -28,8 +28,7 @@ export default function Login() {
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.checkToken(token)
+			api.auth.checkToken(token)
 				.catch((error) => {
 					console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
 					dispatch(logout());
@@ -52,8 +51,7 @@ export default function Login() {
 		event.preventDefault();
 		setIsFormDisabled(true);
 		setIsMessageSending(true);
-		api
-			.authorize(email, password)
+		api.auth.authorize(email, password)
 			.then((response) => {
 				dispatch(login(response.token));
 				setIsFormDisabled(false);

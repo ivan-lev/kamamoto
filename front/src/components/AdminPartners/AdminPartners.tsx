@@ -31,8 +31,7 @@ export default function AdminPartners(): JSX.Element {
 
 	useEffect(() => {
 		dispatch(clearPartnerForm());
-		api
-			.getPartners()
+		api.partners.getPartners()
 			.then((partners) => {
 				dispatch(setPartners(partners));
 				setShowPreloader(false);
@@ -60,8 +59,7 @@ export default function AdminPartners(): JSX.Element {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.createPartner(token, title, link, logo, isActive)
+			api.partners.createPartner(token, title, link, logo, isActive)
 				.then((response) => {
 					dispatch(setPartners([...partners, response]));
 					dispatch(clearPartnerForm());
@@ -86,8 +84,7 @@ export default function AdminPartners(): JSX.Element {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.updatePartner(token, partnerToEdit)
+			api.partners.updatePartner(token, partnerToEdit)
 				.then((response) => {
 					const newPartnersList = partners.map((partner) => {
 						return response._id !== partner._id ? partner : response;
@@ -109,8 +106,7 @@ export default function AdminPartners(): JSX.Element {
 	const handleDeletePartner = () => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.deletePartner(token, partnerToEdit._id)
+			api.partners.deletePartner(token, partnerToEdit._id)
 				.then((response) => {
 					const newPartnersList = partners.filter(partner => partner._id !== response._id);
 					dispatch(setPartners(newPartnersList));

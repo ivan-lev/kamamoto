@@ -15,8 +15,7 @@ export default function Expos(): JSX.Element {
 
 	useEffect(() => {
 		if (exhibitions.length === 0) {
-			api
-				.getExhibitions()
+			api.exhibitions.getExhibitions()
 				.then((response) => {
 					dispatch(setExhibitionsList(response));
 					setShowPreloader(false);

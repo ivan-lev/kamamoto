@@ -58,7 +58,7 @@ export default function Exhibit(): JSX.Element {
 
 	useEffect(() => {
 		if (exhibitId) {
-			api.getExhibitById(exhibitId)
+			api.exhibits.getExhibitById(exhibitId)
 				.then((response) => {
 					dispatch(setExhibit(response));
 					// dispatch(setDisplayList(response));

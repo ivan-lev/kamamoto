@@ -32,8 +32,7 @@ export default function Collection() {
 
 	useEffect(() => {
 		if (categories.length === 0) {
-			api
-				.getCategories()
+			api.categories.getCategories()
 				.then((categories) => {
 					dispatch(setCategories(categories));
 					setShowPreloader(false);

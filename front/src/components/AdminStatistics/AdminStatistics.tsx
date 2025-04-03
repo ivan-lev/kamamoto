@@ -11,8 +11,7 @@ export default function AdminStatistics(): JSX.Element {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
 	useEffect(() => {
-		api
-			.getStatistics()
+		api.statistics.getStatistics()
 			.then((response) => {
 				setStatistics(response);
 				setShowPreloader(false);

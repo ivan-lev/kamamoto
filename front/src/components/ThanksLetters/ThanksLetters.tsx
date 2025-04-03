@@ -19,8 +19,7 @@ export default function ThanksLetters(): JSX.Element {
 
 	useEffect(() => {
 		if (letters.length === 0) {
-			api
-				.getLetters()
+			api.letters.getLetters()
 				.then((letters) => {
 					dispatch(setLettersList(letters));
 					setShowPreloader(false);

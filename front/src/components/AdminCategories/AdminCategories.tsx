@@ -30,8 +30,7 @@ export default function AdminCategories(): JSX.Element {
 	const { category, title, thumbnail } = categoryToEdit;
 
 	useEffect(() => {
-		api
-			.getCategories(true)
+		api.categories.getCategories(true)
 			.then((response) => {
 				dispatch(setCategories(response));
 				setShowPreloader(false);
@@ -54,8 +53,7 @@ export default function AdminCategories(): JSX.Element {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.createCategory(token, category, title, thumbnail)
+			api.categories.createCategory(token, category, title, thumbnail)
 				.then((response) => {
 					dispatch(setCategories([...categories, response]));
 					dispatch(clearCategoryForm());
@@ -80,8 +78,7 @@ export default function AdminCategories(): JSX.Element {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.updateCategory(token, { ...categoryToEdit })
+			api.categories.updateCategory(token, { ...categoryToEdit })
 				.then((response) => {
 					const newCategoriesList = categories.map((category) => {
 						return response.category !== category.category ? category : response;
@@ -103,8 +100,7 @@ export default function AdminCategories(): JSX.Element {
 	const handleDeleteCategory = () => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api
-				.deleteCategory(token, category)
+			api.categories.deleteCategory(token, category)
 				.then((response) => {
 					const newCategoriesList = categories.filter(cat => cat.category !== response.category);
 					dispatch(setCategories(newCategoriesList));
