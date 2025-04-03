@@ -1,7 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Category as CategoryType } from '../types/category';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
-
 import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
@@ -11,14 +10,15 @@ import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 
 function getCategories(req: Request, res: Response, next: NextFunction): void {
-	const isAdmin = req.headers['is-admin']; // check if request was made from admin panel
-	Category.find({}, '-_id')
+	// check if request was made from admin panel
+	// and return thumb in appropriate format below
+	const isAdmin = req.headers['is-admin'];
+	Category.find({})
 		.then((categories) => {
 			return categories.map((cat: CategoryType) => {
-				const { category, title } = cat;
+				const { _id, category, title } = cat;
 				const thumbnailPath = `${PATHS.PUBLIC_PATH}/${PATHS.CATEGORIES}/${cat.thumbnail}`;
-				// and return thumb in appropriate format
-				return { category, title, thumbnail: isAdmin === 'true' ? cat.thumbnail : thumbnailPath };
+				return { _id, category, title, thumbnail: isAdmin === 'true' ? cat.thumbnail : thumbnailPath };
 			});
 		})
 		.then(categories => res.send(categories))

@@ -13,7 +13,7 @@ const exhibitSchema = new Schema<Exhibit>(
 
 		name: {
 			type: String,
-			required: [true, 'Нужно указать названием экспоната'],
+			required: [true, 'Нужно указать название экспоната'],
 		},
 
 		age: {
@@ -65,10 +65,10 @@ const exhibitSchema = new Schema<Exhibit>(
 
 		potterPhoto: {
 			type: String,
-			validate: {
-				validator: (value: string) => isURL(value),
-				message: 'Некорректный URL фотографии',
-			},
+			// validate: {
+			// 	validator: (value: string) => isURL(value),
+			// 	message: 'Некорректный URL фотографии',
+			// },
 		},
 
 		potterInfo: {
@@ -77,20 +77,20 @@ const exhibitSchema = new Schema<Exhibit>(
 
 		description: {
 			type: String,
-			required: [true, 'Нужно заполнить описание'],
+			default: 'Описание в процессе создания',
 		},
 
 		additionalDescription: {
 			type: String,
 		},
 
-		additionalPhotos: {
-			type: Boolean,
-		},
+		// additionalPhotos: {
+		// 	type: Boolean,
+		// },
 
-		additionalPhotosCount: {
-			type: Number,
-		},
+		// additionalPhotosCount: {
+		// 	type: Number,
+		// },
 
 		price: {
 			type: Number,

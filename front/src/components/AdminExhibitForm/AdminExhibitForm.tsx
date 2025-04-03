@@ -1,6 +1,7 @@
 import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
-import { setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
+import { setCategories } from '@/slices/admin/categories';
+import { clearExhibitForm, setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,24 +11,27 @@ export default function AdminExhibitForm(): JSX.Element {
 	const dispatch = useDispatch();
 
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
-	const [isExistingExhibitEdited, setIsExistingExhibitEdited] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
-	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
+	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
+	const isExistingExhibitEdited = useSelector((state: RootState) => state.exhibits.isExistingExhibitEdited);
+	const categories = useSelector((state: RootState) => state.categories.categories);
 
 	function handleUpdateExhibit() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.exhibit.updateExhibit(token, exhibitToEdit)
+			// exhibitToEdit.images = exhibitToEdit.images.split(', ');
+			// exhibitToEdit.complectation = [];
+			api.exhibit.updateExhibit(token, { ...exhibitToEdit })
 				.then((response) => {
 					const newExhibitsList = exhibits.map((exhibit) => {
 						return response.id !== exhibit.id ? exhibit : response;
 					});
 					dispatch(setExhibits(newExhibitsList));
-					// dispatch(clearExhibitForm());
-					setIsExistingExhibitEdited(false);
+					dispatch(clearExhibitForm());
+					dispatch(setIsExistingExhibitEdited(false));
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
 				})
@@ -40,11 +44,22 @@ export default function AdminExhibitForm(): JSX.Element {
 	};
 
 	function handleDeleteExhibit() {};
-	function handleCloseExhibitionForm() {};
+	// function handleCloseExhibitionForm() {};
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value }));
+	};
+
+	function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
+		const { value } = event.target;
+		const categoryTitle = categories.find(category => category._id === value)?.title || '';
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, category: { _id: value, title: categoryTitle } }));
+	};
+
+	function handleArrayChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+		const { name, value } = event.target;
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value.split(',') }));
 	};
 
 	useEffect(() => {
@@ -52,6 +67,17 @@ export default function AdminExhibitForm(): JSX.Element {
 			setTimeout(() => setSaveMessage(''), 3000);
 		}
 	}, [saveMessage]);
+
+	useEffect(() => {
+		if (categories.length === 0) {
+			api
+				.getCategories(true)
+				.then((response) => {
+					dispatch(setCategories(response));
+				})
+				.catch(error => console.error(error));
+		}
+	}, []);
 
 	return (
 		<form className="form" onSubmit={() => {}}>
@@ -85,6 +111,15 @@ export default function AdminExhibitForm(): JSX.Element {
 							value={exhibitToEdit.style}
 							onChange={handleChange}
 						/>
+					</div>
+
+					<div className="form__row-3">
+						<span>категория</span>
+
+						<select	name="category" defaultValue={exhibitToEdit.category._id}onChange={event => handleSelectChange(event)}>
+							{categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
+						</select>
+
 					</div>
 
 					<div className="form__row-3">
@@ -125,7 +160,7 @@ export default function AdminExhibitForm(): JSX.Element {
 							name="images"
 							placeholder="фотографии"
 							value={exhibitToEdit.images}
-							onChange={handleChange}
+							onChange={handleArrayChange}
 						/>
 					</div>
 
@@ -147,7 +182,7 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="potter-name"
+							name="potterName"
 							placeholder="имя мастера"
 							value={exhibitToEdit.potterName}
 							onChange={handleChange}
@@ -161,7 +196,7 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="potter-life-dates"
+							name="potterLifeDates"
 							placeholder="годы жизни"
 							value={exhibitToEdit.potterLifeDates}
 							onChange={handleChange}
@@ -175,7 +210,7 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="potter-japanese-name"
+							name="potterJapaneseName"
 							placeholder="имя мастера на японском"
 							value={exhibitToEdit.potterJapaneseName}
 							onChange={handleChange}
@@ -189,8 +224,8 @@ export default function AdminExhibitForm(): JSX.Element {
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
-							name="potter-photo"
-							placeholder="фото  мастера"
+							name="potterPhoto"
+							placeholder="фото мастера"
 							value={exhibitToEdit.potterPhoto}
 							onChange={handleChange}
 						/>
@@ -200,7 +235,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						<span>информация о мастере</span>
 						<textarea
 							className="textarea"
-							name="potter-info"
+							name="potterInfo"
 							placeholder="информация о мастере"
 							value={exhibitToEdit.potterInfo}
 							onChange={handleChange}
@@ -211,7 +246,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						<span>дополнительная информация</span>
 						<textarea
 							className="textarea"
-							name="additional-description"
+							name="additionalDescription"
 							placeholder="дополнительная информация"
 							value={exhibitToEdit.additionalDescription}
 							onChange={handleChange}
@@ -247,44 +282,44 @@ export default function AdminExhibitForm(): JSX.Element {
 					</div>
 
 					<div className="form__row-12--inline">
-						{!isExistingExhibitEdited
-							? (
-									<>
-										<button
-											className="button"
-											type="button"
-											onClick={() => {}}
-										>
-											Очистить
-										</button>
-										<button className="button" type="submit">
-											Создать
-										</button>
-									</>
-								)
-							: (
-									<>
-										<button
-											className="button"
-											type="button"
-											onClick={handleUpdateExhibit}
-											disabled={isFormDisabled}
-										>
-											Сохранить
-										</button>
-										<button className="button" type="button" onClick={handleDeleteExhibit}>
-											Удалить
-										</button>
-									</>
-								)}
+						{!isExistingExhibitEdited && (
+							<>
+								<button
+									className="button"
+									type="button"
+									onClick={() => {}}
+								>
+									Очистить
+								</button>
+								<button className="button" type="submit">
+									Создать
+								</button>
+							</>
+						)}
 
-						<button
+						{ isExistingExhibitEdited && (
+							<>
+								<button
+									className="button"
+									type="button"
+									onClick={handleUpdateExhibit}
+									disabled={isFormDisabled}
+								>
+									Сохранить
+								</button>
+								<button className="button" type="button" onClick={handleDeleteExhibit}>
+									Удалить
+								</button>
+							</>
+						)}
+
+						{/* <button
 							className="button"
 							type="button"
 							onClick={handleCloseExhibitionForm}
 						>
 							Закрыть
-						</button>
+						</button> */}
 					</div>
 				</div>
 			</fieldset>

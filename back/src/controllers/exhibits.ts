@@ -1,32 +1,28 @@
 import type { NextFunction, Request, Response } from 'express';
-
 import type { Exhibit as ExhibitType } from '../types/exhibit';
 
+import { ObjectId } from 'mongodb';
 import { ERROR_MESSAGES, PATHS } from '../constants';
-
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
+import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 
 const { EXHIBITS, PUBLIC_PATH } = PATHS;
 
 function getExhibits(req: Request, res: Response, next: NextFunction): void {
-	Exhibit.find({})
-		.populate({
-			path: 'category',
-			// Explicitly exclude `_id`
-			select: 'title -_id',
-		})
-		.then((exhibits: ExhibitType[]) => res.send(exhibits))
-		.catch((error: any) => { return next(error); });
+	Exhibit.find({}).select({ _id: 0 }).populate({
+		path: 'category',
+		// Explicitly exclude `_id`
+		select: 'title _id',
+	}).then((exhibits: ExhibitType[]) => res.send(exhibits)).catch((error: any) => { return next(error); });
 }
 
 function findExhibitById(req: Request, res: Response, next: NextFunction): void {
 	Exhibit.findOne({ id: req.params.id })
 		.orFail()
 		.then((exhibit: ExhibitType) => {
-			// console.error(exhibit);
 			exhibit.images.forEach((image, i) => {
 				exhibit.images[i] = `${PUBLIC_PATH}/${EXHIBITS}/${exhibit.id}/${image}`;
 			});
@@ -71,7 +67,7 @@ function createExhibit(req: Request, res: Response, next: NextFunction): void {
 }
 
 function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
-	Exhibit.findOneAndDelete({ is: req.params.is })
+	Exhibit.findOneAndDelete({ id: req.params.id })
 		.orFail()
 		.then((exhibit: ExhibitType) => res.send(exhibit))
 		.catch((error: any) => {
@@ -89,9 +85,13 @@ function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
 
 function updateExhibit(req: Request, res: Response, next: NextFunction): void {
 	const newExhibitData: ExhibitType = req.body;
-	Exhibit.findOneAndUpdate({ is: req.params.is }, newExhibitData, {
+
+	const newCategory = new ObjectId(newExhibitData.category);
+	newExhibitData.category = newCategory;
+	Exhibit.findOneAndUpdate({ id: req.params.id }, newExhibitData, {
 		new: true,
 		runValidators: true,
+		select: { _id: 0 },
 	})
 		.orFail()
 		.then((exhibit: ExhibitType) => res.send(exhibit))

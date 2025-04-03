@@ -1,6 +1,5 @@
-import type { CeramicStyleType } from './ceramicStyleType';
-import type { ExhibitCategory } from './exhibitCategory';
-import type { ExhibitComplectation } from './exhibitComplectationType';
+import type { CeramicStyleType } from '@/types/ceramicStyleType';
+import type { ExhibitComplectation } from '@/types/exhibitComplectationType';
 
 export interface Exhibit {
 	id?: number;
@@ -9,7 +8,7 @@ export interface Exhibit {
 	potterName?: string;
 	potterJapaneseName?: string;
 	potterLifeDates?: string;
-	category?: keyof typeof ExhibitCategory;
+	category: { _id: string; title: string };
 	style?: keyof typeof CeramicStyleType;
 	images?: string[];
 	description?: string;
@@ -38,27 +37,25 @@ export interface Exhibit {
 export type Exhibits = Exhibit[];
 
 export const defaultExhibit: Exhibit = {
-	id: undefined,
-	name: undefined,
-	age: undefined,
-	potterName: undefined,
-	potterJapaneseName: undefined,
-	potterLifeDates: undefined,
-	category: undefined,
-	style: undefined,
-	images: undefined,
-	description: undefined,
+	id: 0,
+	name: '',
+	age: '',
+	potterName: '',
+	potterJapaneseName: '',
+	potterLifeDates: '',
+	category: { _id: '', title: '' },
+	style: 'unknown',
+	images: [],
+	description: '',
 
-	potterPhoto: undefined,
-	potterInfo: undefined,
+	potterPhoto: '',
+	potterInfo: '',
 
-	additionalImages: undefined,
-	additionalDescription: undefined,
-	additionalPhotos: undefined,
-	additionalPhotosCount: undefined,
+	additionalImages: [],
+	additionalDescription: '',
 
-	price: undefined,
+	price: 0,
 
-	complectation: undefined,
-	preservation: undefined,
+	complectation: [],
+	preservation: '',
 };

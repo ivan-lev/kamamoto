@@ -6,12 +6,14 @@ interface Exhibits {
 	exhibits: Exhibit[];
 	exhibitToEdit: Exhibit;
 	exhibitState: Exhibit;
+	isExistingExhibitEdited: boolean;
 }
 
 const initialState: Exhibits = {
 	exhibits: [],
 	exhibitToEdit: { ...defaultExhibit },
 	exhibitState: defaultExhibit,
+	isExistingExhibitEdited: false,
 };
 
 const exhibits = createSlice({
@@ -19,32 +21,31 @@ const exhibits = createSlice({
 	initialState,
 	reducers: {
 
-		setExhibits: (state, action) => {
+		clearExhibitForm: (state) => {
+			// console.log('defaultExhibit age', defaultExhibit.age);
+			state.exhibitToEdit = { ...defaultExhibit };
+		},
+
+		setExhibits: (state, action: { payload: Exhibit[] }) => {
 			state.exhibits = action.payload;
-			// console.log('payload', action.payload);
-			// console.log('state:', state.exhibits);
 			return state;
 		},
 
 		setExhibitToEdit: (state, action: { payload: Exhibit }) => {
-			// console.error('payload', action.payload);
-			state.exhibitToEdit = action.payload;
-			// console.error('exhibitToEdit:', state.exhibitToEdit);
-		// console.log(state.exhibits);
-		// console.log(state.exhibitions);
-		// console.log(state.exhibits.find(exhibit => exhibit.id === action.payload));
-		// state.exhibitState
-		//   = state.exhibits.find(exhibit => exhibit.id === action.payload) || defaultExhibit;
-		// state.isExistingExhibitionEdited = true;
-		// const someExhibit = state.exhibits.find(exhibit => exhibit.id === action.payload);
-		// console.log(someExhibit);
+			state.exhibitToEdit = { ...defaultExhibit, ...action.payload };
+		},
+
+		setIsExistingExhibitEdited: (state, action: { payload: boolean }) => {
+			state.isExistingExhibitEdited = action.payload;
 		},
 	},
 });
 
 export const {
+	clearExhibitForm,
 	setExhibits,
 	setExhibitToEdit,
+	setIsExistingExhibitEdited,
 } = exhibits.actions;
 
 export default exhibits.reducer;
