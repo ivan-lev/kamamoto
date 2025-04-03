@@ -1,3 +1,4 @@
+import type { Exhibit } from '@/types/exhibitType';
 import type { Category } from '../types/category';
 import type { Exhibition } from '../types/exhibitionType';
 import type { Partner } from '../types/partnerType';
@@ -8,209 +9,247 @@ const { BASE_URL, CATEGORIES, EXHIBITIONS, EXHIBITS, LETTERS, PARTNERS, SIGNIN, 
 
 // Authorization logic
 
-function authorize(email: string, password: string) {
-	return fetch(`${BASE_URL}/${SIGNIN}`, {
+async function authorize(email: string, password: string) {
+	const response = await fetch(`${BASE_URL}/${SIGNIN}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({ email, password }),
-	}).then(response => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function checkToken(token: string) {
-	return fetch(`${BASE_URL}/${USERS}/`, {
+async function checkToken(token: string) {
+	const response = await fetch(`${BASE_URL}/${USERS}/`, {
 		method: 'GET',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-	}).then(response => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
 // Get requests
 
-function getExhibitById(id: string) {
-	return fetch(`${BASE_URL}/${EXHIBITS}/${id}`, {
+async function getExhibitById(id: string) {
+	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${id}`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getExhibits() {
-	return fetch(`${BASE_URL}/${EXHIBITS}/`, {
+async function getExhibits() {
+	const response = await fetch(`${BASE_URL}/${EXHIBITS}/`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getExhibitsByCategory(category: string) {
-	return fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
+async function getExhibitsByCategory(category: string) {
+	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getExhibitions() {
-	return fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
+async function getExhibitions() {
+	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getExhibitionById(id: string) {
-	return fetch(`${BASE_URL}/${EXHIBITIONS}/${id}`, {
+async function getExhibitionById(id: string) {
+	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/${id}`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getStatistics() {
-	return fetch(`${BASE_URL}/${STATISTICS}/`, {
+async function getStatistics() {
+	const response = await fetch(`${BASE_URL}/${STATISTICS}/`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getPartners() {
-	return fetch(`${BASE_URL}/${PARTNERS}/`, {
+async function getPartners() {
+	const response = await fetch(`${BASE_URL}/${PARTNERS}/`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getCategories(isAdmin = false) {
-	return fetch(`${BASE_URL}/${CATEGORIES}/`, {
+async function getCategories(isAdmin = false) {
+	const response = await fetch(`${BASE_URL}/${CATEGORIES}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function getLetters() {
-	return fetch(`${BASE_URL}/${LETTERS}/`, {
+async function getLetters() {
+	const response = await fetch(`${BASE_URL}/${LETTERS}/`, {
 		method: 'GET',
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
 // Admin requests
 
-function createExhibition(token: string, exhibition: Exhibition) {
-	return fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
+async function updateExhibit(token: string, exhibit: Exhibit) {
+	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${exhibit.id}`, {
+		method: 'PATCH',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(exhibit),
+	});
+	return checkResponseStatus(response);
+}
+
+async function createExhibition(token: string, exhibition: Exhibition) {
+	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
 		method: 'POST',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(exhibition),
-	}).then(response => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function updateExhibition(token: string, exhibition: Exhibition) {
-	return fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
+async function updateExhibition(token: string, exhibition: Exhibition) {
+	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(exhibition),
-	}).then(response => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function deleteExhibition(token: string, exhibition: Exhibition) {
-	return fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
+async function deleteExhibition(token: string, exhibition: Exhibition) {
+	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-	}).then(response => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function createPartner(token: string, title: string, link: string, logo: string, isActive: boolean) {
-	return fetch(`${BASE_URL}/${PARTNERS}/`, {
+async function createPartner(token: string, title: string, link: string, logo: string, isActive: boolean) {
+	const response = await fetch(`${BASE_URL}/${PARTNERS}/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`,
 		},
 		body: JSON.stringify({ title, link, logo, isActive }),
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function updatePartner(token: string, partner: Partner) {
-	return fetch(`${BASE_URL}/${PARTNERS}/${partner._id}`, {
+async function updatePartner(token: string, partner: Partner) {
+	const response = await fetch(`${BASE_URL}/${PARTNERS}/${partner._id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(partner),
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function deletePartner(token: string, id: string) {
-	return fetch(`${BASE_URL}/${PARTNERS}/${id}`, {
+async function deletePartner(token: string, id: string) {
+	const response = await fetch(`${BASE_URL}/${PARTNERS}/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-	}).then(response => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function createCategory(token: string, category: string, title: string, thumbnail: string) {
-	return fetch(`${BASE_URL}/${CATEGORIES}/`, {
+async function createCategory(token: string, category: string, title: string, thumbnail: string) {
+	const response = await fetch(`${BASE_URL}/${CATEGORIES}/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`,
 		},
 		body: JSON.stringify({ category, title, thumbnail }),
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function updateCategory(token: string, category: Category) {
-	return fetch(`${BASE_URL}/${CATEGORIES}/${category.category}`, {
+async function updateCategory(token: string, category: Category) {
+	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category.category}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(category),
-	}).then((response: any) => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
-function deleteCategory(token: string, category: string) {
-	return fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
+async function deleteCategory(token: string, category: string) {
+	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-	}).then(response => checkResponseStatus(response));
+	});
+	return checkResponseStatus(response);
 }
 
 // Common api logic
 
-function checkResponseStatus(res: any) {
-	if (!res.ok) {
-		console.error(`Ошибка: ${res.status}`);
-		return Promise.reject(res);
+function checkResponseStatus(response: Response) {
+	if (!response.ok) {
+		console.error(`Ошибка: ${response.status}`);
+		return Promise.reject(response);
 	}
-	return res.json();
+	return response.json();
 }
 
 export const api = {
-	getCategories,
 	getExhibitById,
 	getExhibits,
 	getExhibitsByCategory,
+	updateExhibit,
+	//
 	getExhibitions,
 	getExhibitionById,
-	getLetters,
 	createExhibition,
 	updateExhibition,
 	deleteExhibition,
-	getStatistics,
+	//
+	getLetters,
+	//
+	checkToken,
 	authorize,
+	getStatistics,
+	//
 	getPartners,
 	createPartner,
 	updatePartner,
-	checkToken,
 	deletePartner,
+	//
+	getCategories,
 	createCategory,
 	updateCategory,
 	deleteCategory,
