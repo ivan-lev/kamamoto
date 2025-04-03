@@ -7,7 +7,7 @@ import {
 	setExhibitionsList,
 	setExhibitionToEdit,
 } from '@/slices/admin/exhibitions';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AdminExhibitions.scss';

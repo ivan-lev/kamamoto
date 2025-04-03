@@ -9,7 +9,7 @@ import {
 	setPartners,
 	setPartnerToEdit,
 } from '@/slices/admin/partners';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AdminPartners.scss';

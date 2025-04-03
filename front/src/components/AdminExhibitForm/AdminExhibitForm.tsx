@@ -1,24 +1,57 @@
 import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
-import { setExhibitToEdit } from '@/slices/admin/exibits';
+import { setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
+import { api } from '@/utils/api/api';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AdminExhibitForm.scss';
 
 export default function AdminExhibitForm(): JSX.Element {
 	const dispatch = useDispatch();
-	const isFormDisabled: boolean = false;
-	const isExistingExhibitEdited = false;
-	const handleUpdateExhibit = () => {};
-	const handleDeleteExhibit = () => {};
-	const handleCloseExhibitionForm = () => {};
-	const saveMessage = 'Статусное сообщение';
+
+	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+	const [isExistingExhibitEdited, setIsExistingExhibitEdited] = useState<boolean>(false);
+	const [saveMessage, setSaveMessage] = useState<string>('');
 
 	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
+	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
+
+	function handleUpdateExhibit() {
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.exhibit.updateExhibit(token, exhibitToEdit)
+				.then((response) => {
+					const newExhibitsList = exhibits.map((exhibit) => {
+						return response.id !== exhibit.id ? exhibit : response;
+					});
+					dispatch(setExhibits(newExhibitsList));
+					// dispatch(clearExhibitForm());
+					setIsExistingExhibitEdited(false);
+					setIsFormDisabled(false);
+					setSaveMessage('Данные обновлены');
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					setSaveMessage('Что-то пошло не так :(');
+				});
+		}
+	};
+
+	function handleDeleteExhibit() {};
+	function handleCloseExhibitionForm() {};
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value }));
 	};
+
+	useEffect(() => {
+		if (saveMessage) {
+			setTimeout(() => setSaveMessage(''), 3000);
+		}
+	}, [saveMessage]);
 
 	return (
 		<form className="form" onSubmit={() => {}}>

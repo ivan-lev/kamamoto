@@ -1,9 +1,13 @@
 import type { Exhibit } from '@/types/exhibitType';
-import type { Category } from '../types/category';
-import type { Exhibition } from '../types/exhibitionType';
-import type { Partner } from '../types/partnerType';
+import type { Category } from '../../types/category';
+import type { Exhibition } from '../../types/exhibitionType';
+import type { Partner } from '../../types/partnerType';
 
-import { PATHS } from '../variables/variables';
+import { auth } from '@/utils/api/api.auth';
+import { checkResponseStatus } from '@/utils/api/api.common';
+import { exhibit } from '@/utils/api/api.exhibit';
+
+import { PATHS } from '../../variables/variables';
 
 const { BASE_URL, CATEGORIES, EXHIBITIONS, EXHIBITS, LETTERS, PARTNERS, SIGNIN, STATISTICS, USERS } = PATHS;
 
@@ -216,16 +220,6 @@ async function deleteCategory(token: string, category: string) {
 	return checkResponseStatus(response);
 }
 
-// Common api logic
-
-function checkResponseStatus(response: Response) {
-	if (!response.ok) {
-		console.error(`Ошибка: ${response.status}`);
-		return Promise.reject(response);
-	}
-	return response.json();
-}
-
 export const api = {
 	getExhibitById,
 	getExhibits,
@@ -253,4 +247,7 @@ export const api = {
 	createCategory,
 	updateCategory,
 	deleteCategory,
+	//
+	auth,
+	exhibit,
 };

@@ -3,7 +3,7 @@ import type { ChangeEvent, FormEvent } from 'react';
 import Logo from '@/components/Logo/Logo';
 import Seo from '@/components/Seo/Seo';
 import { login, logout } from '@/slices/admin/user';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { LOGIN_MESSAGES } from '@/variables/variables';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

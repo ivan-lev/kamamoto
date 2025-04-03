@@ -3,7 +3,7 @@ import ExhibitTechInfo from '@/components/ExhibitTechInfo/ExhibitTechInfo';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { ceramicStylesDescriptions } from '@/variables/ceramisStylesDescriptions';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import { PATHS } from '@/variables/variables';

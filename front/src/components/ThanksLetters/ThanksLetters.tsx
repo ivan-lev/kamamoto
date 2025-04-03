@@ -3,7 +3,7 @@ import type { File } from '@/types/file';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setLettersList } from '@/slices/visitor/letters';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ThanksLetters.scss';

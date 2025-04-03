@@ -3,7 +3,7 @@ import type { Images } from '@/types/imageType';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setExhibitionToDisplay } from '@/slices/visitor/exhibitions';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { generateImageLinks } from '@/utils/generateImageLinks';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import { PATHS } from '@/variables/variables';

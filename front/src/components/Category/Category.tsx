@@ -6,7 +6,7 @@ import Seo from '@/components/Seo/Seo';
 import { resetCategory, setCategory } from '@/slices/visitor/category';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { ExhibitCategory } from '@/types/exhibitCategory';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import type { Statistics } from '@/types/statistics';
 import Preloader from '@/components/Preloader/Preloader';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import './AdminStatistics.scss';
 

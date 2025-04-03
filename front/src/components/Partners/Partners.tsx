@@ -1,7 +1,7 @@
 import type { RootState } from '../../slices/visitor';
 import Partner from '@/components/Partner/Partner';
 import { setPartnersList } from '@/slices/visitor/partners';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { PATHS } from '@/variables/variables';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

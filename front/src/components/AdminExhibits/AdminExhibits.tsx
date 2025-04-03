@@ -4,7 +4,7 @@ import AdminExhibitForm from '@/components/AdminExhibitForm/AdminExhibitForm';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AdminExhibits.scss';

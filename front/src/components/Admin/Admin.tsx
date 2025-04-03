@@ -2,7 +2,7 @@ import type { RootState } from '@/slices/admin/index';
 import Logo from '@/components/Logo/Logo';
 import Seo from '@/components/Seo/Seo';
 import { logout } from '@/slices/admin/user';
-import { api } from '@/utils/api';
+import { api } from '@/utils/api/api';
 import { LOGIN_MESSAGES } from '@/variables/variables';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -68,6 +68,11 @@ export default function Admin(): JSX.Element {
 									<li>
 										<Link to="letters/" className="link">
 											Благодарственные письма
+										</Link>
+									</li>
+									<li>
+										<Link to="files/" className="link">
+											Файлы для скачивания
 										</Link>
 									</li>
 								</ul>
