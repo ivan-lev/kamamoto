@@ -82,7 +82,7 @@ export default function AdminExhibitForm(): JSX.Element {
 				<legend className="form__legend">Добавить лот</legend>
 
 				<div className="form__grid">
-					<div className="form__row-2">
+					<div className="form__row form__row-2">
 						<span>номер</span>
 						<input
 							className={`input ${
@@ -96,7 +96,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-4">
+					<div className="form__row form__row-4">
 						<span>стиль керамики</span>
 						<input
 							className={`input ${
@@ -110,7 +110,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-3">
+					<div className="form__row form__row-3">
 						<span>категория</span>
 
 						<select
@@ -123,7 +123,7 @@ export default function AdminExhibitForm(): JSX.Element {
 
 					</div>
 
-					<div className="form__row-3">
+					<div className="form__row form__row-3">
 						<span>дата создания</span>
 						<input
 							className={`input ${
@@ -137,7 +137,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>название</span>
 						<input
 							className={`input ${
@@ -165,7 +165,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>описание лота</span>
 						<textarea
 							className="textarea"
@@ -176,7 +176,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-8">
+					<div className="form__row form__row-8">
 						<span>имя мастера</span>
 						<input
 							className={`input ${
@@ -190,7 +190,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-4">
+					<div className="form__row form__row-4">
 						<span>годы жизни</span>
 						<input
 							className={`input ${
@@ -204,7 +204,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-8">
+					<div className="form__row form__row-8">
 						<span>имя мастера на японском</span>
 						<input
 							className={`input ${
@@ -218,7 +218,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-4">
+					<div className="form__row form__row-4">
 						<span>фото мастера</span>
 						<input
 							className={`input ${
@@ -232,7 +232,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>информация о мастере</span>
 						<textarea
 							className="textarea"
@@ -243,7 +243,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>дополнительная информация</span>
 						<textarea
 							className="textarea"
@@ -254,7 +254,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>комплектность</span>
 						<input
 							className={`input ${
@@ -268,7 +268,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>сохранность</span>
 						<input
 							className={`input ${
@@ -282,7 +282,7 @@ export default function AdminExhibitForm(): JSX.Element {
 						/>
 					</div>
 
-					<div className="form__row-12--inline">
+					<div className="form__row form__row-12 form__row-12--inline">
 						{!isExistingExhibitEdited && (
 							<>
 								<button
