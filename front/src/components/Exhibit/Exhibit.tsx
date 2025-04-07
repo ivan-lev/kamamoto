@@ -6,7 +6,6 @@ import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
 import { ceramicStylesDescriptions } from '@/variables/ceramisStylesDescriptions';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
-import { PATHS } from '@/variables/variables';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ImageGallery from 'react-image-gallery';
@@ -114,11 +113,11 @@ export default function Exhibit(): JSX.Element {
 
 					{/* Potter description section */}
 					{potterInfo && (
-						<div className="description">
+						<div className="description description--block">
 							{exhibit?.potterPhoto && (
 								<img
 									className="exhibit__potter-photo"
-									src={`${PATHS.EXHIBITS}${exhibit?.id}/${exhibit.potterPhoto}`}
+									src={exhibit.potterPhoto}
 								>
 								</img>
 							)}
@@ -135,7 +134,7 @@ export default function Exhibit(): JSX.Element {
 					)}
 
 					{/* Additional photo gallery */}
-					{additionalImages && (
+					{additionalImages?.length !== 0 && (
 						<ImageGallery
 							items={galleryAdditionalImages || []}
 							showFullscreenButton={false}

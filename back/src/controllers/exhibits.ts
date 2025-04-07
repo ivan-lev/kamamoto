@@ -23,12 +23,23 @@ function findExhibitById(req: Request, res: Response, next: NextFunction): void 
 	Exhibit.findOne({ id: req.params.id })
 		.orFail()
 		.then((exhibit: ExhibitType) => {
-			exhibit.images.forEach((image, i) => {
-				exhibit.images[i] = `${PUBLIC_PATH}/${EXHIBITS}/${exhibit.id}/${image}`;
-			});
-			exhibit.additionalImages.forEach((image, i) => {
-				exhibit.additionalImages[i] = `${PUBLIC_PATH}/${EXHIBITS}/${exhibit.id}/additional/${image}`;
-			});
+			const pathToExhibitFolder = `${PUBLIC_PATH}/${EXHIBITS}/${exhibit.id}`;
+
+			if (exhibit.images) {
+				exhibit.images.forEach((image, i) => {
+					exhibit.images[i] = `${pathToExhibitFolder}/${image}`;
+				});
+			}
+
+			if (exhibit.additionalImages) {
+				exhibit.additionalImages.forEach((image, i) => {
+					exhibit.additionalImages[i] = `${pathToExhibitFolder}/additional/${image}`;
+				});
+			}
+
+			if (exhibit.potterPhoto)
+				exhibit.potterPhoto = `${pathToExhibitFolder}/${exhibit.potterPhoto}`;
+
 			res.send(exhibit);
 		})
 		.catch((error: any) => {
