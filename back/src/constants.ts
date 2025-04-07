@@ -47,6 +47,7 @@ export const REGEX = {
 
 export const PATHS = {
 	CATEGORIES: 'categories',
+	CERAMIC_STYLES: 'ceramic-styles',
 	EXHIBITIONS: 'exhibitions',
 	EXHIBITS: 'exhibits',
 	LETTERS: 'letters',
