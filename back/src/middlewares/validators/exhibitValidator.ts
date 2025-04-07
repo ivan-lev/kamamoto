@@ -17,8 +17,6 @@ export const exhibitValidator = celebrate({
 		potterPhoto: Joi.string().allow(''),
 		potterInfo: Joi.string().allow(''),
 		additionalDescription: Joi.string().allow(''),
-		additionalPhotos: Joi.boolean(),
-		additionalPhotosCount: Joi.number(),
 		price: Joi.number(),
 		weight: Joi.number(),
 		height: Joi.number(),

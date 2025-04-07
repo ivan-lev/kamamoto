@@ -84,14 +84,6 @@ const exhibitSchema = new Schema<Exhibit>(
 			type: String,
 		},
 
-		// additionalPhotos: {
-		// 	type: Boolean,
-		// },
-
-		// additionalPhotosCount: {
-		// 	type: Number,
-		// },
-
 		price: {
 			type: Number,
 			min: [0, 'Дешевле не бывает'],
