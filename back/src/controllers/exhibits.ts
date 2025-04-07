@@ -12,15 +12,20 @@ import Exhibit from '../models/exhibit';
 const { EXHIBITS, PUBLIC_PATH } = PATHS;
 
 function getExhibits(req: Request, res: Response, next: NextFunction): void {
-	Exhibit.find({}).select({ _id: 0 }).populate({
-		path: 'category',
-		// Explicitly exclude `_id`
-		select: 'title _id',
-	}).then((exhibits: ExhibitType[]) => res.send(exhibits)).catch((error: any) => { return next(error); });
+	Exhibit
+		.find({})
+		.select({ _id: 0 })
+		.populate({
+			path: 'category',
+			select: 'title _id',
+		})
+		.then((exhibits: ExhibitType[]) => res.send(exhibits))
+		.catch((error: any) => { return next(error); });
 }
 
 function findExhibitById(req: Request, res: Response, next: NextFunction): void {
-	Exhibit.findOne({ id: req.params.id })
+	Exhibit
+		.findOne({ id: req.params.id })
 		.orFail()
 		.then((exhibit: ExhibitType) => {
 			const pathToExhibitFolder = `${PUBLIC_PATH}/${EXHIBITS}/${exhibit.id}`;
@@ -105,6 +110,10 @@ function updateExhibit(req: Request, res: Response, next: NextFunction): void {
 		select: { _id: 0 },
 	})
 		.orFail()
+		.populate({
+			path: 'category',
+			select: 'title _id',
+		})
 		.then((exhibit: ExhibitType) => res.send(exhibit))
 		.catch((error: any) => {
 			if (error.name === 'DocumentNotFoundError') {

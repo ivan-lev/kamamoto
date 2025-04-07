@@ -20,7 +20,6 @@ export default function AdminExhibits(): JSX.Element {
 	}
 
 	useEffect(() => {
-		// const exhibitsList: Exhibits = [];
 		const token = localStorage.getItem('kmmttkn');
 		//
 		if (token) {

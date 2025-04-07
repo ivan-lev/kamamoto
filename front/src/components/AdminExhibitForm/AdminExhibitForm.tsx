@@ -22,8 +22,6 @@ export default function AdminExhibitForm(): JSX.Element {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			// exhibitToEdit.images = exhibitToEdit.images.split(', ');
-			// exhibitToEdit.complectation = [];
 			api.exhibits.updateExhibit(token, { ...exhibitToEdit })
 				.then((response) => {
 					const newExhibitsList = exhibits.map((exhibit) => {
@@ -115,7 +113,11 @@ export default function AdminExhibitForm(): JSX.Element {
 					<div className="form__row-3">
 						<span>категория</span>
 
-						<select	name="category" defaultValue={exhibitToEdit.category._id}onChange={event => handleSelectChange(event)}>
+						<select
+							name="category"
+							value={exhibitToEdit.category._id}
+							onChange={event => handleSelectChange(event)}
+						>
 							{categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
 						</select>
 
