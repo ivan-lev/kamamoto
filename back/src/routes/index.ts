@@ -6,6 +6,7 @@ import { auth } from '../middlewares/auth';
 import { signInValidator } from '../middlewares/validators/userValidator';
 
 import categoryRouter from './categories';
+import ceramicStylesRouter from './ceramicStyles';
 import exhibitionRouter from './exhibitions';
 import exhibitRouter from './exhibits';
 import lettersRouter from './letters';
@@ -17,6 +18,7 @@ const routes = Router();
 
 routes.post('/signin', signInValidator, login);
 routes.use(auth); // pass all get requests except of user token checking
+routes.use('/ceramic-styles', ceramicStylesRouter);
 routes.use('/users', userRouter);
 routes.use('/exhibits', exhibitRouter);
 routes.use('/exhibitions', exhibitionRouter);
