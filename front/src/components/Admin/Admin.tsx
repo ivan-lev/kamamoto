@@ -74,6 +74,11 @@ export default function Admin(): JSX.Element {
 											Файлы для скачивания
 										</Link>
 									</li>
+									<li>
+										<Link to="ceramic-styles/" className="link">
+											Стили керамики
+										</Link>
+									</li>
 								</ul>
 
 								<ul className="admin__list">

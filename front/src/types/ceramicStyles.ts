@@ -1,5 +1,4 @@
 export interface CeramicStyle {
-	_id: string;
 	name: string;
 	title: string;
 	brief: string;
@@ -11,7 +10,6 @@ export interface CeramicStyle {
 }
 
 export const defaultCeramicStyle: CeramicStyle = {
-	_id: '',
 	name: '',
 	title: '',
 	brief: '',

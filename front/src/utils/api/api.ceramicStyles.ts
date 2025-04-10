@@ -1,3 +1,4 @@
+import type { CeramicStyle } from '@/types/ceramicStyles';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
@@ -14,6 +15,19 @@ async function getCeramicStyles(isAdmin = false) {
 	return checkResponseStatus(response);
 }
 
+async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle) {
+	const response = await fetch(`${BASE_URL}/${CERAMIS_STYLES}/`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`,
+		},
+		body: JSON.stringify(ceramicStyle),
+	});
+	return checkResponseStatus(response);
+}
+
 export const ceramicStyles = {
 	getCeramicStyles,
+	createCeramicStyle,
 };

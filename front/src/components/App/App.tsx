@@ -1,6 +1,7 @@
 import About from '@/components/About/About';
 import Admin from '@/components/Admin/Admin';
 import AdminCategories from '@/components/AdminCategories/AdminCategories';
+import AdminCeramicStyles from '@/components/AdminCeramicStyles/AdminCeramicStyles';
 import AdminExhibitions from '@/components/AdminExbitions/AdminExhibitions';
 import AdminExhibits from '@/components/AdminExhibits/AdminExhibits';
 import AdminLetters from '@/components/AdminLetters/AdminLetters';
@@ -88,6 +89,7 @@ export default function App() {
 					<Route path="partners/" element={<AdminPartners />} />
 					<Route path="categories/" element={<AdminCategories />} />
 					<Route path="letters/" element={<AdminLetters />} />
+					<Route path="ceramic-styles/" element={<AdminCeramicStyles />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
