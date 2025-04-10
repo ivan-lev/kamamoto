@@ -1,4 +1,5 @@
 import categoriesReducer from '@/slices/admin/categories';
+import ceramicStylesReducer from '@/slices/admin/ceramicStyles';
 import exhibitionsReducer from '@/slices/admin/exhibitions';
 import exhibitsReducer from '@/slices/admin/exibits';
 import lettersReducer from '@/slices/admin/letters';
@@ -9,6 +10,7 @@ import { configureStore } from '@reduxjs/toolkit';
 const store = configureStore({
 	reducer: {
 		categories: categoriesReducer,
+		ceramicStyles: ceramicStylesReducer,
 		exhibitions: exhibitionsReducer,
 		exhibits: exhibitsReducer,
 		letters: lettersReducer,
