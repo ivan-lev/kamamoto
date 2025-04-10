@@ -23,7 +23,7 @@ const ceramicStyleSchema = new Schema<CeramicStyle>(
 		description: {
 			type: String,
 		},
-		isDescription: {
+		showArticle: {
 			type: Boolean,
 			default: false,
 		},

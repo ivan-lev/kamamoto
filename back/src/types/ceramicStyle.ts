@@ -4,7 +4,7 @@ export interface CeramicStyle {
 	title: string;
 	brief: string;
 	description: string;
-	isDescription: boolean;
+	showArticle: boolean;
 	thumbnail: string;
 	images: string[];
 	additionalImages: string[];

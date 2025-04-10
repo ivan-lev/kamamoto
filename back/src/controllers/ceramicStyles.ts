@@ -43,6 +43,29 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 		.catch((error) => { return next(error); });
 }
 
+function createCeramicStyle(req: Request, res: Response, next: NextFunction): void {
+	const ceramicStyle = req.body;
+
+	CeramicStyle.create(ceramicStyle)
+		.then(ceramicStyle => res.status(201).send(ceramicStyle))
+		.catch((error) => {
+			if (error.name === 'CastError') {
+				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
+			}
+
+			if (error.name === 'ValidationError') {
+				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_DATA));
+			}
+
+			if (error.code === 11000) {
+				return next(new ConflictError(ERROR_MESSAGES.CATEGORY_EXISTS));
+			}
+
+			return next(error);
+		});
+}
+
 export const ceramicStyle = {
+	createCeramicStyle,
 	getCeramicStyles,
 };
