@@ -1,6 +1,7 @@
 export const PATHS = {
 	BASE_URL: 'http://localhost:3000',
 	CATEGORIES: 'categories',
+	CERAMIS_STYLES: 'ceramic-styles',
 	EXHIBIT: 'exhibits',
 	EXHIBITS: 'exhibits',
 	EXHIBITIONS: 'exhibitions',
