@@ -11,17 +11,14 @@ const { CERAMIC_STYLES, PUBLIC_PATH } = PATHS;
 
 function getCeramicStyles(req: Request, res: Response, next: NextFunction): void {
 	const isAdmin = req.headers['is-admin'];
-	CeramicStyle.find({})
+	CeramicStyle.find({}, { _id: 0 })
 		.then((styles) => {
-			return styles.map((style: CeramicStyleType) => {
-				const { name, thumbnail, images, additionalImages } = style;
-
-				if (isAdmin) {
-					return { ...style };
-				}
-				else {
-					style.thumbnail = `${PUBLIC_PATH}/${CERAMIC_STYLES}/${name}/${thumbnail}`;
-					const pathToCeramicStyleFolder = `${PUBLIC_PATH}/${CERAMIC_STYLES}/${name}`;
+			if (!isAdmin) {
+				styles.forEach((style) => {
+					const { thumbnail, images, additionalImages } = style;
+					const pathToCeramicStyleFolder = `${PUBLIC_PATH}/${CERAMIC_STYLES}/${style.name}`;
+					if (thumbnail)
+						style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
 
 					if (images) {
 						images.forEach((image, i) => {
@@ -34,12 +31,12 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 							additionalImages[i] = `${pathToCeramicStyleFolder}/additional/${image}`;
 						});
 					}
+				});
+			}
 
-					return { ...style };
-				}
-			});
+			return styles;
 		})
-		.then(categories => res.send(categories))
+		.then(styles => res.send(styles))
 		.catch((error) => { return next(error); });
 }
 
@@ -47,7 +44,10 @@ function createCeramicStyle(req: Request, res: Response, next: NextFunction): vo
 	const ceramicStyle = req.body;
 
 	CeramicStyle.create(ceramicStyle)
-		.then(ceramicStyle => res.status(201).send(ceramicStyle))
+		.then((ceramicStyle) => {
+			const { _id, ...otherFileds } = ceramicStyle.toObject();
+			res.status(201).send(otherFileds);
+		})
 		.catch((error) => {
 			if (error.name === 'CastError') {
 				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));

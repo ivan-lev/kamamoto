@@ -45,8 +45,9 @@ export default function AdminCeramicStyles(): JSX.Element {
 							<h2 className="title3">Стили керамики</h2>
 							<div className="table">
 								<div className="table__row">
-									<span className="table__cell table__cell--span-2">Имя</span>
-									<span className="table__cell table__cell--span-2">Заголовок</span>
+									<span className="table__cell table__cell--span-4">Имя</span>
+									<span className="table__cell table__cell--span-4">Заголовок</span>
+									<span className="table__cell table__cell--span-3">Файл предпросмотра</span>
 									<span className="table__cell table__cell--centered"></span>
 								</div>
 								{ceramicStylesList.map((style) => {
@@ -55,8 +56,9 @@ export default function AdminCeramicStyles(): JSX.Element {
 											key={style.name}
 											className="table__row"
 										>
-											<span className="table__cell table__cell--span-2">{style.title}</span>
-											<span className="table__cell table__cell--span-2">{style.name}</span>
+											<span className="table__cell table__cell--span-4">{style.title}</span>
+											<span className="table__cell table__cell--span-4">{style.name}</span>
+											<span className="table__cell table__cell--span-3">{style.thumbnail}</span>
 											<div className="table__cell table__cell--centered">
 												<button
 													className="table__button table__button--edit"
