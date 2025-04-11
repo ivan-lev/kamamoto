@@ -1,5 +1,4 @@
 import type { Exhibit } from '@/types/exhibitType';
-import { CeramicStyleType } from '@/types/ceramicStyleType';
 import { useState } from 'react';
 import './ExhibitTechInfo.scss';
 
@@ -70,7 +69,7 @@ export default function ExhibitTechInfo({
 						{exhibit?.style && (
 							<li className="tech-info__list-element">
 								<span>Стиль керамики: </span>
-								{CeramicStyleType[exhibit?.style]}
+								{exhibit?.style.title}
 							</li>
 						)}
 

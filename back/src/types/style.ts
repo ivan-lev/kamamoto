@@ -1,4 +1,4 @@
-export interface CeramicStyle {
+export interface Style {
 	_id: string;
 	name: string;
 	title: string;

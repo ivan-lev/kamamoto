@@ -9,7 +9,7 @@ export interface Exhibit {
 	potterJapaneseName?: string;
 	potterLifeDates?: string;
 	category: Types.ObjectId;
-	style: string;
+	style: Types.ObjectId;
 	images: string[];
 	description: string;
 

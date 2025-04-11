@@ -1,7 +1,7 @@
 import type { Exhibit } from '../types/exhibit';
 import { model, Schema } from 'mongoose';
 
-import { isURL } from 'validator';
+// import { isURL } from 'validator';
 
 const exhibitSchema = new Schema<Exhibit>(
 	{
@@ -42,7 +42,9 @@ const exhibitSchema = new Schema<Exhibit>(
 		},
 
 		style: {
-			type: String,
+			type: Schema.Types.ObjectId,
+			ref: 'style',
+			default: '67f8082ad7087fa1cababada',
 			required: [true, 'Нужно выбрать стиль керамики'],
 			// validate: {
 			//   validator: (value: string) =>

@@ -4,7 +4,6 @@ import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
-import { ceramicStylesDescriptions } from '@/variables/ceramisStylesDescriptions';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
@@ -59,7 +58,6 @@ export default function Exhibit() {
 			api.exhibits.getExhibitById(exhibitId)
 				.then((response) => {
 					dispatch(setExhibit(response));
-					// dispatch(setDisplayList(response));
 					setShowPreloader(false);
 				})
 				.catch((error) => {
@@ -80,86 +78,86 @@ export default function Exhibit() {
 
 			{ showPreloader && <Preloader />}
 			{!showPreloader
-			&& (
-				<section className="section exhibit">
-					<div className="exhibit__breadcrumbs">
-						<Link to=".." className="link link_navigational" relative="path">
-							<img
-								className="link__icon"
-								src="/icons/link-arrow-left.svg"
-							/>
-							Назад
-						</Link>
-					</div>
-
-					<h3 className="title title3">{name}</h3>
-
-					{/* Main image gallery */}
-					{images && (
-						<ImageGallery items={galleryImages || []} showFullscreenButton={false} showPlayButton={false} />
-					)}
-
-					{/* Exhibit description section */}
-					<div className="description">
-						{description
-							? (
-									parse(description || '', htmlParserOptions)
-								)
-							: (
-									<p className="text">Описание в процессе подготовки</p>
-								)}
-					</div>
-
-					{/* Potter description section */}
-					{potterInfo && (
-						<div className="description description--block">
-							{exhibit?.potterPhoto && (
+				&& (
+					<section className="section exhibit">
+						<div className="exhibit__breadcrumbs">
+							<Link to=".." className="link link_navigational" relative="path">
 								<img
-									className="exhibit__potter-photo"
-									src={exhibit.potterPhoto}
-								>
-								</img>
-							)}
-
-							{exhibit?.potterInfo && parse(exhibit?.potterInfo || '', htmlParserOptions)}
+									className="link__icon"
+									src="/icons/link-arrow-left.svg"
+								/>
+								Назад
+							</Link>
 						</div>
-					)}
 
-					{/* Additional info */}
-					{additionalDescription && (
+						<h3 className="title title3">{name}</h3>
+
+						{/* Main image gallery */}
+						{images && (
+							<ImageGallery items={galleryImages || []} showFullscreenButton={false} showPlayButton={false} />
+						)}
+
+						{/* Exhibit description section */}
 						<div className="description">
-							{additionalDescription && parse(additionalDescription || '', htmlParserOptions)}
+							{description
+								? (
+										parse(description || '', htmlParserOptions)
+									)
+								: (
+										<p className="text">Описание в процессе подготовки</p>
+									)}
 						</div>
-					)}
 
-					{/* Additional photo gallery */}
-					{additionalImages?.length !== 0 && (
-						<ImageGallery
-							items={galleryAdditionalImages || []}
-							showFullscreenButton={false}
-							showPlayButton={false}
-							showThumbnails={false}
-							showBullets={true}
-						/>
-					)}
-
-					{/* Ceramic style description section */}
-					{style !== 'other' && (
-						<div className="container">
-							<div className="description">
-								{parse(
-									ceramicStylesDescriptions[style as keyof typeof ceramicStylesDescriptions]
-									|| '',
-									htmlParserOptions,
+						{/* Potter description section */}
+						{potterInfo && (
+							<div className="description description--block">
+								{exhibit?.potterPhoto && (
+									<img
+										className="exhibit__potter-photo"
+										src={exhibit.potterPhoto}
+									>
+									</img>
 								)}
-							</div>
-						</div>
-					)}
 
-					{/* Technical info */}
-					{exhibit && <ExhibitTechInfo exhibit={exhibit} />}
-				</section>
-			)}
+								{exhibit?.potterInfo && parse(exhibit?.potterInfo || '', htmlParserOptions)}
+							</div>
+						)}
+
+						{/* Additional info */}
+						{additionalDescription && (
+							<div className="description">
+								{additionalDescription && parse(additionalDescription || '', htmlParserOptions)}
+							</div>
+						)}
+
+						{/* Additional photo gallery */}
+						{additionalImages?.length !== 0 && (
+							<ImageGallery
+								items={galleryAdditionalImages || []}
+								showFullscreenButton={false}
+								showPlayButton={false}
+								showThumbnails={false}
+								showBullets={true}
+							/>
+						)}
+
+						{/* Ceramic style description section */}
+						{style?.brief && (
+							<div className="container">
+								<div className="description">
+									{parse(
+										style.brief
+										|| '',
+										htmlParserOptions,
+									)}
+								</div>
+							</div>
+						)}
+
+						{/* Technical info */}
+						{exhibit && <ExhibitTechInfo exhibit={exhibit} />}
+					</section>
+				)}
 		</>
 	);
 }

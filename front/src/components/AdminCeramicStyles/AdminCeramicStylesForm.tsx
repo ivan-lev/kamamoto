@@ -8,7 +8,6 @@ import {
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import './AdminExhibitionForm.scss';
 
 export default function AdminCeramicStylesForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -39,10 +38,9 @@ export default function AdminCeramicStylesForm() {
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value }));
 	};
 
-	const handleChangePhotos = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
-		const photosArray = value.split(', ');
-		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: photosArray }));
+		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value.replace(/\s/g, '').split(',') }));
 	};
 
 	const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
@@ -199,7 +197,7 @@ export default function AdminCeramicStylesForm() {
 							type="text"
 							name="images"
 							placeholder="изображения"
-							value={images.join(', ')}
+							value={images}
 							onChange={handleChangePhotos}
 						/>
 					</div>
@@ -213,7 +211,7 @@ export default function AdminCeramicStylesForm() {
 							type="text"
 							name="additionalImages"
 							placeholder="дополнительные изображения"
-							value={additionalImages.join(', ')}
+							value={additionalImages}
 							onChange={handleChangePhotos}
 						/>
 					</div>

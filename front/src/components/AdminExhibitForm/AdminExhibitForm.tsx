@@ -1,6 +1,7 @@
 import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
 import { setCategories } from '@/slices/admin/categories';
+import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { clearExhibitForm, setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
@@ -17,6 +18,7 @@ export default function AdminExhibitForm() {
 	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
 	const isExistingExhibitEdited = useSelector((state: RootState) => state.exhibits.isExistingExhibitEdited);
 	const categories = useSelector((state: RootState) => state.categories.categories);
+	const styles = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
 
 	function handleUpdateExhibit() {
 		setIsFormDisabled(true);
@@ -42,7 +44,7 @@ export default function AdminExhibitForm() {
 	};
 
 	function handleDeleteExhibit() {};
-	// function handleCloseExhibitionForm() {};
+	// function handleCloseExhibitForm() {};
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
@@ -55,9 +57,15 @@ export default function AdminExhibitForm() {
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, category: { _id: value, title: categoryTitle } }));
 	};
 
-	function handleArrayChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+	function handleSelectStyleChange(event: ChangeEvent<HTMLSelectElement>) {
+		const { value } = event.target;
+		const styleTitle = styles.find(style => style._id === value)?.title || '';
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { _id: value, title: styleTitle } }));
+	};
+
+	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value.split(',') }));
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value.replace(/\s/g, '').split(',') }));
 	};
 
 	useEffect(() => {
@@ -71,6 +79,14 @@ export default function AdminExhibitForm() {
 			api.categories.getCategories(true)
 				.then((response) => {
 					dispatch(setCategories(response));
+				})
+				.catch(error => console.error(error));
+		}
+
+		if (styles.length === 0) {
+			api.ceramicStyles.getCeramicStyles(true)
+				.then((styles) => {
+					dispatch(setCeramicStyles(styles));
 				})
 				.catch(error => console.error(error));
 		}
@@ -96,7 +112,7 @@ export default function AdminExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-4">
+					{/* <div className="form__row form__row-4">
 						<span>стиль керамики</span>
 						<input
 							className={`input ${
@@ -105,9 +121,22 @@ export default function AdminExhibitForm() {
 							type="text"
 							name="style"
 							placeholder="название стиля"
-							value={exhibitToEdit.style}
+							value={exhibitToEdit.style?.title}
 							onChange={handleChange}
 						/>
+					</div> */}
+
+					<div className="form__row form__row-4">
+						<span>стиль керамики</span>
+
+						<select
+							className="select"
+							name="style"
+							value={exhibitToEdit.style?._id}
+							onChange={event => handleSelectStyleChange(event)}
+						>
+							{styles.map(style => <option key={style._id} value={style._id}>{style.title}</option>)}
+						</select>
 					</div>
 
 					<div className="form__row form__row-3">
@@ -121,7 +150,6 @@ export default function AdminExhibitForm() {
 						>
 							{categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
 						</select>
-
 					</div>
 
 					<div className="form__row form__row-3">
@@ -162,7 +190,7 @@ export default function AdminExhibitForm() {
 							name="images"
 							placeholder="фотографии"
 							value={exhibitToEdit.images}
-							onChange={handleArrayChange}
+							onChange={handleChangePhotos}
 						/>
 					</div>
 
@@ -171,7 +199,7 @@ export default function AdminExhibitForm() {
 						<textarea
 							className="textarea"
 							name="description"
-							placeholder="организаторы"
+							placeholder="описание лота"
 							value={exhibitToEdit.description}
 							onChange={handleChange}
 						/>
@@ -245,16 +273,16 @@ export default function AdminExhibitForm() {
 					</div>
 
 					<div className="form__row-12">
-						<span>фотографии</span>
+						<span>дополнительные фотографии</span>
 						<input
 							className={`input ${
 								isFormDisabled ? 'input_disabled' : ''
 							}`}
 							type="text"
 							name="additionalImages"
-							placeholder="дополнительные фотографии"
+							placeholder="названия через запятую без пробелов с расширением"
 							value={exhibitToEdit.additionalImages}
-							onChange={handleArrayChange}
+							onChange={handleChangePhotos}
 						/>
 					</div>
 

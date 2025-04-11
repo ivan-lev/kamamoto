@@ -56,7 +56,7 @@ export default function AdminExhibits() {
 										<span className="table__cell">{exhibit.id}</span>
 										<span className="table__cell table__cell--span-6">{exhibit.name}</span>
 										<span className="table__cell table__cell--span-2">{exhibit.category.title}</span>
-										<span className="table__cell table__cell--span-2">{exhibit.style}</span>
+										<span className="table__cell table__cell--span-2">{exhibit.style?.title}</span>
 										<div className="table__cell table__cell--centered">
 											<button
 												className="table__button table__button--edit"

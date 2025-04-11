@@ -1,12 +1,10 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
-
 import { ObjectId } from 'mongodb';
 import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
-import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 
 const { EXHIBITS, PUBLIC_PATH } = PATHS;
@@ -19,6 +17,10 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 			path: 'category',
 			select: 'title _id',
 		})
+		.populate({
+			path: 'style',
+			select: 'title',
+		})
 		.then((exhibits: ExhibitType[]) => res.send(exhibits))
 		.catch((error: any) => { return next(error); });
 }
@@ -26,6 +28,10 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 function findExhibitById(req: Request, res: Response, next: NextFunction): void {
 	Exhibit
 		.findOne({ id: req.params.id })
+		.populate({
+			path: 'style',
+			select: 'name title brief showArticle',
+		})
 		.orFail()
 		.then((exhibit: ExhibitType) => {
 			const pathToExhibitFolder = `${PUBLIC_PATH}/${EXHIBITS}/${exhibit.id}`;
@@ -103,6 +109,7 @@ function updateExhibit(req: Request, res: Response, next: NextFunction): void {
 	const newExhibitData: ExhibitType = req.body;
 
 	const newCategory = new ObjectId(newExhibitData.category);
+
 	newExhibitData.category = newCategory;
 	Exhibit.findOneAndUpdate({ id: req.params.id }, newExhibitData, {
 		new: true,
@@ -113,6 +120,10 @@ function updateExhibit(req: Request, res: Response, next: NextFunction): void {
 		.populate({
 			path: 'category',
 			select: 'title _id',
+		})
+		.populate({
+			path: 'style',
+			select: 'title name',
 		})
 		.then((exhibit: ExhibitType) => res.send(exhibit))
 		.catch((error: any) => {

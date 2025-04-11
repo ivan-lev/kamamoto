@@ -1,8 +1,8 @@
-import type { CeramicStyle } from '../types/ceramicStyle';
+import type { Style } from '../types/style';
 
 import { model, Schema } from 'mongoose';
 
-const ceramicStyleSchema = new Schema<CeramicStyle>(
+const styleSchema = new Schema<Style>(
 	{
 		name: {
 			type: String,
@@ -43,4 +43,4 @@ const ceramicStyleSchema = new Schema<CeramicStyle>(
 	{ versionKey: false },
 );
 
-export default model<CeramicStyle>('ceramicStyle', ceramicStyleSchema);
+export default model<Style>('style', styleSchema);

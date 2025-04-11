@@ -20,13 +20,14 @@ async function getExhibitById(id: string) {
 
 async function updateExhibit(token: string, exhibit: Exhibit) {
 	const exhibitCategoryHexId = exhibit.category?._id;
+	const exhibitStyleHexId = exhibit.style?._id;
 	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${exhibit.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ ...exhibit, category: exhibitCategoryHexId }),
+		body: JSON.stringify({ ...exhibit, category: exhibitCategoryHexId, style: exhibitStyleHexId }),
 	});
 	return checkResponseStatus(response);
 }

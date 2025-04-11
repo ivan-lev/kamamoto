@@ -22,7 +22,6 @@ const exhibits = createSlice({
 	reducers: {
 
 		clearExhibitForm: (state) => {
-			// console.log('defaultExhibit age', defaultExhibit.age);
 			state.exhibitToEdit = { ...defaultExhibit };
 		},
 

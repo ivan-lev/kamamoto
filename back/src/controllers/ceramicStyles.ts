@@ -1,17 +1,16 @@
 import type { NextFunction, Request, Response } from 'express';
-import type { CeramicStyle as CeramicStyleType } from '../types/ceramicStyle';
 import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 
-import CeramicStyle from '../models/ceramicStyle';
+import CeramicStyle from '../models/style';
 
 const { CERAMIC_STYLES, PUBLIC_PATH } = PATHS;
 
 function getCeramicStyles(req: Request, res: Response, next: NextFunction): void {
 	const isAdmin = req.headers['is-admin'];
-	CeramicStyle.find({}, { _id: 0 })
+	CeramicStyle.find({})
 		.then((styles) => {
 			if (!isAdmin) {
 				styles.forEach((style) => {

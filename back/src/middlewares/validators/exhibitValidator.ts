@@ -9,7 +9,7 @@ export const exhibitValidator = celebrate({
 		images: Joi.array().items(Joi.string()).required(),
 		additionalImages: Joi.array().items(Joi.string()),
 		thumbnail: Joi.string(),
-		style: Joi.string().required(),
+		style: Joi.string().hex().required(),
 		description: Joi.string().allow('').required(),
 		potterName: Joi.string().allow(''),
 		potterJapaneseName: Joi.string().allow(''),

@@ -1,4 +1,4 @@
-import type { CeramicStyleType } from '@/types/ceramicStyleType';
+import type { CeramicStyle } from '@/types/ceramicStyles';
 import type { ExhibitComplectation } from '@/types/exhibitComplectationType';
 
 export interface Exhibit {
@@ -9,7 +9,7 @@ export interface Exhibit {
 	potterJapaneseName?: string;
 	potterLifeDates?: string;
 	category: { _id: string; title: string };
-	style?: keyof typeof CeramicStyleType;
+	style?: CeramicStyle;
 	images?: string[];
 	description?: string;
 
@@ -42,7 +42,7 @@ export const defaultExhibit: Exhibit = {
 	potterJapaneseName: '',
 	potterLifeDates: '',
 	category: { _id: '', title: '' },
-	style: 'unknown',
+	style: { _id: '67f8082ad7087fa1cababada', title: 'неизвестен' },
 	images: [],
 	description: '',
 
