@@ -114,6 +114,7 @@ export default function AdminExhibitForm() {
 						<span>категория</span>
 
 						<select
+							className="select"
 							name="category"
 							value={exhibitToEdit.category._id}
 							onChange={event => handleSelectChange(event)}

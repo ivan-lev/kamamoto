@@ -1,0 +1,13 @@
+.select {
+	background: var(--background-muted);
+	color: var(--text-default);
+	border: 1px solid var(--border-color);
+  border-radius: 2px;
+	height: 45px;
+	padding: 0 var(--gap-12);
+
+	&:focus-visible {
+    outline: 1px solid var(--text-muted);
+	}
+}
+
