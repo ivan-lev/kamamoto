@@ -1,6 +1,6 @@
 import './NotFound.scss';
 
-export default function NotFound(): JSX.Element {
+export default function NotFound() {
 	return (
 		<section className="section">
 			<div className="not-found">

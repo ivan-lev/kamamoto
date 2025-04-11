@@ -1,5 +1,5 @@
 import './Preloader.scss';
 
-export default function Preloader(): JSX.Element {
+export default function Preloader() {
 	return <div className="preloader"></div>;
 }

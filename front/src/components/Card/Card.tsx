@@ -13,7 +13,7 @@ export default function Card({
 	link: string;
 	name: string;
 	image: string;
-}): JSX.Element {
+}) {
 	const [loading, setLoading] = useState(true);
 
 	return (

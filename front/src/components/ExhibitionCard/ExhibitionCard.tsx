@@ -2,7 +2,7 @@ import type { Exhibition } from '@/types/exhibitionType';
 import { Link } from 'react-router-dom';
 import './ExhibitionCard.scss';
 
-export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition }): JSX.Element {
+export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition }) {
 	const { id, name, dates, city, place, isActive } = exhibition;
 	return (
 		<>

@@ -9,7 +9,7 @@ import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function AdminCeramicStyles(): JSX.Element {
+export default function AdminCeramicStyles() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const dispatch = useDispatch();
 	const ceramicStylesList = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);

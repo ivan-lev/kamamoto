@@ -7,7 +7,7 @@ export default function ({
 }: {
 	links: SocialLinks;
 	additionalClassNames: string;
-}): JSX.Element {
+}) {
 	return (
 		<div className={`social-links ${additionalClassNames}`}>
 			{links.map((linkObject) => {

@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AdminLetters.scss';
 
-export default function AdminLetters(): JSX.Element {
+export default function AdminLetters() {
 	const dispatch = useDispatch();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);

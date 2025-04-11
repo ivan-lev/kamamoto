@@ -9,7 +9,7 @@ import './Partners.scss';
 
 const { IMAGES, PARTNERS, RESOURSES } = PATHS;
 
-export default function Partners(): JSX.Element {
+export default function Partners() {
 	const dispatch = useDispatch();
 	const partnersList = useSelector((state: RootState) => state.partners);
 

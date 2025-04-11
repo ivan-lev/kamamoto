@@ -2,7 +2,7 @@ import { menu } from '@/variables/menu';
 import { NavLink } from 'react-router-dom';
 import './Menu.scss';
 
-export default function Menu(): JSX.Element {
+export default function Menu() {
 	return (
 		<nav className="menu">
 			<ul className="menu__list">

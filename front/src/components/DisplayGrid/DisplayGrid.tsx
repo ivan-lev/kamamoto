@@ -3,7 +3,7 @@ import Card from '@/components/Card/Card';
 import { useSelector } from 'react-redux';
 import './DisplayGrid.scss';
 
-export default function DisplayGrid(): JSX.Element {
+export default function DisplayGrid() {
 	const displayList = useSelector((state: RootState) => state.list.displayList);
 
 	return (

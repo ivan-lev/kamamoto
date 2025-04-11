@@ -8,7 +8,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ThanksLetters.scss';
 
-export default function ThanksLetters(): JSX.Element {
+export default function ThanksLetters() {
 	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const letters = useSelector((state: RootState) => state.letters);

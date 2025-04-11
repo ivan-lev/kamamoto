@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import './AdminExhibitionForm.scss';
 
-export default function AdminCeramicStylesForm(): JSX.Element {
+export default function AdminCeramicStylesForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 	const dispatch = useDispatch();

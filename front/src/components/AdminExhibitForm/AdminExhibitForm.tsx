@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AdminExhibitForm.scss';
 
-export default function AdminExhibitForm(): JSX.Element {
+export default function AdminExhibitForm() {
 	const dispatch = useDispatch();
 
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);

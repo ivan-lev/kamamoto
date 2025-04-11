@@ -7,7 +7,7 @@ export default function ExhibitTechInfo({
 	exhibit,
 }: {
 	exhibit: Exhibit | undefined;
-}): JSX.Element {
+}) {
 	const [showTechInfo, setShowTechInfo] = useState(false);
 
 	const handleShowTechinfo = () => {

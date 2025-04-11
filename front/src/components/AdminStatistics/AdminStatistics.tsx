@@ -6,7 +6,7 @@ import './AdminStatistics.scss';
 
 const defaultStatistics: Statistics = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
 
-export default function AdminStatistics(): JSX.Element {
+export default function AdminStatistics() {
 	const [statistics, setStatistics] = useState<Statistics>(defaultStatistics);
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 

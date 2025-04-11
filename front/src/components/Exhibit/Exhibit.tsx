@@ -12,9 +12,8 @@ import ImageGallery from 'react-image-gallery';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import './Exhibit.scss';
-import 'react-image-gallery/styles/scss/image-gallery.scss';
 
-export default function Exhibit(): JSX.Element {
+export default function Exhibit() {
 	const exhibitId = useParams().exhibit;
 	const exhibit = useSelector((state: RootState) => state.exhibit);
 	const images = useSelector((state: RootState) => state.exhibit.images);

@@ -4,7 +4,7 @@ import Seo from '@/components/Seo/Seo';
 import { useLayoutEffect } from 'react';
 import './Files.scss';
 
-export default function Files({ title, files }: { title: string; files: Resources }): JSX.Element {
+export default function Files({ title, files }: { title: string; files: Resources }) {
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
 	});

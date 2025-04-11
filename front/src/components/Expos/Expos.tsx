@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Expos.scss';
 
-export default function Expos(): JSX.Element {
+export default function Expos() {
 	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);

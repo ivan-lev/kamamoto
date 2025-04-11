@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Statistics.scss';
 
-export default function Statistics(): JSX.Element {
+export default function Statistics() {
 	const dispatch = useDispatch();
 	const statistics = useSelector((state: RootState) => state.statistics);
 

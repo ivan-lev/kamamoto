@@ -1,6 +1,6 @@
 import './SearchBar.scss';
 
-export default function SearchBar(): JSX.Element {
+export default function SearchBar() {
 	return (
 		<section className="section">
 			<div className="search-bar">

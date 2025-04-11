@@ -21,11 +21,11 @@ import HomePage from '@/components/HomePage/HomePage';
 import Login from '@/components/Login/Login';
 import Main from '@/components/Main/Main';
 import NotFound from '@/components/NotFound/NotFound';
+import Seo from '@/components/Seo/Seo';
 import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
 import adminStore from '@/slices/admin';
 import { documents } from '@/variables/documents';
 import { files } from '@/variables/files';
-import { Helmet } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
@@ -33,11 +33,7 @@ import './App.scss';
 export default function App() {
 	return (
 		<>
-			<Helmet>
-				<title>Камамото - японская керамика</title>
-				<meta property="og:title" content="Камамото - японская керамика" />
-				<meta property="og:image" content="https://kamamoto.ru/images/og-image.jpg" />
-			</Helmet>
+			<Seo title="Камамото - японская керамика"></Seo>
 
 			<Routes>
 				<Route

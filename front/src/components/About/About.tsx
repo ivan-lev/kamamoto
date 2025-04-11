@@ -7,6 +7,7 @@ export default function About() {
 	return (
 		<>
 			<Seo title="Камамото: о коллекционере" />
+
 			<section className="section">
 				<div className="about">
 					<img className="about__avatar" src="/images/about-avatar.jpg" alt=""></img>

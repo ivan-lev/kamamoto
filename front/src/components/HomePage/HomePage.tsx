@@ -2,7 +2,6 @@ import Statistics from '@/components/Statistics/Statistics';
 import { homepageSliderImages } from '@/variables/homepageSliderImages';
 import ImageGallery from 'react-image-gallery';
 import Partners from '../Partners/Partners';
-import 'react-image-gallery/styles/scss/image-gallery.scss';
 import './HomePage.scss';
 
 export default function HomePage() {

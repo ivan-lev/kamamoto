@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import './Category.scss';
 
-export default function Category(): JSX.Element {
+export default function Category() {
 	const category = useParams().category;
 	const dispatch = useDispatch();
 	const categoryName = ExhibitCategory[category as keyof typeof ExhibitCategory];

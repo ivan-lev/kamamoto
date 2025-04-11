@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AdminExhibits.scss';
 
-export default function AdminExhibits(): JSX.Element {
+export default function AdminExhibits() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const dispatch = useDispatch();
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);

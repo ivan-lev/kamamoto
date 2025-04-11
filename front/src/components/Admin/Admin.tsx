@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import './Admin.scss';
 
-export default function Admin(): JSX.Element {
+export default function Admin() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
