@@ -6,6 +6,8 @@
 	border: 1px solid var(--border-color);
 	border-radius: 2px;
 	background: var(--background-muted);
+	width: 100%;
+  box-sizing: border-box;
 
 	&--background-transparent {
 	background: transparent;
