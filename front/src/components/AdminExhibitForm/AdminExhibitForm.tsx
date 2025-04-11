@@ -244,6 +244,20 @@ export default function AdminExhibitForm() {
 						/>
 					</div>
 
+					<div className="form__row-12">
+						<span>фотографии</span>
+						<input
+							className={`input ${
+								isFormDisabled ? 'input_disabled' : ''
+							}`}
+							type="text"
+							name="additionalImages"
+							placeholder="дополнительные фотографии"
+							value={exhibitToEdit.additionalImages}
+							onChange={handleArrayChange}
+						/>
+					</div>
+
 					<div className="form__row form__row-12">
 						<span>дополнительная информация</span>
 						<textarea
