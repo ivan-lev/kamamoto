@@ -1,6 +1,7 @@
 import type { RootState } from '@/slices/admin';
 import type { Exhibit } from '@/types/exhibitType';
 import AdminExhibitForm from '@/components/AdminExhibitForm/AdminExhibitForm';
+import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
@@ -13,10 +14,12 @@ export default function AdminExhibits() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const dispatch = useDispatch();
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
+	const [showModal, setShowModal] = useState<boolean>(false);
 
 	function handleSetExhibitToEdit(data: Exhibit) {
 		dispatch(setExhibitToEdit(data));
 		dispatch(setIsExistingExhibitEdited(true));
+		setShowModal(true);
 	}
 
 	useEffect(() => {
@@ -68,7 +71,11 @@ export default function AdminExhibits() {
 								))}
 							</div>
 
-							<AdminExhibitForm />
+							<Modal
+								showModal={showModal}
+								closeModal={() => setShowModal(false)}
+								content={<AdminExhibitForm />}
+							/>
 						</div>
 					)}
 		</>

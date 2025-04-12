@@ -112,20 +112,6 @@ export default function AdminExhibitForm() {
 						/>
 					</div>
 
-					{/* <div className="form__row form__row-4">
-						<span>стиль керамики</span>
-						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
-							type="text"
-							name="style"
-							placeholder="название стиля"
-							value={exhibitToEdit.style?.title}
-							onChange={handleChange}
-						/>
-					</div> */}
-
 					<div className="form__row form__row-4">
 						<span>стиль керамики</span>
 
@@ -369,6 +355,5 @@ export default function AdminExhibitForm() {
 			</fieldset>
 			<span className="form__submit-status">{saveMessage}</span>
 		</form>
-
 	);
 }
