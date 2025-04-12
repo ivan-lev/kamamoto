@@ -32,6 +32,11 @@ body {
 	scroll-behavior: smooth!important;
 }
 
+html,
+body {
+  scrollbar-gutter: stable;
+}
+
 * {
 	margin: 0;
 	padding: 0;
