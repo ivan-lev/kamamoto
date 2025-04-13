@@ -149,40 +149,6 @@ function updateExhibit(req: Request, res: Response, next: NextFunction): void {
 				return next(error);
 			});
 		});
-
-	// Exhibit.findOneAndUpdate({ id: req.params.id }, newExhibitData, {
-	// 	new: true,
-	// 	runValidators: true,
-	// })
-	// 	.orFail()
-	// 	.populate({
-	// 		path: 'category',
-	// 		select: 'title _id',
-	// 	})
-	// 	.populate({
-	// 		path: 'style',
-	// 		select: 'name',
-	// 	})
-	// 	.then((exhibit: ExhibitType) => res.send(exhibit))
-	// 	.catch((error: any) => {
-	// 		if (error.name === 'DocumentNotFoundError') {
-	// 			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-	// 		}
-
-	// 		if (error.name === 'ValidationError') {
-	// 			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
-	// 		}
-
-	// 		if (error.name === 'CastError') {
-	// 			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-	// 		}
-
-	// 		if (error.code === 11000) {
-	// 			return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
-	// 		}
-
-	// 		return next(error);
-	// 	});
 }
 
 export const exhibit = {

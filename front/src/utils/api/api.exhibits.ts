@@ -32,8 +32,20 @@ async function updateExhibit(token: string, exhibit: Exhibit) {
 	return checkResponseStatus(response);
 }
 
+async function deleteExhibit(token: string, id: number) {
+	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+	});
+	return checkResponseStatus(response);
+}
+
 export const exhibits = {
 	getExhibitById,
 	getExhibits,
 	updateExhibit,
+	deleteExhibit,
 };

@@ -43,7 +43,23 @@ export default function AdminExhibitForm() {
 		}
 	};
 
-	function handleDeleteExhibit() {};
+	const handleDeleteExhibit = () => {
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.exhibits.deleteExhibit(token, exhibitToEdit.id ?? 0)
+				.then((response) => {
+					const updatedExhibitsList = exhibits.filter(exhibit => exhibit.id !== response.id);
+					dispatch(setExhibits(updatedExhibitsList));
+					setIsFormDisabled(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					setSaveMessage('Что-то пошло не так :(');
+				});
+		}
+	};
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
@@ -341,14 +357,6 @@ export default function AdminExhibitForm() {
 								</button>
 							</>
 						)}
-
-						{/* <button
-							className="button"
-							type="button"
-							onClick={handleCloseExhibitionForm}
-						>
-							Закрыть
-						</button> */}
 					</div>
 				</div>
 			</fieldset>
