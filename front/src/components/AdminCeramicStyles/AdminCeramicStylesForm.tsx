@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function AdminCeramicStylesForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
+	const [initialStyleName, setInitialStyleName] = useState<string>('');
 	const dispatch = useDispatch();
 
 	const ceramicStylesList = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
@@ -34,7 +35,7 @@ export default function AdminCeramicStylesForm() {
 		thumbnail,
 	} = ceramicStyleToEdit;
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value }));
 	};
@@ -75,11 +76,11 @@ export default function AdminCeramicStylesForm() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit)
+			api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit, initialStyleName)
 				.then((response) => {
-					const updatedStylesList = ceramicStylesList.map((style) => {
-						return style.name !== ceramicStyleToEdit.name ? style : response;
-					});
+					const updatedStylesList = ceramicStylesList.filter(style => style.name !== initialStyleName);
+					updatedStylesList.push(response);
+
 					dispatch(setCeramicStyles(updatedStylesList));
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
@@ -95,7 +96,7 @@ export default function AdminCeramicStylesForm() {
 		}
 	};
 
-	const handleDeleteCeramicStyle = () => {
+	function handleDeleteCeramicStyle() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
@@ -122,6 +123,14 @@ export default function AdminCeramicStylesForm() {
 			setTimeout(() => setSaveMessage(''), 3000);
 		}
 	}, [saveMessage]);
+
+	useEffect(() => {
+		// set initial style name to pass it to backend
+		// if it was changed on edit
+		if (!initialStyleName)
+			setInitialStyleName(ceramicStyleToEdit.name);
+		return () => setInitialStyleName('');
+	}, []);
 
 	return (
 		<form

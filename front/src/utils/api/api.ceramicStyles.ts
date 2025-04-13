@@ -27,8 +27,8 @@ async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle) {
 	return checkResponseStatus(response);
 }
 
-async function updateCeramicStyle(token: string, style: CeramicStyle) {
-	const response = await fetch(`${BASE_URL}/${CERAMIS_STYLES}/${style.name}`, {
+async function updateCeramicStyle(token: string, style: CeramicStyle, initialName: string) {
+	const response = await fetch(`${BASE_URL}/${CERAMIS_STYLES}/${initialName}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
