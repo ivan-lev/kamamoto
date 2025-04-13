@@ -44,7 +44,6 @@ export default function AdminExhibitForm() {
 	};
 
 	function handleDeleteExhibit() {};
-	// function handleCloseExhibitForm() {};
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
@@ -59,8 +58,8 @@ export default function AdminExhibitForm() {
 
 	function handleSelectStyleChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
-		const styleTitle = styles.find(style => style._id === value)?.title || '';
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { _id: value, title: styleTitle } }));
+		const styleTitle = styles.find(style => style.name === value)?.title || '';
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { name: value, title: styleTitle } }));
 	};
 
 	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -118,10 +117,10 @@ export default function AdminExhibitForm() {
 						<select
 							className="select"
 							name="style"
-							value={exhibitToEdit.style?._id}
+							value={exhibitToEdit.style?.name}
 							onChange={event => handleSelectStyleChange(event)}
 						>
-							{styles.map(style => <option key={style._id} value={style._id}>{style.title}</option>)}
+							{styles.map(style => <option key={style.name} value={style.name}>{style.title}</option>)}
 						</select>
 					</div>
 

@@ -27,7 +27,32 @@ async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle) {
 	return checkResponseStatus(response);
 }
 
+async function updateCeramicStyle(token: string, style: CeramicStyle) {
+	const response = await fetch(`${BASE_URL}/${CERAMIS_STYLES}/${style.name}`, {
+		method: 'PATCH',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(style),
+	});
+	return checkResponseStatus(response);
+}
+
+async function deleteCeramicStyle(token: string, name: string) {
+	const response = await fetch(`${BASE_URL}/${CERAMIS_STYLES}/${name}`, {
+		method: 'DELETE',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+	});
+	return checkResponseStatus(response);
+}
+
 export const ceramicStyles = {
 	getCeramicStyles,
 	createCeramicStyle,
+	updateCeramicStyle,
+	deleteCeramicStyle,
 };

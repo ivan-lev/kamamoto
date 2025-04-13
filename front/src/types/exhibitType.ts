@@ -42,7 +42,7 @@ export const defaultExhibit: Exhibit = {
 	potterJapaneseName: '',
 	potterLifeDates: '',
 	category: { _id: '', title: '' },
-	style: { _id: '67f8082ad7087fa1cababada', title: 'неизвестен' },
+	style: { name: 'unknown', title: '' },
 	images: [],
 	description: '',
 

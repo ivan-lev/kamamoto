@@ -6,6 +6,7 @@ import {
 	setCeramicStyleToEdit,
 } from '@/slices/admin/ceramicStyles';
 import { api } from '@/utils/api/api';
+import errorHandler from '@/utils/errorHandler';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -43,74 +44,78 @@ export default function AdminCeramicStylesForm() {
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value.replace(/\s/g, '').split(',') }));
 	};
 
-	const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
+	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
 		const { name, checked } = event.target;
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: checked }));
 	};
 
-	const handleCreateCeramicStyle = (event: FormEvent<HTMLFormElement>) => {
+	async function handleCreateCeramicStyle(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.ceramicStyles.createCeramicStyle(token, ceramicStyleToEdit)
+			try {
+				const response = await api.ceramicStyles.createCeramicStyle(token, ceramicStyleToEdit);
+
+				const updatedCeramicStylesList = [...ceramicStylesList, response];
+				dispatch(setCeramicStyles(updatedCeramicStylesList));
+				dispatch(clearCeramicStyleForm());
+				setIsFormDisabled(false);
+				setSaveMessage('Стиль керамики создан');
+			}
+			catch (error: any) {
+				setIsFormDisabled(false);
+				const errorJson = await error.json();
+				setSaveMessage(errorHandler(errorJson));
+			}
+		}
+	};
+
+	function handleUpdateCeramicStyle() {
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit)
 				.then((response) => {
-					const updatedCeramicStylesList = [...ceramicStylesList, response];
-					dispatch(setCeramicStyles(updatedCeramicStylesList));
-					dispatch(clearCeramicStyleForm());
+					const updatedStylesList = ceramicStylesList.map((style) => {
+						return style.name !== ceramicStyleToEdit.name ? style : response;
+					});
+					dispatch(setCeramicStyles(updatedStylesList));
 					setIsFormDisabled(false);
-					setSaveMessage('Стиль керамики создан');
+					setSaveMessage('Данные обновлены');
 				})
 				.catch((error) => {
 					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					return error.json();
+				})
+				.then((error) => {
+					setSaveMessage(errorHandler(error));
 				});
 		}
 	};
 
-	// const handleUpdateExhibition = () => {
-	// 	setIsFormDisabled(true);
-	// 	const token = localStorage.getItem('kmmttkn');
-	// 	if (token) {
-	// 		api.exhibitions.updateExhibition(token, exhibitionToDisplay)
-	// 			.then((response) => {
-	// 				const updatedExhibitionsList = exhibitionsList.map((exhibition) => {
-	// 					return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
-	// 				});
-	// 				dispatch(setExhibitionsList(updatedExhibitionsList));
-	// 				setIsFormDisabled(false);
-	// 				setSaveMessage('Данные обновлены');
-	// 			})
-	// 			.catch((error) => {
-	// 				console.error(error);
-	// 				setIsFormDisabled(false);
-	// 				setSaveMessage('Что-то пошло не так :(');
-	// 			});
-	// 	}
-	// };
-
-	// const handleCloseExhibitionForm = () => {
-	// 	dispatch(setExhibitionFormShowed(false));
-	// 	dispatch(clearExhibitionForm());
-	// };
-
-	// const handleDeleteExhibition = () => {
-	// 	const token = localStorage.getItem('kmmttkn');
-	// 	if (token) {
-	// 		api.exhibitions.deleteExhibition(token, exhibitionToDisplay)
-	// 			.then((response) => {
-	// 				const updatedExhibitionsList = exhibitionsList.filter(exhibition => exhibition.id !== response.id);
-	// 				dispatch(setExhibitionsList(updatedExhibitionsList));
-	// 				handleCloseExhibitionForm();
-	// 				setIsFormDisabled(false);
-	// 			})
-	// 			.catch((error) => {
-	// 				console.error(error);
-	// 				setIsFormDisabled(false);
-	// 			});
-	// 	}
-	// };
+	const handleDeleteCeramicStyle = () => {
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.ceramicStyles.deleteCeramicStyle(token, ceramicStyleToEdit.name)
+				.then((response) => {
+					const updatedStylesList = ceramicStylesList.filter(style => style.name !== response.name);
+					dispatch(setCeramicStyles(updatedStylesList));
+					dispatch(clearCeramicStyleForm());
+					setIsFormDisabled(false);
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					return error.json();
+				})
+				.then((error) => {
+					setSaveMessage(errorHandler(error));
+				});
+		}
+	};
 
 	useEffect(() => {
 		if (saveMessage) {
@@ -124,7 +129,11 @@ export default function AdminCeramicStylesForm() {
 			onSubmit={handleCreateCeramicStyle}
 		>
 			<fieldset className="form__fieldset" disabled={isFormDisabled}>
-				<legend className="form__legend">Форма в процессе редактирования</legend>
+				<legend className="form__legend">
+					{isExistingStyleEdited
+						? 'Редактировать существующий стиль керамики'
+						: 'Создать новый стиль керамики'}
+				</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-3">
@@ -170,7 +179,7 @@ export default function AdminCeramicStylesForm() {
 					</div>
 
 					<div className="form__row form__row-2">
-						<span>акт-сть</span>
+						<span>Показать статью</span>
 						<label
 							className={`checkbox-label ${
 								showArticle ? 'checkbox-label--checked' : ''
@@ -182,7 +191,7 @@ export default function AdminCeramicStylesForm() {
 								className="checkbox-input"
 								type="checkbox"
 								checked={showArticle}
-								name="isDescription"
+								name="showArticle"
 								onChange={handleCheckBox}
 							/>
 						</label>
@@ -261,7 +270,7 @@ export default function AdminCeramicStylesForm() {
 										<button
 											className="button"
 											type="button"
-											// onClick={handleUpdateExhibition}
+											onClick={handleUpdateCeramicStyle}
 											disabled={isFormDisabled}
 										>
 											Сохранить
@@ -269,20 +278,12 @@ export default function AdminCeramicStylesForm() {
 										<button
 											className="button"
 											type="button"
-											// onClick={handleDeleteExhibition}
+											onClick={handleDeleteCeramicStyle}
 										>
 											Удалить
 										</button>
 									</>
 								)}
-
-						<button
-							className="button"
-							type="button"
-							// onClick={handleCloseExhibitionForm}
-						>
-							Закрыть
-						</button>
 					</div>
 				</div>
 			</fieldset>

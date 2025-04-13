@@ -24,7 +24,6 @@ export default function AdminExhibits() {
 
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
-		//
 		if (token) {
 			api.exhibits.getExhibits()
 				.then((exhibits) => {

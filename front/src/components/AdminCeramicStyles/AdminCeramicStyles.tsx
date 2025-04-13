@@ -1,24 +1,47 @@
 import type { RootState } from '@/slices/admin';
+import type { CeramicStyle } from '@/types/ceramicStyles';
 import AdminCeramicStylesForm from '@/components/AdminCeramicStyles/AdminCeramicStylesForm';
+import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import {
 	setCeramicStyles,
+	setCeramicStyleToEdit,
+	setIsExistingStyleEdited,
 } from '@/slices/admin/ceramicStyles';
+import { defaultCeramicStyle } from '@/types/ceramicStyles';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function AdminCeramicStyles() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const [showModal, setShowModal] = useState<boolean>(false);
 	const dispatch = useDispatch();
 	const ceramicStylesList = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
-	// const ceramicStyleToEdit = useSelector((state: RootState) => state.ceramicStyles.ceramicStyleToEdit);
-	// const isExistingStyleEdited = useSelector(
-	// 	(state: RootState) => state.ceramicStyles.isExistingStyleEdited,
-	// );
+	const isExistingStyleEdited = useSelector(
+		(state: RootState) => state.ceramicStyles.isExistingStyleEdited,
+	);
 
-	// const { title, thumbnail } = ceramicStyleToEdit;
+	function handleSetCeramicStyleToEdit(data: CeramicStyle) {
+		dispatch(setIsExistingStyleEdited(true));
+		dispatch(setCeramicStyleToEdit(data));
+		setShowModal(true);
+	}
+
+	function createNewCeramicStyle(data: CeramicStyle) {
+		dispatch(setIsExistingStyleEdited(false));
+		dispatch(setCeramicStyleToEdit(data));
+		setShowModal(true);
+	}
+
+	function handleCloseModal() {
+		setShowModal(false);
+		if (isExistingStyleEdited) {
+			dispatch(setCeramicStyleToEdit({ ...defaultCeramicStyle }));
+			dispatch(setIsExistingStyleEdited(false));
+		}
+	}
 
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
@@ -62,7 +85,7 @@ export default function AdminCeramicStyles() {
 											<div className="table__cell table__cell--centered">
 												<button
 													className="table__button table__button--edit"
-													// onClick={() => dispatch(setExhibitionToEdit(exhibition.id))}
+													onClick={() => handleSetCeramicStyleToEdit(style)}
 												>
 												</button>
 											</div>
@@ -70,16 +93,14 @@ export default function AdminCeramicStyles() {
 									);
 								})}
 							</div>
-							<AdminCeramicStylesForm />
-							{/* {isExhibitionFormShowed
-								? (
-										<AdminExhibitionForm />
-									)
-								: (
-										<button className="button" onClick={() => dispatch(openEmptyExhibitionForm())}>
-											Создать
-										</button>
-									)} */}
+							<Modal
+								showModal={showModal}
+								closeModal={() => handleCloseModal()}
+								content={<AdminCeramicStylesForm />}
+							/>
+							<button className="button" onClick={() => createNewCeramicStyle({ ...defaultCeramicStyle })}>
+								Создать
+							</button>
 						</div>
 					)}
 		</>
