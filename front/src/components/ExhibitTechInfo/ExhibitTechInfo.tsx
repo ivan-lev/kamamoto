@@ -1,4 +1,5 @@
 import type { Exhibit } from '@/types/exhibitType';
+import QR from '@/components/QR/QR';
 import { useState } from 'react';
 import './ExhibitTechInfo.scss';
 
@@ -47,10 +48,6 @@ export default function ExhibitTechInfo({
 							)}
 						</ul>
 					</div>
-
-					{exhibit?.id && (
-						<img className="tech-info__qr-code" src={`/qr-codes/${exhibit.id}.svg`}></img>
-					)}
 
 					<div className="tech-info__exhibit-info">
 						<span className="tech-info__column-title">Информация о лоте</span>
@@ -149,6 +146,11 @@ export default function ExhibitTechInfo({
 							</li>
 						</ul>
 					</div>
+
+					<div className="tech-info__qr-code">
+						<QR />
+					</div>
+
 				</div>
 			</div>
 		</div>
