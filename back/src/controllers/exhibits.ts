@@ -19,7 +19,7 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 		})
 		.populate({
 			path: 'style',
-			select: 'title',
+			select: 'title name -_id',
 		})
 		.then((exhibits: ExhibitType[]) => res.send(exhibits))
 		.catch((error: any) => { return next(error); });

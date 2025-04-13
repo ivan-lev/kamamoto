@@ -6,5 +6,7 @@ const categoryRouter = Router();
 
 categoryRouter.get('/', ceramicStyle.getCeramicStyles);
 categoryRouter.post('/', ceramicStyleValidator, ceramicStyle.createCeramicStyle);
+categoryRouter.patch('/:name', ceramicStyle.updateCeramicStyle);
+categoryRouter.delete('/:name', ceramicStyle.deleteCeramicStyle);
 
 export default categoryRouter;
