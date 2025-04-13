@@ -6,6 +6,7 @@ import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 import Exhibit from '../models/exhibit';
+import Style from '../models/style';
 
 const { EXHIBITS, PUBLIC_PATH } = PATHS;
 
@@ -107,44 +108,81 @@ function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
 
 function updateExhibit(req: Request, res: Response, next: NextFunction): void {
 	const newExhibitData: ExhibitType = req.body;
+	const newStyle = newExhibitData.style;
 
 	const newCategory = new ObjectId(newExhibitData.category);
-
 	newExhibitData.category = newCategory;
-	Exhibit.findOneAndUpdate({ id: req.params.id }, newExhibitData, {
-		new: true,
-		runValidators: true,
-		select: { _id: 0 },
-	})
-		.orFail()
-		.populate({
-			path: 'category',
-			select: 'title _id',
+
+	Style
+		.findOne({ name: newStyle })
+		.then((style) => {
+			newExhibitData.style = new ObjectId(style?._id);
 		})
-		.populate({
-			path: 'style',
-			select: 'title name',
-		})
-		.then((exhibit: ExhibitType) => res.send(exhibit))
-		.catch((error: any) => {
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-			}
+		.then(() => {
+			Exhibit.findOneAndUpdate(
+				{ id: req.params.id },
+				newExhibitData,
+				{ new: true, runValidators: true },
+			).select({ _id: 0 }).orFail().populate({
+				path: 'category',
+				select: 'title _id',
+			}).populate({
+				path: 'style',
+				select: 'name title -_id',
+			}).then((exhibit: ExhibitType) => res.send(exhibit)).catch((error: any) => {
+				if (error.name === 'DocumentNotFoundError') {
+					return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+				}
 
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
-			}
+				if (error.name === 'ValidationError') {
+					return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
+				}
 
-			if (error.name === 'CastError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-			}
+				if (error.name === 'CastError') {
+					return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+				}
 
-			if (error.code === 11000) {
-				return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
-			}
+				if (error.code === 11000) {
+					return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
+				}
 
-			return next(error);
+				return next(error);
+			});
 		});
+
+	// Exhibit.findOneAndUpdate({ id: req.params.id }, newExhibitData, {
+	// 	new: true,
+	// 	runValidators: true,
+	// })
+	// 	.orFail()
+	// 	.populate({
+	// 		path: 'category',
+	// 		select: 'title _id',
+	// 	})
+	// 	.populate({
+	// 		path: 'style',
+	// 		select: 'name',
+	// 	})
+	// 	.then((exhibit: ExhibitType) => res.send(exhibit))
+	// 	.catch((error: any) => {
+	// 		if (error.name === 'DocumentNotFoundError') {
+	// 			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+	// 		}
+
+	// 		if (error.name === 'ValidationError') {
+	// 			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
+	// 		}
+
+	// 		if (error.name === 'CastError') {
+	// 			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+	// 		}
+
+	// 		if (error.code === 11000) {
+	// 			return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
+	// 		}
+
+	// 		return next(error);
+	// 	});
 }
 
 export const exhibit = {
