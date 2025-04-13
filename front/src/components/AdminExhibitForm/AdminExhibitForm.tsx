@@ -20,6 +20,10 @@ export default function AdminExhibitForm() {
 	const categories = useSelector((state: RootState) => state.categories.categories);
 	const styles = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
 
+	function handleCreateExhibit() {
+		console.error('Need some logic here!');
+	};
+
 	function handleUpdateExhibit() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
@@ -30,7 +34,6 @@ export default function AdminExhibitForm() {
 						return response.id !== exhibit.id ? exhibit : response;
 					});
 					dispatch(setExhibits(newExhibitsList));
-					dispatch(clearExhibitForm());
 					dispatch(setIsExistingExhibitEdited(false));
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
@@ -273,6 +276,17 @@ export default function AdminExhibitForm() {
 						/>
 					</div>
 
+					<div className="form__row form__row-12">
+						<span>дополнительная информация</span>
+						<textarea
+							className="textarea"
+							name="additionalDescription"
+							placeholder="дополнительная информация"
+							value={exhibitToEdit.additionalDescription}
+							onChange={handleChange}
+						/>
+					</div>
+
 					<div className="form__row-12">
 						<span>дополнительные фотографии</span>
 						<input
@@ -284,17 +298,6 @@ export default function AdminExhibitForm() {
 							placeholder="названия через запятую без пробелов с расширением"
 							value={exhibitToEdit.additionalImages}
 							onChange={handleChangePhotos}
-						/>
-					</div>
-
-					<div className="form__row form__row-12">
-						<span>дополнительная информация</span>
-						<textarea
-							className="textarea"
-							name="additionalDescription"
-							placeholder="дополнительная информация"
-							value={exhibitToEdit.additionalDescription}
-							onChange={handleChange}
 						/>
 					</div>
 
@@ -332,11 +335,16 @@ export default function AdminExhibitForm() {
 								<button
 									className="button"
 									type="button"
-									onClick={() => {}}
+									onClick={() => { dispatch(clearExhibitForm()); }}
 								>
 									Очистить
 								</button>
-								<button className="button" type="submit">
+								<button
+									className="button"
+									type="button"
+									onClick={handleCreateExhibit}
+									disabled={isFormDisabled}
+								>
 									Создать
 								</button>
 							</>

@@ -70,6 +70,8 @@ export default function AdminExhibits() {
 								))}
 							</div>
 
+							<button className="button" onClick={() => setShowModal(true)}>Создать лот</button>
+
 							<Modal
 								showModal={showModal}
 								closeModal={() => setShowModal(false)}
