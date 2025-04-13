@@ -6,6 +6,7 @@ import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 
 import { ValidationError } from '../errors/validation-error';
+import ceramicStylesSorter from '../middlewares/utils/ceramicStylesSorter';
 import CeramicStyleModel from '../models/style';
 
 const { CERAMIC_STYLES, PUBLIC_PATH } = PATHS;
@@ -13,7 +14,7 @@ const { CERAMIC_STYLES, PUBLIC_PATH } = PATHS;
 function getCeramicStyles(req: Request, res: Response, next: NextFunction): void {
 	const isAdmin = req.headers['is-admin'];
 	CeramicStyleModel.find({}, '-_id')
-		.then((styles) => {
+		.then((styles: CeramicStyleType[]) => {
 			if (!isAdmin) {
 				styles.forEach((style) => {
 					const { thumbnail, images, additionalImages } = style;
@@ -34,6 +35,8 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 					}
 				});
 			}
+
+			styles.sort(ceramicStylesSorter);
 
 			return styles;
 		})
