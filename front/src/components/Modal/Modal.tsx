@@ -14,12 +14,21 @@ export default function Modal({ showModal, closeModal, content }: ModalInterface
 		closeModal();
 	}
 
+	function handleCloseModalOnEsc(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			handleCloseModal();
+		}
+	}
+
 	function handleOpenModal() {
 		document.body.style.overflow = 'hidden';
 	}
 
 	useEffect(() => {
 		showModal ? handleOpenModal() : handleCloseModal();
+		showModal
+			? document.addEventListener('keydown', handleCloseModalOnEsc, false)
+			: document.removeEventListener('keydown', handleCloseModalOnEsc, false);
 	}, [showModal]);
 
 	return (
