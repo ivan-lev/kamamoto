@@ -2,7 +2,6 @@ import type { RootState } from '@/slices/admin';
 import type { ChangeEvent, FormEvent } from 'react';
 import {
 	clearExhibitionForm,
-	setExhibitionFormShowed,
 	setExhibitionsList,
 	setExhibitionToDisplay,
 } from '@/slices/admin/exhibitions';
@@ -102,11 +101,6 @@ export default function ExhibitionForm() {
 		}
 	};
 
-	const handleCloseExhibitionForm = () => {
-		dispatch(setExhibitionFormShowed(false));
-		dispatch(clearExhibitionForm());
-	};
-
 	const handleDeleteExhibition = () => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
@@ -114,7 +108,6 @@ export default function ExhibitionForm() {
 				.then((response) => {
 					const updatedExhibitionsList = exhibitionsList.filter(exhibition => exhibition.id !== response.id);
 					dispatch(setExhibitionsList(updatedExhibitionsList));
-					handleCloseExhibitionForm();
 					setIsFormDisabled(false);
 				})
 				.catch((error) => {
@@ -136,7 +129,7 @@ export default function ExhibitionForm() {
 				<legend className="form__legend">Добавить выставку</legend>
 
 				<div className="form__grid">
-					<div className="form__row-2">
+					<div className="form__row form__row-2">
 						<span>номер</span>
 						<input
 							className={`input ${
@@ -150,7 +143,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-2">
+					<div className="form__row form__row-2">
 						<span>год</span>
 						<input
 							className={`input ${
@@ -164,7 +157,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-6">
+					<div className="form__row form__row-6">
 						<span>даты</span>
 						<input
 							className={`input ${
@@ -178,7 +171,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-6">
+					<div className="form__row form__row-6">
 						<span>название</span>
 						<input
 							className={`input ${
@@ -192,7 +185,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-6">
+					<div className="form__row form__row-6">
 						<span>город</span>
 						<input
 							className={`input ${
@@ -206,7 +199,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-6">
+					<div className="form__row form__row-6">
 						<span>адрес</span>
 						<input
 							className={`input ${
@@ -220,7 +213,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-6">
+					<div className="form__row form__row-6">
 						<span>место проведения</span>
 						<input
 							className={`input ${
@@ -234,7 +227,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-6">
+					<div className="form__row form__row-6">
 						<span>кураторы</span>
 						<textarea
 							className="textarea"
@@ -245,7 +238,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-6">
+					<div className="form__row form__row-6">
 						<span>организаторы</span>
 						<textarea
 							className="textarea"
@@ -256,7 +249,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>описание</span>
 						<textarea
 							className="textarea"
@@ -267,7 +260,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>фотографии</span>
 						<input
 							className={`input ${
@@ -281,7 +274,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-10">
+					<div className="form__row form__row-10">
 						<span>ссылка</span>
 						<input
 							className={`input ${
@@ -295,7 +288,7 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row-1">
+					<div className="form__row form__row-1">
 						<span>постер</span>
 						<label
 							className={`checkbox-label ${
@@ -314,7 +307,7 @@ export default function ExhibitionForm() {
 						</label>
 					</div>
 
-					<div className="form__row-1">
+					<div className="form__row form__row-1">
 						<span>актив</span>
 						<label
 							className={`checkbox-label ${
@@ -333,7 +326,7 @@ export default function ExhibitionForm() {
 						</label>
 					</div>
 
-					<div className="form__row-12--inline">
+					<div className="form__row form__row-12 form__row-12--inline">
 						{!isExistingExhibitionEdited
 							? (
 									<>
@@ -364,14 +357,6 @@ export default function ExhibitionForm() {
 										</button>
 									</>
 								)}
-
-						<button
-							className="button"
-							type="button"
-							onClick={handleCloseExhibitionForm}
-						>
-							Закрыть
-						</button>
 					</div>
 				</div>
 			</fieldset>

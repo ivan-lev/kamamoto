@@ -1,5 +1,6 @@
 import type { RootState } from '@/slices/admin';
 import AdminExhibitionForm from '@/components/admin/ExhibitionForm/ExhibitionForm';
+import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import {
@@ -13,13 +14,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function AdminExhibitions() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const [showModal, setShowModal] = useState<boolean>(false);
 
 	const dispatch = useDispatch();
 	const exhibitionsList = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
-	const isExhibitionFormShowed = useSelector(
-		(state: RootState) => state.exhibitions.isExhibitionFormShowed,
-	);
 
+	function handleEditExhibition(id: number) {
+		dispatch(setExhibitionToEdit(id));
+		setShowModal(true);
+	}
+
+	function handleCreateExhibition() {
+		dispatch(openEmptyExhibitionForm());
+		setShowModal(true);
+	}
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
@@ -66,7 +74,7 @@ export default function AdminExhibitions() {
 											<div className="table__cell table__cell--centered">
 												<button
 													className="table__button table__button--edit"
-													onClick={() => dispatch(setExhibitionToEdit(exhibition.id))}
+													onClick={() => handleEditExhibition(exhibition.id)}
 												>
 												</button>
 											</div>
@@ -75,15 +83,16 @@ export default function AdminExhibitions() {
 								})}
 							</div>
 
-							{isExhibitionFormShowed
-								? (
-										<AdminExhibitionForm />
-									)
-								: (
-										<button className="button" onClick={() => dispatch(openEmptyExhibitionForm())}>
-											Создать
-										</button>
-									)}
+							<Modal
+								showModal={showModal}
+								closeModal={() => setShowModal(false)}
+							>
+								<AdminExhibitionForm />
+							</Modal>
+
+							<button className="button" onClick={handleCreateExhibition}>
+								Создать
+							</button>
 						</div>
 					)}
 		</>

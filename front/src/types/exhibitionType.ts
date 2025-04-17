@@ -19,7 +19,7 @@ export type Exhibitions = Exhibition[];
 
 export const defaultExhibition: Exhibition = {
 	id: 0,
-	year: 2024,
+	year: new Date().getFullYear(),
 	dates: '',
 	city: '',
 	place: '',

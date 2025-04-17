@@ -5,14 +5,12 @@ import { createSlice } from '@reduxjs/toolkit';
 interface ExhibitionsState {
 	exhibitionsList: Exhibition[];
 	exhibitionToEdit: Exhibition;
-	isExhibitionFormShowed: boolean;
 	isExistingExhibitionEdited: boolean;
 }
 
 const initialState: ExhibitionsState = {
 	exhibitionsList: [],
 	exhibitionToEdit: { ...defaultExhibition },
-	isExhibitionFormShowed: false,
 	isExistingExhibitionEdited: false,
 };
 
@@ -29,7 +27,6 @@ const exhibitions = createSlice({
 		setExhibitionToEdit: (state, action) => {
 			state.exhibitionToEdit
         = state.exhibitionsList.find(exhibition => exhibition.id === action.payload) || defaultExhibition;
-			state.isExhibitionFormShowed = true;
 			state.isExistingExhibitionEdited = true;
 		},
 
@@ -37,14 +34,9 @@ const exhibitions = createSlice({
 			state.exhibitionToEdit = { ...defaultExhibition };
 		},
 
-		setExhibitionFormShowed: (state, action) => {
-			state.isExhibitionFormShowed = action.payload;
-		},
-
 		openEmptyExhibitionForm: (state) => {
 			state.exhibitionToEdit = { ...defaultExhibition, id: state.exhibitionsList.length + 1 };
 			state.isExistingExhibitionEdited = false;
-			state.isExhibitionFormShowed = true;
 		},
 
 		clearExhibitionForm: (state) => {
@@ -61,7 +53,6 @@ export const {
 	setExhibitionsList,
 	setExhibitionToEdit,
 	resetExhibitionToEdit,
-	setExhibitionFormShowed,
 	openEmptyExhibitionForm,
 	clearExhibitionForm,
 	setExhibitionToDisplay,
