@@ -12,9 +12,8 @@ import {
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './AdminCategories.scss';
 
-export default function AdminCategories() {
+export default function Categories() {
 	const dispatch = useDispatch();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);

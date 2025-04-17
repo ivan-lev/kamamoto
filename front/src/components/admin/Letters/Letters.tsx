@@ -7,9 +7,8 @@ import { clearPartnerForm, setPartnerToEdit } from '@/slices/admin/partners';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './AdminLetters.scss';
 
-export default function AdminLetters() {
+export default function Letters() {
 	const dispatch = useDispatch();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);

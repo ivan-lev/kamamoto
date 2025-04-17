@@ -6,9 +6,8 @@ import { clearExhibitForm, setExhibits, setExhibitToEdit, setIsExistingExhibitEd
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './AdminExhibitForm.scss';
 
-export default function AdminExhibitForm() {
+export default function ExhibitForm() {
 	const dispatch = useDispatch();
 
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);

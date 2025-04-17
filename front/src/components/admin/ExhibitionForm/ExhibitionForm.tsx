@@ -9,9 +9,8 @@ import {
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './AdminExhibitionForm.scss';
 
-export default function AdminExhibitionForm() {
+export default function ExhibitionForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 	const dispatch = useDispatch();

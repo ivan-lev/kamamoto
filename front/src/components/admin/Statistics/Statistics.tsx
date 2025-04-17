@@ -1,0 +1,80 @@
+import type { Statistics as StatisticsType } from '@/types/statistics';
+import Preloader from '@/components/Preloader/Preloader';
+import { api } from '@/utils/api/api';
+import { useEffect, useState } from 'react';
+import './Statistics.scss';
+
+const defaultStatistics: StatisticsType = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
+
+export default function Statistics() {
+	const [statistics, setStatistics] = useState<StatisticsType>(defaultStatistics);
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+
+	useEffect(() => {
+		api.statistics.getStatistics()
+			.then((response) => {
+				setStatistics(response);
+				setShowPreloader(false);
+			})
+			.catch(error => console.error(error));
+	}, []);
+
+	return showPreloader
+		? (
+				<Preloader />
+			)
+		: (
+				<div className="statistics">
+					<h2 className="title3">Статистика</h2>
+					<div className="statistics__grid">
+						<div className="statistics__element">
+							<img
+								className="statistics__element-icon"
+								src="/icons/exhibitions.svg"
+								alt="иконка"
+							/>
+							<span className="statistics__element-title">
+								Выставки:&nbsp;
+								{statistics.exhibitions}
+							</span>
+						</div>
+
+						<div className="statistics__element">
+							<img className="statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
+							<span className="statistics__element-title">
+								Экспонаты:&nbsp;
+								{statistics.exhibits}
+							</span>
+						</div>
+
+						<div className="statistics__element">
+							<img
+								className="statistics__element-icon"
+								src="/icons/categories.svg"
+								alt="иконка"
+							/>
+							<span className="statistics__element-title">
+								Категории:&nbsp;
+								{statistics.categories}
+							</span>
+						</div>
+
+						<div className="statistics__element">
+							<img className="statistics__element-icon" src="/icons/partners.svg" alt="иконка" />
+							<span className="statistics__element-title">
+								Партнёры:&nbsp;
+								{statistics.partners}
+							</span>
+						</div>
+
+						<div className="statistics__element">
+							<img className="statistics__element-icon" src="/icons/letter.svg" alt="иконка" />
+							<span className="statistics__element-title">
+								Письма:&nbsp;
+								{statistics.letters}
+							</span>
+						</div>
+					</div>
+				</div>
+			);
+}

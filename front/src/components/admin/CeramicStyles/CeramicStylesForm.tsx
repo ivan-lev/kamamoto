@@ -10,7 +10,7 @@ import errorHandler from '@/utils/errorHandler';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function AdminCeramicStylesForm() {
+export default function CeramicStylesForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 	const [initialStyleName, setInitialStyleName] = useState<string>('');

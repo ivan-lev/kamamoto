@@ -1,6 +1,6 @@
 import type { RootState } from '@/slices/admin';
 import type { Exhibit } from '@/types/exhibitType';
-import AdminExhibitForm from '@/components/AdminExhibitForm/AdminExhibitForm';
+import AdminExhibitForm from '@/components/admin/ExhibitForm/ExhibitForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
@@ -8,9 +8,8 @@ import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/sli
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './AdminExhibits.scss';
 
-export default function AdminExhibits() {
+export default function Exhibits() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const dispatch = useDispatch();
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
@@ -75,8 +74,20 @@ export default function AdminExhibits() {
 							<Modal
 								showModal={showModal}
 								closeModal={() => setShowModal(false)}
-								content={<AdminExhibitForm />}
-							/>
+							>
+								<AdminExhibitForm />
+							</Modal>
+
+							{/* <Appear trigger={showModal}>
+								<Modal
+									showModal={showModal}
+									closeModal={() => setShowModal(false)}
+									content={<AdminExhibitForm />}
+								>
+									<AdminExhibitForm />
+								</Modal>
+								<div>!!!!!!!!!</div>
+							</Appear> */}
 						</div>
 					)}
 		</>

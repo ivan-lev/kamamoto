@@ -12,9 +12,8 @@ import {
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './AdminPartners.scss';
 
-export default function AdminPartners() {
+export default function Partners() {
 	const dispatch = useDispatch();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);

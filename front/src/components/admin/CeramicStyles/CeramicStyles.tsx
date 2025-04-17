@@ -1,6 +1,6 @@
 import type { RootState } from '@/slices/admin';
 import type { CeramicStyle } from '@/types/ceramicStyles';
-import AdminCeramicStylesForm from '@/components/AdminCeramicStyles/AdminCeramicStylesForm';
+import CeramicStylesForm from '@/components/admin/CeramicStyles/CeramicStylesForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
@@ -14,7 +14,7 @@ import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function AdminCeramicStyles() {
+export default function CeramicStyles() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const dispatch = useDispatch();
@@ -96,8 +96,9 @@ export default function AdminCeramicStyles() {
 							<Modal
 								showModal={showModal}
 								closeModal={() => handleCloseModal()}
-								content={<AdminCeramicStylesForm />}
-							/>
+							>
+								<CeramicStylesForm />
+							</Modal>
 							<button className="button" onClick={() => createNewCeramicStyle({ ...defaultCeramicStyle })}>
 								Создать
 							</button>

@@ -1,5 +1,5 @@
 import type { RootState } from '@/slices/admin';
-import AdminExhibitionForm from '@/components/AdminExhibitionForm/AdminExhibitionForm';
+import AdminExhibitionForm from '@/components/admin/ExhibitionForm/ExhibitionForm';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import {
@@ -10,7 +10,6 @@ import {
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './AdminExhibitions.scss';
 
 export default function AdminExhibitions() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
