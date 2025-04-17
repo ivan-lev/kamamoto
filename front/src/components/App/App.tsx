@@ -13,7 +13,7 @@ import Collection from '@/components/Collection/Collection';
 import Contacts from '@/components/Contacts/Contacts';
 import Exhibit from '@/components/Exhibit/Exhibit';
 import Exhibition from '@/components/Exhibition/Exhibition';
-import Exhibitions from '@/components/Expos/Exhibitions';
+import Exhibitions from '@/components/Exhibitions/Exhibitions';
 import Files from '@/components/Files/Files';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
@@ -52,7 +52,7 @@ export default function App() {
 					<Route path="collection/:category/" element={<Category />} />
 					<Route path="collection/:category/:exhibit" element={<Exhibit />} />
 					<Route path="exhibitions/" element={<Exhibitions />} />
-					<Route path="expos/:exhId" element={<Exhibition />} />
+					<Route path="exhibitions/:exhId" element={<Exhibition />} />
 					<Route path="contacts/" element={<Contacts />} />
 					<Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
 					<Route
