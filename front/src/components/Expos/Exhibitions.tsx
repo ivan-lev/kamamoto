@@ -6,9 +6,9 @@ import { setExhibitionsList } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './Expos.scss';
+import './Exhibitions.scss';
 
-export default function Expos() {
+export default function Exhibitions() {
 	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
@@ -32,7 +32,7 @@ export default function Expos() {
 
 	return (
 		<>
-			<Seo title="Камамото: мероприятия, на каторых представлена коллекция" />
+			<Seo title="Камамото: мероприятия, на которых представлена коллекция" />
 
 			<section className="section">
 				<h2 className="title title2">Выставки</h2>
@@ -41,15 +41,15 @@ export default function Expos() {
 							<Preloader />
 						)
 					: (
-							<div className="expos">
-								<ul className="expos__list">
+							<div className="exhibitions">
+								<ul className="exhibitions__list">
 									{exhibitions
 										.map((exhibition) => {
 											return (
-												<li className="expos__element" key={exhibition.id}>
-													<div className="expos__element-upper-line"></div>
-													<div className="expos__element-year">{exhibition.year}</div>
-													<div className="expos__element-lower-line"></div>
+												<li className="exhibitions__element" key={exhibition.id}>
+													<div className="exhibitions__element-upper-line"></div>
+													<div className="exhibitions__element-year">{exhibition.year}</div>
+													<div className="exhibitions__element-lower-line"></div>
 													<ExhibitionCard exhibition={exhibition} />
 												</li>
 											);
