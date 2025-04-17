@@ -36,10 +36,11 @@ export default function Footer() {
 				))}
 			</div>
 			<div className="footer__bottom-line">
-				<span className="footer__copyright">&copy; 2024 Иван Лев</span>
+				<span className="footer__copyright">
+					{ `© ${new Date().getFullYear()} Иван Лев`}
+				</span>
 				<span className="footer__site-version">
-					Версия сайта:&nbsp;
-					{ SITE_VERSION }
+					{ `Версия сайта: ${SITE_VERSION}` }
 				</span>
 				<a className="link link_navigational footer__column-element footer__to-top-link" href="#">
 					Вверх
