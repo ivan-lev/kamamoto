@@ -1,14 +1,17 @@
-import { useEffect, useRef } from 'react';
+import type { ReactNode } from 'react';
+import { motionSettings } from '@/variables/motion';
+import { AnimatePresence, motion } from 'motion/react';
+import { useEffect } from 'react';
+
+const { states, transition } = motionSettings;
 
 interface ModalInterface {
 	showModal: boolean;
 	closeModal: any;
-	content: any;
+	children: ReactNode;
 }
 
-export default function Modal({ showModal, closeModal, content }: ModalInterface) {
-	const dialogRef = useRef<HTMLDivElement>(null);
-
+export default function Modal({ showModal, closeModal, children }: ModalInterface) {
 	function handleCloseModal() {
 		document.body.style.overflow = 'unset';
 		closeModal();
@@ -32,18 +35,26 @@ export default function Modal({ showModal, closeModal, content }: ModalInterface
 	}, [showModal]);
 
 	return (
-		showModal
-		&& (
-			<>
-				<div className="modal" ref={dialogRef}>
+		<AnimatePresence>
+			{ showModal && (
+				<motion.div
+					initial={states.hidden}
+					animate={states.visible}
+					exit={states.hidden}
+					transition={transition}
+					key="modal"
+					className="modal"
+				>
 					<div className="modal__backdrop" onClick={handleCloseModal}></div>
 					<div className="modal__content">
-						{ content }
+						{ children }
 
 						<button className="button" onClick={handleCloseModal}>Закрыть окно</button>
 					</div>
-				</div>
-			</>
-		)
+
+				</motion.div>
+			)}
+
+		</AnimatePresence>
 	);
 }
