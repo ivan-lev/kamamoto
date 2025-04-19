@@ -1,5 +1,5 @@
 import { celebrate, Joi } from 'celebrate';
-import { REGEX } from '../../constants';
+import { REGEX } from '../../variables/regexes';
 
 const { CERAMIC_STYLE_NAME, CERAMIC_STYLE_TITLE } = REGEX;
 

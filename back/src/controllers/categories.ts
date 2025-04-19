@@ -1,13 +1,13 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Category as CategoryType } from '../types/category';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
-import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
-
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
+import { ERROR_MESSAGES } from '../variables/messages';
+import { PATHS } from '../variables/paths';
 
 function getCategories(req: Request, res: Response, next: NextFunction): void {
 	// check if request was made from admin panel
@@ -58,7 +58,7 @@ function createCategory(req: Request, res: Response, next: NextFunction): void {
 	const category = req.body;
 
 	Category.create({ ...category })
-		.then(exhibit => res.status(201).send(exhibit))
+		.then(category => res.status(201).send(category))
 		.catch((error) => {
 			if (error.name === 'CastError') {
 				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
@@ -83,11 +83,11 @@ function deleteCategory(req: Request, res: Response, next: NextFunction): void {
 		.then(category => res.send(category))
 		.catch((error) => {
 			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
+				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
 			}
 
 			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
 			}
 
 			return next(error);
@@ -101,7 +101,7 @@ function updateCategory(req: Request, res: Response, next: NextFunction): void {
 		runValidators: true,
 	})
 		.orFail()
-		.then(exhibit => res.send(exhibit))
+		.then(category => res.send(category))
 		.catch((error) => {
 			if (error.name === 'DocumentNotFoundError') {
 				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));

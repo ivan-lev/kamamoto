@@ -1,8 +1,9 @@
+import type { HelmetOptions } from 'helmet';
 import bodyParser from 'body-parser';
 import { errors } from 'celebrate';
 import cors from 'cors';
 import express from 'express';
-import helmet, { type HelmetOptions } from 'helmet';
+import helmet from 'helmet';
 import mongoose from 'mongoose';
 
 import { DB_URL, PORT, PUBLIC_FOLDER } from './config';

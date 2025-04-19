@@ -2,7 +2,7 @@ import type { NextFunction, Response } from 'express';
 
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET, NODE_ENV } from '../config';
-import { ERROR_MESSAGES } from '../constants';
+import { ERROR_MESSAGES } from '../variables/messages';
 import { AuthorizationError } from '../errors/authorization-error';
 
 export function auth(req: any, res: Response, next: NextFunction): void {

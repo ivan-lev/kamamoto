@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ERROR_MESSAGES } from '../constants';
+import { ERROR_MESSAGES } from '../variables/messages';
 import { login } from '../controllers/users';
 import { NotFoundError } from '../errors/not-found-error';
 import { auth } from '../middlewares/auth';

@@ -1,12 +1,12 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { File } from '../types/file';
-
-import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
-
 import Letter from '../models/letter';
+import { ERROR_MESSAGES } from '../variables/messages';
+
+import { PATHS } from '../variables/paths';
 
 function getLetters(req: Request, res: Response, next: NextFunction): void {
 	Letter.find({}, { _id: 0 })
@@ -57,15 +57,15 @@ function updateLetter(req: Request, res: Response, next: NextFunction): void {
 		.then(letter => res.send(letter))
 		.catch((error) => {
 			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.PARTNER_NOT_FOUND));
+				return next(new NotFoundError(ERROR_MESSAGES.LETTER_NOT_FOUND));
 			}
 
 			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.PARTNER_WRONG_DATA));
+				return next(new ValidationError(ERROR_MESSAGES.LETTER_WRONG_DATA));
 			}
 
 			if (error.name === 'CastError') {
-				return next(new NotFoundError(ERROR_MESSAGES.PARTNER_NOT_FOUND));
+				return next(new NotFoundError(ERROR_MESSAGES.LETTER_WRONG_ID));
 			}
 
 			return next(error);

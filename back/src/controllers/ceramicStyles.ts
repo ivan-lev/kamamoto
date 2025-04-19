@@ -1,13 +1,13 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Style as CeramicStyleType } from '../types/style';
 import type { DeleteCeramicStyleParams, UpdateCeramicStyleParams } from './ceramicStyles.types';
-import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
-
 import { ValidationError } from '../errors/validation-error';
 import ceramicStylesSorter from '../middlewares/utils/ceramicStylesSorter';
 import CeramicStyleModel from '../models/style';
+import { ERROR_MESSAGES } from '../variables/messages';
+import { PATHS } from '../variables/paths';
 
 const { CERAMIC_STYLES, PUBLIC_PATH } = PATHS;
 
@@ -49,8 +49,8 @@ function createCeramicStyle(req: Request, res: Response, next: NextFunction): vo
 
 	CeramicStyleModel.create(ceramicStyle)
 		.then((ceramicStyle) => {
-			const { _id, ...otherFileds } = ceramicStyle.toObject();
-			res.status(201).send(otherFileds);
+			const { _id, ...styleData } = ceramicStyle.toObject();
+			res.status(201).send(styleData);
 		})
 		.catch((error) => {
 			if (error.name === 'CastError') {

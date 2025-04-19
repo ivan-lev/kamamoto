@@ -1,5 +1,5 @@
 import { celebrate, Joi } from 'celebrate';
-import { REGEX } from '../../constants';
+import { REGEX } from '../../variables/regexes';
 
 export const exhibitionValidator = celebrate({
 	body: Joi.object().keys({

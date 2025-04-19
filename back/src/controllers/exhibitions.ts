@@ -1,10 +1,11 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Exhibition as ExhibitionType } from '../types/exhibition';
-import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 import Exhibition from '../models/exhibition';
+import { ERROR_MESSAGES } from '../variables/messages';
+import { PATHS } from '../variables/paths';
 
 const { EXHIBITIONS, PUBLIC_PATH } = PATHS;
 
@@ -83,11 +84,11 @@ function getExhibitionById(req: Request, res: Response, next: NextFunction): voi
 		})
 		.catch((error) => {
 			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
+				return next(new ValidationError(ERROR_MESSAGES.EXHIBITION_WRONG_ID));
 			}
 
 			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+				return next(new NotFoundError(ERROR_MESSAGES.EXHIBITION_NOT_FOUND));
 			}
 
 			return next(error);

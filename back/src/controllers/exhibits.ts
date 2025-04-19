@@ -1,12 +1,13 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
 import { ObjectId } from 'mongodb';
-import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 import Exhibit from '../models/exhibit';
 import Style from '../models/style';
+import { ERROR_MESSAGES } from '../variables/messages';
+import { PATHS } from '../variables/paths';
 
 const { EXHIBITS, PUBLIC_PATH } = PATHS;
 
