@@ -1,11 +1,10 @@
 import type { Images } from '../types/imageType';
 
-export function generateImageLinks(path: string, photos: string[], additional: boolean = false): Images {
+export function generateImageLinks(photos: string[]): Images {
 	const images: Images = [];
 
 	photos.forEach((photo) => {
-		const link = `${path}/${additional ? 'additional/' : ''}${photo}`;
-		images.push({ original: link, thumbnail: link });
+		images.push({ original: photo, thumbnail: photo });
 	});
 
 	return images;

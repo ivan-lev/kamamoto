@@ -7,9 +7,10 @@ const {
 	EXHIBITIONS,
 } = PATHS;
 
-async function getExhibitions() {
+async function getExhibitions(isAdmin = false) {
 	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
 		method: 'GET',
+		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
 	});
 	return checkResponseStatus(response);
 }

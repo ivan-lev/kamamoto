@@ -1,16 +1,35 @@
 import type { NextFunction, Request, Response } from 'express';
-
 import type { Exhibition as ExhibitionType } from '../types/exhibition';
-
-import { ERROR_MESSAGES } from '../constants';
-
+import { ERROR_MESSAGES, PATHS } from '../constants';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 import Exhibition from '../models/exhibition';
 
+const { EXHIBITIONS, PUBLIC_PATH } = PATHS;
+
 function getExhibitions(req: Request, res: Response, next: NextFunction): void {
+	const isAdmin = req.headers['is-admin'];
 	Exhibition.find({}, { _id: 0 })
+		.then((exhibitions: ExhibitionType[]) => {
+			if (isAdmin === 'false') {
+				exhibitions.forEach((exhibition) => {
+					const { id, photos, poster } = exhibition;
+					const pathToExhibitionFolder = `${PUBLIC_PATH}/${EXHIBITIONS}/${id}`;
+
+					if (photos) {
+						photos.forEach((photo, i) => {
+							photos[i] = `${pathToExhibitionFolder}/${photo}`;
+						});
+					}
+
+					if (poster)
+						exhibition.poster = `${pathToExhibitionFolder}/${poster}`;
+				});
+			}
+
+			return exhibitions;
+		})
 		.then(exhibitions => res.send(exhibitions))
 		.catch((error) => { return next(error); });
 }
@@ -44,6 +63,21 @@ function createExhibition(req: Request, res: Response, next: NextFunction): void
 function getExhibitionById(req: Request, res: Response, next: NextFunction): void {
 	Exhibition.findOne({ id: req.params.id }, { _id: 0 })
 		.orFail()
+		.then((exhibition) => {
+			const { photos, poster } = exhibition;
+			const pathToExhibitionFolder = `${PUBLIC_PATH}/${EXHIBITIONS}/${exhibition.id}`;
+
+			if (photos.length) {
+				photos.forEach((photo, i) => {
+					photos[i] = `${pathToExhibitionFolder}/${photo}`;
+				});
+			}
+
+			if (poster)
+				exhibition.poster = `${pathToExhibitionFolder}/${poster}`;
+
+			return exhibition;
+		})
 		.then((exhibition) => {
 			res.send(exhibition);
 		})

@@ -82,7 +82,7 @@ export default function ExhibitForm() {
 
 	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value.replace(/\s/g, '').split(',') }));
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value.replace(/\s/g, ',').split(',') }));
 	};
 
 	useEffect(() => {

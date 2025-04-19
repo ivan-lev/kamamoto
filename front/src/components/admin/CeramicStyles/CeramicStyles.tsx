@@ -46,7 +46,7 @@ export default function CeramicStyles() {
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.ceramicStyles.getCeramicStyles()
+			api.ceramicStyles.getCeramicStyles(true)
 				.then((styles) => {
 					dispatch(setCeramicStyles(styles));
 					setShowPreloader(false);

@@ -15,7 +15,7 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 	const isAdmin = req.headers['is-admin'];
 	CeramicStyleModel.find({}, '-_id')
 		.then((styles: CeramicStyleType[]) => {
-			if (!isAdmin) {
+			if (isAdmin === 'false') {
 				styles.forEach((style) => {
 					const { thumbnail, images, additionalImages } = style;
 					const pathToCeramicStyleFolder = `${PUBLIC_PATH}/${CERAMIC_STYLES}/${style.name}`;

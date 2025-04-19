@@ -6,7 +6,6 @@ import { setExhibitionToDisplay } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
 import { generateImageLinks } from '@/utils/generateImageLinks';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
-import { PATHS } from '@/variables/variables';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ImageGallery from 'react-image-gallery';
@@ -14,9 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import './Exhibition.scss';
 
-const { EXHIBITIONS, RESOURSES } = PATHS;
-
-export default function Exhibit() {
+export default function Exhibition() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const dispatch = useDispatch();
 	const options = htmlParserOptions;
@@ -28,7 +25,6 @@ export default function Exhibit() {
 	);
 
 	const {
-		id,
 		name,
 		city,
 		address,
@@ -48,6 +44,7 @@ export default function Exhibit() {
 	});
 
 	useEffect(() => {
+		// if some data stored in exhibitions state, get data from there
 		if (exhibitions.length !== 0) {
 			const exhibition = exhibitions.find(exhibition => exhibition.id === Number.parseInt(exhId || '0'));
 			dispatch(setExhibitionToDisplay(exhibition));
@@ -55,6 +52,8 @@ export default function Exhibit() {
 			return;
 		}
 
+		// if no data about exhibitions in the store
+		// get data first
 		api.exhibitions.getExhibitionById(exhId || '0')
 			.then((response) => {
 				dispatch(setExhibitionToDisplay(response));
@@ -69,8 +68,7 @@ export default function Exhibit() {
 	const [photosToDisplay, setPhotosToDisplay] = useState<Images>([]);
 
 	useEffect(() => {
-		const path = `${RESOURSES}/${EXHIBITIONS}/${id}`;
-		const newPhotosToDisplay = generateImageLinks(path, photos);
+		const newPhotosToDisplay = generateImageLinks(photos);
 		setPhotosToDisplay(newPhotosToDisplay);
 	}, [exhibitionToDisplay]);
 
@@ -139,7 +137,7 @@ export default function Exhibit() {
 								)}
 							</div>
 
-							{photosToDisplay.length !== 0 && (
+							{photos.length !== 0 && (
 								<div className="exhibition__photos">
 									<ImageGallery
 										items={photosToDisplay}
@@ -153,7 +151,7 @@ export default function Exhibit() {
 							{poster && (
 								<img
 									className="exhibition__poster"
-									src={`${RESOURSES}/${EXHIBITIONS}/${id}/poster.jpg`}
+									src={poster}
 								>
 								</img>
 							)}

@@ -44,10 +44,9 @@ export default function ExhibitionForm() {
 		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value }));
 	};
 
-	const handleChangePhotos = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
-		const photosArray = value.split(', ');
-		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: photosArray }));
+		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value.replace(/\s/g, ',').split(',') }));
 	};
 
 	const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
@@ -66,8 +65,7 @@ export default function ExhibitionForm() {
 				year: Number(year),
 			})
 				.then((response) => {
-					const updatedExhibitionsList = [...exhibitionsList, response];
-					dispatch(setExhibitionsList(updatedExhibitionsList));
+					dispatch(setExhibitionsList([...exhibitionsList, response]));
 					dispatch(clearExhibitionForm());
 					setIsFormDisabled(false);
 					setSaveMessage('Выставка создана');
@@ -269,12 +267,12 @@ export default function ExhibitionForm() {
 							type="text"
 							name="photos"
 							placeholder="фотографии"
-							value={photos.join(', ')}
+							value={photos}
 							onChange={handleChangePhotos}
 						/>
 					</div>
 
-					<div className="form__row form__row-10">
+					<div className="form__row form__row-8">
 						<span>ссылка</span>
 						<input
 							className={`input ${
@@ -288,23 +286,18 @@ export default function ExhibitionForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-1">
-						<span>постер</span>
-						<label
-							className={`checkbox-label ${
-								poster ? 'checkbox-label--checked' : ''
-							} ${
-								isFormDisabled ? 'checkbox-label--disabled' : ''
+					<div className="form__row form__row-3">
+						<span>афиша</span>
+						<input
+							className={`input ${
+								isFormDisabled ? 'input_disabled' : ''
 							}`}
-						>
-							<input
-								className="checkbox-input"
-								type="checkbox"
-								checked={poster}
-								name="poster"
-								onChange={handleCheckBox}
-							/>
-						</label>
+							type="text"
+							name="poster"
+							placeholder="афиша"
+							value={poster}
+							onChange={handleChange}
+						/>
 					</div>
 
 					<div className="form__row form__row-1">

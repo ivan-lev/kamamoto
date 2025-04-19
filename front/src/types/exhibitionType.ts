@@ -9,7 +9,7 @@ export interface Exhibition {
 	link?: string;
 	description: string;
 	photos: string[];
-	poster: boolean;
+	poster: string;
 	curators?: string;
 	organisators?: string;
 	isActive: boolean;
@@ -28,7 +28,7 @@ export const defaultExhibition: Exhibition = {
 	link: '',
 	description: '',
 	photos: [],
-	poster: false,
+	poster: '',
 	curators: '',
 	organisators: '',
 	isActive: false,
