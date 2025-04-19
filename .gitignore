@@ -22,12 +22,13 @@ lerna-debug.log*
 *.sw?
 
 #Local files (pictures, temporary, environment)
-public
 .env
 temp
-node_modules
 dist
 dist-ssr
-*.local
+mongo
+node_modules
+public
 rsync-exclude.txt
+*.local
 *.code-workspace
