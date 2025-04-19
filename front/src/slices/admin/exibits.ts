@@ -23,6 +23,7 @@ const exhibits = createSlice({
 
 		clearExhibitForm: (state) => {
 			state.exhibitToEdit = { ...defaultExhibit };
+			state.isExistingExhibitEdited = false;
 		},
 
 		setExhibits: (state, action: { payload: Exhibit[] }) => {
@@ -32,10 +33,7 @@ const exhibits = createSlice({
 
 		setExhibitToEdit: (state, action: { payload: Exhibit }) => {
 			state.exhibitToEdit = { ...defaultExhibit, ...action.payload };
-		},
-
-		setIsExistingExhibitEdited: (state, action: { payload: boolean }) => {
-			state.isExistingExhibitEdited = action.payload;
+			state.isExistingExhibitEdited = true;
 		},
 	},
 });
@@ -44,7 +42,6 @@ export const {
 	clearExhibitForm,
 	setExhibits,
 	setExhibitToEdit,
-	setIsExistingExhibitEdited,
 } = exhibits.actions;
 
 export default exhibits.reducer;

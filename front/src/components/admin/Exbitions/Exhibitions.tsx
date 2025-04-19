@@ -3,16 +3,12 @@ import AdminExhibitionForm from '@/components/admin/ExhibitionForm/ExhibitionFor
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import {
-	openEmptyExhibitionForm,
-	setExhibitionsList,
-	setExhibitionToEdit,
-} from '@/slices/admin/exhibitions';
+import { openEmptyExhibitionForm, setExhibitionsList, setExhibitionToEdit } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function AdminExhibitions() {
+export default function Exhibitions() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -28,6 +24,7 @@ export default function AdminExhibitions() {
 		dispatch(openEmptyExhibitionForm());
 		setShowModal(true);
 	}
+
 	useEffect(() => {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
@@ -60,27 +57,22 @@ export default function AdminExhibitions() {
 									<span className="table__cell table__cell--centered">Акт-сть</span>
 									<span className="table__cell table__cell--centered"></span>
 								</div>
-								{exhibitionsList.map((exhibition) => {
-									return (
-										<div
-											key={exhibition.id}
-											className="table__row"
-										>
-											<span className="table__cell">{exhibition.id}</span>
-											<span className="table__cell table__cell--span-6">{exhibition.name}</span>
-											<span className="table__cell table__cell--span-2">{exhibition.city}</span>
-											<span className="table__cell">{exhibition.year}</span>
-											<span className="table__cell table__cell--centered">{exhibition.isActive ? 'Да' : 'Нет'}</span>
-											<div className="table__cell table__cell--centered">
-												<button
-													className="table__button table__button--edit"
-													onClick={() => handleEditExhibition(exhibition.id)}
-												>
-												</button>
-											</div>
+								{exhibitionsList.map(exhibition => (
+									<div key={exhibition.id} className="table__row">
+										<span className="table__cell">{exhibition.id}</span>
+										<span className="table__cell table__cell--span-6">{exhibition.name}</span>
+										<span className="table__cell table__cell--span-2">{exhibition.city}</span>
+										<span className="table__cell">{exhibition.year}</span>
+										<span className="table__cell table__cell--centered">{exhibition.isActive ? 'Да' : 'Нет'}</span>
+										<div className="table__cell table__cell--centered">
+											<button
+												className="table__button table__button--edit"
+												onClick={() => handleEditExhibition(exhibition.id)}
+											>
+											</button>
 										</div>
-									);
-								})}
+									</div>
+								))}
 							</div>
 
 							<Modal

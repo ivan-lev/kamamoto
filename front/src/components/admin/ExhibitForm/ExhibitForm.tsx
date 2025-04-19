@@ -2,7 +2,7 @@ import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
-import { clearExhibitForm, setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
+import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,7 +33,6 @@ export default function ExhibitForm() {
 						return response.id !== exhibit.id ? exhibit : response;
 					});
 					dispatch(setExhibits(newExhibitsList));
-					dispatch(setIsExistingExhibitEdited(false));
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
 				})

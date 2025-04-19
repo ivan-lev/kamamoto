@@ -19,9 +19,7 @@ const exhibitions = createSlice({
 	initialState,
 	reducers: {
 		setExhibitionsList: (state, action) => {
-			if (state.exhibitionsList.length === 0) {
-				state.exhibitionsList = [...action.payload];
-			}
+			state.exhibitionsList = [...action.payload];
 		},
 
 		setExhibitionToEdit: (state, action) => {

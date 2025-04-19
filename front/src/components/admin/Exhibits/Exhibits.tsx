@@ -4,20 +4,25 @@ import AdminExhibitForm from '@/components/admin/ExhibitForm/ExhibitForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
+import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Exhibits() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const [showModal, setShowModal] = useState<boolean>(false);
+
 	const dispatch = useDispatch();
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
-	const [showModal, setShowModal] = useState<boolean>(false);
 
 	function handleSetExhibitToEdit(data: Exhibit) {
 		dispatch(setExhibitToEdit(data));
-		dispatch(setIsExistingExhibitEdited(true));
+		setShowModal(true);
+	}
+
+	function handleOpenEmptyForm() {
+		dispatch(clearExhibitForm());
 		setShowModal(true);
 	}
 
@@ -69,7 +74,7 @@ export default function Exhibits() {
 								))}
 							</div>
 
-							<button className="button" onClick={() => setShowModal(true)}>Создать лот</button>
+							<button className="button" onClick={handleOpenEmptyForm}>Создать лот</button>
 
 							<Modal
 								showModal={showModal}
@@ -77,17 +82,6 @@ export default function Exhibits() {
 							>
 								<AdminExhibitForm />
 							</Modal>
-
-							{/* <Appear trigger={showModal}>
-								<Modal
-									showModal={showModal}
-									closeModal={() => setShowModal(false)}
-									content={<AdminExhibitForm />}
-								>
-									<AdminExhibitForm />
-								</Modal>
-								<div>!!!!!!!!!</div>
-							</Appear> */}
 						</div>
 					)}
 		</>
