@@ -27,7 +27,7 @@ export default function Statistics() {
 				<div className="statistics">
 					<h2 className="title3">Статистика</h2>
 					<div className="statistics__grid">
-						<div className="statistics__element">
+						<div className="statistics__dashboard-element">
 							<img
 								className="statistics__element-icon"
 								src="/icons/exhibitions.svg"
@@ -39,7 +39,7 @@ export default function Statistics() {
 							</span>
 						</div>
 
-						<div className="statistics__element">
+						<div className="statistics__dashboard-element">
 							<img className="statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
 							<span className="statistics__element-title">
 								Экспонаты:&nbsp;
@@ -47,7 +47,7 @@ export default function Statistics() {
 							</span>
 						</div>
 
-						<div className="statistics__element">
+						<div className="statistics__dashboard-element">
 							<img
 								className="statistics__element-icon"
 								src="/icons/categories.svg"
@@ -59,7 +59,7 @@ export default function Statistics() {
 							</span>
 						</div>
 
-						<div className="statistics__element">
+						<div className="statistics__dashboard-element">
 							<img className="statistics__element-icon" src="/icons/partners.svg" alt="иконка" />
 							<span className="statistics__element-title">
 								Партнёры:&nbsp;
@@ -67,7 +67,7 @@ export default function Statistics() {
 							</span>
 						</div>
 
-						<div className="statistics__element">
+						<div className="statistics__dashboard-element">
 							<img className="statistics__element-icon" src="/icons/letter.svg" alt="иконка" />
 							<span className="statistics__element-title">
 								Письма:&nbsp;
