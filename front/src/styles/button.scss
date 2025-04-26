@@ -9,7 +9,7 @@
 	align-self: stretch;
 	border: 0;
 	border-radius: 2px;
-	background: var(--text-default);
+	background-color: var(--text-default);
 	color: var(--text-inverse);
 	font-size: 13px;
 	font-style: normal;
@@ -28,5 +28,15 @@
 
 	&--muted {
 		opacity: 0.6;
+	}
+
+	&--type{
+		&-delete {
+			background-color: var(--delete-button-background);
+		}
+
+		&-confirm {
+			background-color: var(--confirm-button-background);
+		}
 	}
 }

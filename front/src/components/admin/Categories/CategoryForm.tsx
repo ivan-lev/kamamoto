@@ -1,11 +1,9 @@
 import type { RootState } from '@/slices/admin';
-import type { ChangeEvent, FormEvent } from 'react';
-import {
-	clearCategoryForm,
-	setCategories,
-	setCategoryToEdit,
-	setIsExistingCategoryEdited,
-} from '@/slices/admin/categories';
+import type { ChangeEvent } from 'react';
+import Button from '@/components/shared/buttons/Button';
+import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
+import DeleteButton from '@/components/shared/buttons/DeleteButton';
+import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -104,8 +102,8 @@ export default function CategoryForm({ closeModal }: Props) {
 	}, [saveMessage]);
 
 	return (
-		<form className="form">
-			<fieldset className="form__fieldset" disabled={isFormDisabled}>
+		<form className="form" inert={isFormDisabled}>
+			<fieldset className="form__fieldset">
 				<legend className="form__legend">
 					{!isExistingCategoryEdited ? 'Добавить категорию' : 'Редактировать категорию'}
 				</legend>
@@ -114,9 +112,7 @@ export default function CategoryForm({ closeModal }: Props) {
 					<div className="form__row-4">
 						<span>Заголовок</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="title"
 							placeholder="по-русски"
@@ -128,9 +124,7 @@ export default function CategoryForm({ closeModal }: Props) {
 					<div className="form__row-4">
 						<span>Имя</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="category"
 							placeholder="по-английски"
@@ -142,9 +136,7 @@ export default function CategoryForm({ closeModal }: Props) {
 					<div className="form__row-4">
 						<span>файл картинки</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="thumbnail"
 							placeholder="в галерею"
@@ -157,16 +149,8 @@ export default function CategoryForm({ closeModal }: Props) {
 						{!isExistingCategoryEdited
 							? (
 									<>
-										<button
-											className="button"
-											type="button"
-											onClick={() => dispatch(clearCategoryForm())}
-										>
-											Очистить
-										</button>
-										<button className="button" type="submit" onClick={handleCreateCategory}>
-											Создать
-										</button>
+										<Button title="Очистить" action={() => dispatch(clearCategoryForm())} />
+										<ConfirmButton title="Добавить" action={handleCreateCategory} />
 									</>
 								)
 							: (
@@ -174,23 +158,14 @@ export default function CategoryForm({ closeModal }: Props) {
 										{ showConfirmation && (
 											<div className="form__confirmation">
 												<span>Точно удалить запись?</span>
-												<button className="button" type="button" onClick={handleDeleteCategory}>Да</button>
-												<button className="button" type="button" onClick={() => setShowConfirmation(false)}>Нет</button>
+												<DeleteButton title="Да" action={handleDeleteCategory} />
+												<Button title="Нет" action={() => setShowConfirmation(false)} />
 											</div>
 										)}
 										{!showConfirmation && (
 											<>
-												<button
-													className="button"
-													type="button"
-													onClick={handleUpdateCategory}
-													disabled={isFormDisabled}
-												>
-													Сохранить
-												</button>
-												<button className="button" type="button" onClick={() => setShowConfirmation(true)}>
-													Удалить
-												</button>
+												<ConfirmButton title="Сохранить" action={handleUpdateCategory} />
+												<Button title="Удалить" action={() => setShowConfirmation(true)} />
 											</>
 										)}
 									</>

@@ -9,10 +9,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Exhibitions() {
+	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
-
-	const dispatch = useDispatch();
 	const exhibitionsList = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
 
 	function handleEditExhibition(id: number) {

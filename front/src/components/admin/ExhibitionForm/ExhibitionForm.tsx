@@ -1,5 +1,8 @@
 import type { RootState } from '@/slices/admin';
-import type { ChangeEvent, FormEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import Button from '@/components/shared/buttons/Button';
+import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
+import DeleteButton from '@/components/shared/buttons/DeleteButton';
 import { clearExhibitionForm, setExhibitionsList, setExhibitionToDisplay } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
@@ -40,7 +43,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 		isActive,
 	} = exhibitionToDisplay;
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value }));
 	};
@@ -50,13 +53,12 @@ export default function ExhibitionForm({ closeModal }: Props) {
 		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value.replace(/\s/g, ',').split(',') }));
 	};
 
-	const handleCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
+	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
 		const { name, checked } = event.target;
 		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: checked }));
 	};
 
-	const handleCreateExhibition = (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
+	function handleCreateExhibition() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
@@ -79,7 +81,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 		}
 	};
 
-	const handleUpdateExhibition = () => {
+	function handleUpdateExhibition() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
@@ -100,7 +102,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 		}
 	};
 
-	const handleDeleteExhibition = () => {
+	function handleDeleteExhibition() {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
 			api.exhibitions.deleteExhibition(token, exhibitionToDisplay)
@@ -126,17 +128,15 @@ export default function ExhibitionForm({ closeModal }: Props) {
 	}, [saveMessage]);
 
 	return (
-		<form className="form" onSubmit={handleCreateExhibition}>
-			<fieldset className="form__fieldset" disabled={isFormDisabled}>
+		<form className="form" inert={isFormDisabled}>
+			<fieldset className="form__fieldset">
 				<legend className="form__legend">Добавить выставку</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-2">
 						<span>номер</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="id"
 							placeholder="id"
@@ -148,9 +148,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-2">
 						<span>год</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="year"
 							placeholder="год"
@@ -162,9 +160,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-6">
 						<span>даты</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="dates"
 							placeholder="даты"
@@ -176,9 +172,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-6">
 						<span>название</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="name"
 							placeholder="название выставки"
@@ -190,9 +184,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-6">
 						<span>город</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="city"
 							placeholder="город"
@@ -204,9 +196,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-6">
 						<span>адрес</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="address"
 							placeholder="адрес"
@@ -218,9 +208,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-6">
 						<span>место проведения</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="place"
 							placeholder="место проведения"
@@ -265,9 +253,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-12">
 						<span>фотографии</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="photos"
 							placeholder="фотографии"
@@ -279,9 +265,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-8">
 						<span>ссылка</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="link"
 							placeholder="ссылка"
@@ -293,9 +277,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					<div className="form__row form__row-3">
 						<span>афиша</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="poster"
 							placeholder="афиша"
@@ -306,13 +288,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 
 					<div className="form__row form__row-1">
 						<span>актив</span>
-						<label
-							className={`checkbox-label ${
-								isActive ? 'checkbox-label--checked' : ''
-							} ${
-								isFormDisabled ? 'checkbox-label--disabled' : ''
-							}`}
-						>
+						<label className={`checkbox-label ${isActive ? 'checkbox-label--checked' : ''} `}>
 							<input
 								className="checkbox-input"
 								type="checkbox"
@@ -327,16 +303,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 						{!isExistingExhibitionEdited
 							? (
 									<>
-										<button
-											className="button"
-											type="button"
-											onClick={() => dispatch(clearExhibitionForm())}
-										>
-											Очистить
-										</button>
-										<button className="button" type="submit">
-											Создать
-										</button>
+										<Button title="Очистить" action={() => dispatch(clearExhibitionForm())} />
+										<ConfirmButton title="Создать" action={handleCreateExhibition} />
 									</>
 								)
 							: (
@@ -344,23 +312,14 @@ export default function ExhibitionForm({ closeModal }: Props) {
 										{ showConfirmation && (
 											<div className="form__confirmation">
 												<span>Точно удалить запись?</span>
-												<button className="button" type="button" onClick={handleDeleteExhibition}>Да</button>
-												<button className="button" type="button" onClick={() => setShowConfirmation(false)}>Нет</button>
+												<DeleteButton title="Да" action={handleDeleteExhibition} />
+												<Button title="Нет" action={() => setShowConfirmation(false)} />
 											</div>
 										)}
 										{!showConfirmation && (
 											<>
-												<button
-													className="button"
-													type="button"
-													onClick={handleUpdateExhibition}
-													disabled={isFormDisabled}
-												>
-													Сохранить
-												</button>
-												<button className="button" type="button" onClick={() => setShowConfirmation(true)}>
-													Удалить запись
-												</button>
+												<ConfirmButton title="Сохранить" action={handleUpdateExhibition} />
+												<Button title="Удалить запись" action={() => setShowConfirmation(true)} />
 											</>
 										)}
 

@@ -104,4 +104,24 @@
 		gap: var(--gap-4);
 		align-items: center;
 	}
+
+	&[inert] {
+		input {
+			background-color: var(--background-hover);
+			color: var(--text-disabled);
+			cursor: default;
+		}
+
+		button {
+			color: transparent;
+			background-image: url('/icons/preloader.svg');
+			background-size: 60% 60%;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		label {
+			background-color: var(--background-hover);
+		}
+	}
 }

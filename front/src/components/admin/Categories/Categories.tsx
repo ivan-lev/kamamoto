@@ -30,13 +30,14 @@ export default function Categories() {
 	}, []);
 
 	function openEmptyCategoryForm() {
+		dispatch(setIsExistingCategoryEdited(false));
 		dispatch(clearCategoryForm());
 		setShowModal(true);
 	}
 
 	function handleEditCategory(category: Category) {
-		dispatch(setCategoryToEdit(category));
 		dispatch(setIsExistingCategoryEdited(true));
+		dispatch(setCategoryToEdit(category));
 		setShowModal(true);
 	};
 
