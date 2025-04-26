@@ -122,9 +122,9 @@ function updateExhibition(req: Request, res: Response, next: NextFunction): void
 }
 
 function deleteExhibition(req: Request, res: Response, next: NextFunction): void {
-	Exhibition.findOneAndDelete({ id: req.params.id }, { _id: 0 })
+	Exhibition.findOneAndDelete({ id: req.params.id })
 		.orFail()
-		.then(exhibition => res.send(exhibition))
+		.then(exhibition => res.send(exhibition.id))
 		.catch((error) => {
 			if (error.name === 'CastError') {
 				return next(new ValidationError(ERROR_MESSAGES.EXHIBITION_WRONG_ID));

@@ -1,17 +1,18 @@
 import type { RootState } from '@/slices/admin';
 import type { ChangeEvent, FormEvent } from 'react';
-import {
-	clearExhibitionForm,
-	setExhibitionsList,
-	setExhibitionToDisplay,
-} from '@/slices/admin/exhibitions';
+import { clearExhibitionForm, setExhibitionsList, setExhibitionToDisplay } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function ExhibitionForm() {
+interface Props {
+	closeModal: () => void;
+}
+
+export default function ExhibitionForm({ closeModal }: Props) {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
+	const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
 	const dispatch = useDispatch();
 
 	const exhibitionsList = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
@@ -103,10 +104,13 @@ export default function ExhibitionForm() {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
 			api.exhibitions.deleteExhibition(token, exhibitionToDisplay)
-				.then((response) => {
-					const updatedExhibitionsList = exhibitionsList.filter(exhibition => exhibition.id !== response.id);
+				.then((response: number) => {
+					const updatedExhibitionsList = exhibitionsList.filter(exhibition => exhibition.id !== response);
 					dispatch(setExhibitionsList(updatedExhibitionsList));
+					dispatch(clearExhibitionForm());
 					setIsFormDisabled(false);
+					setShowConfirmation(false);
+					closeModal();
 				})
 				.catch((error) => {
 					console.error(error);
@@ -337,17 +341,29 @@ export default function ExhibitionForm() {
 								)
 							: (
 									<>
-										<button
-											className="button"
-											type="button"
-											onClick={handleUpdateExhibition}
-											disabled={isFormDisabled}
-										>
-											Сохранить
-										</button>
-										<button className="button" type="button" onClick={handleDeleteExhibition}>
-											Удалить
-										</button>
+										{ showConfirmation && (
+											<div className="form__confirmation">
+												<span>Точно удалить запись?</span>
+												<button className="button" type="button" onClick={handleDeleteExhibition}>Да</button>
+												<button className="button" type="button" onClick={() => setShowConfirmation(false)}>Нет</button>
+											</div>
+										)}
+										{!showConfirmation && (
+											<>
+												<button
+													className="button"
+													type="button"
+													onClick={handleUpdateExhibition}
+													disabled={isFormDisabled}
+												>
+													Сохранить
+												</button>
+												<button className="button" type="button" onClick={() => setShowConfirmation(true)}>
+													Удалить запись
+												</button>
+											</>
+										)}
+
 									</>
 								)}
 					</div>

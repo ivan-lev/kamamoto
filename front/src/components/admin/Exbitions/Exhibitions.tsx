@@ -1,5 +1,5 @@
 import type { RootState } from '@/slices/admin';
-import AdminExhibitionForm from '@/components/admin/ExhibitionForm/ExhibitionForm';
+import ExhibitionForm from '@/components/admin/ExhibitionForm/ExhibitionForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
@@ -79,7 +79,7 @@ export default function Exhibitions() {
 								showModal={showModal}
 								closeModal={() => setShowModal(false)}
 							>
-								<AdminExhibitionForm />
+								<ExhibitionForm	closeModal={() => setShowModal(false)} />
 							</Modal>
 
 							<button className="button" onClick={handleCreateExhibition}>

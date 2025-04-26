@@ -1,6 +1,7 @@
 import type { RootState } from '@/slices/admin/index';
 import type { Category } from '@/types/category';
-import type { ChangeEvent } from 'react';
+import CategoryForm from '@/components/admin/Categories/CategoryForm';
+import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import {
@@ -15,18 +16,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function Categories() {
 	const dispatch = useDispatch();
-
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
-	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
-	const [saveMessage, setSaveMessage] = useState<string>('');
-
+	const [showModal, setShowModal] = useState<boolean>(false);
 	const categories = useSelector((state: RootState) => state.categories.categories);
-	const categoryToEdit = useSelector((state: RootState) => state.categories.categoryToEdit);
-	const isExistingCategoryEdited = useSelector(
-		(state: RootState) => state.categories.isExistingCategoryEdited,
-	);
-
-	const { category, title, thumbnail } = categoryToEdit;
 
 	useEffect(() => {
 		api.categories.getCategories(true)
@@ -37,81 +29,15 @@ export default function Categories() {
 			.catch(error => console.error(error));
 	}, []);
 
-	useEffect(() => {
-		if (saveMessage) {
-			setTimeout(() => setSaveMessage(''), 3000);
-		}
-	}, [saveMessage]);
+	function openEmptyCategoryForm() {
+		dispatch(clearCategoryForm());
+		setShowModal(true);
+	}
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		const { name, value } = event.target;
-		dispatch(setCategoryToEdit({ ...categoryToEdit, [name]: value }));
-	};
-
-	const handleCreateCategory = () => {
-		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
-		if (token) {
-			api.categories.createCategory(token, category, title, thumbnail)
-				.then((response) => {
-					dispatch(setCategories([...categories, response]));
-					dispatch(clearCategoryForm());
-					dispatch(setIsExistingCategoryEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Новая категория в базе');
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
-				});
-		}
-	};
-
-	const handleEditCategory = (category: Category) => {
+	function handleEditCategory(category: Category) {
 		dispatch(setCategoryToEdit(category));
 		dispatch(setIsExistingCategoryEdited(true));
-	};
-
-	const handleUpdateCategory = () => {
-		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
-		if (token) {
-			api.categories.updateCategory(token, { ...categoryToEdit })
-				.then((response) => {
-					const newCategoriesList = categories.map((category) => {
-						return response.category !== category.category ? category : response;
-					});
-					dispatch(setCategories(newCategoriesList));
-					dispatch(clearCategoryForm());
-					dispatch(setIsExistingCategoryEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
-				});
-		}
-	};
-
-	const handleDeleteCategory = () => {
-		const token = localStorage.getItem('kmmttkn');
-		if (token) {
-			api.categories.deleteCategory(token, category)
-				.then((response) => {
-					const newCategoriesList = categories.filter(cat => cat.category !== response.category);
-					dispatch(setCategories(newCategoriesList));
-					dispatch(clearCategoryForm());
-					dispatch(setIsExistingCategoryEdited(false));
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-				});
-		}
+		setShowModal(true);
 	};
 
 	return (
@@ -128,8 +54,8 @@ export default function Categories() {
 								<h2 className="title3">Категории</h2>
 								<div className="table">
 									<div className="table__row">
-										<span className="table__cell table__cell--span-3">Название</span>
-										<span className="table__cell table__cell--span-4">Ссылка</span>
+										<span className="table__cell table__cell--span-3">Заголовок</span>
+										<span className="table__cell table__cell--span-4">Имя</span>
 										<span className="table__cell table__cell--span-4">Файл предпросмотра</span>
 										<span className="table__cell table__cell--centered"></span>
 									</div>
@@ -152,93 +78,18 @@ export default function Categories() {
 										);
 									})}
 								</div>
-
 							</div>
-							<form className="form">
-								<fieldset className="form__fieldset" disabled={isFormDisabled}>
-									<legend className="form__legend">
-										{!isExistingCategoryEdited ? 'Добавить категорию' : 'Редактировать категорию'}
-									</legend>
 
-									<div className="form__grid">
-										<div className="form__row-4">
-											<span>Название</span>
-											<input
-												className={`input ${
-													isFormDisabled ? 'input_disabled' : ''
-												}`}
-												type="text"
-												name="title"
-												placeholder="по-русски"
-												value={title}
-												onChange={handleChange}
-											/>
-										</div>
+							<Modal
+								showModal={showModal}
+								closeModal={() => setShowModal(false)}
+							>
+								<CategoryForm closeModal={() => setShowModal(false)} />
+							</Modal>
 
-										<div className="form__row-4">
-											<span>путь</span>
-											<input
-												className={`input ${
-													isFormDisabled ? 'input_disabled' : ''
-												}`}
-												type="text"
-												name="category"
-												placeholder="по-английски"
-												value={category}
-												onChange={handleChange}
-											/>
-										</div>
-
-										<div className="form__row-4">
-											<span>файл картинки</span>
-											<input
-												className={`input ${
-													isFormDisabled ? 'input_disabled' : ''
-												}`}
-												type="text"
-												name="thumbnail"
-												placeholder="в галерею"
-												value={thumbnail}
-												onChange={handleChange}
-											/>
-										</div>
-
-										<div className="form__row-12--inline">
-											{!isExistingCategoryEdited
-												? (
-														<>
-															<button
-																className="button"
-																type="button"
-																onClick={() => dispatch(clearCategoryForm())}
-															>
-																Очистить
-															</button>
-															<button className="button" type="submit" onClick={handleCreateCategory}>
-																Создать
-															</button>
-														</>
-													)
-												: (
-														<>
-															<button
-																className="button"
-																type="button"
-																onClick={handleUpdateCategory}
-																disabled={isFormDisabled}
-															>
-																Сохранить
-															</button>
-															<button className="button" type="button" onClick={handleDeleteCategory}>
-																Удалить
-															</button>
-														</>
-													)}
-										</div>
-									</div>
-								</fieldset>
-								<span className="form__save-status">{saveMessage}</span>
-							</form>
+							<button className="button" onClick={openEmptyCategoryForm}>
+								Создать
+							</button>
 						</div>
 					)}
 		</>
