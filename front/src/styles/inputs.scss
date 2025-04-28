@@ -9,9 +9,12 @@
 	background: var(--background-muted);
 	border: 1px solid var(--border-color);
 	border-radius: 2px;
+	font-family: var(--main-font);
 
 	&::placeholder {
 		text-transform: uppercase;
+		font-family: var(--main-font);
+
 	}
 
 	&:focus-visible {
@@ -31,13 +34,13 @@
 	height: 150px;
 	font-family: var(--main-font);
 	width: 100%;
-    color: var(--text-default);
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    box-sizing: border-box;
-    background: var(--background-muted);
-    border: 1px solid var(--border-color);
-    border-radius: 2px;
+	color: var(--text-default);
+	font-size: 13px;
+	letter-spacing: 1.5px;
+	box-sizing: border-box;
+	background: var(--background-muted);
+	border: 1px solid var(--border-color);
+	border-radius: 2px;
 
 	&::placeholder {
 		text-transform: uppercase;

@@ -5,10 +5,6 @@
 	border-radius: 2px;
 	position: relative;
 
-	span {
-		font-size: 14px
-	}
-
 	&__fieldset {
 		border: 0;
 	}
@@ -105,23 +101,21 @@
 		align-items: center;
 	}
 
+	:where(span) {
+		font-size: 14px
+	}
+
 	&[inert] {
-		input {
+		:where(input, label, textarea, select, .tag) {
 			background-color: var(--background-hover);
-			color: var(--text-disabled);
-			cursor: default;
 		}
 
-		button {
+		:where(button) {
 			color: transparent;
 			background-image: url('/icons/preloader.svg');
 			background-size: 60% 60%;
 			background-position: center;
 			background-repeat: no-repeat;
-		}
-
-		label {
-			background-color: var(--background-hover);
 		}
 	}
 }
