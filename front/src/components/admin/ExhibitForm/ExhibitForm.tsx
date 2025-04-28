@@ -1,5 +1,8 @@
 import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
+import Button from '@/components/shared/buttons/Button';
+import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
+import DeleteButton from '@/components/shared/buttons/DeleteButton';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
@@ -10,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function ExhibitForm() {
 	const dispatch = useDispatch();
 
+	const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
@@ -109,17 +113,15 @@ export default function ExhibitForm() {
 	}, []);
 
 	return (
-		<form className="form" onSubmit={() => {}}>
-			<fieldset className="form__fieldset" disabled={isFormDisabled}>
+		<form className="form" inert={isFormDisabled}>
+			<fieldset className="form__fieldset">
 				<legend className="form__legend">Добавить лот</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-2">
 						<span>номер</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="id"
 							placeholder="id"
@@ -157,9 +159,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-3">
 						<span>дата создания</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="age"
 							placeholder="даты"
@@ -171,9 +171,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-12">
 						<span>название</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="name"
 							placeholder="название"
@@ -185,9 +183,7 @@ export default function ExhibitForm() {
 					<div className="form__row-12">
 						<span>фотографии</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="images"
 							placeholder="фотографии"
@@ -210,9 +206,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-8">
 						<span>имя мастера</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="potterName"
 							placeholder="имя мастера"
@@ -224,9 +218,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-4">
 						<span>годы жизни</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="potterLifeDates"
 							placeholder="годы жизни"
@@ -238,9 +230,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-8">
 						<span>имя мастера на японском</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="potterJapaneseName"
 							placeholder="имя мастера на японском"
@@ -252,9 +242,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-4">
 						<span>фото мастера</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="potterPhoto"
 							placeholder="фото мастера"
@@ -288,9 +276,7 @@ export default function ExhibitForm() {
 					<div className="form__row-12">
 						<span>дополнительные фотографии</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="additionalImages"
 							placeholder="названия через запятую без пробелов с расширением"
@@ -302,9 +288,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-12">
 						<span>комплектность</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="complectation"
 							placeholder="комплектность"
@@ -316,9 +300,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-12">
 						<span>сохранность</span>
 						<input
-							className={`input ${
-								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							className="input"
 							type="text"
 							name="preservation"
 							placeholder="сохранность"
@@ -330,37 +312,26 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-12 form__row-12--inline">
 						{!isExistingExhibitEdited && (
 							<>
-								<button
-									className="button"
-									type="button"
-									onClick={() => { dispatch(clearExhibitForm()); }}
-								>
-									Очистить
-								</button>
-								<button
-									className="button"
-									type="button"
-									onClick={handleCreateExhibit}
-									disabled={isFormDisabled}
-								>
-									Создать
-								</button>
+								<Button title="Очистить" action={() => dispatch(clearExhibitForm())} />
+								<Button title="Создать" action={handleCreateExhibit} />
 							</>
 						)}
 
 						{ isExistingExhibitEdited && (
 							<>
-								<button
-									className="button"
-									type="button"
-									onClick={handleUpdateExhibit}
-									disabled={isFormDisabled}
-								>
-									Сохранить
-								</button>
-								<button className="button" type="button" onClick={handleDeleteExhibit}>
-									Удалить
-								</button>
+								{ showConfirmation && (
+									<div className="form__confirmation">
+										<span>Точно удалить запись?</span>
+										<DeleteButton title="Да" action={handleDeleteExhibit} />
+										<Button title="Нет" action={() => setShowConfirmation(false)} />
+									</div>
+								)}
+								{!showConfirmation && (
+									<>
+										<Button title="Сохранить" action={handleUpdateExhibit} />
+										<Button title="Удалить" action={() => setShowConfirmation(true)} />
+									</>
+								)}
 							</>
 						)}
 					</div>

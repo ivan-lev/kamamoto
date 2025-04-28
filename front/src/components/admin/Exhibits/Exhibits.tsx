@@ -4,7 +4,7 @@ import AdminExhibitForm from '@/components/admin/ExhibitForm/ExhibitForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
+import { clearExhibitForm, setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,11 +17,13 @@ export default function Exhibits() {
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
 
 	function handleSetExhibitToEdit(data: Exhibit) {
+		dispatch(setIsExistingExhibitEdited(true));
 		dispatch(setExhibitToEdit(data));
 		setShowModal(true);
 	}
 
 	function handleOpenEmptyForm() {
+		dispatch(setIsExistingExhibitEdited(false));
 		dispatch(clearExhibitForm());
 		setShowModal(true);
 	}
