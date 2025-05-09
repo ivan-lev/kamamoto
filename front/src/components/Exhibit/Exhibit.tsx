@@ -2,12 +2,12 @@ import type { RootState } from '@/slices/visitor';
 import ExhibitTechInfo from '@/components/ExhibitTechInfo/ExhibitTechInfo';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
+import Slider from '@/components/Slider/Slider';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import ImageGallery from 'react-image-gallery';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import './Exhibit.scss';
@@ -15,39 +15,10 @@ import './Exhibit.scss';
 export default function Exhibit() {
 	const exhibitId = useParams().exhibit;
 	const exhibit = useSelector((state: RootState) => state.exhibit);
-	const images = useSelector((state: RootState) => state.exhibit.images);
-	const additionalImages = useSelector((state: RootState) => state.exhibit.additionalImages);
 	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
-	const { additionalDescription, description, name, potterInfo, style } = exhibit;
-
-	interface GalleryImage {
-		original: string;
-		thumbnail: string;
-	}
-	const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
-	const [galleryAdditionalImages, setGalleryAdditionalImages] = useState<GalleryImage[]>([]);
-
-	useEffect(() => {
-		if (galleryImages.length === 0) {
-			const imagesToDisplay: GalleryImage[] = [];
-			images?.forEach((image) => {
-				imagesToDisplay[imagesToDisplay.length] = { original: image, thumbnail: image };
-			});
-			setGalleryImages(imagesToDisplay);
-		}
-	}, [images]);
-
-	useEffect(() => {
-		if (galleryAdditionalImages.length === 0) {
-			const imagesToDisplay: GalleryImage[] = [];
-			additionalImages?.forEach((image) => {
-				imagesToDisplay[imagesToDisplay.length] = { original: image, thumbnail: image };
-			});
-			setGalleryAdditionalImages(imagesToDisplay);
-		}
-	}, [additionalImages]);
+	const { additionalDescription, additionalImages, description, images, name, potterInfo, potterPhoto, style } = exhibit;
 
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
@@ -93,9 +64,7 @@ export default function Exhibit() {
 						<h3 className="title title3">{name}</h3>
 
 						{/* Main image gallery */}
-						{images && (
-							<ImageGallery items={galleryImages || []} showFullscreenButton={false} showPlayButton={false} />
-						)}
+						{images && <Slider slides={images} />}
 
 						{/* Exhibit description section */}
 						<div className="description">
@@ -111,45 +80,33 @@ export default function Exhibit() {
 						{/* Potter description section */}
 						{potterInfo && (
 							<div className="description description--block">
-								{exhibit?.potterPhoto && (
+								{potterPhoto && (
 									<img
 										className="exhibit__potter-photo"
-										src={exhibit.potterPhoto}
+										src={potterPhoto}
 									>
 									</img>
 								)}
 
-								{exhibit?.potterInfo && parse(exhibit?.potterInfo || '', htmlParserOptions)}
+								{parse(potterInfo, htmlParserOptions)}
 							</div>
 						)}
 
 						{/* Additional info */}
 						{additionalDescription && (
 							<div className="description">
-								{additionalDescription && parse(additionalDescription || '', htmlParserOptions)}
+								{parse(additionalDescription, htmlParserOptions)}
 							</div>
 						)}
 
 						{/* Additional photo gallery */}
-						{additionalImages?.length !== 0 && (
-							<ImageGallery
-								items={galleryAdditionalImages || []}
-								showFullscreenButton={false}
-								showPlayButton={false}
-								showThumbnails={false}
-								showBullets={true}
-							/>
-						)}
+						{additionalImages && <Slider slides={additionalImages} />}
 
 						{/* Ceramic style description section */}
 						{style?.brief && (
 							<div className="container">
 								<div className="description">
-									{parse(
-										style.brief
-										|| '',
-										htmlParserOptions,
-									)}
+									{parse(style.brief, htmlParserOptions)}
 								</div>
 							</div>
 						)}

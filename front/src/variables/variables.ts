@@ -1,3 +1,5 @@
+export const homepageSliderImages = ['images/homepage-slider/0.jpg', 'images/homepage-slider/1.jpg', 'images/homepage-slider/2.jpg', 'images/homepage-slider/3.jpg', 'images/homepage-slider/4.jpg', 'images/homepage-slider/5.jpg', 'images/homepage-slider/6.jpg', 'images/homepage-slider/7.jpg', 'images/homepage-slider/8.jpg'];
+
 export const PATHS = {
 	BASE_URL: 'http://localhost:3000',
 	CATEGORIES: 'categories',
@@ -21,4 +23,4 @@ export const LOGIN_MESSAGES = {
 	WRONG_EMAIL_FORMAT: 'Неправильный фармат email-адреса',
 };
 
-export const SITE_VERSION = '1.7.4';
+export const SITE_VERSION = '1.8.4';

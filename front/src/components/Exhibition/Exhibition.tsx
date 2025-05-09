@@ -1,14 +1,12 @@
 import type { RootState } from '@/slices/visitor';
-import type { Images } from '@/types/imageType';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
+import Slider from '@/components/Slider/Slider';
 import { setExhibitionToDisplay } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
-import { generateImageLinks } from '@/utils/generateImageLinks';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import ImageGallery from 'react-image-gallery';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import './Exhibition.scss';
@@ -24,20 +22,7 @@ export default function Exhibition() {
 		(state: RootState) => state.exhibitions.exhibitionToDisplay,
 	);
 
-	const {
-		name,
-		city,
-		address,
-		place,
-		year,
-		dates,
-		link,
-		organisators,
-		curators,
-		poster,
-		description,
-		photos,
-	} = exhibitionToDisplay;
+	const { name, city, address, place, year, dates, link, organisators, curators, poster, description, photos } = exhibitionToDisplay;
 
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
@@ -65,13 +50,6 @@ export default function Exhibition() {
 			});
 	}, [exhId]);
 
-	const [photosToDisplay, setPhotosToDisplay] = useState<Images>([]);
-
-	useEffect(() => {
-		const newPhotosToDisplay = generateImageLinks(photos);
-		setPhotosToDisplay(newPhotosToDisplay);
-	}, [exhibitionToDisplay]);
-
 	return (
 		<>
 			<Seo title={`Камамото: ${name}`} />
@@ -96,21 +74,8 @@ export default function Exhibition() {
 							<h3 className="title title3 exhibition__title">{`«${name}»`}</h3>
 
 							<div className="exhibition__place">
-								<span className="text text--muted">Место проведения: </span>
-								<span className="text">
-									{city}
-									,
-									{address}
-									,
-									{place}
-								</span>
-								<span className="text text--muted">Даты: </span>
-								<span>
-									{year}
-									{' '}
-									год,
-									{dates}
-								</span>
+								<p className="text text--muted">{`Место проведения: ${city}, ${address}, ${place}`}</p>
+								<p className="text text--muted">{`Даты: ${year} год, ${dates}`}</p>
 								{link && (
 									<span className="text text--muted">
 										Ссылка на
@@ -126,28 +91,24 @@ export default function Exhibition() {
 								{organisators && (
 									<div className="text text--muted">
 										<span>Организаторы:</span>
-										{parse(organisators || '', options)}
+										{parse(organisators, options)}
 									</div>
 								)}
+
 								{curators && (
 									<div className="text text--muted">
 										<span>Кураторы:</span>
-										{parse(curators || '', options)}
+										{parse(curators, options)}
 									</div>
 								)}
 							</div>
 
-							{photos.length !== 0 && (
+							{photos && (
 								<div className="exhibition__photos">
-									<ImageGallery
-										items={photosToDisplay}
-										showFullscreenButton={false}
-										showPlayButton={false}
-										showBullets={true}
-										showThumbnails={false}
-									/>
+									<Slider slides={photos} />
 								</div>
 							)}
+
 							{poster && (
 								<img
 									className="exhibition__poster"
@@ -155,9 +116,9 @@ export default function Exhibition() {
 								>
 								</img>
 							)}
-							<div className="description exhibition__description">
 
-								{parse(description || '', options)}
+							<div className="description exhibition__description">
+								{parse(description, options)}
 							</div>
 						</section>
 					)}

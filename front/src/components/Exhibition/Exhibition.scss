@@ -1,5 +1,6 @@
 .exhibition {
 	display: grid!important;
+	align-items: start!important;
 	grid-template-areas:
 		'breadcrumbs breadcrumbs'
 		'title title'
@@ -32,11 +33,9 @@
 		grid-area: place;
 		align-self: start;
 		padding: 0 0 0 0;
-		gap: var(--gap-16);
+		gap: var(--gap-32);
 		display: flex;
     flex-direction: column;
-    gap: var(--gap-32);
-    padding: var(--gap-48);
 	}
 
 	&__participants {
@@ -45,7 +44,18 @@
 	}
 
 	&__photos {
+		--padding: var(--gap-48);
 		grid-area: photos;
+		width: 100%;
+		max-width: calc(100vw - var(--padding) * 2);
+
+		@media screen and (max-width: 768px) {
+			--padding: var(--gap-32);
+		}
+
+		@media screen and (max-width: 600px) {
+			--padding: var(--gap-24);
+		}
 	}
 
 	&__description {
