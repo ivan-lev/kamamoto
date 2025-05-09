@@ -5,25 +5,31 @@
 .admin {
 	display: grid;
 	width: 100%;
-	height: 100vh;
+	// height: 100vh;
 	grid-template-columns: 300px auto;
 	grid-template-rows: auto;
 	grid-template-areas: 'sidebar content';
+	gap: var(--gap-32);
+	padding-left: var(--gap-48);
+  padding-right: var(--gap-48);
+	box-sizing: border-box;
 
 	&__sidebar {
 		grid-area: sidebar;
 		padding: var(--gap-32);
-		height: 100%;
+		height: fit-content;
 		display: flex;
 		flex-direction: column;
 		gap: var(--gap-16);
 		border: 1px solid var(--border-color);
 		border-radius: 2px;
 		background: var(--background-muted);
+		position: sticky;
+		top: var(--gap-48);
 	}
 
 	&__content {
-		margin: var(--gap-32);
+		// margin: var(--gap-32);
 		grid-area: content;
 		border: 1px solid var(--border-color);
 		border-radius: 2px;
