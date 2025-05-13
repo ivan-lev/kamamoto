@@ -85,10 +85,10 @@ export default function ExhibitTechInfo({
 								</li>
 							)}
 
-							{exhibit?.height && (
+							{exhibit?.width && (
 								<li className="tech-info__list-element">
 									<span>Ширина: </span>
-									{`${exhibit?.height} см`}
+									{`${exhibit?.width} см`}
 								</li>
 							)}
 
@@ -106,10 +106,10 @@ export default function ExhibitTechInfo({
 								</li>
 							)}
 
-							{exhibit?.weigth && (
+							{exhibit?.weight && (
 								<li className="tech-info__list-element">
 									<span>Вес:&nbsp;</span>
-									{exhibit?.weigth}
+									{exhibit?.weight}
 								</li>
 							)}
 
