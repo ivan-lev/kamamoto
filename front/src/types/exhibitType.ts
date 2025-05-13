@@ -10,7 +10,7 @@ export interface Exhibit {
 	potterLifeDates?: string;
 	category: { _id: string; title: string };
 	style?: CeramicStyle;
-	images?: string[];
+	images: string[];
 	description?: string;
 
 	potterPhoto?: string;
@@ -25,7 +25,7 @@ export interface Exhibit {
 	width?: number;
 	diameter?: number;
 	footDiameter?: number;
-	weigth?: number;
+	weight?: number;
 	volume?: number;
 	weightOfSet?: number;
 	complectation?: ExhibitComplectation[];

@@ -3,11 +3,11 @@ import QR from '@/components/QR/QR';
 import { useState } from 'react';
 import './ExhibitTechInfo.scss';
 
-export default function ExhibitTechInfo({
-	exhibit,
-}: {
-	exhibit: Exhibit | undefined;
-}) {
+interface Props {
+	exhibit: Exhibit;
+}
+
+export default function ExhibitTechInfo({ exhibit }: Props) {
 	const [showTechInfo, setShowTechInfo] = useState(false);
 
 	const handleShowTechinfo = () => {
