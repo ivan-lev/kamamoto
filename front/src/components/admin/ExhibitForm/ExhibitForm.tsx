@@ -3,6 +3,7 @@ import type { ChangeEvent } from 'react';
 import Button from '@/components/shared/buttons/Button';
 import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
 import DeleteButton from '@/components/shared/buttons/DeleteButton';
+import Tag from '@/components/Tag/Tag';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
@@ -16,6 +17,7 @@ export default function ExhibitForm() {
 	const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
+	const [photoName, setPhotoName] = useState<string>('');
 
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
 	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
@@ -85,8 +87,17 @@ export default function ExhibitForm() {
 
 	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value.replace(/\s/g, ',').split(',') }));
+		setPhotoName(value);
+		if (value.slice(-1) === ',' || value.slice(-1) === ' ') {
+			dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: [...exhibitToEdit.images || [], value.substring(0, value.length - 1)] }));
+			setPhotoName('');
+		}
 	};
+
+	function handleDeletePhoto(photoToDelete: string) {
+		const filteredPhotos = exhibitToEdit.images?.filter(photo => photo !== photoToDelete);
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, images: filteredPhotos }));
+	}
 
 	useEffect(() => {
 		if (saveMessage) {
@@ -187,9 +198,12 @@ export default function ExhibitForm() {
 							type="text"
 							name="images"
 							placeholder="фотографии"
-							value={exhibitToEdit.images}
+							value={photoName}
 							onChange={handleChangePhotos}
 						/>
+						<div className="tags">
+							{ exhibitToEdit?.images?.map(image => <Tag key={image} title={image} action={() => handleDeletePhoto(image)} />) }
+						</div>
 					</div>
 
 					<div className="form__row form__row-12">
@@ -273,7 +287,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-12">
 						<span>дополнительные фотографии</span>
 						<input
 							className="input"
@@ -282,6 +296,66 @@ export default function ExhibitForm() {
 							placeholder="названия через запятую без пробелов с расширением"
 							value={exhibitToEdit.additionalImages}
 							onChange={handleChangePhotos}
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>высота</span>
+						<input
+							className="input"
+							type="text"
+							name="height"
+							placeholder="см"
+							value={exhibitToEdit.height}
+							onChange={handleChange}
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>длина</span>
+						<input
+							className="input"
+							type="text"
+							name="length"
+							placeholder="см"
+							value={exhibitToEdit.length}
+							onChange={handleChange}
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>ширина</span>
+						<input
+							className="input"
+							type="text"
+							name="width"
+							placeholder="см"
+							value={exhibitToEdit.width}
+							onChange={handleChange}
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>вес</span>
+						<input
+							className="input"
+							type="text"
+							name="weight"
+							placeholder="г"
+							value={exhibitToEdit.weight}
+							onChange={handleChange}
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>вес набора</span>
+						<input
+							className="input"
+							type="text"
+							name="weightOfSet"
+							placeholder="г"
+							value={exhibitToEdit.weightOfSet}
+							onChange={handleChange}
 						/>
 					</div>
 
@@ -313,7 +387,7 @@ export default function ExhibitForm() {
 						{!isExistingExhibitEdited && (
 							<>
 								<Button title="Очистить" action={() => dispatch(clearExhibitForm())} />
-								<Button title="Создать" action={handleCreateExhibit} />
+								<ConfirmButton title="Создать" action={handleCreateExhibit} />
 							</>
 						)}
 
