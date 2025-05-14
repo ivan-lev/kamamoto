@@ -8,10 +8,12 @@ interface Props {
 
 export default function ExhibitStyleDescription({ data }: Props) {
 	return data?.brief && (
-		<div className="container">
-			<div className="description">
-				{parse(data?.brief, htmlParserOptions)}
+		<section className="section ceramic-style">
+			<div className="container">
+				<div className="description">
+					{parse(data?.brief, htmlParserOptions)}
+				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

@@ -1,9 +1,9 @@
 import type { RootState } from '@/slices/visitor';
-import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import ExhibitDescription from '@/components/ExhibitDescription/ExhibitDescription';
 import ExhibitPotterInfo from '@/components/ExhibitPotterInfo/ExhibitPotterInfo';
 import ExhibitStyleDescription from '@/components/ExhibitStyleDescription/ExhibitStyleDescription';
 import ExhibitTechInfo from '@/components/ExhibitTechInfo/ExhibitTechInfo';
+import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import Slider from '@/components/Slider/Slider';
@@ -51,9 +51,8 @@ export default function ExhibitView() {
 			{ showPreloader && <Preloader />}
 			{!showPreloader
 				&& (
-					<section className="section exhibit">
-						<Breadcrumbs />
-						<h3 className="title title3">{name}</h3>
+					<>
+						<PageTop title={name} />
 						<Slider slides={images} />
 						<ExhibitDescription data={description} />
 						<ExhibitPotterInfo potterInfo={potterInfo} potterPhoto={potterPhoto} />
@@ -61,7 +60,7 @@ export default function ExhibitView() {
 						<Slider slides={additionalImages || []} />
 						<ExhibitStyleDescription data={style} />
 						<ExhibitTechInfo exhibit={exhibit} />
-					</section>
+					</>
 				)}
 		</>
 	);

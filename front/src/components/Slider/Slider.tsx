@@ -20,7 +20,7 @@ export default function Slider({ slides }: Props) {
 
 	return slides.length !== 0
 		&& (
-			<div className="slider">
+			<section className="section slider">
 				<Swiper
 					modules={[Navigation, Thumbs]}
 					navigation={true}
@@ -40,6 +40,6 @@ export default function Slider({ slides }: Props) {
 				>
 					{generateSlides(slides)}
 				</Swiper>
-			</div>
+			</section>
 		);
 };

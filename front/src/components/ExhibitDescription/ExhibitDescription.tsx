@@ -7,8 +7,8 @@ interface Props {
 
 export default function ExhibitDescription({ data }: Props) {
 	return data && (
-		<div className="description">
+		<section className="section description">
 			{data && parse(data, htmlParserOptions)}
-		</div>
+		</section>
 	);
 }

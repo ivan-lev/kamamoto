@@ -9,7 +9,7 @@ interface Props {
 export default function ExhibitPotterInfo({ potterInfo, potterPhoto }: Props) {
 	return potterInfo
 		&& (
-			<div className="description description--block">
+			<section className="section description description--block">
 				{potterPhoto && (
 					<img
 						className="description__photo"
@@ -19,6 +19,6 @@ export default function ExhibitPotterInfo({ potterInfo, potterPhoto }: Props) {
 				)}
 
 				{potterInfo && parse(potterInfo, htmlParserOptions)}
-			</div>
+			</section>
 		);
 }
