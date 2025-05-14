@@ -1,14 +1,15 @@
 .section {
+	--section-padding: var(--gap-48);
 	box-sizing: border-box;
-	padding-left: var(--gap-48);
-	padding-right: var(--gap-48);
+	padding-left: var(--section-padding);
+	padding-right: var(--section-padding);
 	width: 100%;
 
 	@media screen and (max-width: 768px) {
-		padding: var(--gap-32);
+		--section-padding: var(--gap-32);
 	}
 
 	@media screen and (max-width: 600px) {
-		padding: var(--gap-24);
+		--section-padding: var(--gap-24);
 	}
 }
