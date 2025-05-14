@@ -6,14 +6,14 @@ import './HomePage.scss';
 
 export default function HomePage() {
 	return (
-		<section className="section home-page">
+		<>
+
 			<div className="container container--background-transparent">
 				<h1 className="title title1">Камамото - японская керамика</h1>
 			</div>
-
 			<SliderMain slides={homepageSliderImages} />
 			<Statistics />
 			<Partners />
-		</section>
+		</>
 	);
 }

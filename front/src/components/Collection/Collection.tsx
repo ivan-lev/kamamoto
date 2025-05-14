@@ -51,9 +51,8 @@ export default function Collection() {
 	return (
 		<>
 			<Seo title="Камамото: коллекция японской керамики" />
-
+			<h2 className="title title2">Коллекция</h2>
 			<section className="section collection">
-				<h2 className="title title2">Коллекция</h2>
 				{categories.length === 0 && showPreloader
 					? (
 							<Preloader />

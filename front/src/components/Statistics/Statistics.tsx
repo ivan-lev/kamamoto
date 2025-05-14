@@ -22,7 +22,7 @@ export default function Statistics() {
 				<></>
 			)
 		: (
-				<div className="statistics">
+				<section className="section statistics">
 					<ul className="statistics__list">
 						<li className="statistics__element" key="2015">
 							<span className="statistics__header">Начало</span>
@@ -37,6 +37,6 @@ export default function Statistics() {
 							<span className="statistics__number">{statistics.exhibits}</span>
 						</li>
 					</ul>
-				</div>
+				</section>
 			);
 }

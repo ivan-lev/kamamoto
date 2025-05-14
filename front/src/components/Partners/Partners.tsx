@@ -23,20 +23,22 @@ export default function Partners() {
 
 	return partnersList.length !== 0
 		? (
-				<div className="container container--background-transparent partners">
-					<span className="partners__title">Организации-партнёры</span>
-					<div className="partners__grid">
-						{partnersList.map((partner) => {
-							if (partner.isActive) {
-								partner = {
-									...partner,
-									logo: `${RESOURSES}/${IMAGES}/${PARTNERS}/${partner.logo}`,
-								};
-							}
-							return partner.isActive ? <Partner key={partner._id} partner={partner} /> : null;
-						})}
+				<section className="section">
+					<div className="container container--background-transparent partners">
+						<span className="partners__title">Организации-партнёры</span>
+						<div className="partners__grid">
+							{partnersList.map((partner) => {
+								if (partner.isActive) {
+									partner = {
+										...partner,
+										logo: `${RESOURSES}/${IMAGES}/${PARTNERS}/${partner.logo}`,
+									};
+								}
+								return partner.isActive ? <Partner key={partner._id} partner={partner} /> : null;
+							})}
+						</div>
 					</div>
-				</div>
+				</section>
 			)
 		: (
 				<></>

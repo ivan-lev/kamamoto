@@ -9,7 +9,7 @@ interface Props {
 
 export default function SliderMain({ slides }: Props) {
 	return (
-		<div className="slider">
+		<section className="section slider">
 			<Swiper
 				modules={[Autoplay, Pagination]}
 				speed={1000}
@@ -20,6 +20,6 @@ export default function SliderMain({ slides }: Props) {
 			>
 				{slides.map(slide => <SwiperSlide><img className="slider__img" src={slide}></img></SwiperSlide>)}
 			</Swiper>
-		</div>
+		</section>
 	);
 };
