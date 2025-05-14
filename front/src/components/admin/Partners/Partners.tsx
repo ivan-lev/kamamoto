@@ -228,7 +228,7 @@ export default function Partners() {
 											/>
 										</div>
 
-										<div className="form__row-12--inline">
+										<div className="form__row form__row-12 form__row-12--inline">
 											{!isExistingPartnerEdited
 												? (
 														<>
