@@ -32,7 +32,14 @@ const exhibits = createSlice({
 		},
 
 		setExhibitToEdit: (state, action: { payload: Exhibit }) => {
-			state.exhibitToEdit = { ...defaultExhibit, ...action.payload };
+			const exhibit = { ...action.payload };
+			exhibit.id = Number(exhibit.id);
+			exhibit.length = Number(exhibit.length);
+			exhibit.width = Number(exhibit.width);
+			exhibit.height = Number(exhibit.height);
+			exhibit.weight = Number(exhibit.weight);
+			exhibit.weightOfSet = Number(exhibit.weightOfSet);
+			state.exhibitToEdit = { ...exhibit };
 		},
 
 		setIsExistingExhibitEdited: (state, action: { payload: boolean }) => {

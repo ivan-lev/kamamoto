@@ -3,7 +3,12 @@ import { celebrate, Joi } from 'celebrate';
 export const exhibitValidator = celebrate({
 	body: Joi.object().keys({
 		id: Joi.number().min(0).max(9999).required(),
-		name: Joi.string().min(10).required(),
+		name: Joi.string().min(10).required().messages({
+			'string.base': 'название лота должно быть строкой',
+			'string.empty': 'название лота не должно быть пустым',
+			'string.min': 'название лота должно быть длинее 10 символов',
+			'any.required': 'нужно заполнить название лота',
+		}),
 		age: Joi.string().min(4).allow(''),
 		category: Joi.string().hex().length(24).required(),
 		images: Joi.array().items(Joi.string()).required(),

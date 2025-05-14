@@ -18,6 +18,20 @@ async function getExhibitById(id: string) {
 	return checkResponseStatus(response);
 }
 
+async function createExhibit(token: string, exhibit: Exhibit) {
+	const exhibitCategoryHexId = exhibit.category?._id;
+	const exhibitStyleName = exhibit.style?.name;
+	const response = await fetch(`${BASE_URL}/${EXHIBITS}/`, {
+		method: 'POST',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ ...exhibit, category: exhibitCategoryHexId, style: exhibitStyleName }),
+	});
+	return checkResponseStatus(response);
+}
+
 async function updateExhibit(token: string, exhibit: Exhibit) {
 	const exhibitCategoryHexId = exhibit.category?._id;
 	const exhibitStyleName = exhibit.style?.name;
@@ -46,6 +60,7 @@ async function deleteExhibit(token: string, id: number) {
 export const exhibits = {
 	getExhibitById,
 	getExhibits,
+	createExhibit,
 	updateExhibit,
 	deleteExhibit,
 };

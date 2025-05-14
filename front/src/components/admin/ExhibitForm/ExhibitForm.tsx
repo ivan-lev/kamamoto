@@ -26,7 +26,22 @@ export default function ExhibitForm() {
 	const styles = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
 
 	function handleCreateExhibit() {
-		console.error('Need some logic here!');
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.exhibits.createExhibit(token, { ...exhibitToEdit })
+				.then((response) => {
+					dispatch(setExhibits([...exhibits, response]));
+					dispatch(clearExhibitForm());
+					setIsFormDisabled(false);
+					setSaveMessage('Лот создан');
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					setSaveMessage('Что-то пошло не так :(');
+				});
+		}
 	};
 
 	function handleUpdateExhibit() {
@@ -191,7 +206,19 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row-12">
+					<div className="form__row form__row-6">
+						<span>тхумб</span>
+						<input
+							className="input"
+							type="text"
+							name="thumbnail"
+							placeholder="тхумб"
+							value={exhibitToEdit.thumbnail}
+							onChange={handleChange}
+						/>
+					</div>
+
+					<div className="form__row form__row-12">
 						<span>фотографии</span>
 						<input
 							className="input"

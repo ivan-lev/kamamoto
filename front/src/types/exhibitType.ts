@@ -2,8 +2,9 @@ import type { CeramicStyle } from '@/types/ceramicStyles';
 import type { ExhibitComplectation } from '@/types/exhibitComplectationType';
 
 export interface Exhibit {
-	id?: number;
-	name?: string;
+	id: number;
+	name: string;
+	thumbnail: string;
 	age?: string;
 	potterName?: string;
 	potterJapaneseName?: string;
@@ -37,11 +38,12 @@ export type Exhibits = Exhibit[];
 export const defaultExhibit: Exhibit = {
 	id: 0,
 	name: '',
+	thumbnail: '',
 	age: '',
 	potterName: '',
 	potterJapaneseName: '',
 	potterLifeDates: '',
-	category: { _id: '', title: '' },
+	category: { _id: '66c7346ebc34b51d2a432a8d', title: '' },
 	style: { name: 'unknown', title: '' },
 	images: [],
 	description: '',
@@ -54,6 +56,13 @@ export const defaultExhibit: Exhibit = {
 
 	price: 0,
 
+	length: 0,
+	width: 0,
+	height: 0,
+	weight: 0,
+	weightOfSet: 0,
+
 	complectation: [],
 	preservation: '',
+
 };
