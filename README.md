@@ -1,6 +1,6 @@
-# Веб-приложение Kamamoto с коллекцией японской керамики
+# Kamamoto - a web app for presenting private collection of Japanese ceramics
 
-## Описание проекта
+## Project description
 
 Сайт с частной коллекцией японской керамики, на котором:
 
@@ -8,45 +8,48 @@
 - содержится информация о предметах и мастерах, их изготовивших
 - есть информация о выставках и мероприятиях, на которых экспонировались предметы из коллекции
 
-## Фронтенд
+## Frontend
 
-#### Используемые инструменты и библиотеки
+#### Tools and packages
 
 - `react 19` - базовая библиотека для реализации SPA
 - `react-router-dom` для реализации роутинга
 - `redux` для хранения состояния переменных и работы с ними
-- `react-image-gallery` для создания слайдеров
+- `swiper` для создания слайдеров
 - `html-react-parser` для парсинга html-информацииб хранящейся в бд
 - `emailjs` для отправки сообщений из раздела "контакты"
 - `vite` для сборки проекта
 - `motion` - для анимирования компонентов
 
-## Бэкенд
+## Backend
 
-#### Используемые инструменты и библиотеки
+#### Tools and packages
 
-- раздел в разработке
+- [mongodb](https://www.mongodb.com/) - database used in project
+- [express](https://www.npmjs.com/package/express) - framework to work with Node.js
+- [mongoose](https://www.npmjs.com/package/mongoose) - tool to work with the MongoDB
+- 'winston' - for logging everything
 
-#### Директории
+#### Directories
 
-`/routes` — папка с файлами роутера  
-`/controllers` — папка с файлами контроллеров пользователя и фильмов   
-`/models` — папка с файлами описания схем и моделей пользователя и фильмов  
-`/errors` - для централизованной обрабоки ошибок
-`/middlewares` - хранит все функции промежуточной обработки
+`/routes` — folder with routing logic
+`/controllers` — folder with all controllers   
+`/models` — folder with files describing MongoDB schemes and models 
+`/errors` - error handling logic placed here
+`/middlewares` - stores all intermediate processing functions
 
-## Запуск проектов
+## Useful npm scripts
 
-`npm run build` — сборка проектов
-`npm run dev` — запускает фронтенд или бэкенд с hot-reload
+`npm run build` — make a production build of project
+`npm run dev` — run project in development mode
 
-## Применяемые методологии
+## Methodologies
 
 - BEM
 - DRY
 - Desktop-first
 
-## Вендорные файлы
+## Vendor files
 
-- https://www.svgrepo.com/collection/generica-tiny-interface-icons/
-- шрифты семейства Raleway
+- icons from [Generica Tiny Interface](https://www.svgrepo.com/collection/generica-tiny-interface-icons/) set
+- [Raleway](https://fonts.google.com/specimen/Raleway) fonts
