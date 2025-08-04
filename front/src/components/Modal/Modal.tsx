@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
-import { motionSettings } from '@/variables/motion';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect } from 'react';
+import { motionSettings } from '@/variables/motion';
 
-const { variants, transition } = motionSettings;
+const { variants, transitions } = motionSettings;
 
 interface Props {
 	showModal: boolean;
@@ -40,7 +40,7 @@ export default function Modal({ showModal, closeModal, children }: Props) {
 					initial={variants.hidden}
 					animate={variants.visible}
 					exit={variants.hidden}
-					transition={transition}
+					transition={transitions.common}
 					key="modal"
 					className="modal"
 				>

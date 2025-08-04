@@ -1,6 +1,7 @@
 import type { Exhibit } from '@/types/exhibitType';
-import QR from '@/components/QR/QR';
 import { useState } from 'react';
+import QR from '@/components/QR/QR';
+
 import './ExhibitTechInfo.scss';
 
 interface Props {
