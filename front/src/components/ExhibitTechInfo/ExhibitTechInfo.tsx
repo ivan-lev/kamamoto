@@ -16,7 +16,7 @@ export default function ExhibitTechInfo({ exhibit }: Props) {
 	};
 
 	return (
-		<section className="section section-tech-info">
+		<section className="section">
 			<div className="container">
 				<div className="tech-info">
 					<button
@@ -26,7 +26,7 @@ export default function ExhibitTechInfo({ exhibit }: Props) {
 						Техническая информация
 					</button>
 
-					<div className={`tech-info__content${showTechInfo ? '' : '_hidden'}`}>
+					<div className={`tech-info__content${showTechInfo ? '' : ' tech-info__content--hidden'}`}>
 						<div className="tech-info__potter-info">
 							<span className="tech-info__column-title">Информация о мастере</span>
 							<ul className="tech-info__list">
@@ -73,56 +73,56 @@ export default function ExhibitTechInfo({ exhibit }: Props) {
 									</li>
 								)}
 
-								{exhibit?.height && (
+								{Boolean(exhibit?.height) && (
 									<li className="tech-info__list-element">
 										<span>Высота: </span>
 										{`${exhibit?.height} см`}
 									</li>
 								)}
 
-								{exhibit?.length && (
+								{Boolean(exhibit?.length) && (
 									<li className="tech-info__list-element">
 										<span>Длина: </span>
 										{`${exhibit?.length} см`}
 									</li>
 								)}
 
-								{exhibit?.width && (
+								{Boolean(exhibit?.width) && (
 									<li className="tech-info__list-element">
 										<span>Ширина: </span>
 										{`${exhibit?.width} см`}
 									</li>
 								)}
 
-								{exhibit?.diameter && (
+								{Boolean(exhibit?.diameter) && (
 									<li className="tech-info__list-element">
 										<span>Диаметр: </span>
 										{exhibit?.diameter}
 									</li>
 								)}
 
-								{exhibit?.footDiameter && (
+								{Boolean(exhibit?.footDiameter) && (
 									<li className="tech-info__list-element">
 										<span>Диаметр ножки: </span>
 										{exhibit?.footDiameter}
 									</li>
 								)}
 
-								{exhibit?.weight && (
+								{Boolean(exhibit?.weight) && (
 									<li className="tech-info__list-element">
 										<span>Вес:&nbsp;</span>
 										{exhibit?.weight}
 									</li>
 								)}
 
-								{exhibit?.volume && (
+								{Boolean(exhibit?.volume) && (
 									<li className="tech-info__list-element">
 										<span>Объём:&nbsp;</span>
 										{exhibit?.volume}
 									</li>
 								)}
 
-								{exhibit?.weightOfSet && (
+								{Boolean(exhibit?.weightOfSet) && (
 									<li className="tech-info__list-element">
 										<span>Вес набора:&nbsp;</span>
 										{exhibit?.weightOfSet}

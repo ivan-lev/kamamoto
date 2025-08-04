@@ -14,11 +14,12 @@ function getCategories(req: Request, res: Response, next: NextFunction): void {
 	// and return thumb in appropriate format below
 	const isAdmin = req.headers['is-admin'];
 	Category.find({})
+		.select({ _id: 0 })
 		.then((categories) => {
 			return categories.map((cat: CategoryType) => {
-				const { _id, category, title } = cat;
+				const { name, title } = cat;
 				const thumbnailPath = `${PATHS.PUBLIC_PATH}/${PATHS.CATEGORIES}/${cat.thumbnail}`;
-				return { _id, category, title, thumbnail: isAdmin === 'true' ? cat.thumbnail : thumbnailPath };
+				return { name, title, thumbnail: isAdmin === 'true' ? cat.thumbnail : thumbnailPath };
 			});
 		})
 		.then(categories => res.send(categories))
@@ -29,7 +30,7 @@ function getExhibitsByCategory(req: Request, res: Response, next: NextFunction):
 	Category.findOne({ category: req.params.category })
 		.orFail()
 		.then((category) => {
-			Exhibit.find({ category: category._id })
+			Exhibit.find({ category: category._id, isActive: true })
 				.then((exhibits: ExhibitType[]) => {
 					return exhibits.map((exhibit) => {
 						const thumbnailPath = `${PATHS.PUBLIC_PATH}/${PATHS.EXHIBITS}/${exhibit.id}/${exhibit.thumbnail}`;

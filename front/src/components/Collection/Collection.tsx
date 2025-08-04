@@ -1,12 +1,12 @@
 import type { RootState } from '@/slices/visitor';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setCategories } from '@/slices/visitor/categories';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api/api';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import './Collection.scss';
 
 export default function Collection() {
@@ -20,8 +20,8 @@ export default function Collection() {
 
 	useEffect(() => {
 		const listToDisplay = categories.map((cat) => {
-			const { category, title, thumbnail } = cat;
-			return { link: category, title, thumbnail };
+			const { name, title, thumbnail } = cat;
+			return { link: name, title, thumbnail };
 		});
 		dispatch(setDisplayList(listToDisplay));
 

@@ -1,12 +1,12 @@
-import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
+import type { RootState } from '@/slices/admin';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/buttons/Button';
 import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
 import DeleteButton from '@/components/shared/buttons/DeleteButton';
 import { clearExhibitionForm, setExhibitionsList, setExhibitionToDisplay } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 interface Props {
 	closeModal: () => void;

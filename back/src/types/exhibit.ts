@@ -30,4 +30,6 @@ export interface Exhibit {
 	weightOfSet?: number;
 	complectation: string;
 	preservation?: string;
+
+	isActive: boolean;
 };

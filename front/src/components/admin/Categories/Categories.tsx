@@ -1,5 +1,7 @@
 import type { RootState } from '@/slices/admin/index';
 import type { Category } from '@/types/category';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CategoryForm from '@/components/admin/Categories/CategoryForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
@@ -11,8 +13,6 @@ import {
 	setIsExistingCategoryEdited,
 } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function Categories() {
 	const dispatch = useDispatch();
@@ -61,17 +61,17 @@ export default function Categories() {
 										<span className="table__cell table__cell--centered"></span>
 									</div>
 
-									{categories.map((cat) => {
-										const { category, title, thumbnail } = cat;
+									{categories.map((category) => {
+										const { name, title, thumbnail } = category;
 										return (
-											<div key={category} className="table__row">
+											<div key={name} className="table__row">
 												<span className="table__cell table__cell--span-3">{title}</span>
-												<span className="table__cell table__cell--span-4">{category}</span>
+												<span className="table__cell table__cell--span-4">{name}</span>
 												<span className="table__cell table__cell--span-4">{thumbnail}</span>
 												<span className="table__cell table__cell--centered">
 													<button
 														className="table__button table__button--edit"
-														onClick={() => handleEditCategory(cat)}
+														onClick={() => handleEditCategory(category)}
 													>
 													</button>
 												</span>

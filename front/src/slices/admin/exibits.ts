@@ -1,6 +1,6 @@
 import type { Exhibit } from '@/types/exhibitType';
-import { defaultExhibit } from '@/types/exhibitType';
 import { createSlice } from '@reduxjs/toolkit';
+import { defaultExhibit } from '@/types/exhibitType';
 
 interface Exhibits {
 	exhibits: Exhibit[];

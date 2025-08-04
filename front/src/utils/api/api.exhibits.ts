@@ -19,29 +19,43 @@ async function getExhibitById(id: string) {
 }
 
 async function createExhibit(token: string, exhibit: Exhibit) {
-	const exhibitCategoryHexId = exhibit.category?._id;
-	const exhibitStyleName = exhibit.style?.name;
+	const category = exhibit.category?.name;
+	const style = exhibit.style?.name;
 	const response = await fetch(`${BASE_URL}/${EXHIBITS}/`, {
 		method: 'POST',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ ...exhibit, category: exhibitCategoryHexId, style: exhibitStyleName }),
+		body: JSON.stringify({ ...exhibit, category, style }),
 	});
 	return checkResponseStatus(response);
 }
 
 async function updateExhibit(token: string, exhibit: Exhibit) {
-	const exhibitCategoryHexId = exhibit.category?._id;
-	const exhibitStyleName = exhibit.style?.name;
+	const category = exhibit.category?.name;
+	const style = exhibit.style?.name;
 	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${exhibit.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ ...exhibit, category: exhibitCategoryHexId, style: exhibitStyleName }),
+		body: JSON.stringify({ ...exhibit, category, style }),
+	});
+	return checkResponseStatus(response);
+}
+
+async function toggleExhibitActiveState(token: string, exhibit: Exhibit) {
+	const category = exhibit.category?.name;
+	const style = exhibit.style?.name;
+	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${exhibit.id}`, {
+		method: 'PATCH',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ ...exhibit, category, style }),
 	});
 	return checkResponseStatus(response);
 }
@@ -63,4 +77,5 @@ export const exhibits = {
 	createExhibit,
 	updateExhibit,
 	deleteExhibit,
+	toggleExhibitActiveState,
 };

@@ -1,7 +1,8 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface Category {
-	category: string;
+	name: string;
 	title: string;
 	thumbnail: string;
 	thumbnailPath: string;

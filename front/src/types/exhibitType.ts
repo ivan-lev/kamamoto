@@ -9,7 +9,7 @@ export interface Exhibit {
 	potterName?: string;
 	potterJapaneseName?: string;
 	potterLifeDates?: string;
-	category: { _id: string; title: string };
+	category: { name: string; title: string };
 	style?: CeramicStyle;
 	images: string[];
 	description?: string;
@@ -31,6 +31,8 @@ export interface Exhibit {
 	weightOfSet?: number;
 	complectation?: ExhibitComplectation[];
 	preservation?: string;
+
+	isActive: boolean;
 }
 
 export type Exhibits = Exhibit[];
@@ -43,7 +45,7 @@ export const defaultExhibit: Exhibit = {
 	potterName: '',
 	potterJapaneseName: '',
 	potterLifeDates: '',
-	category: { _id: '66c7346ebc34b51d2a432a8d', title: '' },
+	category: { name: 'other', title: '' },
 	style: { name: 'unknown', title: '' },
 	images: [],
 	description: '',
@@ -64,5 +66,7 @@ export const defaultExhibit: Exhibit = {
 
 	complectation: [],
 	preservation: '',
+
+	isActive: false,
 
 };

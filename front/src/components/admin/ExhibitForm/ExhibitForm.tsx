@@ -1,5 +1,7 @@
-import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
+import type { RootState } from '@/slices/admin';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/buttons/Button';
 import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
 import DeleteButton from '@/components/shared/buttons/DeleteButton';
@@ -8,8 +10,6 @@ import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function ExhibitForm() {
 	const dispatch = useDispatch();
@@ -90,8 +90,13 @@ export default function ExhibitForm() {
 
 	function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
-		const categoryTitle = categories.find(category => category._id === value)?.title || '';
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, category: { _id: value, title: categoryTitle } }));
+		const categoryTitle = categories.find(category => category.name === value)?.title || '';
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, category: { name: value, title: categoryTitle } }));
+	};
+
+	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
+		const { name, checked } = event.target;
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: checked }));
 	};
 
 	function handleSelectStyleChange(event: ChangeEvent<HTMLSelectElement>) {
@@ -141,7 +146,7 @@ export default function ExhibitForm() {
 	return (
 		<form className="form" inert={isFormDisabled}>
 			<fieldset className="form__fieldset">
-				<legend className="form__legend">Добавить лот</legend>
+				<legend>Добавить лот</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-2">
@@ -175,10 +180,10 @@ export default function ExhibitForm() {
 						<select
 							className="select"
 							name="category"
-							value={exhibitToEdit.category._id}
+							value={exhibitToEdit.category.name}
 							onChange={event => handleSelectChange(event)}
 						>
-							{categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
+							{categories.map(category => <option key={category.name} value={category.name}>{category.title}</option>)}
 						</select>
 					</div>
 
@@ -216,6 +221,19 @@ export default function ExhibitForm() {
 							value={exhibitToEdit.thumbnail}
 							onChange={handleChange}
 						/>
+					</div>
+
+					<div className="form__row form__row-1">
+						<span>актив</span>
+						<label className={`checkbox-label ${exhibitToEdit.isActive ? 'checkbox-label--checked' : ''} `}>
+							<input
+								className="checkbox-input"
+								type="checkbox"
+								checked={exhibitToEdit.isActive}
+								name="isActive"
+								onChange={handleCheckBox}
+							/>
+						</label>
 					</div>
 
 					<div className="form__row form__row-12">

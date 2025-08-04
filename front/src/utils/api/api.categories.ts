@@ -35,7 +35,7 @@ async function createCategory(token: string, category: string, title: string, th
 }
 
 async function updateCategory(token: string, category: Category) {
-	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category.category}`, {
+	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category.name}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,

@@ -1,13 +1,11 @@
 export interface Category {
-	_id: string;
-	category: string;
+	name: string;
 	title: string;
 	thumbnail: string;
 }
 
 export const defaultCategory: Category = {
-	_id: '',
-	category: '',
+	name: '',
 	title: '',
 	thumbnail: '',
 };

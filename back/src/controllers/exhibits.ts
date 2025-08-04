@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
-import { ObjectId } from 'mongodb';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
+import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 import Style from '../models/style';
 import { ERROR_MESSAGES } from '../variables/messages';
@@ -17,7 +17,7 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 		.select({ _id: 0 })
 		.populate({
 			path: 'category',
-			select: 'title _id',
+			select: 'title name -_id',
 		})
 		.populate({
 			path: 'style',
@@ -68,34 +68,57 @@ function findExhibitById(req: Request, res: Response, next: NextFunction): void 
 		});
 }
 
-function createExhibit(req: Request, res: Response, next: NextFunction): void {
+async function createExhibit(req: Request, res: Response, next: NextFunction) {
 	const exhibit: ExhibitType = req.body;
-	exhibit.category = new ObjectId(exhibit.category);
 
-	Style
-		.findOne({ name: exhibit.style })
-		.then((style) => {
-			exhibit.style = new ObjectId(style?._id);
-		})
-		.then(() => {
-			Exhibit.create({ ...exhibit })
-				.then((exhibit: ExhibitType) => res.status(201).send(exhibit))
-				.catch((error: any) => {
-					if (error.name === 'CastError') {
-						return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-					}
+	try {
+		const category = await Category.findOne({ category: exhibit.category });
+		const style = await Style.findOne({ name: exhibit.style });
 
-					if (error.name === 'ValidationError') {
-						return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
-					}
+		const result = await Exhibit.create({ ...exhibit, category: category?._id, style: style?._id });
+		res.status(201).send(result);
+	}
+	catch (error: any) {
+		if (error.name === 'CastError') {
+			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
+		}
 
-					if (error.code === 11000) {
-						return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
-					}
+		if (error.name === 'ValidationError') {
+			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
+		}
 
-					return next(error);
-				});
-		});
+		if (error.code === 11000) {
+			return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
+		}
+
+		return next(error);
+	};
+	// exhibit.category = new ObjectId(exhibit.category);
+
+	// Style
+	// 	.findOne({ name: exhibit.style })
+	// 	.then((style) => {
+	// 		exhibit.style = new ObjectId(style?._id);
+	// 	})
+	// 	.then(() => {
+	// 		Exhibit.create({ ...exhibit })
+	// 			.then((exhibit: ExhibitType) => res.status(201).send(exhibit))
+	// 			.catch((error: any) => {
+	// 				if (error.name === 'CastError') {
+	// 					return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
+	// 				}
+
+	// 				if (error.name === 'ValidationError') {
+	// 					return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
+	// 				}
+
+	// 				if (error.code === 11000) {
+	// 					return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
+	// 				}
+
+	// 				return next(error);
+	// 			});
+	// 	});
 }
 
 function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
@@ -115,49 +138,42 @@ function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
 		});
 }
 
-function updateExhibit(req: Request, res: Response, next: NextFunction): void {
-	const newExhibitData: ExhibitType = req.body;
-	const newStyle = newExhibitData.style;
+async function updateExhibit(req: Request, res: Response, next: NextFunction) {
+	const exhibit: ExhibitType = req.body;
 
-	const newCategory = new ObjectId(newExhibitData.category);
-	newExhibitData.category = newCategory;
+	try {
+		const category = await Category.findOne({ category: exhibit.category });
+		const style = await Style.findOne({ name: exhibit.style });
 
-	Style
-		.findOne({ name: newStyle })
-		.then((style) => {
-			newExhibitData.style = new ObjectId(style?._id);
-		})
-		.then(() => {
-			Exhibit.findOneAndUpdate(
-				{ id: req.params.id },
-				newExhibitData,
-				{ new: true, runValidators: true },
-			).select({ _id: 0 }).orFail().populate({
-				path: 'category',
-				select: 'title _id',
-			}).populate({
-				path: 'style',
-				select: 'name title -_id',
-			}).then((exhibit: ExhibitType) => res.send(exhibit)).catch((error: any) => {
-				if (error.name === 'DocumentNotFoundError') {
-					return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-				}
-
-				if (error.name === 'ValidationError') {
-					return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
-				}
-
-				if (error.name === 'CastError') {
-					return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-				}
-
-				if (error.code === 11000) {
-					return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
-				}
-
-				return next(error);
-			});
+		const result = await Exhibit.findOneAndUpdate(
+			{ id: req.params.id },
+			{ ...exhibit, category: category?._id, style: style?._id },
+			{ new: true, runValidators: true },
+		).select({ _id: 0 }).orFail().populate({
+			path: 'category',
+			select: 'title category -_id',
+		}).populate({
+			path: 'style',
+			select: 'name title -_id',
 		});
+
+		res.status(201).send(result);
+	}
+	catch (error: any) {
+		if (error.name === 'CastError') {
+			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
+		}
+
+		if (error.name === 'ValidationError') {
+			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
+		}
+
+		if (error.code === 11000) {
+			return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
+		}
+
+		return next(error);
+	};
 }
 
 export const exhibit = {

@@ -1,13 +1,13 @@
 import type { RootState } from '@/slices/admin';
 import type { Exhibit } from '@/types/exhibitType';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AdminExhibitForm from '@/components/admin/ExhibitForm/ExhibitForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { clearExhibitForm, setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function Exhibits() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -26,6 +26,11 @@ export default function Exhibits() {
 		dispatch(setIsExistingExhibitEdited(false));
 		dispatch(clearExhibitForm());
 		setShowModal(true);
+	}
+
+	function toggleExhibitActiveState(exhibit: Exhibit) {
+		const token = localStorage.getItem('kmmttkn');
+		api.exhibits.toggleExhibitActiveState(token || '', { ...exhibit, isActive: !exhibit.isActive });
 	}
 
 	useEffect(() => {
@@ -54,15 +59,16 @@ export default function Exhibits() {
 							<div className="table">
 								<div className="table__row">
 									<span className="table__cell">ID</span>
-									<span className="table__cell table__cell--span-6">Название</span>
+									<span className="table__cell table__cell--span-5">Название</span>
 									<span className="table__cell table__cell--span-2">Категория</span>
 									<span className="table__cell table__cell--span-2">Стиль</span>
-									<span className="table__cell table__cell--centered"></span>
+									<span className="table__cell table__cell--centered">Ред</span>
+									<span className="table__cell">Актив</span>
 								</div>
 								{exhibits.map(exhibit => (
 									<div className="table__row" key={exhibit.id}>
 										<span className="table__cell">{exhibit.id}</span>
-										<span className="table__cell table__cell--span-6">{exhibit.name}</span>
+										<span className="table__cell table__cell--span-5">{exhibit.name}</span>
 										<span className="table__cell table__cell--span-2">{exhibit.category.title}</span>
 										<span className="table__cell table__cell--span-2">{exhibit.style?.title}</span>
 										<div className="table__cell table__cell--centered">
@@ -71,6 +77,17 @@ export default function Exhibits() {
 												onClick={() => handleSetExhibitToEdit(exhibit)}
 											>
 											</button>
+										</div>
+										<div className="form__row form__row-1">
+											<label className={`checkbox-label checkbox-label--small ${exhibit.isActive ? 'checkbox-label--checked' : ''} `}>
+												<input
+													className="checkbox-input"
+													type="checkbox"
+													checked={exhibit.isActive}
+													name="isActive"
+													onChange={() => toggleExhibitActiveState(exhibit)}
+												/>
+											</label>
 										</div>
 									</div>
 								))}

@@ -1,6 +1,5 @@
 export interface Category {
-	_id: string;
-	category: string;
+	name: string;
 	title: string;
 	thumbnail: string;
 	thumbnailPath: string;

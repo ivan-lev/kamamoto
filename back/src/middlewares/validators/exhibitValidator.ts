@@ -10,7 +10,7 @@ export const exhibitValidator = celebrate({
 			'any.required': 'нужно заполнить название лота',
 		}),
 		age: Joi.string().min(4).allow(''),
-		category: Joi.string().hex().length(24).required(),
+		category: Joi.string().required(),
 		images: Joi.array().items(Joi.string()).required(),
 		additionalImages: Joi.array().items(Joi.string()),
 		thumbnail: Joi.string(),
@@ -33,6 +33,7 @@ export const exhibitValidator = celebrate({
 		weightOfSet: Joi.number(),
 		complectation: Joi.string().allow('').required(),
 		preservation: Joi.string().allow('').required(),
+		isActive: Joi.boolean(),
 	}),
 });
 

@@ -12,6 +12,11 @@
 		height: 45px;
 		box-sizing: border-box;
 
+		&--small {
+			width: 24px;
+			height: 24px;
+		}
+
 		&--checked {
 			background-image: url("/icons/check.svg");
 		}

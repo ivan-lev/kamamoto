@@ -1,12 +1,12 @@
-import type { RootState } from '@/slices/admin';
 import type { ChangeEvent } from 'react';
+import type { RootState } from '@/slices/admin';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/buttons/Button';
 import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
 import DeleteButton from '@/components/shared/buttons/DeleteButton';
 import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 interface Props {
 	closeModal: () => void;
@@ -24,7 +24,7 @@ export default function CategoryForm({ closeModal }: Props) {
 		(state: RootState) => state.categories.isExistingCategoryEdited,
 	);
 
-	const { category, title, thumbnail } = categoryToEdit;
+	const { name, title, thumbnail } = categoryToEdit;
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
@@ -35,7 +35,7 @@ export default function CategoryForm({ closeModal }: Props) {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.categories.createCategory(token, category, title, thumbnail)
+			api.categories.createCategory(token, name, title, thumbnail)
 				.then((response) => {
 					dispatch(setCategories([...categories, response]));
 					dispatch(clearCategoryForm());
@@ -59,7 +59,7 @@ export default function CategoryForm({ closeModal }: Props) {
 			api.categories.updateCategory(token, { ...categoryToEdit })
 				.then((response) => {
 					const newCategoriesList = categories.map((category) => {
-						return response.category !== category.category ? category : response;
+						return response.category !== category.name ? category : response;
 					});
 					dispatch(setCategories(newCategoriesList));
 					dispatch(clearCategoryForm());
@@ -78,9 +78,9 @@ export default function CategoryForm({ closeModal }: Props) {
 	function handleDeleteCategory() {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.categories.deleteCategory(token, category)
+			api.categories.deleteCategory(token, name)
 				.then((response) => {
-					const newCategoriesList = categories.filter(cat => cat.category !== response.category);
+					const newCategoriesList = categories.filter(cat => cat.name !== response.category);
 					dispatch(setCategories(newCategoriesList));
 					dispatch(clearCategoryForm());
 					dispatch(setIsExistingCategoryEdited(false));
@@ -128,7 +128,7 @@ export default function CategoryForm({ closeModal }: Props) {
 							type="text"
 							name="category"
 							placeholder="по-английски"
-							value={category}
+							value={name}
 							onChange={handleChange}
 						/>
 					</div>

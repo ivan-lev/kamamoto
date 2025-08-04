@@ -1,3 +1,4 @@
+import { configureStore } from '@reduxjs/toolkit';
 import categoriesReducer from '@/slices/visitor/categories';
 import categoryReducer from '@/slices/visitor/category';
 import exhibitsReducer from '@/slices/visitor/exhibit';
@@ -6,7 +7,6 @@ import letterReducer from '@/slices/visitor/letters';
 import listReducer from '@/slices/visitor/list';
 import partnersReducer from '@/slices/visitor/partners';
 import statisticsReducer from '@/slices/visitor/statistics';
-import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
 	reducer: {

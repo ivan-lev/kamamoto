@@ -118,6 +118,8 @@ const exhibitSchema = new Schema<Exhibit>(
 		weightOfSet: { type: Number },
 		complectation: { type: String },
 		preservation: { type: String },
+
+		isActive: { type: Boolean, default: false },
 	},
 	{ versionKey: false },
 );
