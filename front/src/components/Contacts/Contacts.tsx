@@ -1,9 +1,9 @@
 import type { ChangeEvent } from 'react';
+import emailjs from '@emailjs/browser';
+import { useEffect, useState } from 'react';
 import Seo from '@/components/Seo/Seo';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import { socialLinks } from '@/variables/socialLinks';
-import emailjs from '@emailjs/browser';
-import { useEffect, useState } from 'react';
 import './Contacts.scss';
 
 export default function Contacts() {
@@ -65,12 +65,12 @@ export default function Contacts() {
 		<>
 			<Seo title="Камамото: кантакты и форма обратной связи" />
 
+			<h2 className="title title2">Контакты</h2>
+			<p className="text text--muted">
+				Для связи со мной можно использовать одну из следующих ссылок, ведущих на реурсы
+				коллекции:
+			</p>
 			<section className="section contacts">
-				<h2 className="title title2">Контакты</h2>
-				<p className="text text--muted">
-					Для связи со мной можно использовать одну из следующих ссылок, ведущих на реурсы
-					коллекции:
-				</p>
 
 				<SocialLinks links={socialLinks} additionalClassNames="contacts__links" />
 

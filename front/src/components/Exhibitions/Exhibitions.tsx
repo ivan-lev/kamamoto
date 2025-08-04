@@ -1,11 +1,11 @@
 import type { RootState } from '@/slices/visitor';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ExhibitionCard from '@/components/ExhibitionCard/ExhibitionCard';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setExhibitionsList } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import './Exhibitions.scss';
 
 export default function Exhibitions() {
@@ -34,8 +34,9 @@ export default function Exhibitions() {
 		<>
 			<Seo title="Камамото: мероприятия, на которых представлена коллекция" />
 
+			<h2 className="title title2">Выставки</h2>
+
 			<section className="section">
-				<h2 className="title title2">Выставки</h2>
 				{showPreloader
 					? (
 							<Preloader />

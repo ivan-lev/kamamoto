@@ -1,4 +1,9 @@
 .contacts {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--gap-32);
+
 	&__links {
 		width: 100%;
 		max-width: 600px;
