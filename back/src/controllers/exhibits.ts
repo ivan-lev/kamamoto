@@ -151,7 +151,7 @@ async function updateExhibit(req: Request, res: Response, next: NextFunction) {
 			{ new: true, runValidators: true },
 		).select({ _id: 0 }).orFail().populate({
 			path: 'category',
-			select: 'title category -_id',
+			select: 'name title -_id',
 		}).populate({
 			path: 'style',
 			select: 'name title -_id',

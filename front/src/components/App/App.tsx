@@ -3,7 +3,7 @@ import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
 import AdminCeramicStyles from '@/components/admin/CeramicStyles/CeramicStyles';
 import AdminExhibitions from '@/components/admin/Exbitions/Exhibitions';
-import AdminExhibits from '@/components/admin/Exhibits/Exhibits';
+import AdminExhibits from '@/components/admin/ExhibitsList/ExhibitsList';
 import AdminLetters from '@/components/admin/Letters/Letters';
 import AdminPartners from '@/components/admin/Partners/Partners';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
