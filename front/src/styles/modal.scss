@@ -25,17 +25,17 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
-		gap: var(--gap-12);
 		background-color: var(--background-primary);
 		width: fit-content;
 		max-width: 100%;
 		z-index: 20;
-		overflow: scroll;
+		overflow: auto;
 		scrollbar-color: var(--text-default) var(--color-secondary-005);
 		scrollbar-width: thin;
     gap: var(--gap-16);
     padding-right: var(--gap-16);
-		margin: auto;
+		padding-bottom: var(--gap-16);
+		margin: var(--gap-24) 0;
 
 		& > .button {
 			width: fit-content;

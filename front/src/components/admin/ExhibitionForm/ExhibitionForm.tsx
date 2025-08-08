@@ -130,7 +130,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 	return (
 		<form className="form" inert={isFormDisabled}>
 			<fieldset className="form__fieldset">
-				<legend className="form__legend">Добавить выставку</legend>
+				<legend>Добавить выставку</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-2">

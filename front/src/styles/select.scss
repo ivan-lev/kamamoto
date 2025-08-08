@@ -3,7 +3,7 @@
 	color: var(--text-default);
 	border: 1px solid var(--border-color);
   border-radius: 2px;
-	height: 45px;
+	height: var(--input-height);
 	padding: 0 var(--gap-12);
 
 	&:focus-visible {

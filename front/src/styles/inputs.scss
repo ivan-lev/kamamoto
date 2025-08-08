@@ -1,5 +1,5 @@
 .input {
-	height: 45px;
+	height: var(--input-height);
 	width: 100%;
 	padding: 0 var(--gap-24);
 	color: var(--text-default);

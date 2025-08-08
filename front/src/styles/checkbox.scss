@@ -8,8 +8,8 @@
 		background-color: var(--background-muted);
 		border: 1px solid var(--border-color);
 		border-radius: 2px;
-		width: 45px;
-		height: 45px;
+		width: var(--input-height);
+		height: var(--input-height);
 		box-sizing: border-box;
 
 		&--small {

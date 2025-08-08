@@ -1,5 +1,6 @@
 :root {
 // Margins, paddings, gaps
+	--gap-2: 2px;
 	--gap-4: 4px;
 	--gap-8: 8px;
 	--gap-12: 12px;
@@ -42,4 +43,6 @@
 	--button-background: var(--color-secondary-100);
 	--delete-button-background: #ddaa88;
 	--confirm-button-background: #99bb99;
+
+	--input-height: var(--gap-32)
 }

@@ -1,7 +1,8 @@
 .tags {
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--gap-8);
+	gap: var(--gap-4);
+	padding-top: var(--gap-2)
 }
 
 .tag {
@@ -20,7 +21,6 @@
 		color: var(--text-default);
 		font-size: 12px;
 		letter-spacing: 1.5px;
-
 	}
 
 	&__action {
