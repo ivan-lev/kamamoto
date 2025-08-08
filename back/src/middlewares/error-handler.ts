@@ -1,7 +1,7 @@
 import type { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import { ERROR_MESSAGES } from '../variables/messages';
 
-export const errorHandler: ErrorRequestHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+const errorHandler: ErrorRequestHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   // if error was not catched before, give it status 500
   const { statusCode = 500, message }: { statusCode: number; message: string } = err;
 
@@ -11,3 +11,5 @@ export const errorHandler: ErrorRequestHandler = (err: any, req: Request, res: R
   });
   return next();
 };
+
+export default errorHandler;
