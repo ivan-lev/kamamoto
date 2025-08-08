@@ -61,67 +61,68 @@ export default function Exhibition() {
 						</section>
 					)
 				: (
-						<section className="section exhibition">
-							<div className="exhibition__breadcrumbs">
-								<Link to=".." className="link link_navigational" relative="path">
+						<>
+							<section className="section page-top"><div className="breadcrumbs">
+									<Link to=".." className="link link_navigational" relative="path">
+										<img
+											className="link__icon"
+											src="/icons/link-arrow-left.svg"
+										/>
+										Назад
+									</Link>
+								</div>
+								<h3 className="title title3 exhibition__title">{`«${name}»`}</h3>
+							</section>
+
+							<section className="section exhibition">
+								<div className="exhibition__place">
+									<p className="text text--muted">{`Место проведения: ${city}, ${address}, ${place}`}</p>
+									<p className="text text--muted">{`Даты: ${year} год, ${dates}`}</p>
+									{link && (
+										<span className="text text--muted">
+											Ссылка на&nbsp;
+											<a className="link exhibition__link" href={link} target="_blank">
+												мероприятие
+											</a>
+										</span>
+									)}
+								</div>
+
+								<div className="container exhibition__participants">
+									{organisators && (
+										<div className="text text--muted">
+											<span>Организаторы:</span>
+											{parse(organisators, options)}
+										</div>
+									)}
+
+									{curators && (
+										<div className="text text--muted">
+											<span>Кураторы:</span>
+											{parse(curators, options)}
+										</div>
+									)}
+								</div>
+
+								{poster && (
 									<img
-										className="link__icon"
-										src="/icons/link-arrow-left.svg"
-									/>
-									Назад
-								</Link>
-							</div>
-							<h3 className="title title3 exhibition__title">{`«${name}»`}</h3>
-
-							<div className="exhibition__place">
-								<p className="text text--muted">{`Место проведения: ${city}, ${address}, ${place}`}</p>
-								<p className="text text--muted">{`Даты: ${year} год, ${dates}`}</p>
-								{link && (
-									<span className="text text--muted">
-										Ссылка на
-										{' '}
-										<a className="link exhibition__link" href={link} target="_blank">
-											мероприятие
-										</a>
-									</span>
-								)}
-							</div>
-
-							<div className="container exhibition__participants">
-								{organisators && (
-									<div className="text text--muted">
-										<span>Организаторы:</span>
-										{parse(organisators, options)}
-									</div>
+										className="exhibition__poster"
+										src={poster}
+									>
+									</img>
 								)}
 
-								{curators && (
-									<div className="text text--muted">
-										<span>Кураторы:</span>
-										{parse(curators, options)}
-									</div>
-								)}
-							</div>
+								<div className="description exhibition__description">
+									{parse(description, options)}
+								</div>
+							</section>
 
 							{photos && (
-								<div className="exhibition__photos">
 									<Slider slides={photos} />
-								</div>
-							)}
-
-							{poster && (
-								<img
-									className="exhibition__poster"
-									src={poster}
-								>
-								</img>
-							)}
-
-							<div className="description exhibition__description">
-								{parse(description, options)}
-							</div>
-						</section>
-					)}
+								)}
+						</>
+					)
+			}
 		</>
 	);
 }
