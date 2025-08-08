@@ -3,7 +3,7 @@ import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
 import AdminCeramicStyles from '@/components/admin/CeramicStyles/CeramicStyles';
 import AdminExhibitions from '@/components/admin/Exbitions/Exhibitions';
-import AdminExhibits from '@/components/admin/ExhibitsList/ExhibitsList';
+import ExhibitsList from '@/components/admin/ExhibitsList/ExhibitsList';
 import AdminLetters from '@/components/admin/Letters/Letters';
 import AdminPartners from '@/components/admin/Partners/Partners';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
@@ -15,6 +15,7 @@ import Exhibition from '@/components/Exhibition/Exhibition';
 import Exhibitions from '@/components/Exhibitions/Exhibitions';
 import ExhibitView from '@/components/ExhibitView/ExhibitView';
 import Files from '@/components/Files/Files';
+import Filters from '@/components/admin/Filters/Filters';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import HomePage from '@/components/HomePage/HomePage';
@@ -29,6 +30,7 @@ import { files } from '@/variables/files';
 import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
+
 
 export default function App() {
 	return (
@@ -80,7 +82,7 @@ export default function App() {
 					)}
 				>
 					<Route index element={<AdminStatistics />} />
-					<Route path="exhibits/" element={<AdminExhibits />} />
+					<Route path="exhibits/" element={<><Filters/><ExhibitsList /></>} />
 					<Route path="exhibitions/" element={<AdminExhibitions />} />
 					<Route path="partners/" element={<AdminPartners />} />
 					<Route path="categories/" element={<AdminCategories />} />

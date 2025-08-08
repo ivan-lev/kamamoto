@@ -14,7 +14,7 @@ export default function Exhibits() {
 	const [showModal, setShowModal] = useState<boolean>(false);
 
 	const dispatch = useDispatch();
-	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
+	const exhibitsFiltered = useSelector((state: RootState) => state.exhibits.exhibitsFiltered);
 
 	function handleOpenEmptyForm() {
 		dispatch(setIsExistingExhibitEdited(false));
@@ -54,8 +54,8 @@ export default function Exhibits() {
 									<span className="table__cell table__cell--centered">Ред</span>
 									<span className="table__cell">Актив</span>
 								</div>
-								{exhibits.map(exhibit => (
-									<ExhibitsListRow exhibit={exhibit} setShowModal={setShowModal} />
+								{exhibitsFiltered.map(exhibit => (
+									<ExhibitsListRow key={exhibit.id} exhibit={exhibit} setShowModal={setShowModal} />
 								))}
 							</div>
 

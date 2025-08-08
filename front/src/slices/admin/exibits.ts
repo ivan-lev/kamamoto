@@ -4,15 +4,15 @@ import { defaultExhibit } from '@/types/exhibitType';
 
 interface Exhibits {
 	exhibits: Exhibit[];
+	exhibitsFiltered: Exhibit[];
 	exhibitToEdit: Exhibit;
-	exhibitState: Exhibit;
 	isExistingExhibitEdited: boolean;
 }
 
 const initialState: Exhibits = {
 	exhibits: [],
+	exhibitsFiltered: [],
 	exhibitToEdit: { ...defaultExhibit },
-	exhibitState: defaultExhibit,
 	isExistingExhibitEdited: false,
 };
 
@@ -28,6 +28,11 @@ const exhibits = createSlice({
 
 		setExhibits: (state, action: { payload: Exhibit[] }) => {
 			state.exhibits = action.payload;
+			return state;
+		},
+
+		setExhibitsFiltered: (state, action: { payload: Exhibit[] }) => {
+			state.exhibitsFiltered = action.payload;
 			return state;
 		},
 
@@ -51,6 +56,7 @@ const exhibits = createSlice({
 export const {
 	clearExhibitForm,
 	setExhibits,
+	setExhibitsFiltered,
 	setExhibitToEdit,
 	setIsExistingExhibitEdited,
 } = exhibits.actions;
