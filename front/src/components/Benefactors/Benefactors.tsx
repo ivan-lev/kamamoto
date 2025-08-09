@@ -10,12 +10,14 @@ export default function Benefactors() {
 	return (
 		<>
 			<Seo title="Камамото: страница о людях, внесших вклад в развитие коллекции" />
-			<section className="section">
+			<section className="section page-top">
 				<h2 className="title title2">Помощники проекта</h2>
 				<p className="subtitle">
 					Страница, на которой я хочу рассказать о людях, которые внесли свой вклад в развите
 					коллекции
 				</p>
+			</section>
+			<section>
 				<div className="benefactors">
 					<div className="container benefactors__card">
 						<img

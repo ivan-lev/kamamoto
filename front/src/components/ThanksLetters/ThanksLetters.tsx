@@ -39,12 +39,14 @@ export default function ThanksLetters() {
 		<>
 			<Seo title="Камамото: благодарственные письма" />
 
-			<section className="section thanks-letters">
+			<section className="section page-top">
 				<h2 className="title title2">Благодарственные письма</h2>
 				<span className="subtitle">
 					Письма от организаций и людей, с которыми мы совместно организовывали выставки и
 					мероприятия.
 				</span>
+			</section>
+			<section className="section thanks-letters">
 				{showPreloader
 					? (
 							<Preloader />
