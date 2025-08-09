@@ -30,13 +30,12 @@ body {
 	background-color: var(--background-primary);
 	color: var(--text-default);
 	font-family: var(--main-font);
-
-	scroll-behavior: smooth!important;
 }
 
 html,
 body {
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
 }
 
 * {
