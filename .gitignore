@@ -21,23 +21,21 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-#Local files (pictures, temporary, environment)
+#Local files (builds, temporary, environment)
 .env
 temp
 dist
 dist-ssr
-mongo
 node_modules
-rsync-exclude.txt
 *.local
 *.code-workspace
 
-files
-images
-people
-categories
-exhibitions
-exhibits
-letters
+# Frontend
 yandex*
 google*
+
+# Backend
+back/src/public
+
+#Database
+db.dump
