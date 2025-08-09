@@ -1,12 +1,12 @@
 import type { SocialLinks } from '../types/socialLinkType';
 
 export const socialLinks: SocialLinks = [
-	{
-		id: 0,
-		title: 'Instagram',
-		link: 'https://instagram.com/chawan.shop',
-		icon: '/icons/logo-instagram.svg',
-	},
+	// {
+	// 	id: 0,
+	// 	title: 'Instagram',
+	// 	link: 'https://instagram.com/chawan.shop',
+	// 	icon: '/icons/logo-instagram.svg',
+	// },
 	{
 		id: 1,
 		title: 'Telegram',
