@@ -20,6 +20,7 @@ import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import HomePage from '@/components/HomePage/HomePage';
 import Login from '@/components/Login/Login';
+import OpeningScreen from '@/components/OpeningScreen/OpeningScreen';
 import Main from '@/components/Main/Main';
 import NotFound from '@/components/NotFound/NotFound';
 import Seo from '@/components/Seo/Seo';
@@ -31,11 +32,11 @@ import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 
-
 export default function App() {
 	return (
 		<>
 			<Seo title="Камамото - японская керамика"></Seo>
+			<OpeningScreen/>
 
 			<Routes>
 				<Route
@@ -57,10 +58,7 @@ export default function App() {
 					<Route path="exhibitions/:exhId" element={<Exhibition />} />
 					<Route path="contacts/" element={<Contacts />} />
 					<Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
-					<Route
-						path="documents/"
-						element={<Files title="Шаблоны документов" files={documents} />}
-					/>
+					<Route path="documents/" element={<Files title="Шаблоны документов" files={documents} />}	/>
 					<Route path="thanksletters/" element={<ThanksLetters />} />
 					<Route path="benefactors/" element={<Benefactors />} />
 				</Route>
