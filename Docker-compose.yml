@@ -1,0 +1,41 @@
+services:
+  front:
+    build: ./front # path to Dockerfile for frontend app
+    ports:
+      - "80:80" # wait responses on these ports
+    depends_on:
+      - back # wait for this container to be started before starting itself
+    container_name: front
+    networks:
+      - kamamoto_network
+
+  back:
+    build: ./back # path to Dockerfile for backend app
+    ports:
+      - "3000:3000" # wait responses on these ports
+    depends_on:
+      - mongo # wait for this container to be started before starting itself
+    container_name: back
+    restart: always
+    env_file:
+      - back/.env.docker
+    volumes:
+      - ./back/src/public:/app/dist/public
+    networks:
+      - kamamoto_network
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: mongo
+    restart: always
+    volumes:
+      - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+      - ./mongo/db.dump:/db.dump
+    networks:
+      - kamamoto_network
+
+networks:
+  kamamoto_network:
+    driver: bridge

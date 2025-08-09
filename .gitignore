@@ -22,7 +22,7 @@ lerna-debug.log*
 *.sw?
 
 #Local files (builds, temporary, environment)
-.env
+.env*
 temp
 dist
 dist-ssr
