@@ -7,9 +7,10 @@ const {
 	PARTNERS,
 } = PATHS;
 
-async function getPartners() {
+async function getPartners(isAdmin = false) {
 	const response = await fetch(`${BASE_URL}/${PARTNERS}/`, {
 		method: 'GET',
+		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
 	});
 	return checkResponseStatus(response);
 }

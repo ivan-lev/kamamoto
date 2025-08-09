@@ -5,11 +5,24 @@ import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 import Partner from '../models/partner';
 import { ERROR_MESSAGES } from '../variables/messages';
+import { PATHS } from '../variables/paths';
 
-function getPartners(req: Request, res: Response, next: NextFunction): void {
-	Partner.find({})
-		.then(partners => res.send(partners))
-		.catch((error) => { return next(error); });
+async function getPartners(req: Request, res: Response, next: NextFunction) {
+	// check if request was made from admin panel
+	// and return thumb in appropriate format below
+	const isAdmin = req.headers['is-admin'];
+	try {
+		const partners = await Partner.find({});
+		const newPartners = partners.map((partner: PartnerType) => {
+			const { _id, isActive, link, logo, title } = partner;
+			const logoPath = `${PATHS.PUBLIC_PATH}/${PATHS.PARTNERS}/${logo}`;
+			return { _id, isActive, link, title, logo: isAdmin === 'true' ? logo : logoPath };
+		});
+		res.send(newPartners);
+	}
+	catch (error) {
+		return next(error);
+	};
 }
 
 function createPartner(req: Request, res: Response, next: NextFunction): void {

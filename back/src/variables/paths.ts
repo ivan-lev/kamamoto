@@ -6,5 +6,6 @@ export const PATHS = Object.freeze({
 	EXHIBITIONS: 'exhibitions',
 	EXHIBITS: 'exhibits',
 	LETTERS: 'letters',
+	PARTNERS: 'partners',
 	PUBLIC_PATH: `${BASE_URL}:${PORT}`,
 });

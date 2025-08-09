@@ -30,7 +30,7 @@ export default function Partners() {
 
 	useEffect(() => {
 		dispatch(clearPartnerForm());
-		api.partners.getPartners()
+		api.partners.getPartners(true)
 			.then((partners) => {
 				dispatch(setPartners(partners));
 				setShowPreloader(false);

@@ -1,13 +1,13 @@
 import type { RootState } from '../../slices/visitor';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Partner from '@/components/Partner/Partner';
 import { setPartnersList } from '@/slices/visitor/partners';
 import { api } from '@/utils/api/api';
-import { PATHS } from '@/variables/variables';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { PATHS } from '@/variables/variables';
 import './Partners.scss';
 
-const { IMAGES, PARTNERS, RESOURSES } = PATHS;
+// const { IMAGES, PARTNERS, RESOURSES } = PATHS;
 
 export default function Partners() {
 	const dispatch = useDispatch();
@@ -27,15 +27,7 @@ export default function Partners() {
 					<div className="container container--background-transparent partners">
 						<span className="partners__title">Организации-партнёры</span>
 						<div className="partners__grid">
-							{partnersList.map((partner) => {
-								if (partner.isActive) {
-									partner = {
-										...partner,
-										logo: `${RESOURSES}/${IMAGES}/${PARTNERS}/${partner.logo}`,
-									};
-								}
-								return partner.isActive ? <Partner key={partner._id} partner={partner} /> : null;
-							})}
+							{partnersList.map(partner => partner.isActive && <Partner key={partner._id} partner={partner} />)}
 						</div>
 					</div>
 				</section>
