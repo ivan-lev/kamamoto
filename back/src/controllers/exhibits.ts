@@ -93,32 +93,6 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 
 		return next(error);
 	};
-	// exhibit.category = new ObjectId(exhibit.category);
-
-	// Style
-	// 	.findOne({ name: exhibit.style })
-	// 	.then((style) => {
-	// 		exhibit.style = new ObjectId(style?._id);
-	// 	})
-	// 	.then(() => {
-	// 		Exhibit.create({ ...exhibit })
-	// 			.then((exhibit: ExhibitType) => res.status(201).send(exhibit))
-	// 			.catch((error: any) => {
-	// 				if (error.name === 'CastError') {
-	// 					return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-	// 				}
-
-	// 				if (error.name === 'ValidationError') {
-	// 					return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
-	// 				}
-
-	// 				if (error.code === 11000) {
-	// 					return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
-	// 				}
-
-	// 				return next(error);
-	// 			});
-	// 	});
 }
 
 function deleteExhibit(req: Request, res: Response, next: NextFunction): void {

@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Partner from '@/components/Partner/Partner';
 import { setPartnersList } from '@/slices/visitor/partners';
 import { api } from '@/utils/api/api';
-// import { PATHS } from '@/variables/variables';
 import './Partners.scss';
-
-// const { IMAGES, PARTNERS, RESOURSES } = PATHS;
 
 export default function Partners() {
 	const dispatch = useDispatch();
