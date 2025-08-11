@@ -4,11 +4,15 @@ WORKDIR /app
 COPY package.json /app/package.json
 RUN npm install
 COPY . /app
-RUN npm run build
+#RUN npm run build
 
 # host the build on nginx and wait connection on port 80
-FROM nginx:1.16.0-alpine
+FROM nginx:alpine
+
+# install curl for diagnostics
+RUN apk add --no-cache curl
+
 COPY --from=builder /app/dist /usr/share/nginx/html
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

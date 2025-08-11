@@ -1,41 +1,46 @@
 services:
+
   front:
-    build: ./front # path to Dockerfile for frontend app
-    ports:
-      - "80:80" # wait responses on these ports
-    depends_on:
-      - back # wait for this container to be started before starting itself
+    image: nginx:alpine
     container_name: front
+    volumes:
+      - ./front/dist:/usr/share/nginx/html
+      - ./front/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
     networks:
-      - kamamoto_network
+      - app-net
+    depends_on:
+      - back
 
   back:
-    build: ./back # path to Dockerfile for backend app
-    ports:
-      - "3000:3000" # wait responses on these ports
-    depends_on:
-      - mongo # wait for this container to be started before starting itself
+    build:
+      context: ./back
+      dockerfile: Dockerfile
     container_name: back
-    restart: always
+    ports:
+      - "3000:3000"
     env_file:
       - back/.env.docker
     volumes:
       - ./back/src/public:/app/dist/public
     networks:
-      - kamamoto_network
+      - app-net
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo
     ports:
       - "27017:27017"
     container_name: mongo
-    restart: always
     volumes:
       - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
       - ./mongo/db.dump:/db.dump
     networks:
-      - kamamoto_network
+      - app-net
 
 networks:
-  kamamoto_network:
+  app-net:
+    name: app-net
     driver: bridge
