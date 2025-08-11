@@ -4,10 +4,10 @@
   "description": "backend with api for kamamoto site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
-    "build": "tsc -p tsconfig.prod.json",
-    "dev": "nodemon"
+    "start": "node dist/app.js",
+		"dev": "nodemon",
+    "build": "rimraf dist && copy-folder src/public dist/public --summary && tsc -p tsconfig.prod.json"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.2",
+    "rimraf": "^6.0.1",
     "validator": "^13.15.0",
     "winston": "^3.17.0"
   },
@@ -44,6 +45,7 @@
     "@types/validator": "^13.15.0",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
+    "copy-folder-util": "^1.1.5",
     "eslint": "^9.26.0",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
