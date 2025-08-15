@@ -3,19 +3,19 @@ import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
 const {
-	BASE_URL,
+	BASE_API_URL,
 	CATEGORIES,
 } = PATHS;
 
 async function getExhibitsByCategory(category: string) {
-	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
+	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${category}`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
 async function getCategories(isAdmin = false) {
-	const response = await fetch(`${BASE_URL}/${CATEGORIES}/`, {
+	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
 	});
@@ -23,7 +23,7 @@ async function getCategories(isAdmin = false) {
 }
 
 async function createCategory(token: string, category: string, title: string, thumbnail: string) {
-	const response = await fetch(`${BASE_URL}/${CATEGORIES}/`, {
+	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ async function createCategory(token: string, category: string, title: string, th
 }
 
 async function updateCategory(token: string, category: Category) {
-	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category.name}`, {
+	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${category.name}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -47,7 +47,7 @@ async function updateCategory(token: string, category: Category) {
 }
 
 async function deleteCategory(token: string, category: string) {
-	const response = await fetch(`${BASE_URL}/${CATEGORIES}/${category}`, {
+	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${category}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,

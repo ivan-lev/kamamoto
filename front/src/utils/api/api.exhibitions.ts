@@ -3,12 +3,12 @@ import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
 const {
-	BASE_URL,
+	BASE_API_URL,
 	EXHIBITIONS,
 } = PATHS;
 
 async function getExhibitions(isAdmin = false) {
-	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITIONS}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
 	});
@@ -16,14 +16,14 @@ async function getExhibitions(isAdmin = false) {
 }
 
 async function getExhibitionById(id: string) {
-	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/${id}`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITIONS}/${id}`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
 async function createExhibition(token: string, exhibition: Exhibition) {
-	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITIONS}/`, {
 		method: 'POST',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -35,7 +35,7 @@ async function createExhibition(token: string, exhibition: Exhibition) {
 }
 
 async function updateExhibition(token: string, exhibition: Exhibition) {
-	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITIONS}/${exhibition.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -47,7 +47,7 @@ async function updateExhibition(token: string, exhibition: Exhibition) {
 }
 
 async function deleteExhibition(token: string, exhibition: Exhibition) {
-	const response = await fetch(`${BASE_URL}/${EXHIBITIONS}/${exhibition.id}`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITIONS}/${exhibition.id}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,

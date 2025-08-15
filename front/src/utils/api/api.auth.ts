@@ -1,12 +1,12 @@
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
-const { BASE_URL, SIGNIN, USERS } = PATHS;
+const { BASE_API_URL, SIGNIN, USERS } = PATHS;
 
 // Authorization logic
 
 async function authorize(email: string, password: string) {
-	const response = await fetch(`${BASE_URL}/${SIGNIN}`, {
+	const response = await fetch(`${BASE_API_URL}/${SIGNIN}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ async function authorize(email: string, password: string) {
 }
 
 async function checkToken(token: string) {
-	const response = await fetch(`${BASE_URL}/${USERS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${USERS}/`, {
 		method: 'GET',
 		headers: {
 			'Authorization': `Bearer ${token}`,

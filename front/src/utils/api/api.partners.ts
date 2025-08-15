@@ -3,12 +3,12 @@ import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
 const {
-	BASE_URL,
+	BASE_API_URL,
 	PARTNERS,
 } = PATHS;
 
 async function getPartners(isAdmin = false) {
-	const response = await fetch(`${BASE_URL}/${PARTNERS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
 	});
@@ -16,7 +16,7 @@ async function getPartners(isAdmin = false) {
 }
 
 async function createPartner(token: string, title: string, link: string, logo: string, isActive: boolean) {
-	const response = await fetch(`${BASE_URL}/${PARTNERS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ async function createPartner(token: string, title: string, link: string, logo: s
 }
 
 async function updatePartner(token: string, partner: Partner) {
-	const response = await fetch(`${BASE_URL}/${PARTNERS}/${partner._id}`, {
+	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/${partner._id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -40,7 +40,7 @@ async function updatePartner(token: string, partner: Partner) {
 }
 
 async function deletePartner(token: string, id: string) {
-	const response = await fetch(`${BASE_URL}/${PARTNERS}/${id}`, {
+	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,

@@ -2,17 +2,17 @@ import type { Exhibit } from '@/types/exhibitType';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '@/variables/variables';
 
-const { BASE_URL, EXHIBITS } = PATHS;
+const { BASE_API_URL, EXHIBITS } = PATHS;
 
 async function getExhibits(): Promise<Exhibit[]> {
-	const response = await fetch(`${BASE_URL}/${EXHIBITS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
 async function getExhibitById(id: string) {
-	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${id}`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${id}`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
@@ -21,7 +21,7 @@ async function getExhibitById(id: string) {
 async function createExhibit(token: string, exhibit: Exhibit) {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
-	const response = await fetch(`${BASE_URL}/${EXHIBITS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/`, {
 		method: 'POST',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -35,7 +35,7 @@ async function createExhibit(token: string, exhibit: Exhibit) {
 async function updateExhibit(token: string, exhibit: Exhibit) {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
-	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${exhibit.id}`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${exhibit.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -49,7 +49,7 @@ async function updateExhibit(token: string, exhibit: Exhibit) {
 async function toggleExhibitActiveState(token: string, exhibit: Exhibit) {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
-	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${exhibit.id}`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${exhibit.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -61,7 +61,7 @@ async function toggleExhibitActiveState(token: string, exhibit: Exhibit) {
 }
 
 async function deleteExhibit(token: string, id: number) {
-	const response = await fetch(`${BASE_URL}/${EXHIBITS}/${id}`, {
+	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,

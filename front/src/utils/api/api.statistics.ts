@@ -2,12 +2,12 @@ import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
 const {
-	BASE_URL,
+	BASE_API_URL,
 	STATISTICS,
 } = PATHS;
 
 async function getStatistics() {
-	const response = await fetch(`${BASE_URL}/${STATISTICS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${STATISTICS}/`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);

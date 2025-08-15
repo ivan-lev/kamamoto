@@ -1,10 +1,10 @@
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '@/variables/variables';
 
-const { BASE_URL, LETTERS } = PATHS;
+const { BASE_API_URL, LETTERS } = PATHS;
 
 async function getLetters() {
-	const response = await fetch(`${BASE_URL}/${LETTERS}/`, {
+	const response = await fetch(`${BASE_API_URL}/${LETTERS}/`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);

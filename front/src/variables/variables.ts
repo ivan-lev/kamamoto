@@ -1,8 +1,9 @@
+const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
+
 export const homepageSliderImages = ['images/homepage-slider/0.jpg', 'images/homepage-slider/1.jpg', 'images/homepage-slider/2.jpg', 'images/homepage-slider/3.jpg', 'images/homepage-slider/4.jpg', 'images/homepage-slider/5.jpg', 'images/homepage-slider/6.jpg', 'images/homepage-slider/7.jpg', 'images/homepage-slider/8.jpg'];
 
 export const PATHS = {
-	// BASE_URL: 'http://localhost:3000',
-	BASE_URL: '/api', // base Docker url
+	BASE_API_URL,
 	CATEGORIES: 'categories',
 	CERAMIS_STYLES: 'ceramic-styles',
 	EXHIBIT: 'exhibits',
