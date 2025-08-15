@@ -4,3 +4,5 @@ back/logs
 *rsync-exclude.txt
 .gitignore
 *.md
+.DS_Store
+.dockerignore

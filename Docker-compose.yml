@@ -34,9 +34,12 @@ services:
     ports:
       - "27017:27017"
     container_name: mongo
+    env_file:
+      - back/.env.docker
     volumes:
       - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
-      - ./mongo/db.dump:/db.dump
+      - ./mongo/db_dump_full:/db_dump_full
+      - ./mongo/mongod.conf:/usr/local/etc/mongod.conf
     networks:
       - app-net
 

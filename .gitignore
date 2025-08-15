@@ -22,13 +22,14 @@ lerna-debug.log*
 *.sw?
 
 #Local files (builds, temporary, environment)
-.env*
+/back/.env*
 temp
 dist
 dist-ssr
 node_modules
 *.local
 *.code-workspace
+*dump*
 
 # Frontend
 yandex*
@@ -36,6 +37,3 @@ google*
 
 # Backend
 back/src/public
-
-#Database
-db.dump
