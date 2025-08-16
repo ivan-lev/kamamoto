@@ -1,14 +1,10 @@
-import type { RootState } from '@/slices/admin';
 import type { ChangeEvent, FormEvent } from 'react';
-import {
-	clearCeramicStyleForm,
-	setCeramicStyles,
-	setCeramicStyleToEdit,
-} from '@/slices/admin/ceramicStyles';
-import { api } from '@/utils/api/api';
-import errorHandler from '@/utils/errorHandler';
+import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {	clearCeramicStyleForm, setCeramicStyles, setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
+import { api } from '@/utils/api/api';
+import errorHandler from '@/utils/errorHandler';
 
 export default function CeramicStylesForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);

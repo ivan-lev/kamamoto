@@ -1,13 +1,13 @@
-import type { RootState } from '@/slices/admin';
 import type { ChangeEvent, FormEvent } from 'react';
+import type { RootState } from '@/slices/admin';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo/Logo';
 import Seo from '@/components/Seo/Seo';
 import { login, logout } from '@/slices/admin/user';
 import { api } from '@/utils/api/api';
 import { LOGIN_MESSAGES } from '@/variables/variables';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 export default function Login() {

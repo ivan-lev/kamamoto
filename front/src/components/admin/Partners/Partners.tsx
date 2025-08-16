@@ -1,17 +1,12 @@
+import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin/index';
 import type { Partner } from '@/types/partnerType';
-import type { ChangeEvent } from 'react';
-import Preloader from '@/components/Preloader/Preloader';
-import Seo from '@/components/Seo/Seo';
-import {
-	clearPartnerForm,
-	setIsExistingPartnerEdited,
-	setPartners,
-	setPartnerToEdit,
-} from '@/slices/admin/partners';
-import { api } from '@/utils/api/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Preloader from '@/components/Preloader/Preloader';
+import Seo from '@/components/Seo/Seo';
+import { clearPartnerForm, setIsExistingPartnerEdited, setPartners, setPartnerToEdit } from '@/slices/admin/partners';
+import { api } from '@/utils/api/api';
 
 export default function Partners() {
 	const dispatch = useDispatch();

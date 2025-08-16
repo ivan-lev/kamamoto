@@ -1,18 +1,14 @@
 import type { RootState } from '@/slices/admin';
 import type { CeramicStyle } from '@/types/ceramicStyles';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CeramicStylesForm from '@/components/admin/CeramicStyles/CeramicStylesForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import {
-	setCeramicStyles,
-	setCeramicStyleToEdit,
-	setIsExistingStyleEdited,
-} from '@/slices/admin/ceramicStyles';
+import { setCeramicStyles, setCeramicStyleToEdit, setIsExistingStyleEdited } from '@/slices/admin/ceramicStyles';
 import { defaultCeramicStyle } from '@/types/ceramicStyles';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function CeramicStyles() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);

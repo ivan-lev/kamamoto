@@ -1,7 +1,7 @@
 import type { Statistics as StatisticsType } from '@/types/statistics';
+import { useEffect, useState } from 'react';
 import Preloader from '@/components/Preloader/Preloader';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
 import './Statistics.scss';
 
 const defaultStatistics: StatisticsType = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };

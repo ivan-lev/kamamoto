@@ -1,6 +1,6 @@
 import type { CeramicStyle } from '@/types/ceramicStyles';
-import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import parse from 'html-react-parser';
+import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
 interface Props {
 	data?: CeramicStyle;

@@ -1,14 +1,16 @@
 import type { RootState } from '@/slices/visitor';
+import parse from 'html-react-parser';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import Slider from '@/components/Slider/Slider';
 import { setExhibitionToDisplay } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
-import parse from 'html-react-parser';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+
 import './Exhibition.scss';
 
 export default function Exhibition() {
@@ -62,17 +64,7 @@ export default function Exhibition() {
 					)
 				: (
 						<>
-							<section className="section page-top"><div className="breadcrumbs">
-									<Link to=".." className="link link_navigational" relative="path">
-										<img
-											className="link__icon"
-											src="/icons/link-arrow-left.svg"
-										/>
-										Назад
-									</Link>
-								</div>
-								<h3 className="title title3 exhibition__title">{`«${name}»`}</h3>
-							</section>
+							<PageTop title={`«${name}»`} />
 
 							<section className="section exhibition">
 								<div className="exhibition__place">
@@ -118,11 +110,10 @@ export default function Exhibition() {
 							</section>
 
 							{photos && (
-									<Slider slides={photos} />
-								)}
+								<Slider slides={photos} />
+							)}
 						</>
-					)
-			}
+					)}
 		</>
 	);
 }

@@ -6,12 +6,7 @@ import CategoryForm from '@/components/admin/Categories/CategoryForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import {
-	clearCategoryForm,
-	setCategories,
-	setCategoryToEdit,
-	setIsExistingCategoryEdited,
-} from '@/slices/admin/categories';
+import { clearCategoryForm,	setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
 
 export default function Categories() {

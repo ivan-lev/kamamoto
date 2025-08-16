@@ -1,12 +1,12 @@
 import type { RootState } from '@/slices/admin';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ExhibitionForm from '@/components/admin/ExhibitionForm/ExhibitionForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { openEmptyExhibitionForm, setExhibitionsList, setExhibitionToEdit } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function Exhibitions() {
 	const dispatch = useDispatch();

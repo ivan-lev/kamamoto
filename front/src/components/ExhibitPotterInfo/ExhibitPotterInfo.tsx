@@ -1,5 +1,5 @@
-import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import parse from 'html-react-parser';
+import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
 interface Props {
 	potterInfo?: string;

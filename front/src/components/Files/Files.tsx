@@ -1,7 +1,7 @@
 import type { Resources } from '@/types/fileType';
+import { useLayoutEffect } from 'react';
 import File from '@/components/File/File';
 import Seo from '@/components/Seo/Seo';
-import { useLayoutEffect } from 'react';
 import './Files.scss';
 
 export default function Files({ title, files }: { title: string; files: Resources }) {

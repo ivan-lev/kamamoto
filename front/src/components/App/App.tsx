@@ -1,9 +1,13 @@
+import { useState } from 'react';
+import { Provider } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import About from '@/components/About/About';
 import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
 import AdminCeramicStyles from '@/components/admin/CeramicStyles/CeramicStyles';
 import AdminExhibitions from '@/components/admin/Exbitions/Exhibitions';
 import ExhibitsList from '@/components/admin/ExhibitsList/ExhibitsList';
+import Filters from '@/components/admin/Filters/Filters';
 import AdminLetters from '@/components/admin/Letters/Letters';
 import AdminPartners from '@/components/admin/Partners/Partners';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
@@ -15,7 +19,6 @@ import Exhibition from '@/components/Exhibition/Exhibition';
 import Exhibitions from '@/components/Exhibitions/Exhibitions';
 import ExhibitView from '@/components/ExhibitView/ExhibitView';
 import Files from '@/components/Files/Files';
-import Filters from '@/components/admin/Filters/Filters';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import HomePage from '@/components/HomePage/HomePage';
@@ -28,10 +31,7 @@ import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
 import adminStore from '@/slices/admin';
 import { documents } from '@/variables/documents';
 import { files } from '@/variables/files';
-import { Provider } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
 import './App.scss';
-import { useState } from 'react';
 
 export default function App() {
 	const [isFirstRender, setIsFirstRender] = useState(true);
@@ -51,7 +51,7 @@ export default function App() {
 						</>
 					)}
 				>
-					<Route index element={<HomePage isFirstRender={isFirstRender} setIsFirstRender={setIsFirstRender}/>} />
+					<Route index element={<HomePage isFirstRender={isFirstRender} setIsFirstRender={setIsFirstRender} />} />
 					<Route path="about/" element={<About />} />
 					<Route path="collection/" element={<Collection />} />
 					<Route path="collection/:category/" element={<Category />} />
@@ -82,7 +82,15 @@ export default function App() {
 					)}
 				>
 					<Route index element={<AdminStatistics />} />
-					<Route path="exhibits/" element={<><Filters/><ExhibitsList /></>} />
+					<Route
+						path="exhibits/"
+						element={(
+							<>
+								<Filters />
+								<ExhibitsList />
+							</>
+						)}
+					/>
 					<Route path="exhibitions/" element={<AdminExhibitions />} />
 					<Route path="partners/" element={<AdminPartners />} />
 					<Route path="categories/" element={<AdminCategories />} />

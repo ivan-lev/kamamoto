@@ -6,9 +6,6 @@ export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition 
 	const { id, name, dates, city, place, isActive } = exhibition;
 	return (
 		<>
-			{/* <div className="exhibition-card__upper-line"></div>
-			<div className="exhibition-card__year">{year}</div>
-			<div className="exhibition-card__lower-line"></div> */}
 			<div className="exhibition-card">
 				<p className="exhibition-card__dates">{dates}</p>
 				<p className="exhibition-card__city">{city}</p>

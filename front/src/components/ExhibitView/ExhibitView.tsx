@@ -1,4 +1,7 @@
 import type { RootState } from '@/slices/visitor';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import ExhibitDescription from '@/components/ExhibitDescription/ExhibitDescription';
 import ExhibitPotterInfo from '@/components/ExhibitPotterInfo/ExhibitPotterInfo';
 import ExhibitStyleDescription from '@/components/ExhibitStyleDescription/ExhibitStyleDescription';
@@ -9,9 +12,6 @@ import Seo from '@/components/Seo/Seo';
 import Slider from '@/components/Slider/Slider';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 export default function ExhibitView() {
 	const exhibitId = useParams().exhibit;

@@ -1,5 +1,5 @@
-import { menu } from '@/variables/menu';
 import { NavLink } from 'react-router-dom';
+import { menu } from '@/variables/menu';
 import './Menu.scss';
 
 export default function Menu() {

@@ -1,8 +1,8 @@
 import type { RootState } from '@/slices/visitor';
-import { setStatistics } from '@/slices/visitor/statistics';
-import { api } from '@/utils/api/api';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setStatistics } from '@/slices/visitor/statistics';
+import { api } from '@/utils/api/api';
 import './Statistics.scss';
 
 export default function Statistics() {

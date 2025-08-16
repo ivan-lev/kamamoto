@@ -13,7 +13,7 @@ interface Props {
 export default function HomePage({ isFirstRender, setIsFirstRender }: Props) {
 	return (
 		<>
-			{ isFirstRender && <OpeningScreen setIsFirstRender={setIsFirstRender}/> }
+			{ isFirstRender && <OpeningScreen setIsFirstRender={setIsFirstRender} /> }
 			<div className="container container--background-transparent">
 				<h1 className="title title1">Камамото - японская керамика</h1>
 			</div>
