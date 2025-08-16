@@ -20,7 +20,6 @@ import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import HomePage from '@/components/HomePage/HomePage';
 import Login from '@/components/Login/Login';
-import OpeningScreen from '@/components/OpeningScreen/OpeningScreen';
 import Main from '@/components/Main/Main';
 import NotFound from '@/components/NotFound/NotFound';
 import Seo from '@/components/Seo/Seo';
@@ -31,12 +30,13 @@ import { files } from '@/variables/files';
 import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
+import { useState } from 'react';
 
 export default function App() {
+	const [isFirstRender, setIsFirstRender] = useState(true);
 	return (
 		<>
 			<Seo title="Камамото - японская керамика"></Seo>
-			<OpeningScreen/>
 
 			<Routes>
 				<Route
@@ -49,7 +49,7 @@ export default function App() {
 						</>
 					)}
 				>
-					<Route index element={<HomePage />} />
+					<Route index element={<HomePage isFirstRender={isFirstRender} setIsFirstRender={setIsFirstRender}/>} />
 					<Route path="about/" element={<About />} />
 					<Route path="collection/" element={<Collection />} />
 					<Route path="collection/:category/" element={<Category />} />
