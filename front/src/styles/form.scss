@@ -1,9 +1,11 @@
 .form {
+	position: relative;
+
 	padding: var(--gap-32);
-	background: var(--background-muted);
 	border: 1px solid var(--border-color);
 	border-radius: 2px;
-	position: relative;
+
+	background: var(--background-muted);
 
 	&__fieldset {
 		border: 0;
@@ -17,8 +19,8 @@
 
 	&__submit-status {
 		position: absolute;
-		bottom: 5px;
 		right: 32px;
+		bottom: 5px;
 		font-size: 12px;
 	}
 
@@ -90,8 +92,8 @@
 
 	&__save-status {
 		position: absolute;
-		bottom: 5px;
 		right: 32px;
+		bottom: 5px;
 		font-size: 12px;
 	}
 
@@ -112,10 +114,11 @@
 
 		:where(button) {
 			color: transparent;
+
 			background-image: url('/icons/preloader.svg');
-			background-size: 60% 60%;
-			background-position: center;
 			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 60% 60%;
 		}
 	}
 }

@@ -11,7 +11,6 @@ import { resetCategory, setCategory } from '@/slices/visitor/category';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { ExhibitCategory } from '@/types/exhibitCategory';
 import { api } from '@/utils/api/api';
-import './Category.scss';
 
 export default function Category() {
 	const category = useParams().category;

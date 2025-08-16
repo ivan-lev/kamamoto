@@ -1,12 +1,12 @@
 .text {
-	color: var(--text-default);
 	font-size: 16px;
-
-	@media screen and (max-width: 900px) {
-		font-size: 14px;
-	}
+	color: var(--text-default);
 
 	&--muted {
 		color: var(--text-muted);
+	}
+
+	@media screen and (max-width: 900px) {
+		font-size: 14px;
 	}
 }

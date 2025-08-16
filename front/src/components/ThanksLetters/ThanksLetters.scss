@@ -1,16 +1,21 @@
 .thanks-letters {
 	&__list {
 		gap: 0;
-		width: 100%;
 		box-sizing: border-box;
+		width: 100%;
 	}
 
 	&__element {
 		display: flex;
 		gap: var(--gap-96);
-		padding: var(--gap-48) 0;
+
 		box-sizing: border-box;
+		padding: var(--gap-48) 0;
 		border-bottom: 1px solid var(--border-color);
+
+		&:last-child {
+			border-bottom: 0;
+		}
 
 		@media screen and (max-width: 1100px) {
 			gap: var(--gap-48);
@@ -18,12 +23,8 @@
 
 		@media screen and (max-width: 768px) {
 			flex-direction: column-reverse;
-			align-items: center;
 			gap: var(--gap-32);
-		}
-
-		&:last-child {
-			border-bottom: 0;
+			align-items: center;
 		}
 	}
 
@@ -42,18 +43,19 @@
 		max-height: 300px;
 
 		@media screen and (max-width: 600px) {
-			max-height: unset;
 			width: 100%;
+			max-height: unset;
 		}
 	}
 
 	&__description {
-		color: var(--text-muted, rgba(218, 197, 167, 0.6));
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 180%;
 		flex: 1 0;
+
+		font-size: 16px;
+		font-weight: 400;
+		font-style: normal;
+		line-height: 180%;
+		color: var(--text-muted, rgba(218, 197, 167, 0.6));
 
 		@media screen and (max-width: 768px) {
 			text-align: center;

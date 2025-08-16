@@ -1,16 +1,18 @@
 .header {
-	flex: 0 0 auto;
 	display: flex;
+	flex: 0 0 auto;
+	gap: var(--gap-32);
 	align-items: center;
 	justify-content: center;
-	gap: var(--gap-32);
-	height: 65px;
-	padding: var(--gap-12) var(--gap-32);
+
 	box-sizing: border-box;
-	background-color: var(--background-secondary);
+	height: 65px;
 	margin-top: var(--gap-48);
+	padding: var(--gap-12) var(--gap-32);
 	border: 1px solid var(--border-color);
-  border-radius: 2px;
+	border-radius: 2px;
+
+	background-color: var(--background-secondary);
 
 	@media screen and (max-width: 900px) {
 		flex-direction: column;
@@ -20,7 +22,7 @@
 
 	@media screen and (max-width: 768px) {
 		max-width: calc(100% - 80px);
-		padding-left: var(--gap-72);
 		padding-right: var(--gap-72);
+		padding-left: var(--gap-72);
 	}
 }

@@ -8,12 +8,12 @@
 		grid-auto-rows: max-content;
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 
-		&:not(:first-child):not(:last-child) {
-			border-bottom: 1px dashed var(--text-muted);
-		}
-
 		&:not(:first-child) {
 			opacity: 0.8;
+		}
+
+		&:not(:first-child):not(:last-child) {
+			border-bottom: 1px dashed var(--text-muted);
 		}
 	}
 
@@ -68,14 +68,16 @@
 	}
 
 	&__button {
+		cursor: pointer;
+
 		width: 24px;
 		height: 24px;
-		background-color: transparent;
 		border: 0;
-		background-size: 100%;
-		background-position: center;
+
+		background-color: transparent;
 		background-repeat: no-repeat;
-		cursor: pointer;
+		background-position: center;
+		background-size: 100%;
 
 		&--edit {
 			background-image: url('/icons/edit.svg');

@@ -7,6 +7,7 @@
     "dev": "vite --host",
     "build": "tsc && vite build --mode docker",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "stylelint": "npx stylelint --fix '**/*.scss'",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,12 +27,17 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
+    "@stylistic/eslint-plugin": "^5.2.3",
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
     "eslint": "^9.33.0",
     "sass": "^1.90.0",
+    "stylelint": "^16.23.1",
+    "stylelint-config-clean-order": "^7.0.0",
+    "stylelint-config-recommended-scss": "^16.0.0",
+    "stylelint-config-standard": "^39.0.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.2"
   }

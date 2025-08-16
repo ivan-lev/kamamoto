@@ -1,45 +1,51 @@
 .exhibition-card {
-	grid-area: card;
-	width: 100%;
-	max-width: 450px;
+	position: relative;
+
 	display: flex;
+	grid-area: card;
 	flex-direction: column;
 	gap: var(--gap-16);
-	position: relative;
+
 	box-sizing: border-box;
+	width: 100%;
+	max-width: 450px;
 	padding: var(--gap-32) var(--gap-32) var(--gap-16);
-	background: var(--background-muted);
 	border: 1px solid var(--border-color);
 	border-radius: 2px;
 
+	background: var(--background-muted);
+
 	&:hover {
-		transition: all 0.5s;
 		background-color: var(--background-hover-card);
+		transition: all 0.5s;
 	}
 
 	&__dates {
-		color: var(--text-default, #dac5a7);
-		font-size: 12px;
-		font-style: normal;
-		font-weight: 400;
-		text-transform: uppercase;
 		position: absolute;
 		top: 20px;
 		right: 20px;
+
 		padding: var(--gap-8);
 		border: 1px solid var(--border-color);
 		border-radius: 2px;
+
+		font-size: 12px;
+		font-weight: 400;
+		font-style: normal;
+		color: var(--text-default, #dac5a7);
+		text-transform: uppercase;
+
 		background: var(--background-muted);
 	}
 
 	&__city {
-		color: var(--text-muted, rgba(218, 197, 167, 0.6));
 		font-size: 13px;
-		font-style: normal;
 		font-weight: 400;
+		font-style: normal;
 		line-height: 160%;
-		letter-spacing: 1.5px;
+		color: var(--text-muted, rgba(218, 197, 167, 0.6));
 		text-transform: uppercase;
+		letter-spacing: 1.5px;
 	}
 
 	&__main-content {
@@ -49,13 +55,13 @@
 
 	&__name,
 	&__link {
-		color: var(--text-default, #dac5a7);
 		font-size: 24px;
-		font-style: normal;
 		font-weight: 300;
+		font-style: normal;
 		line-height: 130%;
-		letter-spacing: 1px;
+		color: var(--text-default, #dac5a7);
 		text-transform: uppercase;
+		letter-spacing: 1px;
 	}
 
 	&__more-link {
@@ -63,10 +69,10 @@
 	}
 
 	&__place {
-		color: var(--text-muted);
 		font-size: 16px;
-		font-style: normal;
 		font-weight: 400;
+		font-style: normal;
 		line-height: 180%;
+		color: var(--text-muted);
 	}
 }

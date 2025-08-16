@@ -7,8 +7,8 @@
 
 	&__grid {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(min-content, 25%));
 		grid-auto-rows: minmax(min-content, auto);
+		grid-template-columns: repeat(4, minmax(min-content, 25%));
 		gap: var(--gap-48);
 		justify-content: space-around;
 

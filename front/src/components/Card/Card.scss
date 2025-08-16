@@ -1,21 +1,23 @@
 .card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: var(--gap-16);
-	position: relative;
 
 	&__image-wrapper {
-		width: 100%;
-		aspect-ratio: 3 / 2;
-		border-radius: 5px;
+		position: relative;
+		z-index: 100;
+
 		overflow: hidden;
-		box-sizing: border-box;
-		border: 1px solid var(--border-color);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		position: relative;
-		z-index: 100;
+
+		box-sizing: border-box;
+		aspect-ratio: 3 / 2;
+		width: 100%;
+		border: 1px solid var(--border-color);
+		border-radius: 5px;
 	}
 
 	&:hover &__image-wrapper {
@@ -23,18 +25,19 @@
 	}
 
 	&__preloader {
-		width: 15%;
-		height: auto;
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+
+		width: 15%;
+		height: auto;
 	}
 
 	&__image {
+		aspect-ratio: 3 / 2;
 		width: 100%;
 		object-fit: cover;
-		aspect-ratio: 3 / 2;
 	}
 
 	&__link {

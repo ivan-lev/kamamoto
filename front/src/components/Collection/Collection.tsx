@@ -7,7 +7,6 @@ import Seo from '@/components/Seo/Seo';
 import { setCategories } from '@/slices/visitor/categories';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api/api';
-import './Collection.scss';
 
 export default function Collection() {
 	const dispatch = useDispatch();

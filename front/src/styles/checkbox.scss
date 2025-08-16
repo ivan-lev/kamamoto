@@ -1,16 +1,18 @@
 .checkbox {
 	&-label {
-		padding: 0;
-		background-size: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
 		display: block;
-		background-color: var(--background-muted);
-		border: 1px solid var(--border-color);
-		border-radius: 2px;
+
+		box-sizing: border-box;
 		width: var(--input-height);
 		height: var(--input-height);
-		box-sizing: border-box;
+		padding: 0;
+		border: 1px solid var(--border-color);
+		border-radius: 2px;
+
+		background-color: var(--background-muted);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
 
 		&--small {
 			width: 24px;
@@ -22,14 +24,14 @@
 		}
 
 		&--disabled {
-			background-color: var(--background-hover);
 			color: var(--text-disabled);
+			background-color: var(--background-hover);
 		}
 	}
 
 	&-input {
-		appearance: none;
 		width: 0;
 		height: 0 !important;
+		appearance: none;
 	}
 }

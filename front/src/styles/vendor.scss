@@ -25,11 +25,11 @@
 
 .image-gallery-thumbnail.active,
 .image-gallery-thumbnail:focus {
-	outline: none;
 	border: 4px solid var(--text-muted) !important;
+	outline: none;
 }
 
 .image-gallery-thumbnail:hover {
-	outline: none;
 	border: 4px solid var(--text-default) !important;
+	outline: none;
 }

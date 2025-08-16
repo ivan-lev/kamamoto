@@ -1,9 +1,10 @@
 .section {
 	--section-padding: var(--gap-48);
+
 	box-sizing: border-box;
-	padding-left: var(--section-padding);
-	padding-right: var(--section-padding);
 	width: 100%;
+	padding-right: var(--section-padding);
+	padding-left: var(--section-padding);
 
 	@media screen and (max-width: 768px) {
 		--section-padding: var(--gap-32);

@@ -1,7 +1,7 @@
 .title {
+	font-weight: 100;
 	line-height: 1;
 	text-align: center;
-	font-weight: 100;
 	letter-spacing: 1px;
 }
 
@@ -50,9 +50,9 @@
 }
 
 .subtitle {
-	color: var(--text-muted);
 	font-size: 16px;
 	font-weight: 400;
+	color: var(--text-muted);
 
 	@media screen and (max-width: 600px) {
 		text-align: center;

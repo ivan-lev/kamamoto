@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
 	box-sizing: border-box;
 	width: 100%;
 
@@ -23,35 +24,36 @@
 		display: grid;
 
 		&:nth-child(odd) {
-			padding-left: calc(50% - 50px);
-			grid-template-columns: 100px 1fr;
 			grid-template-areas:
 				'upper-line card'
 				'year card'
 				'lower-line card';
+			grid-template-columns: 100px 1fr;
+			padding-left: calc(50% - 50px);
 		}
 
 		&:nth-child(even) {
-			padding-right: calc(50% - 50px);
-			grid-template-columns: 1fr 100px;
 			grid-template-areas:
 				'card upper-line'
 				'card year'
 				'card lower-line';
+			grid-template-columns: 1fr 100px;
+			padding-right: calc(50% - 50px);
 		}
 
 		&:nth-child(odd),
 		&:nth-child(even) {
 			@media screen and (max-width: 900px) {
-				padding: 0;
-				grid-template-columns: 400px;
-				grid-template-rows: 20px 50px 20px 1fr;
 				grid-template-areas:
 					'upper-line'
 					'year'
 					'lower-line'
 					'card';
+				grid-template-columns: 400px;
+				grid-template-rows: 20px 50px 20px 1fr;
 				row-gap: var(--gap-8);
+
+				padding: 0;
 			}
 
 			@media screen and (max-width: 600px) {
@@ -60,34 +62,39 @@
 		}
 
 		&-upper-line {
-			width: 1px;
-			background: var(--border-color);
-			box-sizing: border-box;
 			grid-area: upper-line;
 			justify-self: center;
+
+			box-sizing: border-box;
+			width: 1px;
+
+			background: var(--border-color);
 		}
 
 		&-lower-line {
-			width: 1px;
-			background: var(--border-color);
-			box-sizing: border-box;
 			grid-area: lower-line;
 			justify-self: center;
+
+			box-sizing: border-box;
+			width: 1px;
+
+			background: var(--border-color);
 		}
 
 		&-year {
+			display: flex;
 			grid-area: year;
 			place-self: center;
-			width: 50px;
-			height: 50px;
-			display: flex;
 			align-items: center;
 			justify-content: center;
+
+			box-sizing: border-box;
+			width: 50px;
+			height: 50px;
+			border: 1px solid var(--border-color);
 			border-radius: 50%;
 
-			border: 1px solid var(--border-color);
 			background: var(--background-muted);
-			box-sizing: border-box;
 		}
 	}
 }

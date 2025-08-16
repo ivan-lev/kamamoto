@@ -5,15 +5,15 @@
 	width: 100%;
 
 	&__photo {
-		max-width: 30%;
 		float: left;
+		max-width: 30%;
 		padding-right: var(--gap-48);
 		padding-bottom: var(--gap-48);
 
 		@media screen and (max-width: 768px) {
 			float: unset;
-			max-width: unset;
 			width: 100%;
+			max-width: unset;
 			padding-right: 0;
 		}
 	}

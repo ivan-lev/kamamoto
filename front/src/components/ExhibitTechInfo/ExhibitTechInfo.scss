@@ -1,33 +1,39 @@
 .tech-info {
 
 	&__button {
+		cursor: pointer;
+
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		border: 0;
+
 		width: 100%;
+		border: 0;
+
 		font-size: 16px;
 		color: var(--text-default);
+
 		background-color: transparent;
-		cursor: pointer;
-		width: 100%;
 
 		&::after {
 			content: '';
+
 			display: flex;
+			gap: var(--gap-32);
+			align-items: center;
+			justify-content: center;
+
+			box-sizing: border-box;
 			width: 30px;
 			height: 30px;
-			box-sizing: border-box;
 			padding: var(--gap-8) var(--gap-12);
-			justify-content: center;
-			align-items: center;
-			gap: var(--gap-32);
-			border-radius: 50%;
 			border: 1px solid var(--border-color);
+			border-radius: 50%;
+
 			background: var(--background-muted);
 			background-image: url('/icons/plus.svg');
-			background-position: center;
 			background-repeat: no-repeat;
+			background-position: center;
 		}
 
 		&_opened::after {
@@ -37,15 +43,17 @@
 
 	&__content {
 		display: grid;
-		grid-template-columns: 300px;
-		gap: var(--gap-32);
-		margin-top: var(--gap-16);
-		font-size: 14px;
 		grid-template-areas:
 			'potter-info'
 			'exhibit-info'
 			'qr-code';
+		grid-template-columns: 300px;
+		gap: var(--gap-32);
 		justify-content: center;
+
+		margin-top: var(--gap-16);
+
+		font-size: 14px;
 
 		&--hidden {
 			display: none;
@@ -63,15 +71,15 @@
 	}
 
 	&__list {
-		list-style-type: none;
 		margin-top: var(--gap-12);
+		list-style-type: none;
 	}
 
 	&__list-element {
-		width: 100%;
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
+		width: 100%;
 
 		&_justify {
 			text-align: justify;
@@ -88,8 +96,8 @@
 
 	&__qr-code {
 		grid-area: qr-code;
+		place-self: center;
 		max-width: 150px;
 		opacity: 0.8;
-		place-self: center;
 	}
 }

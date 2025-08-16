@@ -4,28 +4,32 @@
 
 .admin {
 	display: grid;
-	width: 100%;
+	grid-template-areas: 'sidebar content';
 	// height: 100vh;
 	grid-template-columns: 300px auto;
 	grid-template-rows: auto;
-	grid-template-areas: 'sidebar content';
 	gap: var(--gap-32);
-	padding-left: var(--gap-48);
-  padding-right: var(--gap-48);
+
 	box-sizing: border-box;
+	width: 100%;
+	padding-right: var(--gap-48);
+	padding-left: var(--gap-48);
 
 	&__sidebar {
-		grid-area: sidebar;
-		padding: var(--gap-32);
-		height: fit-content;
-		display: flex;
-		flex-direction: column;
-		gap: var(--gap-16);
-		border: 1px solid var(--border-color);
-		border-radius: 2px;
-		background: var(--background-muted);
 		position: sticky;
 		top: var(--gap-48);
+
+		display: flex;
+		grid-area: sidebar;
+		flex-direction: column;
+		gap: var(--gap-16);
+
+		height: fit-content;
+		padding: var(--gap-32);
+		border: 1px solid var(--border-color);
+		border-radius: 2px;
+
+		background: var(--background-muted);
 	}
 
 	&__content {
@@ -37,16 +41,19 @@
 	}
 
 	&__list {
-		list-style-type: none;
 		display: flex;
 		flex-direction: column;
 		gap: var(--gap-8);
+		list-style-type: none;
 
 		&:not(:last-of-type)::after {
 			content: '';
+
 			display: block;
+
 			width: 100%;
 			height: 1px;
+
 			background-color: var(--border-color);
 		}
 	}

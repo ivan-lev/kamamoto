@@ -2,39 +2,40 @@
 	&__list {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		grid-column-gap: var(--gap-48);
+		column-gap: var(--gap-48);
 
 		@media screen and (max-width: 768px) {
-			grid-column-gap: var(--gap-32);
+			column-gap: var(--gap-32);
 		}
 
 		@media screen and (max-width: 600px) {
-			grid-column-gap: var(--gap-16);
+			column-gap: var(--gap-16);
 		}
 	}
 
 	&__element {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: var(--gap-16);
+		align-items: center;
 	}
 
 	&__header {
-		color: var(--text-muted, rgba(218, 197, 167, 0.6));
 		font-size: 13px;
-		font-style: normal;
 		font-weight: 400;
-		letter-spacing: 1.5px;
+		font-style: normal;
+		color: var(--text-muted, rgba(218, 197, 167, 0.6));
 		text-transform: uppercase;
+		letter-spacing: 1.5px;
+
 		opacity: 0.6;
 	}
 
 	&__number {
-		color: var(--text-default, #dac5a7);
 		font-size: 64px;
-		font-style: normal;
 		font-weight: 300;
+		font-style: normal;
+		color: var(--text-default, #dac5a7);
 		text-transform: uppercase;
 
 		@media screen and (max-width: 768px) {

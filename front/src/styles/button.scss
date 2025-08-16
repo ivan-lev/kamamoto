@@ -1,29 +1,34 @@
 .button {
-	min-height: 40px;
-	box-sizing: border-box;
+	cursor: pointer;
+
 	display: flex;
-	padding: var(--gap-8) var(--gap-16);
-	justify-content: center;
-	align-items: center;
 	gap: var(--gap-8);
+	align-items: center;
 	align-self: stretch;
+	justify-content: center;
+
+	box-sizing: border-box;
+	min-height: 40px;
+	padding: var(--gap-8) var(--gap-16);
 	border: 0;
 	border-radius: 2px;
-	background-color: var(--text-default);
-	color: var(--text-inverse);
+
 	font-size: 13px;
-	font-style: normal;
 	font-weight: 400;
-	letter-spacing: 1.5px;
+	font-style: normal;
+	color: var(--text-inverse);
 	text-transform: uppercase;
-	cursor: pointer;
+	letter-spacing: 1.5px;
+
+	background-color: var(--text-default);
 
 	&--sending {
 		color: transparent;
+
 		background-image: url('/icons/preloader.svg');
-		background-size: 60% 60%;
-		background-position: center;
 		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 60% 60%;
 	}
 
 	&--muted {

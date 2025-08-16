@@ -3,8 +3,8 @@
 
 	&__list {
 		display: grid;
-		gap: var(--gap-32);
 		grid-template-columns: repeat(3, 1fr);
+		gap: var(--gap-32);
 		list-style-type: none;
 
 		@media screen and (max-width: 900px) {

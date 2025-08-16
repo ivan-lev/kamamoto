@@ -1,10 +1,12 @@
 .blockquote {
-	border-left: 6px solid var(--border-color);
 	display: flex;
 	flex-direction: column;
 	gap: var(--gap-24);
+
+	padding: var(--gap-48);
+	border-left: 6px solid var(--border-color);
+
 	background: var(--background-muted);
-  padding: var(--gap-48);
 
 	@media screen and (max-width: 900px) {
 		font-size: 14px;
