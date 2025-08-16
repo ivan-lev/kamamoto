@@ -22,6 +22,7 @@ import HomePage from '@/components/HomePage/HomePage';
 import Login from '@/components/Login/Login';
 import Main from '@/components/Main/Main';
 import NotFound from '@/components/NotFound/NotFound';
+import ScrollToTopButton from '@/components/ScrollToTop/ScrollToTop';
 import Seo from '@/components/Seo/Seo';
 import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
 import adminStore from '@/slices/admin';
@@ -46,6 +47,7 @@ export default function App() {
 							<Header />
 							<Main />
 							<Footer />
+							<ScrollToTopButton />
 						</>
 					)}
 				>
