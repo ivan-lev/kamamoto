@@ -47,7 +47,7 @@ const userSchema = new Schema(
 					});
 			},
 		},
-		versionKey: false,
+		versionKey: 'false',
 	},
 );
 

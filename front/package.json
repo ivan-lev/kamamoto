@@ -7,32 +7,32 @@
     "dev": "vite --host",
     "build": "tsc && vite build --mode docker",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "upload-all": "tsc && vite build && rsync -av -e ssh /Users/ivanlev/Documents/dev/kamamoto/kamamoto-frontend/dist/* root@158.255.5.156:/var/www/html/",
-    "upload": "tsc && vite build && rsync -av -e ssh --exclude-from='rsync-exclude.txt' dist/ root@158.255.5.156:/var/www/html/"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@reduxjs/toolkit": "^2.8.2",
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
     "html-react-parser": "^5.2.6",
     "motion": "^12.23.12",
     "qrcode.react": "^4.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-redux": "^9.1.2",
-    "react-router-dom": "^7.7.1",
+    "react-router-dom": "^7.8.1",
     "react-scroll-to-top": "^3.1.0",
     "swiper": "^11.2.10"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.1.0",
-    "@types/node": "^24.2.0",
-    "@types/react": "^19.1.9",
+    "@antfu/eslint-config": "^5.2.1",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react": "^4.4.1",
-    "eslint": "^9.26.0",
-    "sass": "^1.89.2",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.33.0",
+    "sass": "^1.90.0",
     "typescript": "^5.9.2",
-    "vite": "^7.0.6"
+    "vite": "^7.1.2"
   }
 }
