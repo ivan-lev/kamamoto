@@ -7,7 +7,7 @@
 		height: var(--input-height);
 		padding: 0;
 		border: 1px solid var(--border-color);
-		border-radius: 2px;
+		border-radius: var(--border-radius-s);
 
 		background-color: var(--background-muted);
 		background-repeat: no-repeat;

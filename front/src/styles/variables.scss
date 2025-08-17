@@ -44,7 +44,11 @@
 	--delete-button-background: #ddaa88;
 	--confirm-button-background: #99bb99;
 
-	--input-height: var(--gap-32);
+	// Radius
+	--border-radius-s: 2px;
+	--border-radius-m: 4px;
+	--border-radius-l: 8px;
 
-	scroll-behavior: smooth;
+	// Other
+	--input-height: var(--gap-32);
 }

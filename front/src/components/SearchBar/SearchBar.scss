@@ -14,7 +14,7 @@
 		box-sizing: border-box;
 		width: 55px;
 		height: 55px;
-		border-radius: 0 2px 2px 0;
+		border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
 
 		background-image: url('/icons/search.svg');
 		background-repeat: no-repeat;

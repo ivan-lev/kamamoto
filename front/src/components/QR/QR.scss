@@ -1,4 +1,6 @@
 .qr {
+	overflow: hidden;
+	border-radius: var(--border-radius-s);
 	&__link {
 		cursor: pointer;
 	}

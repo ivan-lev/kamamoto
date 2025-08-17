@@ -22,7 +22,7 @@
 		box-sizing: border-box;
 		padding: 30px;
 		border: 1px solid var(--border-color);
-		border-radius: 2px;
+		border-radius: var(--border-radius-s);
 
 		background: var(--background-muted);
 	}

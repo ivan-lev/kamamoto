@@ -97,7 +97,15 @@
 	&__qr-code {
 		grid-area: qr-code;
 		place-self: center;
+
 		max-width: 150px;
+
 		opacity: 0.8;
+
+		transition: opacity 0.4s ease;
+
+		&:hover {
+			opacity: 1;
+		}
 	}
 }

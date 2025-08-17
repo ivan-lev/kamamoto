@@ -11,7 +11,7 @@
 	max-width: 450px;
 	padding: var(--gap-32) var(--gap-32) var(--gap-16);
 	border: 1px solid var(--border-color);
-	border-radius: 2px;
+	border-radius: var(--border-radius-s);
 
 	background: var(--background-muted);
 
@@ -27,7 +27,7 @@
 
 		padding: var(--gap-8);
 		border: 1px solid var(--border-color);
-		border-radius: 2px;
+		border-radius: var(--border-radius-s);
 
 		font-size: 12px;
 		font-weight: 400;

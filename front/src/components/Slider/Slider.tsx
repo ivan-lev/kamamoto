@@ -24,7 +24,7 @@ export default function Slider({ slides }: Props) {
 				<Swiper
 					modules={[Navigation, Thumbs]}
 					navigation={true}
-					spaceBetween={0}
+					spaceBetween={10}
 					speed={1000}
 					thumbs={{ swiper: thumbsSwiper }}
 				>

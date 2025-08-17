@@ -20,6 +20,10 @@
 @import url('@/styles/title.scss');
 @import url('@/styles/vendor.scss');
 
+:root {
+	scroll-behavior: smooth;
+}
+
 body {
 	display: flex;
 	flex-direction: column;

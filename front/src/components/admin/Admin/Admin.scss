@@ -27,7 +27,7 @@
 		height: fit-content;
 		padding: var(--gap-32);
 		border: 1px solid var(--border-color);
-		border-radius: 2px;
+		border-radius: var(--border-radius-s);
 
 		background: var(--background-muted);
 	}
@@ -36,7 +36,7 @@
 		// margin: var(--gap-32);
 		grid-area: content;
 		border: 1px solid var(--border-color);
-		border-radius: 2px;
+		border-radius: var(--border-radius-s);
 		background: var(--background-muted);
 	}
 
