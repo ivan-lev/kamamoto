@@ -29,6 +29,8 @@
 	.swiper-button-prev,
 	.swiper-button-next {
 		--swiper-navigation-color: var(--color-secondary-100);
+
+		filter: drop-shadow(var(--gap-2) var(--gap-4) var(--gap-4) var(--color-primary-100));
 	}
 
 	.swiper-button-prev {
