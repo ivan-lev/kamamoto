@@ -23,7 +23,7 @@ export default function QR() {
 			size={150}
 			bgColor="#ffffffdd"
 			fgColor="#000000cc"
-			title="qr link"
+			title={`Камамото: qr-ссылка для лота ${exhibit}`}
 			minVersion={5}
 			marginSize={2}
 			imageSettings={imageSettings}
@@ -52,16 +52,7 @@ export default function QR() {
 	return (
 		<div className="qr">
 			<a className="qr__link" onClick={handleDownload}>
-				<QRCodeSVG
-					value={link}
-					size={150}
-					bgColor="#ffffffdd"
-					fgColor="#000000cc"
-					title="qr"
-					minVersion={5}
-					marginSize={2}
-					imageSettings={imageSettings}
-				/>
+				{ svgComponent }
 			</a>
 		</div>
 	);
