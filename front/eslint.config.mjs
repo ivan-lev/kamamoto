@@ -2,20 +2,23 @@ import antfu from '@antfu/eslint-config';
 import stylistic from '@stylistic/eslint-plugin';
 
 export default antfu({
+	stylistic: {
+		semi: true,
+		indent: ['error', 'tab'],
+	},
 	plugins: {
 		'@stylistic': stylistic,
 	},
 
 	rules: {
-		// 'indent': ['error', 'tab'],
 		'eslint-comments/no-unlimited-disable': 'off',
 		'no-underscore-dangle': ['error', { allow: ['_id'] }],
 		'regexp/no-obscure-range': ['error', { allowed: ['alphanumeric', 'а-я'] }],
-		'n/prefer-global/process': ['error', 'always'],
 		'@stylistic/no-mixed-spaces-and-tabs': 'error',
 		'@stylistic/no-multi-spaces': 'error',
 		'@stylistic/quotes': ['error', 'single'],
 		'@stylistic/indent': ['error', 'tab'],
+		'@stylistic/jsx-indent-props': ['error', 'tab'],
 		'@stylistic/no-tabs': ['error', { allowIndentationTabs: true }],
 		'@stylistic/semi': ['error', 'always'],
 	},
