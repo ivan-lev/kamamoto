@@ -9,7 +9,7 @@ import Style from '../models/style';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
-const { EXHIBITS, PUBLIC_PATH } = PATHS;
+const { EXHIBITS, PUBLIC_URL } = PATHS;
 
 function getExhibits(req: Request, res: Response, next: NextFunction): void {
 	Exhibit
@@ -36,7 +36,7 @@ function findExhibitById(req: Request, res: Response, next: NextFunction): void 
 		})
 		.orFail()
 		.then((exhibit: ExhibitType) => {
-			const pathToExhibitFolder = `${PUBLIC_PATH}/${EXHIBITS}/${exhibit.id}`;
+			const pathToExhibitFolder = `${PUBLIC_URL}/${EXHIBITS}/${exhibit.id}`;
 
 			if (exhibit.images) {
 				exhibit.images.forEach((image, i) => {

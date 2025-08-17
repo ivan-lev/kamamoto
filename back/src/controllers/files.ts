@@ -11,8 +11,8 @@ function getFiles(req: Request, res: Response, next: NextFunction): void {
 	File.find({}, { _id: 0 })
 		.then((files: FileType[]) => {
 			return files.map((file) => {
-				file.name = `${PATHS.PUBLIC_PATH}/${PATHS.LETTERS}/${file.name}`;
-				file.thumbnail = `${PATHS.PUBLIC_PATH}/${PATHS.LETTERS}/${file.thumbnail}`;
+				file.name = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${file.name}`;
+				file.thumbnail = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${file.thumbnail}`;
 				return file;
 			});
 		})

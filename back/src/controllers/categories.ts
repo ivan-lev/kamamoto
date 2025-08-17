@@ -18,7 +18,7 @@ function getCategories(req: Request, res: Response, next: NextFunction): void {
 		.then((categories) => {
 			return categories.map((cat: CategoryType) => {
 				const { name, title } = cat;
-				const thumbnailPath = `${PATHS.PUBLIC_PATH}/${PATHS.CATEGORIES}/${cat.thumbnail}`;
+				const thumbnailPath = `${PATHS.PUBLIC_URL}/${PATHS.CATEGORIES}/${cat.thumbnail}`;
 				return { name, title, thumbnail: isAdmin === 'true' ? cat.thumbnail : thumbnailPath };
 			});
 		})
@@ -33,7 +33,7 @@ function getExhibitsByCategory(req: Request, res: Response, next: NextFunction):
 			Exhibit.find({ category: category._id, isActive: true })
 				.then((exhibits: ExhibitType[]) => {
 					return exhibits.map((exhibit) => {
-						const thumbnailPath = `${PATHS.PUBLIC_PATH}/${PATHS.EXHIBITS}/${exhibit.id}/${exhibit.thumbnail}`;
+						const thumbnailPath = `${PATHS.PUBLIC_URL}/${PATHS.EXHIBITS}/${exhibit.id}/${exhibit.thumbnail}`;
 						return { link: exhibit.id.toString(), title: exhibit.name, thumbnail: thumbnailPath };
 					});
 				})
@@ -128,7 +128,6 @@ export const category = {
 	createCategory,
 	deleteCategory,
 	getCategories,
-	// getCategoriesFront,
 	getExhibitsByCategory,
 	updateCategory,
 };

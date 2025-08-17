@@ -1,11 +1,11 @@
 import type { HelmetOptions } from 'helmet';
+import path from 'node:path';
 import bodyParser from 'body-parser';
 import { errors } from 'celebrate';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
-
-import { BASE_URL, PORT, PUBLIC_FOLDER } from './config';
+import { BASE_URL, PORT } from './config';
 import errorHandler from './middlewares/error-handler';
 import limiter from './middlewares/limiter';
 import logger from './middlewares/logger';
@@ -24,7 +24,7 @@ app.use(logger.requestLogger); // winston requests logger
 app.use(helmet(helmetOptions)); // protect headers
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(PUBLIC_FOLDER));
+app.use('/static', express.static(path.join(__dirname, 'public'))); // public folder
 app.use('/api', routes); // all routes goes through here in Docker
 app.use(logger.errorLogger); // winston error logger
 app.use(errors()); // celebrate error handler

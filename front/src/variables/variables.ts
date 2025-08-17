@@ -24,4 +24,4 @@ export const LOGIN_MESSAGES = {
 	WRONG_EMAIL_FORMAT: 'Неправильный формат email-адреса',
 };
 
-export const SITE_VERSION = '1.8.6';
+export const SITE_VERSION = '1.8.7';

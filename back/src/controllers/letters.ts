@@ -12,8 +12,8 @@ function getLetters(req: Request, res: Response, next: NextFunction): void {
 	Letter.find({}, { _id: 0 })
 		.then((letters: File[]) => {
 			return letters.map((letter) => {
-				letter.name = `${PATHS.PUBLIC_PATH}/${PATHS.LETTERS}/${letter.name}`;
-				letter.thumbnail = `${PATHS.PUBLIC_PATH}/${PATHS.LETTERS}/${letter.thumbnail}`;
+				letter.name = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${letter.name}`;
+				letter.thumbnail = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${letter.thumbnail}`;
 				return letter;
 			});
 		})

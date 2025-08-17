@@ -1,4 +1,3 @@
-import path from 'node:path';
 import 'dotenv/config';
 
 const {
@@ -13,6 +12,4 @@ const {
 	DB_PASS = 'CHECK_YOUR_DOTENV',
 } = process.env;
 
-const PUBLIC_FOLDER = path.join(__dirname, 'public');
-
-export { BASE_URL, DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER, JWT_SECRET, NODE_ENV, PORT, PUBLIC_FOLDER };
+export { BASE_URL, DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER, JWT_SECRET, NODE_ENV, PORT };

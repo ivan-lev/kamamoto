@@ -22,24 +22,31 @@ services:
       - "3000:3000"
     env_file:
       - back/.env.docker
+    environment:
+      - PUBLIC_URL=http://158.255.5.107/static
     volumes:
-      - ./back/src/public:/app/dist/public
+      - ./back/dist/public:/app/dist/public
     networks:
       - app-net
+    restart: always
     depends_on:
       - mongo
 
   mongo:
-    image: mongo
+    image: mongo:8
     ports:
       - "27017:27017"
     container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: "3262867#Kamamotoadmin"
+    entrypoint: ["mongod", "--auth", "--bind_ip", "0.0.0.0"]
     env_file:
       - back/.env.docker
     volumes:
-      - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
-      - ./mongo/db_dump_full:/db_dump_full
-      - ./mongo/mongod.conf:/usr/local/etc/mongod.conf
+      # - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+      - ./mongo/dump_test:/data/db
+    restart: always
     networks:
       - app-net
 

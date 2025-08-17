@@ -15,7 +15,7 @@ async function getPartners(req: Request, res: Response, next: NextFunction) {
 		const partners = await Partner.find({});
 		const newPartners = partners.map((partner: PartnerType) => {
 			const { _id, isActive, link, logo, title } = partner;
-			const logoPath = `${PATHS.PUBLIC_PATH}/${PATHS.PARTNERS}/${logo}`;
+			const logoPath = `${PATHS.PUBLIC_URL}/${PATHS.PARTNERS}/${logo}`;
 			return { _id, isActive, link, title, logo: isAdmin === 'true' ? logo : logoPath };
 		});
 		res.send(newPartners);
