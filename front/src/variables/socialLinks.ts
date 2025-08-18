@@ -22,7 +22,7 @@ export const socialLinks: SocialLinks = [
 	{
 		id: 3,
 		title: 'Созидатели',
-		link: 'https://www.sozidateli.ru/profile/303854',
+		link: 'https://www.sozidateli.ru/portal/user/303854',
 		icon: '/icons/logo-sozidateli.svg',
 	},
 ];

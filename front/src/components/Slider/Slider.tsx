@@ -11,6 +11,18 @@ interface Props {
 	slides: string[];
 }
 
+const breakpoints = {
+	0: {
+		slidesPerView: 5.5,
+	},
+	768: {
+		slidesPerView: 7.5,
+		},
+	1024: {
+		slidesPerView: 10,
+		},
+	};
+
 export default function Slider({ slides }: Props) {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
@@ -37,6 +49,7 @@ export default function Slider({ slides }: Props) {
 					freeMode={true}
 					watchSlidesProgress={true}
 					modules={[FreeMode, Navigation, Thumbs]}
+					breakpoints={breakpoints}
 				>
 					{generateSlides(slides)}
 				</Swiper>

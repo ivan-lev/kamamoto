@@ -31,13 +31,16 @@
 			border-radius: 50%;
 
 			background: var(--background-muted);
-			background-image: url('/icons/plus.svg');
+			background-image: url('/icons/down.svg');
 			background-repeat: no-repeat;
-			background-position: center;
+			background-position: 50% calc(50% + 1px);
+			background-size: 100%;
+
+			transition: rotate 0.4s ease;
 		}
 
 		&_opened::after {
-			background-image: url('/icons/minus.svg');
+			rotate: 0.5turn;
 		}
 	}
 
