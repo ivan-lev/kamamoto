@@ -1,8 +1,21 @@
 {
   "name": "kamamoto",
-  "private": true,
   "version": "1.8.7",
+  "private": true,
   "type": "module",
+	"homepage": "https://github.com/ivan-lev/kamamoto#readme",
+	"author": {
+    "name": "Ivan Lev",
+    "email": "fanatos@mail.ru",
+    "url": "https://kamamoto.ru/"
+  },
+	"repository": {
+    "type": "git",
+    "url": "git@github.com:ivan-lev/kamamoto.git"
+  },
+	"engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build --mode docker",
