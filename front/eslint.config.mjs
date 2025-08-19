@@ -2,10 +2,6 @@ import antfu from '@antfu/eslint-config';
 import stylistic from '@stylistic/eslint-plugin';
 
 export default antfu({
-	stylistic: {
-		semi: true,
-		indent: ['error', 'tab'],
-	},
 	plugins: {
 		'@stylistic': stylistic,
 	},
@@ -18,9 +14,38 @@ export default antfu({
 		'@stylistic/no-multi-spaces': 'error',
 		'@stylistic/quotes': ['error', 'single'],
 		'@stylistic/indent': ['error', 'tab'],
+		'@stylistic/indent-binary-ops': ['error', 'tab'],
 		'@stylistic/jsx-indent-props': ['error', 'tab'],
+		'@stylistic/jsx-indent': ['error', 'tab'],
 		'@stylistic/no-tabs': ['error', { allowIndentationTabs: true }],
 		'@stylistic/semi': ['error', 'always'],
+		'@stylistic/member-delimiter-style': ['error', {
+			multiline: {
+				delimiter: 'comma',
+				requireLast: true,
+			},
+			singleline: {
+				delimiter: 'comma',
+				requireLast: true,
+			},
+			overrides: {
+				interface: {
+					multiline: {
+						delimiter: 'semi',
+						requireLast: true,
+					},
+				},
+			},
+		}],
+	},
+
+	overrides: {
+		interface: {
+			multiline: {
+				delimiter: 'semi',
+				requireLast: true,
+			},
+		},
 	},
 
 	// TypeScript and Vue are auto-detected, you can also explicitly enable them:
