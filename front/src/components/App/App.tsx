@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Provider } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import About from '@/components/About/About';
 import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
@@ -35,6 +35,7 @@ import './App.scss';
 
 export default function App() {
 	const [isFirstRender, setIsFirstRender] = useState(true);
+
 	return (
 		<>
 			<Seo title="Камамото - японская керамика"></Seo>
@@ -60,9 +61,11 @@ export default function App() {
 					<Route path="exhibitions/:exhId" element={<Exhibition />} />
 					<Route path="contacts/" element={<Contacts />} />
 					<Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
-					<Route path="documents/" element={<Files title="Шаблоны документов" files={documents} />}	/>
+					<Route path="documents/" element={<Files title="Шаблоны документов" files={documents} />} />
 					<Route path="thanksletters/" element={<ThanksLetters />} />
 					<Route path="benefactors/" element={<Benefactors />} />
+					<Route path="404" element={<NotFound />} />
+					<Route path="*" element={<Navigate to="/404" />} />
 				</Route>
 
 				<Route
@@ -97,7 +100,6 @@ export default function App() {
 					<Route path="letters/" element={<AdminLetters />} />
 					<Route path="ceramic-styles/" element={<AdminCeramicStyles />} />
 				</Route>
-				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</>
 	);

@@ -1,7 +1,7 @@
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ExhibitDescription from '@/components/ExhibitDescription/ExhibitDescription';
 import ExhibitPotterInfo from '@/components/ExhibitPotterInfo/ExhibitPotterInfo';
 import ExhibitStyleDescription from '@/components/ExhibitStyleDescription/ExhibitStyleDescription';
@@ -14,11 +14,12 @@ import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
 
 export default function ExhibitView() {
-	const exhibitId = useParams().exhibit;
-	const exhibit = useSelector((state: RootState) => state.exhibit);
 	const dispatch = useDispatch();
-	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const exhibit = useSelector((state: RootState) => state.exhibit);
+	const exhibitId = useParams().exhibit;
+	const navigate = useNavigate();
 
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const { additionalDescription, additionalImages, description, images, name, style, potterInfo, potterPhoto } = exhibit;
 
 	useLayoutEffect(() => {
@@ -35,6 +36,10 @@ export default function ExhibitView() {
 				.catch((error) => {
 					console.error(error);
 					setShowPreloader(false);
+
+					if (error.status === 404) {
+						navigate('/404', { replace: true });
+					}
 				});
 		}
 

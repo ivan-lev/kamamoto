@@ -39,6 +39,6 @@ export const exhibitValidator = celebrate({
 
 export const exhibitIdValidator = celebrate({
 	params: Joi.object().keys({
-		id: Joi.number().min(0).max(9999).required(),
+		id: Joi.number().min(0).required(),
 	}),
 });

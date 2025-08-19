@@ -2,7 +2,7 @@ import type { RootState } from '@/slices/visitor';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
@@ -14,16 +14,16 @@ import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import './Exhibition.scss';
 
 export default function Exhibition() {
-	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const dispatch = useDispatch();
-	const options = htmlParserOptions;
-	const { exhId } = useParams();
-
 	const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
+	const exhId = useParams().exhId;
+	const navigate = useNavigate();
+	const options = htmlParserOptions;
+
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const exhibitionToDisplay = useSelector(
 		(state: RootState) => state.exhibitions.exhibitionToDisplay,
 	);
-
 	const { name, city, address, place, year, dates, link, organisators, curators, poster, description, photos } = exhibitionToDisplay;
 
 	useLayoutEffect(() => {
@@ -49,6 +49,10 @@ export default function Exhibition() {
 			.catch((error) => {
 				console.error(error);
 				setShowPreloader(false);
+
+				if (error.status === 404) {
+					navigate('/404', { replace: true });
+				}
 			});
 	}, [exhId]);
 
@@ -58,62 +62,62 @@ export default function Exhibition() {
 
 			{showPreloader
 				? (
-						<section className="section">
-							<Preloader />
-						</section>
-					)
+					<section className="section">
+						<Preloader />
+					</section>
+				)
 				: (
-						<>
-							<PageTop title={`«${name}»`} />
+					<>
+						<PageTop title={`«${name}»`} />
 
-							<section className="section exhibition">
-								<div className="exhibition__place">
-									<p className="text text--muted">{`Место проведения: ${city}, ${address}, ${place}`}</p>
-									<p className="text text--muted">{`Даты: ${year} год, ${dates}`}</p>
-									{link && (
-										<span className="text text--muted">
-											Ссылка на&nbsp;
-											<a className="link exhibition__link" href={link} target="_blank">
-												мероприятие
-											</a>
-										</span>
-									)}
-								</div>
+						<section className="section exhibition">
+							<div className="exhibition__place">
+								<p className="text text--muted">{`Место проведения: ${city}, ${address}, ${place}`}</p>
+								<p className="text text--muted">{`Даты: ${year} год, ${dates}`}</p>
+								{link && (
+									<span className="text text--muted">
+										Ссылка на&nbsp;
+										<a className="link exhibition__link" href={link} target="_blank">
+											мероприятие
+										</a>
+									</span>
+								)}
+							</div>
 
-								<div className="container exhibition__participants">
-									{organisators && (
-										<div className="text text--muted">
-											<span>Организаторы:</span>
-											{parse(organisators, options)}
-										</div>
-									)}
-
-									{curators && (
-										<div className="text text--muted">
-											<span>Кураторы:</span>
-											{parse(curators, options)}
-										</div>
-									)}
-								</div>
-
-								{poster && (
-									<img
-										className="exhibition__poster"
-										src={poster}
-									>
-									</img>
+							<div className="container exhibition__participants">
+								{organisators && (
+									<div className="text text--muted">
+										<span>Организаторы:</span>
+										{parse(organisators, options)}
+									</div>
 								)}
 
-								<div className="description exhibition__description">
-									{parse(description, options)}
-								</div>
-							</section>
+								{curators && (
+									<div className="text text--muted">
+										<span>Кураторы:</span>
+										{parse(curators, options)}
+									</div>
+								)}
+							</div>
 
-							{photos && (
-								<Slider slides={photos} />
+							{poster && (
+								<img
+									className="exhibition__poster"
+									src={poster}
+								>
+								</img>
 							)}
-						</>
-					)}
+
+							<div className="description exhibition__description">
+								{parse(description, options)}
+							</div>
+						</section>
+
+						{photos && (
+							<Slider slides={photos} />
+						)}
+					</>
+				)}
 		</>
 	);
 }

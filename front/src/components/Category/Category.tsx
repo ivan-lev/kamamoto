@@ -1,8 +1,7 @@
-// Types and enums
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
 import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
@@ -14,10 +13,12 @@ import { api } from '@/utils/api/api';
 
 export default function Category() {
 	const category = useParams().category;
-	const dispatch = useDispatch();
 	const categoryName = ExhibitCategory[category as keyof typeof ExhibitCategory];
-	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const dispatch = useDispatch();
 	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
+	const navigate = useNavigate();
+
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
@@ -34,6 +35,10 @@ export default function Category() {
 				.catch((error) => {
 					console.error(error);
 					setShowPreloader(false);
+
+					if (error.status === 404) {
+						navigate('/404', { replace: true });
+					}
 				});
 		}
 
@@ -45,16 +50,16 @@ export default function Category() {
 
 	return (
 		<>
-			<Seo title={`Камамото: ${categoryName.toLowerCase()}`} />
+			<Seo title={`Камамото: ${categoryName ? categoryName.toLowerCase() : 'японская керамика'}`} />
 			<PageTop title={categoryName} />
 			<section className="section category">
 				{listToDisplay.length === 0 && showPreloader
 					? (
-							<Preloader />
-						)
+						<Preloader />
+					)
 					: (
-							<DisplayGrid />
-						)}
+						<DisplayGrid />
+					)}
 			</section>
 		</>
 	);
