@@ -4,7 +4,12 @@ import File from '@/components/File/File';
 import Seo from '@/components/Seo/Seo';
 import './Files.scss';
 
-export default function Files({ title, files }: { title: string; files: Resources }) {
+interface Props {
+	title: string;
+	files: Resources;
+}
+
+export default function Files({ title, files }: Props) {
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
 	});

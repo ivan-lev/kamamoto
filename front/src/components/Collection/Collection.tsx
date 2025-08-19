@@ -54,11 +54,11 @@ export default function Collection() {
 			<section className="section collection">
 				{categories.length === 0 && showPreloader
 					? (
-							<Preloader />
-						)
+						<Preloader />
+					)
 					: (
-							<DisplayGrid />
-						)}
+						<DisplayGrid />
+					)}
 			</section>
 		</>
 	);

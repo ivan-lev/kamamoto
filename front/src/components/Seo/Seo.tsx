@@ -1,4 +1,8 @@
-export default function Seo({ title }: { title: string }) {
+interface Props {
+	title: string;
+}
+
+export default function Seo({ title }: Props) {
 	return (
 		<>
 			<title>{title}</title>

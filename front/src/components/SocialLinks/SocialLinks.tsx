@@ -1,13 +1,12 @@
 import type { SocialLinks } from '@/types/socialLinkType';
 import './SocialLinks.scss';
 
-export default function ({
-	links,
-	additionalClassNames,
-}: {
+interface Props {
 	links: SocialLinks;
 	additionalClassNames: string;
-}) {
+}
+
+export default function ({ links, additionalClassNames }: Props) {
 	return (
 		<div className={`social-links ${additionalClassNames}`}>
 			{links.map((linkObject) => {

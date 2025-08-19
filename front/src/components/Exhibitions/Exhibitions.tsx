@@ -39,26 +39,26 @@ export default function Exhibitions() {
 			<section className="section">
 				{showPreloader
 					? (
-							<Preloader />
-						)
+						<Preloader />
+					)
 					: (
-							<div className="exhibitions">
-								<ul className="exhibitions__list">
-									{exhibitions
-										.map((exhibition) => {
-											return (
-												<li className="exhibitions__element" key={exhibition.id}>
-													<div className="exhibitions__element-upper-line"></div>
-													<div className="exhibitions__element-year">{exhibition.year}</div>
-													<div className="exhibitions__element-lower-line"></div>
-													<ExhibitionCard exhibition={exhibition} />
-												</li>
-											);
-										})
-										.reverse()}
-								</ul>
-							</div>
-						)}
+						<div className="exhibitions">
+							<ul className="exhibitions__list">
+								{exhibitions
+									.map((exhibition) => {
+										return (
+											<li className="exhibitions__element" key={exhibition.id}>
+												<div className="exhibitions__element-upper-line"></div>
+												<div className="exhibitions__element-year">{exhibition.year}</div>
+												<div className="exhibitions__element-lower-line"></div>
+												<ExhibitionCard exhibition={exhibition} />
+											</li>
+										);
+									})
+									.reverse()}
+							</ul>
+						</div>
+					)}
 			</section>
 		</>
 	);

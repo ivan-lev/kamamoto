@@ -17,11 +17,11 @@ const breakpoints = {
 	},
 	768: {
 		slidesPerView: 7.5,
-		},
+	},
 	1024: {
 		slidesPerView: 10,
-		},
-	};
+	},
+};
 
 export default function Slider({ slides }: Props) {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);

@@ -1,8 +1,11 @@
 import type { Resource } from '@/types/fileType';
-
 import './File.scss';
 
-export default function File({ file }: { file: Resource }) {
+interface Props {
+	file: Resource;
+}
+
+export default function File({ file }: Props) {
 	return (
 		<div className="file">
 			<a className="file__link" href={file.link} download>

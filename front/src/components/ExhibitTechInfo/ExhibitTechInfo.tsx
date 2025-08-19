@@ -132,15 +132,15 @@ export default function ExhibitTechInfo({ exhibit }: Props) {
 								<li className="tech-info__list-element tech-info__list-element_justify">
 									{exhibit?.complectation?.length === 1
 										? (
-												<>
-													Комплектность:
-													{exhibit?.complectation.join(', ')}
-												</>
-											)
+											<>
+												Комплектность:
+												{exhibit?.complectation.join(', ')}
+											</>
+										)
 										: (
 									// <>{`Комплектность: ${exhibit?.complectation.join(', ')}`}</>
-												<>{`Комплектность: ${exhibit?.complectation}`}</>
-											)}
+											<>{`Комплектность: ${exhibit?.complectation}`}</>
+										)}
 								</li>
 
 								<li className="tech-info__list-element tech-info__list-element_justify">

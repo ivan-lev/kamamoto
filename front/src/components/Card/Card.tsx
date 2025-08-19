@@ -5,15 +5,13 @@ import { Link } from 'react-router-dom';
 import './Card.scss';
 import preloader from '/icons/preloader.svg';
 
-export default function Card({
-	link,
-	name,
-	image,
-}: {
+interface Props {
 	link: string;
 	name: string;
 	image: string;
-}) {
+}
+
+export default function Card({ link, name, image }: Props) {
 	const [loading, setLoading] = useState(true);
 
 	return (

@@ -2,7 +2,11 @@ import type { Exhibition } from '@/types/exhibitionType';
 import { Link } from 'react-router-dom';
 import './ExhibitionCard.scss';
 
-export default function ExhibitionCard({ exhibition }: { exhibition: Exhibition }) {
+interface Props {
+	exhibition: Exhibition;
+}
+
+export default function ExhibitionCard({ exhibition }: Props) {
 	const { id, name, dates, city, place, isActive } = exhibition;
 	return (
 		<>

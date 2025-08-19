@@ -49,22 +49,22 @@ export default function ThanksLetters() {
 			<section className="section thanks-letters">
 				{showPreloader
 					? (
-							<Preloader />
-						)
+						<Preloader />
+					)
 					: (
-							<div className="container thanks-letters__list">
-								{letters.map((letter: File) => {
-									return (
-										<div className="thanks-letters__element" key={letter.id}>
-											<a className="thanks-letters__link" href={letter.name} target="_blank">
-												<img className="thanks-letters__preview" src={letter.thumbnail}></img>
-											</a>
-											<p className="thanks-letters__description">{letter.description}</p>
-										</div>
-									);
-								})}
-							</div>
-						)}
+						<div className="container thanks-letters__list">
+							{letters.map((letter: File) => {
+								return (
+									<div className="thanks-letters__element" key={letter.id}>
+										<a className="thanks-letters__link" href={letter.name} target="_blank">
+											<img className="thanks-letters__preview" src={letter.thumbnail}></img>
+										</a>
+										<p className="thanks-letters__description">{letter.description}</p>
+									</div>
+								);
+							})}
+						</div>
+					)}
 			</section>
 		</>
 	);

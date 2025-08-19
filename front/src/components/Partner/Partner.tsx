@@ -1,8 +1,11 @@
 import type { Partner as PartnerType } from '@/types/partnerType';
-
 import './Partner.scss';
 
-export default function Partner({ partner }: { partner: PartnerType }) {
+interface Props {
+	partner: PartnerType;
+}
+
+export default function Partner({ partner }: Props) {
 	const { link, logo, title } = partner;
 	return (
 		<div className="partner">
