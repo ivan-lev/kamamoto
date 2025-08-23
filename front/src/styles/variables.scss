@@ -49,6 +49,12 @@
 	--border-radius-m: 4px;
 	--border-radius-l: 8px;
 
+	// Z-indexes
+	--z-index-modal: 20;
+	--z-index-higher: 15;
+	--z-index-high: 10;
+	--z-index-low: -10;
+
 	// Other
 	--input-height: var(--gap-32);
 }

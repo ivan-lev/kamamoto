@@ -1,4 +1,6 @@
 .scroll-to-top.custom-styles {
+	z-index: var(--z-index-higher);
 	background-color: transparent;
+	filter: drop-shadow(10px 10px 4px var(--color-primary-100));
 	box-shadow: none;
 }

@@ -24,14 +24,13 @@
 		opacity: 0;
 	}
 	100% {
-		z-index: -9999;
 		opacity: 0;
 	}
 }
 
 .opening-screen {
 	position: fixed;
-	z-index: calc(infinity);
+	z-index: var(--z-index-higher);
 	inset: 0;
 
 	display: flex;

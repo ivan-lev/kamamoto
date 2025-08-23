@@ -1,6 +1,6 @@
 .modal {
 	position: fixed;
-	z-index: 2;
+	z-index: var(--z-index-modal);
 	inset: 0;
 
 	display: flex;
@@ -17,7 +17,6 @@
 
 	&__backdrop {
 		position: fixed;
-		z-index: 10;
 		inset: 0;
 
 		width: 100%;
@@ -30,8 +29,6 @@
 	&__content {
 		scrollbar-color: var(--text-default) var(--color-secondary-005);
 		scrollbar-width: thin;
-
-		z-index: 20;
 
 		overflow: auto;
 		display: flex;
