@@ -4,11 +4,11 @@ import { PATHS } from '../../variables/variables';
 
 const {
 	BASE_API_URL,
-	CERAMIS_STYLES,
+	CERAMIC_STYLES,
 } = PATHS;
 
 async function getCeramicStyles(isAdmin = false) {
-	const response = await fetch(`${BASE_API_URL}/${CERAMIS_STYLES}/`, {
+	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
 	});
@@ -16,7 +16,7 @@ async function getCeramicStyles(isAdmin = false) {
 }
 
 async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle) {
-	const response = await fetch(`${BASE_API_URL}/${CERAMIS_STYLES}/`, {
+	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle) {
 }
 
 async function updateCeramicStyle(token: string, style: CeramicStyle, initialName: string) {
-	const response = await fetch(`${BASE_API_URL}/${CERAMIS_STYLES}/${initialName}`, {
+	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/${initialName}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -40,7 +40,7 @@ async function updateCeramicStyle(token: string, style: CeramicStyle, initialNam
 }
 
 async function deleteCeramicStyle(token: string, name: string) {
-	const response = await fetch(`${BASE_API_URL}/${CERAMIS_STYLES}/${name}`, {
+	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/${name}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,
