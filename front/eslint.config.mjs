@@ -1,9 +1,11 @@
 import antfu from '@antfu/eslint-config';
 import stylistic from '@stylistic/eslint-plugin';
+import perfectionist from 'eslint-plugin-perfectionist';
 
 export default antfu({
 	plugins: {
 		'@stylistic': stylistic,
+		perfectionist,
 	},
 
 	rules: {
@@ -16,7 +18,7 @@ export default antfu({
 		'@stylistic/indent': ['error', 'tab'],
 		'@stylistic/indent-binary-ops': ['error', 'tab'],
 		'@stylistic/jsx-indent-props': ['error', 'tab'],
-		'@stylistic/jsx-indent': ['error', 'tab'],
+		'@stylistic/jsx-curly-spacing': ['error', { when: 'always', children: true, spacing: { objectLiterals: 'never' } }],
 		'@stylistic/no-tabs': ['error', { allowIndentationTabs: true }],
 		'@stylistic/semi': ['error', 'always'],
 		'@stylistic/member-delimiter-style': ['error', {
@@ -26,13 +28,17 @@ export default antfu({
 			},
 			singleline: {
 				delimiter: 'comma',
-				requireLast: true,
+				requireLast: false,
 			},
 			overrides: {
 				interface: {
 					multiline: {
 						delimiter: 'semi',
 						requireLast: true,
+					},
+					singleline: {
+						delimiter: 'semi',
+						requireLast: false,
 					},
 				},
 			},
