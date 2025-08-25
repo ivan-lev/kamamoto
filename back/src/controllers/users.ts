@@ -1,4 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
+import type { Error } from 'mongoose';
+import type { UserDocument } from '../models/user';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET, NODE_ENV } from '../config';
 import { NotFoundError } from '../errors/not-found-error';
@@ -10,7 +12,7 @@ export function login(req: Request, res: Response, next: NextFunction): void {
 	const { email, password } = req.body;
 
 	return User.findUserByCredentials(email as string, password as string)
-		.then((user: any) => {
+		.then((user: UserDocument) => {
 			const token = jwt.sign(
 				{ _id: user._id },
 				NODE_ENV === 'production' ? JWT_SECRET : 'default-key',
@@ -18,7 +20,7 @@ export function login(req: Request, res: Response, next: NextFunction): void {
 			);
 			res.send({ token });
 		})
-		.catch((error: any) => { next(error); });
+		.catch((error: Error) => { next(error); });
 }
 
 export function checkToken(req: any, res: Response, next: NextFunction): void {

@@ -1,9 +1,18 @@
+import type { Document, Model } from 'mongoose';
+import type { User } from '../types/user';
 import bcrypt from 'bcryptjs';
 import { model, Schema } from 'mongoose';
 import { isEmail } from 'validator';
 
 import { AuthorizationError } from '../errors/authorization-error';
 import { ERROR_MESSAGES } from '../variables/messages';
+
+export interface UserDocument extends User, Document {
+}
+
+interface UserModel extends Model<UserDocument> {
+	findUserByCredentials: (email: string, password: string) => any;
+}
 
 const userSchema = new Schema(
 	{
@@ -51,22 +60,4 @@ const userSchema = new Schema(
 	},
 );
 
-// userSchema.statics.findUserByCredentials = function (email, password) {
-//   return this.findOne({ email })
-//     .select("+password")
-//     .then((user: any) => {
-//       if (!user) {
-//         throw new AuthorizationError(ERROR_MESSAGES.USER_WRONG_CREDENTIALS);
-//       }
-//       return bcrypt
-//         .compare(password, user.password)
-//         .then((matched: boolean) => {
-//           if (!matched) {
-//             throw new AuthorizationError(ERROR_MESSAGES.USER_WRONG_CREDENTIALS);
-//           }
-//           return user;
-//         });
-//     });
-// };
-
-export default model('user', userSchema);
+export default model<UserDocument, UserModel>('user', userSchema);
