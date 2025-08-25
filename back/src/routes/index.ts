@@ -7,6 +7,7 @@ import { ERROR_MESSAGES } from '../variables/messages';
 
 import categoryRouter from './categories';
 import ceramicStylesRouter from './ceramicStyles';
+import complectationRouter from './complectation';
 import exhibitionRouter from './exhibitions';
 import exhibitRouter from './exhibits';
 import lettersRouter from './letters';
@@ -27,6 +28,7 @@ routes.use('/statistics', statisticsRouter);
 routes.use('/partners', partnerRouter);
 routes.use('/letters', lettersRouter);
 routes.use('/files', lettersRouter);
+routes.use('/complectation', complectationRouter);
 routes.all('*splat', (req, res, next) => {
 	return next(new NotFoundError(ERROR_MESSAGES.PAGE_NOT_FOUND));
 });

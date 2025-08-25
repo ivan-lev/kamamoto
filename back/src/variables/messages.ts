@@ -8,6 +8,11 @@ export const ERROR_MESSAGES = Object.freeze({
 	CATEGORY_NOT_FOUND: 'Категория с таким названием не найдена',
 	CATEGORY_EXISTS: 'Категория с таким названием или путём уже существует',
 
+	COMPLECTATION_WRONG_DATA: 'При сохранении варианта комплектации переданы невалидные данные',
+	COMPLECTATION_WRONG_ID: 'Передано некорректное поле name варианта комплектации',
+	COMPLECTATION_NOT_FOUND: 'Аариант комплектации с таким полем name не найден',
+	COMPLECTATION_EXISTS: 'Лот с таким полем name уже существует',
+
 	EXHIBIT_WRONG_DATA: 'При сохранении лота переданы невалидные данные',
 	EXHIBIT_WRONG_ID: 'Передан некорректный id лота для удаления',
 	EXHIBIT_NOT_FOUND: 'Лот с таким id не найден',

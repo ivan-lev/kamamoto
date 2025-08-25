@@ -6,6 +6,7 @@ export const PATHS = Object.freeze({
 	BASE_API_URL,
 	CATEGORIES: 'categories',
 	CERAMIC_STYLES: 'ceramic-styles',
+	COMPLECTATION: 'complectation',
 	EXHIBIT: 'exhibits',
 	EXHIBITS: 'exhibits',
 	EXHIBITIONS: 'exhibitions',

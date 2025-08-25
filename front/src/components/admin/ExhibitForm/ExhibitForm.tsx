@@ -2,12 +2,14 @@ import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ComplectationItem from '@/components/admin/ComplectationItem/ComplectationItem';
 import Button from '@/components/shared/buttons/Button';
 import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
 import DeleteButton from '@/components/shared/buttons/DeleteButton';
 import Tag from '@/components/Tag/Tag';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
+import { setComplectations } from '@/slices/admin/complectations';
 import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
 import { api } from '@/utils/api/api';
 
@@ -24,6 +26,7 @@ export default function ExhibitForm() {
 	const isExistingExhibitEdited = useSelector((state: RootState) => state.exhibits.isExistingExhibitEdited);
 	const categories = useSelector((state: RootState) => state.categories.categories);
 	const styles = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
+	const complectations = useSelector((state: RootState) => state.complectations.complectations);
 
 	function handleCreateExhibit() {
 		setIsFormDisabled(true);
@@ -141,10 +144,18 @@ export default function ExhibitForm() {
 				})
 				.catch(error => console.error(error));
 		}
+
+		if (complectations.length === 0) {
+			api.complectation.getCompleactions()
+				.then((complectations) => {
+					dispatch(setComplectations(complectations));
+				})
+				.catch(error => console.error(error));
+		}
 	}, []);
 
 	return (
-		<form className="form" inert={isFormDisabled}>
+		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
 				<legend>Добавить лот</legend>
 
@@ -156,8 +167,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="id"
 							placeholder="id"
-							value={exhibitToEdit.id}
-							onChange={handleChange}
+							value={ exhibitToEdit.id }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -167,10 +178,10 @@ export default function ExhibitForm() {
 						<select
 							className="select"
 							name="style"
-							value={exhibitToEdit.style?.name}
-							onChange={event => handleSelectStyleChange(event)}
+							value={ exhibitToEdit.style?.name }
+							onChange={ event => handleSelectStyleChange(event) }
 						>
-							{styles.map(style => <option key={style.name} value={style.name}>{style.title}</option>)}
+							{ styles.map(style => <option key={ style.name } value={ style.name }>{ style.title }</option>) }
 						</select>
 					</div>
 
@@ -180,10 +191,10 @@ export default function ExhibitForm() {
 						<select
 							className="select"
 							name="category"
-							value={exhibitToEdit.category.name}
-							onChange={event => handleSelectChange(event)}
+							value={ exhibitToEdit.category.name }
+							onChange={ event => handleSelectChange(event) }
 						>
-							{categories.map(category => <option key={category.name} value={category.name}>{category.title}</option>)}
+							{ categories.map(category => <option key={ category.name } value={ category.name }>{ category.title }</option>) }
 						</select>
 					</div>
 
@@ -194,8 +205,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="age"
 							placeholder="даты"
-							value={exhibitToEdit.age}
-							onChange={handleChange}
+							value={ exhibitToEdit.age }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -206,8 +217,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="name"
 							placeholder="название"
-							value={exhibitToEdit.name}
-							onChange={handleChange}
+							value={ exhibitToEdit.name }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -218,20 +229,20 @@ export default function ExhibitForm() {
 							type="text"
 							name="thumbnail"
 							placeholder="тхумб"
-							value={exhibitToEdit.thumbnail}
-							onChange={handleChange}
+							value={ exhibitToEdit.thumbnail }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-1">
 						<span>актив</span>
-						<label className={`checkbox-label ${exhibitToEdit.isActive ? 'checkbox-label--checked' : ''} `}>
+						<label className={ `checkbox-label ${exhibitToEdit.isActive ? 'checkbox-label--checked' : ''} ` }>
 							<input
 								className="checkbox-input"
 								type="checkbox"
-								checked={exhibitToEdit.isActive}
+								checked={ exhibitToEdit.isActive }
 								name="isActive"
-								onChange={handleCheckBox}
+								onChange={ handleCheckBox }
 							/>
 						</label>
 					</div>
@@ -243,11 +254,11 @@ export default function ExhibitForm() {
 							type="text"
 							name="images"
 							placeholder="фотографии"
-							value={photoName}
-							onChange={handleChangePhotos}
+							value={ photoName }
+							onChange={ handleChangePhotos }
 						/>
 						<div className="tags">
-							{ exhibitToEdit?.images?.map(image => <Tag key={image} title={image} action={() => handleDeletePhoto(image)} />) }
+							{ exhibitToEdit?.images?.map(image => <Tag key={ image } title={ image } action={ () => handleDeletePhoto(image) } />) }
 						</div>
 					</div>
 
@@ -257,8 +268,8 @@ export default function ExhibitForm() {
 							className="textarea"
 							name="description"
 							placeholder="описание лота"
-							value={exhibitToEdit.description}
-							onChange={handleChange}
+							value={ exhibitToEdit.description }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -269,8 +280,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="potterName"
 							placeholder="имя мастера"
-							value={exhibitToEdit.potterName}
-							onChange={handleChange}
+							value={ exhibitToEdit.potterName }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -281,8 +292,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="potterLifeDates"
 							placeholder="годы жизни"
-							value={exhibitToEdit.potterLifeDates}
-							onChange={handleChange}
+							value={ exhibitToEdit.potterLifeDates }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -293,8 +304,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="potterJapaneseName"
 							placeholder="имя мастера на японском"
-							value={exhibitToEdit.potterJapaneseName}
-							onChange={handleChange}
+							value={ exhibitToEdit.potterJapaneseName }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -305,8 +316,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="potterPhoto"
 							placeholder="фото мастера"
-							value={exhibitToEdit.potterPhoto}
-							onChange={handleChange}
+							value={ exhibitToEdit.potterPhoto }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -316,8 +327,8 @@ export default function ExhibitForm() {
 							className="textarea"
 							name="potterInfo"
 							placeholder="информация о мастере"
-							value={exhibitToEdit.potterInfo}
-							onChange={handleChange}
+							value={ exhibitToEdit.potterInfo }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -327,8 +338,8 @@ export default function ExhibitForm() {
 							className="textarea"
 							name="additionalDescription"
 							placeholder="дополнительная информация"
-							value={exhibitToEdit.additionalDescription}
-							onChange={handleChange}
+							value={ exhibitToEdit.additionalDescription }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -339,8 +350,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="additionalImages"
 							placeholder="названия через запятую без пробелов с расширением"
-							value={exhibitToEdit.additionalImages}
-							onChange={handleChangePhotos}
+							value={ exhibitToEdit.additionalImages }
+							onChange={ handleChangePhotos }
 						/>
 					</div>
 
@@ -351,8 +362,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="height"
 							placeholder="см"
-							value={exhibitToEdit.height}
-							onChange={handleChange}
+							value={ exhibitToEdit.height }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -363,8 +374,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="length"
 							placeholder="см"
-							value={exhibitToEdit.length}
-							onChange={handleChange}
+							value={ exhibitToEdit.length }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -375,8 +386,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="width"
 							placeholder="см"
-							value={exhibitToEdit.width}
-							onChange={handleChange}
+							value={ exhibitToEdit.width }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -387,8 +398,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="weight"
 							placeholder="г"
-							value={exhibitToEdit.weight}
-							onChange={handleChange}
+							value={ exhibitToEdit.weight }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -399,8 +410,8 @@ export default function ExhibitForm() {
 							type="text"
 							name="weightOfSet"
 							placeholder="г"
-							value={exhibitToEdit.weightOfSet}
-							onChange={handleChange}
+							value={ exhibitToEdit.weightOfSet }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -411,9 +422,11 @@ export default function ExhibitForm() {
 							type="text"
 							name="complectation"
 							placeholder="комплектность"
-							value={exhibitToEdit.complectation}
-							onChange={handleChange}
+							value={ exhibitToEdit.complectation }
+							onChange={ handleChange }
 						/>
+						{ exhibitToEdit.complectation?.map(name => <ComplectationItem name={ name } />) }
+						{ complectations.map(complectation => <span>{ complectation.title }</span>) }
 					</div>
 
 					<div className="form__row form__row-12">
@@ -423,40 +436,40 @@ export default function ExhibitForm() {
 							type="text"
 							name="preservation"
 							placeholder="сохранность"
-							value={exhibitToEdit.preservation}
-							onChange={handleChange}
+							value={ exhibitToEdit.preservation }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
-						{!isExistingExhibitEdited && (
+						{ !isExistingExhibitEdited && (
 							<>
-								<Button title="Очистить" action={() => dispatch(clearExhibitForm())} />
-								<ConfirmButton title="Создать" action={handleCreateExhibit} />
+								<Button title="Очистить" action={ () => dispatch(clearExhibitForm()) } />
+								<ConfirmButton title="Создать" action={ handleCreateExhibit } />
 							</>
-						)}
+						) }
 
 						{ isExistingExhibitEdited && (
 							<>
 								{ showConfirmation && (
 									<div className="form__confirmation">
 										<span>Точно удалить запись?</span>
-										<DeleteButton title="Да" action={handleDeleteExhibit} />
-										<Button title="Нет" action={() => setShowConfirmation(false)} />
+										<DeleteButton title="Да" action={ handleDeleteExhibit } />
+										<Button title="Нет" action={ () => setShowConfirmation(false) } />
 									</div>
-								)}
-								{!showConfirmation && (
+								) }
+								{ !showConfirmation && (
 									<>
-										<Button title="Сохранить" action={handleUpdateExhibit} />
-										<Button title="Удалить" action={() => setShowConfirmation(true)} />
+										<Button title="Сохранить" action={ handleUpdateExhibit } />
+										<Button title="Удалить" action={ () => setShowConfirmation(true) } />
 									</>
-								)}
+								) }
 							</>
-						)}
+						) }
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__submit-status">{saveMessage}</span>
+			<span className="form__submit-status">{ saveMessage }</span>
 		</form>
 	);
 }

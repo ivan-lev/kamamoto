@@ -5,6 +5,7 @@ import About from '@/components/About/About';
 import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
 import AdminCeramicStyles from '@/components/admin/CeramicStyles/CeramicStyles';
+import Complectation from '@/components/admin/Complectation/Complectation';
 import AdminExhibitions from '@/components/admin/Exbitions/Exhibitions';
 import ExhibitsList from '@/components/admin/ExhibitsList/ExhibitsList';
 import Filters from '@/components/admin/Filters/Filters';
@@ -43,62 +44,63 @@ export default function App() {
 			<Routes>
 				<Route
 					path="/"
-					element={(
+					element={ (
 						<>
 							<Header />
 							<Main />
 							<Footer />
 							<ScrollToTopButton />
 						</>
-					)}
+					) }
 				>
-					<Route index element={<HomePage isFirstRender={isFirstRender} setIsFirstRender={setIsFirstRender} />} />
-					<Route path="about/" element={<About />} />
-					<Route path="collection/" element={<Collection />} />
-					<Route path="collection/:category/" element={<Category />} />
-					<Route path="collection/:category/:exhibit" element={<ExhibitView />} />
-					<Route path="exhibitions/" element={<Exhibitions />} />
-					<Route path="exhibitions/:exhId" element={<Exhibition />} />
-					<Route path="contacts/" element={<Contacts />} />
-					<Route path="downloads/" element={<Files title="Файлы для скачивания" files={files} />} />
-					<Route path="documents/" element={<Files title="Шаблоны документов" files={documents} />} />
-					<Route path="thanksletters/" element={<ThanksLetters />} />
-					<Route path="benefactors/" element={<Benefactors />} />
-					<Route path="404" element={<NotFound />} />
-					<Route path="*" element={<Navigate to="/404" />} />
+					<Route index element={ <HomePage isFirstRender={ isFirstRender } setIsFirstRender={ setIsFirstRender } /> } />
+					<Route path="about/" element={ <About /> } />
+					<Route path="collection/" element={ <Collection /> } />
+					<Route path="collection/:category/" element={ <Category /> } />
+					<Route path="collection/:category/:exhibit" element={ <ExhibitView /> } />
+					<Route path="exhibitions/" element={ <Exhibitions /> } />
+					<Route path="exhibitions/:exhId" element={ <Exhibition /> } />
+					<Route path="contacts/" element={ <Contacts /> } />
+					<Route path="downloads/" element={ <Files title="Файлы для скачивания" files={ files } /> } />
+					<Route path="documents/" element={ <Files title="Шаблоны документов" files={ documents } /> } />
+					<Route path="thanksletters/" element={ <ThanksLetters /> } />
+					<Route path="benefactors/" element={ <Benefactors /> } />
+					<Route path="404" element={ <NotFound /> } />
+					<Route path="*" element={ <Navigate to="/404" /> } />
 				</Route>
 
 				<Route
 					path="login/"
-					element={(
-						<Provider store={adminStore}>
+					element={ (
+						<Provider store={ adminStore }>
 							<Login />
 						</Provider>
-					)}
+					) }
 				/>
 				<Route
 					path="admin/"
-					element={(
-						<Provider store={adminStore}>
+					element={ (
+						<Provider store={ adminStore }>
 							<Admin />
 						</Provider>
-					)}
+					) }
 				>
-					<Route index element={<AdminStatistics />} />
+					<Route index element={ <AdminStatistics /> } />
 					<Route
 						path="exhibits/"
-						element={(
+						element={ (
 							<>
 								<Filters />
 								<ExhibitsList />
 							</>
-						)}
+						) }
 					/>
-					<Route path="exhibitions/" element={<AdminExhibitions />} />
-					<Route path="partners/" element={<AdminPartners />} />
-					<Route path="categories/" element={<AdminCategories />} />
-					<Route path="letters/" element={<AdminLetters />} />
-					<Route path="ceramic-styles/" element={<AdminCeramicStyles />} />
+					<Route path="exhibitions/" element={ <AdminExhibitions /> } />
+					<Route path="partners/" element={ <AdminPartners /> } />
+					<Route path="categories/" element={ <AdminCategories /> } />
+					<Route path="letters/" element={ <AdminLetters /> } />
+					<Route path="ceramic-styles/" element={ <AdminCeramicStyles /> } />
+					<Route path="complectation/" element={ <Complectation /> } />
 				</Route>
 			</Routes>
 		</>

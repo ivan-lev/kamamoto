@@ -116,7 +116,7 @@ const exhibitSchema = new Schema<Exhibit>(
 		footDiameter: { type: Number },
 		volume: { type: Number },
 		weightOfSet: { type: Number },
-		complectation: { type: String },
+		complectation: { type: [String] },
 		preservation: { type: String },
 
 		isActive: { type: Boolean, default: false },

@@ -1,5 +1,4 @@
 import type { CeramicStyle } from '@/types/ceramicStyles';
-import type { ExhibitComplectation } from '@/types/exhibitComplectationType';
 
 export interface Exhibit {
 	id: number;
@@ -9,7 +8,7 @@ export interface Exhibit {
 	potterName?: string;
 	potterJapaneseName?: string;
 	potterLifeDates?: string;
-	category: { name: string; title: string };
+	category: { name: string, title: string };
 	style?: CeramicStyle;
 	images: string[];
 	description?: string;
@@ -29,7 +28,7 @@ export interface Exhibit {
 	weight?: number;
 	volume?: number;
 	weightOfSet?: number;
-	complectation?: ExhibitComplectation[];
+	complectation?: string[];
 	preservation?: string;
 
 	isActive: boolean;
