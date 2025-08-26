@@ -21,60 +21,60 @@ export default function Statistics() {
 
 	return showPreloader
 		? (
-				<Preloader />
-			)
+			<Preloader />
+		)
 		: (
-				<div className="statistics">
-					<h2 className="title3">Статистика</h2>
-					<div className="statistics__grid">
-						<div className="statistics__dashboard-element">
-							<img
-								className="statistics__element-icon"
-								src="/icons/exhibitions.svg"
-								alt="иконка"
-							/>
-							<span className="statistics__element-title">
-								Выставки:&nbsp;
-								{statistics.exhibitions}
-							</span>
-						</div>
+			<div className="statistics">
+				<h2 className="title3">Статистика</h2>
+				<div className="statistics__grid">
+					<div className="statistics__dashboard-element">
+						<img
+							className="statistics__element-icon"
+							src="/icons/exhibitions.svg"
+							alt="иконка"
+						/>
+						<span className="statistics__element-title">
+							Выставки:&nbsp;
+							{ statistics.exhibitions }
+						</span>
+					</div>
 
-						<div className="statistics__dashboard-element">
-							<img className="statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
-							<span className="statistics__element-title">
-								Экспонаты:&nbsp;
-								{statistics.exhibits}
-							</span>
-						</div>
+					<div className="statistics__dashboard-element">
+						<img className="statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
+						<span className="statistics__element-title">
+							Экспонаты:&nbsp;
+							{ statistics.exhibits }
+						</span>
+					</div>
 
-						<div className="statistics__dashboard-element">
-							<img
-								className="statistics__element-icon"
-								src="/icons/categories.svg"
-								alt="иконка"
-							/>
-							<span className="statistics__element-title">
-								Категории:&nbsp;
-								{statistics.categories}
-							</span>
-						</div>
+					<div className="statistics__dashboard-element">
+						<img
+							className="statistics__element-icon"
+							src="/icons/categories.svg"
+							alt="иконка"
+						/>
+						<span className="statistics__element-title">
+							Категории:&nbsp;
+							{ statistics.categories }
+						</span>
+					</div>
 
-						<div className="statistics__dashboard-element">
-							<img className="statistics__element-icon" src="/icons/partners.svg" alt="иконка" />
-							<span className="statistics__element-title">
-								Партнёры:&nbsp;
-								{statistics.partners}
-							</span>
-						</div>
+					<div className="statistics__dashboard-element">
+						<img className="statistics__element-icon" src="/icons/partners.svg" alt="иконка" />
+						<span className="statistics__element-title">
+							Партнёры:&nbsp;
+							{ statistics.partners }
+						</span>
+					</div>
 
-						<div className="statistics__dashboard-element">
-							<img className="statistics__element-icon" src="/icons/letter.svg" alt="иконка" />
-							<span className="statistics__element-title">
-								Письма:&nbsp;
-								{statistics.letters}
-							</span>
-						</div>
+					<div className="statistics__dashboard-element">
+						<img className="statistics__element-icon" src="/icons/letter.svg" alt="иконка" />
+						<span className="statistics__element-title">
+							Письма:&nbsp;
+							{ statistics.letters }
+						</span>
 					</div>
 				</div>
-			);
+			</div>
+		);
 }

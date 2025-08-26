@@ -102,10 +102,10 @@ export default function CategoryForm({ closeModal }: Props) {
 	}, [saveMessage]);
 
 	return (
-		<form className="form" inert={isFormDisabled}>
+		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
 				<legend className="form__legend">
-					{!isExistingCategoryEdited ? 'Добавить категорию' : 'Редактировать категорию'}
+					{ !isExistingCategoryEdited ? 'Добавить категорию' : 'Редактировать категорию' }
 				</legend>
 
 				<div className="form__grid">
@@ -116,8 +116,8 @@ export default function CategoryForm({ closeModal }: Props) {
 							type="text"
 							name="title"
 							placeholder="по-русски"
-							value={title}
-							onChange={handleChange}
+							value={ title }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -128,8 +128,8 @@ export default function CategoryForm({ closeModal }: Props) {
 							type="text"
 							name="category"
 							placeholder="по-английски"
-							value={name}
-							onChange={handleChange}
+							value={ name }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -140,40 +140,40 @@ export default function CategoryForm({ closeModal }: Props) {
 							type="text"
 							name="thumbnail"
 							placeholder="в галерею"
-							value={thumbnail}
-							onChange={handleChange}
+							value={ thumbnail }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
-						{!isExistingCategoryEdited
+						{ !isExistingCategoryEdited
 							? (
-									<>
-										<Button title="Очистить" action={() => dispatch(clearCategoryForm())} />
-										<ConfirmButton title="Добавить" action={handleCreateCategory} />
-									</>
-								)
+								<>
+									<Button title="Очистить" action={ () => dispatch(clearCategoryForm()) } />
+									<ConfirmButton title="Добавить" action={ handleCreateCategory } />
+								</>
+							)
 							: (
-									<>
-										{ showConfirmation && (
-											<div className="form__confirmation">
-												<span>Точно удалить запись?</span>
-												<DeleteButton title="Да" action={handleDeleteCategory} />
-												<Button title="Нет" action={() => setShowConfirmation(false)} />
-											</div>
-										)}
-										{!showConfirmation && (
-											<>
-												<ConfirmButton title="Сохранить" action={handleUpdateCategory} />
-												<Button title="Удалить" action={() => setShowConfirmation(true)} />
-											</>
-										)}
-									</>
-								)}
+								<>
+									{ showConfirmation && (
+										<div className="form__confirmation">
+											<span>Точно удалить запись?</span>
+											<DeleteButton title="Да" action={ handleDeleteCategory } />
+											<Button title="Нет" action={ () => setShowConfirmation(false) } />
+										</div>
+									) }
+									{ !showConfirmation && (
+										<>
+											<ConfirmButton title="Сохранить" action={ handleUpdateCategory } />
+											<Button title="Удалить" action={ () => setShowConfirmation(true) } />
+										</>
+									) }
+								</>
+							) }
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__save-status">{saveMessage}</span>
+			<span className="form__save-status">{ saveMessage }</span>
 		</form>
 	);
 }

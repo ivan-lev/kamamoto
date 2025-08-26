@@ -16,16 +16,16 @@ export default function Files({ title, files }: Props) {
 
 	return (
 		<>
-			<Seo title={`Камамото: ${title.charAt(0).toLowerCase()}${title.slice(1)}`} />
+			<Seo title={ `Камамото: ${title.charAt(0).toLowerCase()}${title.slice(1)}` } />
 
 			<section className="section page-top">
-				<h2 className="title title2">{title}</h2>
+				<h2 className="title title2">{ title }</h2>
 			</section>
 			<section className="section files">
 				<div className="container files__list">
-					{files.map((file) => {
-						return <File key={file.id} file={file} />;
-					})}
+					{ files.map((file) => {
+						return <File key={ file.id } file={ file } />;
+					}) }
 				</div>
 			</section>
 		</>

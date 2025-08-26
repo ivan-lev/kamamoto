@@ -128,7 +128,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 	}, [saveMessage]);
 
 	return (
-		<form className="form" inert={isFormDisabled}>
+		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
 				<legend>Добавить выставку</legend>
 
@@ -140,8 +140,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="id"
 							placeholder="id"
-							value={id}
-							onChange={handleChange}
+							value={ id }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -152,8 +152,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="year"
 							placeholder="год"
-							value={year}
-							onChange={handleChange}
+							value={ year }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -164,8 +164,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="dates"
 							placeholder="даты"
-							value={dates}
-							onChange={handleChange}
+							value={ dates }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -176,8 +176,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="name"
 							placeholder="название выставки"
-							value={name}
-							onChange={handleChange}
+							value={ name }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -188,8 +188,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="city"
 							placeholder="город"
-							value={city}
-							onChange={handleChange}
+							value={ city }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -200,8 +200,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="address"
 							placeholder="адрес"
-							value={address}
-							onChange={handleChange}
+							value={ address }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -212,8 +212,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="place"
 							placeholder="место проведения"
-							value={place}
-							onChange={handleChange}
+							value={ place }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -223,8 +223,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							className="textarea"
 							name="curators"
 							placeholder="кураторы"
-							value={curators}
-							onChange={handleChange}
+							value={ curators }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -234,8 +234,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							className="textarea"
 							name="organisators"
 							placeholder="организаторы"
-							value={organisators}
-							onChange={handleChange}
+							value={ organisators }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -245,8 +245,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							className="textarea"
 							name="description"
 							placeholder="описание"
-							value={description}
-							onChange={handleChange}
+							value={ description }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -257,8 +257,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="photos"
 							placeholder="фотографии"
-							value={photos}
-							onChange={handleChangePhotos}
+							value={ photos }
+							onChange={ handleChangePhotos }
 						/>
 					</div>
 
@@ -269,8 +269,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="link"
 							placeholder="ссылка"
-							value={link || ''}
-							onChange={handleChange}
+							value={ link || '' }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -281,54 +281,54 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							type="text"
 							name="poster"
 							placeholder="афиша"
-							value={poster}
-							onChange={handleChange}
+							value={ poster }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-1">
 						<span>актив</span>
-						<label className={`checkbox-label ${isActive ? 'checkbox-label--checked' : ''} `}>
+						<label className={ `checkbox-label ${isActive ? 'checkbox-label--checked' : ''} ` }>
 							<input
 								className="checkbox-input"
 								type="checkbox"
-								checked={isActive}
+								checked={ isActive }
 								name="isActive"
-								onChange={handleCheckBox}
+								onChange={ handleCheckBox }
 							/>
 						</label>
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
-						{!isExistingExhibitionEdited
+						{ !isExistingExhibitionEdited
 							? (
-									<>
-										<Button title="Очистить" action={() => dispatch(clearExhibitionForm())} />
-										<ConfirmButton title="Создать" action={handleCreateExhibition} />
-									</>
-								)
+								<>
+									<Button title="Очистить" action={ () => dispatch(clearExhibitionForm()) } />
+									<ConfirmButton title="Создать" action={ handleCreateExhibition } />
+								</>
+							)
 							: (
-									<>
-										{ showConfirmation && (
-											<div className="form__confirmation">
-												<span>Точно удалить запись?</span>
-												<DeleteButton title="Да" action={handleDeleteExhibition} />
-												<Button title="Нет" action={() => setShowConfirmation(false)} />
-											</div>
-										)}
-										{!showConfirmation && (
-											<>
-												<ConfirmButton title="Сохранить" action={handleUpdateExhibition} />
-												<Button title="Удалить запись" action={() => setShowConfirmation(true)} />
-											</>
-										)}
+								<>
+									{ showConfirmation && (
+										<div className="form__confirmation">
+											<span>Точно удалить запись?</span>
+											<DeleteButton title="Да" action={ handleDeleteExhibition } />
+											<Button title="Нет" action={ () => setShowConfirmation(false) } />
+										</div>
+									) }
+									{ !showConfirmation && (
+										<>
+											<ConfirmButton title="Сохранить" action={ handleUpdateExhibition } />
+											<Button title="Удалить запись" action={ () => setShowConfirmation(true) } />
+										</>
+									) }
 
-									</>
-								)}
+								</>
+							) }
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__submit-status">{saveMessage}</span>
+			<span className="form__submit-status">{ saveMessage }</span>
 		</form>
 
 	);

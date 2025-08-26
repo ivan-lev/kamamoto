@@ -6,8 +6,8 @@ interface Props {
 export default function Tag({ title, action }: Props) {
 	return (
 		<div className="tag">
-			<span className="tag__title">{title}</span>
-			{action && <div className="tag__action" onClick={action}></div>}
+			<span className="tag__title">{ title }</span>
+			{ action && <div className="tag__action" onClick={ action }></div> }
 		</div>
 	);
 }

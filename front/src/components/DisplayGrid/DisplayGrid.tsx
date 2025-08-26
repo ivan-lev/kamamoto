@@ -9,15 +9,15 @@ export default function DisplayGrid() {
 	return (
 		<div className="display-grid">
 			<ul className="display-grid__list">
-				{displayList.length !== 0
+				{ displayList.length !== 0
 					&& displayList.map((item, index) => {
 						const { link, title, thumbnail } = item; ;
 						return (
-							<li className="display-grid__element" key={index}>
-								<Card link={link} name={title} image={thumbnail} />
+							<li className="display-grid__element" key={ index }>
+								<Card link={ link } name={ title } image={ thumbnail } />
 							</li>
 						);
-					})}
+					}) }
 			</ul>
 		</div>
 	);

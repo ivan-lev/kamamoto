@@ -19,14 +19,14 @@ export default function QR() {
 
 	const svgComponent = (
 		<QRCodeSVG
-			value={link}
-			size={150}
+			value={ link }
+			size={ 150 }
 			bgColor="#ffffffdd"
 			fgColor="#000000cc"
-			title={`Камамото: qr-ссылка для лота ${exhibit}`}
-			minVersion={5}
-			marginSize={2}
-			imageSettings={imageSettings}
+			title={ `Камамото: qr-ссылка для лота ${exhibit}` }
+			minVersion={ 5 }
+			marginSize={ 2 }
+			imageSettings={ imageSettings }
 			xmlns="http://www.w3.org/2000/svg"
 		/>
 	);
@@ -51,7 +51,7 @@ export default function QR() {
 
 	return (
 		<div className="qr">
-			<a className="qr__link" onClick={handleDownload}>
+			<a className="qr__link" onClick={ handleDownload }>
 				{ svgComponent }
 			</a>
 		</div>

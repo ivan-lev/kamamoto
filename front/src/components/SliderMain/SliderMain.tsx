@@ -11,14 +11,14 @@ export default function SliderMain({ slides }: Props) {
 	return (
 		<section className="section slider">
 			<Swiper
-				modules={[Autoplay, Pagination]}
-				speed={1000}
+				modules={ [Autoplay, Pagination] }
+				speed={ 1000 }
 				autoplay={{ delay: 3000 }}
 				pagination={{ clickable: true }}
-				slidesPerView={1}
-				spaceBetween={0}
+				slidesPerView={ 1 }
+				spaceBetween={ 0 }
 			>
-				{slides.map(slide => <SwiperSlide><img className="slider__img" src={slide}></img></SwiperSlide>)}
+				{ slides.map(slide => <SwiperSlide><img className="slider__img" src={ slide }></img></SwiperSlide>) }
 			</Swiper>
 		</section>
 	);

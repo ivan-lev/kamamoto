@@ -5,9 +5,9 @@ export default function ConfirmButton({ title, action }: ButtonProps) {
 		<button
 			className="button button--type-confirm"
 			type="button"
-			onClick={action}
+			onClick={ action }
 		>
-			{title}
+			{ title }
 		</button>
 	);
 }

@@ -64,7 +64,7 @@ export default function About() {
 						<p className="text text--muted">Ниже блок ссылок на мои персональные страницы.</p>
 					</div>
 
-					<SocialLinks links={personalSocialLinks} additionalClassNames="about__links" />
+					<SocialLinks links={ personalSocialLinks } additionalClassNames="about__links" />
 				</div>
 			</section>
 		</>

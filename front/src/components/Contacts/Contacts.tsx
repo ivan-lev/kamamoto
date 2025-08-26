@@ -72,50 +72,50 @@ export default function Contacts() {
 			</p>
 			<section className="section contacts">
 
-				<SocialLinks links={socialLinks} additionalClassNames="contacts__links" />
+				<SocialLinks links={ socialLinks } additionalClassNames="contacts__links" />
 
 				<p className="text text--muted">
 					Также можно заполнить форму ниже, я получу оповещение и свяжусь с вами:
 				</p>
 
-				<form className="container contacts__form" onSubmit={sendEmail}>
-					<fieldset className="contacts__fieldset" disabled={isMessageSending}>
+				<form className="container contacts__form" onSubmit={ sendEmail }>
+					<fieldset className="contacts__fieldset" disabled={ isMessageSending }>
 						<input
-							className={`input ${
+							className={ `input ${
 								isMessageSending ? 'input_disabled' : ''
-							}`}
+							}` }
 							placeholder="Имя"
 							name="name"
-							value={name}
+							value={ name }
 							type="text"
 							required
-							onChange={handleChange}
-							minLength={3}
-							maxLength={40}
+							onChange={ handleChange }
+							minLength={ 3 }
+							maxLength={ 40 }
 						>
 						</input>
 						<input
-							className={`input ${
+							className={ `input ${
 								isMessageSending ? 'input_disabled' : ''
-							}`}
+							}` }
 							placeholder="Почта"
 							name="email"
-							value={email}
+							value={ email }
 							type="email"
 							required
-							onChange={handleChange}
+							onChange={ handleChange }
 						>
 						</input>
 						<textarea
-							className={`textarea input${
+							className={ `textarea input${
 								isMessageSending ? ' input_disabled' : ''
-							}`}
+							}` }
 							placeholder="Сообщение"
 							name="message"
-							value={message}
-							rows={5}
+							value={ message }
+							rows={ 5 }
 							required
-							onChange={handleChange}
+							onChange={ handleChange }
 						>
 						</textarea>
 
@@ -127,31 +127,31 @@ export default function Contacts() {
 							<input
 								className="contacts__agreement"
 								type="checkbox"
-								checked={!isButtonDisabled}
-								disabled={isMessageSending}
-								onChange={handleAgree}
+								checked={ !isButtonDisabled }
+								disabled={ isMessageSending }
+								onChange={ handleAgree }
 							>
 							</input>
 						</p>
 
 						<button
-							className={`button ${isMessageSending ? 'button--sending' : ''}
-            ${isButtonDisabled ? 'button--muted' : ''}`}
+							className={ `button ${isMessageSending ? 'button--sending' : ''}
+            ${isButtonDisabled ? 'button--muted' : ''}` }
 							type="submit"
 						>
 							Отправить
 						</button>
 
-						{showAlert && isSuccessSended && (
+						{ showAlert && isSuccessSended && (
 							<span className="contacts__submit-message contacts__submit-message_success ">
 								Сообщение отправлено
 							</span>
-						)}
-						{showAlert && !isSuccessSended && (
+						) }
+						{ showAlert && !isSuccessSended && (
 							<span className="contacts__submit-message contacts__submit-message_error">
 								Произошла ошибка
 							</span>
-						)}
+						) }
 					</fieldset>
 				</form>
 			</section>

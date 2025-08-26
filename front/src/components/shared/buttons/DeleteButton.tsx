@@ -5,9 +5,9 @@ export default function DeleteButton({ title, action }: ButtonProps) {
 		<button
 			className="button button--type-delete"
 			type="button"
-			onClick={action}
+			onClick={ action }
 		>
-			{title}
+			{ title }
 		</button>
 	);
 }

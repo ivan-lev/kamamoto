@@ -1,7 +1,7 @@
-import type { Exhibit } from '@/types/exhibitType';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { defaultExhibit } from '@/types/exhibitType';
+import type { Exhibit } from '@/types/exhibitType';
 import { createSlice } from '@reduxjs/toolkit';
+import { defaultExhibit } from '@/types/exhibitType';
 
 const initialState: Exhibit = defaultExhibit;
 

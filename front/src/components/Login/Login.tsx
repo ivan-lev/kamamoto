@@ -89,26 +89,26 @@ export default function Login() {
 					name="login__form"
 					className="container login__form"
 					autoComplete="off"
-					onSubmit={handleLogin}
+					onSubmit={ handleLogin }
 				>
 					<Logo />
-					<fieldset className="login__fieldset" disabled={isFormDisabled}>
+					<fieldset className="login__fieldset" disabled={ isFormDisabled }>
 						<div className="login__submit-block">
 							<label htmlFor="email" className="login__label">
 								Email
 							</label>
 							<input
-								className={`input ${
+								className={ `input ${
 									isMessageSending ? 'input_disabled' : ''
-								}`}
+								}` }
 								type="email"
 								name="email"
 								id="email"
 								placeholder="Введите email"
 								autoComplete="none"
 								required
-								value={email}
-								onChange={handleChange}
+								value={ email }
+								onChange={ handleChange }
 								autoFocus
 							/>
 						</div>
@@ -119,42 +119,42 @@ export default function Login() {
 							</label>
 							<div className="login__password-block">
 								<input
-									className={`login__password-input input ${
+									className={ `login__password-input input ${
 										isMessageSending ? 'input_disabled' : ''
-									}`}
-									type={!isPasswordShowed ? 'password' : 'text'}
+									}` }
+									type={ !isPasswordShowed ? 'password' : 'text' }
 									name="password"
 									id="password"
 									placeholder="Введите пароль"
 									autoComplete="none"
 									required
-									value={password}
-									onChange={handleChange}
+									value={ password }
+									onChange={ handleChange }
 								/>
 								<button
 									className="login__button_show-password"
 									type="button"
-									onClick={() => setIsPasswordShowed(!isPasswordShowed)}
+									onClick={ () => setIsPasswordShowed(!isPasswordShowed) }
 								>
-									{isPasswordShowed
+									{ isPasswordShowed
 										? (
 											<img className="login__button-img" src="/icons/eye-opened.svg"></img>
 										)
 										: (
 											<img className="login__button-img" src="/icons/eye-closed.svg"></img>
-										)}
+										) }
 								</button>
 							</div>
 						</div>
 
 						<div className="login__submit-block">
 							<button
-								className={`button login__button ${isMessageSending ? 'button--sending' : ''} ${isFormDisabled ? 'button--muted' : ''}`}
+								className={ `button login__button ${isMessageSending ? 'button--sending' : ''} ${isFormDisabled ? 'button--muted' : ''}` }
 								type="submit"
 							>
 								Войти
 							</button>
-							<span className="login__error-message">{loginError}</span>
+							<span className="login__error-message">{ loginError }</span>
 						</div>
 					</fieldset>
 				</form>

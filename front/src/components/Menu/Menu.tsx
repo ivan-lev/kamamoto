@@ -6,18 +6,18 @@ export default function Menu() {
 	return (
 		<nav className="menu">
 			<ul className="menu__list">
-				{menu.map((element) => {
+				{ menu.map((element) => {
 					return (
-						<li key={element.name}>
+						<li key={ element.name }>
 							<NavLink
-								className={({ isActive }) => `menu__link ${isActive ? 'menu__link_active' : ''}`}
-								to={element.link}
+								className={ ({ isActive }) => `menu__link ${isActive ? 'menu__link_active' : ''}` }
+								to={ element.link }
 							>
-								{element.name}
+								{ element.name }
 							</NavLink>
 						</li>
 					);
-				})}
+				}) }
 			</ul>
 		</nav>
 	);

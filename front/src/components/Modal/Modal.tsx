@@ -37,21 +37,21 @@ export default function Modal({ showModal, closeModal, children }: Props) {
 		<AnimatePresence>
 			{ showModal && (
 				<motion.div
-					initial={variants.hidden}
-					animate={variants.visible}
-					exit={variants.hidden}
-					transition={transitions.common}
+					initial={ variants.hidden }
+					animate={ variants.visible }
+					exit={ variants.hidden }
+					transition={ transitions.common }
 					key="modal"
 					className="modal"
 				>
-					<div className="modal__backdrop" onClick={handleCloseModal}></div>
+					<div className="modal__backdrop" onClick={ handleCloseModal }></div>
 
 					<div className="modal__content">
 						{ children }
-						<button className="button" onClick={handleCloseModal}>Закрыть окно</button>
+						<button className="button" onClick={ handleCloseModal }>Закрыть окно</button>
 					</div>
 				</motion.div>
-			)}
+			) }
 		</AnimatePresence>
 	);
 }

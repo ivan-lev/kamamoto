@@ -50,16 +50,16 @@ export default function Category() {
 
 	return (
 		<>
-			<Seo title={`Камамото: ${categoryName ? categoryName.toLowerCase() : 'японская керамика'}`} />
-			<PageTop title={categoryName} />
+			<Seo title={ `Камамото: ${categoryName ? categoryName.toLowerCase() : 'японская керамика'}` } />
+			<PageTop title={ categoryName } />
 			<section className="section category">
-				{listToDisplay.length === 0 && showPreloader
+				{ listToDisplay.length === 0 && showPreloader
 					? (
 						<Preloader />
 					)
 					: (
 						<DisplayGrid />
-					)}
+					) }
 			</section>
 		</>
 	);

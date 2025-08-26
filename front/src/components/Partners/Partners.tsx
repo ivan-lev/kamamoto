@@ -24,7 +24,7 @@ export default function Partners() {
 				<div className="container container--background-transparent partners">
 					<span className="partners__title">Организации-партнёры</span>
 					<div className="partners__grid">
-						{partnersList.map(partner => partner.isActive && <Partner key={partner._id} partner={partner} />)}
+						{ partnersList.map(partner => partner.isActive && <Partner key={ partner._id } partner={ partner } />) }
 					</div>
 				</div>
 			</section>

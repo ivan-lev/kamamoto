@@ -55,246 +55,172 @@ export default function Letters() {
 		dispatch(setPartnerToEdit({ ...partnerToEdit, [name]: checked }));
 	};
 
-	// const handleCreatePartner = () => {
-	// 	setIsFormDisabled(true);
-	// 	const token = localStorage.getItem('kmmttkn');
-	// 	if (token) {
-	// 		api
-	// 			.createPartner(token, title, link, logo, isActive)
-	// 			.then((response) => {
-	// 				dispatch(setLetters([...partners, response]));
-	// 				dispatch(clearPartnerForm());
-	// 				dispatch(setIsExistingPartnerEdited(false));
-	// 				setIsFormDisabled(false);
-	// 				setSaveMessage('Новый партнёр в базе');
-	// 			})
-	// 			.catch((error) => {
-	// 				console.error(error);
-	// 				setIsFormDisabled(false);
-	// 				setSaveMessage('Что-то пошло не так :(');
-	// 			});
-	// 	}
-	// };
-
-	// const handleEditPartner = (partner: Partner) => {
-	// 	dispatch(setpartnerToEdit(partner));
-	// 	dispatch(setIsExistingPartnerEdited(true));
-	// };
-
-	// const handleUpdatePartner = () => {
-	// 	setIsFormDisabled(true);
-	// 	const token = localStorage.getItem('kmmttkn');
-	// 	if (token) {
-	// 		api
-	// 			.updatePartner(token, partnerToEdit)
-	// 			.then((response) => {
-	// 				const newPartnersList = partners.map((partner) => {
-	// 					return response._id !== partner._id ? partner : response;
-	// 				});
-	// 				dispatch(setLetters(newPartnersList));
-	// 				dispatch(clearPartnerForm());
-	// 				dispatch(setIsExistingPartnerEdited(false));
-	// 				setIsFormDisabled(false);
-	// 				setSaveMessage('Данные обновлены');
-	// 			})
-	// 			.catch((error) => {
-	// 				console.error(error);
-	// 				setIsFormDisabled(false);
-	// 				setSaveMessage('Что-то пошло не так :(');
-	// 			});
-	// 	}
-	// };
-
-	// const handleDeletePartner = () => {
-	// 	const token = localStorage.getItem('kmmttkn');
-	// 	if (token) {
-	// 		api
-	// 			.deletePartner(token, partnerToEdit._id)
-	// 			.then((response) => {
-	// 				const newPartnersList = partners.filter(partner => partner._id !== response._id);
-	// 				dispatch(setLetters(newPartnersList));
-	// 				dispatch(clearPartnerForm());
-	// 				dispatch(setIsExistingPartnerEdited(false));
-	// 				setIsFormDisabled(false);
-	// 			})
-	// 			.catch((error) => {
-	// 				console.error(error);
-	// 				setIsFormDisabled(false);
-	// 			});
-	// 	}
-	// };
-
-	// const handleCancelEditLetter = () => {
-	// 	dispatch(clearPartnerForm());
-	// 	dispatch(setIsExistingPartnerEdited(false));
-	// };
-
 	return (
 		<>
 			<Seo title="Камамото: благодарственные письма" />
 
-			{showPreloader
+			{ showPreloader
 				? (
-						<Preloader />
-					)
+					<Preloader />
+				)
 				: (
-						<section className="container container--background-transparent admin-partners">
-							<h2 className="title3">Благодарственные письма (в разработке)</h2>
+					<section className="container container--background-transparent admin-partners">
+						<h2 className="title3">Благодарственные письма (в разработке)</h2>
 
-							<div className="table">
-								<div className="table__row">
-									<span className="table__cell table__cell--span-10">Описание</span>
-									<span className="table__cell table__cell--centered">Акт-сть</span>
-									<span className="table__cell table__cell--centered"></span>
-								</div>
-								{letters.map((letter) => {
-									const { id, description, isActive } = letter;
-									return (
-										<div key={id} className="table__row">
-											<span className="table__cell table__cell--span-10">{description}</span>
-											<span className="table__cell table__cell--centered">{isActive ? 'Да' : 'Нет'}</span>
-											<span className="table__cell table__cell--centered">
-												<button
-													className="table__button table__button--edit"
-													// onClick={() => handleEditPartner(partner)}
-												>
-												</button>
-											</span>
-										</div>
-									);
-								})}
+						<div className="table">
+							<div className="table__row">
+								<span className="table__cell table__cell--span-10">Описание</span>
+								<span className="table__cell table__cell--centered">Акт-сть</span>
+								<span className="table__cell table__cell--centered"></span>
 							</div>
-
-							<form className="form">
-								<fieldset className="form__fieldset" disabled={isFormDisabled}>
-									<legend className="form__field-legend">
-										{!isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра'}
-									</legend>
-									<div className="form__grid">
-										<div className="form__row-10">
-											<span>наименование</span>
-											<input
-												className={`input ${
-													isFormDisabled ? 'input_disabled' : ''
-												}`}
-												type="text"
-												name="title"
-												placeholder="название организации"
-												value={title}
-												onChange={handleChange}
-											/>
-										</div>
-
-										<div className="form__row-2 form__row--centered">
-											<span>на сайте</span>
-											<label
-												className={`input checkbox-label ${
-													isActive ? 'checkbox-label--checked' : ''
-												} ${
-													isFormDisabled ? 'checkbox-label--disabled' : ''
-												}`}
+							{ letters.map((letter) => {
+								const { id, description, isActive } = letter;
+								return (
+									<div key={ id } className="table__row">
+										<span className="table__cell table__cell--span-10">{ description }</span>
+										<span className="table__cell table__cell--centered">{ isActive ? 'Да' : 'Нет' }</span>
+										<span className="table__cell table__cell--centered">
+											<button
+												className="table__button table__button--edit"
+												// onClick={() => handleEditPartner(partner)}
 											>
-												<input
-													className="checkbox-input"
-													type="checkbox"
-													checked={isActive}
-													name="isActive"
-													onChange={handleCheckBox}
-												/>
-											</label>
-										</div>
+											</button>
+										</span>
+									</div>
+								);
+							}) }
+						</div>
 
-										<div className="form__row-6">
-											<span>ссылка на ресурс партнёра</span>
+						<form className="form">
+							<fieldset className="form__fieldset" disabled={ isFormDisabled }>
+								<legend className="form__field-legend">
+									{ !isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра' }
+								</legend>
+								<div className="form__grid">
+									<div className="form__row-10">
+										<span>наименование</span>
+										<input
+											className={ `input ${
+												isFormDisabled ? 'input_disabled' : ''
+											}` }
+											type="text"
+											name="title"
+											placeholder="название организации"
+											value={ title }
+											onChange={ handleChange }
+										/>
+									</div>
+
+									<div className="form__row-2 form__row--centered">
+										<span>на сайте</span>
+										<label
+											className={ `input checkbox-label ${
+												isActive ? 'checkbox-label--checked' : ''
+											} ${
+												isFormDisabled ? 'checkbox-label--disabled' : ''
+											}` }
+										>
 											<input
-												className={`input ${
-													isFormDisabled ? 'input_disabled' : ''
-												}`}
-												type="text"
-												name="link"
-												placeholder="сайт, вк, канал в телеграме"
-												value={link}
-												onChange={handleChange}
+												className="checkbox-input"
+												type="checkbox"
+												checked={ isActive }
+												name="isActive"
+												onChange={ handleCheckBox }
 											/>
-										</div>
+										</label>
+									</div>
 
-										<div className="form__row-6">
-											<span>файл логотипа</span>
-											<input
-												className={`input ${
-													isFormDisabled ? 'input_disabled' : ''
-												}`}
-												type="text"
-												name="logo"
-												placeholder="название файла"
-												value={logo}
-												onChange={handleChange}
-											/>
-										</div>
+									<div className="form__row-6">
+										<span>ссылка на ресурс партнёра</span>
+										<input
+											className={ `input ${
+												isFormDisabled ? 'input_disabled' : ''
+											}` }
+											type="text"
+											name="link"
+											placeholder="сайт, вк, канал в телеграме"
+											value={ link }
+											onChange={ handleChange }
+										/>
+									</div>
 
-										<div className="form__row-12 form__row-12--inline">
+									<div className="form__row-6">
+										<span>файл логотипа</span>
+										<input
+											className={ `input ${
+												isFormDisabled ? 'input_disabled' : ''
+											}` }
+											type="text"
+											name="logo"
+											placeholder="название файла"
+											value={ logo }
+											onChange={ handleChange }
+										/>
+									</div>
 
-											{!isExistingPartnerEdited
-												? (
-														<>
-															<button
-																className="button"
-																type="button"
-																onClick={() => dispatch(clearPartnerForm())}
-															>
-																Очистить
-															</button>
-															<button
-																className="button"
-																type="submit"
-																// onClick={handleCreatePartner}
-															>
-																Создать
-															</button>
-														</>
-													)
-												: (
-														<>
-															<button
-																className="button"
-																type="button"
-																// onClick={handleCancelEditLetter}
-																disabled={isFormDisabled}
-															>
-																Отменить
-															</button>
-															<button
-																className="button"
-																type="button"
-																// onClick={handleUpdatePartner}
-																disabled={isFormDisabled}
-															>
-																Сохранить
-															</button>
-															<button
-																className="button"
-																type="button"
-																// onClick={handleDeletePartner}
-															>
-																Удалить
-															</button>
-														</>
-													)}
-											{/* <button
+									<div className="form__row-12 form__row-12--inline">
+
+										{ !isExistingPartnerEdited
+											? (
+												<>
+													<button
+														className="button"
+														type="button"
+														onClick={ () => dispatch(clearPartnerForm()) }
+													>
+														Очистить
+													</button>
+													<button
+														className="button"
+														type="submit"
+														// onClick={handleCreatePartner}
+													>
+														Создать
+													</button>
+												</>
+											)
+											: (
+												<>
+													<button
+														className="button"
+														type="button"
+														// onClick={handleCancelEditLetter}
+														disabled={ isFormDisabled }
+													>
+														Отменить
+													</button>
+													<button
+														className="button"
+														type="button"
+														// onClick={handleUpdatePartner}
+														disabled={ isFormDisabled }
+													>
+														Сохранить
+													</button>
+													<button
+														className="button"
+														type="button"
+														// onClick={handleDeletePartner}
+													>
+														Удалить
+													</button>
+												</>
+											) }
+										{ /* <button
                       className="button"
                       type="button"
                       // onClick={handleCloseExhibitionForm}
                     >
                       Закрыть
-                    </button> */}
+                    </button> */ }
 
-										</div>
 									</div>
-								</fieldset>
-								<span className="form__save-status">{saveMessage}</span>
-							</form>
-						</section>
-					)}
+								</div>
+							</fieldset>
+							<span className="form__save-status">{ saveMessage }</span>
+						</form>
+					</section>
+				) }
 		</>
 	);
 }

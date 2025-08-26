@@ -6,7 +6,7 @@ import CategoryForm from '@/components/admin/Categories/CategoryForm';
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { clearCategoryForm,	setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
+import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
 
 export default function Categories() {
@@ -40,54 +40,54 @@ export default function Categories() {
 		<>
 			<Seo title="Камамото: список партнёров" />
 
-			{showPreloader
+			{ showPreloader
 				? (
-						<Preloader />
-					)
+					<Preloader />
+				)
 				: (
-						<div className="container container--background-transparent">
-							<div className="admin-categories">
-								<h2 className="title3">Категории</h2>
-								<div className="table">
-									<div className="table__row">
-										<span className="table__cell table__cell--span-3">Заголовок</span>
-										<span className="table__cell table__cell--span-4">Имя</span>
-										<span className="table__cell table__cell--span-4">Файл предпросмотра</span>
-										<span className="table__cell table__cell--centered"></span>
-									</div>
-
-									{categories.map((category) => {
-										const { name, title, thumbnail } = category;
-										return (
-											<div key={name} className="table__row">
-												<span className="table__cell table__cell--span-3">{title}</span>
-												<span className="table__cell table__cell--span-4">{name}</span>
-												<span className="table__cell table__cell--span-4">{thumbnail}</span>
-												<span className="table__cell table__cell--centered">
-													<button
-														className="table__button table__button--edit"
-														onClick={() => handleEditCategory(category)}
-													>
-													</button>
-												</span>
-											</div>
-										);
-									})}
+					<div className="container container--background-transparent">
+						<div className="admin-categories">
+							<h2 className="title3">Категории</h2>
+							<div className="table">
+								<div className="table__row">
+									<span className="table__cell table__cell--span-3">Заголовок</span>
+									<span className="table__cell table__cell--span-4">Имя</span>
+									<span className="table__cell table__cell--span-4">Файл предпросмотра</span>
+									<span className="table__cell table__cell--centered"></span>
 								</div>
+
+								{ categories.map((category) => {
+									const { name, title, thumbnail } = category;
+									return (
+										<div key={ name } className="table__row">
+											<span className="table__cell table__cell--span-3">{ title }</span>
+											<span className="table__cell table__cell--span-4">{ name }</span>
+											<span className="table__cell table__cell--span-4">{ thumbnail }</span>
+											<span className="table__cell table__cell--centered">
+												<button
+													className="table__button table__button--edit"
+													onClick={ () => handleEditCategory(category) }
+												>
+												</button>
+											</span>
+										</div>
+									);
+								}) }
 							</div>
-
-							<Modal
-								showModal={showModal}
-								closeModal={() => setShowModal(false)}
-							>
-								<CategoryForm closeModal={() => setShowModal(false)} />
-							</Modal>
-
-							<button className="button" onClick={openEmptyCategoryForm}>
-								Создать
-							</button>
 						</div>
-					)}
+
+						<Modal
+							showModal={ showModal }
+							closeModal={ () => setShowModal(false) }
+						>
+							<CategoryForm closeModal={ () => setShowModal(false) } />
+						</Modal>
+
+						<button className="button" onClick={ openEmptyCategoryForm }>
+							Создать
+						</button>
+					</div>
+				) }
 		</>
 	);
 }

@@ -55,51 +55,51 @@ export default function CeramicStyles() {
 		<>
 			<Seo title="Камамото: стили керамики" />
 
-			{showPreloader
+			{ showPreloader
 				? (
-						<Preloader />
-					)
+					<Preloader />
+				)
 				: (
-						<div className="container container--background-transparent">
-							<h2 className="title3">Стили керамики</h2>
-							<div className="table">
-								<div className="table__row">
-									<span className="table__cell table__cell--span-4">Имя</span>
-									<span className="table__cell table__cell--span-4">Заголовок</span>
-									<span className="table__cell table__cell--span-3">Файл предпросмотра</span>
-									<span className="table__cell table__cell--centered"></span>
-								</div>
-								{ceramicStylesList.map((style) => {
-									return (
-										<div
-											key={style.name}
-											className="table__row"
-										>
-											<span className="table__cell table__cell--span-4">{style.title}</span>
-											<span className="table__cell table__cell--span-4">{style.name}</span>
-											<span className="table__cell table__cell--span-3">{style.thumbnail}</span>
-											<div className="table__cell table__cell--centered">
-												<button
-													className="table__button table__button--edit"
-													onClick={() => handleSetCeramicStyleToEdit(style)}
-												>
-												</button>
-											</div>
-										</div>
-									);
-								})}
+					<div className="container container--background-transparent">
+						<h2 className="title3">Стили керамики</h2>
+						<div className="table">
+							<div className="table__row">
+								<span className="table__cell table__cell--span-4">Имя</span>
+								<span className="table__cell table__cell--span-4">Заголовок</span>
+								<span className="table__cell table__cell--span-3">Файл предпросмотра</span>
+								<span className="table__cell table__cell--centered"></span>
 							</div>
-							<Modal
-								showModal={showModal}
-								closeModal={() => handleCloseModal()}
-							>
-								<CeramicStylesForm />
-							</Modal>
-							<button className="button" onClick={() => createNewCeramicStyle({ ...defaultCeramicStyle })}>
-								Создать
-							</button>
+							{ ceramicStylesList.map((style) => {
+								return (
+									<div
+										key={ style.name }
+										className="table__row"
+									>
+										<span className="table__cell table__cell--span-4">{ style.title }</span>
+										<span className="table__cell table__cell--span-4">{ style.name }</span>
+										<span className="table__cell table__cell--span-3">{ style.thumbnail }</span>
+										<div className="table__cell table__cell--centered">
+											<button
+												className="table__button table__button--edit"
+												onClick={ () => handleSetCeramicStyleToEdit(style) }
+											>
+											</button>
+										</div>
+									</div>
+								);
+							}) }
 						</div>
-					)}
+						<Modal
+							showModal={ showModal }
+							closeModal={ () => handleCloseModal() }
+						>
+							<CeramicStylesForm />
+						</Modal>
+						<button className="button" onClick={ () => createNewCeramicStyle({ ...defaultCeramicStyle }) }>
+							Создать
+						</button>
+					</div>
+				) }
 		</>
 	);
 }

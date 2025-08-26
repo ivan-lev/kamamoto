@@ -10,15 +10,15 @@ export default function ExhibitPotterInfo({ potterInfo, potterPhoto }: Props) {
 	return potterInfo
 		&& (
 			<section className="section description description--block">
-				{potterPhoto && (
+				{ potterPhoto && (
 					<img
 						className="description__photo"
-						src={potterPhoto}
+						src={ potterPhoto }
 					>
 					</img>
-				)}
+				) }
 
-				{potterInfo && parse(potterInfo, htmlParserOptions)}
+				{ potterInfo && parse(potterInfo, htmlParserOptions) }
 			</section>
 		);
 }

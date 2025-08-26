@@ -40,52 +40,52 @@ export default function Exhibitions() {
 		<>
 			<Seo title="Камамото: выставки" />
 
-			{showPreloader
+			{ showPreloader
 				? (
-						<Preloader />
-					)
+					<Preloader />
+				)
 				: (
-						<div className="container container--background-transparent">
-							<h2 className="title3">Выставки</h2>
-							<div className="table">
-								<div className="table__row">
-									<span className="table__cell">ID</span>
-									<span className="table__cell table__cell--span-6">Название</span>
-									<span className="table__cell table__cell--span-2">Город</span>
-									<span className="table__cell">Год</span>
-									<span className="table__cell table__cell--centered">Акт-сть</span>
-									<span className="table__cell table__cell--centered"></span>
-								</div>
-								{exhibitionsList.map(exhibition => (
-									<div key={exhibition.id} className="table__row">
-										<span className="table__cell">{exhibition.id}</span>
-										<span className="table__cell table__cell--span-6">{exhibition.name}</span>
-										<span className="table__cell table__cell--span-2">{exhibition.city}</span>
-										<span className="table__cell">{exhibition.year}</span>
-										<span className="table__cell table__cell--centered">{exhibition.isActive ? 'Да' : 'Нет'}</span>
-										<div className="table__cell table__cell--centered">
-											<button
-												className="table__button table__button--edit"
-												onClick={() => handleEditExhibition(exhibition.id)}
-											>
-											</button>
-										</div>
-									</div>
-								))}
+					<div className="container container--background-transparent">
+						<h2 className="title3">Выставки</h2>
+						<div className="table">
+							<div className="table__row">
+								<span className="table__cell">ID</span>
+								<span className="table__cell table__cell--span-6">Название</span>
+								<span className="table__cell table__cell--span-2">Город</span>
+								<span className="table__cell">Год</span>
+								<span className="table__cell table__cell--centered">Акт-сть</span>
+								<span className="table__cell table__cell--centered"></span>
 							</div>
-
-							<Modal
-								showModal={showModal}
-								closeModal={() => setShowModal(false)}
-							>
-								<ExhibitionForm	closeModal={() => setShowModal(false)} />
-							</Modal>
-
-							<button className="button" onClick={handleCreateExhibition}>
-								Создать
-							</button>
+							{ exhibitionsList.map(exhibition => (
+								<div key={ exhibition.id } className="table__row">
+									<span className="table__cell">{ exhibition.id }</span>
+									<span className="table__cell table__cell--span-6">{ exhibition.name }</span>
+									<span className="table__cell table__cell--span-2">{ exhibition.city }</span>
+									<span className="table__cell">{ exhibition.year }</span>
+									<span className="table__cell table__cell--centered">{ exhibition.isActive ? 'Да' : 'Нет' }</span>
+									<div className="table__cell table__cell--centered">
+										<button
+											className="table__button table__button--edit"
+											onClick={ () => handleEditExhibition(exhibition.id) }
+										>
+										</button>
+									</div>
+								</div>
+							)) }
 						</div>
-					)}
+
+						<Modal
+							showModal={ showModal }
+							closeModal={ () => setShowModal(false) }
+						>
+							<ExhibitionForm closeModal={ () => setShowModal(false) } />
+						</Modal>
+
+						<button className="button" onClick={ handleCreateExhibition }>
+							Создать
+						</button>
+					</div>
+				) }
 		</>
 	);
 }

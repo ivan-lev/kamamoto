@@ -58,9 +58,9 @@ export default function Exhibition() {
 
 	return (
 		<>
-			<Seo title={`Камамото: ${name}`} />
+			<Seo title={ `Камамото: ${name}` } />
 
-			{showPreloader
+			{ showPreloader
 				? (
 					<section className="section">
 						<Preloader />
@@ -68,56 +68,56 @@ export default function Exhibition() {
 				)
 				: (
 					<>
-						<PageTop title={`«${name}»`} />
+						<PageTop title={ `«${name}»` } />
 
 						<section className="section exhibition">
 							<div className="exhibition__place">
-								<p className="text text--muted">{`Место проведения: ${city}, ${address}, ${place}`}</p>
-								<p className="text text--muted">{`Даты: ${year} год, ${dates}`}</p>
-								{link && (
+								<p className="text text--muted">{ `Место проведения: ${city}, ${address}, ${place}` }</p>
+								<p className="text text--muted">{ `Даты: ${year} год, ${dates}` }</p>
+								{ link && (
 									<span className="text text--muted">
 										Ссылка на&nbsp;
-										<a className="link exhibition__link" href={link} target="_blank">
+										<a className="link exhibition__link" href={ link } target="_blank">
 											мероприятие
 										</a>
 									</span>
-								)}
+								) }
 							</div>
 
 							<div className="container exhibition__participants">
-								{organisators && (
+								{ organisators && (
 									<div className="text text--muted">
 										<span>Организаторы:</span>
-										{parse(organisators, options)}
+										{ parse(organisators, options) }
 									</div>
-								)}
+								) }
 
-								{curators && (
+								{ curators && (
 									<div className="text text--muted">
 										<span>Кураторы:</span>
-										{parse(curators, options)}
+										{ parse(curators, options) }
 									</div>
-								)}
+								) }
 							</div>
 
-							{poster && (
+							{ poster && (
 								<img
 									className="exhibition__poster"
-									src={poster}
+									src={ poster }
 								>
 								</img>
-							)}
+							) }
 
 							<div className="description exhibition__description">
-								{parse(description, options)}
+								{ parse(description, options) }
 							</div>
 						</section>
 
-						{photos && (
-							<Slider slides={photos} />
-						)}
+						{ photos && (
+							<Slider slides={ photos } />
+						) }
 					</>
-				)}
+				) }
 		</>
 	);
 }

@@ -2,7 +2,7 @@ import type { ChangeEvent, FormEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {	clearCeramicStyleForm, setCeramicStyles, setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
+import { clearCeramicStyleForm, setCeramicStyles, setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
 import { api } from '@/utils/api/api';
 import errorHandler from '@/utils/errorHandler';
 
@@ -131,73 +131,73 @@ export default function CeramicStylesForm() {
 	return (
 		<form
 			className="form"
-			onSubmit={handleCreateCeramicStyle}
+			onSubmit={ handleCreateCeramicStyle }
 		>
-			<fieldset className="form__fieldset" disabled={isFormDisabled}>
+			<fieldset className="form__fieldset" disabled={ isFormDisabled }>
 				<legend className="form__legend">
-					{isExistingStyleEdited
+					{ isExistingStyleEdited
 						? 'Редактировать существующий стиль керамики'
-						: 'Создать новый стиль керамики'}
+						: 'Создать новый стиль керамики' }
 				</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-3">
 						<span>имя</span>
 						<input
-							className={`input ${
+							className={ `input ${
 								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							}` }
 							type="text"
 							name="name"
 							placeholder="на англ. языке"
-							value={name}
-							onChange={handleChange}
+							value={ name }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-3">
 						<span>заголовок</span>
 						<input
-							className={`input ${
+							className={ `input ${
 								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							}` }
 							type="text"
 							name="title"
 							placeholder="на русс. языке"
-							value={title}
-							onChange={handleChange}
+							value={ title }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-3">
 						<span>тхумб</span>
 						<input
-							className={`input ${
+							className={ `input ${
 								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							}` }
 							type="text"
 							name="thumbnail"
 							placeholder="тхумб"
-							value={thumbnail}
-							onChange={handleChange}
+							value={ thumbnail }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-2">
 						<span>Показать статью</span>
 						<label
-							className={`checkbox-label ${
+							className={ `checkbox-label ${
 								showArticle ? 'checkbox-label--checked' : ''
 							} ${
 								isFormDisabled ? 'checkbox-label--disabled' : ''
-							}`}
+							}` }
 						>
 							<input
 								className="checkbox-input"
 								type="checkbox"
-								checked={showArticle}
+								checked={ showArticle }
 								name="showArticle"
-								onChange={handleCheckBox}
+								onChange={ handleCheckBox }
 							/>
 						</label>
 					</div>
@@ -205,41 +205,41 @@ export default function CeramicStylesForm() {
 					<div className="form__row form__row-12">
 						<span>изображения</span>
 						<input
-							className={`input ${
+							className={ `input ${
 								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							}` }
 							type="text"
 							name="images"
 							placeholder="изображения"
-							value={images}
-							onChange={handleChangePhotos}
+							value={ images }
+							onChange={ handleChangePhotos }
 						/>
 					</div>
 
 					<div className="form__row form__row-12">
 						<span>дополнительные изображения</span>
 						<input
-							className={`input ${
+							className={ `input ${
 								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							}` }
 							type="text"
 							name="additionalImages"
 							placeholder="дополнительные изображения"
-							value={additionalImages}
-							onChange={handleChangePhotos}
+							value={ additionalImages }
+							onChange={ handleChangePhotos }
 						/>
 					</div>
 
 					<div className="form__row form__row-12">
 						<span>краткое описание</span>
 						<textarea
-							className={`textarea ${
+							className={ `textarea ${
 								isFormDisabled ? 'input_disabled' : ''
-							}`}
+							}` }
 							name="brief"
 							placeholder="краткое описание"
-							value={brief}
-							onChange={handleChange}
+							value={ brief }
+							onChange={ handleChange }
 						/>
 					</div>
 
@@ -249,50 +249,50 @@ export default function CeramicStylesForm() {
 							className="textarea"
 							name="description"
 							placeholder="полное описание"
-							value={description}
-							onChange={handleChange}
+							value={ description }
+							onChange={ handleChange }
 						/>
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
-						{!isExistingStyleEdited
+						{ !isExistingStyleEdited
 							? (
-									<>
-										<button
-											className="button"
-											type="button"
-											onClick={() => dispatch(clearCeramicStyleForm())}
-										>
-											Очистить
-										</button>
-										<button className="button" type="submit">
-											Создать
-										</button>
-									</>
-								)
+								<>
+									<button
+										className="button"
+										type="button"
+										onClick={ () => dispatch(clearCeramicStyleForm()) }
+									>
+										Очистить
+									</button>
+									<button className="button" type="submit">
+										Создать
+									</button>
+								</>
+							)
 							: (
-									<>
-										<button
-											className="button"
-											type="button"
-											onClick={handleUpdateCeramicStyle}
-											disabled={isFormDisabled}
-										>
-											Сохранить
-										</button>
-										<button
-											className="button"
-											type="button"
-											onClick={handleDeleteCeramicStyle}
-										>
-											Удалить
-										</button>
-									</>
-								)}
+								<>
+									<button
+										className="button"
+										type="button"
+										onClick={ handleUpdateCeramicStyle }
+										disabled={ isFormDisabled }
+									>
+										Сохранить
+									</button>
+									<button
+										className="button"
+										type="button"
+										onClick={ handleDeleteCeramicStyle }
+									>
+										Удалить
+									</button>
+								</>
+							) }
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__submit-status">{saveMessage}</span>
+			<span className="form__submit-status">{ saveMessage }</span>
 		</form>
 
 	);

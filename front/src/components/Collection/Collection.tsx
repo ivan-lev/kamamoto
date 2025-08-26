@@ -52,13 +52,13 @@ export default function Collection() {
 			<Seo title="Камамото: коллекция японской керамики" />
 			<h2 className="title title2">Коллекция</h2>
 			<section className="section collection">
-				{categories.length === 0 && showPreloader
+				{ categories.length === 0 && showPreloader
 					? (
 						<Preloader />
 					)
 					: (
 						<DisplayGrid />
-					)}
+					) }
 			</section>
 		</>
 	);

@@ -1,6 +1,6 @@
 import type { CeramicStyle } from '@/types/ceramicStyles';
-import { defaultCeramicStyle } from '@/types/ceramicStyles';
 import { createSlice } from '@reduxjs/toolkit';
+import { defaultCeramicStyle } from '@/types/ceramicStyles';
 
 interface CeramicStyles {
 	ceramicStylesList: CeramicStyle[];

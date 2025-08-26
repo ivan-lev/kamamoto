@@ -11,7 +11,7 @@ export default function ExhibitStyleDescription({ data }: Props) {
 		<section className="section ceramic-style">
 			<div className="container">
 				<div className="description">
-					{parse(data?.brief, htmlParserOptions)}
+					{ parse(data?.brief, htmlParserOptions) }
 				</div>
 			</div>
 		</section>

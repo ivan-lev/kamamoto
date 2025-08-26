@@ -5,9 +5,9 @@ export default function Button({ title, action }: ButtonProps) {
 		<button
 			className="button"
 			type="button"
-			onClick={action}
+			onClick={ action }
 		>
-			{title}
+			{ title }
 		</button>
 	);
 }
