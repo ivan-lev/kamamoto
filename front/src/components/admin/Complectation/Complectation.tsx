@@ -10,11 +10,11 @@ export default function Compleactation() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 	const [complectations, setComplectations] = useState<Complectation[]>([]);
-	const [isExistingPartnerEdited, setIsExistingPartnerEdited] = useState<boolean>(false);
+	const [isExistingComplectationEdited, _setIsExistingPartnerEdited] = useState<boolean>(false);
 	const [newComplectation, setNewComplectation] = useState<Complectation>({ name: '', title: '' });
 
 	useEffect(() => {
-		api.complectation.getCompleactions()
+		api.complectation.getComplections()
 			.then((complectations) => {
 				setComplectations(complectations);
 				setShowPreloader(false);
@@ -87,7 +87,7 @@ export default function Compleactation() {
 						<form className="form">
 							<fieldset className="form__fieldset" disabled={ isFormDisabled }>
 								<legend className="form__legend">
-									{ !isExistingPartnerEdited ? 'Добавить комлектацию' : 'Редактировать данные партнёра' }
+									{ !isExistingComplectationEdited ? 'Добавить комлектацию' : 'Редактировать данные партнёра' }
 								</legend>
 
 								<div className="form__grid">
@@ -120,7 +120,7 @@ export default function Compleactation() {
 									</div>
 
 									<div className="form__row form__row-12 form__row-12--inline">
-										{ !isExistingPartnerEdited
+										{ !isExistingComplectationEdited
 											? (
 												<>
 													<button

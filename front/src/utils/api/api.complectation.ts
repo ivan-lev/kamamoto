@@ -4,7 +4,7 @@ import { PATHS } from '@/variables/variables';
 
 const { BASE_API_URL, COMPLECTATION } = PATHS;
 
-async function getCompleactions(): Promise<Complectation[]> {
+async function getComplections(): Promise<Complectation[]> {
 	const response = await fetch(`${BASE_API_URL}/${COMPLECTATION}/`, {
 		method: 'GET',
 	});
@@ -24,6 +24,6 @@ async function createComplectation(token: string, complectation: Complectation) 
 }
 
 export const complectation = {
-	getCompleactions,
+	getComplections,
 	createComplectation,
 };

@@ -103,6 +103,12 @@
 		align-items: center;
 	}
 
+	&__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap-4)
+	}
+
 	:where(span) {
 		font-size: 14px
 	}

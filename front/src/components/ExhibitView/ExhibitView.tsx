@@ -10,17 +10,29 @@ import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import Slider from '@/components/Slider/Slider';
+import { setComplectations } from '@/slices/admin/complectations';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
 
 export default function ExhibitView() {
 	const dispatch = useDispatch();
+	const complectations = useSelector((state: RootState) => state.complectations.complectations);
 	const exhibit = useSelector((state: RootState) => state.exhibit);
 	const exhibitId = useParams().exhibit;
 	const navigate = useNavigate();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const { additionalDescription, additionalImages, description, images, name, style, potterInfo, potterPhoto } = exhibit;
+
+	useEffect(() => {
+		if (complectations.length === 0) {
+			api.complectation.getComplections()
+				.then((complectations) => {
+					dispatch(setComplectations(complectations));
+				})
+				.catch(error => console.error(error));
+		}
+	}, []);
 
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
@@ -51,22 +63,22 @@ export default function ExhibitView() {
 
 	return (
 		<>
-			<Seo title={`Камамото: ${name?.charAt(0).toLowerCase()}${name?.slice(1)}`} />
+			<Seo title={ `Камамото: ${name?.charAt(0).toLowerCase()}${name?.slice(1)}` } />
 
-			{ showPreloader && <Preloader />}
-			{!showPreloader
+			{ showPreloader && <Preloader /> }
+			{ !showPreloader
 				&& (
 					<>
-						<PageTop title={name} />
-						<Slider slides={images} />
-						<ExhibitDescription data={description} />
-						<ExhibitPotterInfo potterInfo={potterInfo} potterPhoto={potterPhoto} />
-						<ExhibitDescription data={additionalDescription} />
-						<Slider slides={additionalImages || []} />
-						<ExhibitStyleDescription data={style} />
-						<ExhibitTechInfo exhibit={exhibit} />
+						<PageTop title={ name } />
+						<Slider slides={ images } />
+						<ExhibitDescription data={ description } />
+						<ExhibitPotterInfo potterInfo={ potterInfo } potterPhoto={ potterPhoto } />
+						<ExhibitDescription data={ additionalDescription } />
+						<Slider slides={ additionalImages || [] } />
+						<ExhibitStyleDescription data={ style } />
+						<ExhibitTechInfo exhibit={ exhibit } />
 					</>
-				)}
+				) }
 		</>
 	);
 }

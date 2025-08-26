@@ -31,7 +31,7 @@ export const exhibitValidator = celebrate({
 		footDiameter: Joi.number(),
 		volume: Joi.number(),
 		weightOfSet: Joi.number(),
-		complectation: Joi.string().allow('').required(),
+		complectation: Joi.array().items(Joi.string()).required(),
 		preservation: Joi.string().allow('').required(),
 		isActive: Joi.boolean(),
 	}),

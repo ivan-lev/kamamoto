@@ -146,7 +146,7 @@ export default function ExhibitForm() {
 		}
 
 		if (complectations.length === 0) {
-			api.complectation.getCompleactions()
+			api.complectation.getComplections()
 				.then((complectations) => {
 					dispatch(setComplectations(complectations));
 				})
@@ -417,16 +417,9 @@ export default function ExhibitForm() {
 
 					<div className="form__row form__row-12">
 						<span>комплектность</span>
-						<input
-							className="input"
-							type="text"
-							name="complectation"
-							placeholder="комплектность"
-							value={ exhibitToEdit.complectation }
-							onChange={ handleChange }
-						/>
-						{ exhibitToEdit.complectation?.map(name => <ComplectationItem name={ name } />) }
-						{ complectations.map(complectation => <span>{ complectation.title }</span>) }
+						<div className="form__tags">
+							{ complectations.map(complectation => <ComplectationItem complectation={ complectation } />) }
+						</div>
 					</div>
 
 					<div className="form__row form__row-12">

@@ -28,7 +28,7 @@ export interface Exhibit {
 	weight?: number;
 	volume?: number;
 	weightOfSet?: number;
-	complectation?: string[];
+	complectation: string[];
 	preservation?: string;
 
 	isActive: boolean;
