@@ -10,7 +10,7 @@ import Tag from '@/components/Tag/Tag';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { setComplectations } from '@/slices/admin/complectations';
-import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exibits';
+import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/ehxibits';
 import { api } from '@/utils/api/api';
 
 export default function ExhibitForm() {

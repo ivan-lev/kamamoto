@@ -1,10 +1,15 @@
 import type { RootState } from '@/slices/admin';
 import type { Exhibit } from '@/types/exhibitType';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exibits';
+import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/ehxibits';
 import { api } from '@/utils/api/api';
 
-export default function ExhibitsListRow({ exhibit, setShowModal }: { exhibit: Exhibit; setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+interface Props {
+	exhibit: Exhibit;
+	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function ExhibitsListRow({ exhibit, setShowModal }: Props) {
 	const dispatch = useDispatch();
 
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
@@ -31,26 +36,26 @@ export default function ExhibitsListRow({ exhibit, setShowModal }: { exhibit: Ex
 	}
 
 	return (
-		<div className="table__row" key={exhibit.id}>
-			<span className="table__cell">{exhibit.id}</span>
-			<span className="table__cell table__cell--span-5">{exhibit.name}</span>
-			<span className="table__cell table__cell--span-2">{exhibit.category.title}</span>
-			<span className="table__cell table__cell--span-2">{exhibit.style?.title}</span>
+		<div className="table__row" key={ exhibit.id }>
+			<span className="table__cell">{ exhibit.id }</span>
+			<span className="table__cell table__cell--span-5">{ exhibit.name }</span>
+			<span className="table__cell table__cell--span-2">{ exhibit.category.title }</span>
+			<span className="table__cell table__cell--span-2">{ exhibit.style?.title }</span>
 			<div className="table__cell table__cell--centered">
 				<button
 					className="table__button table__button--edit"
-					onClick={() => handleSetExhibitToEdit(exhibit)}
+					onClick={ () => handleSetExhibitToEdit(exhibit) }
 				>
 				</button>
 			</div>
 			<div className="form__row form__row-1">
-				<label className={`checkbox-label checkbox-label--small ${exhibit.isActive ? 'checkbox-label--checked' : ''} `}>
+				<label className={ `checkbox-label checkbox-label--small ${exhibit.isActive ? 'checkbox-label--checked' : ''} ` }>
 					<input
 						className="checkbox-input"
 						type="checkbox"
-						checked={exhibit.isActive}
+						checked={ exhibit.isActive }
 						name="isActive"
-						onChange={() => toggleExhibitActiveState(exhibit)}
+						onChange={ () => toggleExhibitActiveState(exhibit) }
 					/>
 				</label>
 			</div>

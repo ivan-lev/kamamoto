@@ -3,7 +3,7 @@ import type { RootState } from '@/slices/admin';
 import type { Exhibit } from '@/types/exhibitType';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExhibitsFiltered } from '@/slices/admin/exibits';
+import { setExhibitsFiltered } from '@/slices/admin/ehxibits';
 import './Filters.scss';
 
 export default function Filters() {
@@ -37,8 +37,8 @@ export default function Filters() {
 				type="text"
 				name="title"
 				placeholder="поиск: часть названия или номер лота"
-				value={query}
-				onChange={handleChange}
+				value={ query }
+				onChange={ handleChange }
 			/>
 		</div>
 	);
