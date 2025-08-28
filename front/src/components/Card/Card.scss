@@ -17,6 +17,8 @@
 		width: 100%;
 		border: 1px solid var(--border-color);
 		border-radius: var(--border-radius-m);
+
+		transition: transform 0.4s ease
 	}
 
 	&:hover &__image-wrapper {
@@ -40,10 +42,12 @@
 	}
 
 	&__link {
-		font-size: 16px;
+		position: absolute;
+		inset: 0;
 	}
 
 	&__name::first-letter {
+		font-size: 16px;
 		text-transform: uppercase;
 	}
 }
