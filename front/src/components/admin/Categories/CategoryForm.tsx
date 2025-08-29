@@ -2,9 +2,7 @@ import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '@/components/shared/buttons/Button';
-import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
-import DeleteButton from '@/components/shared/buttons/DeleteButton';
+import Button from '@/components/shared/Button';
 import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
 
@@ -150,7 +148,7 @@ export default function CategoryForm({ closeModal }: Props) {
 							? (
 								<>
 									<Button title="Очистить" action={ () => dispatch(clearCategoryForm()) } />
-									<ConfirmButton title="Добавить" action={ handleCreateCategory } />
+									<Button title="Добавить" action={ handleCreateCategory } />
 								</>
 							)
 							: (
@@ -158,13 +156,13 @@ export default function CategoryForm({ closeModal }: Props) {
 									{ showConfirmation && (
 										<div className="form__confirmation">
 											<span>Точно удалить запись?</span>
-											<DeleteButton title="Да" action={ handleDeleteCategory } />
+											<Button title="Да" action={ handleDeleteCategory } />
 											<Button title="Нет" action={ () => setShowConfirmation(false) } />
 										</div>
 									) }
 									{ !showConfirmation && (
 										<>
-											<ConfirmButton title="Сохранить" action={ handleUpdateCategory } />
+											<Button title="Сохранить" action={ handleUpdateCategory } />
 											<Button title="Удалить" action={ () => setShowConfirmation(true) } />
 										</>
 									) }

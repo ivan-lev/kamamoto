@@ -2,9 +2,7 @@ import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '@/components/shared/buttons/Button';
-import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
-import DeleteButton from '@/components/shared/buttons/DeleteButton';
+import Button from '@/components/shared/Button';
 import { clearExhibitionForm, setExhibitionsList, setExhibitionToDisplay } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
 
@@ -304,7 +302,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 							? (
 								<>
 									<Button title="Очистить" action={ () => dispatch(clearExhibitionForm()) } />
-									<ConfirmButton title="Создать" action={ handleCreateExhibition } />
+									<Button title="Создать" action={ handleCreateExhibition } />
 								</>
 							)
 							: (
@@ -312,13 +310,13 @@ export default function ExhibitionForm({ closeModal }: Props) {
 									{ showConfirmation && (
 										<div className="form__confirmation">
 											<span>Точно удалить запись?</span>
-											<DeleteButton title="Да" action={ handleDeleteExhibition } />
+											<Button title="Да" action={ handleDeleteExhibition } />
 											<Button title="Нет" action={ () => setShowConfirmation(false) } />
 										</div>
 									) }
 									{ !showConfirmation && (
 										<>
-											<ConfirmButton title="Сохранить" action={ handleUpdateExhibition } />
+											<Button title="Сохранить" action={ handleUpdateExhibition } />
 											<Button title="Удалить запись" action={ () => setShowConfirmation(true) } />
 										</>
 									) }

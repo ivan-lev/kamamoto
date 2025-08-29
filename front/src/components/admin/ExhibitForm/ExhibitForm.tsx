@@ -3,9 +3,7 @@ import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ComplectationItem from '@/components/admin/ComplectationItem/ComplectationItem';
-import Button from '@/components/shared/buttons/Button';
-import ConfirmButton from '@/components/shared/buttons/ConfirmButton';
-import DeleteButton from '@/components/shared/buttons/DeleteButton';
+import Button from '@/components/shared/Button';
 import Tag from '@/components/Tag/Tag';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
@@ -438,7 +436,7 @@ export default function ExhibitForm() {
 						{ !isExistingExhibitEdited && (
 							<>
 								<Button title="Очистить" action={ () => dispatch(clearExhibitForm()) } />
-								<ConfirmButton title="Создать" action={ handleCreateExhibit } />
+								<Button title="Создать" action={ handleCreateExhibit } />
 							</>
 						) }
 
@@ -447,7 +445,7 @@ export default function ExhibitForm() {
 								{ showConfirmation && (
 									<div className="form__confirmation">
 										<span>Точно удалить запись?</span>
-										<DeleteButton title="Да" action={ handleDeleteExhibit } />
+										<Button title="Да" action={ handleDeleteExhibit } />
 										<Button title="Нет" action={ () => setShowConfirmation(false) } />
 									</div>
 								) }

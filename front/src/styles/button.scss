@@ -34,14 +34,4 @@
 	&--muted {
 		opacity: 0.6;
 	}
-
-	&--type{
-		&-delete {
-			background-color: var(--delete-button-background);
-		}
-
-		&-confirm {
-			background-color: var(--confirm-button-background);
-		}
-	}
 }
