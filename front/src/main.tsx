@@ -6,6 +6,11 @@ import App from '@/components/App/App.tsx';
 import store from '@/slices/visitor/index';
 import '@/styles/_index.scss';
 
+import '@fontsource/raleway/100.css';
+import '@fontsource/raleway/200.css';
+import '@fontsource/raleway/300.css';
+import '@fontsource/raleway/400.css';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<Provider store={ store }>

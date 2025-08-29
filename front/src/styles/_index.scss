@@ -1,4 +1,3 @@
-@import url('@/styles/fonts.scss');
 @import url('@/styles/variables.scss');
 @import url('@/styles/blockquote.scss');
 @import url('@/styles/button.scss');
@@ -7,6 +6,7 @@
 @import url('@/styles/description.scss');
 @import url('@/styles/form.scss');
 @import url('@/styles/complectation.scss');
+@import url('@/styles/image-gallery.scss');
 @import url('@/styles/inputs.scss');
 @import url('@/styles/link.scss');
 @import url('@/styles/list.scss');
@@ -19,9 +19,10 @@
 @import url('@/styles/tag.scss');
 @import url('@/styles/text.scss');
 @import url('@/styles/title.scss');
-@import url('@/styles/vendor.scss');
 
 :root {
+	--main-font: Raleway, Roboto, Inter, Helvetica, sans-serif;
+
 	scroll-behavior: smooth;
 }
 
