@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { footerLinks } from '@/variables/footerLinks';
-import { socialLinks } from '@/variables/socialLinks';
+import { links } from '@/variables/links';
 import { SITE_VERSION } from '@/variables/variables';
 
 import './Footer.scss';
@@ -11,19 +10,19 @@ export default function Footer() {
 			<div className="footer__column footer__column_social">
 				<span className="footer__column-element footer__column-title">Ссылки на проект</span>
 
-				{ socialLinks.map((socialLink) => {
+				{ links.social.map((link) => {
 					return (
 						<a
 							className="link footer__column-element"
 							target="_blank"
-							href={ socialLink.link }
-							key={ socialLink.id }
+							href={ link.url }
+							key={ link.id }
 						>
 							<div className="footer__icon-wrapper">
-								<img className="footer__icon" src={ socialLink.icon } />
+								<img className="footer__icon" src={ link.icon } />
 							</div>
 
-							{ socialLink.title }
+							{ link.title }
 						</a>
 					);
 				}) }
@@ -31,9 +30,9 @@ export default function Footer() {
 
 			<div className="footer__column footer__column_useful">
 				<span className="footer__column-element footer__column-title">Материалы</span>
-				{ footerLinks.map(link => (
+				{ links.footer.map(link => (
 					<Link key={ link.id } to={ link.url } className="link footer__column-element">
-						{ link.name }
+						{ link.title }
 					</Link>
 				)) }
 			</div>

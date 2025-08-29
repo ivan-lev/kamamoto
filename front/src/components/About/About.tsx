@@ -1,6 +1,6 @@
 import Seo from '@/components/Seo/Seo';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
-import { personalSocialLinks } from '@/variables/socialLinks';
+import { links } from '@/variables/links';
 import './About.scss';
 
 export default function About() {
@@ -64,7 +64,7 @@ export default function About() {
 						<p className="text text--muted">Ниже блок ссылок на мои персональные страницы.</p>
 					</div>
 
-					<SocialLinks links={ personalSocialLinks } additionalClassNames="about__links" />
+					<SocialLinks links={ links.personal } additionalClassNames="about__links" />
 				</div>
 			</section>
 		</>

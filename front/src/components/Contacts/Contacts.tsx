@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import { useEffect, useState } from 'react';
 import Seo from '@/components/Seo/Seo';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
-import { socialLinks } from '@/variables/socialLinks';
+import { links } from '@/variables/links';
 import './Contacts.scss';
 
 export default function Contacts() {
@@ -72,7 +72,7 @@ export default function Contacts() {
 			</p>
 			<section className="section contacts">
 
-				<SocialLinks links={ socialLinks } additionalClassNames="contacts__links" />
+				<SocialLinks links={ links.social } additionalClassNames="contacts__links" />
 
 				<p className="text text--muted">
 					Также можно заполнить форму ниже, я получу оповещение и свяжусь с вами:
