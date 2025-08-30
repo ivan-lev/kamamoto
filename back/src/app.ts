@@ -17,7 +17,7 @@ const helmetOptions: HelmetOptions = { crossOriginResourcePolicy: false };
 
 connectToDatabase();
 
-// app.set('trust proxy', true); // trust proxy headers
+app.set('trust proxy', true); // trust proxy headers
 app.use(limiter); // limit requests count
 app.use(cors()); // cross-domain settings
 app.use(logger.requestLogger); // winston requests logger

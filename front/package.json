@@ -17,8 +17,8 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "dev": "vite --host",
-    "build": "tsc && vite build --mode docker",
+    "dev": "vite --host --mode development",
+    "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "stylelint": "npx stylelint --fix '**/*.scss'",
     "preview": "vite preview"

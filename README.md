@@ -20,6 +20,7 @@
 - `emailjs` для отправки сообщений из раздела "контакты"
 - `vite` для сборки проекта
 - `motion` - для анимирования компонентов
+- `docker` - to automate the deployment of application 
 
 ## Backend
 
@@ -51,5 +52,5 @@
 
 ## Vendor files
 
-- icons from [Generica Tiny Interface](https://www.svgrepo.com/collection/generica-tiny-interface-icons/) set
-- [Raleway](https://fonts.google.com/specimen/Raleway) fonts
+- icons from [Jtb Variety Thin Icons Collection](https://www.svgrepo.com/collection/jtb-variety-thin-icons/) set
+- [Raleway](https://fonts.google.com/specimen/Raleway) fonts in Fontsource package

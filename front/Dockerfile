@@ -1,18 +1,34 @@
-# make a build version of frontend app
+# front/Dockerfile
 FROM node:24-alpine AS builder
+
 WORKDIR /app
-COPY package.json /app/package.json
-RUN npm install
-COPY . /app
-#RUN npm run build
 
-# host the build on nginx and wait connection on port 80
-FROM nginx:alpine
+# Копируем package.json и package-lock.json
+COPY package*.json ./
 
-# install curl for diagnostics
-RUN apk add --no-cache curl
+# Устанавливаем зависимости
+RUN npm ci
 
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Копируем исходный код
+COPY . .
+
+# Собираем приложение
+RUN npm run build
+
+# Финальный образ только с собранными файлами
+FROM alpine:latest
+
+# Устанавливаем необходимые инструменты для копирования
+RUN apk add --no-cache bash
+
+# Создаем директорию для статических файлов
+RUN mkdir -p /srv/front
+
+# Копируем собранные файлы из builder stage
+COPY --from=builder /app/dist /srv/front
+
+# Создаем volume точку монтирования
+VOLUME /srv/front
+
+# Команда которая просто держит контейнер активным
+CMD ["tail", "-f", "/dev/null"]
