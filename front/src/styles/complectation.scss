@@ -3,6 +3,7 @@
 
 	display: flex;
 	gap: var(--gap-8);
+	align-items: center;
 
 	width: fit-content;
 	padding: var(--gap-2) var(--gap-8);
@@ -15,10 +16,20 @@
 	background: var(--background-muted);
 
 	&:before {
-		content: '[ ]'
+		content: '';
+
+		display: block;
+
+		width: 14px;
+		height: 14px;
+
+		background-image: url('/__spritemap#sprite-square-rounded-view');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
 	}
 
 	&.active:before {
-		content: '[v]';
+		background-image: url('/__spritemap#sprite-square-rounded-view'), url('/__spritemap#sprite-chevron-down-view');
 	}
 }

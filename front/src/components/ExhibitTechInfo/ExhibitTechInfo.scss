@@ -31,10 +31,10 @@
 			border-radius: 50%;
 
 			background: var(--background-muted);
-			background-image: url('/icons/down.svg');
+			background-image: url('/__spritemap#sprite-chevron-down-view');
 			background-repeat: no-repeat;
 			background-position: 50% calc(50% + 1px);
-			background-size: 100%;
+			background-size: 75%;
 
 			transition: rotate 0.4s ease;
 		}

@@ -16,13 +16,13 @@
 		height: 55px;
 		border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
 
-		background-image: url('/icons/search.svg');
+		background-image: url('/__spritemap#sprite-search-view');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 40%;
 
 		&:hover {
-			background-image: url('/icons/search-active.svg');
+			background-image: url('/__spritemap#sprite-search-active-view');
 		}
 	}
 }

@@ -22,7 +22,7 @@ export default function ComplectationItem({ complectation }: Props) {
 	};
 	return (
 		<span
-			className={ `complectation ${exhibitToEdit.complectation?.some(exhibitComplectation => exhibitComplectation === complectation.name) && 'active'}` }
+			className={ `complectation ${exhibitToEdit.complectation?.some(exhibitComplectation => exhibitComplectation === complectation.name) ? 'active' : ''}` }
 			onClick={ onClick }
 		>
 			{ complectation.title }

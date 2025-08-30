@@ -5,6 +5,9 @@
 	align-items: center;
 	justify-content: center;
 
+	width: 100%;
+	max-width: 350px;
+
 	&__form {
 		display: flex;
 		align-items: center;
@@ -41,8 +44,9 @@
 			cursor: pointer;
 
 			position: absolute;
-			top: 17px;
+			top: 50%;
 			right: 20px;
+			transform: translate(0%, -50%);
 
 			height: 20px;
 			border: 0;

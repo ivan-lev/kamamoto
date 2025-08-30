@@ -5,25 +5,25 @@ const personal: Link[] = [
 		id: 0,
 		title: 'VK',
 		url: 'https://vk.com/tea_lion',
-		icon: '/icons/logo-vk.svg',
+		icon: '/__spritemap#sprite-logo-vk-view',
 	},
 	{
 		id: 1,
 		title: 'Instagram',
 		url: 'https://instagram.com/tea_lion',
-		icon: '/icons/logo-instagram.svg',
+		icon: '/__spritemap#sprite-logo-instagram-view',
 	},
 	{
 		id: 2,
 		title: 'Telegram',
 		url: 'https://t.me/ivanlev',
-		icon: '/icons/logo-telegram.svg',
+		icon: '/__spritemap#sprite-logo-telegram-view',
 	},
 	{
 		id: 3,
 		title: 'Email',
 		url: 'mailto:fanatos@mail.ru',
-		icon: '/icons/logo-mail.svg',
+		icon: '/__spritemap#sprite-envelope-view',
 	},
 ];
 
@@ -32,19 +32,19 @@ export const social: Link[] = [
 		id: 1,
 		title: 'Telegram',
 		url: 'https://t.me/ChawanShop',
-		icon: '/icons/logo-telegram.svg',
+		icon: '/__spritemap#sprite-logo-telegram-view',
 	},
 	{
 		id: 2,
 		title: 'Email',
 		url: 'mailto:fanatos@mail.ru',
-		icon: '/icons/logo-mail.svg',
+		icon: '/__spritemap#sprite-envelope-view',
 	},
 	{
 		id: 3,
 		title: 'Созидатели',
 		url: 'https://www.sozidateli.ru/portal/user/303854',
-		icon: '/icons/logo-sozidateli.svg',
+		icon: '/__spritemap#sprite-logo-sozidateli-view',
 	},
 ];
 

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Card.scss';
-import preloader from '/icons/preloader.svg';
 
 interface Props {
 	link: string;
@@ -17,7 +16,7 @@ export default function Card({ link, name, image }: Props) {
 	return (
 		<div className="card">
 			<div className="card__image-wrapper">
-				{ loading && <img className="card__preloader" alt="Exhibit preview" src={ preloader }></img> }
+				{ loading && <img className="card__preloader" alt="Exhibit preview" src="/__spritemap#sprite-preloader-view"></img> }
 				<img
 					className="card__image"
 					alt="Exhibit preview"

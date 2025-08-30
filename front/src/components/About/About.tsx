@@ -21,7 +21,7 @@ export default function About() {
 						<a className="link link--muted" href="#about-author">
 							<img
 								className="link__icon"
-								src="/icons/link-arrow-down.svg"
+								src="/__spritemap#sprite-arrow-down-view"
 							/>
 							Обо мне
 						</a>

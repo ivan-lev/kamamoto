@@ -7,7 +7,7 @@ export default function Breadcrumbs() {
 			<Link to=".." className="link link_navigational" relative="path">
 				<img
 					className="link__icon"
-					src="/icons/link-arrow-left.svg"
+					src="/__spritemap#sprite-arrow-left-view"
 				/>
 				Назад
 			</Link>

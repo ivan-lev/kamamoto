@@ -28,11 +28,7 @@ export default function Statistics() {
 				<h2 className="title3">Статистика</h2>
 				<div className="statistics__grid">
 					<div className="statistics__dashboard-element">
-						<img
-							className="statistics__element-icon"
-							src="/icons/exhibitions.svg"
-							alt="иконка"
-						/>
+						<img className="statistics__element-icon" src="/__spritemap#sprite-screen-users-view" alt="иконка" />
 						<span className="statistics__element-title">
 							Выставки:&nbsp;
 							{ statistics.exhibitions }
@@ -40,7 +36,7 @@ export default function Statistics() {
 					</div>
 
 					<div className="statistics__dashboard-element">
-						<img className="statistics__element-icon" src="/icons/exhibits.svg" alt="иконка" />
+						<img className="statistics__element-icon" src="/__spritemap#sprite-bowl-view" alt="иконка" />
 						<span className="statistics__element-title">
 							Экспонаты:&nbsp;
 							{ statistics.exhibits }
@@ -48,11 +44,7 @@ export default function Statistics() {
 					</div>
 
 					<div className="statistics__dashboard-element">
-						<img
-							className="statistics__element-icon"
-							src="/icons/categories.svg"
-							alt="иконка"
-						/>
+						<img className="statistics__element-icon" src="/__spritemap#sprite-envelopes-view" alt="иконка" />
 						<span className="statistics__element-title">
 							Категории:&nbsp;
 							{ statistics.categories }
@@ -60,7 +52,7 @@ export default function Statistics() {
 					</div>
 
 					<div className="statistics__dashboard-element">
-						<img className="statistics__element-icon" src="/icons/partners.svg" alt="иконка" />
+						<img className="statistics__element-icon" src="/__spritemap#sprite-user-view" alt="иконка" />
 						<span className="statistics__element-title">
 							Партнёры:&nbsp;
 							{ statistics.partners }
@@ -68,12 +60,13 @@ export default function Statistics() {
 					</div>
 
 					<div className="statistics__dashboard-element">
-						<img className="statistics__element-icon" src="/icons/letter.svg" alt="иконка" />
+						<img className="statistics__element-icon" src="/__spritemap#sprite-diploma-view" alt="иконка" />
 						<span className="statistics__element-title">
 							Письма:&nbsp;
 							{ statistics.letters }
 						</span>
 					</div>
+
 				</div>
 			</div>
 		);

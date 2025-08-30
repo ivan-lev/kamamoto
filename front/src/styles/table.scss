@@ -72,15 +72,16 @@
 
 		width: 24px;
 		height: 24px;
-		border: 0;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
 
-		background-color: transparent;
+		background-color: var(--background-muted);
 		background-repeat: no-repeat;
 		background-position: center;
-		background-size: 100%;
+		background-size: 75%;
 
 		&--edit {
-			background-image: url('/icons/edit.svg');
+			background-image: url('/__spritemap#sprite-pen-view');
 		}
 	}
 }

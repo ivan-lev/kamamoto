@@ -5,7 +5,7 @@ export default function ScrollToTopButton() {
 		<ScrollToTop
 			smooth
 			top={ 300 }
-			component={ <img className="link__icon" src="/icons/link-arrow-up.svg" /> }
+			component={ <img className="link__icon" src="/__spritemap#sprite-arrow-up-view" /> }
 			className="custom-styles"
 		/>
 	);
