@@ -7,6 +7,14 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Kamamoto Docs',
+			defaultLocale: 'root',
+			locales: {
+				root: {
+				label: 'Русский',
+				lang: 'ru',
+				},
+			},
+			customCss: ['./src/styles/custom.css'],
 			social: [
 				{ icon: 'laptop', label: 'Site', href: 'https://kamamoto.ru' },
 				{ icon: 'telegram', label: 'Telegram', href: 'https://t.me/ChawanShop' },
@@ -18,27 +26,24 @@ export default defineConfig({
 					autogenerate: { directory: 'common' },
 				},
 				{
-					label: 'Frontend',
+					label: 'Фронтенд',
 					autogenerate: { directory: 'frontend' },
 				},
 				{
-					label: 'Backend',
+					label: 'Бэкенд',
 					autogenerate: { directory: 'backend' },
+				},
+				{
+					label: 'Контент',
+					autogenerate: { directory: 'content' },
 				},
 				{
 					label: 'Версии приложения',
 					autogenerate: { directory: 'versions' },
 				},
 				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Остальное',
+					autogenerate: { directory: 'other' },
 				},
 			],
 		}),
