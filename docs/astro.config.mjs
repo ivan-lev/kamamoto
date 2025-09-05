@@ -6,7 +6,7 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'Kamamoto Docs',
+			title: 'Дока Камамото',
 			defaultLocale: 'root',
 			locales: {
 				root: {
