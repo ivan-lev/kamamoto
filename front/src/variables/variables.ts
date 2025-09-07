@@ -17,15 +17,17 @@ export const PATHS = Object.freeze({
 });
 
 export const homepageSliderImages = [
-	'images/homepage-slider/0.jpg',
-	'images/homepage-slider/1.jpg',
-	'images/homepage-slider/2.jpg',
-	'images/homepage-slider/3.jpg',
-	'images/homepage-slider/4.jpg',
-	'images/homepage-slider/5.jpg',
-	'images/homepage-slider/6.jpg',
-	'images/homepage-slider/7.jpg',
-	'images/homepage-slider/8.jpg',
+	'images/homepage-slider/01.webp',
+	'images/homepage-slider/02.webp',
+	'images/homepage-slider/03.webp',
+	'images/homepage-slider/04.webp',
+	'images/homepage-slider/05.webp',
+	'images/homepage-slider/06.webp',
+	'images/homepage-slider/07.webp',
+	'images/homepage-slider/08.webp',
+	'images/homepage-slider/09.webp',
+	'images/homepage-slider/10.webp',
+	'images/homepage-slider/11.webp',
 ];
 
 export const LOGIN_MESSAGES = Object.freeze({
