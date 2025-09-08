@@ -9,6 +9,8 @@ import Exhibit from '../models/exhibit';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
+const { STATIC_URL, CATEGORIES, EXHIBITS } = PATHS;
+
 function getCategories(req: Request, res: Response, next: NextFunction): void {
 	// check if request was made from admin panel
 	// and return thumb in appropriate format below
@@ -18,7 +20,7 @@ function getCategories(req: Request, res: Response, next: NextFunction): void {
 		.then((categories) => {
 			return categories.map((cat: CategoryType) => {
 				const { name, title } = cat;
-				const thumbnailPath = `${PATHS.PUBLIC_URL}/${PATHS.CATEGORIES}/${cat.thumbnail}`;
+				const thumbnailPath = `${STATIC_URL}/${CATEGORIES}/${cat.thumbnail}`;
 				return { name, title, thumbnail: isAdmin === 'true' ? cat.thumbnail : thumbnailPath };
 			});
 		})
@@ -33,7 +35,7 @@ function getExhibitsByCategory(req: Request, res: Response, next: NextFunction):
 			Exhibit.find({ category: category._id, isActive: true })
 				.then((exhibits: ExhibitType[]) => {
 					return exhibits.map((exhibit) => {
-						const thumbnailPath = `${PATHS.PUBLIC_URL}/${PATHS.EXHIBITS}/${exhibit.id}/${exhibit.thumbnail}`;
+						const thumbnailPath = `${STATIC_URL}/${EXHIBITS}/${exhibit.id}/${exhibit.thumbnail}`;
 						return { link: exhibit.id.toString(), title: exhibit.name, thumbnail: thumbnailPath };
 					});
 				})

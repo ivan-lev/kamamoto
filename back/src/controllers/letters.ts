@@ -5,15 +5,16 @@ import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 import Letter from '../models/letter';
 import { ERROR_MESSAGES } from '../variables/messages';
-
 import { PATHS } from '../variables/paths';
+
+const { STATIC_URL, LETTERS } = PATHS;
 
 function getLetters(req: Request, res: Response, next: NextFunction): void {
 	Letter.find({}, { _id: 0 })
 		.then((letters: File[]) => {
 			return letters.map((letter) => {
-				letter.name = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${letter.name}`;
-				letter.thumbnail = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${letter.thumbnail}`;
+				letter.name = `${STATIC_URL}/${LETTERS}/${letter.name}`;
+				letter.thumbnail = `${STATIC_URL}/${LETTERS}/${letter.thumbnail}`;
 				return letter;
 			});
 		})

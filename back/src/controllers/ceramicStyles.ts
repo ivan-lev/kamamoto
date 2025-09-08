@@ -9,7 +9,7 @@ import CeramicStyleModel from '../models/style';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
-const { CERAMIC_STYLES, PUBLIC_PATH } = PATHS;
+const { CERAMIC_STYLES, STATIC_URL } = PATHS;
 
 function getCeramicStyles(req: Request, res: Response, next: NextFunction): void {
 	const isAdmin = req.headers['is-admin'];
@@ -18,7 +18,7 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 			if (isAdmin === 'false') {
 				styles.forEach((style) => {
 					const { thumbnail, images, additionalImages } = style;
-					const pathToCeramicStyleFolder = `${PUBLIC_PATH}/${CERAMIC_STYLES}/${style.name}`;
+					const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${style.name}`;
 					if (thumbnail)
 						style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
 

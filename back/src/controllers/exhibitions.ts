@@ -7,7 +7,7 @@ import Exhibition from '../models/exhibition';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
-const { EXHIBITIONS, PUBLIC_URL } = PATHS;
+const { EXHIBITIONS, STATIC_URL } = PATHS;
 
 function getExhibitions(req: Request, res: Response, next: NextFunction): void {
 	const isAdmin = req.headers['is-admin'];
@@ -16,7 +16,7 @@ function getExhibitions(req: Request, res: Response, next: NextFunction): void {
 			if (isAdmin === 'false') {
 				exhibitions.forEach((exhibition) => {
 					const { id, photos, poster } = exhibition;
-					const pathToExhibitionFolder = `${PUBLIC_URL}/${EXHIBITIONS}/${id}`;
+					const pathToExhibitionFolder = `${STATIC_URL}/${EXHIBITIONS}/${id}`;
 
 					if (photos) {
 						photos.forEach((photo, i) => {
@@ -66,7 +66,7 @@ function getExhibitionById(req: Request, res: Response, next: NextFunction): voi
 		.orFail()
 		.then((exhibition) => {
 			const { photos, poster } = exhibition;
-			const pathToExhibitionFolder = `${PUBLIC_URL}/${EXHIBITIONS}/${exhibition.id}`;
+			const pathToExhibitionFolder = `${STATIC_URL}/${EXHIBITIONS}/${exhibition.id}`;
 
 			if (photos.length) {
 				photos.forEach((photo, i) => {

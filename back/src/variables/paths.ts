@@ -1,7 +1,5 @@
-import { BASE_URL, PORT } from '../config';
+import { BASE_URL, NODE_ENV, PORT, STATIC_URL } from '../config';
 import 'dotenv/config';
-
-const { PUBLIC_URL } = process.env;
 
 export const PATHS = Object.freeze({
 	COMPLECTATION: 'complectation',
@@ -11,6 +9,5 @@ export const PATHS = Object.freeze({
 	EXHIBITS: 'exhibits',
 	LETTERS: 'letters',
 	PARTNERS: 'partners',
-	PUBLIC_PATH: `${BASE_URL}:${PORT}`,
-	PUBLIC_URL,
+	STATIC_URL: NODE_ENV === 'production' ? STATIC_URL : `${BASE_URL}:${PORT}/static`,
 });

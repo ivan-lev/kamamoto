@@ -7,12 +7,14 @@ import File from '../models/file';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
+const { STATIC_URL, LETTERS } = PATHS;
+
 function getFiles(req: Request, res: Response, next: NextFunction): void {
 	File.find({}, { _id: 0 })
 		.then((files: FileType[]) => {
 			return files.map((file) => {
-				file.name = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${file.name}`;
-				file.thumbnail = `${PATHS.PUBLIC_URL}/${PATHS.LETTERS}/${file.thumbnail}`;
+				file.name = `${STATIC_URL}/${LETTERS}/${file.name}`;
+				file.thumbnail = `${STATIC_URL}/${LETTERS}/${file.thumbnail}`;
 				return file;
 			});
 		})

@@ -7,6 +7,8 @@ import Partner from '../models/partner';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
+const { STATIC_URL, PARTNERS } = PATHS;
+
 async function getPartners(req: Request, res: Response, next: NextFunction) {
 	// check if request was made from admin panel
 	// and return thumb in appropriate format below
@@ -15,7 +17,7 @@ async function getPartners(req: Request, res: Response, next: NextFunction) {
 		const partners = await Partner.find({});
 		const newPartners = partners.map((partner: PartnerType) => {
 			const { _id, isActive, link, logo, title } = partner;
-			const logoPath = `${PATHS.PUBLIC_URL}/${PATHS.PARTNERS}/${logo}`;
+			const logoPath = `${STATIC_URL}/${PARTNERS}/${logo}`;
 			return { _id, isActive, link, title, logo: isAdmin === 'true' ? logo : logoPath };
 		});
 		res.send(newPartners);
