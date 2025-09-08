@@ -19,11 +19,11 @@ services:
       dockerfile: Dockerfile
     container_name: back
     ports:
-      - "XXXX:XXXX"
+      - "3001:3000"
     environment:
       - NODE_ENV=production
     env_file:
-      - back/.env.docker
+      - ./back/.env.docker
     volumes:
       - ./back/dist/public:/app/dist/public
       - ./back:/app
@@ -38,13 +38,13 @@ services:
     image: mongo:8
     container_name: mongo
     ports:
-      - "XXXXX:XXXXX"
+      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: <user>
-      MONGO_INITDB_ROOT_PASSWORD: <password>
+      MONGO_INITDB_ROOT_USERNAME: <user name>
+      MONGO_INITDB_ROOT_PASSWORD: <user password>
     entrypoint: ["mongod", "--auth", "--bind_ip", "0.0.0.0"]
     volumes:
-      - ./mongo/dump_test:/data/db
+      - ./mongo/db_dump:/data/db
     restart: always
     networks:
       - app-net
