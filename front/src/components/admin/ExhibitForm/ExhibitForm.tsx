@@ -17,7 +17,10 @@ export default function ExhibitForm() {
 	const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
+
+	// TO DO костыль - нужно переделать
 	const [photoName, setPhotoName] = useState<string>('');
+	const [additionalPhotoName, setAdditionalPhotoName] = useState<string>('');
 
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
 	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
@@ -115,9 +118,24 @@ export default function ExhibitForm() {
 		}
 	};
 
+	function handleChangeAdditionalPhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+		const { name, value } = event.target;
+		setAdditionalPhotoName(value);
+		if (value.slice(-1) === ',' || value.slice(-1) === ' ') {
+			dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: [...exhibitToEdit.additionalImages || [], value.substring(0, value.length - 1)] }));
+			setAdditionalPhotoName('');
+		}
+	};
+
+	// TO DO костыль - нужно унифицировать
 	function handleDeletePhoto(photoToDelete: string) {
 		const filteredPhotos = exhibitToEdit.images?.filter(photo => photo !== photoToDelete);
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, images: filteredPhotos }));
+	}
+
+	function handleDeleteAdditionalPhoto(photoToDelete: string) {
+		const filteredPhotos = exhibitToEdit.additionalImages?.filter(photo => photo !== photoToDelete);
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, additionalImages: filteredPhotos }));
 	}
 
 	useEffect(() => {
@@ -348,9 +366,12 @@ export default function ExhibitForm() {
 							type="text"
 							name="additionalImages"
 							placeholder="названия через запятую без пробелов с расширением"
-							value={ exhibitToEdit.additionalImages }
-							onChange={ handleChangePhotos }
+							value={ additionalPhotoName }
+							onChange={ handleChangeAdditionalPhotos }
 						/>
+						<div className="tags">
+							{ exhibitToEdit?.additionalImages?.map(image => <Tag key={ image } title={ image } action={ () => handleDeleteAdditionalPhoto(image) } />) }
+						</div>
 					</div>
 
 					<div className="form__row form__row-2">

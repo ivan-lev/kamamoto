@@ -16,7 +16,7 @@ export interface Exhibit {
 	potterPhoto?: string;
 	potterInfo?: string;
 
-	additionalImages?: string[];
+	additionalImages: string[];
 	additionalDescription?: string;
 
 	price?: number;
