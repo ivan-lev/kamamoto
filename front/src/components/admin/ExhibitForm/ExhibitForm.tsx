@@ -238,7 +238,22 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-6">
+					<div className="form__row form__row-9">
+						<span>фотографии</span>
+						<input
+							className="input"
+							type="text"
+							name="images"
+							placeholder="фотографии"
+							value={ photoName }
+							onChange={ handleChangePhotos }
+						/>
+						<div className="tags">
+							{ exhibitToEdit?.images?.map(image => <Tag key={ image } title={ image } action={ () => handleDeletePhoto(image) } />) }
+						</div>
+					</div>
+
+					<div className="form__row form__row-2">
 						<span>тхумб</span>
 						<input
 							className="input"
@@ -261,21 +276,6 @@ export default function ExhibitForm() {
 								onChange={ handleCheckBox }
 							/>
 						</label>
-					</div>
-
-					<div className="form__row form__row-12">
-						<span>фотографии</span>
-						<input
-							className="input"
-							type="text"
-							name="images"
-							placeholder="фотографии"
-							value={ photoName }
-							onChange={ handleChangePhotos }
-						/>
-						<div className="tags">
-							{ exhibitToEdit?.images?.map(image => <Tag key={ image } title={ image } action={ () => handleDeletePhoto(image) } />) }
-						</div>
 					</div>
 
 					<div className="form__row form__row-12">
