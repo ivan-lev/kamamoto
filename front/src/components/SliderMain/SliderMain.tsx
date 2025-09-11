@@ -8,6 +8,11 @@ interface Props {
 	slides: string[];
 }
 
+const style = {
+	aspectRatio: '3 / 2',
+	width: '100%',
+};
+
 export default function SliderMain({ slides }: Props) {
 	return (
 		<section className="section slider">
@@ -23,7 +28,7 @@ export default function SliderMain({ slides }: Props) {
 			>
 				{ slides.map((slide, i) => (
 					<SwiperSlide key={ i }>
-						<img className="slider__img" src={ slide }></img>
+						<img className="slider__img" src={ slide } style={ style } fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></img>
 					</SwiperSlide>
 				),
 				) }

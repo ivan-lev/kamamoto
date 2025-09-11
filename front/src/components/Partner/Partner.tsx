@@ -10,7 +10,7 @@ export default function Partner({ partner }: Props) {
 	return (
 		<div className="partner">
 			<a href={ link } className="partner__link">
-				<img src={ logo } alt="Логотип партёра" className="partner__image" title={ title } />
+				<img src={ logo } loading="lazy" alt="Логотип партёра" className="partner__image" title={ title } />
 			</a>
 		</div>
 	);

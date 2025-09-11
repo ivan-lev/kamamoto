@@ -11,6 +11,12 @@ import '@fontsource/raleway/200.css';
 import '@fontsource/raleway/300.css';
 import '@fontsource/raleway/400.css';
 
+declare module 'react' {
+	interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+		fetchpriority?: 'high' | 'low' | 'auto';
+	}
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<Provider store={ store }>

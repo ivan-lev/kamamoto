@@ -11,6 +11,11 @@ interface Props {
 	slides: string[];
 }
 
+const style = {
+	aspectRatio: '3 / 2',
+	width: '100%',
+};
+
 const breakpoints = {
 	0: {
 		slidesPerView: 5.5,
@@ -27,7 +32,11 @@ export default function Slider({ slides }: Props) {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
 	function generateSlides(slides: string[]) {
-		return slides.map(slide => <SwiperSlide><img className="slider__img" src={ slide }></img></SwiperSlide>);
+		return slides.map((slide, i) => <SwiperSlide><img className="slider__img" src={ slide } style={ style } fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></img></SwiperSlide>);
+	}
+
+	function generateThumbs(thumbs: string[]) {
+		return thumbs.map(thumb => <SwiperSlide><img className="slider__img" src={ thumb } style={ style } loading="lazy"></img></SwiperSlide>);
 	}
 
 	return slides.length !== 0
@@ -51,7 +60,7 @@ export default function Slider({ slides }: Props) {
 					modules={ [FreeMode, Navigation, Thumbs] }
 					breakpoints={ breakpoints }
 				>
-					{ generateSlides(slides) }
+					{ generateThumbs(slides) }
 				</Swiper>
 			</section>
 		);
