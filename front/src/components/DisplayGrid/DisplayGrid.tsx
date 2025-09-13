@@ -10,10 +10,10 @@ export default function DisplayGrid() {
 		<div className="display-grid">
 			<ul className="display-grid__list">
 				{ displayList.length !== 0
-					&& displayList.map((item, index) => {
+					&& displayList.map((item) => {
 						const { link, title, thumbnail } = item; ;
 						return (
-							<li className="display-grid__element" key={ index }>
+							<li className="display-grid__element" key={ title }>
 								<Card link={ link } name={ title } image={ thumbnail } />
 							</li>
 						);

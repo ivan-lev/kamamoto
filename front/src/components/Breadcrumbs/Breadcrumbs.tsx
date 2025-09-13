@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Breadcrumbs.scss';
 
 export default function Breadcrumbs() {
+	const location = useLocation();
+
 	return (
 		<div className="breadcrumbs">
 			<Link to=".." className="link link_navigational" relative="path">
@@ -9,7 +11,7 @@ export default function Breadcrumbs() {
 					className="link__icon"
 					src="/__spritemap#sprite-arrow-left-view"
 				/>
-				Назад
+				{ location.pathname === '/collection' ? 'На главную' : 'Назад' }
 			</Link>
 		</div>
 	);

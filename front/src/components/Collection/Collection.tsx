@@ -2,6 +2,7 @@ import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
+import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setCategories } from '@/slices/visitor/categories';
@@ -49,8 +50,9 @@ export default function Collection() {
 
 	return (
 		<>
+			<PageTop title="Коллекция" />
 			<Seo title="Камамото: коллекция японской керамики" />
-			<h2 className="title title2">Коллекция</h2>
+			{ /* <h2 className="title title2">Коллекция</h2> */ }
 			<section className="section collection">
 				{ categories.length === 0 && showPreloader
 					? (

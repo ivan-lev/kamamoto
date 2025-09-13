@@ -6,8 +6,6 @@
 }
 
 .tag {
-	cursor: pointer;
-
 	display: flex;
 	flex-wrap: nowrap;
 	gap: var(--gap-4);
@@ -27,6 +25,8 @@
 	}
 
 	&__action {
+		cursor: pointer;
+
 		width: var(--gap-12);
 		height: var(--gap-12);
 

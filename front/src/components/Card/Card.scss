@@ -4,7 +4,7 @@
 	flex-direction: column;
 	gap: var(--gap-16);
 
-	&__image-wrapper {
+	&__picture {
 		position: relative;
 
 		overflow: hidden;
@@ -18,10 +18,12 @@
 		border: 1px solid var(--border-color);
 		border-radius: var(--border-radius-m);
 
+		background-color: var(--background-secondary);
+
 		transition: transform 0.4s ease
 	}
 
-	&:hover &__image-wrapper {
+	&:hover &__picture {
 		border: 1px solid var(--color-secondary-060);
 	}
 

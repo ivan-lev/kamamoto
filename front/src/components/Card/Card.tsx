@@ -1,7 +1,6 @@
 // React and Redux
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import './Card.scss';
 
 interface Props {
@@ -10,21 +9,26 @@ interface Props {
 	image: string;
 }
 
+const style = {
+	aspectRatio: '3 / 2',
+	width: '100%',
+	border: '1px solid var(--border-color)',
+};
+
 export default function Card({ link, name, image }: Props) {
-	const [loading, setLoading] = useState(true);
+	const [srcToRender, setSrcToRender] = useState<string>(image);
 
 	return (
 		<div className="card">
-			<div className="card__image-wrapper">
-				{ loading && <img className="card__preloader" alt="Exhibit preview" src="/__spritemap#sprite-preloader-view"></img> }
+			<picture className="card__picture" style={ style }>
 				<img
 					className="card__image"
-					alt="Exhibit preview"
-					src={ image }
-					onLoad={ () => setLoading(false) }
+					alt="Изабражение лота"
+					src={ srcToRender }
+					onError={ () => setSrcToRender('/images/error.webp') }
 				>
 				</img>
-			</div>
+			</picture>
 
 			<span className="card__name">{ name }</span>
 
