@@ -16,7 +16,7 @@ export default function Compleactation() {
 	useEffect(() => {
 		api.complectation.getComplections()
 			.then((complectations) => {
-				setComplectations(complectations);
+				setComplectations(complectations.toSorted((a, b) => a.title.localeCompare(b.title)));
 				setShowPreloader(false);
 			})
 			.catch(error => console.error(error));
@@ -59,19 +59,19 @@ export default function Compleactation() {
 				)
 				: (
 					<div className="container container--background-transparent">
-						<h2 className="title3">Партнёры</h2>
+						<h2 className="title3">Комплектация</h2>
 						<div className="table">
 							<div className="table__row">
-								<span className="table__cell table__cell--span-5">name</span>
-								<span className="table__cell table__cell--span-6">title</span>
+								<span className="table__cell table__cell--span-5">title</span>
+								<span className="table__cell table__cell--span-6">name</span>
 								<span className="table__cell table__cell--centered"></span>
 							</div>
 							{ complectations.map((complectation) => {
 								const { name, title } = complectation;
 								return (
 									<div key={ name } className="table__row">
-										<span className="table__cell table__cell--span-5">{ name }</span>
-										<span className="table__cell table__cell--span-6">{ title }</span>
+										<span className="table__cell table__cell--span-5">{ title }</span>
+										<span className="table__cell table__cell--span-6">{ name }</span>
 										<div className="table__cell table__cell--centered">
 											<button
 												className="table__button table__button--edit"
@@ -91,7 +91,7 @@ export default function Compleactation() {
 								</legend>
 
 								<div className="form__grid">
-									<div className="form__row form__row-5">
+									<div className="form__row form__row-6">
 										<span>name</span>
 										<input
 											className={ `input ${
@@ -105,7 +105,7 @@ export default function Compleactation() {
 										/>
 									</div>
 
-									<div className="form__row form__row-5">
+									<div className="form__row form__row-6">
 										<span>title</span>
 										<input
 											className={ `input ${

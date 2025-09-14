@@ -164,7 +164,7 @@ export default function ExhibitForm() {
 		if (complectations.length === 0) {
 			api.complectation.getComplections()
 				.then((complectations) => {
-					dispatch(setComplectations(complectations));
+					dispatch(setComplectations(complectations.toSorted((a, b) => a.title.localeCompare(b.title))));
 				})
 				.catch(error => console.error(error));
 		}
@@ -437,7 +437,7 @@ export default function ExhibitForm() {
 					<div className="form__row form__row-12">
 						<span>комплектность</span>
 						<div className="form__tags">
-							{ complectations.map(complectation => <ComplectationItem complectation={ complectation } />) }
+							{ complectations.map(complectation => <ComplectationItem key={ complectation.title } complectation={ complectation } />) }
 						</div>
 					</div>
 
