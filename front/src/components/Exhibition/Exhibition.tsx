@@ -73,7 +73,7 @@ export default function Exhibition() {
 						<section className="section exhibition">
 							<div className="exhibition__place">
 								<p className="text text--muted">{ `Место проведения: ${city}, ${address}, ${place}` }</p>
-								<p className="text text--muted">{ `Даты: ${year} год, ${dates}` }</p>
+								<time className="text text--muted">{ `Даты: ${year} год, ${dates}` }</time>
 								{ link && (
 									<span className="text text--muted">
 										Ссылка на&nbsp;
