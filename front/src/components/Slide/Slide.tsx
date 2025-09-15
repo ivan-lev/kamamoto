@@ -21,7 +21,7 @@ export default function Slide({ src, fallback, fetchpriority = 'low', loading = 
 			alt="слайд"
 			src={ srcToRender }
 			style={ style }
-			fetchpriority={ fetchpriority }
+			fetchPriority={ fetchpriority }
 			loading={ loading }
 			onError={ () => setSrcToRender(fallback) }
 		>
