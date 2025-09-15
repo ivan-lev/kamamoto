@@ -20,6 +20,25 @@
 		--swiper-navigation-color: var(--color-secondary-100);
 
 		filter: drop-shadow(var(--gap-2) var(--gap-4) var(--gap-4) var(--color-primary-100));
+
+		&::before {
+			content: '';
+
+			position: absolute;
+			top: 50%;
+			transform: translate(0%, -50%);
+
+			width: 300%;
+			height: 300%;
+		}
+
+		@media(max-width: 768px) {
+			--swiper-navigation-size: 30px;
+		}
+
+		@media(max-width: 480px) {
+			--swiper-navigation-size: 20px;
+		}
 	}
 
 	.swiper-button-prev {
