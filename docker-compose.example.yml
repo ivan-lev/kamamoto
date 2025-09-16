@@ -25,9 +25,7 @@ services:
     env_file:
       - ./back/.env.docker
     volumes:
-      - ./back/dist/public:/app/dist/public
-      - ./back:/app
-      - /app/node_modules
+      - ./back/src/public:/app/dist/public
     networks:
       - app-net
     restart: always

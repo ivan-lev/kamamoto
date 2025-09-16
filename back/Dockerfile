@@ -22,8 +22,8 @@ COPY src/ ./src/
 RUN mkdir -p /app/logs && chown -R node:node /app/logs
 
 # Собираем TypeScript
-RUN npm run build
+RUN npm run build-docker
 
 EXPOSE 3000
-#USER node
+USER node
 CMD ["node", "dist/app.js"]

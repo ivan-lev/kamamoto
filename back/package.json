@@ -7,7 +7,8 @@
     "lint": "npx eslint .",
     "start": "node dist/app.js",
     "dev": "nodemon",
-    "build": "rimraf dist && copy-folder src/public dist/public --summary && tsc -p tsconfig.json"
+    "build": "rimraf dist && copy-folder src/public dist/public --summary && tsc -p tsconfig.json",
+    "build-docker": "tsc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
