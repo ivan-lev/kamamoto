@@ -6,7 +6,7 @@ interface Props {
 	data?: CeramicStyle;
 }
 
-export default function ExhibitStyleDescription({ data }: Props) {
+export default function StyleDescription({ data }: Props) {
 	return data?.brief && (
 		<section className="section ceramic-style">
 			<div className="container">

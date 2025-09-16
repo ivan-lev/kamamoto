@@ -6,7 +6,7 @@ interface Props {
 	potterPhoto?: string;
 }
 
-export default function ExhibitPotterInfo({ potterInfo, potterPhoto }: Props) {
+export default function PotterInfo({ potterInfo, potterPhoto }: Props) {
 	return potterInfo
 		&& (
 			<section className="section description description--block">
@@ -14,6 +14,7 @@ export default function ExhibitPotterInfo({ potterInfo, potterPhoto }: Props) {
 					<img
 						className="description__photo"
 						src={ potterPhoto }
+						loading="lazy"
 					>
 					</img>
 				) }

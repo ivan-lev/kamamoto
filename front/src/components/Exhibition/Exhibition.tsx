@@ -104,6 +104,7 @@ export default function Exhibition() {
 								<img
 									className="exhibition__poster"
 									src={ poster }
+									loading="lazy"
 								>
 								</img>
 							) }

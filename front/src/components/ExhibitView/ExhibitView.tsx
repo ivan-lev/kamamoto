@@ -3,13 +3,13 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import ExhibitDescription from '@/components/ExhibitDescription/ExhibitDescription';
-import ExhibitPotterInfo from '@/components/ExhibitPotterInfo/ExhibitPotterInfo';
-import ExhibitStyleDescription from '@/components/ExhibitStyleDescription/ExhibitStyleDescription';
-import ExhibitTechInfo from '@/components/ExhibitTechInfo/ExhibitTechInfo';
 import PageTop from '@/components/PageTop/PageTop';
+import PotterInfo from '@/components/PotterInfo/PotterInfo';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import Slider from '@/components/Slider/Slider';
+import StyleDescription from '@/components/StyleDescription/StyleDescription';
+import Summary from '@/components/Summary/Summary';
 import { setComplectations } from '@/slices/admin/complectations';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
@@ -72,11 +72,11 @@ export default function ExhibitView() {
 						<PageTop title={ name } />
 						<Slider slides={ images } />
 						<ExhibitDescription data={ description } />
-						<ExhibitPotterInfo potterInfo={ potterInfo } potterPhoto={ potterPhoto } />
+						<PotterInfo potterInfo={ potterInfo } potterPhoto={ potterPhoto } />
 						<ExhibitDescription data={ additionalDescription } />
 						<Slider slides={ additionalImages || [] } />
-						<ExhibitStyleDescription data={ style } />
-						<ExhibitTechInfo exhibit={ exhibit } />
+						<StyleDescription data={ style } />
+						<Summary exhibit={ exhibit } />
 					</>
 				) }
 		</>

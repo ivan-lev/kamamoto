@@ -3,13 +3,13 @@ import type { Exhibit } from '@/types/exhibitType';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import QR from '@/components/QR/QR';
-import './ExhibitTechInfo.scss';
+import './Summary.scss';
 
 interface Props {
 	exhibit: Exhibit;
 }
 
-export default function ExhibitTechInfo({ exhibit }: Props) {
+export default function Summary({ exhibit }: Props) {
 	const complectations = useSelector((state: RootState) => state.complectations.complectations);
 	const [showTechInfo, setShowTechInfo] = useState(false);
 
@@ -31,32 +31,32 @@ export default function ExhibitTechInfo({ exhibit }: Props) {
 	return (
 		<section className="section">
 			<div className="container">
-				<div className="tech-info">
+				<div className="summary">
 					<button
-						className={ `tech-info__button ${showTechInfo ? 'tech-info__button_opened' : ''}` }
+						className={ `summary__button ${showTechInfo ? 'summary__button_opened' : ''}` }
 						onClick={ handleShowTechinfo }
 					>
-						Техническая информация
+						Сводка
 					</button>
 
-					<div className={ `tech-info__content${showTechInfo ? '' : ' tech-info__content--hidden'}` }>
-						<div className="tech-info__potter-info">
-							<span className="tech-info__column-title">Информация о мастере</span>
-							<ul className="tech-info__list">
-								<li className="tech-info__list-element">
+					<div className={ `summary__content${showTechInfo ? '' : ' summary__content--hidden'}` }>
+						<div className="summary__potter-info">
+							<span className="summary__column-title">Информация о мастере</span>
+							<ul className="summary__list">
+								<li className="summary__list-element">
 									<span>Имя мастера:</span>
 									<span>{ exhibit?.potterName || 'неизвестно' }</span>
 								</li>
 
 								{ exhibit?.potterJapaneseName && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Имя на японском:</span>
 										<span>{ exhibit?.potterJapaneseName }</span>
 									</li>
 								) }
 
 								{ exhibit?.potterLifeDates && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Даты жизни:</span>
 										<span>{ exhibit?.potterLifeDates }</span>
 									</li>
@@ -64,95 +64,95 @@ export default function ExhibitTechInfo({ exhibit }: Props) {
 							</ul>
 						</div>
 
-						<div className="tech-info__exhibit-info">
-							<span className="tech-info__column-title">Информация о лоте</span>
-							<ul className="tech-info__list">
-								<li className="tech-info__list-element">
+						<div className="summary__exhibit-info">
+							<span className="summary__column-title">Информация о лоте</span>
+							<ul className="summary__list">
+								<li className="summary__list-element">
 									<span>Номер лота: </span>
 									{ exhibit?.id }
 								</li>
 
 								{ exhibit?.age && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Возраст предмета: </span>
 										{ exhibit?.age }
 									</li>
 								) }
 
 								{ exhibit?.style && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Стиль керамики: </span>
 										{ exhibit?.style.title }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.height) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Высота: </span>
 										{ `${exhibit?.height} см` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.length) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Длина: </span>
 										{ `${exhibit?.length} см` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.width) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Ширина: </span>
 										{ `${exhibit?.width} см` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.diameter) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Диаметр: </span>
 										{ exhibit?.diameter }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.footDiameter) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Диаметр ножки: </span>
 										{ exhibit?.footDiameter }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.weight) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Вес:&nbsp;</span>
 										{ exhibit?.weight }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.volume) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Объём:&nbsp;</span>
 										{ exhibit?.volume }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.weightOfSet) && (
-									<li className="tech-info__list-element">
+									<li className="summary__list-element">
 										<span>Вес набора:&nbsp;</span>
 										{ exhibit?.weightOfSet }
 									</li>
 								) }
 
-								<li className="tech-info__list-element tech-info__list-element_justify">
+								<li className="summary__list-element summary__list-element_justify">
 									{ exhibit?.complectation?.length !== 0 && `Комплектность: ${parseComplectations()} ` }
 								</li>
 
-								<li className="tech-info__list-element tech-info__list-element_justify">
+								<li className="summary__list-element summary__list-element_justify">
 									{ `Сохранность: ${exhibit?.preservation || 'не оценена'}` }
 								</li>
 							</ul>
 						</div>
 
-						<div className="tech-info__qr-code">
+						<div className="summary__qr-code">
 							<QR />
 						</div>
 
