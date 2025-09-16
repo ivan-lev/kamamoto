@@ -46,7 +46,7 @@ export default function Contacts() {
 			})
 			.then(
 				(result) => {
-					console.error(result.text);
+					console.warn(result.text);
 					setIsSuccessSended(true);
 					setShowAlert(true);
 					setIsMessageSending(false);
@@ -136,7 +136,7 @@ export default function Contacts() {
 
 						<button
 							className={ `button ${isMessageSending ? 'button--sending' : ''}
-            ${isButtonDisabled ? 'button--muted' : ''}` }
+            ${isButtonDisabled ? 'button--disabled' : ''}` }
 							type="submit"
 						>
 							Отправить

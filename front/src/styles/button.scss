@@ -34,4 +34,11 @@
 	&--muted {
 		opacity: 0.6;
 	}
+
+	&--disabled {
+		cursor:not-allowed;
+		border: 1px solid var(--text-muted);
+		color: var(--text-muted);
+		background: transparent;
+	}
 }
