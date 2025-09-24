@@ -16,6 +16,7 @@ export default function PotterInfo({ potterInfo, potterPhoto }: Props) {
 						src={ potterPhoto }
 						loading="lazy"
 						alt="Фотография мастера"
+						onError={ e => (e.currentTarget.src = '/images/error-potter.webp') }
 					>
 					</img>
 				) }
