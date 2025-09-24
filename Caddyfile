@@ -1,15 +1,18 @@
 # Caddyfile.prod
-http://158.255.5.107 {
-    # Redirect HTTP to HTTPS (когда добавите SSL)
-    # redir https://{host}{uri}
+http://158.255.5.107, http://kamamoto.ru, https://kamamoto.ru {
+    # Redirect HTTP to HTTPS
+    @http {
+        protocol http
+    }
+    redir @http https://kamamoto.ru{uri} permanent
 
     # Handle API requests
     handle /api/* {
         reverse_proxy http://back:3000 {
             header_up Host {host}
             header_up X-Real-IP {remote}
-            # header_up X-Forwarded-For {remote}
-            # header_up X-Forwarded-Proto {scheme}
+            header_up X-Forwarded-For {remote}
+            header_up X-Forwarded-Proto {scheme}
         }
     }
 
