@@ -18,7 +18,7 @@ export default function ({ links, additionalClassNames }: Props) {
 						href={ url }
 						key={ id }
 					>
-						<img className="social-links__icon" src={ icon } />
+						<img className="social-links__icon" src={ icon } alt="Иконка" />
 						{ title }
 					</a>
 				);
