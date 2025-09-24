@@ -44,6 +44,9 @@ const exhibits = createSlice({
 			exhibit.height = Number(exhibit.height);
 			exhibit.weight = Number(exhibit.weight);
 			exhibit.weightOfSet = Number(exhibit.weightOfSet);
+			exhibit.volume = Number(exhibit.volume);
+			exhibit.diameter = Number(exhibit.diameter);
+			exhibit.footDiameter = Number(exhibit.footDiameter);
 			state.exhibitToEdit = { ...exhibit };
 		},
 

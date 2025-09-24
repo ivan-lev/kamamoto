@@ -411,6 +411,42 @@ export default function ExhibitForm() {
 					</div>
 
 					<div className="form__row form__row-2">
+						<span>диаметр</span>
+						<input
+							className="input"
+							type="text"
+							name="diameter"
+							placeholder="см"
+							value={ exhibitToEdit.diameter }
+							onChange={ handleChange }
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>диаметр ножки</span>
+						<input
+							className="input"
+							type="text"
+							name="footDiameter"
+							placeholder="см"
+							value={ exhibitToEdit.footDiameter }
+							onChange={ handleChange }
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>объём</span>
+						<input
+							className="input"
+							type="text"
+							name="volume"
+							placeholder="см"
+							value={ exhibitToEdit.volume }
+							onChange={ handleChange }
+						/>
+					</div>
+
+					<div className="form__row form__row-2">
 						<span>вес</span>
 						<input
 							className="input"
