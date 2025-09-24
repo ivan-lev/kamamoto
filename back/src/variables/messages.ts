@@ -10,7 +10,7 @@ export const ERROR_MESSAGES = Object.freeze({
 
 	COMPLECTATION_WRONG_DATA: 'При сохранении варианта комплектации переданы невалидные данные',
 	COMPLECTATION_WRONG_ID: 'Передано некорректное поле name варианта комплектации',
-	COMPLECTATION_NOT_FOUND: 'Аариант комплектации с таким полем name не найден',
+	COMPLECTATION_NOT_FOUND: 'Вариант комплектации с таким полем name не найден',
 	COMPLECTATION_EXISTS: 'Лот с таким полем name уже существует',
 
 	EXHIBIT_WRONG_DATA: 'При сохранении лота переданы невалидные данные',

@@ -37,4 +37,4 @@ export const LOGIN_MESSAGES = Object.freeze({
 	WRONG_EMAIL_FORMAT: 'Неправильный формат email-адреса',
 });
 
-export const SITE_VERSION = '1.8.7';
+export const SITE_VERSION = '1.9.5';

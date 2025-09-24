@@ -5,13 +5,15 @@ import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { api } from '@/utils/api/api';
 
+const initialData: Complectation = { name: '', title: '' };
+
 export default function Compleactation() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 	const [complectations, setComplectations] = useState<Complectation[]>([]);
-	const [isExistingComplectationEdited, _setIsExistingPartnerEdited] = useState<boolean>(false);
-	const [newComplectation, setNewComplectation] = useState<Complectation>({ name: '', title: '' });
+	const [isDataEdited, setIsDataEdited] = useState<boolean>(false);
+	const [formData, setFormData] = useState<Complectation>(initialData);
 
 	useEffect(() => {
 		api.complectation.getComplections()
@@ -24,14 +26,14 @@ export default function Compleactation() {
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
-		setNewComplectation({ ...newComplectation, [name]: value });
+		setFormData({ ...formData, [name]: value });
 	};
 
 	function handleCreateComplectation() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.complectation.createComplectation(token, newComplectation)
+			api.complectation.createComplectation(token, formData)
 				.then((response: Complectation) => {
 					setComplectations([...complectations, response]);
 					setIsFormDisabled(false);
@@ -45,9 +47,53 @@ export default function Compleactation() {
 		}
 	};
 
-	function handleCancelEditComplectation() {};
+	function handleEdit(complectation: Complectation) {
+		console.warn(complectation);
+		setIsDataEdited(true);
+		setFormData(complectation);
+	};
 
-	function handleUpdateComplectation() {};
+	function handleCancelEdit() {
+		setFormData(initialData);
+		setIsDataEdited(false);
+	};
+
+	function handleUpdate(complectation: Complectation) {
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.complectation.updateComplectation(token, complectation)
+				.then((response: Complectation) => {
+					setComplectations(complectations.map(complectation => complectation.name !== response.name ? complectation : response));
+					setIsFormDisabled(false);
+					setSaveMessage('Комплектация обновлена');
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					setSaveMessage('Что-то пошло не так :(');
+				});
+		}
+	}
+
+	function handleDelete(complectationName: string) {
+		setIsFormDisabled(true);
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.complectation.deleteComplectation(token, complectationName)
+				.then((response: Complectation) => {
+					console.warn(response);
+					setComplectations(complectations.filter(complectation => complectation.name !== response.name));
+					setIsFormDisabled(false);
+					setSaveMessage('Комплектация обновлена');
+				})
+				.catch((error) => {
+					console.error(error);
+					setIsFormDisabled(false);
+					setSaveMessage('Что-то пошло не так :(');
+				});
+		};
+	}
 
 	return (
 		<>
@@ -75,7 +121,7 @@ export default function Compleactation() {
 										<div className="table__cell table__cell--centered">
 											<button
 												className="table__button table__button--edit"
-												// onClick={() => handleEditPartner(partner)}
+												onClick={ () => handleEdit(complectation) }
 											>
 											</button>
 										</div>
@@ -87,7 +133,7 @@ export default function Compleactation() {
 						<form className="form">
 							<fieldset className="form__fieldset" disabled={ isFormDisabled }>
 								<legend className="form__legend">
-									{ !isExistingComplectationEdited ? 'Добавить комлектацию' : 'Редактировать данные партнёра' }
+									{ !isDataEdited ? 'Добавить комлектацию' : 'Редактировать данные партнёра' }
 								</legend>
 
 								<div className="form__grid">
@@ -100,7 +146,7 @@ export default function Compleactation() {
 											type="text"
 											name="name"
 											placeholder="поле name"
-											value={ newComplectation.name }
+											value={ formData.name }
 											onChange={ handleChange }
 										/>
 									</div>
@@ -114,23 +160,27 @@ export default function Compleactation() {
 											type="text"
 											name="title"
 											placeholder="поле title"
-											value={ newComplectation.title }
+											value={ formData.title }
 											onChange={ handleChange }
 										/>
 									</div>
 
 									<div className="form__row form__row-12 form__row-12--inline">
-										{ !isExistingComplectationEdited
+										{ !isDataEdited
 											? (
 												<>
 													<button
 														className="button"
 														type="button"
-														// onClick={ () => dispatch(clearPartnerForm()) }
+														onClick={ () => setFormData(initialData) }
 													>
 														Очистить
 													</button>
-													<button className="button" type="submit" onClick={ handleCreateComplectation }>
+													<button
+														className="button"
+														type="submit"
+														onClick={ handleCreateComplectation }
+													>
 														Создать
 													</button>
 												</>
@@ -140,31 +190,26 @@ export default function Compleactation() {
 													<button
 														className="button"
 														type="button"
-														onClick={ handleCancelEditComplectation }
+														onClick={ handleCancelEdit }
 														disabled={ isFormDisabled }
 													>
 														Отменить
 													</button>
+
 													<button
 														className="button"
 														type="button"
-														onClick={ handleUpdateComplectation }
+														onClick={ () => handleUpdate(formData) }
 														disabled={ isFormDisabled }
 													>
 														Сохранить
 													</button>
-													{ /* <button className="button" type="button" onClick={ handleDeletePartner }>
+
+													<button className="button" type="button" onClick={ () => handleDelete(formData.name) }>
 														Удалить
-													</button> */ }
+													</button>
 												</>
 											) }
-										<button
-											className="button"
-											type="button"
-											// onClick={handleCloseExhibitionForm}
-										>
-											Закрыть
-										</button>
 									</div>
 								</div>
 							</fieldset>

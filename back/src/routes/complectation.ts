@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import { complectation } from '../controllers/complectation';
-import { complectationCreateValidator } from '../middlewares/validators/complectationValidator';
+import { complectationNameValidator, complectationValidator } from '../middlewares/validators/complectationValidator';
 
-const exhibitionRouter = Router();
+const complectationRouter = Router();
 
-exhibitionRouter.get('/', complectation.getComplectations);
-exhibitionRouter.post('/', complectationCreateValidator, complectation.createComplectation);
+complectationRouter.get('/', complectation.getComplectations);
+complectationRouter.post('/', complectationValidator, complectation.createComplectation);
+complectationRouter.patch('/:id', complectationValidator, complectation.updateComplectation);
+complectationRouter.delete('/:name', complectationNameValidator, complectation.deleteComplectation);
 
-export default exhibitionRouter;
+export default complectationRouter;

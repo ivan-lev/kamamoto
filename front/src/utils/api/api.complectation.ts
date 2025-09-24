@@ -23,7 +23,32 @@ async function createComplectation(token: string, complectation: Complectation) 
 	return checkResponseStatus(response);
 }
 
+async function updateComplectation(token: string, complectation: Complectation) {
+	const response = await fetch(`${BASE_API_URL}/${COMPLECTATION}/${complectation.name}`, {
+		method: 'PATCH',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(complectation),
+	});
+	return checkResponseStatus(response);
+}
+
+async function deleteComplectation(token: string, complectationName: string) {
+	const response = await fetch(`${BASE_API_URL}/${COMPLECTATION}/${complectationName}`, {
+		method: 'DELETE',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+	});
+	return checkResponseStatus(response);
+}
+
 export const complectation = {
 	getComplections,
 	createComplectation,
+	updateComplectation,
+	deleteComplectation,
 };
