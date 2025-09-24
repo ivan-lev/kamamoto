@@ -26,8 +26,7 @@ export default function Card({ link, name, image }: Props) {
 					alt="Изабражение лота"
 					src={ srcToRender }
 					onError={ () => setSrcToRender('/images/error.webp') }
-				>
-				</img>
+				/>
 			</picture>
 
 			<span className="card__name">{ name }</span>

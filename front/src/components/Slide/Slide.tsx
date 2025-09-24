@@ -13,7 +13,7 @@ export default function Slide({ src, fallback = '/images/error.webp', fetchprior
 	return (
 		<img
 			className="slide"
-			alt="слайд"
+			alt="Слайд"
 			src={ src }
 			style={ style }
 			fetchPriority={ fetchpriority }

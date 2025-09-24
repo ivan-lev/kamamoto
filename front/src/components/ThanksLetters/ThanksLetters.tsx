@@ -57,7 +57,7 @@ export default function ThanksLetters() {
 								return (
 									<div className="thanks-letters__element" key={ letter.id }>
 										<a className="thanks-letters__link" href={ letter.name } target="_blank">
-											<img className="thanks-letters__preview" src={ letter.thumbnail }></img>
+											<img className="thanks-letters__preview" src={ letter.thumbnail } alt="Превью благодарственного письма" />
 										</a>
 										<p className="thanks-letters__description">{ letter.description }</p>
 									</div>

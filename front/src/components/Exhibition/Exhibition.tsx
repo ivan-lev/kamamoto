@@ -105,8 +105,8 @@ export default function Exhibition() {
 									className="exhibition__poster"
 									src={ poster }
 									loading="lazy"
-								>
-								</img>
+									alt="Афиша выставки"
+								/>
 							) }
 
 							<div className="description exhibition__description">

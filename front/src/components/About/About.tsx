@@ -10,7 +10,7 @@ export default function About() {
 
 			<section className="section">
 				<div className="about">
-					<img className="about__avatar" src="/images/about-avatar.jpg" alt=""></img>
+					<img className="about__avatar" src="/images/about-avatar.jpg" alt="Фотография коллекционера" />
 					<div className="about__heading">
 						<h2 className="title title2 about__title">Иван Лев</h2>
 						<ul className="about__list">
@@ -19,10 +19,7 @@ export default function About() {
 							<li>Веб-разработчик</li>
 						</ul>
 						<a className="link link--muted" href="#about-author">
-							<img
-								className="link__icon"
-								src="/__spritemap#sprite-arrow-down-view"
-							/>
+							<img className="link__icon" src="/__spritemap#sprite-arrow-down-view" alt="иконка" />
 							Обо мне
 						</a>
 					</div>
@@ -54,12 +51,7 @@ export default function About() {
 							целой жизни, чтобы изучить его полностью. В этот момент появился новый проект,
 							посвященные японским вещам - Камамото.
 						</p>
-						<img
-							className="about__photo"
-							src="/images/about-photo-2.jpg"
-							alt="Японская керамика и деревянные коробки"
-							loading="lazy"
-						/>
+						<img className="about__photo" src="/images/about-photo-2.jpg" alt="Японская керамика и деревянные коробки" loading="lazy" />
 						<p className="text text--muted">
 							Японское слово камамото состоит из двух иероглифов: 窯元. Первый означает печь для обжига, а второй "начало" и "происхождение". Вместе они образуют слово понятие "гончарная мастерская" или "печь", подразумевая непосредственное место, где производятся изделия. Также словом камамото называют мастера-гончара.
 						</p>

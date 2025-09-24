@@ -28,7 +28,7 @@ export default function SliderMain({ slides }: Props) {
 			>
 				{ slides.map((slide, i) => (
 					<SwiperSlide key={ i }>
-						<img className="slider__img" src={ slide } style={ style } fetchPriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></img>
+						<img className="slider__img" src={ slide } style={ style } fetchPriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' } alt="Слайд" />
 					</SwiperSlide>
 				),
 				) }

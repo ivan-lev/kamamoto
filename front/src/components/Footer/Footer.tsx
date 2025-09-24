@@ -19,7 +19,7 @@ export default function Footer() {
 							key={ link.id }
 						>
 							<div className="footer__icon-wrapper">
-								<img className="footer__icon" src={ link.icon } />
+								<img className="footer__icon" src={ link.icon } alt="Иконка" />
 							</div>
 
 							{ link.title }

@@ -15,6 +15,7 @@ export default function PotterInfo({ potterInfo, potterPhoto }: Props) {
 						className="description__photo"
 						src={ potterPhoto }
 						loading="lazy"
+						alt="Фотография мастера"
 					>
 					</img>
 				) }
