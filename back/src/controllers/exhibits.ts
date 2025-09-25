@@ -27,45 +27,41 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 		.catch((error: any) => { return next(error); });
 }
 
-function findExhibitById(req: Request, res: Response, next: NextFunction): void {
-	Exhibit
-		.findOne({ id: req.params.id })
-		.populate({
-			path: 'style',
-			select: 'name title brief showArticle',
-		})
-		.orFail()
-		.then((exhibit: ExhibitType) => {
-			const pathToExhibitFolder = `${STATIC_URL}/${EXHIBITS}/${exhibit.id}`;
+async function findExhibitById(req: Request, res: Response, next: NextFunction) {
+	try {
+		const exhibit = await Exhibit.findOne({ id: req.params.id }, '-_id').populate({ path: 'style', select: '-_id name title brief showArticle mapImage' }).orFail();
 
-			if (exhibit.images) {
-				exhibit.images.forEach((image, i) => {
-					exhibit.images[i] = `${pathToExhibitFolder}/${image}`;
-				});
-			}
+		const pathToExhibitFolder = `${STATIC_URL}/${EXHIBITS}/${exhibit.id}`;
 
-			if (exhibit.additionalImages) {
-				exhibit.additionalImages.forEach((image, i) => {
-					exhibit.additionalImages[i] = `${pathToExhibitFolder}/additional/${image}`;
-				});
-			}
+		if (exhibit.images) {
+			exhibit.images.forEach((image, i) => {
+				exhibit.images[i] = `${pathToExhibitFolder}/${image}`;
+			});
+		}
 
-			if (exhibit.potterPhoto)
-				exhibit.potterPhoto = `${pathToExhibitFolder}/${exhibit.potterPhoto}`;
+		if (exhibit.additionalImages) {
+			exhibit.additionalImages.forEach((image, i) => {
+				exhibit.additionalImages[i] = `${pathToExhibitFolder}/additional/${image}`;
+			});
+		}
 
-			res.send(exhibit);
-		})
-		.catch((error: any) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-			}
+		if (exhibit.potterPhoto)
+			exhibit.potterPhoto = `${pathToExhibitFolder}/${exhibit.potterPhoto}`;
 
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-			}
+		res.send(exhibit);
+	}
 
-			return next(error);
-		});
+	catch (error: any) {
+		if (error.name === 'CastError') {
+			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
+		}
+
+		if (error.name === 'DocumentNotFoundError') {
+			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+		}
+
+		return next(error);
+	};
 }
 
 async function createExhibit(req: Request, res: Response, next: NextFunction) {

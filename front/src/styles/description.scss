@@ -6,15 +6,17 @@
 
 	&__photo {
 		float: left;
+
 		max-width: 30%;
-		padding-right: var(--gap-48);
-		padding-bottom: var(--gap-48);
+		margin-right: var(--gap-48);
+		margin-bottom: var(--gap-48);
+		border-radius: var(--border-radius-s);
 
 		@media screen and (max-width: 768px) {
 			float: unset;
 			width: 100%;
 			max-width: unset;
-			padding-right: 0;
+			margin-right: 0;
 		}
 	}
 

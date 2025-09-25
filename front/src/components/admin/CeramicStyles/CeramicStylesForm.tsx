@@ -29,6 +29,7 @@ export default function CeramicStylesForm() {
 		name,
 		title,
 		thumbnail,
+		mapImage,
 	} = ceramicStyleToEdit;
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -227,6 +228,20 @@ export default function CeramicStylesForm() {
 							placeholder="дополнительные изображения"
 							value={ additionalImages }
 							onChange={ handleChangePhotos }
+						/>
+					</div>
+
+					<div className="form__row form__row-12">
+						<span>мини карта</span>
+						<input
+							className={ `input ${
+								isFormDisabled ? 'input_disabled' : ''
+							}` }
+							type="text"
+							name="mapImage"
+							placeholder="мини карта"
+							value={ mapImage }
+							onChange={ handleChange }
 						/>
 					</div>
 

@@ -1,0 +1,10 @@
+.ceramic-style {
+
+	&__text {
+		grid-column: span 2
+	}
+
+	&__map {
+		grid-column: 3 / -1;
+	}
+}

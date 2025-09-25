@@ -39,6 +39,9 @@ export const ceramicStyleValidator = celebrate({
 		additionalImages: Joi.array().items(Joi.string()).messages({
 			'array.base': 'в поле additionalImages нужно передать массив строк',
 		}),
+		mapImage: Joi.string().messages({
+			'string.base': 'в поле mapImage нужно название файла',
+		}),
 	}),
 });
 

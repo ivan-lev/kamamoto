@@ -8,4 +8,5 @@ export interface Style {
 	thumbnail: string;
 	images: string[];
 	additionalImages: string[];
+	mapImage: string;
 }

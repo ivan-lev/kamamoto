@@ -39,6 +39,10 @@ const styleSchema = new Schema<Style>(
 			type: [String],
 			default: [],
 		},
+		mapImage: {
+			type: String,
+			default: '',
+		},
 	},
 	{ versionKey: false },
 );

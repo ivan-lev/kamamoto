@@ -7,6 +7,7 @@ export interface CeramicStyle {
 	thumbnail?: string;
 	images?: string[];
 	additionalImages?: string[];
+	mapImage: string;
 }
 
 export const defaultCeramicStyle: CeramicStyle = {
@@ -18,4 +19,5 @@ export const defaultCeramicStyle: CeramicStyle = {
 	thumbnail: '',
 	images: [],
 	additionalImages: [],
+	mapImage: '',
 };
