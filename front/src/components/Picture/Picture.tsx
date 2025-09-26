@@ -13,7 +13,7 @@ interface Props {
 	loading?: 'eager' | 'lazy';
 }
 
-export default function Picture({ src, srcMobile, fallback = '/images/error.webp', alt = 'alt', query = '(max-width: 480px)', style = { aspectRatio: '3 / 2', width: '100%' }, additionalClass, fetchpriority = 'low', loading = 'lazy' }: Props) {
+export default function Picture({ src, srcMobile, fallback = '/images/error.webp', alt = 'alt', query = '(max-width: 480px)', style, additionalClass, fetchpriority = 'low', loading = 'lazy' }: Props) {
 	return (
 		<picture className={ `picture ${additionalClass || ''}` } style={ style }>
 			{ srcMobile && <source srcSet={ srcMobile } media={ query } /> }

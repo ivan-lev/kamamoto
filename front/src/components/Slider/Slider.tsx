@@ -23,6 +23,8 @@ const breakpoints = {
 	},
 };
 
+const style = { aspectRatio: '3 / 2', width: '100%' };
+
 export default function Slider({ slides }: Props) {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
@@ -36,7 +38,7 @@ export default function Slider({ slides }: Props) {
 					speed={ 1000 }
 					thumbs={{ swiper: thumbsSwiper }}
 				>
-					{ slides.map((slide, i) => <SwiperSlide><Picture src={ slide } alt="Слайд" fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></Picture></SwiperSlide>) }
+					{ slides.map((slide, i) => <SwiperSlide><Picture src={ slide } alt="Слайд" style={ style } fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></Picture></SwiperSlide>) }
 				</Swiper>
 
 				<Swiper

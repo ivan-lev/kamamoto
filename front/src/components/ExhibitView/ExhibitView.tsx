@@ -2,13 +2,13 @@ import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import CeramicStyle from '@/components/CeramicStyle/CeramicStyle';
 import ExhibitDescription from '@/components/ExhibitDescription/ExhibitDescription';
 import PageTop from '@/components/PageTop/PageTop';
 import PotterInfo from '@/components/PotterInfo/PotterInfo';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import Slider from '@/components/Slider/Slider';
-import StyleDescription from '@/components/StyleDescription/StyleDescription';
 import Summary from '@/components/Summary/Summary';
 import { setComplectations } from '@/slices/admin/complectations';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
@@ -75,7 +75,7 @@ export default function ExhibitView() {
 						<PotterInfo potterInfo={ potterInfo } potterPhoto={ potterPhoto } />
 						<ExhibitDescription data={ additionalDescription } />
 						<Slider slides={ additionalImages || [] } />
-						<StyleDescription data={ style } />
+						<CeramicStyle data={ style } />
 						<Summary exhibit={ exhibit } />
 					</>
 				) }

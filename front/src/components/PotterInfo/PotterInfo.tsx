@@ -1,4 +1,5 @@
 import parse from 'html-react-parser';
+import Picture from '@/components/Picture/Picture';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
 interface Props {
@@ -11,14 +12,13 @@ export default function PotterInfo({ potterInfo, potterPhoto }: Props) {
 		&& (
 			<section className="section description description--block">
 				{ potterPhoto && (
-					<img
-						className="description__photo"
+					<Picture
+						additionalClass="description__photo description__photo--left"
 						src={ potterPhoto }
 						loading="lazy"
 						alt="Фотография мастера"
-						onError={ e => (e.currentTarget.src = '/images/error-potter.webp') }
-					>
-					</img>
+						fallback="/images/error-potter.webp"
+					/>
 				) }
 
 				{ potterInfo && parse(potterInfo, htmlParserOptions) }

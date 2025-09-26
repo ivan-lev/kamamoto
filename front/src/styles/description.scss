@@ -5,18 +5,27 @@
 	width: 100%;
 
 	&__photo {
-		float: left;
-
+		width: 100%;
 		max-width: 30%;
-		margin-right: var(--gap-48);
-		margin-bottom: var(--gap-48);
 		border-radius: var(--border-radius-s);
+
+		&--left {
+			float: left;
+			margin-right: var(--gap-48);
+			margin-bottom: var(--gap-48);
+		}
+
+		&--right {
+			float: right;
+			margin-bottom: var(--gap-48);
+			margin-left: var(--gap-48);
+		}
 
 		@media screen and (max-width: 768px) {
 			float: unset;
-			width: 100%;
-			max-width: unset;
-			margin-right: 0;
+			max-width: 70%;
+			margin-right: auto;
+			margin-left: auto;
 		}
 	}
 
