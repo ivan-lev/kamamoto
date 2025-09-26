@@ -2,7 +2,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import { useState } from 'react';
 import { Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Slide from '@/components/Slide/Slide';
+import Picture from '@/components/Picture/Picture';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
@@ -36,7 +36,7 @@ export default function Slider({ slides }: Props) {
 					speed={ 1000 }
 					thumbs={{ swiper: thumbsSwiper }}
 				>
-					{ slides.map((slide, i) => <SwiperSlide><Slide src={ slide } fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></Slide></SwiperSlide>) }
+					{ slides.map((slide, i) => <SwiperSlide><Picture src={ slide } alt="Слайд" fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></Picture></SwiperSlide>) }
 				</Swiper>
 
 				<Swiper
@@ -47,7 +47,7 @@ export default function Slider({ slides }: Props) {
 					slidesPerView={ 10 }
 					watchSlidesProgress={ true }
 				>
-					{ slides.map(thumb => <SwiperSlide><Slide src={ thumb } fallback="/images/error-thumbnail.webp"></Slide></SwiperSlide>) }
+					{ slides.map(thumb => <SwiperSlide><Picture src={ thumb } alt="Мини изображение слайда" fallback="/images/error-thumbnail.webp"></Picture></SwiperSlide>) }
 				</Swiper>
 			</section>
 		);

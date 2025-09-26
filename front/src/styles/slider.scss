@@ -9,12 +9,6 @@
 		border-radius: var(--border-radius-m);
 	}
 
-	.swiper-slide {
-		overflow: hidden;
-		aspect-ratio: 3 / 2;
-		border-radius: var(--border-radius-m);
-	}
-
 	.swiper-button-prev,
 	.swiper-button-next {
 		--swiper-navigation-color: var(--color-secondary-100);
