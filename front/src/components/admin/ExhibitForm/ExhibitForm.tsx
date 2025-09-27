@@ -106,7 +106,8 @@ export default function ExhibitForm() {
 	function handleSelectStyleChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
 		const styleTitle = styles.find(style => style.name === value)?.title || '';
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { name: value, title: styleTitle } }));
+		const mapImage = styles.find(style => style.name === value)?.mapImage || '';
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { name: value, title: styleTitle, mapImage } }));
 	};
 
 	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -490,6 +491,7 @@ export default function ExhibitForm() {
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
+						<span className="form__request-status">{ saveMessage }</span>
 						{ !isExistingExhibitEdited && (
 							<>
 								<Button title="Очистить" action={ () => dispatch(clearExhibitForm()) } />
@@ -517,7 +519,6 @@ export default function ExhibitForm() {
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__submit-status">{ saveMessage }</span>
 		</form>
 	);
 }

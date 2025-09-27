@@ -144,6 +144,7 @@ export default function CategoryForm({ closeModal }: Props) {
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
+						<span className="form__request-status">{ saveMessage }</span>
 						{ !isExistingCategoryEdited
 							? (
 								<>
@@ -171,7 +172,6 @@ export default function CategoryForm({ closeModal }: Props) {
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__save-status">{ saveMessage }</span>
 		</form>
 	);
 }

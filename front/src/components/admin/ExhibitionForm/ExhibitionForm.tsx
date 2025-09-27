@@ -298,6 +298,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
+						<span className="form__request-status">{ saveMessage }</span>
 						{ !isExistingExhibitionEdited
 							? (
 								<>
@@ -326,7 +327,6 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__submit-status">{ saveMessage }</span>
 		</form>
 
 	);

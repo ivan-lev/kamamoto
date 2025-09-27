@@ -166,6 +166,7 @@ export default function Compleactation() {
 									</div>
 
 									<div className="form__row form__row-12 form__row-12--inline">
+										<span className="form__request-status">{ saveMessage }</span>
 										{ !isDataEdited
 											? (
 												<>
@@ -213,7 +214,6 @@ export default function Compleactation() {
 									</div>
 								</div>
 							</fieldset>
-							<span className="form__save-status">{ saveMessage }</span>
 						</form>
 					</div>
 				) }

@@ -159,7 +159,7 @@ export default function Letters() {
 									</div>
 
 									<div className="form__row-12 form__row-12--inline">
-
+										<span className="form__request-status">{ saveMessage }</span>
 										{ !isExistingPartnerEdited
 											? (
 												<>
@@ -217,7 +217,6 @@ export default function Letters() {
 									</div>
 								</div>
 							</fieldset>
-							<span className="form__save-status">{ saveMessage }</span>
 						</form>
 					</section>
 				) }

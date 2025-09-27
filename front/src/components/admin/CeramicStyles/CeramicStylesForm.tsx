@@ -269,6 +269,7 @@ export default function CeramicStylesForm() {
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">
+						<span className="form__request-status">{ saveMessage }</span>
 						{ !isExistingStyleEdited
 							? (
 								<>
@@ -306,7 +307,6 @@ export default function CeramicStylesForm() {
 					</div>
 				</div>
 			</fieldset>
-			<span className="form__submit-status">{ saveMessage }</span>
 		</form>
 
 	);

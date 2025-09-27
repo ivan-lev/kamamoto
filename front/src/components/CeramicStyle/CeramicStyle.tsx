@@ -3,6 +3,10 @@ import parse from 'html-react-parser';
 import Picture from '@/components/Picture/Picture';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
+const mode = import.meta.env.MODE;
+
+const URL = mode !== 'production' ? 'http://localhost:3000/static/' : 'https://kamamoto.ru/static/';
+
 interface Props {
 	data?: CeramicStyle;
 }
@@ -16,11 +20,11 @@ export default function StyleDescription({ data }: Props) {
 
 				<div className="description description--block">
 					<Picture
-						src={ `https://kamamoto.ru/static/maps/${data.mapImage ? data.mapImage : 'dummy.svg'}` }
+						src={ `${URL}/maps/${data.mapImage ? data.mapImage : 'dummy.svg'}` }
 						alt="Локация гончарного центра"
 						additionalClass="description__photo description__photo--right"
 						style={ style }
-						fallback="https://kamamoto.ru/static/maps/dummy.svg"
+						fallback={ `${URL}/maps/error.svg` }
 					/>
 					{ parse(data?.brief, htmlParserOptions) }
 				</div>
