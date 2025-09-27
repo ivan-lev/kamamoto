@@ -49,7 +49,11 @@ export default function Slider({ slides }: Props) {
 					slidesPerView={ 10 }
 					watchSlidesProgress={ true }
 				>
-					{ slides.map(thumb => <SwiperSlide><Picture src={ thumb } alt="Мини изображение слайда" fallback="/images/error-thumbnail.webp"></Picture></SwiperSlide>) }
+					{ slides.map(thumb => (
+						<SwiperSlide>
+							<Picture src={ thumb } style={ style } alt="Мини изображение слайда" fallback="/images/error-thumbnail.webp"></Picture>
+						</SwiperSlide>
+					)) }
 				</Swiper>
 			</section>
 		);
