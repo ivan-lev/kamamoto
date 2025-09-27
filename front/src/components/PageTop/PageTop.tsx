@@ -9,7 +9,7 @@ export default function PageTop({ title }: Props) {
 	return title && (
 		<section className="section page-top">
 			<Breadcrumbs />
-			<h1 className="title title3">{ title }</h1>
+			<h1 className="title title--1">{ title }</h1>
 		</section>
 	);
 }

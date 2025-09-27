@@ -11,7 +11,7 @@ export default function Benefactors() {
 		<>
 			<Seo title="Камамото: страница о людях, внесших вклад в развитие коллекции" />
 			<section className="section page-top">
-				<h2 className="title title2">Помощники проекта</h2>
+				<h1 className="title title--1">Помощники проекта</h1>
 				<p className="subtitle">
 					Страница, на которой я хочу рассказать о людях, которые внесли свой вклад в развите
 					коллекции

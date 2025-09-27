@@ -11,7 +11,7 @@ export default function ExhibitDescription({ data, title }: Props) {
 		<section className="section description">
 			{ title && (
 				<div className="section__header">
-					<h2 className="section__title">{ title }</h2>
+					<h1 className="title title--1">{ title }</h1>
 				</div>
 			) }
 			{ data && parse(data, htmlParserOptions) }

@@ -12,7 +12,7 @@ export default function PotterInfo({ potterInfo, potterPhoto }: Props) {
 		&& (
 			<section className="section description description--block">
 				<div className="section__header">
-					<h2 className="section__title">О мастере</h2>
+					<h1 className="title title--1">О мастере</h1>
 				</div>
 				{ potterPhoto && (
 					<Picture

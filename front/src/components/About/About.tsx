@@ -12,7 +12,7 @@ export default function About() {
 				<div className="about">
 					<img className="about__avatar" src="/images/about-avatar.jpg" alt="Фотография коллекционера" />
 					<div className="about__heading">
-						<h2 className="title title2 about__title">Иван Лев</h2>
+						<h1 className="title title--1 about__title">Иван Лев</h1>
 						<ul className="about__list">
 							<li>Коллекционер японской керамики</li>
 							<li>Ценитель китайского чая</li>
@@ -25,7 +25,7 @@ export default function About() {
 					</div>
 
 					<div id="about-author" className="about__content container">
-						<h3 className="title title3">Созерцая красоту</h3>
+						<h3 className="title title--3">Созерцая красоту</h3>
 						<p className="text text--muted">
 							Меня зовут Иван. Я коллекционирую вещи, созданные японскими мастерами.
 						</p>

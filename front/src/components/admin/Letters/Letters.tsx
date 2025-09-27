@@ -65,7 +65,7 @@ export default function Letters() {
 				)
 				: (
 					<section className="container container--background-transparent admin-partners">
-						<h2 className="title3">Благодарственные письма (в разработке)</h2>
+						<h1 className="title title--1">Благодарственные письма (в разработке)</h1>
 
 						<div className="table">
 							<div className="table__row">

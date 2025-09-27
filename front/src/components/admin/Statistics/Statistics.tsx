@@ -25,7 +25,7 @@ export default function Statistics() {
 		)
 		: (
 			<div className="statistics">
-				<h2 className="title3">Статистика</h2>
+				<h2 className="title title--1">Статистика</h2>
 				<div className="statistics__grid">
 					<div className="statistics__dashboard-element">
 						<img className="statistics__element-icon" src="/__spritemap#sprite-screen-users-view" alt="иконка" />

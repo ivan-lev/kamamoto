@@ -10,7 +10,6 @@
 			display: flex;
 			gap: var(--gap-24);
 			align-items: center;
-			margin-bottom: var(--gap-24);
 
 		&::before,
 		&::after {
@@ -18,6 +17,16 @@
 			flex-grow: 1;
 			height: 1px;
 			background-color: var(--color-secondary-030);
+		}
+
+		@media screen and (max-width: 768px) {
+			gap: var(--gap-16);
+		}
+	}
+
+	&.description--block {
+		.section__header {
+			margin-bottom: var(--gap-24);
 		}
 	}
 

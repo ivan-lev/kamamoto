@@ -47,7 +47,7 @@ export default function Categories() {
 				: (
 					<div className="container container--background-transparent">
 						<div className="admin-categories">
-							<h2 className="title3">Категории</h2>
+							<h1 className="title title--1">Категории</h1>
 							<div className="table">
 								<div className="table__row">
 									<span className="table__cell table__cell--span-3">Заголовок</span>

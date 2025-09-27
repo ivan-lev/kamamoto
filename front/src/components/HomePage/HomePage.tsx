@@ -15,7 +15,7 @@ export default function HomePage({ isFirstRender, setIsFirstRender }: Props) {
 		<>
 			{ isFirstRender && <OpeningScreen setIsFirstRender={ setIsFirstRender } /> }
 			<div className="container container--background-transparent">
-				<h1 className="title title1">Камамото - японская керамика</h1>
+				<h1 className="title title--homepage">Камамото - японская керамика</h1>
 			</div>
 			<SliderMain slides={ homepageSliderImages } />
 			<Statistics />

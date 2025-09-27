@@ -34,7 +34,7 @@ export default function Exhibitions() {
 		<>
 			<Seo title="Камамото: мероприятия, на которых представлена коллекция" />
 
-			<h2 className="title title2">Выставки</h2>
+			<h1 className="title title--1">Выставки</h1>
 
 			<section className="section">
 				{ showPreloader

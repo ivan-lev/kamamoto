@@ -130,7 +130,7 @@ export default function Partners() {
 				)
 				: (
 					<div className="container container--background-transparent">
-						<h2 className="title3">Партнёры</h2>
+						<h1 className="title title--1">Партнёры</h1>
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell table__cell--span-10">Название</span>

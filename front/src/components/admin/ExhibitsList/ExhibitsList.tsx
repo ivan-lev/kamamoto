@@ -44,7 +44,7 @@ export default function Exhibits() {
 				)
 				: (
 					<div className="container container--background-transparent">
-						<h2 className="title3">Лоты</h2>
+						<h1 className="title title--1">Лоты</h1>
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell">ID</span>

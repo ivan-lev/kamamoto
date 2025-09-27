@@ -105,7 +105,7 @@ export default function Compleactation() {
 				)
 				: (
 					<div className="container container--background-transparent">
-						<h2 className="title3">Комплектация</h2>
+						<h1 className="title title--1">Комплектация</h1>
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell table__cell--span-5">title</span>

@@ -65,7 +65,7 @@ export default function Contacts() {
 		<>
 			<Seo title="Камамото: кантакты и форма обратной связи" />
 
-			<h2 className="title title2">Контакты</h2>
+			<h1 className="title title--1">Контакты</h1>
 			<p className="text text--muted">
 				Для связи со мной можно использовать одну из следующих ссылок, ведущих на реурсы
 				коллекции:
