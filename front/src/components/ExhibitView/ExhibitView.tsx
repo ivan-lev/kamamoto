@@ -73,7 +73,7 @@ export default function ExhibitView() {
 						<Slider slides={ images } />
 						<ExhibitDescription data={ description } />
 						<PotterInfo potterInfo={ potterInfo } potterPhoto={ potterPhoto } />
-						<ExhibitDescription data={ additionalDescription } />
+						<ExhibitDescription data={ additionalDescription } title="Дополнительная информация" />
 						<Slider slides={ additionalImages || [] } />
 						<CeramicStyle data={ style } />
 						<Summary exhibit={ exhibit } />

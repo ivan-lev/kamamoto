@@ -6,6 +6,30 @@
 	padding-right: var(--section-padding);
 	padding-left: var(--section-padding);
 
+	&__header {
+			display: flex;
+			gap: var(--gap-24);
+			align-items: center;
+			margin-bottom: var(--gap-24);
+
+		&::before,
+		&::after {
+			content: '';
+			flex-grow: 1;
+			height: 1px;
+			background-color: var(--color-secondary-030);
+		}
+	}
+
+	&__title {
+		flex-shrink: 0;
+		font-size: 24px;
+
+		@media screen and (max-width: 1024px) {
+			font-size: 20px;
+		}
+	}
+
 	@media screen and (max-width: 768px) {
 		--section-padding: var(--gap-32);
 	}

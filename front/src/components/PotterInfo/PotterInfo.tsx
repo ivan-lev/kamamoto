@@ -11,6 +11,9 @@ export default function PotterInfo({ potterInfo, potterPhoto }: Props) {
 	return potterInfo
 		&& (
 			<section className="section description description--block">
+				<div className="section__header">
+					<h2 className="section__title">О мастере</h2>
+				</div>
 				{ potterPhoto && (
 					<Picture
 						additionalClass="description__photo description__photo--left"
