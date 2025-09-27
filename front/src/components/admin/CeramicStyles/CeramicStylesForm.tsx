@@ -75,8 +75,7 @@ export default function CeramicStylesForm() {
 		if (token) {
 			api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit, initialStyleName)
 				.then((response) => {
-					const updatedStylesList = ceramicStylesList.filter(style => style.name !== initialStyleName);
-					updatedStylesList.push(response);
+					const updatedStylesList = ceramicStylesList.map(style => style.name !== initialStyleName ? style : response);
 
 					dispatch(setCeramicStyles(updatedStylesList));
 					setIsFormDisabled(false);
