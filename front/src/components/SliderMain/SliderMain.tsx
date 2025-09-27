@@ -21,7 +21,7 @@ export default function SliderMain({ slides }: Props) {
 				modules={ [Autoplay, EffectFade, Navigation] }
 				navigation={ true }
 				speed={ 1000 }
-				autoplay={{ delay: 300000 }}
+				autoplay={{ delay: 3000 }}
 				slidesPerView={ 1 }
 				spaceBetween={ 0 }
 				loop={ true }
@@ -30,7 +30,14 @@ export default function SliderMain({ slides }: Props) {
 			>
 				{ slides.map((slide, i) => (
 					<SwiperSlide key={ i }>
-						<Picture src={ slide } style={ style } fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' } alt="Слайд" additionalClass="slider-main__picture" />
+						<Picture
+							src={ slide }
+							style={ style }
+							fetchpriority={ i === 0 ? 'high' : 'low' }
+							loading={ i === 0 ? 'eager' : 'lazy' }
+							alt="Слайд"
+							additionalClass="slider-main__picture"
+						/>
 					</SwiperSlide>
 				),
 				) }
