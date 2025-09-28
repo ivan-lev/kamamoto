@@ -11,6 +11,11 @@
 			gap: var(--gap-24);
 			align-items: center;
 
+			width: 100%;
+			max-width: 700px;
+			margin-right: auto;
+			margin-left: auto;
+
 		&::before,
 		&::after {
 			content: '';
@@ -19,8 +24,13 @@
 			background-color: var(--color-secondary-030);
 		}
 
+		@media screen and (max-width: 1028px) {
+			max-width: 500px;
+		}
+
 		@media screen and (max-width: 768px) {
 			gap: var(--gap-16);
+			max-width: 400px;
 		}
 	}
 
