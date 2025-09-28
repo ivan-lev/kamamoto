@@ -42,22 +42,6 @@
 	}
 
 	&--2 {
-		font-size: 32px;
-
-		@media screen and (max-width: 1024px) {
-			font-size: 28px;
-		}
-
-		@media screen and (max-width: 768px) {
-			font-size: 24px;
-		}
-
-		@media screen and (max-width: 480px) {
-			font-size: 20px;
-		}
-	}
-
-	&--3 {
 		font-size: 28px;
 
 		@media screen and (max-width: 1024px) {
@@ -65,6 +49,18 @@
 		}
 
 		@media screen and (max-width: 768px) {
+			font-size: 20px;
+		}
+
+		@media screen and (max-width: 480px) {
+			font-size: 18px;
+		}
+	}
+
+	&--3 {
+		font-size: 24px;
+
+		@media screen and (max-width: 1024px) {
 			font-size: 20px;
 		}
 
