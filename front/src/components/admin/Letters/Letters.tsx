@@ -158,7 +158,7 @@ export default function Letters() {
 										/>
 									</div>
 
-									<div className="form__row-12 form__row-12--inline">
+									<div className="form__row form__row-12 form__row-12--inline">
 										<span className="form__request-status">{ saveMessage }</span>
 										{ !isExistingPartnerEdited
 											? (

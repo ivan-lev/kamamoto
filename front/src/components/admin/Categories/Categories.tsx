@@ -46,34 +46,33 @@ export default function Categories() {
 				)
 				: (
 					<div className="container container--background-transparent">
-						<div className="admin-categories">
-							<h1 className="title title--1">Категории</h1>
-							<div className="table">
-								<div className="table__row">
-									<span className="table__cell table__cell--span-3">Заголовок</span>
-									<span className="table__cell table__cell--span-4">Имя</span>
-									<span className="table__cell table__cell--span-4">Файл предпросмотра</span>
-									<span className="table__cell table__cell--centered"></span>
-								</div>
 
-								{ categories.map((category) => {
-									const { name, title, thumbnail } = category;
-									return (
-										<div key={ name } className="table__row">
-											<span className="table__cell table__cell--span-3">{ title }</span>
-											<span className="table__cell table__cell--span-4">{ name }</span>
-											<span className="table__cell table__cell--span-4">{ thumbnail }</span>
-											<span className="table__cell table__cell--centered">
-												<button
-													className="table__button table__button--edit"
-													onClick={ () => handleEditCategory(category) }
-												>
-												</button>
-											</span>
-										</div>
-									);
-								}) }
+						<h1 className="title title--1">Категории</h1>
+						<div className="table">
+							<div className="table__row">
+								<span className="table__cell table__cell--span-3">Заголовок</span>
+								<span className="table__cell table__cell--span-4">Имя</span>
+								<span className="table__cell table__cell--span-4">Файл предпросмотра</span>
+								<span className="table__cell table__cell--centered"></span>
 							</div>
+
+							{ categories.map((category) => {
+								const { name, title, thumbnail } = category;
+								return (
+									<div key={ name } className="table__row">
+										<span className="table__cell table__cell--span-3">{ title }</span>
+										<span className="table__cell table__cell--span-4">{ name }</span>
+										<span className="table__cell table__cell--span-4">{ thumbnail }</span>
+										<span className="table__cell table__cell--centered">
+											<button
+												className="table__button table__button--edit"
+												onClick={ () => handleEditCategory(category) }
+											>
+											</button>
+										</span>
+									</div>
+								);
+							}) }
 						</div>
 
 						<Modal

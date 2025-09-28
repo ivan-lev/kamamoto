@@ -27,6 +27,20 @@ export default function Admin() {
 		}
 	}, []);
 
+	const listOne = [
+		{ title: 'Лоты', path: 'exhibits/' },
+		{ title: 'Категории', path: 'categories/' },
+		{ title: 'Стили керамики', path: 'ceramic-styles/' },
+		{ title: 'Комплектация', path: 'complectation/' },
+	];
+
+	const listTwo = [
+		{ title: 'Выставки', path: 'exhibitions/' },
+		{ title: 'Партнёры', path: 'partners/' },
+		{ title: 'Благодарственные письма', path: 'letters/' },
+		// { title: 'Файлы для скачивания (sic)', path: 'files/' },
+	];
+
 	return (
 		<>
 			<Seo title="Камамото: статистика" />
@@ -42,66 +56,35 @@ export default function Admin() {
 										Статистика
 									</Link>
 								</li>
-							</ul>
-							<ul className="admin__list">
-								<li>
-									<Link to="categories/" className="link">
-										Категории
-									</Link>
-								</li>
-								<li>
-									<Link to="exhibits/" className="link">
-										Лоты
-									</Link>
-								</li>
-								<li>
-									<Link to="exhibitions/" className="link">
-										Выставки
-									</Link>
-								</li>
-								<li>
-									<Link to="partners/" className="link">
-										Партнёры
-									</Link>
-								</li>
-								<li>
-									<Link to="letters/" className="link">
-										Благодарственные письма
-									</Link>
-								</li>
 								<li>
 									<Link to="files/" className="link">
 										Файлы для скачивания
 									</Link>
 								</li>
-								<li>
-									<Link to="ceramic-styles/" className="link">
-										Стили керамики
-									</Link>
-								</li>
-								<li>
-									<Link to="complectation/" className="link">
-										Комплектация
-									</Link>
-								</li>
 							</ul>
 
 							<ul className="admin__list">
-								<li>
-									<Link to="#" className="link">
-										Добавить лот
-									</Link>
-								</li>
-								<li>
-									<Link to="#" className="link">
-										Добавить выставку
-									</Link>
-								</li>
-								<li>
-									<Link to="#" className="link">
-										Изменить лот
-									</Link>
-								</li>
+								{ listOne.map((item) => {
+									return (
+										<li>
+											<Link to={ item.path } className="link">
+												{ item.title }
+											</Link>
+										</li>
+									);
+								}) }
+							</ul>
+
+							<ul className="admin__list">
+								{ listTwo.map((item) => {
+									return (
+										<li>
+											<Link to={ item.path } className="link">
+												{ item.title }
+											</Link>
+										</li>
+									);
+								}) }
 							</ul>
 
 							<button
