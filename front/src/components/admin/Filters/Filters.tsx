@@ -22,7 +22,7 @@ export default function Filters() {
 			return;
 		}
 
-		const filteredList: Exhibit[] = exhibits.filter(exhibit => exhibit.name.includes(query) || exhibit.id.toString().includes(query));
+		const filteredList: Exhibit[] = exhibits.filter(exhibit => exhibit.name.toLowerCase().includes(query.toLowerCase()) || exhibit.id.toString().includes(query));
 		dispatch(setExhibitsFiltered(filteredList));
 	}
 
