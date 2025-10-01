@@ -39,7 +39,6 @@ export default function App() {
 
 	return (
 		<>
-			<Seo title="Камамото - японская керамика"></Seo>
 
 			<Routes>
 				<Route
@@ -53,7 +52,15 @@ export default function App() {
 						</>
 					) }
 				>
-					<Route index element={ <HomePage isFirstRender={ isFirstRender } setIsFirstRender={ setIsFirstRender } /> } />
+					<Route
+						index
+						element={ (
+							<>
+								<Seo title="Камамото: японская керамика"></Seo>
+								<HomePage isFirstRender={ isFirstRender } setIsFirstRender={ setIsFirstRender } />
+							</>
+						) }
+					/>
 					<Route path="about/" element={ <About /> } />
 					<Route path="collection/" element={ <Collection /> } />
 					<Route path="collection/:category/" element={ <Category /> } />
