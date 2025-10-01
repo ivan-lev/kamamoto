@@ -1,0 +1,56 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "backend with api for kamamoto site",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "start": "node dist/app.js",
+    "dev": "nodemon",
+    "build": "rimraf dist && copy-folder src/public dist/public --summary && tsc -p tsconfig.json",
+    "build-docker": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://github.com/ivan-lev/kamamoto-backend.git"
+  },
+  "author": "Ivan Lev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivan-lev/kamamoto-backend/issues"
+  },
+  "homepage": "https://github.com/ivan-lev/kamamoto-backend#readme",
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "celebrate": "^15.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "express-winston": "^4.2.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.18.0",
+    "rimraf": "^6.0.1",
+    "validator": "^13.15.15",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.2.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "@types/validator": "^13.15.2",
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
+    "copy-folder-util": "^1.1.5",
+    "eslint": "^9.34.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.40.0"
+  }
+}

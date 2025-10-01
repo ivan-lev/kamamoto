@@ -1,0 +1,77 @@
+services:
+
+  front:
+    build: 
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: front
+    volumes:
+      - front_build:/srv/front
+    networks:
+      - app-net
+    depends_on:
+      - back
+    restart: unless-stopped
+
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: back
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./back/.env.docker
+    volumes:
+      - ./back/src/public:/app/dist/public
+    networks:
+      - app-net
+    restart: always
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:8
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: <user name>
+      MONGO_INITDB_ROOT_PASSWORD: <user password>
+    entrypoint: ["mongod", "--auth", "--bind_ip", "0.0.0.0"]
+    volumes:
+      - ./mongo/db_dump:/data/db
+    restart: always
+    networks:
+      - app-net
+
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - front_build:/srv/front
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - app-net
+    depends_on:
+      - front
+      - back
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+  front_build:
+  caddy_data:
+  caddy_config:
+
+networks:
+  app-net:
+    name: app-net
+    driver: bridge

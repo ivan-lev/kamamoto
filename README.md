@@ -1,6 +1,6 @@
-# Веб-приложение Kamamoto с коллекцией японской керамики
+# Kamamoto - a web app for presenting private collection of Japanese ceramics
 
-## Описание проекта
+## Project description
 
 Сайт с частной коллекцией японской керамики, на котором:
 
@@ -8,26 +8,49 @@
 - содержится информация о предметах и мастерах, их изготовивших
 - есть информация о выставках и мероприятиях, на которых экспонировались предметы из коллекции
 
-## Используемые инструменты и библиотеки
+## Frontend
 
-- `react` - базовая библиотека для реализации SPA
-- `react-router-dom` для реализации роутинга и рендера уникальной информации по определённым роутам
-- `redux` для работы с состоянием переменных
-- `react-image-gallery` для создания слайдеров
-- `html-react-parser` для парсинга описаний к экспонатам (которые хранятся в текстовом виде) в html-разметку
-- `react-helmet-async` для работы с заголовками страниц
+#### Tools and packages
+
+- `react 19` - базовая библиотека для реализации SPA
+- `react-router-dom` для реализации роутинга
+- `redux` для хранения состояния переменных и работы с ними
+- `swiper` для создания слайдеров
+- `html-react-parser` для парсинга html-информацииб хранящейся в бд
 - `emailjs` для отправки сообщений из раздела "контакты"
 - `vite` для сборки проекта
+- `motion` - для анимирования компонентов
+- `docker` - to automate the deployment of application 
 
-## Применяемые методологии
+## Backend
+
+#### Tools and packages
+
+- [mongodb](https://www.mongodb.com/) - database used in project
+- [express](https://www.npmjs.com/package/express) - framework to work with Node.js
+- [mongoose](https://www.npmjs.com/package/mongoose) - tool to work with the MongoDB
+- 'winston' - for logging everything
+
+#### Directories
+
+`/routes` — folder with routing logic
+`/controllers` — folder with all controllers   
+`/models` — folder with files describing MongoDB schemes and models 
+`/errors` - error handling logic placed here
+`/middlewares` - stores all intermediate processing functions
+
+## Useful npm scripts
+
+`npm run build` — make a production build of project
+`npm run dev` — run project in development mode
+
+## Methodologies
 
 - BEM
 - DRY
 - Desktop-first
 
-## Что нужно доделать / можно улучшить
+## Vendor files
 
-- сделать редирект на 404 страницу, если по роуту нет контента
-- добавить поиск по коллекции (компонент SearchBar)
-- добавить в к лотам техники, применяемые для их изготовления (тип techniques)
-- добавить организации-партнёры (компонент Partners)
+- icons from [Jtb Variety Thin Icons Collection](https://www.svgrepo.com/collection/jtb-variety-thin-icons/) set
+- [Raleway](https://fonts.google.com/specimen/Raleway) fonts in Fontsource package

@@ -1,0 +1,55 @@
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-16);
+
+	&__picture {
+		position: relative;
+
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		box-sizing: border-box;
+		aspect-ratio: 3 / 2;
+		width: 100%;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-m);
+
+		background-color: var(--background-secondary);
+
+		transition: transform 0.4s ease
+	}
+
+	&:hover &__picture {
+		border: 1px solid var(--color-secondary-060);
+	}
+
+	&__preloader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		width: 15%;
+		height: auto;
+	}
+
+	&__image {
+		aspect-ratio: 3 / 2;
+		width: 100%;
+		object-fit: cover;
+	}
+
+	&__link {
+		position: absolute;
+		inset: 0;
+	}
+
+	&__name::first-letter {
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+}

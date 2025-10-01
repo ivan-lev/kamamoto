@@ -1,0 +1,75 @@
+.login {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+	max-width: 350px;
+
+	&__form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		box-sizing: border-box;
+		width: 350px;
+	}
+
+	&__fieldset {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-16);
+
+		width: 100%;
+		border: 0;
+	}
+
+	&__label {
+		line-height: 1;
+		opacity: 0.6
+	}
+
+	&__password-block {
+		position: relative;
+	}
+
+	&__password-input {
+		padding-right: var(--gap-60);
+	}
+
+	&__button {
+		&_show-password {
+			cursor: pointer;
+
+			position: absolute;
+			top: 50%;
+			right: 20px;
+			transform: translate(0%, -50%);
+
+			height: 20px;
+			border: 0;
+
+			opacity: 0.6;
+			background-color: transparent
+		}
+	}
+
+	&__button-img {
+		height: 100%;
+	}
+
+	&__submit-block {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-4);
+	}
+
+	&__error-message {
+		position: absolute;
+		bottom: -20px;
+		font-size: 12px;
+	}
+}

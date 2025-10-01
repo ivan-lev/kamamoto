@@ -1,0 +1,72 @@
+.benefactors {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--gap-32);
+	max-width: 900px;
+
+	&__card.container {
+		display: grid;
+		grid-template-areas:
+			'photo name'
+			'photo about'
+			'photo content';
+		grid-template-columns: 30% 1fr;
+		grid-template-rows: auto auto 1fr;
+		gap: var(--gap-16) var(--gap-32);
+	}
+
+	&__card:nth-child(even) {
+		grid-template-areas:
+			'name photo'
+			'about photo'
+			'content photo';
+		grid-template-columns: 1fr 30%;
+	}
+
+	&__photo {
+		grid-area: photo;
+
+		aspect-ratio: 2 / 3;
+		width: 100%;
+		border: 0;
+		border-radius: var(--border-radius-s);
+
+		@media screen and (max-width: 500px) {
+			aspect-ratio: 1 / 1;
+			border-radius: 50%;
+			object-fit: cover;
+			object-position: top;
+		}
+	}
+
+	&__name {
+		grid-area: name;
+		text-transform: uppercase;
+
+		@media screen and (max-width: 500px) {
+			margin: auto;
+			font-size: 20px;
+		}
+	}
+
+	&__about {
+		grid-area: about;
+		font-size: 14px;
+		opacity: 0.6;
+	}
+
+	&__content {
+		grid-area: content;
+	}
+
+	@media screen and (max-width: 500px) {
+		&__card:nth-child(n + 1) {
+			grid-template-areas:
+				'photo'
+				'name'
+				'about'
+				'content';
+			grid-template-columns: 1fr;
+		}
+	}
+}

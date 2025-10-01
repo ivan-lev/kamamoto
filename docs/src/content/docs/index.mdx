@@ -1,0 +1,44 @@
+---
+title: Дока Камамото
+description: Описываю здесь всё, чтобы потом не забыть
+template: splash
+hero:
+  tagline: Описываю здесь всё, чтобы потом не забыть
+  image:
+    file: ../../assets/logo.svg
+  actions:
+    - text: Открыть доку
+      link: /guides/example/
+      icon: right-arrow
+    - text: Дока Starlight
+      link: https://starlight.astro.build
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Технологии на проекте
+
+<CardGrid stagger>
+  <Card>
+    <a class="card__link" href="https://react.dev/" target="_blank" data-color="#35aace">
+      <img src="/icons/react.svg" style={{ width: '100px' }} />
+    </a>
+  </Card>
+  <Card>
+    <a class="card__link" href="https://reactrouter.com/" target="_blank" data-color="#f0fbff">
+      <img src="./icons/react-router.svg" style={{ width: '100px' }} />
+    </a>
+  </Card>
+  <Card>
+    <a class="card__link" href="https://nodejs.org/" target="_blank" data-color="#4dd66a">
+      <img src="./icons/nodejs.svg" style={{ width: '100px' }} />
+    </a>
+  </Card>
+  <Card>
+    <a class="card__link" href="https://expressjs.com/" target="_blank" data-color="#f0fbff">
+      <img src="./icons/expressjs.svg" style={{ width: '100px' }} />
+    </a>
+  </Card>
+</CardGrid>

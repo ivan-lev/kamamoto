@@ -1,0 +1,8 @@
+*node_modules*
+back/logs
+*src*
+*rsync-exclude.txt
+.gitignore
+*.md
+.DS_Store
+.dockerignore

@@ -1,0 +1,65 @@
+@keyframes logo-animation {
+	0% {
+		opacity: 0
+	}
+	25% {
+		opacity: 1
+	}
+	100% {
+		opacity: 0
+	}
+}
+
+@keyframes logo-screen-animation {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 1;
+	}
+	80% {
+		opacity: 1;
+	}
+	99% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.opening-screen {
+	position: fixed;
+	z-index: var(--z-index-modal);
+	inset: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: var(--color-primary-100);
+
+	animation-name: logo-screen-animation;
+	animation-duration: 3s;
+	animation-fill-mode: both;
+	animation-delay: 1s;
+
+	&__content {
+		width: 50%;
+		padding: var(--gap-12) var(--gap-32);
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		background-color: var(--background-secondary);
+
+		animation-name: logo-animation;
+		animation-duration: 3s;
+		animation-timing-function: ease-in;
+		animation-fill-mode: forwards;
+	}
+
+	&__img {
+		width: 100%
+	}
+
+}

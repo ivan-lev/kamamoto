@@ -1,0 +1,11 @@
+.slider-main {
+	aspect-ratio: 3 / 2;
+
+	&__picture {@media screen and (max-width: 480px) {
+		aspect-ratio: 1;
+	}}
+
+	@media screen and (max-width: 480px) {
+		aspect-ratio: 1;
+	}
+}

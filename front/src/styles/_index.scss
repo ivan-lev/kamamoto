@@ -1,0 +1,53 @@
+@import url('@/styles/variables.scss');
+@import url('@/styles/blockquote.scss');
+@import url('@/styles/button.scss');
+@import url('@/styles/checkbox.scss');
+@import url('@/styles/container.scss');
+@import url('@/styles/description.scss');
+@import url('@/styles/form.scss');
+@import url('@/styles/complectation.scss');
+@import url('@/styles/image-gallery.scss');
+@import url('@/styles/inputs.scss');
+@import url('@/styles/link.scss');
+@import url('@/styles/list.scss');
+@import url('@/styles/modal.scss');
+@import url('@/styles/scroll-to-top.scss');
+@import url('@/styles/section.scss');
+@import url('@/styles/select.scss');
+@import url('@/styles/slider.scss');
+@import url('@/styles/table.scss');
+@import url('@/styles/tag.scss');
+@import url('@/styles/text.scss');
+@import url('@/styles/title.scss');
+
+:root {
+	--main-font: Raleway, Roboto, Inter, Helvetica, sans-serif;
+
+	scroll-behavior: smooth;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+
+	min-width: 320px;
+	min-height: 100vh;
+	margin: 0;
+
+	font-family: var(--main-font);
+	color: var(--text-default);
+
+	background-color: var(--background-primary);
+}
+
+html,
+body {
+	scrollbar-width: thin;
+	scrollbar-gutter: stable;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}

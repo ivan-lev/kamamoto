@@ -1,0 +1,44 @@
+:root {
+    --sl-color-hairline: #dac5a726;
+    --sl-color-hairline-shade: #dac5a726;
+    --sl-color-bg: #0e0e0eff;
+    --sl-color-bg-nav: #181716ff;
+    --sl-color-bg-sidebar: #181716ff;
+
+    --sl-color-text-accent: #dac5a7;
+    --sl-color-white: #dac5a7;
+    --sl-color-text: #dac5a7;
+    --sl-color-gray-1: #dac5a7;
+    --sl-color-gray-2: #dac5a7;
+    --sl-color-gray-3: #dac5a799;
+    --sl-color-gray-5: #dac5a799;
+    --sl-color-bg-inline-code: #dac5a733;
+    --sl-color-black: #0e0e0eff;
+}
+
+.card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card {
+    position: relative;
+    align-items: center;
+    border: 0;
+    background-color: transparent;
+}
+
+.card__link::before {
+    content: '';
+    position: absolute;
+    inset: 33%;
+    background-color: attr(data-color type(<color>), #ebe1e9);;
+    filter: blur(25px);
+    z-index: -1;
+    opacity: 0.5;
+    transition: opacity 0.8s ease;
+    will-change: opacity;
+}
+
+.card__link:hover::before {
+    opacity: 1;
+}

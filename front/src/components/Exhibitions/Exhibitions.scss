@@ -1,0 +1,100 @@
+.exhibitions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	box-sizing: border-box;
+	width: 100%;
+
+	&__list {
+		width: 100%;
+		max-width: 1000px;
+
+		@media screen and (max-width: 900px) {
+			width: unset;
+			margin: 0 auto;
+
+			& > :not(:first-child) {
+				margin-top: var(--gap-8);
+			}
+		}
+	}
+
+	&__element {
+		display: grid;
+
+		&:nth-child(odd) {
+			grid-template-areas:
+				'upper-line card'
+				'year card'
+				'lower-line card';
+			grid-template-columns: 100px 1fr;
+			padding-left: calc(50% - 50px);
+		}
+
+		&:nth-child(even) {
+			grid-template-areas:
+				'card upper-line'
+				'card year'
+				'card lower-line';
+			grid-template-columns: 1fr 100px;
+			padding-right: calc(50% - 50px);
+		}
+
+		&:nth-child(odd),
+		&:nth-child(even) {
+			@media screen and (max-width: 900px) {
+				grid-template-areas:
+					'upper-line'
+					'year'
+					'lower-line'
+					'card';
+				grid-template-columns: 400px;
+				grid-template-rows: 20px 50px 20px 1fr;
+				row-gap: var(--gap-8);
+
+				padding: 0;
+			}
+
+			@media screen and (max-width: 600px) {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		&-upper-line {
+			grid-area: upper-line;
+			justify-self: center;
+
+			box-sizing: border-box;
+			width: 1px;
+
+			background: var(--border-color);
+		}
+
+		&-lower-line {
+			grid-area: lower-line;
+			justify-self: center;
+
+			box-sizing: border-box;
+			width: 1px;
+
+			background: var(--border-color);
+		}
+
+		&-year {
+			display: flex;
+			grid-area: year;
+			place-self: center;
+			align-items: center;
+			justify-content: center;
+
+			box-sizing: border-box;
+			width: 50px;
+			height: 50px;
+			border: 1px solid var(--border-color);
+			border-radius: 50%;
+
+			background: var(--background-muted);
+		}
+	}
+}

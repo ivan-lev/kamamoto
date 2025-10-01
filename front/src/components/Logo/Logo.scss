@@ -1,0 +1,9 @@
+.logo {
+	// z-index: var(--z-index-high);
+	flex-shrink: 0;
+	line-height: 0;
+
+	&__img {
+		height: 20px;
+	}
+}

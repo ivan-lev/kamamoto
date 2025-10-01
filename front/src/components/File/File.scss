@@ -1,0 +1,45 @@
+.file {
+	display: flex;
+	gap: var(--gap-96);
+
+	box-sizing: border-box;
+	padding: var(--gap-48) 0;
+	border-bottom: 1px solid var(--border-color, rgba(218, 197, 167, 0.15));
+
+	&:last-child {
+		border-bottom: 0;
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 200px;
+
+		@media screen and (max-width: 768px) {
+			flex-direction: column;
+			gap: var(--gap-32);
+		}
+	}
+
+	&__preview {
+		max-width: 200px;
+		max-height: 80px;
+	}
+
+	&__description {
+		flex: 1 0;
+
+		font-size: 16px;
+		font-weight: 400;
+		font-style: normal;
+		line-height: 180%;
+		color: var(--text-muted, rgba(218, 197, 167, 0.6));
+	}
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		gap: var(--gap-32);
+		align-items: center;
+	}
+}

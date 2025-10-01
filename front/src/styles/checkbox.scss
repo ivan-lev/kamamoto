@@ -1,0 +1,37 @@
+.checkbox {
+	&-label {
+		display: block;
+
+		box-sizing: border-box;
+		width: var(--input-height);
+		height: var(--input-height);
+		padding: 0;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		background-color: var(--background-muted);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+
+		&--small {
+			width: 24px;
+			height: 24px;
+		}
+
+		&--checked {
+			background-image: url('/__spritemap#sprite-chevron-down-view');
+		}
+
+		&--disabled {
+			color: var(--text-disabled);
+			background-color: var(--background-hover);
+		}
+	}
+
+	&-input {
+		width: 0;
+		height: 0 !important;
+		appearance: none;
+	}
+}

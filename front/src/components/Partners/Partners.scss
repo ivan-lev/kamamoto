@@ -1,0 +1,25 @@
+.partners {
+	align-items: center;
+
+	&__title {
+		opacity: 0.6;
+	}
+
+	&__grid {
+		display: grid;
+		grid-auto-rows: minmax(min-content, auto);
+		grid-template-columns: repeat(4, minmax(min-content, 25%));
+		gap: var(--gap-48);
+		justify-content: space-around;
+
+		@media screen and (max-width: 768px) {
+			grid-template-columns: repeat(3, minmax(min-content, 33%));
+			gap: var(--gap-40);
+		}
+
+		@media screen and (max-width: 600px) {
+			grid-template-columns: repeat(2, minmax(min-content, 50%));
+			gap: var(--gap-32);
+		}
+	}
+}

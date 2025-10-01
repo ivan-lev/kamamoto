@@ -1,0 +1,35 @@
+.statistics {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-32);
+	align-items: center;
+	justify-content: center;
+
+	padding: var(--gap-32);
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(3, 170px);
+		gap: var(--gap-16);
+	}
+
+	&__dashboard-element {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-16);
+		align-items: center;
+
+		box-sizing: border-box;
+		padding: 30px;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		background: var(--background-muted);
+	}
+
+	&__element-icon {
+		width: 30px;
+		height: auto;
+		opacity: 0.8;
+	}
+}

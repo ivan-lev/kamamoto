@@ -1,0 +1,12 @@
+.preloader {
+	width: 100%;
+	min-width: 100px;
+	height: 100%;
+	min-height: 80svh;
+
+	background-color: transparent;
+	background-image: url('/__spritemap#sprite-preloader-view');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100px 100px;
+}

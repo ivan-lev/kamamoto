@@ -1,0 +1,59 @@
+.contacts {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-32);
+	align-items: center;
+
+	&__links {
+		width: 100%;
+		max-width: 600px;
+	}
+
+	&__form {
+		position: relative;
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 600px;
+	}
+
+	&__fieldset {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-16);
+		border: 0;
+	}
+
+	&__agreement {
+		font-size: 12px;
+		opacity: 0.6;
+	}
+
+	&__submit-message {
+		position: absolute;
+		bottom: 14px;
+		font-size: 14px;
+
+		@media screen and (max-width: 768px) {
+			bottom: 6px;
+			font-size: 14px;
+		}
+	}
+
+	&__submit-message_success {
+		left: 48px;
+		color: #008000;
+
+		@media screen and (max-width: 768px) {
+			left: 30px;
+		}
+	}
+
+	&__submit-message_error {
+		right: 48px;
+		color: red;
+
+		@media screen and (max-width: 768px) {
+			right: 30px;
+		}
+	}
+}
