@@ -502,11 +502,11 @@ export default function ExhibitForm() {
 						{ isExistingExhibitEdited && (
 							<>
 								{ showConfirmation && (
-									<div className="form__confirmation">
+									<>
 										<span>Точно удалить запись?</span>
 										<Button title="Да" action={ handleDeleteExhibit } />
 										<Button title="Нет" action={ () => setShowConfirmation(false) } />
-									</div>
+									</>
 								) }
 								{ !showConfirmation && (
 									<>
