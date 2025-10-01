@@ -1,13 +1,13 @@
 interface Props {
 	title: string;
+	description?: string;
 }
 
-export default function Seo({ title }: Props) {
+export default function Seo({ title, description }: Props) {
 	return (
 		<>
 			<title>{ title }</title>
-			<meta property="og:title" content={ title } />
-			<meta property="og:image" content="https://kamamoto.ru/images/og-image.jpg" />
+			<meta name="description" content={ description || 'Частная коллекция японской керамики и предметов ручной работы, выполненных с применением традиционных техник. Сотрудничество в организации выставок и мероприятий' } />
 		</>
 	);
 }
