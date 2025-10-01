@@ -45,7 +45,7 @@ export const defaultExhibit: Exhibit = {
 	potterJapaneseName: '',
 	potterLifeDates: '',
 	category: { name: 'other', title: '' },
-	style: { name: 'unknown', title: '' },
+	style: { name: 'unknown', title: '', mapImage: '' },
 	images: [],
 	description: '',
 
