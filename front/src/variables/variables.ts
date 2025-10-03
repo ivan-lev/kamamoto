@@ -37,4 +37,6 @@ export const LOGIN_MESSAGES = Object.freeze({
 	WRONG_EMAIL_FORMAT: 'Неправильный формат email-адреса',
 });
 
+export const DESCRIPTION_DUMMY = '<p>Описание в процессе подготовки</p>';
+
 export const SITE_VERSION = '1.9.6';

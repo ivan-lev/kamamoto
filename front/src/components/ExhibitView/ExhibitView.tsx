@@ -13,6 +13,7 @@ import Summary from '@/components/Summary/Summary';
 import { setComplectations } from '@/slices/admin/complectations';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
+import { DESCRIPTION_DUMMY } from '@/variables/variables';
 
 export default function ExhibitView() {
 	const dispatch = useDispatch();
@@ -71,7 +72,7 @@ export default function ExhibitView() {
 					<>
 						<PageTop title={ name } />
 						<Slider slides={ images } />
-						<ExhibitDescription data={ description } />
+						<ExhibitDescription data={ description || DESCRIPTION_DUMMY } />
 						<PotterInfo potterInfo={ potterInfo } potterPhoto={ potterPhoto } />
 						<ExhibitDescription data={ additionalDescription } title="Дополнительная информация" />
 						<Slider slides={ additionalImages || [] } />
