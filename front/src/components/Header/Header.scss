@@ -1,4 +1,7 @@
 .header {
+	position: relative;
+	z-index: var(--z-index-higher);
+
 	display: flex;
 	flex: 0 0 auto;
 	gap: var(--gap-32);

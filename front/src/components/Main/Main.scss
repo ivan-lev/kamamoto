@@ -7,6 +7,30 @@
 
 	width: 100%;
 
+	&::before,
+	&::after {
+		content: '';
+
+		position: fixed;
+		z-index: var(--z-index-high);
+		top: 0;
+		right: 0;
+		left: 0;
+
+		height: 70px;
+
+		background-image: linear-gradient(var(--background-primary), transparent);
+
+		mask: linear-gradient(var(--background-primary) calc(30% - 10px), rgba(0, 0, 0, 0));
+	}
+
+	&::after {
+		top: revert;
+		bottom: 0;
+		background-image: linear-gradient(transparent, var(--background-primary));
+		mask: linear-gradient(rgba(0, 0, 0, 0) calc(30% - 10px), var(--background-primary));
+	}
+
 	@media screen and (max-width: 1024px) {
 		gap: var(--gap-32);
 	}
