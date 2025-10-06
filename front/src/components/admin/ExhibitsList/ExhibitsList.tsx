@@ -6,7 +6,7 @@ import ExhibitsListRow from '@/components/admin/ExhibitsListRow/ExhibitsListRow'
 import Modal from '@/components/Modal/Modal';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
-import { clearExhibitForm, setExhibits, setIsExistingExhibitEdited } from '@/slices/admin/ehxibits';
+import { clearExhibitForm, setExhibits, setIsExistingExhibitEdited } from '@/slices/admin/exhibits';
 import { api } from '@/utils/api/api';
 
 export default function Exhibits() {

@@ -1,7 +1,7 @@
 import type { RootState } from '@/slices/admin';
 import type { Exhibit } from '@/types/exhibitType';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/ehxibits';
+import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exhibits';
 import { api } from '@/utils/api/api';
 
 interface Props {

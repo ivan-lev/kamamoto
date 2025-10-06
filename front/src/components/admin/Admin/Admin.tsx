@@ -66,7 +66,7 @@ export default function Admin() {
 							<ul className="admin__list">
 								{ listOne.map((item) => {
 									return (
-										<li>
+										<li key={ item.path }>
 											<Link to={ item.path } className="link">
 												{ item.title }
 											</Link>
@@ -78,7 +78,7 @@ export default function Admin() {
 							<ul className="admin__list">
 								{ listTwo.map((item) => {
 									return (
-										<li>
+										<li key={ item.path }>
 											<Link to={ item.path } className="link">
 												{ item.title }
 											</Link>

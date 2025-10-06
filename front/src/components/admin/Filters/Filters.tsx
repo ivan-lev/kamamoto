@@ -3,7 +3,7 @@ import type { RootState } from '@/slices/admin';
 import type { Exhibit } from '@/types/exhibitType';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExhibitsFiltered } from '@/slices/admin/ehxibits';
+import { setExhibitsFiltered } from '@/slices/admin/exhibits';
 import './Filters.scss';
 
 export default function Filters() {

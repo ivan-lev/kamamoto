@@ -1,6 +1,7 @@
 import type { Exhibit } from '@/types/exhibitType';
 import { createSlice } from '@reduxjs/toolkit';
 import { defaultExhibit } from '@/types/exhibitType';
+import floatHandler from '@/utils/floatHandler';
 
 interface Exhibits {
 	exhibits: Exhibit[];
@@ -39,14 +40,14 @@ const exhibits = createSlice({
 		setExhibitToEdit: (state, action: { payload: Exhibit }) => {
 			const exhibit = { ...action.payload };
 			exhibit.id = Number(exhibit.id);
-			exhibit.length = Number(exhibit.length);
-			exhibit.width = Number(exhibit.width);
-			exhibit.height = Number(exhibit.height);
-			exhibit.weight = Number(exhibit.weight);
-			exhibit.weightOfSet = Number(exhibit.weightOfSet);
-			exhibit.volume = Number(exhibit.volume);
-			exhibit.diameter = Number(exhibit.diameter);
-			exhibit.footDiameter = Number(exhibit.footDiameter);
+			exhibit.length = floatHandler(exhibit.length || '');
+			exhibit.width = floatHandler(exhibit.width || '');
+			exhibit.height = floatHandler(exhibit.height || '');
+			exhibit.weight = floatHandler(exhibit.weight || '');
+			exhibit.weightOfSet = floatHandler(exhibit.weightOfSet || '');
+			exhibit.volume = floatHandler(exhibit.volume || '');
+			exhibit.diameter = floatHandler(exhibit.diameter || '');
+			exhibit.footDiameter = floatHandler(exhibit.footDiameter || '');
 			state.exhibitToEdit = { ...exhibit };
 		},
 

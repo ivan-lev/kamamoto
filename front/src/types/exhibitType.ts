@@ -19,15 +19,15 @@ export interface Exhibit {
 	additionalImages: string[];
 	additionalDescription?: string;
 
-	price?: number;
-	height?: number;
-	length?: number;
-	width?: number;
-	diameter?: number;
-	footDiameter?: number;
-	weight?: number;
-	volume?: number;
-	weightOfSet?: number;
+	price?: number | '';
+	height?: number | '';
+	length?: number | '';
+	width?: number | '';
+	diameter?: number | '';
+	footDiameter?: number | '';
+	weight?: number | '';
+	volume?: number | '';
+	weightOfSet?: number | '';
 	complectation: string[];
 	preservation?: string;
 
@@ -60,7 +60,7 @@ export const defaultExhibit: Exhibit = {
 	length: 0,
 	width: 0,
 	height: 0,
-	weight: 0,
+	weight: '',
 	weightOfSet: 0,
 
 	complectation: [],
