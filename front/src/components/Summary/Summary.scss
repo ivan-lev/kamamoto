@@ -80,9 +80,9 @@
 
 	&__list-element {
 		display: flex;
+		gap: var(--gap-4);
 		align-items: flex-start;
 		justify-content: space-between;
-		width: 100%;
 
 		&_justify {
 			text-align: justify;

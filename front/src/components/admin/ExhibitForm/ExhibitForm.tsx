@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
+import type { Seasons } from '@/types/exhibitType';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ComplectationItem from '@/components/admin/ComplectationItem/ComplectationItem';
@@ -28,6 +29,8 @@ export default function ExhibitForm() {
 	const categories = useSelector((state: RootState) => state.categories.categories);
 	const styles = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
 	const complectations = useSelector((state: RootState) => state.complectations.complectations);
+
+	const seasons = ['', 'весна', 'лето', 'осень', 'зима'];
 
 	function handleCreateExhibit() {
 		setIsFormDisabled(true);
@@ -96,6 +99,11 @@ export default function ExhibitForm() {
 		const { value } = event.target;
 		const categoryTitle = categories.find(category => category.name === value)?.title || '';
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, category: { name: value, title: categoryTitle } }));
+	};
+
+	function handleSeasonChange(event: ChangeEvent<HTMLSelectElement>) {
+		const { value } = event.target;
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, season: value as Seasons }));
 	};
 
 	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
@@ -478,7 +486,7 @@ export default function ExhibitForm() {
 						</div>
 					</div>
 
-					<div className="form__row form__row-12">
+					<div className="form__row form__row-10">
 						<span>сохранность</span>
 						<input
 							className="input"
@@ -488,6 +496,19 @@ export default function ExhibitForm() {
 							value={ exhibitToEdit.preservation }
 							onChange={ handleChange }
 						/>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>сезон</span>
+
+						<select
+							className="select"
+							name="season"
+							value={ exhibitToEdit.season }
+							onChange={ event => handleSeasonChange(event) }
+						>
+							{ seasons.map(season => <option key={ season } value={ season }>{ season }</option>) }
+						</select>
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">

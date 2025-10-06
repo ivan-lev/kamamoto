@@ -1,5 +1,7 @@
 import type { CeramicStyle } from '@/types/ceramicStyles';
 
+export type Seasons = 'весна' | 'лето' | 'осень' | 'зима';
+
 export interface Exhibit {
 	id: number;
 	name: string;
@@ -28,8 +30,10 @@ export interface Exhibit {
 	weight?: number | '';
 	volume?: number | '';
 	weightOfSet?: number | '';
+
 	complectation: string[];
 	preservation?: string;
+	season?: Seasons;
 
 	isActive: boolean;
 }

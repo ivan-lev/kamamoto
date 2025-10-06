@@ -28,8 +28,10 @@ export interface Exhibit {
 	weight?: number;
 	volume?: number;
 	weightOfSet?: number;
+
 	complectation: string[];
 	preservation?: string;
+	season: 'весна' | 'лето' | 'осень' | 'зима';
 
 	isActive: boolean;
 };

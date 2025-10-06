@@ -86,6 +86,13 @@ export default function Summary({ exhibit }: Props) {
 									</li>
 								) }
 
+								{ exhibit?.season && (
+									<li className="summary__list-element">
+										<span>Сезон: </span>
+										{ exhibit?.season }
+									</li>
+								) }
+
 								{ Boolean(exhibit?.height) && (
 									<li className="summary__list-element">
 										<span>Высота: </span>
@@ -110,35 +117,35 @@ export default function Summary({ exhibit }: Props) {
 								{ Boolean(exhibit?.diameter) && (
 									<li className="summary__list-element">
 										<span>Диаметр: </span>
-										{ exhibit?.diameter }
+										{ `${exhibit?.diameter} см` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.footDiameter) && (
 									<li className="summary__list-element">
 										<span>Диаметр ножки: </span>
-										{ exhibit?.footDiameter }
-									</li>
-								) }
-
-								{ Boolean(exhibit?.weight) && (
-									<li className="summary__list-element">
-										<span>Вес:&nbsp;</span>
-										{ exhibit?.weight }
+										{ `${exhibit?.footDiameter} см` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.volume) && (
 									<li className="summary__list-element">
 										<span>Объём:&nbsp;</span>
-										{ exhibit?.volume }
+										{ `${exhibit?.volume} мл` }
+									</li>
+								) }
+
+								{ Boolean(exhibit?.weight) && (
+									<li className="summary__list-element">
+										<span>Вес:&nbsp;</span>
+										{ `${exhibit?.weight} г` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.weightOfSet) && (
 									<li className="summary__list-element">
 										<span>Вес набора:&nbsp;</span>
-										{ exhibit?.weightOfSet }
+										{ `${exhibit?.weightOfSet} г` }
 									</li>
 								) }
 

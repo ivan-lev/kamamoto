@@ -33,6 +33,7 @@ export const exhibitValidator = celebrate({
 		weightOfSet: Joi.number().allow(''),
 		complectation: Joi.array().items(Joi.string()).required(),
 		preservation: Joi.string().allow('').required(),
+		season: Joi.string().allow(''),
 		isActive: Joi.boolean(),
 	}),
 });
