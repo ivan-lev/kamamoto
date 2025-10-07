@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react';
+
 import type { RootState } from '@/slices/admin/index';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
@@ -23,6 +24,14 @@ export default function Letters() {
 
 	const partnerToEdit = useSelector((state: RootState) => state.partners.partnerToEdit);
 	const { title, link, logo, isActive } = partnerToEdit;
+
+	useLayoutEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'instant',
+		});
+	});
 
 	// delete this. it is just for testing
 	useEffect(() => {

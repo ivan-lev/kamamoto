@@ -27,7 +27,11 @@ export default function Exhibition() {
 	const { name, city, address, place, year, dates, link, organisators, curators, poster, description, photos } = exhibitionToDisplay;
 
 	useLayoutEffect(() => {
-		window.scrollTo(0, 0);
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'instant',
+		});
 	});
 
 	useEffect(() => {

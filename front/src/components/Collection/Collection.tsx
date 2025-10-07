@@ -1,5 +1,5 @@
 import type { RootState } from '@/slices/visitor';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
 import PageTop from '@/components/PageTop/PageTop';
@@ -13,10 +13,6 @@ export default function Collection() {
 	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const categories = useSelector((state: RootState) => state.categories);
-
-	useLayoutEffect(() => {
-		window.scrollTo(0, 0);
-	});
 
 	useEffect(() => {
 		const listToDisplay = categories.map((cat) => {
