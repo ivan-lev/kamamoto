@@ -3,5 +3,5 @@ Disallow: /admin
 Disallow: /api
 Disallow: /icons
 Disallow: /login
-Disallow: google712f7ab1f37afe6a.html
-Disallow: yandex_9c2f3384b0075cc7.html
+Disallow: /google712f7ab1f37afe6a.html
+Disallow: /yandex_9c2f3384b0075cc7.html
