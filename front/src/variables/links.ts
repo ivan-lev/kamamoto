@@ -7,12 +7,12 @@ const personal: Link[] = [
 		url: 'https://vk.com/tea_lion',
 		icon: '/__spritemap#sprite-logo-vk-view',
 	},
-	{
-		id: 1,
-		title: 'Instagram',
-		url: 'https://instagram.com/tea_lion',
-		icon: '/__spritemap#sprite-logo-instagram-view',
-	},
+	// {
+	//  id: 1,
+	//  title: 'Instagram',
+	//  url: 'https://instagram.com/tea_lion',
+	//  icon: '/__spritemap#sprite-logo-instagram-view',
+	// },
 	{
 		id: 2,
 		title: 'Telegram',
