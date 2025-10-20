@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Provider } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import About from '@/components/About/About';
 import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
@@ -26,8 +26,8 @@ import HomePage from '@/components/HomePage/HomePage';
 import Login from '@/components/Login/Login';
 import Main from '@/components/Main/Main';
 import NotFound from '@/components/NotFound/NotFound';
+import OpeningScreen from '@/components/OpeningScreen/OpeningScreen';
 import ScrollToTopButton from '@/components/ScrollToTop/ScrollToTop';
-import Seo from '@/components/Seo/Seo';
 import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
 import adminStore from '@/slices/admin';
 import { documents } from '@/variables/documents';
@@ -36,10 +36,11 @@ import './App.scss';
 
 export default function App() {
 	const [isFirstRender, setIsFirstRender] = useState(true);
+	const isRootLocation = useLocation().pathname === '/';
 
 	return (
 		<>
-
+			{ isFirstRender && isRootLocation && <OpeningScreen setIsFirstRender={ setIsFirstRender } /> }
 			<Routes>
 				<Route
 					path="/"
@@ -52,15 +53,7 @@ export default function App() {
 						</>
 					) }
 				>
-					<Route
-						index
-						element={ (
-							<>
-								<Seo title="Камамото: японская керамика"></Seo>
-								<HomePage isFirstRender={ isFirstRender } setIsFirstRender={ setIsFirstRender } />
-							</>
-						) }
-					/>
+					<Route index element={ <HomePage /> } />
 					<Route path="about/" element={ <About /> } />
 					<Route path="collection/" element={ <Collection /> } />
 					<Route path="collection/:category/" element={ <Category /> } />

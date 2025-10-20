@@ -1,11 +1,29 @@
-import { Outlet } from 'react-router-dom';
+import { motion } from 'motion/react';
+import { Outlet, useLocation } from 'react-router-dom';
 import './Main.scss';
 
-// Outlet component renders the children components
 export default function Main() {
+	const pathname = useLocation().pathname;
+
+	const pageVariants = {
+		initial: { opacity: 0 },
+		animate: { opacity: 1 },
+	};
+
+	const pageTransition = {
+		duration: 0.8,
+	};
+
 	return (
-		<main className="content">
+		<motion.main
+			className="content"
+			key={ pathname }
+			initial="initial"
+			animate="animate"
+			variants={ pageVariants }
+			transition={ pageTransition }
+		>
 			<Outlet />
-		</main>
+		</motion.main>
 	);
-}
+};
