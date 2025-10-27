@@ -68,9 +68,14 @@
 	}
 
 	&__more-link {
-		position: absolute;
-		inset: 0;
 		margin-left: auto;
+		font-weight: 300;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
 	}
 
 	&__place {

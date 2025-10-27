@@ -19,8 +19,8 @@ export default function ExhibitionCard({ exhibition }: Props) {
 					<p className="exhibition-card__name">{ name }</p>
 					<p className="exhibition-card__place">{ place }</p>
 				</div>
-				Подробнее
-				<Link className="link link--muted exhibition-card__more-link" to={ id.toString() } />
+
+				<Link className="link exhibition-card__more-link" to={ id.toString() }>Подробнее</Link>
 			</div>
 		)
 		: (
