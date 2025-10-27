@@ -6,14 +6,12 @@ import App from '@/components/App/App.tsx';
 import store from '@/slices/visitor/index';
 
 import '@/styles/_index.scss';
-import '@fontsource/raleway/latin-100.css';
-import '@fontsource/raleway/latin-200.css';
-import '@fontsource/raleway/latin-300.css';
 import '@fontsource/raleway/latin-400.css';
 import '@fontsource/raleway/cyrillic-100.css';
 import '@fontsource/raleway/cyrillic-200.css';
 import '@fontsource/raleway/cyrillic-300.css';
 import '@fontsource/raleway/cyrillic-400.css';
+import '@fontsource/raleway/cyrillic-400-italic.css';
 
 declare module 'react' {
 	interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
