@@ -17,7 +17,7 @@ export default function Collection() {
 	useEffect(() => {
 		const listToDisplay = categories.map((cat) => {
 			const { name, title, thumbnail } = cat;
-			return { link: name, title, thumbnail };
+			return { link: `${name}/`, title, thumbnail };
 		});
 		dispatch(setDisplayList(listToDisplay));
 

@@ -52,22 +52,22 @@ const footer: Link[] = [
 	{
 		id: 0,
 		title: 'Файлы для скачивания',
-		url: 'downloads/',
+		url: 'downloads',
 	},
 	{
 		id: 1,
 		title: 'Шаблоны документов',
-		url: 'documents/',
+		url: 'documents',
 	},
 	{
 		id: 2,
 		title: 'Благодарственные письма',
-		url: 'thanksletters/',
+		url: 'thanksletters',
 	},
 	{
 		id: 3,
 		title: 'Помощники проекта',
-		url: 'benefactors/',
+		url: 'benefactors',
 	},
 ];
 

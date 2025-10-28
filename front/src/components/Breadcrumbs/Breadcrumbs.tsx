@@ -6,9 +6,9 @@ export default function Breadcrumbs() {
 
 	return (
 		<div className="breadcrumbs">
-			<Link to=".." className="link link_navigational" relative="path">
+			<Link to="../" className="link link_navigational" relative="path">
 				<img className="link__icon" src="/__spritemap#sprite-arrow-left-view" alt="иконка" />
-				{ location.pathname === '/collection' ? 'На главную' : 'Назад' }
+				{ location.pathname === '/collection/' ? 'На главную' : 'Назад' }
 			</Link>
 		</div>
 	);
