@@ -11,6 +11,7 @@ import ExhibitsList from '@/components/admin/ExhibitsList/ExhibitsList';
 import Filters from '@/components/admin/Filters/Filters';
 import AdminLetters from '@/components/admin/Letters/Letters';
 import AdminPartners from '@/components/admin/Partners/Partners';
+import Potters from '@/components/admin/Potters/Potters';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
 import Benefactors from '@/components/Benefactors/Benefactors';
 import Category from '@/components/Category/Category';
@@ -101,6 +102,7 @@ export default function App() {
 					<Route path="letters/" element={ <AdminLetters /> } />
 					<Route path="ceramic-styles/" element={ <AdminCeramicStyles /> } />
 					<Route path="complectation/" element={ <Complectation /> } />
+					<Route path="potters/" element={ <Potters /> } />
 				</Route>
 			</Routes>
 		</>

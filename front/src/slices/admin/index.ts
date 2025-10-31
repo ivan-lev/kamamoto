@@ -6,6 +6,7 @@ import exhibitionsReducer from '@/slices/admin/exhibitions';
 import exhibitsReducer from '@/slices/admin/exhibits';
 import lettersReducer from '@/slices/admin/letters';
 import partnersReducer from '@/slices/admin/partners';
+import pottersReducer from '@/slices/admin/potters';
 import useReducer from '@/slices/admin/user';
 
 const store = configureStore({
@@ -17,6 +18,7 @@ const store = configureStore({
 		exhibits: exhibitsReducer,
 		letters: lettersReducer,
 		partners: partnersReducer,
+		potters: pottersReducer,
 		user: useReducer,
 	},
 });

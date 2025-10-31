@@ -12,6 +12,7 @@ import exhibitionRouter from './exhibitions';
 import exhibitRouter from './exhibits';
 import lettersRouter from './letters';
 import partnerRouter from './partners';
+import potterRouter from './potters';
 import statisticsRouter from './statistics';
 import userRouter from './users';
 
@@ -26,6 +27,7 @@ routes.use('/exhibitions', exhibitionRouter);
 routes.use('/categories', categoryRouter);
 routes.use('/statistics', statisticsRouter);
 routes.use('/partners', partnerRouter);
+routes.use('/potters', potterRouter);
 routes.use('/letters', lettersRouter);
 routes.use('/files', lettersRouter);
 routes.use('/complectation', complectationRouter);

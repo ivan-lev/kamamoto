@@ -10,5 +10,6 @@ export const PATHS = Object.freeze({
 	LETTERS: 'letters',
 	MAPS: 'maps',
 	PARTNERS: 'partners',
+	POTTERS: 'potters',
 	STATIC_URL: NODE_ENV === 'production' ? STATIC_URL : `${BASE_URL}:${PORT}/static`,
 });

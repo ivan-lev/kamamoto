@@ -45,20 +45,20 @@ export default function Summary({ exhibit }: Props) {
 							<ul className="summary__list">
 								<li className="summary__list-element">
 									<span>Имя мастера:</span>
-									<span>{ exhibit?.potterName || 'неизвестно' }</span>
+									<span>{ exhibit?.potter.name || 'неизвестно' }</span>
 								</li>
 
-								{ exhibit?.potterJapaneseName && (
+								{ exhibit?.potter.japaneseName && (
 									<li className="summary__list-element">
 										<span>Имя на японском:</span>
-										<span>{ exhibit?.potterJapaneseName }</span>
+										<span>{ exhibit?.potter.japaneseName }</span>
 									</li>
 								) }
 
-								{ exhibit?.potterLifeDates && (
+								{ exhibit?.potter.lifeDates && (
 									<li className="summary__list-element">
 										<span>Даты жизни:</span>
-										<span>{ exhibit?.potterLifeDates }</span>
+										<span>{ exhibit?.potter.lifeDates }</span>
 									</li>
 								) }
 							</ul>

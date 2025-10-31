@@ -32,6 +32,7 @@ export default function Admin() {
 		{ title: 'Категории', path: 'categories/' },
 		{ title: 'Стили керамики', path: 'ceramic-styles/' },
 		{ title: 'Комплектация', path: 'complectation/' },
+		{ title: 'Гончары', path: 'potters/' },
 	];
 
 	const listTwo = [

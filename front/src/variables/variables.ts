@@ -11,6 +11,7 @@ export const PATHS = Object.freeze({
 	IMAGES: 'images',
 	LETTERS: 'letters',
 	PARTNERS: 'partners',
+	POTTERS: 'potters',
 	SIGNIN: 'signin',
 	STATISTICS: 'statistics',
 	USERS: 'users',

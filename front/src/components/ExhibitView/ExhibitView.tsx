@@ -23,7 +23,7 @@ export default function ExhibitView() {
 	const navigate = useNavigate();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
-	const { additionalDescription, additionalImages, description, images, name, style, potterInfo, potterPhoto } = exhibit;
+	const { additionalDescription, additionalImages, description, images, name, style, potter } = exhibit;
 
 	useEffect(() => {
 		if (complectations.length === 0) {
@@ -77,7 +77,7 @@ export default function ExhibitView() {
 						<PageTop title={ name } />
 						<Slider slides={ images } />
 						<ExhibitDescription data={ description || DESCRIPTION_DUMMY } />
-						<PotterInfo potterInfo={ potterInfo } potterPhoto={ potterPhoto } />
+						<PotterInfo potter={ potter } />
 						<ExhibitDescription data={ additionalDescription } title="Дополнительная информация" />
 						<Slider slides={ additionalImages || [] } />
 						<CeramicStyle data={ style } />

@@ -1,30 +1,30 @@
+import type { Potter } from '@/types/potter';
 import parse from 'html-react-parser';
 import Picture from '@/components/Picture/Picture';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
 interface Props {
-	potterInfo?: string;
-	potterPhoto?: string;
+	potter: Potter;
 }
 
-export default function PotterInfo({ potterInfo, potterPhoto }: Props) {
-	return potterInfo
+export default function PotterInfo({ potter }: Props) {
+	return potter.info
 		&& (
 			<section className="section description description--block">
 				<div className="section__header">
 					<h2 className="title title--2">О мастере</h2>
 				</div>
-				{ potterPhoto && (
+				{ potter.photo && (
 					<Picture
 						additionalClass="description__photo description__photo--left"
-						src={ potterPhoto }
+						src={ potter.photo }
 						loading="lazy"
 						alt="Фотография мастера"
 						fallback="/images/error-potter.webp"
 					/>
 				) }
 
-				{ potterInfo && parse(potterInfo, htmlParserOptions) }
+				{ potter.info && parse(potter.info, htmlParserOptions) }
 			</section>
 		);
 }

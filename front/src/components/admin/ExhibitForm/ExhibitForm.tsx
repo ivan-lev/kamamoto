@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
-import type { Seasons } from '@/types/exhibitType';
+import type { Potter } from '@/types/potter';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ComplectationItem from '@/components/admin/ComplectationItem/ComplectationItem';
@@ -10,6 +10,7 @@ import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { setComplectations } from '@/slices/admin/complectations';
 import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exhibits';
+import { setPotters } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
 
 export default function ExhibitForm() {
@@ -29,6 +30,7 @@ export default function ExhibitForm() {
 	const categories = useSelector((state: RootState) => state.categories.categories);
 	const styles = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
 	const complectations = useSelector((state: RootState) => state.complectations.complectations);
+	const pottersList = useSelector((state: RootState) => state.potters.pottersList);
 
 	const seasons = ['', 'весна', 'лето', 'осень', 'зима'];
 
@@ -102,8 +104,8 @@ export default function ExhibitForm() {
 	};
 
 	function handleSeasonChange(event: ChangeEvent<HTMLSelectElement>) {
-		const { value } = event.target;
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, season: value as Seasons }));
+		const { name, value } = event.target;
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value }));
 	};
 
 	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
@@ -177,6 +179,14 @@ export default function ExhibitForm() {
 				})
 				.catch(error => console.error(error));
 		}
+
+		if (pottersList.length === 0) {
+			api.potters.getPotters()
+				.then((potters: Potter[]) => {
+					dispatch(setPotters(potters.toSorted((a, b) => a.name.localeCompare(b.name))));
+				})
+				.catch(error => console.error(error));
+		}
 	}, []);
 
 	return (
@@ -197,9 +207,32 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-4">
-						<span>стиль керамики</span>
+					<div className="form__row form__row-10">
+						<span>название</span>
+						<input
+							className="input"
+							type="text"
+							name="name"
+							placeholder="название"
+							value={ exhibitToEdit.name }
+							onChange={ handleChange }
+						/>
+					</div>
 
+					<div className="form__row form__row-2">
+						<span>гончар</span>
+						<select
+							className="select"
+							name="potter"
+							value={ exhibitToEdit.potter }
+							onChange={ event => handleSeasonChange(event) }
+						>
+							{ pottersList.map(potter => <option key={ potter.id } value={ potter._id }>{ potter.name }</option>) }
+						</select>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>стиль керамики</span>
 						<select
 							className="select"
 							name="style"
@@ -210,7 +243,7 @@ export default function ExhibitForm() {
 						</select>
 					</div>
 
-					<div className="form__row form__row-3">
+					<div className="form__row form__row-2">
 						<span>категория</span>
 
 						<select
@@ -223,7 +256,7 @@ export default function ExhibitForm() {
 						</select>
 					</div>
 
-					<div className="form__row form__row-3">
+					<div className="form__row form__row-2">
 						<span>дата создания</span>
 						<input
 							className="input"
@@ -235,31 +268,16 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-12">
-						<span>название</span>
-						<input
-							className="input"
-							type="text"
-							name="name"
-							placeholder="название"
-							value={ exhibitToEdit.name }
-							onChange={ handleChange }
-						/>
-					</div>
-
-					<div className="form__row form__row-9">
-						<span>фотографии</span>
-						<input
-							className="input"
-							type="text"
-							name="images"
-							placeholder="фотографии"
-							value={ photoName }
-							onChange={ handleChangePhotos }
-						/>
-						<div className="tags">
-							{ exhibitToEdit?.images?.map(image => <Tag key={ image } title={ image } action={ () => handleDeletePhoto(image) } />) }
-						</div>
+					<div className="form__row form__row-1">
+						<span>сезон</span>
+						<select
+							className="select"
+							name="season"
+							value={ exhibitToEdit.season }
+							onChange={ event => handleSeasonChange(event) }
+						>
+							{ seasons.map(season => <option key={ season } value={ season }>{ season }</option>) }
+						</select>
 					</div>
 
 					<div className="form__row form__row-2">
@@ -288,71 +306,27 @@ export default function ExhibitForm() {
 					</div>
 
 					<div className="form__row form__row-12">
+						<span>фотографии</span>
+						<input
+							className="input"
+							type="text"
+							name="images"
+							placeholder="фотографии"
+							value={ photoName }
+							onChange={ handleChangePhotos }
+						/>
+						<div className="tags">
+							{ exhibitToEdit?.images?.map(image => <Tag key={ image } title={ image } action={ () => handleDeletePhoto(image) } />) }
+						</div>
+					</div>
+
+					<div className="form__row form__row-12">
 						<span>описание лота</span>
 						<textarea
 							className="textarea"
 							name="description"
 							placeholder="описание лота"
 							value={ exhibitToEdit.description }
-							onChange={ handleChange }
-						/>
-					</div>
-
-					<div className="form__row form__row-8">
-						<span>имя мастера</span>
-						<input
-							className="input"
-							type="text"
-							name="potterName"
-							placeholder="имя мастера"
-							value={ exhibitToEdit.potterName }
-							onChange={ handleChange }
-						/>
-					</div>
-
-					<div className="form__row form__row-4">
-						<span>годы жизни</span>
-						<input
-							className="input"
-							type="text"
-							name="potterLifeDates"
-							placeholder="годы жизни"
-							value={ exhibitToEdit.potterLifeDates }
-							onChange={ handleChange }
-						/>
-					</div>
-
-					<div className="form__row form__row-8">
-						<span>имя мастера на японском</span>
-						<input
-							className="input"
-							type="text"
-							name="potterJapaneseName"
-							placeholder="имя мастера на японском"
-							value={ exhibitToEdit.potterJapaneseName }
-							onChange={ handleChange }
-						/>
-					</div>
-
-					<div className="form__row form__row-4">
-						<span>фото мастера</span>
-						<input
-							className="input"
-							type="text"
-							name="potterPhoto"
-							placeholder="фото мастера"
-							value={ exhibitToEdit.potterPhoto }
-							onChange={ handleChange }
-						/>
-					</div>
-
-					<div className="form__row form__row-12">
-						<span>информация о мастере</span>
-						<textarea
-							className="textarea"
-							name="potterInfo"
-							placeholder="информация о мастере"
-							value={ exhibitToEdit.potterInfo }
 							onChange={ handleChange }
 						/>
 					</div>
@@ -383,7 +357,7 @@ export default function ExhibitForm() {
 						</div>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>высота</span>
 						<input
 							className="input"
@@ -395,7 +369,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>длина</span>
 						<input
 							className="input"
@@ -407,7 +381,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>ширина</span>
 						<input
 							className="input"
@@ -419,7 +393,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>диаметр</span>
 						<input
 							className="input"
@@ -431,7 +405,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>диаметр ножки</span>
 						<input
 							className="input"
@@ -443,7 +417,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>объём</span>
 						<input
 							className="input"
@@ -455,7 +429,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>вес</span>
 						<input
 							className="input"
@@ -467,7 +441,7 @@ export default function ExhibitForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-2">
+					<div className="form__row form__row-1">
 						<span>вес набора</span>
 						<input
 							className="input"
@@ -496,19 +470,6 @@ export default function ExhibitForm() {
 							value={ exhibitToEdit.preservation }
 							onChange={ handleChange }
 						/>
-					</div>
-
-					<div className="form__row form__row-2">
-						<span>сезон</span>
-
-						<select
-							className="select"
-							name="season"
-							value={ exhibitToEdit.season }
-							onChange={ event => handleSeasonChange(event) }
-						>
-							{ seasons.map(season => <option key={ season } value={ season }>{ season }</option>) }
-						</select>
 					</div>
 
 					<div className="form__row form__row-12 form__row-12--inline">

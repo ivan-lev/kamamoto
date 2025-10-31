@@ -5,11 +5,12 @@ import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
+import Potter from '../models/potter';
 import Style from '../models/style';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
-const { EXHIBITS, STATIC_URL } = PATHS;
+const { EXHIBITS, POTTERS, STATIC_URL } = PATHS;
 
 function getExhibits(req: Request, res: Response, next: NextFunction): void {
 	Exhibit
@@ -29,26 +30,35 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 
 async function findExhibitById(req: Request, res: Response, next: NextFunction) {
 	try {
-		const exhibit = await Exhibit.findOne({ id: req.params.id }, '-_id').populate({ path: 'style', select: '-_id name title brief showArticle mapImage' }).orFail();
+		const exhibit = await Exhibit.findOne({ id: req.params.id }, '-_id')
+			.populate({ path: 'style', select: '-_id name title brief showArticle mapImage' })
+			.populate({ path: 'potter', select: '-_id' })
+			.orFail();
+
+		const exhibitObject: any = exhibit.toObject();
 
 		const pathToExhibitFolder = `${STATIC_URL}/${EXHIBITS}/${exhibit.id}`;
 
-		if (exhibit.images) {
-			exhibit.images.forEach((image, i) => {
-				exhibit.images[i] = `${pathToExhibitFolder}/${image}`;
+		if (exhibitObject.images) {
+			exhibitObject.images.forEach((image: string, i: number) => {
+				exhibitObject.images[i] = `${pathToExhibitFolder}/${image}`;
 			});
 		}
 
-		if (exhibit.additionalImages) {
-			exhibit.additionalImages.forEach((image, i) => {
-				exhibit.additionalImages[i] = `${pathToExhibitFolder}/additional/${image}`;
+		if (exhibitObject.additionalImages) {
+			exhibitObject.additionalImages.forEach((image: string, i: number) => {
+				exhibitObject.additionalImages[i] = `${pathToExhibitFolder}/additional/${image}`;
 			});
 		}
 
-		if (exhibit.potterPhoto)
-			exhibit.potterPhoto = `${pathToExhibitFolder}/${exhibit.potterPhoto}`;
+		if (exhibitObject.potterPhoto)
+			exhibitObject.potterPhoto = `${pathToExhibitFolder}/${exhibitObject.potterPhoto}`;
 
-		res.send(exhibit);
+		if (exhibitObject.potter.photo) {
+			exhibitObject.potter.photo = `${STATIC_URL}/${POTTERS}/${exhibitObject.potter.photo}`;
+		}
+
+		res.send(exhibitObject);
 	}
 
 	catch (error: any) {
@@ -70,8 +80,9 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 	try {
 		const category = await Category.findOne({ category: exhibit.category });
 		const style = await Style.findOne({ name: exhibit.style });
+		const potter = await Potter.findOne({ id: exhibit.potter });
 
-		const result = await Exhibit.create({ ...exhibit, category: category?._id, style: style?._id });
+		const result = await Exhibit.create({ ...exhibit, category: category?._id, style: style?._id, potter: potter?._id });
 		res.status(201).send(result);
 	}
 	catch (error: any) {

@@ -1,5 +1,5 @@
 export const ERROR_MESSAGES = Object.freeze({
-	DEFAULT_MESSAGE: 'На сервере произошла ошибка',
+	DEFAULT_MESSAGE: 'На сервере произошла ошибка, которую не идентифицировали :(',
 	UNAUTHORIZED: 'Необходима авторизация',
 	PAGE_NOT_FOUND: 'Страница не найдена',
 
@@ -14,7 +14,7 @@ export const ERROR_MESSAGES = Object.freeze({
 	COMPLECTATION_EXISTS: 'Лот с таким полем name уже существует',
 
 	EXHIBIT_WRONG_DATA: 'При сохранении лота переданы невалидные данные',
-	EXHIBIT_WRONG_ID: 'Передан некорректный id лота для удаления',
+	EXHIBIT_WRONG_ID: 'Передан некорректный id лота',
 	EXHIBIT_NOT_FOUND: 'Лот с таким id не найден',
 	EXHIBIT_EXISTS: 'Лот с таким id уже существует',
 
@@ -37,6 +37,11 @@ export const ERROR_MESSAGES = Object.freeze({
 	PARTNER_WRONG_ID: 'Передан некорректный id партнёра',
 	PARTNER_NOT_FOUND: 'Партнёр с таким id не найден',
 	PARTNER_EXISTS: 'Партнёр с таким id уже существует',
+
+	POTTER_WRONG_DATA: 'При сохранении гончара переданы невалидные данные',
+	POTTER_WRONG_ID: 'Передан некорректный id гончара',
+	POTTER_NOT_FOUND: 'Гончар с таким id не найден',
+	POTTER_EXISTS: 'Гончар с таким id уже существует',
 
 	USER_WRONG_DATA: 'При создании пользователя переданы невалидные данные',
 	USER_EXISTS: 'Пользователь с таким email уже существует',

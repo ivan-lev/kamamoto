@@ -53,28 +53,10 @@ const exhibitSchema = new Schema<Exhibit>(
 			// },
 		},
 
-		potterName: {
-			type: String,
-		},
-
-		potterJapaneseName: {
-			type: String,
-		},
-
-		potterLifeDates: {
-			type: String,
-		},
-
-		potterPhoto: {
-			type: String,
-			// validate: {
-			// 	validator: (value: string) => isURL(value),
-			// 	message: 'Некорректный URL фотографии',
-			// },
-		},
-
-		potterInfo: {
-			type: String,
+		potter: {
+			type: Schema.Types.ObjectId,
+			ref: 'potter',
+			default: '690201704cdb3b65432973f2',
 		},
 
 		description: {
