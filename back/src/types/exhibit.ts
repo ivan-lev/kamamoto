@@ -32,7 +32,7 @@ export interface Exhibit {
 	isActive: boolean;
 };
 
-export interface ExhibitPayload {
+export interface ExhibitShort {
 	id: number;
 	name: string;
 	thumbnail: string;
