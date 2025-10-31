@@ -1,15 +1,15 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Exhibit } from '@/types/exhibitType';
+import type { ExhibitExtended } from '@/types/exhibitType';
 import { createSlice } from '@reduxjs/toolkit';
 import { defaultExhibit } from '@/types/exhibitType';
 
-const initialState: Exhibit = defaultExhibit;
+const initialState: ExhibitExtended = defaultExhibit;
 
 const exhibitSlice = createSlice({
 	name: 'exhibit',
 	initialState,
 	reducers: {
-		setExhibit: (state, action: PayloadAction<Exhibit>) => {
+		setExhibit: (state, action: PayloadAction<ExhibitExtended>) => {
 			if (!state.id)
 				return action.payload;
 		},

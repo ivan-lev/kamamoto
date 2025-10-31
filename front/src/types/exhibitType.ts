@@ -4,7 +4,7 @@ import { defaultPotter } from '@/types/potter';
 
 export type Seasons = 'весна' | 'лето' | 'осень' | 'зима';
 
-export interface Exhibit {
+export interface ExhibitExtended {
 	id: number;
 	name: string;
 	thumbnail: string;
@@ -36,7 +36,7 @@ export interface Exhibit {
 	isActive: boolean;
 }
 
-export interface ExhibitPayload {
+export interface ExhibitShort {
 	id: number;
 	name: string;
 	thumbnail: string;
@@ -68,9 +68,7 @@ export interface ExhibitPayload {
 	isActive: boolean;
 }
 
-// export type Exhibits = Exhibit[];
-
-export const defaultExhibit: Exhibit = {
+export const defaultExhibit: ExhibitExtended = {
 	id: 0,
 	name: '',
 	thumbnail: '',
@@ -100,7 +98,7 @@ export const defaultExhibit: Exhibit = {
 
 };
 
-export const defaultExhibitPayload: ExhibitPayload = {
+export const defaultExhibitShort: ExhibitShort = {
 	id: 0,
 	name: '',
 	thumbnail: '',

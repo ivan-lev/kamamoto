@@ -1,11 +1,11 @@
 import type { RootState } from '@/slices/admin';
-import type { Exhibit } from '@/types/exhibitType';
+import type { ExhibitShort } from '@/types/exhibitType';
 import { useDispatch, useSelector } from 'react-redux';
 import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exhibits';
 import { api } from '@/utils/api/api';
 
 interface Props {
-	exhibit: Exhibit;
+	exhibit: ExhibitShort;
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -14,13 +14,13 @@ export default function ExhibitsListRow({ exhibit, setShowModal }: Props) {
 
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
 
-	function handleSetExhibitToEdit(data: Exhibit) {
+	function handleSetExhibitToEdit(data: ExhibitShort) {
 		dispatch(setIsExistingExhibitEdited(true));
 		dispatch(setExhibitToEdit(data));
 		setShowModal(true);
 	}
 
-	async function toggleExhibitActiveState(exhibit: Exhibit) {
+	async function toggleExhibitActiveState(exhibit: ExhibitShort) {
 		const token = localStorage.getItem('kmmttkn');
 		try {
 			const response = await api.exhibits.toggleExhibitActiveState(token || '', { ...exhibit, isActive: !exhibit.isActive });

@@ -1,12 +1,12 @@
 import type { RootState } from '@/slices/admin';
-import type { Exhibit } from '@/types/exhibitType';
+import type { ExhibitExtended } from '@/types/exhibitType';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import QR from '@/components/QR/QR';
 import './Summary.scss';
 
 interface Props {
-	exhibit: Exhibit;
+	exhibit: ExhibitExtended;
 }
 
 export default function Summary({ exhibit }: Props) {
