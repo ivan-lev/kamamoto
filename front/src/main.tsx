@@ -6,6 +6,7 @@ import App from '@/components/App/App.tsx';
 import store from '@/slices/visitor/index';
 
 import '@/styles/_index.scss';
+import '@fontsource/raleway/latin-200.css';
 import '@fontsource/raleway/latin-400.css';
 import '@fontsource/raleway/cyrillic-100.css';
 import '@fontsource/raleway/cyrillic-200.css';

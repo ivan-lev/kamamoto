@@ -62,7 +62,7 @@ export default function Exhibition() {
 
 	return (
 		<>
-			<Seo title={ `Камамото: ${name}` } />
+			<Seo title={ `Камамото: выставка ${name}` } />
 
 			{ showPreloader
 				? (
@@ -72,7 +72,7 @@ export default function Exhibition() {
 				)
 				: (
 					<>
-						<PageTop title={ `«${name}»` } />
+						<PageTop title={ `Выставка «${name}»` } />
 
 						<section className="section exhibition">
 							<div className="exhibition__place">

@@ -30,6 +30,8 @@
 		scrollbar-color: var(--text-default) var(--color-secondary-005);
 		scrollbar-width: thin;
 
+		z-index: var(--z-index-modal);
+
 		overflow: auto;
 		display: flex;
 		flex-direction: column;
@@ -38,8 +40,7 @@
 		width: fit-content;
 		max-width: 100%;
 		margin: var(--gap-24) 0;
-		padding-right: var(--gap-16);
-		padding-bottom: var(--gap-16);
+		padding: var(--gap-16);
 
 		background-color: var(--background-primary);
 
