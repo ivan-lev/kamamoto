@@ -1,9 +1,20 @@
+import { useLayoutEffect } from 'react';
 import Seo from '@/components/Seo/Seo';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import { links } from '@/variables/links';
 import './About.scss';
 
 export default function About() {
+	const { personal } = links;
+
+	useLayoutEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'instant',
+		});
+	});
+
 	return (
 		<>
 			<Seo title="Камамото: о коллекционере" />
@@ -61,7 +72,7 @@ export default function About() {
 						<p className="text text--muted">Ниже блок ссылок на мои персональные страницы.</p>
 					</div>
 
-					<SocialLinks links={ links.personal } additionalClassNames="about__links" />
+					<SocialLinks links={ personal } additionalClassNames="about__links" />
 				</div>
 			</section>
 		</>

@@ -7,7 +7,7 @@ import './Footer.scss';
 export default function Footer() {
 	return (
 		<footer className="footer">
-			<div className="footer__column footer__column_social">
+			<div className="footer__column">
 				<span className="footer__column-element footer__column-title">Ссылки на проект</span>
 
 				{ links.social.map((link) => {
@@ -16,7 +16,7 @@ export default function Footer() {
 							className="link footer__column-element"
 							target="_blank"
 							href={ link.url }
-							key={ link.id }
+							key={ link.url }
 						>
 							<div className="footer__icon-wrapper">
 								<img className="footer__icon" src={ link.icon } alt="Иконка" />
@@ -28,16 +28,25 @@ export default function Footer() {
 				}) }
 			</div>
 
-			<div className="footer__column footer__column_useful">
+			<div className="footer__column">
 				<span className="footer__column-element footer__column-title">Материалы</span>
-				{ links.footer.map(link => (
-					<Link key={ link.id } to={ link.url } className="link footer__column-element">
+				{ links.useful.map(link => (
+					<Link key={ link.url } to={ link.url } className="link footer__column-element">
 						{ link.title }
 					</Link>
 				)) }
 			</div>
 
-			<div className="footer__bottom-line">
+			<div className="footer__column">
+				<span className="footer__column-element footer__column-title">Информация</span>
+				{ links.info.map(link => (
+					<Link key={ link.url } to={ link.url } className="link footer__column-element">
+						{ link.title }
+					</Link>
+				)) }
+			</div>
+
+			<div className="footer__bottom">
 				<span className="footer__copyright">
 					{ `© ${new Date().getFullYear()} Иван Лев` }
 				</span>

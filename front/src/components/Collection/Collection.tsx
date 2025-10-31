@@ -48,7 +48,7 @@ export default function Collection() {
 		<>
 			<PageTop title="Коллекция" />
 			<Seo title="Камамото: коллекция японской керамики" />
-			<section className="section collection">
+			<section className="section">
 				{ categories.length === 0 && showPreloader
 					? (
 						<Preloader />

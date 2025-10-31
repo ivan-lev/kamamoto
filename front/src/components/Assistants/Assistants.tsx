@@ -1,8 +1,8 @@
 import { useLayoutEffect } from 'react';
 import Seo from '@/components/Seo/Seo';
-import './Benefactors.scss';
+import './Assistants.scss';
 
-export default function Benefactors() {
+export default function Assistants() {
 	useLayoutEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -22,18 +22,18 @@ export default function Benefactors() {
 				</p>
 			</section>
 			<section>
-				<div className="benefactors">
-					<div className="container benefactors__card">
-						<img className="benefactors__photo" src="/people/smirnova-n.jpg" alt="Фото помощника проекта" />
+				<div className="assistants">
+					<div className="container assistants__card">
+						<img className="assistants__photo" src="/people/smirnova-n.jpg" alt="Фото помощника проекта" />
 
-						<a className="link link_usual benefactors__name" href="https://vk.com/id18845601">
+						<a className="link link_usual assistants__name" href="https://vk.com/id18845601">
 							Смирнова Наталья
 						</a>
-						<p className="benefactors__about">
+						<p className="assistants__about">
 							Председатель Челябинского регионального отделения Всероссийского Общества "Россия -
 							Япония", руководитель АНО ИКЦ урало-японских связей "RAKUDA".
 						</p>
-						<p className="benefactors__content text">
+						<p className="assistants__content text">
 							Наталья предложила идею проведения первой выставки (и вообще идею выставок как
 							таковых). Таким образом, с её подачи и при её помощи коллекцию впервые увидел широкий
 							круг людей, а она сама стала организатором нескольких мероприятий, на которых была
@@ -41,17 +41,17 @@ export default function Benefactors() {
 						</p>
 					</div>
 
-					<div className="container benefactors__card">
-						<img className="benefactors__photo" src="/people/tretyakova-m.jpg" alt="Фото помощника проекта" />
+					<div className="container assistants__card">
+						<img className="assistants__photo" src="/people/tretyakova-m.jpg" alt="Фото помощника проекта" />
 
-						<a className="link link_usual benefactors__name" href="https://vk.com/id246244448">
+						<a className="link link_usual assistants__name" href="https://vk.com/id246244448">
 							Третьякова Мария
 						</a>
-						<p className="benefactors__about">
+						<p className="assistants__about">
 							Специалист по японскому языку и культуре. Кандидат искусствоведения, Doctor of Fine
 							Arts (Japan), докторантура Киотского университета искусства и дизайна (Япония).
 						</p>
-						<p className="text benefactors__content">
+						<p className="text assistants__content">
 							Мария вносит большой вклад в перевод каллиграфии на японских вещах. С её помощью
 							образы предметов наполняются более глубоким смыслом, а красивая японская вязь
 							превращается в осмысленный текст, который дополняет общее ощущение от созерцаемой

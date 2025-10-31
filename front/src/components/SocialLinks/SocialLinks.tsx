@@ -10,13 +10,13 @@ export default function ({ links, additionalClassNames }: Props) {
 	return (
 		<div className={ `social-links ${additionalClassNames}` }>
 			{ links.map((link) => {
-				const { url, id, icon, title } = link;
+				const { url, icon, title } = link;
 				return (
 					<a
 						className="social-links__link"
 						target="_blank"
 						href={ url }
-						key={ id }
+						key={ url }
 					>
 						<img className="social-links__icon" src={ icon } alt="Иконка" />
 						{ title }

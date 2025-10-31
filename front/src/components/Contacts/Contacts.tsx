@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react';
 import emailjs from '@emailjs/browser';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Seo from '@/components/Seo/Seo';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import { links } from '@/variables/links';
@@ -14,12 +14,6 @@ export default function Contacts() {
 	const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
 	const { name, email, message } = mailData;
-
-	useEffect(() => {
-		if (showAlert) {
-			setTimeout(() => setShowAlert(false), 5000);
-		}
-	}, [showAlert]);
 
 	const handleAgree = () => {
 		setIsButtonDisabled(!isButtonDisabled);
@@ -60,6 +54,20 @@ export default function Contacts() {
 				},
 			);
 	};
+
+	useEffect(() => {
+		if (showAlert) {
+			setTimeout(() => setShowAlert(false), 5000);
+		}
+	}, [showAlert]);
+
+	useLayoutEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'instant',
+		});
+	});
 
 	return (
 		<>

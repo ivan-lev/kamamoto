@@ -13,7 +13,7 @@ import AdminLetters from '@/components/admin/Letters/Letters';
 import AdminPartners from '@/components/admin/Partners/Partners';
 import Potters from '@/components/admin/Potters/Potters';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
-import Benefactors from '@/components/Benefactors/Benefactors';
+import Assistants from '@/components/Assistants/Assistants';
 import Category from '@/components/Category/Category';
 import Collection from '@/components/Collection/Collection';
 import Contacts from '@/components/Contacts/Contacts';
@@ -30,6 +30,7 @@ import NotFound from '@/components/NotFound/NotFound';
 import OpeningScreen from '@/components/OpeningScreen/OpeningScreen';
 import ScrollToTopButton from '@/components/ScrollToTop/ScrollToTop';
 import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
+import Useful from '@/components/Useful/Useful';
 import adminStore from '@/slices/admin';
 import { documents } from '@/variables/documents';
 import { files } from '@/variables/files';
@@ -56,16 +57,17 @@ export default function App() {
 				>
 					<Route index element={ <HomePage /> } />
 					<Route path="about/" element={ <About /> } />
+					<Route path="assistants/" element={ <Assistants /> } />
 					<Route path="collection/" element={ <Collection /> } />
 					<Route path="collection/:category/" element={ <Category /> } />
 					<Route path="collection/:category/:exhibit" element={ <ExhibitView /> } />
+					<Route path="contacts/" element={ <Contacts /> } />
+					<Route path="documents/" element={ <Files title="Шаблоны документов" files={ documents } /> } />
+					<Route path="downloads/" element={ <Files title="Файлы для скачивания" files={ files } /> } />
 					<Route path="exhibitions/" element={ <Exhibitions /> } />
 					<Route path="exhibitions/:exhId" element={ <Exhibition /> } />
-					<Route path="contacts/" element={ <Contacts /> } />
-					<Route path="downloads/" element={ <Files title="Файлы для скачивания" files={ files } /> } />
-					<Route path="documents/" element={ <Files title="Шаблоны документов" files={ documents } /> } />
 					<Route path="thanksletters/" element={ <ThanksLetters /> } />
-					<Route path="benefactors/" element={ <Benefactors /> } />
+					<Route path="useful/" element={ <Useful /> } />
 					<Route path="404" element={ <NotFound /> } />
 					<Route path="*" element={ <Navigate to="/404" /> } />
 				</Route>

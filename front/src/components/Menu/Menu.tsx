@@ -1,19 +1,20 @@
 import { NavLink } from 'react-router-dom';
-import { menu } from '@/variables/menu';
+import { links } from '@/variables/links';
 import './Menu.scss';
 
 export default function Menu() {
+	const { menu } = links;
 	return (
 		<nav className="menu">
 			<ul className="menu__list">
-				{ menu.map((element) => {
+				{ menu.map((link) => {
 					return (
-						<li key={ element.name }>
+						<li key={ link.url }>
 							<NavLink
 								className={ ({ isActive }) => `menu__link ${isActive ? 'menu__link_active' : ''}` }
-								to={ element.link }
+								to={ link.url }
 							>
-								{ element.name }
+								{ link.title }
 							</NavLink>
 						</li>
 					);
