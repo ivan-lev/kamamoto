@@ -1,14 +1,24 @@
+import { useLayoutEffect } from 'react';
 import PageTop from '@/components/PageTop/PageTop';
 import Seo from '@/components/Seo/Seo';
 import { glossary } from '@/variables/glossary';
 import './Glossary.scss';
 
 export default function Glossary() {
+	useLayoutEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'instant',
+		});
+	});
+
 	return (
 		<>
 			<Seo title="Камамото: глоссарий" />
 
 			<PageTop title="Глоссарий" subtitle="В этом разделе собраны термины, которые могут встретиться в статьях о керамике и чайной церемонии, а также некоторые релевантные термины. Раздел находится в стадии разработки." />
+
 			<section className="section glossary">
 				{ glossary.map((item) => {
 					return (
@@ -16,6 +26,7 @@ export default function Glossary() {
 							<span className="glossary__letter">
 								{ item.letter }
 							</span>
+
 							<div className="glossary__table">
 								{ item.terms.map((term) => {
 									return (
@@ -26,12 +37,10 @@ export default function Glossary() {
 										</div>
 									);
 								}) }
-
 							</div>
 						</div>
 					);
 				}) }
-
 			</section>
 		</>
 	);
