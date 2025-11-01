@@ -22,6 +22,7 @@ import Exhibitions from '@/components/Exhibitions/Exhibitions';
 import ExhibitView from '@/components/ExhibitView/ExhibitView';
 import Files from '@/components/Files/Files';
 import Footer from '@/components/Footer/Footer';
+import Glossary from '@/components/Glossary/Glossary';
 import Header from '@/components/Header/Header';
 import HomePage from '@/components/HomePage/HomePage';
 import Login from '@/components/Login/Login';
@@ -67,6 +68,7 @@ export default function App() {
 					<Route path="exhibitions/" element={ <Exhibitions /> } />
 					<Route path="exhibitions/:exhId" element={ <Exhibition /> } />
 					<Route path="thanksletters/" element={ <ThanksLetters /> } />
+					<Route path="useful/glossary" element={ <Glossary /> } />
 					<Route path="useful/" element={ <Useful /> } />
 					<Route path="404" element={ <NotFound /> } />
 					<Route path="*" element={ <Navigate to="/404" /> } />

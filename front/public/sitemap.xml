@@ -7,12 +7,12 @@
 	<priority>1.0</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/about/</loc>
+	<loc>https://kamamoto.ru/about</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/assistants/</loc>
+	<loc>https://kamamoto.ru/assistants</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
@@ -57,27 +57,22 @@
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/collection/archhive/</loc>
+	<loc>https://kamamoto.ru/collection/archive/</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/contacts/</loc>
+	<loc>https://kamamoto.ru/contacts</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/documents/</loc>
+	<loc>https://kamamoto.ru/documents</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/downloads/</loc>
-	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
-	<priority>0.8</priority>
-</url>
-<url>
-	<loc>https://kamamoto.ru/exhibits/</loc>
+	<loc>https://kamamoto.ru/downloads</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
@@ -87,42 +82,42 @@
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/1/</loc>
+	<loc>https://kamamoto.ru/exhibitions/1</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/</loc>
+	<loc>https://kamamoto.ru/exhibitions/2</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/3/</loc>
+	<loc>https://kamamoto.ru/exhibitions/3</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/4/</loc>
+	<loc>https://kamamoto.ru/exhibitions/4</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/5/</loc>
+	<loc>https://kamamoto.ru/exhibitions/5</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/6/</loc>
+	<loc>https://kamamoto.ru/exhibitions/6</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/7/</loc>
+	<loc>https://kamamoto.ru/exhibitions/7</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/exhibitions/8/</loc>
+	<loc>https://kamamoto.ru/exhibitions/8</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
@@ -142,12 +137,17 @@
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://kamamoto.ru/thanksletters/</loc>
+	<loc>https://kamamoto.ru/thanksletters</loc>
 	<lastmod>2025-10-01T19:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://kamamoto.ru/useful/</loc>
+	<lastmod>2025-10-31T15:40:42+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://kamamoto.ru/useful/glossary</loc>
 	<lastmod>2025-10-31T15:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>

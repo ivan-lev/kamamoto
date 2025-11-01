@@ -5,7 +5,7 @@ import Seo from '@/components/Seo/Seo';
 
 export default function Useful() {
 	const cards = [
-		{ link: '', title: 'Глоссарий', thumbnail: '/images/dummy.webp' },
+		{ link: 'glossary', title: 'Глоссарий', thumbnail: '/images/dummy.webp' },
 		{ link: '', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
 	];
 
@@ -13,10 +13,8 @@ export default function Useful() {
 		<>
 			<Seo title="Камамото: коллекция японской керамики" />
 
-			<PageTop title="Полезное" />
-			<section className="section">
-				<p>Здесь будет полезная информация. Ссылки не кликабельны и пока никуда не ведут.</p>
-			</section>
+			<PageTop title="Полезное" subtitle="Здесь будет полезная информация. На данный момент есть начальная версия глоссария. Раздел со стилями керамики - в разработке." />
+
 			<section className="section">
 				<div className="display-grid">
 					<ul className="display-grid__list">
