@@ -2,6 +2,7 @@ import type { RootState } from '@/slices/visitor';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExhibitionCard from '@/components/ExhibitionCard/ExhibitionCard';
+import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setExhibitionsList } from '@/slices/visitor/exhibitions';
@@ -34,7 +35,7 @@ export default function Exhibitions() {
 		<>
 			<Seo title="Камамото: мероприятия, на которых представлена коллекция" />
 
-			<h1 className="title title--1">Выставки</h1>
+			<PageTop title="Выставки" />
 
 			<section className="section">
 				{ showPreloader
