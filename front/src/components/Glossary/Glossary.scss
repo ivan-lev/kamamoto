@@ -1,7 +1,26 @@
 .glossary {
 	display: flex;
 	flex-direction: column;
-	gap: var(--gap-48);
+	gap: var(--gap-32);
+
+	&__filters {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-12);
+	}
+
+	&__filter-letters {
+		cursor: pointer;
+		display: flex;
+		justify-content: space-evenly;
+		text-transform: uppercase;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-48);
+	}
 
 	&__block {
 		display: flex;
@@ -17,13 +36,16 @@
 	&__table {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-8);
+    gap: var(--gap-16);
 }
 
 	&__row {
 		display: grid;
 		grid-auto-rows: max-content;
 		grid-template-columns: repeat(12, minmax(0, 1fr));
+
+		padding-bottom: var(--gap-16);
+
 		opacity: 0.8;
 
 
@@ -33,7 +55,7 @@
 	}
 
 	&__cell {
-		padding-bottom: var(--gap-8);
+
 		&--span-2 {
 			grid-column: span 2;
 		}
@@ -92,6 +114,12 @@
 		&--kanji {
 			@media screen and (max-width: 480px) {
 				grid-column: span 6;
+			}
+		}
+
+		@media screen and (max-width: 480px) {
+			&:not(:last-child) {
+				padding-bottom: var(--gap-8);
 			}
 		}
 	}

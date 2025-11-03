@@ -4,7 +4,7 @@ interface Term {
 	definition: string;
 }
 
-interface GlossarySection {
+export interface GlossarySection {
 	letter: string;
 	terms: Term[];
 }
