@@ -1,9 +1,11 @@
 import type { ChangeEvent } from 'react';
 import type { GlossarySection } from '@/variables/glossary';
+import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import PageTop from '@/components/PageTop/PageTop';
 import Seo from '@/components/Seo/Seo';
 import { glossary } from '@/variables/glossary';
+import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import './Glossary.scss';
 
 export default function Glossary() {
@@ -86,20 +88,24 @@ export default function Glossary() {
 				</div>
 
 				<div className="glossary__list">
-					{ glossaryFiltered.map((item) => {
+					{ glossaryFiltered.map((section) => {
 						return (
-							<div className="glossary__block" key={ item.letter }>
+							<div className="glossary__block" key={ section.letter }>
 								<span className="glossary__letter">
-									{ item.letter }
+									{ section.letter }
 								</span>
 
-								<div className="glossary__table">
-									{ item.terms.map((term) => {
+								<div className="glossary__table text">
+									{ section.terms.map((term) => {
 										return (
 											<div className="glossary__row" key={ term.title }>
-												<span className="glossary__cell glossary__cell--span-2 glossary__cell--title">{ term.title }</span>
+												<div className="glossary__cell glossary__cell--span-2 glossary__cell--title">
+													{ parse(term.title, htmlParserOptions) }
+												</div>
 												<span className="glossary__cell glossary__cell--span-2 glossary__cell--kanji">{ term.kanji }</span>
-												<span className="glossary__cell glossary__cell--span-8 glossary__cell--definition">{ term.definition }</span>
+												<div className="glossary__cell glossary__cell--span-8 glossary__cell--definition">
+													{ parse(term.definition, htmlParserOptions) }
+												</div>
 											</div>
 										);
 									}) }

@@ -36,7 +36,6 @@
 	&__table {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-16);
 }
 
 	&__row {
@@ -44,6 +43,7 @@
 		grid-auto-rows: max-content;
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 
+		padding-top: var(--gap-16);
 		padding-bottom: var(--gap-16);
 
 		opacity: 0.8;
