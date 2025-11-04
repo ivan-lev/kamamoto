@@ -18,8 +18,8 @@ export const htmlParserOptions = {
 		}
 
 		if (domNode instanceof Element && domNode.name === 'a') {
+			domNode.attribs.target = domNode.attribs.class === 'self' ? '_self' : '_blank';
 			domNode.attribs.class = 'link link_usual';
-			domNode.attribs.target = '_blank';
 			return domNode;
 		}
 
