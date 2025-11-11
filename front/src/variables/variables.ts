@@ -40,4 +40,4 @@ export const LOGIN_MESSAGES = Object.freeze({
 
 export const DESCRIPTION_DUMMY = '<p>Описание в процессе подготовки</p>';
 
-export const SITE_VERSION = '2.0';
+export const SITE_VERSION = '2.1';

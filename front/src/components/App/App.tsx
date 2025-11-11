@@ -29,6 +29,7 @@ import Login from '@/components/Login/Login';
 import Main from '@/components/Main/Main';
 import NotFound from '@/components/NotFound/NotFound';
 import OpeningScreen from '@/components/OpeningScreen/OpeningScreen';
+import ScrollToHash from '@/components/ScrollToHash/ScrollToHash';
 import ScrollToTopButton from '@/components/ScrollToTop/ScrollToTop';
 import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
 import Useful from '@/components/Useful/Useful';
@@ -53,6 +54,7 @@ export default function App() {
 							<Main />
 							<Footer />
 							<ScrollToTopButton />
+							<ScrollToHash />
 						</>
 					) }
 				>

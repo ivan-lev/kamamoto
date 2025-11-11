@@ -40,7 +40,10 @@
 
 .link_usual {
 	display: inline;
+
 	text-decoration: underline;
+	text-decoration-color: var(--text-muted);
+	text-decoration-thickness: 1px;
 	text-underline-offset: var(--gap-4);
 }
 

@@ -5,7 +5,7 @@ import Seo from '@/components/Seo/Seo';
 
 export default function Useful() {
 	const cards = [
-		{ link: 'glossary', title: 'Глоссарий', thumbnail: '/images/dummy.webp' },
+		{ link: 'glossary', title: 'Глоссарий', thumbnail: '/images/useful/glossary.webp' },
 		{ link: '', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
 	];
 
