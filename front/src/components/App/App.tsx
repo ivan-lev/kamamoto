@@ -73,7 +73,7 @@ export default function App() {
 					<Route path="useful/glossary" element={ <Glossary /> } />
 					<Route path="useful/" element={ <Useful /> } />
 					<Route path="404" element={ <NotFound /> } />
-					<Route path="*" element={ <Navigate to="/404" /> } />
+					<Route path="*" element={ <Navigate to="/404" replace /> } />
 				</Route>
 
 				<Route

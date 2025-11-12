@@ -5,7 +5,8 @@ import './NotFound.scss';
 export default function NotFound() {
 	return (
 		<>
-			<Seo title="Камамото: страница не найдена" description="Страница, которая открывается, если ссылка не существует или не активна" />
+			<Seo title="Камамото: страница не найдена" description="Страница не найдена и вас переправили сюда" />
+			<meta name="robots" content="noindex" />
 
 			<section className="section">
 				<div className="not-found">
