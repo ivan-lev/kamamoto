@@ -62,7 +62,7 @@ export default function Exhibition() {
 
 	return (
 		<>
-			<Seo title={ `Камамото: выставка ${name}` } />
+			<Seo title={ `Камамото: выставка ${name}` } description={ `Страница о выставке "${name}" с описанием и фотографиями` } />
 
 			{ showPreloader
 				? (

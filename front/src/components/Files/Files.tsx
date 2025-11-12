@@ -20,7 +20,7 @@ export default function Files({ title, files }: Props) {
 
 	return (
 		<>
-			<Seo title={ `Камамото: ${title.charAt(0).toLowerCase()}${title.slice(1)}` } />
+			<Seo title={ `Камамото: ${title.charAt(0).toLowerCase()}${title.slice(1)}` } description="Необходимые для сотрудничесва файлы: логотипы для афиш, qr-коды, шаблоны документов и прочее" />
 
 			<section className="section page-top">
 				<h1 className="title title--1">{ title }</h1>

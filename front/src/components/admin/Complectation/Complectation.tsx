@@ -97,7 +97,7 @@ export default function Compleactation() {
 
 	return (
 		<>
-			<Seo title="Камамото: список партнёров" />
+			<Seo title="Камамото: комплектации" />
 
 			{ showPreloader
 				? (

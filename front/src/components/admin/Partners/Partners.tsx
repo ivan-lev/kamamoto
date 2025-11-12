@@ -122,7 +122,7 @@ export default function Partners() {
 
 	return (
 		<>
-			<Seo title="Камамото: список партнёров" />
+			<Seo title="Камамото: партнёры" />
 
 			{ showPreloader
 				? (

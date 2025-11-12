@@ -38,7 +38,7 @@ export default function Categories() {
 
 	return (
 		<>
-			<Seo title="Камамото: список партнёров" />
+			<Seo title="Камамото: категории" />
 
 			{ showPreloader
 				? (

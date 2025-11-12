@@ -38,7 +38,7 @@ export default function Exhibitions() {
 
 	return (
 		<>
-			<Seo title="Камамото: выставки" />
+			<Seo title="Камамото: выставки" description="Страница со списком выставок, на которых была представлена керамика из коллекции Камамото" />
 
 			{ showPreloader
 				? (
