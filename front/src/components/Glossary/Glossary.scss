@@ -33,6 +33,13 @@
 		text-transform: uppercase;
 	}
 
+	&__reset-button.button {
+		align-self: end;
+		min-height: 30px;
+		padding: var(--gap-2) var(--gap-8);
+		opacity: 0.8;
+	}
+
 	&__table {
     display: flex;
     flex-direction: column;

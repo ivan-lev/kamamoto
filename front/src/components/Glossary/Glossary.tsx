@@ -42,6 +42,11 @@ export default function Glossary() {
 		setGlossaryFiltered(filteredGlossary);
 	};
 
+	function resetFilters() {
+		setQuery('');
+		setGlossaryFiltered(glossary);
+	}
+
 	useEffect(() => {
 		filterGlossaryByQuery();
 	}, [query]);
@@ -67,7 +72,7 @@ export default function Glossary() {
 							className="input"
 							type="text"
 							name="title"
-							placeholder="поиск: часть термина или описания"
+							placeholder="поиск: термин или описание"
 							value={ query }
 							onChange={ handleChange }
 						/>
@@ -85,6 +90,8 @@ export default function Glossary() {
 							);
 						}) }
 					</div>
+
+					<button className="button glossary__reset-button" onClick={ resetFilters }>Сбросить</button>
 				</div>
 
 				<div className="glossary__list">
