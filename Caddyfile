@@ -1,18 +1,10 @@
-# Caddyfile.prod
-http://158.255.5.107, http://kamamoto.ru, https://kamamoto.ru {
-    # Redirect HTTP to HTTPS
-    @http {
-        protocol http
-    }
-    redir @http https://kamamoto.ru{uri} permanent
+http://kamamoto.ru, http://158.255.5.107 {
+    redir https://kamamoto.ru{uri} permanent
+}
 
-	encode zstd gzip
+kamamoto.ru {
 
-    # Enable compression ONLY for text-based files
-    @compressible {
-        path *.html *.css *.js *.mjs *.json *.xml *.txt *.svg *.csv *.md *.yaml *.yml *.map *.woff
-    }
-    header @compressible Vary "Accept-Encoding"
+    encode gzip
 
     # Handle API requests
     handle /api/* {
@@ -20,6 +12,9 @@ http://158.255.5.107, http://kamamoto.ru, https://kamamoto.ru {
             header_up Host {host}
             header_up X-Real-IP {remote}
         }
+
+        # Do not cache
+        header Cache-Control "no-cache, no-store, must-revalidate"
     }
 
     # Static files from backend
@@ -40,11 +35,14 @@ http://158.255.5.107, http://kamamoto.ru, https://kamamoto.ru {
         file_server
     }
 
-
-    file_server
+	# Check if build already has precompressed virsions of files
+    file_server {
+        precompressed gzip
+    }
 
     # Security headers
     header {
+        Vary "Accept-Encoding"
         X-Content-Type-Options nosniff
         X-Frame-Options DENY
         X-XSS-Protection "1; mode=block"
