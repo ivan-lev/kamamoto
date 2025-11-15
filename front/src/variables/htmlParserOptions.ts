@@ -1,30 +1,33 @@
 import { Element } from 'html-react-parser';
 
 export const htmlParserOptions = {
-	replace(domNode: any) {
-		if (domNode instanceof Element && domNode.name === 'ul') {
-			domNode.attribs.class = 'list';
-			return domNode;
-		}
+	replace(domNode: unknown) {
+		if (domNode instanceof Element) {
+			if (domNode.name === 'p') {
+				domNode.attribs.class = 'text';
+			}
 
-		if (domNode instanceof Element && domNode.name === 'p') {
-			domNode.attribs.class = 'text';
-			return domNode;
-		}
+			else if (domNode.name === 'h2') {
+				domNode.attribs.class = 'section__header';
+			}
 
-		if (domNode instanceof Element && domNode.name === 'span') {
-			domNode.attribs.class = 'text';
-			return domNode;
-		}
+			else if (domNode.name === 'span') {
+				domNode.attribs.class = 'text';
+			}
 
-		if (domNode instanceof Element && domNode.name === 'a') {
-			domNode.attribs.target = domNode.attribs.class === 'self' ? '_self' : '_blank';
-			domNode.attribs.class = 'link link_usual';
-			return domNode;
-		}
+			else if (['ul', 'ol'].includes(domNode.name)) {
+				domNode.attribs.class = 'list';
+			}
 
-		if (domNode instanceof Element && domNode.name === 'blockquote') {
-			domNode.attribs.class = 'blockquote';
+			else if (domNode.name === 'a') {
+				domNode.attribs.target = domNode.attribs.class === 'self' ? '_self' : '_blank';
+				domNode.attribs.class = 'link link_usual';
+			}
+
+			else if (domNode.name === 'blockquote') {
+				domNode.attribs.class = 'blockquote';
+			}
+
 			return domNode;
 		}
 	},
