@@ -1,5 +1,7 @@
 import type { IArticleBlock } from '@/components/Article/Article.types';
-import ArticleSlider from '@/components/Article/ArticleSlider/ArticleSlider';
+import parse from 'html-react-parser';
+import ArticleSlider from '@/components/Article/ArticleSlider';
+import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
 interface Props {
 	block: IArticleBlock;
@@ -9,7 +11,7 @@ export default function ArticleBlock({ block }: Props) {
 	return (
 		<>
 			<section className="section description">
-				{ block.content }
+				{ parse(block.content, htmlParserOptions) }
 			</section>
 			{ block.slides?.length && (
 				<section className="section slider">

@@ -3,6 +3,10 @@
 	font-size: 16px;
 	color: var(--text-default);
 
+	li:not(:last-child) {
+		margin-bottom: var(--gap-8)
+	}
+
 	@media screen and (max-width: 900px) {
 		font-size: 14px;
 	}

@@ -6,12 +6,11 @@
 	box-sizing: border-box;
 
 	color: var(--text-default);
-	text-decoration: none;
 
 	transition: color 0.2s;
 
 	&:hover {
-		color: var(--text-default);
+		color: var(--color-secondary-060);
 	}
 
 	&__icon {

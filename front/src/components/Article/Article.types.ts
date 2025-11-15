@@ -4,6 +4,6 @@ export interface IArticleSlide {
 };
 
 export interface IArticleBlock {
-	content?: string;
+	content: string;
 	slides?: IArticleSlide[];
 }

@@ -13,6 +13,7 @@ import AdminLetters from '@/components/admin/Letters/Letters';
 import AdminPartners from '@/components/admin/Partners/Partners';
 import Potters from '@/components/admin/Potters/Potters';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
+import Article from '@/components/Article/Article';
 import Assistants from '@/components/Assistants/Assistants';
 import Category from '@/components/Category/Category';
 import Collection from '@/components/Collection/Collection';
@@ -70,8 +71,9 @@ export default function App() {
 					<Route path="exhibitions/" element={ <Exhibitions /> } />
 					<Route path="exhibitions/:exhId" element={ <Exhibition /> } />
 					<Route path="thanksletters/" element={ <ThanksLetters /> } />
-					<Route path="useful/glossary" element={ <Glossary /> } />
 					<Route path="useful/" element={ <Useful /> } />
+					<Route path="useful/glossary" element={ <Glossary /> } />
+					<Route path="useful/ceramic-styles" element={ <Article /> } />
 					<Route path="404" element={ <NotFound /> } />
 					<Route path="*" element={ <Navigate to="/404" replace /> } />
 				</Route>
