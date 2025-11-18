@@ -33,6 +33,20 @@ kamamoto.ru {
     
     # Serve static files
     root * /srv/front
+
+    # Frontend static files cache
+    @frontendStatic {
+        path *.css *.js *.woff2 *.svg *.png *.jpg *.jpeg *.webp
+    }
+    header @frontendStatic Cache-Control "public, immutable, max-age=31536000"
+    
+    # Do not cache HTML
+    @html {
+        path *.html
+    }
+    header @html Cache-Control "no-cache, must-revalidate"
+
+    # SPA fallback for any non-file
     
     # SPA fallback
     @notStatic {
