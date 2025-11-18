@@ -51,6 +51,14 @@
 		}
 	}
 
+	.swiper-pagination {
+		--swiper-pagination-bottom: 0;
+		--swiper-pagination-top: 0;
+
+		position: relative;
+		margin-top: var(--gap-8);
+	}
+
 	.swiper-pagination-bullet {
 		--swiper-pagination-color: var(--color-secondary-100);
 		--swiper-pagination-bullet-width: var(--gap-12);
