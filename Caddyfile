@@ -20,6 +20,15 @@ kamamoto.ru {
     # Static files from backend
     handle /static/* {
         reverse_proxy http://back:3000
+
+		@images {
+            path *.jpg *.jpeg *.png *.gif *.webp *.ico *.svg
+        }
+
+        # 1 year cache for images
+        header @images Cache-Control "public, immutable, max-age=31536000"
+        # 1 hour cache for non-images
+        header !@images Cache-Control "public, max-age=3600"
     }
     
     # Serve static files
@@ -33,6 +42,9 @@ kamamoto.ru {
     handle @notStatic {
         rewrite * /index.html
         file_server
+
+        # Don't cache for SPA routes
+        header Cache-Control "no-cache, no-store, must-revalidate"
     }
 
 	# Check if build already has precompressed virsions of files
