@@ -1,7 +1,7 @@
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import CeramicStyle from '@/components/CeramicStyle/CeramicStyle';
 import ExhibitDescription from '@/components/ExhibitDescription/ExhibitDescription';
 import PageTop from '@/components/PageTop/PageTop';

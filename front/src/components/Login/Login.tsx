@@ -2,7 +2,7 @@ import type { ChangeEvent, FormEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import Logo from '@/components/Logo/Logo';
 import Seo from '@/components/Seo/Seo';
 import { login, logout } from '@/slices/admin/user';

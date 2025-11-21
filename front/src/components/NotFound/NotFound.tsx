@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import Seo from '@/components/Seo/Seo';

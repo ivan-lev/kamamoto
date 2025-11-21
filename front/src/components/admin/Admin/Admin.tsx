@@ -1,7 +1,7 @@
 import type { RootState } from '@/slices/admin/index';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router';
 import Logo from '@/components/Logo/Logo';
 import Seo from '@/components/Seo/Seo';
 import { logout } from '@/slices/admin/user';
@@ -55,11 +55,6 @@ export default function Admin() {
 								<li>
 									<Link to="/admin/" className="link">
 										Статистика
-									</Link>
-								</li>
-								<li>
-									<Link to="files/" className="link">
-										Файлы для скачивания
 									</Link>
 								</li>
 							</ul>

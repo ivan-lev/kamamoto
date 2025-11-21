@@ -1,5 +1,5 @@
 import type { Exhibition } from '@/types/exhibitionType';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import './ExhibitionCard.scss';
 
 interface Props {
