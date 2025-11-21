@@ -7,4 +7,4 @@ export enum ExhibitCategory {
 	teapots = 'Чайники',
 	vases = 'Вазы',
 	archive = 'Архив',
-}
+};

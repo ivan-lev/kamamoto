@@ -9,7 +9,7 @@ import listReducer from '@/slices/visitor/list';
 import partnersReducer from '@/slices/visitor/partners';
 import statisticsReducer from '@/slices/visitor/statistics';
 
-const store = configureStore({
+export const visitorStore = configureStore({
 	reducer: {
 		categories: categoriesReducer,
 		category: categoryReducer,
@@ -23,6 +23,4 @@ const store = configureStore({
 	},
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-
-export default store;
+export type RootState = ReturnType<typeof visitorStore.getState>;

@@ -31,6 +31,17 @@ export const homepageSliderImages = [
 	'images/homepage-slider/11.webp',
 ];
 
+export const CATEGORIES: { [key: string]: string } = {
+	bowls: 'Чаши',
+	caddies: 'Чайницы',
+	cups: 'Пиалы',
+	other: 'Другое',
+	plates: 'Тарелки',
+	teapots: 'Чайники',
+	vases: 'Вазы',
+	archive: 'Архив',
+};
+
 export const LOGIN_MESSAGES = Object.freeze({
 	WRONG_CREDEINTIALS: 'Неправильный email или пароль.',
 	LOGIN_ERROR: 'Ошибка логина...',

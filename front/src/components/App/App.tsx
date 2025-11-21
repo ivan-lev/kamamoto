@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Provider } from 'react-redux';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import About from '@/components/About/About';
 import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
@@ -34,7 +34,8 @@ import ScrollToHash from '@/components/ScrollToHash/ScrollToHash';
 import ScrollToTopButton from '@/components/ScrollToTop/ScrollToTop';
 import ThanksLetters from '@/components/ThanksLetters/ThanksLetters';
 import Useful from '@/components/Useful/Useful';
-import adminStore from '@/slices/admin';
+import { adminStore } from '@/slices/admin';
+import { visitorStore } from '@/slices/visitor';
 import { documents } from '@/variables/documents';
 import { files } from '@/variables/files';
 import './App.scss';
@@ -46,17 +47,18 @@ export default function App() {
 	return (
 		<>
 			{ isFirstRender && isRootLocation && <OpeningScreen setIsFirstRender={ setIsFirstRender } /> }
+
 			<Routes>
 				<Route
 					path="/"
 					element={ (
-						<>
+						<Provider store={ visitorStore }>
 							<Header />
 							<Main />
 							<Footer />
 							<ScrollToTopButton />
 							<ScrollToHash />
-						</>
+						</Provider>
 					) }
 				>
 					<Route index element={ <HomePage /> } />
@@ -74,44 +76,39 @@ export default function App() {
 					<Route path="useful/" element={ <Useful /> } />
 					<Route path="useful/glossary" element={ <Glossary /> } />
 					<Route path="useful/ceramic-styles" element={ <Article /> } />
-					<Route path="404" element={ <NotFound /> } />
-					<Route path="*" element={ <Navigate to="/404" replace /> } />
 				</Route>
 
 				<Route
-					path="login/"
+					path="/"
 					element={ (
 						<Provider store={ adminStore }>
-							<Login />
-						</Provider>
-					) }
-				/>
-				<Route
-					path="admin/"
-					element={ (
-						<Provider store={ adminStore }>
-							<Admin />
+							<Outlet />
 						</Provider>
 					) }
 				>
-					<Route index element={ <AdminStatistics /> } />
-					<Route
-						path="exhibits/"
-						element={ (
-							<>
-								<Filters />
-								<ExhibitsList />
-							</>
-						) }
-					/>
-					<Route path="exhibitions/" element={ <AdminExhibitions /> } />
-					<Route path="partners/" element={ <AdminPartners /> } />
-					<Route path="categories/" element={ <AdminCategories /> } />
-					<Route path="letters/" element={ <AdminLetters /> } />
-					<Route path="ceramic-styles/" element={ <AdminCeramicStyles /> } />
-					<Route path="complectation/" element={ <Complectation /> } />
-					<Route path="potters/" element={ <Potters /> } />
+					<Route path="login/" element={ <Login /> } />
+					<Route path="admin/" element={ <Admin /> }>
+						<Route index element={ <AdminStatistics /> } />
+						<Route
+							path="exhibits/"
+							element={ (
+								<>
+									<Filters />
+									<ExhibitsList />
+								</>
+							) }
+						/>
+						<Route path="exhibitions/" element={ <AdminExhibitions /> } />
+						<Route path="partners/" element={ <AdminPartners /> } />
+						<Route path="categories/" element={ <AdminCategories /> } />
+						<Route path="letters/" element={ <AdminLetters /> } />
+						<Route path="ceramic-styles/" element={ <AdminCeramicStyles /> } />
+						<Route path="complectation/" element={ <Complectation /> } />
+						<Route path="potters/" element={ <Potters /> } />
+					</Route>
 				</Route>
+
+				<Route path="*" element={ <NotFound /> } />
 			</Routes>
 		</>
 	);

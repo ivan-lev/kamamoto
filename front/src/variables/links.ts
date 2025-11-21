@@ -1,9 +1,9 @@
 import type { Link } from '@/types/link';
 
 const menu: Link[] = [
-	{ title: 'Коллекция', url: 'collection/' },
-	{ title: 'Выставки', url: 'exhibitions/' },
-	{ title: 'Полезное', url: 'useful/' },
+	{ title: 'Коллекция', url: '/collection/' },
+	{ title: 'Выставки', url: '/exhibitions/' },
+	{ title: 'Полезное', url: '/useful/' },
 ];
 
 const personal: Link[] = [
@@ -20,15 +20,15 @@ const social: Link[] = [
 ];
 
 const useful: Link[] = [
-	{ title: 'Файлы для скачивания', url: 'downloads' },
-	{ title: 'Шаблоны документов', url: 'documents' },
-	{ title: 'Благодарственные письма', url: 'thanksletters' },
+	{ title: 'Файлы для скачивания', url: '/downloads' },
+	{ title: 'Шаблоны документов', url: '/documents' },
+	{ title: 'Благодарственные письма', url: '/thanksletters' },
 ];
 
 const info: Link[] = [
-	{ title: 'О коллекционере', url: 'about' },
-	{ title: 'Контакты', url: 'contacts' },
-	{ title: 'Помощники проекта', url: 'assistants' },
+	{ title: 'О коллекционере', url: '/about' },
+	{ title: 'Контакты', url: '/contacts' },
+	{ title: 'Помощники проекта', url: '/assistants' },
 ];
 
 export const links = Object.freeze({ menu, social, personal, useful, info });

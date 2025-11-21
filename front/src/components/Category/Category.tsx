@@ -1,23 +1,24 @@
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
 import PageTop from '@/components/PageTop/PageTop';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { resetCategory, setCategory } from '@/slices/visitor/category';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
-import { ExhibitCategory } from '@/types/exhibitCategory';
 import { api } from '@/utils/api/api';
+import { CATEGORIES } from '@/variables/variables';
 
 export default function Category() {
-	const category = useParams().category;
-	const categoryName = ExhibitCategory[category as keyof typeof ExhibitCategory];
+	const { category } = useParams();
 	const dispatch = useDispatch();
-	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
 	const navigate = useNavigate();
+	const allowedCategory = Object.keys(CATEGORIES).includes(category || '');
 
+	const categoryTitle = allowedCategory ? CATEGORIES[category!].toLowerCase() : 'японская керамика';
+	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
 	useLayoutEffect(() => {
@@ -53,23 +54,27 @@ export default function Category() {
 	}, [category]);
 
 	return (
-		<>
-			<Seo
-				title={ `Камамото: ${categoryName ? categoryName.toLowerCase() : 'японская керамика'}` }
-				description={ `Страница с каталогом предметов из категории ${categoryName.toLowerCase()}` }
-			/>
+		!allowedCategory
+			? (<Navigate to="/404" replace />)
+			: (
+				<>
+					<Seo
+						title={ `Камамото: ${categoryTitle}` }
+						description={ `Страница с каталогом предметов из категории ${categoryTitle.toLowerCase()}` }
+					/>
 
-			<PageTop title={ categoryName } />
+					<PageTop title={ categoryTitle } />
 
-			<section className="section">
-				{ listToDisplay.length === 0 && showPreloader
-					? (
-						<Preloader />
-					)
-					: (
-						<DisplayGrid />
-					) }
-			</section>
-		</>
+					<section className="section">
+						{ listToDisplay.length === 0 && showPreloader
+							? (
+								<Preloader />
+							)
+							: (
+								<DisplayGrid />
+							) }
+					</section>
+				</>
+			)
 	);
 }

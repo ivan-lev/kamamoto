@@ -9,7 +9,7 @@ import partnersReducer from '@/slices/admin/partners';
 import pottersReducer from '@/slices/admin/potters';
 import useReducer from '@/slices/admin/user';
 
-const store = configureStore({
+export const adminStore = configureStore({
 	reducer: {
 		categories: categoriesReducer,
 		ceramicStyles: ceramicStylesReducer,
@@ -23,6 +23,4 @@ const store = configureStore({
 	},
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-
-export default store;
+export type RootState = ReturnType<typeof adminStore.getState>;

@@ -1,8 +1,7 @@
-import type { ExhibitCategory } from '@/types/exhibitCategory';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface categoryState {
-	category: ExhibitCategory | undefined;
+	category: string | undefined;
 }
 
 const initialState: categoryState = {
