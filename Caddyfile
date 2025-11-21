@@ -14,7 +14,7 @@ kamamoto.ru {
         }
 
         # Do not cache
-        header Cache-Control "no-cache, no-store, must-revalidate"
+        header Cache-Control "no-cache, must-revalidate"
     }
 
     # Static files from backend
@@ -58,7 +58,7 @@ kamamoto.ru {
         file_server
 
         # Don't cache for SPA routes
-        header Cache-Control "no-cache, no-store, must-revalidate"
+        header Cache-Control "no-cache, must-revalidate"
     }
 
 	# Check if build already has precompressed virsions of files
