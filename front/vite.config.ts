@@ -28,6 +28,7 @@ export default defineConfig({
 		cssMinify: 'lightningcss',
 		outDir: 'dist',
 		assetsDir: 'assets',
+		sourcemap: true,
 	},
 	resolve: {
 		alias: {
