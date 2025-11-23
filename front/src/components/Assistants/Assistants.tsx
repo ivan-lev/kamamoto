@@ -1,8 +1,11 @@
 import { useLayoutEffect } from 'react';
+import { useLocation } from 'react-router';
 import Seo from '@/components/Seo/Seo';
 import './Assistants.scss';
 
 export default function Assistants() {
+	const { pathname } = useLocation();
+
 	useLayoutEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -13,14 +16,17 @@ export default function Assistants() {
 
 	return (
 		<>
-			<Seo title="Камамото: помощники проекта" description="Страница о людях, внесших вклад в развитие коллекции: мастера чайной церемонии, востоковедыЫ" />
+			<Seo
+				title="Камамото: помощники проекта"
+				description="Страница о людях, внесших вклад в развитие коллекции: мастера чайной церемонии, востоковеды"
+				canonicalUrl={ `${pathname.replace(/\//g, '')}` }
+			/>
+
 			<section className="section page-top">
 				<h1 className="title title--1">Помощники проекта</h1>
-				<p className="subtitle">
-					Страница, на которой я хочу рассказать о людях, которые внесли свой вклад в развите
-					коллекции
-				</p>
+				<p className="subtitle"> Страница, на которой я хочу рассказать о людях, которые внесли свой вклад в развитие проекта</p>
 			</section>
+
 			<section>
 				<div className="assistants">
 					<div className="container assistants__card">

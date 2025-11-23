@@ -1,17 +1,21 @@
 import Card from '@/components/Card/Card';
 import PageTop from '@/components/PageTop/PageTop';
-
 import Seo from '@/components/Seo/Seo';
+import { PATHS } from '@/variables/variables';
 
 export default function Useful() {
 	const cards = [
 		{ link: 'glossary', title: 'Глоссарий', thumbnail: '/images/useful/glossary.webp' },
-		{ link: 'ceramic-styles', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
+		{ link: 'ceramic-styles/', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
 	];
 
 	return (
 		<>
-			<Seo title="Камамото: полезные материалы" description="Страница с каталогом ресурсов, содержащих информавцию о японской керамике, известных и легендарных мастерах и предметах" />
+			<Seo
+				title="Камамото: полезные материалы"
+				description="Страница с каталогом ресурсов, содержащих информавцию о японской керамике, известных и легендарных мастерах и предметах"
+				canonicalUrl={ `${PATHS.USEFUL}/` }
+			/>
 
 			<PageTop title="Полезное" subtitle="Здесь будет полезная информация. На данный момент есть начальная версия глоссария. Раздел со стилями керамики - в разработке." />
 

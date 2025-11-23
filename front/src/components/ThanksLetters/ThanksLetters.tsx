@@ -2,6 +2,7 @@ import type { RootState } from '@/slices/visitor';
 import type { File } from '@/types/file';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import Preloader from '@/components/Preloader/Preloader';
 import Seo from '@/components/Seo/Seo';
 import { setLettersList } from '@/slices/visitor/letters';
@@ -9,6 +10,7 @@ import { api } from '@/utils/api/api';
 import './ThanksLetters.scss';
 
 export default function ThanksLetters() {
+	const { pathname } = useLocation();
 	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const letters = useSelector((state: RootState) => state.letters);
@@ -37,7 +39,11 @@ export default function ThanksLetters() {
 
 	return (
 		<>
-			<Seo title="Камамото: благодарственные письма" description="Слова благодарности от людей и организиций, с которыми проводили совместные мероприятия" />
+			<Seo
+				title="Камамото: благодарственные письма"
+				description="Слова благодарности от людей и организиций, с которыми проводили совместные мероприятия"
+				canonicalUrl={ `${pathname.replace(/\//g, '')}` }
+			/>
 
 			<section className="section page-top">
 				<h1 className="title title--1">Благодарственные письма</h1>

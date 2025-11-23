@@ -4,6 +4,7 @@ export const PATHS = Object.freeze({
 	BASE_API_URL: mode === 'production' ? '/api' : import.meta.env.VITE_BASE_API_DEV_URL,
 	CATEGORIES: 'categories',
 	CERAMIC_STYLES: 'ceramic-styles',
+	COLLECTION: 'collection',
 	COMPLECTATION: 'complectation',
 	EXHIBIT: 'exhibits',
 	EXHIBITS: 'exhibits',
@@ -14,6 +15,7 @@ export const PATHS = Object.freeze({
 	POTTERS: 'potters',
 	SIGNIN: 'signin',
 	STATISTICS: 'statistics',
+	USEFUL: 'useful',
 	USERS: 'users',
 });
 

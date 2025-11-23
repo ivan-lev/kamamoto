@@ -8,6 +8,7 @@ import Seo from '@/components/Seo/Seo';
 import { setCategories } from '@/slices/visitor/categories';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api/api';
+import { PATHS } from '@/variables/variables';
 
 export default function Collection() {
 	const dispatch = useDispatch();
@@ -48,7 +49,11 @@ export default function Collection() {
 		<>
 			<PageTop title="Коллекция" />
 
-			<Seo title="Камамото: коллекция японской керамики" description="Страница с каталогом общих категорий, на которые разделена коллекция" />
+			<Seo
+				title="Камамото: коллекция японской керамики"
+				description="Страница с каталогом общих категорий, на которые разделена коллекция"
+				canonicalUrl={ `${PATHS.COLLECTION}/` }
+			/>
 
 			<section className="section">
 				{ categories.length === 0 && showPreloader
