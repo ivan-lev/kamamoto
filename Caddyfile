@@ -68,6 +68,21 @@ kamamoto.ru {
 
     # Security headers
     header {
+        Content-Security-Policy "
+            default-src 'self';
+            script-src 'self' 'unsafe-inline' 'unsafe-eval';
+            style-src 'self' 'unsafe-inline';
+            img-src 'self' data:;
+            font-src 'self';
+            connect-src 'self';
+            frame-ancestors 'none';
+        "
+        Cross-Origin-Opener-Policy "same-origin"
+        Cross-Origin-Resource-Policy "same-origin"
+        Cross-Origin-Embedder-Policy: "unsafe-none"
+        Permissions-Policy "geolocation=(), microphone=(), camera=()"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         Vary "Accept-Encoding"
         X-Content-Type-Options nosniff
         X-Frame-Options DENY
