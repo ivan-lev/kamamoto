@@ -29,6 +29,32 @@ export default defineConfig({
 		outDir: 'dist',
 		assetsDir: 'assets',
 		sourcemap: true,
+		rollupOptions: {
+			output: {
+				entryFileNames: 'assets/js/[name]-[hash].js',
+				chunkFileNames: 'assets/js/[name]-[hash].js',
+				assetFileNames: ({ name }) => {
+					if (name && name.endsWith('.css')) {
+						return 'assets/css/[name]-[hash][extname]';
+					}
+
+					if (/\.(?:png|jpe?g|svg|gif|tiff|bmp|webp)$/i.test(name ?? '')) {
+						return 'assets/img/[name]-[hash][extname]';
+					}
+
+					if (/\.(?:woff2?|ttf|otf|eot)$/i.test(name ?? '')) {
+						return 'assets/fonts/[name]-[hash][extname]';
+					}
+
+					return 'assets/[name]-[hash][extname]';
+				},
+				manualChunks(id) {
+					if (id.includes('/components/admin/')) {
+						return 'admin';
+					}
+				},
+			},
+		},
 	},
 	resolve: {
 		alias: {

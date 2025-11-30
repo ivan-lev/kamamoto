@@ -3,9 +3,9 @@ import type { Category } from '@/types/category';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryForm from '@/components/admin/Categories/CategoryForm';
-import Modal from '@/components/Modal/Modal';
-import Preloader from '@/components/Preloader/Preloader';
-import Seo from '@/components/Seo/Seo';
+import Modal from '@/components/shared/Modal';
+import Preloader from '@/components/visitor/Preloader/Preloader';
+import Seo from '@/components/visitor/Seo/Seo';
 import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
 

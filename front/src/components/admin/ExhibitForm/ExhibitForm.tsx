@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ComplectationItem from '@/components/admin/ComplectationItem/ComplectationItem';
 import Button from '@/components/shared/Button';
-import Tag from '@/components/Tag/Tag';
+import Tag from '@/components/visitor/Tag/Tag';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { setComplectations } from '@/slices/admin/complectations';

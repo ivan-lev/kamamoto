@@ -1,8 +1,8 @@
 import type { ChangeEvent } from 'react';
 import type { Complectation } from '@/types/compleactation';
 import { useEffect, useState } from 'react';
-import Preloader from '@/components/Preloader/Preloader';
-import Seo from '@/components/Seo/Seo';
+import Preloader from '@/components/visitor/Preloader/Preloader';
+import Seo from '@/components/visitor/Seo/Seo';
 import { api } from '@/utils/api/api';
 
 const initialData: Complectation = { name: '', title: '' };
