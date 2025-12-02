@@ -4,7 +4,7 @@ interface Term {
 	definition: string;
 }
 
-export interface GlossarySection {
+export interface DictionarySection {
 	letter: string;
 	terms: Term[];
 }
@@ -13,7 +13,7 @@ export interface GlossarySection {
 // 製陶 (Seitō): Means "porcelain manufacturing".
 // 作陶 (Sakutō): Means "pottery making" or "ceramics making".
 
-export const glossary: GlossarySection[] = [
+export const dictionary: DictionarySection[] = [
 	{
 		letter: 'a',
 		terms: [
@@ -69,7 +69,7 @@ export const glossary: GlossarySection[] = [
 			{ title: '<span id="kamadashi">Камадаси</span>', kanji: '窯出し', definition: 'извлечение изделий из печи' },
 			{ title: '<span id="kamazirushi">Камадзируси</span>', kanji: '窯印', definition: 'марка гончара - отпечаток, марка, печать мастера, который создал вещь, или печи, в которой был произведён обжиг' },
 			{ title: '<span id="kamakan">Камакан</span>', kanji: '釜環', definition: 'кольца котла для приготовления воды, которые используются для его переноса' },
-			{ title: '<span id="kamakizu">Камакидзу</span>', kanji: '窯傷', definition: 'трещина, повреждение образовавшееся на вещи при обжиге' },
+			{ title: '<span id="kamakizu">Камакидзу</span>', kanji: '窯傷', definition: '"печные дефекты" или "печные шрамы" - следы, появившиеся на изделии во время обжига, например трещины или следы от соприкосновения с другими предметами; обычно камакидзу не считаются дефектами, но ценятся как часть истории и характера изделия, свидетельствующая об интенсивных условиях обжига' },
 			{ title: '<span id="kamayaki">Камаяки</span>', kanji: '窯焼き', definition: 'процесс обжига вещей в печи' },
 			{ title: '<span id="kairagi">Каираги</span>', kanji: '梅花皮 или 鰄', definition: 'грубая керамическая глазурь или эмаль, похожая соответственно на кору сливового дерева или кожу акулы' },
 			{ title: '<span id="kake-hanaire">Какэ ханаирэ</span>', kanji: '掛花入', definition: 'подвесная цветочная ваза' },

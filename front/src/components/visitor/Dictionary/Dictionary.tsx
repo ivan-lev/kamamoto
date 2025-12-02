@@ -1,54 +1,54 @@
 import type { ChangeEvent } from 'react';
-import type { GlossarySection } from '@/variables/glossary';
+import type { DictionarySection } from '@/variables/dictionary';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
-import { glossary } from '@/variables/glossary';
+import { dictionary } from '@/variables/dictionary';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
-import './Glossary.scss';
+import './Dictionary.scss';
 
-export default function Glossary() {
+export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
-	const [glossaryFiltered, setGlossaryFiltered] = useState<GlossarySection[]>(glossary);
+	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>(dictionary);
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { value } = event.target;
 		setQuery(value);
 	};
 
-	function filterGlossaryByQuery() {
+	function filterDictionaryByQuery() {
 		if (query === '')
 			return;
 
-		const filteredList: GlossarySection[] = [];
+		const filteredList: DictionarySection[] = [];
 
-		glossary.forEach((glossarySection) => {
-			const { letter, terms } = glossarySection;
+		dictionary.forEach((dictionarySection) => {
+			const { letter, terms } = dictionarySection;
 			const filteredTerms = terms.filter(term =>
 				term.title.toLowerCase().includes(query.toLowerCase()) || term.definition.toLowerCase().includes(query));
 			if (filteredTerms.length > 0) {
 				filteredList.push({ letter, terms: filteredTerms });
 			}
-			setGlossaryFiltered(filteredList);
+			setDictionaryFiltered(filteredList);
 		});
 	}
 
-	function filterGlossaryByLetter(letter: string) {
+	function filterDictionaryByLetter(letter: string) {
 		if (query !== '')
 			setQuery('');
 
-		const filteredGlossary = glossary.filter(glossarySection => glossarySection.letter === letter);
-		setGlossaryFiltered(filteredGlossary);
+		const filteredDictionary = dictionary.filter(dictionarySection => dictionarySection.letter === letter);
+		setDictionaryFiltered(filteredDictionary);
 	};
 
 	function resetFilters() {
 		setQuery('');
-		setGlossaryFiltered(glossary);
+		setDictionaryFiltered(dictionary);
 	}
 
 	useEffect(() => {
-		filterGlossaryByQuery();
+		filterDictionaryByQuery();
 	}, [query]);
 
 	useLayoutEffect(() => {
@@ -65,9 +65,9 @@ export default function Glossary() {
 
 			<PageTop title="Глоссарий" subtitle="На этой странице собраны термины, которые могут встретиться в статьях о керамике и чайной церемонии, а также некоторые релевантные термины. P.S.: помните, что в написании японских слов используется система Поливанова (например, используется буква 'э', а не 'е' и т.д.)" />
 
-			<section className="section glossary">
-				<div className="glossary__filters">
-					<div className="glossary__filter-query">
+			<section className="section dictionary">
+				<div className="dictionary__filters">
+					<div className="dictionary__filter-query">
 						<input
 							className="input"
 							type="text"
@@ -78,12 +78,12 @@ export default function Glossary() {
 						/>
 					</div>
 
-					<div className="glossary__filter-letters">
-						{ glossary.map((section) => {
+					<div className="dictionary__filter-letters">
+						{ dictionary.map((section) => {
 							return (
 								<span
 									key={ section.letter }
-									onClick={ () => filterGlossaryByLetter(section.letter) }
+									onClick={ () => filterDictionaryByLetter(section.letter) }
 								>
 									{ section.letter }
 								</span>
@@ -91,26 +91,26 @@ export default function Glossary() {
 						}) }
 					</div>
 
-					<button className="button glossary__reset-button" onClick={ resetFilters }>Сбросить</button>
+					<button className="button dictionary__reset-button" onClick={ resetFilters }>Сбросить</button>
 				</div>
 
-				<div className="glossary__list">
-					{ glossaryFiltered.map((section) => {
+				<div className="dictionary__list">
+					{ dictionaryFiltered.map((section) => {
 						return (
-							<div className="glossary__block" key={ section.letter }>
-								<span className="glossary__letter">
+							<div className="dictionary__block" key={ section.letter }>
+								<span className="dictionary__letter">
 									{ section.letter }
 								</span>
 
-								<div className="glossary__table text">
+								<div className="dictionary__table text">
 									{ section.terms.map((term) => {
 										return (
-											<div className="glossary__row" key={ term.title }>
-												<div className="glossary__cell glossary__cell--span-2 glossary__cell--title">
+											<div className="dictionary__row" key={ term.title }>
+												<div className="dictionary__cell dictionary__cell--span-2 dictionary__cell--title">
 													{ parse(term.title, htmlParserOptions) }
 												</div>
-												<span className="glossary__cell glossary__cell--span-2 glossary__cell--kanji">{ term.kanji }</span>
-												<div className="glossary__cell glossary__cell--span-8 glossary__cell--definition">
+												<span className="dictionary__cell dictionary__cell--span-2 dictionary__cell--kanji">{ term.kanji }</span>
+												<div className="dictionary__cell dictionary__cell--span-8 dictionary__cell--definition">
 													{ parse(term.definition, htmlParserOptions) }
 												</div>
 											</div>

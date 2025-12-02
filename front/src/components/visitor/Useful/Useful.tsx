@@ -5,7 +5,7 @@ import { PATHS } from '@/variables/variables';
 
 export default function Useful() {
 	const cards = [
-		{ link: 'glossary', title: 'Глоссарий', thumbnail: '/images/useful/glossary.webp' },
+		{ link: 'dictionary', title: 'Глоссарий', thumbnail: '/images/useful/dictionary.webp' },
 		{ link: 'ceramic-styles/', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
 	];
 

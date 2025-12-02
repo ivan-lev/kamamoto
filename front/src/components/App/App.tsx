@@ -20,12 +20,12 @@ import Assistants from '@/components/visitor/Assistants/Assistants';
 import Category from '@/components/visitor/Category/Category';
 import Collection from '@/components/visitor/Collection/Collection';
 import Contacts from '@/components/visitor/Contacts/Contacts';
+import Dictionary from '@/components/visitor/Dictionary/Dictionary';
 import Exhibition from '@/components/visitor/Exhibition/Exhibition';
 import Exhibitions from '@/components/visitor/Exhibitions/Exhibitions';
 import ExhibitView from '@/components/visitor/ExhibitView/ExhibitView';
 import Files from '@/components/visitor/Files/Files';
 import Footer from '@/components/visitor/Footer/Footer';
-import Glossary from '@/components/visitor/Glossary/Glossary';
 import Header from '@/components/visitor/Header/Header';
 import HomePage from '@/components/visitor/HomePage/HomePage';
 import Main from '@/components/visitor/Main/Main';
@@ -75,7 +75,7 @@ export default function App() {
 					<Route path="exhibitions/:exhId" element={ <Exhibition /> } />
 					<Route path="thanksletters/" element={ <ThanksLetters /> } />
 					<Route path="useful/" element={ <Useful /> } />
-					<Route path="useful/glossary" element={ <Glossary /> } />
+					<Route path="useful/dictionary" element={ <Dictionary /> } />
 					<Route path="useful/ceramic-styles" element={ <Article /> } />
 				</Route>
 
