@@ -28,6 +28,7 @@ import Files from '@/components/visitor/Files/Files';
 import Footer from '@/components/visitor/Footer/Footer';
 import Header from '@/components/visitor/Header/Header';
 import HomePage from '@/components/visitor/HomePage/HomePage';
+import JapaneseExhibitions from '@/components/visitor/JapaneseExhibitions/JapaneseExhibitions';
 import Main from '@/components/visitor/Main/Main';
 import NotFound from '@/components/visitor/NotFound/NotFound';
 import OpeningScreen from '@/components/visitor/OpeningScreen/OpeningScreen';
@@ -76,6 +77,7 @@ export default function App() {
 					<Route path="thanksletters/" element={ <ThanksLetters /> } />
 					<Route path="useful/" element={ <Useful /> } />
 					<Route path="useful/dictionary" element={ <Dictionary /> } />
+					<Route path="useful/japanese-exhibitions" element={ <JapaneseExhibitions /> } />
 					<Route path="useful/ceramic-styles" element={ <Article /> } />
 				</Route>
 

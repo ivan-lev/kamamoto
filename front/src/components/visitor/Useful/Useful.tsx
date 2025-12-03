@@ -7,6 +7,7 @@ export default function Useful() {
 	const cards = [
 		{ link: 'dictionary', title: 'Глоссарий', thumbnail: '/images/useful/dictionary.webp' },
 		{ link: 'ceramic-styles/', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
+		{ link: 'japanese-exhibitions/', title: 'Японские авставки', thumbnail: '/images/dummy.webp' },
 	];
 
 	return (
