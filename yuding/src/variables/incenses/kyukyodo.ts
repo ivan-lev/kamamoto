@@ -19,7 +19,7 @@ export const premium: Incense[] = [
 		lenght: 14,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 10,
 		isActive: true,
 	},
 ];

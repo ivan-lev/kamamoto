@@ -6,6 +6,7 @@
 
 	&__slider {
 		grid-column: 1;
+		grid-row: span 2;
 	}
 
 	&__title {
@@ -17,6 +18,20 @@
 		grid-column: 2;
 		flex-direction: column;
 		gap: var(--gap-4);
+	}
+
+	&__price {
+		display: grid;
+		grid-template-columns: auto auto;
+		gap: var(--gap-12);
+		place-content: end;
+
+		width: fit-content;
+
+		@media (max-width: 480px) {
+			place-content: revert;
+			width: revert;
+		}
 	}
 
 	&__row {
@@ -40,6 +55,25 @@
 
 	&__series {
 		grid-column: 2;
+	}
+
+	&__add-to-cart.button {
+		flex-shrink: 0;
+
+		height: fit-content;
+    min-height: var(--input-height);
+    padding: var(--gap-8) var(--gap-12);
+
+		font-size: 12px;
+
+		@media (max-width: 480px) {
+			grid-column: 1 / -1;
+			min-height: calc(var(--input-height) * 1.5);
+		}
+	}
+
+	&__total {
+		place-self: end;
 	}
 
 	@media (max-width: 768px) {

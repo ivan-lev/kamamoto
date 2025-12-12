@@ -1,0 +1,58 @@
+.counter {
+	display: flex;
+	gap: var(--gap-12);
+
+	&__buttons.input {
+		display: flex;
+		width: fit-content;
+		padding: 0;
+
+		& :not(:first-child) {
+			border-left: 1px solid var(--color-secondary-015);
+		}
+
+		@media (max-width: 480px) {
+			width: revert;
+			height: calc(var(--input-height) * 1.5);
+		}
+	}
+
+	&__button {
+		cursor: pointer;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		aspect-ratio: 1;
+		height: 100%;
+		border: 0;
+
+		color: var(--color-secondary-100);
+
+		background-color: transparent;
+
+		&:not(:first-child):not(:last-child) {
+			cursor: default;
+			width: 4ch;
+			padding: 0 var(--gap-12);
+
+			@media (max-width: 480px) {
+				flex-grow: 1;
+			}
+		}
+
+		@media (max-width: 480px) {
+				min-width: calc(var(--input-height) * 2.5);
+				font-size: 16px;
+			}
+	}
+
+	@media (max-width: 480px) {
+			grid-column: 1 / -1;
+	}
+
+	@media (max-width: 480px) {
+		flex-direction: column;
+	}
+}

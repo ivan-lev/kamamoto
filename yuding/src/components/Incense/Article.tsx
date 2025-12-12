@@ -2,6 +2,7 @@ import type { Incense as IIncense } from '@/variables/incences.types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Breadcrumbs from '@/components/App/Breadcrumbs/Breadcrumbs';
+import Counter from '@/components/Counter/Counter';
 import Slider from '@/components/Slider/Slider';
 import { incenses } from '@/variables/incenses/_incenses';
 import './Article.scss';
@@ -10,6 +11,7 @@ export default function Article() {
 	const { incenseParam } = useParams();
 	const [incenseToDisplay, setIncenseToDisplay] = useState<IIncense>();
 	const [photosToDisplay, setPhotosToDisplay] = useState<string[]>();
+	const [count, setCount] = useState<number>(5);
 
 	useEffect(() => {
 		setIncenseToDisplay(incenses.find(incense => incense.slug === incenseParam));
@@ -23,7 +25,7 @@ export default function Article() {
 	return (
 		<>
 
-			<section className="section">
+			<section className="section page-top">
 				<Breadcrumbs />
 				<h1 className="title title--1">{ `${incenseToDisplay?.title} от ${incenseToDisplay?.manufacturer.title}` }</h1>
 			</section>
@@ -33,8 +35,8 @@ export default function Article() {
 					<div className="article__slider">
 						<Slider slides={ photosToDisplay || [] } />
 					</div>
-					<div className="article__info">
 
+					<div className="article__info">
 						<div className="article__row">
 							<img className="article__icon" src="/__spritemap#sprite-globe-view"></img>
 							<span>{ `Происхождение: ${incenseToDisplay?.origin}` }</span>
@@ -74,6 +76,17 @@ export default function Article() {
 							<img className="article__icon" src="/__spritemap#sprite-hourglass-view"></img>
 							<span>{ `Время горения: ~${incenseToDisplay?.burnTime} мин` }</span>
 						</div>
+					</div>
+
+					<div className="article__price">
+						<Counter count={ count } action={ setCount } />
+
+						<button className="button article__add-to-cart">Добавить в корзину</button>
+
+						<p>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</p>
+
+						<p className="article__total">{ `Итого: ${incenseToDisplay!.pricePerStick * count} р` }</p>
+
 					</div>
 
 					<div className="article__description">
