@@ -38,8 +38,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: <user name>
-      MONGO_INITDB_ROOT_PASSWORD: <user password>
+      MONGO_INITDB_ROOT_USERNAME: coolLongUserName
+      MONGO_INITDB_ROOT_PASSWORD: coolStrongPassword
     entrypoint: ["mongod", "--auth", "--bind_ip", "0.0.0.0"]
     volumes:
       - ./mongo/db_dump:/data/db
@@ -48,14 +48,16 @@ services:
       - app-net
 
   caddy:
-    image: caddy:2
+    image: caddy:2.10.2
     container_name: caddy
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - front_build:/srv/front
+      - yuding_build:/srv/yuding
       - caddy_data:/data
       - caddy_config:/config
     networks:
@@ -65,9 +67,21 @@ services:
       - back
     restart: unless-stopped
 
+  yuding:
+    build: 
+      context: ./yuding
+      dockerfile: Dockerfile
+    container_name: yuding
+    networks:
+      - app-net
+    restart: unless-stopped
+    volumes:
+      - yuding_build:/srv/yuding
+
 volumes:
   mongo_data:
   front_build:
+  yuding_build:
   caddy_data:
   caddy_config:
 
