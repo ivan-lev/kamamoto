@@ -32,7 +32,29 @@ kamamoto.ru {
         # 1 hour cache for non-images
         header !@images Cache-Control "public, max-age=3600"
     }
-    
+
+    # ===== Yuding SPA =====
+
+    # Redirect from  /yuding to /yuding/
+    redir /yuding /yuding/ 301
+
+    handle_path /yuding/* {
+        root * /srv/yuding
+
+        # Longtime cache for static
+        @yudingStatic {
+            path *.css *.js *.png *.jpg *.jpeg *.svg *.webp *.woff2
+        }
+        header @yudingStatic Cache-Control "public, immutable, max-age=31536000"
+
+        # Correct 3-step SPA fallback
+        try_files {path} {path}/ /index.html
+
+        file_server {
+            precompressed gzip
+        }
+    }
+
     # Serve static files
     root * /srv/front
 
@@ -41,7 +63,7 @@ kamamoto.ru {
         path *.css *.js *.woff2 *.svg *.png *.jpg *.jpeg *.webp
     }
     header @frontendStatic Cache-Control "public, immutable, max-age=31536000"
-    
+
     # Do not cache HTML
     @html {
         path *.html
@@ -49,10 +71,9 @@ kamamoto.ru {
     header @html Cache-Control "no-cache, must-revalidate"
 
     # SPA fallback for any non-file
-    
-    # SPA fallback
     @notStatic {
         not file
+        not path /yuding/*
         path /*
     }
     handle @notStatic {
