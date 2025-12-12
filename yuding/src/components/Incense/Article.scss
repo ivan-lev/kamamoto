@@ -1,0 +1,49 @@
+.article {
+	display: grid;
+	grid-auto-flow: dense;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--gap-24);
+
+	&__slider {
+		grid-column: 1;
+	}
+
+	&__title {
+		text-align: left;
+	}
+
+	&__info {
+		display: flex;
+		grid-column: 2;
+		flex-direction: column;
+		gap: var(--gap-4);
+	}
+
+	&__row {
+		display: flex;
+		gap: var(--gap-8);
+		align-items: start;
+	}
+
+	&__icon {
+		height: var(--gap-16);
+		margin-top: var(--gap-4);
+	}
+
+	&__description {
+		grid-column: 2;
+	}
+
+	&__manufacturer {
+		grid-column: 1;
+	}
+
+	&__series {
+		grid-column: 2;
+	}
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
+}

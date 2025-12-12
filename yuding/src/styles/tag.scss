@@ -1,0 +1,38 @@
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gap-4);
+	padding-top: var(--gap-2)
+}
+
+.tag {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: var(--gap-4);
+	align-items: center;
+
+	box-sizing: border-box;
+	padding: var(--gap-2) var(--gap-8);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-s);
+
+	background: var(--background-muted);
+
+	&__title {
+		font-size: 12px;
+		color: var(--text-default);
+		letter-spacing: 1.5px;
+	}
+
+	&__action {
+		cursor: pointer;
+
+		width: var(--gap-12);
+		height: var(--gap-12);
+
+		background-image: url('/__spritemap#sprite-times-view');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}
+}

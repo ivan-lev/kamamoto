@@ -1,0 +1,87 @@
+.table {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-4);
+
+	&__row {
+		display: grid;
+		grid-auto-rows: max-content;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+
+		&:not(:first-child) {
+			opacity: 0.8;
+		}
+
+		&:not(:first-child):not(:last-child) {
+			border-bottom: 1px dashed var(--text-muted);
+		}
+	}
+
+	&__cell {
+		&--span-2 {
+			grid-column: span 2;
+		}
+
+		&--span-3 {
+			grid-column: span 3;
+		}
+
+		&--span-4 {
+			grid-column: span 4;
+		}
+
+		&--span-5 {
+			grid-column: span 5;
+		}
+
+		&--span-6 {
+			grid-column: span 6;
+		}
+
+		&--span-7 {
+			grid-column: span 7;
+		}
+
+		&--span-8 {
+			grid-column: span 8;
+		}
+
+		&--span-9 {
+			grid-column: span 9;
+		}
+
+		&--span-10 {
+			grid-column: span 10;
+		}
+
+		&--span-11 {
+			grid-column: span 11;
+		}
+
+		&--span-12 {
+			grid-column: span 12;
+		}
+
+		&--centered {
+			justify-self: center;
+		}
+	}
+
+	&__button {
+		cursor: pointer;
+
+		width: 24px;
+		height: 24px;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		background-color: var(--background-muted);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 75%;
+
+		&--edit {
+			background-image: url('/__spritemap#sprite-pen-view');
+		}
+	}
+}

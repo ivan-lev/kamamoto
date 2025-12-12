@@ -1,0 +1,24 @@
+#root {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-96);
+	align-items: center;
+
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 1600px;
+	min-height: 100vh;
+	padding-top: var(--gap-48);
+
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 1.5;
+	text-rendering: optimizeLegibility;
+
+	font-synthesis: none;
+
+	@media screen and (max-width: 768px) {
+		gap: var(--gap-48);
+	}
+}

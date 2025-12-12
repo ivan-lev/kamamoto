@@ -1,0 +1,123 @@
+import type { Manufacturer } from '@/variables/incences.types';
+
+export const manufacturers: { [key: string]: Manufacturer } = {
+	gyokushodo: {
+		title: 'Гёкусёдо',
+		originalTitle: '玉初堂',
+		description: 'Компания Гёкусёдо была основана в 1804 году. Первоначально расположенная в Хиросиме, компания вскоре переехала в Осаку, где находится вот уже более 200 лет. Серия ароматов Кодзюрин продолжает оставаться одной из самых популярных в Японии, а их ассортимент премиальных благовоний считается одним из лучших в мире японских благовоний.',
+		slug: 'gyokushodo',
+		series: {
+			daily: {
+				slug: 'daily',
+				title: 'Каждодневные',
+				description: 'Серия благовоний высокого уровня для ежедневного использования от Гёкусёдо включает в себя широкий ассортимент древесных ароматов, созданных на основе традиционных смесей агара, сандалового дерева, специй и цветочных нот. Рекомендуется для каждодневного возжигания, медитации и особых случаев.',
+			},
+			lowSmoke: {
+				slug: 'lowSmoke',
+				title: 'Малодымные',
+				description: 'Gyokushodo\'s low smoke incense is ideal for those who prefer less smoke when burning and enjoy delicate scents. The aromas in this range are playful and modern, offering a twist on traditional Japanese fragrances.',
+			},
+		},
+	},
+
+	kunmeido: {
+		title: 'Кунмэйдо',
+		originalTitle: '薫明堂',
+		description: 'Компания Кунмэйдо, расположенная в Сакаи, на родине японских палочек-благовоний, ведёт свою историю со времен эпохи Бунка (1804–1818 гг.). Созерцая плоды многовековых усилий, Кунмэйдо продолжает использовать семейные секретные методы создания ароматов, отточенные благодаря постоянному совершенствованию традиционных техник.',
+		slug: 'kunmeido',
+		series: {
+			reiryokoh: {
+				slug: 'reiryokoh',
+				title: 'Рэйрёко',
+				originalTitle: '零陵香',
+				description: 'Рэйрёко (零陵香) - линия благовоний, которые используются во время утренней и вечерней практики в храме Дайхондзан Эйхэйдзи (永平寺). Название Эйхэйдзи означает «Храм Вечного Мира». Это один из двух главных храмов школы Сото-дзэн в Японии, основанный мастером дзэн Догэном в 1244 году. Окруженный высокими древними кедрами, Эйхэйдзи сегодня насчитывает более ста монахов, которые всецело посвящают себя практике сикантадза («сидение с сосредоточенным вниманием»).',
+			},
+		},
+	},
+
+	kyukyodo: {
+		title: 'Кюкёдо',
+		originalTitle: '鳩居堂',
+		description: 'Кюкёдо — одна из старейших и самых уважаемых компаний по производству благовоний в Японии, использующая различные виды натуральной древесины, специй и цветов для создания изысканных смесей с характерным сладким ароматом. Она также специализируется на традиционной японской бумажной продукции, азиатских принадлежностях для каллиграфии и книгах. Основанная в 1663 году, компания Кюкёдо начинала как аптека, продававшая травы и благовония перед главными воротами храмового квартала в Киото. С 1891 по 1945 год компания была официальным поставщиком канцелярских товаров Императорского дома Японии. Её штаб-квартира и первый магазин находятся в Симогё-ку, Киото, а токийские филиалы находятся в Гинзе, Икэбукуро, Сибуе, Синдзюку, Маруноути и Иокогаме.',
+		slug: 'kyukyodo',
+		series: {
+			premium: {
+				slug: 'premium',
+				title: 'Премиальные',
+				description: 'Премиальная коллекция Кюкёдо включает тщательно подобранные смеси на основе агара, сочетающиеся с ингридиентами высочайшего качества. Элегантные и изысканные, они наилучшим образом раскрывают глубину и характер японских благовоний.',
+			},
+		},
+	},
+
+	shoyeido: {
+		title: 'Сёэидо',
+		originalTitle: '',
+		description: 'Компания Сёэидо (松栄堂), основанная в 1705 году Хатой Рокубэри, сотрудником императорского дворца Киото и любителем благовоний, является одной из старейших компаний по производству благовоний в Японии. Компания базируется в Киото и имеет магазины в пяти городах Японии и один в Америке. Первый магазин Сёэидо на углу улиц Нидзё и Карасума был основан в 1705 году членами семьи Хата, которые ранее работали при императорском дворе. Большую часть своей продукции компания производит на предприятии в Нагаока-кё . Также компания владеет ремесленной мастерской недалеко от Карасумы, где сохраняет традиции изготовления благовоний и выполняет индивидуальные заказы. Компания Сёэидо до сих пор использует свой секретный рецепт, которому более 300 лет, для религиозных орденов. Сёэидо по-прежнему остается семейным бизнесом, которым сегодня управляет двенадцатое поколение семьи Хата.',
+		slug: 'shoyeido',
+		series: {
+			selects: {
+				slug: 'selects',
+				title: 'Selects',
+				description: 'Shoyeido\'s Selects are the perfect incense for savoring anytime - casual enough for everyday use, but with a level of refinement that makes them appropriate for special occasions, too. Each Select recipe is made from premium natural ingredients and fine base aromatics.',
+			},
+			daily: {
+				slug: 'daily',
+				title: 'Ежедневные',
+				description: 'Ароматические благовония из данной серии - это восемь неустаревающих натуральных ароматов, созданных для ежедневного воскуривания. Каждый рецепт содержит от двадцати до пятидесяти натуральных ингредиентов, подобранных в точно выверенных пропорциях. Эти смеси создают успокаивающие, и освежающие ароматы.',
+			},
+			zen: {
+				slug: 'zen',
+				title: 'Zen',
+				description: 'Shoyeido\'s temple-grade Zen incense is ideal for meditation, quiet reflection, or simply to scent a large room. Each 13-inch stick is three times thicker than regular sticks, making for a two hour burn time.',
+			},
+		},
+	},
+
+	yamadamatsu: {
+		title: 'Ямадамацу',
+		originalTitle: '',
+		description: 'Компания Ямадамацу славится производством одних из лучших благовоний на японском рынке, стремясь сохранить японскую культуру ароматов. От ежедневной коллекции Караку до отборных агара — Ямадамацу производит исключительные смеси, используя старинные рецепты, передаваемые из поколения в поколение.',
+		slug: 'yamadamatsu',
+		series: {
+			karaku: {
+				slug: 'karaku',
+				title: 'Караку',
+				description: 'Коллекция Караку от Ямадамацу включает в себя коллекцию изысканных благовоний на основе ароматов сандалового дерева и агара. Мягкие и элегантные ароматы, идеально подходящие для чайной практки, медитации и ежедневного использования.',
+			},
+		},
+	},
+
+	unknown: {
+		title: 'неизвестен',
+		originalTitle: '',
+		description: '',
+		slug: 'unknown',
+		series: { none: { slug: '', title: '', description: '' } },
+	},
+};
+
+export const unknown: Manufacturer = {
+	title: 'неизвестен',
+	originalTitle: '',
+	description: '',
+	slug: 'unknown',
+};
+
+export const gyokushodo: Manufacturer = {
+	title: 'Гёкусёдо',
+	originalTitle: '',
+	description: 'Gyokushodo was established in 1804 and is currently based in Osaka, Japan. Their Kojurin series continues to be one of Japan\'s most popular scents and their range of premium incenses are among the finest in the world of Japanese incense.',
+	slug: 'gyokushodo',
+	series: {
+		luxuryDaily: {
+			slug: 'luxury-daily',
+			title: 'Лакшери дейли',
+			description: 'Gyokushodo\'s luxury daily incense series features a range of woody scents based on traditional blends of aloeswood, sandalwood, spices and florals. Recommended for daily use, meditation and special occasions.',
+		},
+		lowSmoke: {
+			slug: 'lowSmoke',
+			title: 'lowSmoke',
+			description: 'Gyokushodo\'s low smoke incense is ideal for those who prefer less smoke when burning and enjoy delicate scents. The aromas in this range are playful and modern, offering a twist on traditional Japanese fragrances.',
+		},
+	},
+};

@@ -1,0 +1,8 @@
+.filters {
+	display: flex;
+	gap: var(--gap-12);
+
+	@media screen and (max-width: 480px) {
+		flex-direction: column;
+	}
+}
