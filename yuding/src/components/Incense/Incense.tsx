@@ -85,7 +85,7 @@ export default function Article() {
 
 						<p>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</p>
 
-						<p className="article__total">{ `Итого: ${incenseToDisplay?.pricePerStick as number * count} р` }</p>
+						<output className="article__total">{ `Итого: ${incenseToDisplay?.pricePerStick as number * count} р` }</output>
 
 					</div>
 

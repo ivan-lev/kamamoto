@@ -1,0 +1,31 @@
+.header {
+	position: relative;
+	z-index: var(--z-index-higher);
+
+	display: grid;grid-template-columns: 1fr auto 1fr;
+	gap: var(--gap-32);
+	align-items: start;
+	justify-content: space-between;
+
+	box-sizing: border-box;
+	width: 100%;
+
+	&__cart-icon {
+		justify-self: end;
+
+		padding: var(--gap-8);
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-m);
+
+    line-height: 0;
+
+		opacity: 0.8;
+		background-color: var(--background-muted);
+	}
+
+	&__icon {
+		position: relative;
+		bottom: 2px;
+		width: 30px;
+	}
+}
