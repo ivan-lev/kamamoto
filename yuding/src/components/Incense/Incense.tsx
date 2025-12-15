@@ -1,11 +1,11 @@
 import type { Incense as IIncense } from '@/variables/incences.types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import Breadcrumbs from '@/components/App/Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import Counter from '@/components/Counter/Counter';
 import Slider from '@/components/Slider/Slider';
 import { incenses } from '@/variables/incenses/_incenses';
-import './Article.scss';
+import './Incense.scss';
 
 export default function Article() {
 	const { incenseParam } = useParams();
@@ -85,7 +85,7 @@ export default function Article() {
 
 						<p>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</p>
 
-						<p className="article__total">{ `Итого: ${incenseToDisplay!.pricePerStick * count} р` }</p>
+						<p className="article__total">{ `Итого: ${incenseToDisplay?.pricePerStick as number * count} р` }</p>
 
 					</div>
 

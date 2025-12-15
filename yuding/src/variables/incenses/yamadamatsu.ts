@@ -19,7 +19,7 @@ const karaku: Incense[] = [
 		lenght: 13.5,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 16,
 		isActive: true,
 	},
 
@@ -37,7 +37,7 @@ const karaku: Incense[] = [
 		lenght: 13.5,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 32,
 		isActive: true,
 	},
 
@@ -55,7 +55,7 @@ const karaku: Incense[] = [
 		lenght: 13.5,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 22,
 		isActive: true,
 	},
 
@@ -73,7 +73,7 @@ const karaku: Incense[] = [
 		lenght: 13.5,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 18,
 		isActive: true,
 	},
 ];

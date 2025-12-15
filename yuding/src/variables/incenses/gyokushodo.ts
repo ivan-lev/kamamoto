@@ -19,7 +19,7 @@ const daily: Incense[] = [
 		lenght: 14,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 8,
 		isActive: true,
 	},
 

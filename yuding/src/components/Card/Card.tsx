@@ -29,7 +29,7 @@ export default function Card({ card }: Props) {
 				{ `${card.title} | ${card.manufacturer.title}` }
 			</span>
 
-			<Link className="link card__link" to={ `${card.manufacturer.slug}/${card.slug}` } />
+			<Link className="link card__link" to={ `/${card.manufacturer.slug}/${card.slug}` } />
 		</div>
 	);
 }

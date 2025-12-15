@@ -18,7 +18,7 @@ const reiryokoh: Incense[] = [
 		burnTime: 25,
 		lenght: 13.5,
 		origin: origin.japan,
-		price: 0,
+		price: 16,
 		pricePerStick: 0,
 		isActive: true,
 	},

@@ -1,0 +1,33 @@
+.manufacturers {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: var(--gap-24);
+
+	&__card {
+		position: relative;
+
+		border: 1px solid var(--background-muted);
+		border-radius: var(--border-radius-s);
+
+		opacity: 0.7;
+
+		transition: opacity 0.4s ease;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	&__logo {
+		width: 100%;
+	}
+
+	&__link {
+		position: absolute;
+		inset: 0;
+	}
+
+	@media (max-width: 480px) {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}

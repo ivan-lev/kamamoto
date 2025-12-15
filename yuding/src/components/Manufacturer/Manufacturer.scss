@@ -1,0 +1,31 @@
+.manufacturer {
+	&__header {
+		@media (max-width: 480px) {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap-16);
+			align-items: end;
+		}
+	}
+
+	&__logo {
+		float: right;
+		display: inline-block;
+		flex-shrink: 0;
+
+		width: 100%;
+		max-width: 300px;
+
+		@media (max-width: 768px) {
+		max-width: 200px;
+		}
+
+		@media (max-width: 480px) {
+			max-width: revert;
+		}
+	}
+
+	&__text {
+		text-align: justify;
+	}
+}

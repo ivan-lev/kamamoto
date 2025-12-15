@@ -57,22 +57,20 @@ export interface Incense {
 	isActive: boolean;
 }
 
-export const incences: Incense[] = [
-	{
-		slug: '',
-		title: '',
-		originalTitle: '',
-		description: '',
-		photos: [],
-		origin: origin.unknown,
-		manufacturer: unknown,
-		series: { slug: '', title: '', originalTitle: '', description: '' },
-		ingredients: [],
-		features: [Features.none],
-		burnTime: 0,
-		lenght: 0,
-		price: 0,
-		pricePerStick: 0,
-		isActive: false,
-	},
-];
+export const defaultIncence: Incense = {
+	slug: '',
+	title: '',
+	originalTitle: '',
+	description: '',
+	photos: [],
+	origin: origin.unknown,
+	manufacturer: unknown,
+	series: { slug: '', title: '', originalTitle: '', description: '' },
+	ingredients: [],
+	features: [Features.none],
+	burnTime: 0,
+	lenght: 0,
+	price: 0,
+	pricePerStick: 0,
+	isActive: false,
+};

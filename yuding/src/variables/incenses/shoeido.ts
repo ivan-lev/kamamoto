@@ -19,7 +19,7 @@ export const daily: Incense[] = [
 		lenght: 13.5,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 28,
 		isActive: true,
 	},
 
@@ -37,7 +37,7 @@ export const daily: Incense[] = [
 		lenght: 13.5,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 24,
 		isActive: true,
 	},
 
@@ -55,7 +55,7 @@ export const daily: Incense[] = [
 		lenght: 13.5,
 		origin: origin.japan,
 		price: 0,
-		pricePerStick: 0,
+		pricePerStick: 36,
 		isActive: true,
 	},
 ];
