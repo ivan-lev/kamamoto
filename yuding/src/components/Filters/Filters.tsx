@@ -53,7 +53,7 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 	}, [selectedManufacturer, selectedFeature]);
 
 	return (
-		<section className="section filters">
+		<search className="section filters">
 			<label>
 				Производитель
 				<select
@@ -85,6 +85,6 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 					}) }
 				</select>
 			</label>
-		</section>
+		</search>
 	);
 }

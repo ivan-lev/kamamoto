@@ -10,7 +10,8 @@
 	box-sizing: border-box;
 	width: 100%;
 
-	&__cart-icon {
+	&__cart-link {
+    align-self: center;
 		justify-self: end;
 
 		padding: var(--gap-8);

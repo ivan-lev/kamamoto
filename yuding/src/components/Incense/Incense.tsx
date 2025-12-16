@@ -4,18 +4,26 @@ import { useParams } from 'react-router';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import Counter from '@/components/Counter/Counter';
 import Slider from '@/components/Slider/Slider';
+import { useCart } from '@/hooks/useCart';
 import { incenses } from '@/variables/incenses/_incenses';
 import './Incense.scss';
 
-export default function Article() {
-	const { incenseParam } = useParams();
+export default function Incense() {
+	const { incenseParam, manufacturerParam } = useParams();
 	const [incenseToDisplay, setIncenseToDisplay] = useState<IIncense>();
 	const [photosToDisplay, setPhotosToDisplay] = useState<string[]>();
 	const [count, setCount] = useState<number>(5);
+	const { addItem, getItemCount } = useCart();
+
+	const addToCart = () => {
+		if (!manufacturerParam || !incenseParam)
+			return;
+		addItem(manufacturerParam, incenseParam, count);
+	};
 
 	useEffect(() => {
 		setIncenseToDisplay(incenses.find(incense => incense.slug === incenseParam));
-	});
+	}, []);
 
 	useEffect(() => {
 		const base = import.meta.env.BASE_URL;
@@ -76,17 +84,23 @@ export default function Article() {
 							<img className="article__icon" src="/__spritemap#sprite-hourglass-view"></img>
 							<span>{ `Время горения: ~${incenseToDisplay?.burnTime} мин` }</span>
 						</div>
+
+						<div className="article__row">
+							<img className="article__icon" src="/__spritemap#sprite-hourglass-view"></img>
+							<span>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</span>
+						</div>
 					</div>
 
 					<div className="article__price">
 						<Counter count={ count } action={ setCount } />
 
-						<button className="button article__add-to-cart">Добавить в корзину</button>
-
-						<p>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</p>
+						<button className="button article__add-to-cart" onClick={ addToCart }>Добавить в корзину</button>
 
 						<output className="article__total">{ `Итого: ${incenseToDisplay?.pricePerStick as number * count} р` }</output>
 
+						{ incenseToDisplay && (
+							<span>{ `В корзине ${getItemCount(manufacturerParam!, incenseParam!)} шт на сумму ${getItemCount(manufacturerParam!, incenseParam!) * incenseToDisplay?.pricePerStick}р` }</span>
+						) }
 					</div>
 
 					<div className="article__description">
