@@ -1,52 +1,76 @@
 import { useEffect, useState } from 'react';
 
-export interface Cart {
-	[manufacturer: string]: {
-		[incense: string]: number,
-	};
+const STORAGE_KEY = 'yuding';
+
+export interface CartItem {
+	manufacturer: string;
+	incense: string;
+	count: number;
 }
 
 export function useCart() {
-	const [cart, setCart] = useState<Cart>(() => {
+	const [items, setItems] = useState<CartItem[]>(() => {
 		try {
-			return JSON.parse(localStorage.getItem('yuding') ?? '{}');
+			return JSON.parse(
+				localStorage.getItem(STORAGE_KEY) ?? '[]',
+			) as CartItem[];
 		}
 		catch {
-			return {};
+			return [];
 		}
 	});
 
 	useEffect(() => {
-		localStorage.setItem('yuding', JSON.stringify(cart));
-	}, [cart]);
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+	}, [items]);
 
-	const addItem = (manufacturer: string, incense: string, count: number) => {
-		setCart(prev => ({
-			...prev,
-			[manufacturer]: {
-				...(prev[manufacturer] ?? {}),
-				[incense]: count,
-			},
-		}));
-	};
+	const addItem = (
+		manufacturer: string,
+		incense: string,
+		count: number,
+	) => {
+		setItems((prev) => {
+			const index = prev.findIndex(
+				item =>
+					item.manufacturer === manufacturer
+					&& item.incense === incense,
+			);
 
-	const removeItem = (manufacturer: string, incense: string) => {
-		setCart((prev) => {
-			const items = { ...(prev[manufacturer] ?? {}) };
-			delete items[incense];
-
-			if (!Object.keys(items).length) {
-				const next = { ...prev };
-				delete next[manufacturer];
+			// Товар уже есть → обновляем количество
+			if (index !== -1) {
+				const next = [...prev];
+				next[index] = { ...next[index], count };
 				return next;
 			}
 
-			return { ...prev, [manufacturer]: items };
+			// Новый incense (даже если manufacturer тот же)
+			return [...prev, { manufacturer, incense, count }];
 		});
 	};
 
-	const getItemCount = (manufacturer: string, incense: string) =>
-		cart[manufacturer]?.[incense] ?? 0;
+	const removeItem = (manufacturer: string, incense: string) => {
+		setItems(prev =>
+			prev.filter(
+				i =>
+					!(
+						i.manufacturer === manufacturer
+						&& i.incense === incense
+					),
+			),
+		);
+	};
 
-	return { cart, addItem, removeItem, getItemCount };
+	const getItemCount = (manufacturer: string, incense: string) =>
+		items.find(
+			i =>
+				i.manufacturer === manufacturer
+				&& i.incense === incense,
+		)?.count ?? 0;
+
+	return {
+		items,
+		addItem,
+		removeItem,
+		getItemCount,
+	};
 }

@@ -14,12 +14,7 @@ export default function Incense() {
 	const [photosToDisplay, setPhotosToDisplay] = useState<string[]>();
 	const [count, setCount] = useState<number>(5);
 	const { addItem, getItemCount } = useCart();
-
-	const addToCart = () => {
-		if (!manufacturerParam || !incenseParam)
-			return;
-		addItem(manufacturerParam, incenseParam, count);
-	};
+	const inCart = getItemCount(manufacturerParam!, incenseParam!);
 
 	useEffect(() => {
 		setIncenseToDisplay(incenses.find(incense => incense.slug === incenseParam));
@@ -94,12 +89,22 @@ export default function Incense() {
 					<div className="article__price">
 						<Counter count={ count } action={ setCount } />
 
-						<button className="button article__add-to-cart" onClick={ addToCart }>Добавить в корзину</button>
+						<button
+							className="button article__add-to-cart"
+							onClick={ () =>
+								addItem(
+									manufacturerParam!,
+									incenseParam!,
+									count,
+								) }
+						>
+							Добавить в корзину
+						</button>
 
 						<output className="article__total">{ `Итого: ${incenseToDisplay?.pricePerStick as number * count} р` }</output>
 
-						{ incenseToDisplay && (
-							<span>{ `В корзине ${getItemCount(manufacturerParam!, incenseParam!)} шт на сумму ${getItemCount(manufacturerParam!, incenseParam!) * incenseToDisplay?.pricePerStick}р` }</span>
+						{ incenseToDisplay && inCart > 0 && (
+							<span>{ `В корзине ${inCart} шт на сумму ${inCart * incenseToDisplay?.pricePerStick}р` }</span>
 						) }
 					</div>
 

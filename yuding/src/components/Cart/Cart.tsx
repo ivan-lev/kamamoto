@@ -2,11 +2,9 @@ import { useCart } from '@/hooks/useCart';
 import './Cart.scss';
 
 export default function Cart() {
-	const { cart, removeItem } = useCart();
+	const { items, removeItem } = useCart();
 
-	const manufacturers = Object.keys(cart);
-
-	if (!manufacturers.length) {
+	if (!items.length) {
 		return <p>Корзина пуста</p>;
 	}
 
@@ -14,38 +12,33 @@ export default function Cart() {
 		<div>
 			<h2>Корзина</h2>
 
-			<ul>
-				{ manufacturers.map(manufacturer => (
-					<li key={ manufacturer }>
-						<strong>{ manufacturer }</strong>
+			<div className="cart">
+				{ items.map(item => (
+					<div key={ `${item.manufacturer}-${item.incense}` }>
+						<strong>{ item.manufacturer }</strong>
+						{ ' ' }
+						—
+						{ ' ' }
+						{ item.incense }
+						{ ' ' }
+						(
+						{ item.count }
+						{ ' ' }
+						шт)
 
-						<ul>
-							{ Object.entries(cart[manufacturer]).map(
-								([incense, count]) => (
-									<li key={ incense }>
-										<span>
-											{ incense }
-											{ ' ' }
-											—
-											{ count }
-											{ ' ' }
-											шт
-										</span>
-
-										<button
-											onClick={ () =>
-												removeItem(manufacturer, incense) }
-											style={{ marginLeft: 8 }}
-										>
-											Удалить
-										</button>
-									</li>
-								),
-							) }
-						</ul>
-					</li>
+						<button
+							onClick={ () =>
+								removeItem(
+									item.manufacturer,
+									item.incense,
+								) }
+							style={{ marginLeft: 8 }}
+						>
+							Удалить
+						</button>
+					</div>
 				)) }
-			</ul>
+			</div>
 		</div>
 	);
 }
