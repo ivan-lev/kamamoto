@@ -19,7 +19,7 @@ export default function Dictionary() {
 
 	function filterDictionaryByQuery() {
 		if (query === '')
-			return;
+			resetFilters();
 
 		const filteredList: DictionarySection[] = [];
 
@@ -82,6 +82,7 @@ export default function Dictionary() {
 						{ dictionary.map((section) => {
 							return (
 								<span
+									className="dictionary__filter-letter"
 									key={ section.letter }
 									onClick={ () => filterDictionaryByLetter(section.letter) }
 								>
