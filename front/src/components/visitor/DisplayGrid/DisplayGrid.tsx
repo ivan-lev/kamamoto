@@ -13,7 +13,7 @@ export default function DisplayGrid() {
 					&& displayList.map((item) => {
 						const { link, title, thumbnail } = item; ;
 						return (
-							<li className="display-grid__element" key={ title }>
+							<li className="display-grid__element" key={ link }>
 								<Card link={ link } name={ title } image={ thumbnail } />
 							</li>
 						);

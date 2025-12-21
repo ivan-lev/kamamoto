@@ -1,11 +1,11 @@
 import type { ChangeEvent } from 'react';
-import type { DictionarySection } from '@/variables/dictionary';
+import type { DictionarySection } from '@/variables/useful/dictionary';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
-import { dictionary } from '@/variables/dictionary';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
+import { dictionary } from '@/variables/useful/dictionary';
 import './Dictionary.scss';
 
 export default function Dictionary() {

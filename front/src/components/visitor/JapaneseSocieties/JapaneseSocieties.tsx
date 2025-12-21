@@ -3,9 +3,9 @@ import { useLayoutEffect } from 'react';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
-import { japaneseExhibitions } from '@/variables/useful/japaneseExhibitions';
+import { japaneseSocieties } from '@/variables/useful/japaneseSocieties';
 
-export default function JapaneseExhibitions() {
+export default function JapaneseSocieties() {
 	useLayoutEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -16,13 +16,13 @@ export default function JapaneseExhibitions() {
 
 	return (
 		<>
-			<Seo title="Камамото: японские выставки" description="Страница со списком выставок гончарного и прикладного искусства, проходящих в Японии" />
+			<Seo title="Камамото: японские керамические сообщества" description="Страница со списком сообществ, поддерживающих керасическую культуру и традицию Японии" />
 
-			<PageTop title="Японские керамические выставки" subtitle="На этой странице будет собрана информация о выставках гончарного и прикладного искусства, проходящих в Японии. Страница находится в процесе заполнения" />
+			<PageTop title="Японские керамические собщества" subtitle="На этой странице будет собрана информация о выставках гончарного и прикладного искусства, проходящих в Японии. Страница находится в процесе заполнения" />
 
 			<section className="section dictionary">
 				<div className="dictionary__list">
-					{ japaneseExhibitions.map((item) => {
+					{ japaneseSocieties.map((item) => {
 						return (
 							<div className="dictionary__row" key={ item.title }>
 								<div className="dictionary__cell dictionary__cell--span-3 dictionary__cell--title">
