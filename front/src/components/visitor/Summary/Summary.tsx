@@ -44,20 +44,20 @@ export default function Summary({ exhibit }: Props) {
 							<span className="summary__column-title">Информация о мастере</span>
 							<ul className="summary__list">
 								<li className="summary__list-element">
-									<span>Имя мастера:</span>
+									<span>Имя мастера: </span>
 									<span>{ exhibit?.potter.name || 'неизвестно' }</span>
 								</li>
 
 								{ exhibit?.potter.japaneseName && (
 									<li className="summary__list-element">
-										<span>Имя на японском:</span>
+										<span>Имя на японском: </span>
 										<span>{ exhibit?.potter.japaneseName }</span>
 									</li>
 								) }
 
 								{ exhibit?.potter.lifeDates && (
 									<li className="summary__list-element">
-										<span>Даты жизни:</span>
+										<span>Даты жизни: </span>
 										<span>{ exhibit?.potter.lifeDates }</span>
 									</li>
 								) }
@@ -130,21 +130,21 @@ export default function Summary({ exhibit }: Props) {
 
 								{ Boolean(exhibit?.volume) && (
 									<li className="summary__list-element">
-										<span>Объём:&nbsp;</span>
+										<span>Объём: </span>
 										{ `${exhibit?.volume} мл` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.weight) && (
 									<li className="summary__list-element">
-										<span>Вес:&nbsp;</span>
+										<span>Вес: </span>
 										{ `${exhibit?.weight} г` }
 									</li>
 								) }
 
 								{ Boolean(exhibit?.weightOfSet) && (
 									<li className="summary__list-element">
-										<span>Вес набора:&nbsp;</span>
+										<span>Вес набора: </span>
 										{ `${exhibit?.weightOfSet} г` }
 									</li>
 								) }
