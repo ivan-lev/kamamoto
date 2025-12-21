@@ -1,0 +1,72 @@
+.japanese-exhibitions {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+
+	&__item {
+		display: grid;
+		grid-column: 1 / -1;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: var(--gap-16);
+
+		padding-top: var(--gap-32);
+		padding-bottom: var(--gap-32);
+
+		&:not(:last-child) {
+			border-bottom: 1px dashed var(--text-muted);
+		}
+
+		@media (max-width: 768px) {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	&__title {
+		grid-column: span 4;
+
+		@media (max-width: 1280px) {
+			grid-column: span 5;
+		}
+
+		@media (max-width: 768px) {
+			grid-column: span 7;
+		}
+	}
+
+	&__japanese-title {
+		grid-column: 5 / -1;
+
+		@media (max-width: 1280px) {
+			grid-column: 6 / -1;
+		}
+
+		@media (max-width: 768px) {
+			grid-column: 8 / -1;
+		}
+	}
+
+	&__image {
+		grid-column: span 4;
+		width: 100%;
+
+		@media (max-width: 1280px) {
+			grid-column: span 5;
+		}
+
+		@media (max-width: 768px) {
+			grid-column: 1 / -1;
+		}
+	}
+
+	&__description {
+		grid-column: 5 / -1;
+
+		@media (max-width: 1280px) {
+			grid-column: 6 / -1;
+		}
+
+		@media (max-width: 768px) {
+			grid-column: 1 / -1;
+		}
+	}
+}

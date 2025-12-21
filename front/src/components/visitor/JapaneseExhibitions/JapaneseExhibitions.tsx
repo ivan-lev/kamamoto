@@ -4,6 +4,7 @@ import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import { japaneseExhibitions } from '@/variables/useful/japaneseExhibitions';
+import './JapaneseExhibitions.scss';
 
 export default function JapaneseExhibitions() {
 	useLayoutEffect(() => {
@@ -18,18 +19,18 @@ export default function JapaneseExhibitions() {
 		<>
 			<Seo title="Камамото: японские выставки" description="Страница со списком выставок гончарного и прикладного искусства, проходящих в Японии" />
 
-			<PageTop title="Японские керамические выставки" subtitle="На этой странице будет собрана информация о выставках гончарного и прикладного искусства, проходящих в Японии. Страница находится в процесе заполнения" />
+			<PageTop title="Японские керамические выставки" subtitle="На этой странице будет собрана информация о выставках гончарного и прикладного искусства, проходящих в Японии. Информация находится в процессе заполнения." />
 
-			<section className="section dictionary">
-				<div className="dictionary__list">
+			<section className="section">
+				<div className="japanese-exhibitions">
 					{ japaneseExhibitions.map((item) => {
 						return (
-							<div className="dictionary__row" key={ item.title }>
-								<div className="dictionary__cell dictionary__cell--span-3 dictionary__cell--title">
-									{ parse(item.title, htmlParserOptions) }
-								</div>
-								<span className="dictionary__cell dictionary__cell--span-2 dictionary__cell--kanji">{ item.kanji }</span>
-								<div className="dictionary__cell dictionary__cell--span-7 dictionary__cell--definition">
+							<div className="japanese-exhibitions__item" key={ item.title }>
+								<div className="japanese-exhibitions__title">{ parse(item.title, htmlParserOptions) }</div>
+								<span className="japanese-exhibitions__japanese-title">{ item.kanji }</span>
+								{ item.image && <img src={ item.image } className="japanese-exhibitions__image" /> }
+
+								<div className="japanese-exhibitions__description">
 									{ parse(item.description, htmlParserOptions) }
 								</div>
 							</div>
