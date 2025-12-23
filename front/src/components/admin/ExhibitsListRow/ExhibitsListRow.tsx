@@ -38,7 +38,7 @@ export default function ExhibitsListRow({ exhibit, setShowModal }: Props) {
 	return (
 		<div className="table__row" key={ exhibit.id }>
 			<span className="table__cell">{ exhibit.id }</span>
-			<span className="table__cell table__cell--span-5">{ exhibit.name }</span>
+			<span className="table__cell table__cell--span-5"><a className="link" href={ `/collection/${exhibit.category.name}/${exhibit.id}` }>{ exhibit.name }</a></span>
 			<span className="table__cell table__cell--span-2">{ exhibit.category.title }</span>
 			<span className="table__cell table__cell--span-2">{ exhibit.style?.title }</span>
 			<div className="table__cell table__cell--centered">
