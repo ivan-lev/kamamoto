@@ -81,7 +81,7 @@ export default function Incense() {
 						</div>
 
 						<div className="article__row">
-							<img className="article__icon" src="/__spritemap#sprite-hourglass-view"></img>
+							<img className="article__icon" src="/__spritemap#sprite-pen-view"></img>
 							<span>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</span>
 						</div>
 					</div>

@@ -41,7 +41,8 @@
 	}
 
 	&__icon {
-		height: var(--gap-16);
+		aspect-ratio: 1;
+		width: var(--gap-16);
 		margin-top: var(--gap-4);
 	}
 
