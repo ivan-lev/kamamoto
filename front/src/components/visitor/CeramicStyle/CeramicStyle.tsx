@@ -2,15 +2,13 @@ import type { CeramicStyle } from '@/types/ceramicStyles';
 import parse from 'html-react-parser';
 import Picture from '@/components/visitor/Picture/Picture';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
-
-const mode = import.meta.env.MODE;
-
-const URL = mode !== 'production' ? 'http://localhost:3000/static/' : 'https://kamamoto.ru/static/';
+import { PATHS } from '@/variables/variables';
 
 interface Props {
 	data?: CeramicStyle;
 }
 
+const { STATIC_URL } = PATHS;
 const style = { aspectRatio: 1, backgroundColor: 'transparent' };
 
 export default function StyleDescription({ data }: Props) {
@@ -20,11 +18,11 @@ export default function StyleDescription({ data }: Props) {
 
 				<div className="description description--block">
 					<Picture
-						src={ `${URL}/maps/${data.mapImage ? data.mapImage : 'dummy.svg'}` }
+						src={ `${STATIC_URL}/maps/${data.mapImage ? data.mapImage : 'dummy.svg'}` }
 						alt="Локация гончарного центра"
 						additionalClass="description__photo description__photo--right"
 						style={ style }
-						fallback={ `${URL}/maps/error.svg` }
+						fallback={ `${STATIC_URL}/maps/error.svg` }
 					/>
 					{ parse(data?.brief, htmlParserOptions) }
 				</div>

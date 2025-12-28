@@ -9,6 +9,11 @@
 	background: var(--background-muted);
 
 	@media screen and (max-width: 900px) {
+		padding: var(--gap-24);
 		font-size: 14px;
+	}
+
+	@media (max-width: 480px) {
+		padding: var(--gap-12);
 	}
 }

@@ -2,8 +2,10 @@ const mode = import.meta.env.MODE;
 
 export const PATHS = Object.freeze({
 	BASE_API_URL: mode === 'production' ? '/api' : import.meta.env.VITE_BASE_API_DEV_URL,
+	STATIC_URL: mode === 'production' ? '/static' : 'http://localhost:3000/static/',
 	CATEGORIES: 'categories',
 	CERAMIC_STYLES: 'ceramic-styles',
+	CERAMIC_STYLES_ARTICLES: 'ceramic-styles-articles',
 	COLLECTION: 'collection',
 	COMPLECTATION: 'complectation',
 	EXHIBIT: 'exhibits',
@@ -53,4 +55,4 @@ export const LOGIN_MESSAGES = Object.freeze({
 
 export const DESCRIPTION_DUMMY = '<p>Описание в процессе подготовки</p>';
 
-export const SITE_VERSION = '2.1';
+export const SITE_VERSION = '2.1.1yd';

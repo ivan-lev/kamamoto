@@ -41,20 +41,22 @@ export default function Slider({ slides }: Props) {
 					{ slides.map((slide, i) => <SwiperSlide><Picture src={ slide } alt="Слайд" style={ style } fetchpriority={ i === 0 ? 'high' : 'low' } loading={ i === 0 ? 'eager' : 'lazy' }></Picture></SwiperSlide>) }
 				</Swiper>
 
-				<Swiper
-					breakpoints={ breakpoints }
-					modules={ [Navigation] }
-					onSwiper={ setThumbsSwiper }
-					spaceBetween={ 10 }
-					slidesPerView={ 10 }
-					watchSlidesProgress={ true }
-				>
-					{ slides.map(thumb => (
-						<SwiperSlide>
-							<Picture src={ thumb } style={ style } alt="Мини изображение слайда" fallback="/images/error-thumbnail.webp"></Picture>
-						</SwiperSlide>
-					)) }
-				</Swiper>
+				{ (slides.length > 1) && (
+					<Swiper
+						breakpoints={ breakpoints }
+						modules={ [Navigation] }
+						onSwiper={ setThumbsSwiper }
+						spaceBetween={ 10 }
+						slidesPerView={ 10 }
+						watchSlidesProgress={ true }
+					>
+						{ slides.map(thumb => (
+							<SwiperSlide>
+								<Picture src={ thumb } style={ style } alt="Мини изображение слайда" fallback="/images/error-thumbnail.webp"></Picture>
+							</SwiperSlide>
+						)) }
+					</Swiper>
+				) }
 			</section>
 		);
 };

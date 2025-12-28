@@ -28,6 +28,10 @@ export const htmlParserOptions = {
 				domNode.attribs.class = 'blockquote';
 			}
 
+			else if (domNode.name === 'img') {
+				domNode.attribs.class = 'article-image';
+			}
+
 			return domNode;
 		}
 	},

@@ -1,11 +1,14 @@
 import parse from 'html-react-parser';
 import { useLayoutEffect } from 'react';
+import { useLocation } from 'react-router';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import { japaneseSocieties } from '@/variables/useful/japaneseSocieties';
 
 export default function JapaneseSocieties() {
+	const { pathname } = useLocation();
+
 	useLayoutEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -16,7 +19,11 @@ export default function JapaneseSocieties() {
 
 	return (
 		<>
-			<Seo title="Камамото: японские керамические сообщества" description="Страница со списком сообществ, поддерживающих керамическую культуру и традиции Японии" />
+			<Seo
+				title="Камамото: японские керамические сообщества"
+				description="Страница со списком сообществ, поддерживающих керамическую культуру и традиции Японии"
+				canonicalUrl={ `${pathname.replace(/\//g, '')}` }
+			/>
 
 			<PageTop title="Японские керамические собщества" subtitle="На этой странице будет собрана информация о сообществах, поддерживающих развитие гончарного искусства Японии. Информация находится в процессе заполнения." />
 
