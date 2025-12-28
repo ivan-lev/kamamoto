@@ -23,8 +23,7 @@ const exhibitions = createSlice({
 		},
 
 		setExhibitionToEdit: (state, action) => {
-			state.exhibitionToEdit
-        = state.exhibitionsList.find(exhibition => exhibition.id === action.payload) || defaultExhibition;
+			state.exhibitionToEdit = state.exhibitionsList.find(exhibition => exhibition.id === action.payload) || defaultExhibition;
 			state.isExistingExhibitionEdited = true;
 		},
 
@@ -54,7 +53,6 @@ export const {
 	openEmptyExhibitionForm,
 	clearExhibitionForm,
 	setExhibitionToDisplay,
-}
-  = exhibitions.actions;
+} = exhibitions.actions;
 
 export default exhibitions.reducer;
