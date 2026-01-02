@@ -32,7 +32,6 @@ const exhibitionsSlice = createSlice({
 	},
 });
 
-export const { setExhibitionsList, setExhibitionToDisplay, resetExhibitionToDisplay }
-  = exhibitionsSlice.actions;
+export const { setExhibitionsList, setExhibitionToDisplay, resetExhibitionToDisplay } = exhibitionsSlice.actions;
 
 export default exhibitionsSlice.reducer;
