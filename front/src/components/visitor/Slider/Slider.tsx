@@ -1,6 +1,6 @@
 import type { Swiper as SwiperType } from 'swiper';
 import { useState } from 'react';
-import { Navigation, Thumbs } from 'swiper/modules';
+import { Keyboard, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Picture from '@/components/visitor/Picture/Picture';
 import 'swiper/css';
@@ -32,7 +32,8 @@ export default function Slider({ slides }: Props) {
 		&& (
 			<section className="section slider">
 				<Swiper
-					modules={ [Navigation, Thumbs] }
+					modules={ [Keyboard, Navigation, Thumbs] }
+					keyboard={{ enabled: true, onlyInViewport: true }}
 					navigation={ true }
 					spaceBetween={ 10 }
 					speed={ 1000 }
