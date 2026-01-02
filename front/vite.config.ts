@@ -11,7 +11,7 @@ export default defineConfig({
 				plugins: ['babel-plugin-react-compiler'],
 			},
 		}),
-		VitePluginSvgSpritemap('./public/icons/*.svg'),
+		VitePluginSvgSpritemap('./src/assets/icons/*.svg'),
 	],
 	server: {
 		host: '0.0.0.0',
