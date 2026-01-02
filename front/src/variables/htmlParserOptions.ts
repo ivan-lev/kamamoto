@@ -30,6 +30,7 @@ export const htmlParserOptions = {
 
 			else if (domNode.name === 'img') {
 				domNode.attribs.class = 'article-image';
+				domNode.attribs.crossorigin = 'anonymous';
 			}
 
 			return domNode;
