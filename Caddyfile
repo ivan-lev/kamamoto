@@ -1,12 +1,14 @@
 # Redirect HTTP -> HTTPS
 http://kamamoto.ru, http://158.255.5.107 {
-    redir https://kamamoto.ru{uri} permanent
+    redir https://kamamoto.ru{uri} 302
 }
 
 kamamoto.ru {
-
-    # Set up compression
-    encode gzip
+    # Set up compression for non-html text asets
+    @compressed {
+        path *.js *.css
+    }
+    encode @compressed gzip
 
     # Handle API requests
     handle /api/* {
@@ -16,7 +18,26 @@ kamamoto.ru {
         }
 
         # Do not cache
-        header Cache-Control "no-cache, must-revalidate"
+        header {
+            # Totally turn off cache and 304
+            Cache-Control "no-store, no-cache, must-revalidate"
+            Pragma "no-cache"
+            Expires "0"
+
+            -ETag
+
+            # Remove security-headers to not mixing them with backend headers
+            -Content-Security-Policy
+            -Cross-Origin-Opener-Policy
+            -Cross-Origin-Resource-Policy
+            -Cross-Origin-Embedder-Policy
+            -X-Frame-Options
+            -X-Content-Type-Options
+            -Referrer-Policy
+            -Permissions-Policy
+            -X-XSS-Protection
+            -Strict-Transport-Security
+        }
     }
 
     # Static files from backend
@@ -28,9 +49,7 @@ kamamoto.ru {
         }
 
         # 1 year cache for images
-        header @images Cache-Control "public, immutable, max-age=31536000"
-        # 1 hour cache for non-images
-        header !@images Cache-Control "public, max-age=3600"
+        header @images Cache-Control "public, max-age=31536000"
     }
 
     # ===== Yuding SPA =====
@@ -41,34 +60,21 @@ kamamoto.ru {
     handle_path /yuding/* {
         root * /srv/yuding
 
-        # Longtime cache for static
-        @yudingStatic {
-            path *.css *.js *.png *.jpg *.jpeg *.svg *.webp *.woff2
-        }
-        header @yudingStatic Cache-Control "public, immutable, max-age=31536000"
-
         # Correct 3-step SPA fallback
         try_files {path} {path}/ /index.html
-
-        file_server {
-            precompressed gzip
-        }
     }
 
     # Serve static files
     root * /srv/front
 
-    # Frontend static files cache
-    @frontendStatic {
-        path *.css *.js *.woff2 *.svg *.png *.jpg *.jpeg *.webp
-    }
-    header @frontendStatic Cache-Control "public, immutable, max-age=31536000"
-
-    # Do not cache HTML
+    # Do not cache HTML and fix ios mobile problems
     @html {
         path *.html
     }
-    header @html Cache-Control "no-cache, must-revalidate"
+    header @html {
+        Cache-Control "no-store"
+        -ETag
+    }
 
     # SPA fallback for any non-file
     @notStatic {
@@ -81,34 +87,33 @@ kamamoto.ru {
         file_server
 
         # Don't cache for SPA routes
-        header Cache-Control "no-cache, must-revalidate"
+        header {
+            Cache-Control "no-cache, must-revalidate"
+            -ETag
+        }
     }
 
-	# Check if build already has precompressed virsions of files
-    file_server {
-        precompressed gzip
-    }
+    file_server
 
     # Security headers
     header {
         Content-Security-Policy "
             default-src 'self';
-            script-src 'self' 'unsafe-inline' 'unsafe-eval';
+            script-src 'self' 'unsafe-inline';
             style-src 'self' 'unsafe-inline';
-            img-src 'self' data:;
+            img-src 'self' https: data:;
             font-src 'self';
-            connect-src 'self';
-            frame-ancestors 'none';
+            connect-src 'self' https:;
+            frame-src https:;          
+            frame-ancestors 'self';
         "
         Cross-Origin-Opener-Policy "same-origin"
         Cross-Origin-Resource-Policy "same-origin"
         Cross-Origin-Embedder-Policy "unsafe-none"
         Permissions-Policy "geolocation=(), microphone=(), camera=()"
         Referrer-Policy "strict-origin-when-cross-origin"
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        Vary "Accept-Encoding"
+        Strict-Transport-Security "max-age=86400"
         X-Content-Type-Options nosniff
         X-Frame-Options DENY
-        X-XSS-Protection "1; mode=block"
     }
 }
