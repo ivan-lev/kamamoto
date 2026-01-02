@@ -1,34 +1,17 @@
 # front/Dockerfile
-FROM node:24-alpine AS builder
+FROM node:24-alpine
 
 WORKDIR /app
 
-# Копируем package.json и package-lock.json
+# Dependencies
 COPY package*.json ./
-
-# Устанавливаем зависимости
 RUN npm ci
 
-# Копируем исходный код
+# Sourse files
 COPY . .
 
-# Собираем приложение
+# Build
 RUN npm run build
 
-# Финальный образ только с собранными файлами
-FROM alpine:latest
-
-# Устанавливаем необходимые инструменты для копирования
-RUN apk add --no-cache bash
-
-# Создаем директорию для статических файлов
-RUN mkdir -p /srv/front
-
-# Копируем собранные файлы из builder stage
-COPY --from=builder /app/dist /srv/front
-
-# Создаем volume точку монтирования
-VOLUME /srv/front
-
-# Команда которая просто держит контейнер активным
-CMD ["tail", "-f", "/dev/null"]
+# Copy build in volume when container started
+CMD ["sh", "-c", "rm -rf /srv/front/* && cp -r dist/* /srv/front/"]
