@@ -1,4 +1,4 @@
-import { Autoplay, EffectFade, Navigation } from 'swiper/modules';
+import { Autoplay, EffectFade, Keyboard, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Picture from '@/components/visitor/Picture/Picture';
 import './SliderMain.scss';
@@ -18,7 +18,8 @@ export default function SliderMain({ slides }: Props) {
 	return (
 		<section className="section slider">
 			<Swiper
-				modules={ [Autoplay, EffectFade, Navigation] }
+				modules={ [Autoplay, EffectFade, Keyboard, Navigation] }
+				keyboard={{ enabled: true, onlyInViewport: true }}
 				navigation={ true }
 				speed={ 1000 }
 				autoplay={{ delay: 3000 }}
