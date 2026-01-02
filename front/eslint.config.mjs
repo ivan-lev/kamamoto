@@ -1,11 +1,9 @@
 import antfu from '@antfu/eslint-config';
 import stylistic from '@stylistic/eslint-plugin';
-import perfectionist from 'eslint-plugin-perfectionist';
 
 export default antfu({
 	plugins: {
 		'@stylistic': stylistic,
-		perfectionist,
 	},
 
 	rules: {
