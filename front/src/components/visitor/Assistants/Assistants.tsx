@@ -30,7 +30,7 @@ export default function Assistants() {
 			<section>
 				<div className="assistants">
 					<div className="container assistants__card">
-						<img className="assistants__photo" src="/people/smirnova-n.jpg" alt="Фото помощника проекта" />
+						<img className="assistants__photo" src="/images/people/smirnova-n.jpg" alt="Фото помощника проекта" />
 
 						<a className="link link_usual assistants__name" href="https://vk.com/id18845601">
 							Смирнова Наталья
@@ -48,7 +48,7 @@ export default function Assistants() {
 					</div>
 
 					<div className="container assistants__card">
-						<img className="assistants__photo" src="/people/tretyakova-m.jpg" alt="Фото помощника проекта" />
+						<img className="assistants__photo" src="/images/people/tretyakova-m.jpg" alt="Фото помощника проекта" />
 
 						<a className="link link_usual assistants__name" href="https://vk.com/id246244448">
 							Третьякова Мария
