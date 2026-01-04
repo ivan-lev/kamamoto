@@ -21,6 +21,7 @@ const karaku: Incense[] = [
 		price: 0,
 		pricePerStick: 16,
 		isActive: true,
+		inStock: false,
 	},
 
 	{
@@ -39,6 +40,7 @@ const karaku: Incense[] = [
 		price: 0,
 		pricePerStick: 32,
 		isActive: true,
+		inStock: true,
 	},
 
 	{
@@ -57,6 +59,7 @@ const karaku: Incense[] = [
 		price: 0,
 		pricePerStick: 22,
 		isActive: true,
+		inStock: false,
 	},
 
 	{
@@ -75,6 +78,7 @@ const karaku: Incense[] = [
 		price: 0,
 		pricePerStick: 18,
 		isActive: true,
+		inStock: false,
 	},
 ];
 

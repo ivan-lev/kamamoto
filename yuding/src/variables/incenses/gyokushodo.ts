@@ -21,6 +21,7 @@ const daily: Incense[] = [
 		price: 0,
 		pricePerStick: 8,
 		isActive: true,
+		inStock: true,
 	},
 
 	{
@@ -39,6 +40,7 @@ const daily: Incense[] = [
 		price: 0,
 		pricePerStick: 0,
 		isActive: false,
+		inStock: false,
 	},
 
 	{
@@ -57,6 +59,7 @@ const daily: Incense[] = [
 		price: 0,
 		pricePerStick: 0,
 		isActive: false,
+		inStock: false,
 	},
 
 	{
@@ -75,6 +78,7 @@ const daily: Incense[] = [
 		price: 0,
 		pricePerStick: 0,
 		isActive: false,
+		inStock: false,
 	},
 ];
 
@@ -95,6 +99,7 @@ const lowSmoke: Incense[] = [
 		price: 0,
 		pricePerStick: 0,
 		isActive: false,
+		inStock: false,
 	},
 
 	{
@@ -113,6 +118,7 @@ const lowSmoke: Incense[] = [
 		price: 0,
 		pricePerStick: 0,
 		isActive: false,
+		inStock: false,
 	},
 ];
 

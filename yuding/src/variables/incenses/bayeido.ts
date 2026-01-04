@@ -20,5 +20,6 @@ export const bayeidoIncences: Incense[] = [
 		price: 0,
 		pricePerStick: 0,
 		isActive: false,
+		inStock: false,
 	},
 ];

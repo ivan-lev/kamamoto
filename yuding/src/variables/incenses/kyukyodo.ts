@@ -21,6 +21,7 @@ export const premium: Incense[] = [
 		price: 0,
 		pricePerStick: 45,
 		isActive: true,
+		inStock: true,
 	},
 ];
 

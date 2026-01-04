@@ -14,6 +14,7 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 	const incencesList: Incense[] = incenses.filter(incense => incense.isActive);
 	const [selectedManufacturer, setManufacturer] = useState<string>('all');
 	const [selectedFeature, setFeature] = useState<string>('all');
+	const [showInStockOnly, setShowInStockOnly] = useState<boolean>(false);
 
 	function getManufactures() {
 		let list = Object.values(manufacturers).map((m) => {
@@ -31,26 +32,16 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 	}
 
 	function filterIncenseList() {
-		const firstFilteredList = incencesList.filter((incense) => {
-			if (selectedManufacturer === 'all') {
-				return true;
-			}
-			return incense.manufacturer.slug === selectedManufacturer;
-		});
+		const manufacturerFilteredList = incencesList.filter(incense => selectedManufacturer === 'all' ? true : incense.manufacturer.slug === selectedManufacturer);
+		const featureFilteredList = manufacturerFilteredList.filter(incense => selectedFeature === 'all' ? true : incense.features.includes(Features[selectedFeature as keyof typeof Features]));
+		const inStockFilteredList = featureFilteredList.filter(incense => showInStockOnly ? incense.inStock === true : true);
 
-		const secondFilteredList = firstFilteredList.filter((incense) => {
-			if (selectedFeature === 'all') {
-				return true;
-			}
-			return incense.features.includes(Features[selectedFeature as keyof typeof Features]);
-		});
-
-		setIncencesListToDisplay(secondFilteredList);
+		setIncencesListToDisplay(inStockFilteredList);
 	};
 
 	useEffect(() => {
 		filterIncenseList();
-	}, [selectedManufacturer, selectedFeature]);
+	}, [selectedManufacturer, selectedFeature, showInStockOnly]);
 
 	return (
 		<search className="section filters">
@@ -85,6 +76,18 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 					}) }
 				</select>
 			</label>
+			<div>
+				<span>В наличии</span>
+				<label className={ `checkbox-label ${showInStockOnly ? 'checkbox-label--checked' : ''} ` }>
+					<input
+						className="checkbox-input"
+						type="checkbox"
+						checked={ showInStockOnly }
+						name="isActive"
+						onChange={ () => setShowInStockOnly(!showInStockOnly) }
+					/>
+				</label>
+			</div>
 		</search>
 	);
 }

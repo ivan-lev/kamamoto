@@ -21,6 +21,7 @@ export const daily: Incense[] = [
 		price: 0,
 		pricePerStick: 28,
 		isActive: true,
+		inStock: true,
 	},
 
 	{
@@ -39,6 +40,7 @@ export const daily: Incense[] = [
 		price: 0,
 		pricePerStick: 24,
 		isActive: true,
+		inStock: true,
 	},
 
 	{
@@ -57,6 +59,7 @@ export const daily: Incense[] = [
 		price: 0,
 		pricePerStick: 36,
 		isActive: true,
+		inStock: true,
 	},
 ];
 

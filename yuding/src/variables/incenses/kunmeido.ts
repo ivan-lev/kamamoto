@@ -21,6 +21,7 @@ const reiryokoh: Incense[] = [
 		price: 16,
 		pricePerStick: 0,
 		isActive: true,
+		inStock: true,
 	},
 ];
 

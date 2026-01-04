@@ -55,6 +55,7 @@ export interface Incense {
 	price: number;
 	pricePerStick: number;
 	isActive: boolean;
+	inStock: boolean;
 }
 
 export const defaultIncence: Incense = {
@@ -73,4 +74,5 @@ export const defaultIncence: Incense = {
 	price: 0,
 	pricePerStick: 0,
 	isActive: false,
+	inStock: false,
 };
