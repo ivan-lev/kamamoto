@@ -2,6 +2,42 @@
 	display: flex;
 	gap: var(--gap-12);
 
+	&--cart {
+		.counter{
+			&__buttons.input {
+				display: flex;
+				width: fit-content;
+				padding: 0;
+
+				& :not(:first-child) {
+					border-left: 1px solid var(--color-secondary-015);
+				}
+
+				@media (max-width: 480px) {
+					width: revert;
+					height: var(--input-height);
+				}
+			}
+
+			&__button {
+				@media (max-width: 480px) {
+					min-width: calc(var(--input-height) * 1);
+				}
+			}
+
+			&__button:not(:first-child):not(:last-child) {
+				@media (max-width: 480px) {
+					padding: 0 var(--gap-4);
+				}
+			}
+		}
+
+		// @media (max-width: 480px) {
+		// 	width: revert;
+		// 	height: 20px;
+		// }
+	}
+
 	&__buttons.input {
 		display: flex;
 		width: fit-content;

@@ -77,6 +77,18 @@
 		place-self: end;
 	}
 
+	&__out-of-stock {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		height: fit-content;
+		padding: var(--gap-4);
+		border-radius: var(--border-radius-m);
+
+		background-color: var(--background-muted);
+	}
+
 	@media (max-width: 768px) {
 		display: flex;
 		flex-direction: column;

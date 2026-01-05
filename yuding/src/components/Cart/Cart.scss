@@ -1,9 +1,21 @@
 .cart {
 	display: flex;
 	flex-direction: column;
+	gap: var(--gap-24);
 	align-items: center;
 	justify-content: center;
 
 	width: 100%;
-	max-width: 500px;
+
+	&__list {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto;
+
+		@media (max-width: 480px) {
+			grid-template-columns: max-content auto auto 30px;
+			box-sizing: border-box;
+			width: 100%;
+			padding: 0 var(--gap-12);
+		}
+	}
 }

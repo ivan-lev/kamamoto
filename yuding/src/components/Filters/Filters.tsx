@@ -32,11 +32,18 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 	}
 
 	function filterIncenseList() {
-		const manufacturerFilteredList = incencesList.filter(incense => selectedManufacturer === 'all' ? true : incense.manufacturer.slug === selectedManufacturer);
-		const featureFilteredList = manufacturerFilteredList.filter(incense => selectedFeature === 'all' ? true : incense.features.includes(Features[selectedFeature as keyof typeof Features]));
-		const inStockFilteredList = featureFilteredList.filter(incense => showInStockOnly ? incense.inStock === true : true);
+		const isManufacturerMatched = (incense: Incense) => selectedManufacturer === 'all' ? true : incense.manufacturer.slug === selectedManufacturer;
+		const isFeatureMatched = (incense: Incense) => selectedFeature === 'all' ? true : incense.features.includes(Features[selectedFeature as keyof typeof Features]);
+		const isInstockMatched = (incense: Incense) => !showInStockOnly ? true : incense.inStock;
 
-		setIncencesListToDisplay(inStockFilteredList);
+		const filteredList = incencesList.filter(incense => isManufacturerMatched(incense) && isFeatureMatched(incense) && isInstockMatched(incense));
+		setIncencesListToDisplay(filteredList);
+
+		// const manufacturerFilteredList = incencesList.filter(incense => selectedManufacturer === 'all' ? true : incense.manufacturer.slug === selectedManufacturer);
+		// const featureFilteredList = manufacturerFilteredList.filter(incense => selectedFeature === 'all' ? true : incense.features.includes(Features[selectedFeature as keyof typeof Features]));
+		// const inStockFilteredList = featureFilteredList.filter(incense => showInStockOnly ? incense.inStock === true : true);
+
+		// setIncencesListToDisplay(inStockFilteredList);
 	};
 
 	useEffect(() => {

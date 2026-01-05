@@ -80,33 +80,40 @@ export default function Incense() {
 							<span>{ `Время горения: ~${incenseToDisplay?.burnTime} мин` }</span>
 						</div>
 
-						<div className="article__row">
-							<img className="article__icon" src="/__spritemap#sprite-pen-view"></img>
-							<span>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</span>
-						</div>
+						{ incenseToDisplay?.inStock
+							&& (
+								<div className="article__row">
+									<img className="article__icon" src="/__spritemap#sprite-pen-view"></img>
+									<span>{ `Цена за шт: ${incenseToDisplay?.pricePerStick} р` }</span>
+								</div>
+							) }
 					</div>
 
-					<div className="article__price">
-						<Counter count={ count } action={ setCount } />
+					{ incenseToDisplay?.inStock
+						? (
+							<div className="article__price">
+								<Counter count={ count } action={ setCount } />
 
-						<button
-							className="button article__add-to-cart"
-							onClick={ () =>
-								addItem(
-									manufacturerParam!,
-									incenseParam!,
-									count,
+								<button
+									className="button article__add-to-cart"
+									onClick={ () =>
+										addItem(
+											manufacturerParam!,
+											incenseParam!,
+											count,
+										) }
+								>
+									Добавить в корзину
+								</button>
+
+								<output className="article__total">{ `Итого: ${incenseToDisplay?.pricePerStick as number * count} р` }</output>
+
+								{ incenseToDisplay && inCart > 0 && (
+									<span>{ `В корзине ${inCart} шт на сумму ${inCart * incenseToDisplay?.pricePerStick}р` }</span>
 								) }
-						>
-							Добавить в корзину
-						</button>
-
-						<output className="article__total">{ `Итого: ${incenseToDisplay?.pricePerStick as number * count} р` }</output>
-
-						{ incenseToDisplay && inCart > 0 && (
-							<span>{ `В корзине ${inCart} шт на сумму ${inCart * incenseToDisplay?.pricePerStick}р` }</span>
-						) }
-					</div>
+							</div>
+						)
+						: (<div className="article__out-of-stock ">Нет в наличии :(</div>) }
 
 					<div className="article__description">
 						<span>Описание:</span>

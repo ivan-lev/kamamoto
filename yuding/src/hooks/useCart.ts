@@ -20,9 +20,27 @@ export function useCart() {
 		}
 	});
 
+	// Пишем в localStorage при изменениях в этой вкладке
 	useEffect(() => {
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 	}, [items]);
+
+	// Слушаем изменения из ДРУГИХ вкладок
+	useEffect(() => {
+		const onStorage = (e: StorageEvent) => {
+			if (e.key === STORAGE_KEY && e.newValue) {
+				try {
+					setItems(JSON.parse(e.newValue));
+				}
+				catch {
+					// ignore
+				}
+			}
+		};
+
+		window.addEventListener('storage', onStorage);
+		return () => window.removeEventListener('storage', onStorage);
+	}, []);
 
 	const addItem = (
 		manufacturer: string,
@@ -51,10 +69,10 @@ export function useCart() {
 	const removeItem = (manufacturer: string, incense: string) => {
 		setItems(prev =>
 			prev.filter(
-				i =>
+				item =>
 					!(
-						i.manufacturer === manufacturer
-						&& i.incense === incense
+						item.manufacturer === manufacturer
+						&& item.incense === incense
 					),
 			),
 		);
