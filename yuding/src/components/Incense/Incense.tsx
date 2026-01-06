@@ -1,5 +1,5 @@
 import type { Incense as IIncense } from '@/variables/incences.types';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import Counter from '@/components/Counter/Counter';
@@ -24,6 +24,14 @@ export default function Incense() {
 		const base = import.meta.env.BASE_URL;
 		setPhotosToDisplay(incenseToDisplay?.photos.map(photo => `${base}images/incenses/${incenseToDisplay?.manufacturer.slug}/${incenseToDisplay?.slug}/${photo}`));
 	}, [incenseToDisplay?.photos]);
+
+	useLayoutEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'instant',
+		});
+	}, []);
 
 	return (
 		<>
