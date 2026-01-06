@@ -1,11 +1,12 @@
 import type { Incense } from '@/variables/incences.types';
 import { useEffect, useState } from 'react';
+import CartCopy from '@/components/Cart/CartCopy';
 import CartRow from '@/components/Cart/CartRow';
 import { useCart } from '@/hooks/useCart';
 import { incenses } from '@/variables/incenses/_incenses';
 import './Cart.scss';
 
-interface CartDisplayItem {
+export interface CartDisplayItem {
 	incense: Incense;
 	count: number;
 }
@@ -71,6 +72,8 @@ export default function Cart() {
 					<span>
 						{ `Итого: ${totalPrice}` }
 					</span>
+
+					<CartCopy items={ itemsToDisplay } total={ totalPrice } />
 
 				</div>
 			</>

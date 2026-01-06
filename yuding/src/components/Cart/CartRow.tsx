@@ -35,7 +35,7 @@ export default function CartRow({ item, count, countEdit, removeAction }: Props)
 					? (
 						<div className="counter counter--cart">
 							<div className="input counter__buttons">
-								<button className="counter__button" onClick={ () => countEdit(item?.manufacturer.slug, item?.slug, count - 5) }>-</button>
+								<button className="counter__button" onClick={ () => countEdit(item?.manufacturer.slug, item?.slug, count === 5 ? count : count - 5) }>-</button>
 								<div className="counter__button">{ count }</div>
 								<button className="counter__button" onClick={ () => countEdit(item?.manufacturer.slug, item?.slug, count + 5) }>+</button>
 							</div>

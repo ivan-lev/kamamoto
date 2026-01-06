@@ -8,7 +8,6 @@
 	padding: var(--gap-8) 0;
 
 	&:not(:last-child) {
-		// padding-bottom: var(--gap-8);
 		border-bottom: 1px dashed var(--color-secondary-030);
 	}
 
@@ -31,9 +30,14 @@
 			}
 		}
 
+		&--price {
+			@media (max-width: 480px) {
+				width: 7ch;
+			}
+		}
+
 		&:not(:first-child) {
 			height: 100%;
-			// border-right: 1px dashed var(--color-secondary-030);
 		}
 
 		&:last-child {
