@@ -4,7 +4,7 @@ import { Ingredients } from '@/variables/incences.types';
 import { manufacturers } from '@/variables/manufacturers';
 import { origin } from '@/variables/origin';
 
-export const daily: Incense[] = [
+const daily: Incense[] = [
 	{
 		title: 'Мадока (Шифон)',
 		originalTitle: 'まどか',
@@ -63,4 +63,25 @@ export const daily: Incense[] = [
 	},
 ];
 
-export const shoyeidoIncences: Incense[] = [...daily];
+const selects: Incense[] = [
+	{
+		slug: 'baika-ju',
+		title: 'Байка Дзю',
+		originalTitle: '',
+		description: 'Популярная смесь сандалового дерева и корицы от Сёэидо создает теплый, уютный аромат, достаточно экономичный для ежедневного использования. Эти благовония — одни из любимых у поклонников Сёэидо, они оставляют нежный, сладкий аромат.',
+		photos: ['2111935.webp', '2111931.webp', '2111930.webp', '2111933.webp', '2111932.webp', '2111936.webp', '2111939.webp'],
+		origin: origin.japan,
+		manufacturer: manufacturers.shoyeido,
+		series: manufacturers.shoyeido.series?.selects,
+		ingredients: [Ingredients.benzoin, Ingredients.sandalwood, Ingredients.cinnamon],
+		features: [Features.natural],
+		burnTime: 30,
+		lenght: 13,
+		price: 0,
+		pricePerStick: 28,
+		isActive: true,
+		inStock: true,
+	},
+];
+
+export const shoyeidoIncences: Incense[] = [...daily, ...selects];
