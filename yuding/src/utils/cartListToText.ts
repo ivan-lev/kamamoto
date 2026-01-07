@@ -1,6 +1,6 @@
 import type { CartDisplayItem } from '@/components/Cart/Cart';
 
-export function buildCartText(list: CartDisplayItem[], total: number, shippingCost = 300): string {
+export function buildCartText(list: CartDisplayItem[], totalPrice: number, deliveryPrice: number): string {
 	let text = 'Список благовоний:\n\n';
 
 	list.forEach((item) => {
@@ -10,8 +10,8 @@ export function buildCartText(list: CartDisplayItem[], total: number, shippingCo
 	});
 
 	text += '\n==============================\n\n';
-	text += `Благовония: ${total}р, доставка: ${shippingCost}р\n`;
-	text += `Итого: ${total + shippingCost}р`;
+	text += `Благовония: ${totalPrice}р, доставка: ${deliveryPrice}р\n`;
+	text += `Итого: ${totalPrice + deliveryPrice}р`;
 
 	return text;
 }

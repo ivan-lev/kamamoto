@@ -1,5 +1,20 @@
 .cart-copy {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-16);
+	align-items: center;
+
+	&__actions {
+		display: flex;
+		gap: var(--gap-16);
+		justify-content: center;
+	}
+
 	&__button.button {
 		align-self: revert;
+	}
+
+	&__message {
+		line-height: 1;
 	}
 }

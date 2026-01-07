@@ -73,12 +73,19 @@
 		background-color: transparent;
 	}
 
+	@media (max-width: 1024px) {
+		column-gap: var(--gap-8);
+	}
+
 	@media (max-width: 480px) {
 		grid-row: span 3;
-		column-gap: var(--gap-8);
 
 		&:first-child {
 			display: none;
 		}
+	}
+
+	@media (max-width: 390px) {
+		column-gap: var(--gap-4);
 	}
 }
