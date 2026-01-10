@@ -78,7 +78,13 @@
 
 		.swiper-slide {
 			cursor: pointer;
+			box-sizing: border-box;
+			border: 1px solid var(--color-secondary-015);
 			border-radius: var(--border-radius-s);
+		}
+
+		.swiper-slide-thumb-active {
+			border: 1px solid var(--color-secondary-060);
 		}
 	}
 
