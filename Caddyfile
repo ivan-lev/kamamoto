@@ -6,7 +6,7 @@ http://kamamoto.ru, http://158.255.5.107 {
 kamamoto.ru {
     # Set up compression for non-html text asets
     @compressed {
-        path *.js *.css
+        path *.js *.css *.svg
     }
     encode @compressed gzip
 
@@ -15,28 +15,6 @@ kamamoto.ru {
         reverse_proxy http://back:3000 {
             header_up Host {host}
             header_up X-Real-IP {remote}
-        }
-
-        # Do not cache
-        header {
-            # Totally turn off cache and 304
-            Cache-Control "no-store, no-cache, must-revalidate"
-            Pragma "no-cache"
-            Expires "0"
-
-            -ETag
-
-            # Remove security-headers to not mixing them with backend headers
-            -Content-Security-Policy
-            -Cross-Origin-Opener-Policy
-            -Cross-Origin-Resource-Policy
-            -Cross-Origin-Embedder-Policy
-            -X-Frame-Options
-            -X-Content-Type-Options
-            -Referrer-Policy
-            -Permissions-Policy
-            -X-XSS-Protection
-            -Strict-Transport-Security
         }
     }
 
@@ -53,7 +31,6 @@ kamamoto.ru {
     }
 
     # ===== Yuding SPA =====
-
     # Redirect from  /yuding to /yuding/
     redir /yuding /yuding/ 301
 
@@ -67,13 +44,30 @@ kamamoto.ru {
     # Serve static files
     root * /srv/front
 
-    # Do not cache HTML and fix ios mobile problems
     @html {
-        path *.html
+        header Content-Type text/html*
     }
+
     header @html {
-        Cache-Control "no-store"
-        -ETag
+        Content-Security-Policy "
+            default-src 'self';
+            script-src 'self' 'unsafe-inline';
+            style-src 'self' 'unsafe-inline';
+            img-src 'self' https: data: blob:;
+            font-src 'self';
+            connect-src 'self' https:;
+            frame-src https: blob:;
+            frame-ancestors 'self' https:;
+        "
+    }
+
+    # Cache all other stuff
+    @assets {
+        path *.js *.css *.woff2 *.svg *.png *.jpg *.jpeg *.webp
+    }
+
+    header @assets {
+        Cache-Control "public, max-age=31536000, immutable"
     }
 
     # SPA fallback for any non-file
@@ -82,6 +76,7 @@ kamamoto.ru {
         not path /yuding/*
         path /*
     }
+
     handle @notStatic {
         rewrite * /index.html
         file_server
@@ -97,19 +92,8 @@ kamamoto.ru {
 
     # Security headers
     header {
-        Content-Security-Policy "
-            default-src 'self';
-            script-src 'self' 'unsafe-inline';
-            style-src 'self' 'unsafe-inline';
-            img-src 'self' https: data:;
-            font-src 'self';
-            connect-src 'self' https:;
-            frame-src https:;          
-            frame-ancestors 'self';
-        "
         Cross-Origin-Opener-Policy "same-origin"
-        Cross-Origin-Resource-Policy "same-origin"
-        Cross-Origin-Embedder-Policy "unsafe-none"
+        Cross-Origin-Resource-Policy "same-site"
         Permissions-Policy "geolocation=(), microphone=(), camera=()"
         Referrer-Policy "strict-origin-when-cross-origin"
         Strict-Transport-Security "max-age=86400"
