@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { manufacturers } from '@/variables/manufacturers';
+import { manufacturers } from '@/variables/manufacturers/manufacturers';
 import './Manufacturers.scss';
 
 export default function Manufacturers() {

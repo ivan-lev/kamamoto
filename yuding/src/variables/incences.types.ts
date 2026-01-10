@@ -1,5 +1,5 @@
 import { Features } from '@/variables/features';
-import { unknown } from '@/variables/manufacturers';
+import { manufacturers } from '@/variables/manufacturers/manufacturers';
 import { origin } from '@/variables/origin';
 
 export enum Ingredients {
@@ -70,7 +70,7 @@ export const defaultIncence: Incense = {
 	description: '',
 	photos: [],
 	origin: origin.unknown,
-	manufacturer: unknown,
+	manufacturer: manufacturers.unknown,
 	series: { slug: '', title: '', originalTitle: '', description: '' },
 	ingredients: [],
 	features: [Features.none],

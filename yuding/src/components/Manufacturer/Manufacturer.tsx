@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
 import { incenses } from '@/variables/incenses/_incenses';
-import { manufacturers } from '@/variables/manufacturers';
+import { manufacturers } from '@/variables/manufacturers/manufacturers';
 import './Manufacturer.scss';
 
 export default function Manufacturer() {

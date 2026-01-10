@@ -12,7 +12,7 @@
 		grid-template-columns: auto auto auto auto auto;
 
 		@media (max-width: 480px) {
-			grid-template-columns: max-content auto auto 30px;
+			grid-template-columns: max-content auto 30px;
 			box-sizing: border-box;
 			width: 100%;
 		}
@@ -20,6 +20,7 @@
 
 	&__price-info {
 		margin-left: auto;
+		text-align: right;
 	}
 
 	.container {

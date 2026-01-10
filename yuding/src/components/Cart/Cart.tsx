@@ -4,6 +4,7 @@ import CartCopy from '@/components/Cart/CartCopy';
 import CartRow from '@/components/Cart/CartRow';
 import { useCart } from '@/hooks/useCart';
 import { countDeliveryPrice } from '@/utils/countDeliveryPrice';
+import { countDiscount } from '@/utils/countDiscount';
 import { incenses } from '@/variables/incenses/_incenses';
 import './Cart.scss';
 
@@ -17,6 +18,7 @@ export default function Cart() {
 	const [itemsToDisplay, setItemsToDisplay] = useState<CartDisplayItem[]>([]);
 	const [totalPrice, setTotalPrice] = useState<number>(0);
 	const [deliveryPrice, setDeliveryPrice] = useState<number>(countDeliveryPrice(0));
+	const [discount, setDiscount] = useState<{ percents: number, amount: number }>(countDiscount(totalPrice));
 
 	useEffect(() => {
 		let newTotalPrice = 0;
@@ -43,6 +45,7 @@ export default function Cart() {
 		setItemsToDisplay(result);
 		setTotalPrice(newTotalPrice);
 		setDeliveryPrice(countDeliveryPrice(newTotalPrice));
+		setDiscount(countDiscount(newTotalPrice));
 	}, [items]);
 
 	return !items.length
@@ -52,7 +55,9 @@ export default function Cart() {
 				<section className="section cart">
 					<h2>Корзина</h2>
 
-					<p>Ниже находится список того, что вам понравилось. Можно докрутить список до идеального варианта, нажать "Копировать корзину", а затем "Написать мне" - вас перекинет в наш диалог в Телераме</p>
+					<p>Ниже находится список того, что вам понравилось. Можно докрутить список до идеального варианта, нажать "Копировать корзину", а затем "Написать мне" - вас перекинет в наш диалог в Телераме.</p>
+
+					<p>* В корзине настроена небольшая геймификация - при увеличении общей стоимости благовоний сначала снижается стоимость доставки, а потом появляется небольшая скидка, которая постепенно увеличивается (просто жмите на плюсики).</p>
 
 					<div className="container">
 						<div className="cart__list">
@@ -75,9 +80,15 @@ export default function Cart() {
 							)) }
 						</div>
 
-						<span className="cart__price-info">
-							{ `Итого: благовония ${totalPrice}р, доставка: ${deliveryPrice ? `${deliveryPrice.toString()}р` : 'бесплатно'}` }
-						</span>
+						<p className="cart__price-info">
+							{ `Благовония: ${totalPrice}р` }
+							<br />
+							{ `Доставка: ${deliveryPrice ? `${deliveryPrice.toString()}р` : 'бесплатно'}` }
+							<br />
+							{ discount.amount > 0 && `Скидка: -${discount.amount}р (${discount.percents}%)` }
+							<br />
+							{ `Итого: ${totalPrice - discount.amount + deliveryPrice}р` }
+						</p>
 					</div>
 
 				</section>

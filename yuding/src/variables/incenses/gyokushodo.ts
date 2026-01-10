@@ -1,7 +1,7 @@
 import type { Incense } from '@/variables/incences.types';
 import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/incences.types';
-import { manufacturers } from '@/variables/manufacturers';
+import { manufacturers } from '@/variables/manufacturers/manufacturers';
 import { origin } from '@/variables/origin';
 
 const daily: Incense[] = [
@@ -10,7 +10,7 @@ const daily: Incense[] = [
 		originalTitle: '沈香 法円',
 		slug: 'jinko-hoen',
 		description: 'Дзинко Хоэн — это аромат классических японских благовоний. Удивительно игривый, загадочный и с пикантной нотой, аромат Дзинко Хоэн сочетает в себе терпкий вьетнамский агар с мягким сладким индийским сандалом, создавая древесную базу под сложной смесью специй и легких цветочных ароматов. В результате получился аромат со значительной глубиной, сочетающий в себе традиции и современность, с тонким присутствием, одновременно сложным, манящим и успокаивающим. Глубокий и сложный пряный аромат, демонстрирующий умелый баланс.',
-		photos: ['IMG_3145.webp'],
+		photos: ['P1013514.webp', 'P1013515.webp', 'P1013517.webp', 'P1013520.webp', 'P1013518.webp', 'P1013519.webp', 'P1013516.webp'],
 		manufacturer: manufacturers.gyokushodo,
 		series: manufacturers.gyokushodo.series?.daily,
 		ingredients: [Ingredients.japaneseBayBark, Ingredients.aloeswoodVietnamese, Ingredients.sandalwoodIndian, Ingredients.florals, Ingredients.spices],
@@ -27,9 +27,9 @@ const daily: Incense[] = [
 	{
 		title: 'Дзинко Ёмэй',
 		originalTitle: '沈香 陽明',
-		slug: 'jinkoh-yomei',
+		slug: 'jinko-yomei',
 		description: 'В аромате Дзинко Ёмэй компания Гёкусёдо представляет новую концепцию в производстве благовоний – алхимию аромата кьяры без самой кьяры. Умело сочетая вьетнамский агар, индийское сандаловое дерево, традиционные специи и полуцветочный парфюм, Дзинко Ёмэй создает пряный, резкий и неповторимый аромат, сложный, утонченный и превосходящий свою древесную базу. Элегантный, спокойный аромат Дзинко Ёмэй одновременно пленительный, успокаивающий и стойкий.',
-		photos: ['1.webp'],
+		photos: ['P1013544.webp', 'P1013545.webp', 'P1013546.webp', 'P1013547.webp', 'P1013548.webp', 'P1013549.webp'],
 		manufacturer: manufacturers.gyokushodo,
 		series: manufacturers.gyokushodo.series?.daily,
 		ingredients: [Ingredients.japaneseBayBark, Ingredients.aloeswood, Ingredients.sandalwoodIndian, Ingredients.clove, Ingredients.benzoin, Ingredients.borneol],
@@ -46,9 +46,9 @@ const daily: Incense[] = [
 	{
 		title: 'Дзинко Кодзюрин',
 		originalTitle: '沈香 香樹林',
-		slug: 'jinkoh-kojurin',
+		slug: 'jinko-kojurin',
 		description: 'Для ценителей агара в Дзинко Кодзюрин сочетается пряный вьетнамский агар с мягким индийским сандалом. В результате получается изысканный, элегантный и очень понятный аромат — даже для тех, кто впервые знакомится с агаром. Благодаря прочной древесной базе, Дзинко Кодзюрин обладает глубоким, сдержанным, солоноватым и сладким звучанием, представляя собой приятное сочетание древесины, специй и традиций.',
-		photos: ['1.webp'],
+		photos: ['P1013520.webp', 'P1013521.webp', 'P1013522.webp', 'P1013523.webp', 'P1013525.webp', 'P1013526.webp'],
 		manufacturer: manufacturers.gyokushodo,
 		series: manufacturers.gyokushodo.series?.daily,
 		ingredients: [Ingredients.japaneseBayBark, Ingredients.aloeswood, Ingredients.sandalwoodIndian, Ingredients.clove, Ingredients.benzoin, Ingredients.borneol],
@@ -67,7 +67,7 @@ const daily: Incense[] = [
 		originalTitle: '香樹林',
 		slug: 'kojurin',
 		description: 'Освежающая смесь индийского сандалового дерева с легкими цветочными нотками в аромате Кодзюрин создает приятный и располагающий запах, что делает его одним из самых популярных благовоний в Японии. Обладая пленительной сладостью, мягкостью и гладкостью, Кодзюрин идеально подходит для наполнения помещения, в качестве фонового аромата или просто для расслабления, когда хочется чего-то большего, чем простое сандаловое дерево.',
-		photos: ['1.webp'],
+		photos: ['P1013526.webp', 'P1013529.webp', 'P1013531.webp', 'P1013530.webp', 'P1013532.webp', 'P1013527.webp'],
 		manufacturer: manufacturers.gyokushodo,
 		series: manufacturers.gyokushodo.series?.daily,
 		ingredients: [Ingredients.japaneseBayBark, Ingredients.aloeswood, Ingredients.sandalwoodIndian, Ingredients.cinnamon, Ingredients.clove, Ingredients.borneol],
@@ -88,7 +88,7 @@ const lowSmoke: Incense[] = [
 		originalTitle: '大宮',
 		slug: 'omiya',
 		description: 'Омия — это очень тонкий, полусладкий, лёгкий аромат с небольшим количеством дыма, сочетающий в себе ноты японского кипариса и современные мягкие парфюмерные оттенки. В результате получается современная интерпретация, гармонично сочетащая благородный аромат кипариса и современные ноты.',
-		photos: ['1.webp'],
+		photos: ['P1013532.webp', 'P1013534.webp', 'P1013535.webp', 'P1013536.webp', 'P1013537.webp'],
 		manufacturer: manufacturers.gyokushodo,
 		series: manufacturers.gyokushodo.series?.lowSmoke,
 		ingredients: [Ingredients.japaneseBayBark, Ingredients.benzoin, Ingredients.clove, Ingredients.sandalwoodIndonezian, Ingredients.cinnamon, Ingredients.nard, Ingredients.kaikou, Ingredients.borneol],
@@ -107,7 +107,7 @@ const lowSmoke: Incense[] = [
 		originalTitle: '爽風',
 		slug: 'sofu',
 		description: 'Сoфу — это очень лёгкий, сладкий и освежающий аромат, напоминающий чайные листья. Благовония с низким содержанием дыма, идеально подходящие для небольших помещений и для тех, кто предпочитает более деликатный запах.',
-		photos: ['1.webp'],
+		photos: ['P1013537.webp', 'P1013538.webp', 'P1013541.webp', 'P1013544.webp', 'P1013543.webp'],
 		manufacturer: manufacturers.gyokushodo,
 		series: manufacturers.gyokushodo.series?.lowSmoke,
 		ingredients: [Ingredients.japaneseBayBark, Ingredients.charcoal, Ingredients.clove],

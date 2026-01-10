@@ -3,7 +3,7 @@ import type { Incense } from '@/variables/incences.types';
 import { useEffect, useState } from 'react';
 import { Features } from '@/variables/features';
 import { incenses } from '@/variables/incenses/_incenses';
-import { manufacturers } from '@/variables/manufacturers';
+import { manufacturers } from '@/variables/manufacturers/manufacturers';
 import './Filters.scss';
 
 interface Props {

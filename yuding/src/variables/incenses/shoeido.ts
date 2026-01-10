@@ -1,7 +1,7 @@
 import type { Incense } from '@/variables/incences.types';
 import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/incences.types';
-import { manufacturers } from '@/variables/manufacturers';
+import { manufacturers } from '@/variables/manufacturers/manufacturers';
 import { origin } from '@/variables/origin';
 
 const daily: Incense[] = [

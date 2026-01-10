@@ -1,4 +1,5 @@
 import type { Swiper as SwiperType } from 'swiper';
+import type { SwiperOptions } from 'swiper/types';
 import { useState } from 'react';
 import { Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,9 +12,10 @@ interface Props {
 	slides: string[];
 }
 
-const breakpoints = {
+const breakpoints: Record<number, SwiperOptions> = {
 	0: {
 		slidesPerView: 5.5,
+		spaceBetween: 8,
 	},
 	768: {
 		slidesPerView: 7.5,
