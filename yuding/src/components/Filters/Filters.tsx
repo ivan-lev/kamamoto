@@ -14,7 +14,7 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 	const incencesList: Incense[] = incenses.filter(incense => incense.isActive);
 	const [selectedManufacturer, setManufacturer] = useState<string>('all');
 	const [selectedFeature, setFeature] = useState<string>('all');
-	const [showInStockOnly, setShowInStockOnly] = useState<boolean>(false);
+	const [showInStockOnly, setShowInStockOnly] = useState<boolean>(true);
 
 	function getManufactures() {
 		let list = Object.values(manufacturers).map((m) => {
