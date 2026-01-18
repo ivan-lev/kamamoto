@@ -3,9 +3,9 @@ import type { Resources } from '../types/fileType';
 export const files: Resources = [
 	{
 		id: 0,
-		preview: '/files/kamamoto-logo.svg',
+		preview: '/files/kamamoto-logo.png',
 		link: '/files/kamamoto-logo.png',
-		description: 'Логотип с прозрачным фоном в формате PNG, разрешением 813х131 пикселя и весом 21 КБ. Удобен для размещения в интернете',
+		description: 'Логотип в формате PNG с прозрачным фоном, разрешением 813х131 пикселя и весом 21 КБ. Удобен для размещения в интернете',
 	},
 	{
 		id: 1,
@@ -15,7 +15,7 @@ export const files: Resources = [
 	},
 	{
 		id: 2,
-		preview: '/files/site-qr-code.svg',
+		preview: '/files/site-qr-code.png',
 		link: '/files/site-qr-code.png',
 		description: 'Qr-код в формате PNG, весом 120 КБ и разрешением 2277х2277 пикселей. Удобен для размещения в интернете',
 	},

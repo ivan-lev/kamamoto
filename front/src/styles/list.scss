@@ -3,6 +3,10 @@
 	font-size: 16px;
 	color: var(--text-default);
 
+	&:not(:last-child) {
+		margin-bottom: var(--gap-24)
+	}
+
 	li:not(:last-child) {
 		margin-bottom: var(--gap-8)
 	}
