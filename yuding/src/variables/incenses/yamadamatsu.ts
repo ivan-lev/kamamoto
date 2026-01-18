@@ -1,7 +1,7 @@
 import type { Incense } from '@/variables/incences.types';
 import { Features } from '@/variables/features';
-import { Ingredients } from '@/variables/incences.types';
-import { manufacturers } from '@/variables/manufacturers/manufacturers';
+import { Ingredients } from '@/variables/ingredients';
+import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
 
 const karaku: Incense[] = [
@@ -63,8 +63,8 @@ const karaku: Incense[] = [
 	},
 
 	{
-		title: 'Бъякудан',
-		originalTitle: '',
+		title: 'Бъякудан (Сандал)',
+		originalTitle: '白檀',
 		slug: 'byakudan',
 		description: 'Бъякудан — это превосходные благовония из чистого сандалового дерева, изготовленные из высококачественного сандала сорта Розан. Аромат густой, древесный и мягкий. Идеально подходит для ежедневного использования.',
 		photos: ['PC013438.webp', 'PC013436.webp', 'PC013437.webp', 'PC013439.webp', 'PC013440.webp', 'PC013441.webp'],

@@ -1,0 +1,29 @@
+export enum Ingredients {
+	aloeswood = 'агар',
+	aloeswoodPremium = 'агар высшего качества',
+	aloeswoodVietnamese = 'вьетнамский агар',
+	benzoin = 'бензоин',
+	borneol = 'борнеол', // 龍脳
+	cassia = 'кассия',
+	charcoal = 'древесный уголь', // 木炭粉
+	cinnamon = 'корица', // 桂皮
+	clove = 'гвоздика', // 丁子
+	cypressJapanese = 'японский кипарис',
+	fennel = 'фенхель', // 茴香
+	fenugreek = 'пажитник',
+	florals = 'травы',
+	japaneseBayBark = 'кора японского лавра', // 椨皮粉
+	herbsMedicine = 'медицинские травы',
+	kaikou = 'порошок раковин моллюсков', // 貝香
+	nard = 'нард', // 甘松
+	patchouli = 'пачули',
+	reiryoko = 'рэйрёко', // 零陵香
+	sandalwood = 'сандал', // 白檀
+	sandalwoodIndian = 'индийский сандал', // インド産白檀
+	sandalwoodIndonezian = 'индонезийский сандал', // インド産白檀
+	sandalwoodOil = 'сандаловое масло', // 白檀油
+	sandalwoodRozan = 'розановый сандал',
+	sandalwoodSweet = 'сладкий сандал',
+	spices = 'специи',
+	turmeric = 'куркума',
+}

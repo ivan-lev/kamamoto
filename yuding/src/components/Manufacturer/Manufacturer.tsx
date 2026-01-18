@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import DisplayGrid from '@/components/DisplayGrid/DisplayGrid';
-import { incenses } from '@/variables/incenses/_incenses';
-import { manufacturers } from '@/variables/manufacturers/manufacturers';
+import { incenses } from '@/variables/incenses/_index';
+import { manufacturers } from '@/variables/manufacturers/_index';
 import './Manufacturer.scss';
 
 export default function Manufacturer() {

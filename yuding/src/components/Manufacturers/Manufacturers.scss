@@ -1,6 +1,6 @@
 .manufacturers {
 	display: grid;
-	grid-template-columns: repeat(6, minmax(0, 1fr));
+	grid-template-columns: repeat(7, minmax(0, 1fr));
 	gap: var(--gap-24);
 
 	&__card {
@@ -26,6 +26,11 @@
 	&__link {
 		position: absolute;
 		inset: 0;
+	}
+
+	@media (max-width: 1280px) {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--gap-12);
 	}
 
 	@media (max-width: 480px) {

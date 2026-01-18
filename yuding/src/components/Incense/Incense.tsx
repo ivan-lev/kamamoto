@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import Counter from '@/components/Counter/Counter';
 import Slider from '@/components/Slider/Slider';
 import { useCart } from '@/hooks/useCart';
-import { incenses } from '@/variables/incenses/_incenses';
+import { incenses } from '@/variables/incenses/_index';
 import './Incense.scss';
 
 export default function Incense() {

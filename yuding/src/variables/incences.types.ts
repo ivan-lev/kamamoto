@@ -1,33 +1,6 @@
 import { Features } from '@/variables/features';
-import { manufacturers } from '@/variables/manufacturers/manufacturers';
+import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
-
-export enum Ingredients {
-	aloeswood = 'агар',
-	aloeswoodPremium = 'агар высшего качества',
-	aloeswoodVietnamese = 'вьетнамский агар',
-	benzoin = 'бензоин',
-	borneol = 'борнеол', // 龍脳
-	charcoal = 'древесный уголь', // 木炭粉
-	cinnamon = 'корица', // 桂皮
-	clove = 'гвоздика', // 丁子
-	cypressJapanese = 'японский кипарис',
-	fenugreek = 'пажитник',
-	florals = 'травы',
-	japaneseBayBark = 'кора японского лавра', // 椨皮粉
-	herbsMedicine = 'медицинские травы',
-	kaikou = 'порошок раковин моллюсков', // 貝香
-	nard = 'нард', // 甘松
-	patchouli = 'пачули',
-	reiryoko = 'рэйрёко', // 零陵香
-	sandalwood = 'сандал', // 白檀
-	sandalwoodIndian = 'индийский сандал', // インド産白檀
-	sandalwoodIndonezian = 'индонезийский сандал', // インド産白檀
-	sandalwoodRozan = 'розановый сандал',
-	sandalwoodSweet = 'сладкий сандал',
-	spices = 'специи',
-	turmeric = 'куркума',
-}
 
 interface Series {
 	slug: string;
@@ -71,7 +44,7 @@ export const defaultIncence: Incense = {
 	photos: [],
 	origin: origin.unknown,
 	manufacturer: manufacturers.unknown,
-	series: { slug: '', title: '', originalTitle: '', description: '' },
+	series: undefined,
 	ingredients: [],
 	features: [Features.none],
 	burnTime: 0,

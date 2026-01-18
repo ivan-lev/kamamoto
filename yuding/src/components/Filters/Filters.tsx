@@ -2,8 +2,8 @@ import type { Dispatch, SetStateAction } from 'react';
 import type { Incense } from '@/variables/incences.types';
 import { useEffect, useState } from 'react';
 import { Features } from '@/variables/features';
-import { incenses } from '@/variables/incenses/_incenses';
-import { manufacturers } from '@/variables/manufacturers/manufacturers';
+import { incenses } from '@/variables/incenses/_index';
+import { manufacturers } from '@/variables/manufacturers/_index';
 import './Filters.scss';
 
 interface Props {
@@ -84,7 +84,7 @@ export default function Filters({ setIncencesListToDisplay }: Props) {
 				</select>
 			</label>
 			<div>
-				<span>В наличии</span>
+				<span>В&nbsp;наличии</span>
 				<label className={ `checkbox-label ${showInStockOnly ? 'checkbox-label--checked' : ''} ` }>
 					<input
 						className="checkbox-input"

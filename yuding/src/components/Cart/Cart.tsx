@@ -5,7 +5,7 @@ import CartRow from '@/components/Cart/CartRow';
 import { useCart } from '@/hooks/useCart';
 import { countDeliveryPrice } from '@/utils/countDeliveryPrice';
 import { countDiscount } from '@/utils/countDiscount';
-import { incenses } from '@/variables/incenses/_incenses';
+import { incenses } from '@/variables/incenses/_index';
 import './Cart.scss';
 
 export interface CartDisplayItem {
