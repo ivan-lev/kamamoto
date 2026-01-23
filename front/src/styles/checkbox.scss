@@ -1,6 +1,9 @@
 .checkbox {
 	&-label {
+		cursor: pointer;
+
 		display: block;
+    flex-shrink: 0;
 
 		box-sizing: border-box;
 		width: var(--input-height);

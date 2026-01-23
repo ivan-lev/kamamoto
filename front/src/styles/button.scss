@@ -41,4 +41,10 @@
 		color: var(--text-muted);
 		background: transparent;
 	}
+
+	&--xs {
+    min-height: 20px;
+		padding: var(--gap-4) var(--gap-8);
+		font-size: 10px;
+	}
 }

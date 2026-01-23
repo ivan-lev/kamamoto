@@ -1,6 +1,10 @@
 .form {
 	position: relative;
 
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-16);
+
 	padding: var(--gap-32);
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius-s);
