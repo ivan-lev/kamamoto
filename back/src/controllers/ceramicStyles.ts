@@ -44,6 +44,34 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 		.catch((error) => { return next(error); });
 }
 
+function getCeramicStylesArticlesList(req: Request, res: Response, next: NextFunction): void {
+	CeramicStyleModel.find({ showArticle: true }, '-_id -brief -showArticle')
+		.then((styles: CeramicStyleType[]) => {
+			styles.forEach((style) => {
+				const { thumbnail, images, additionalImages } = style;
+				const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${style.name}`;
+				if (thumbnail)
+					style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
+
+				if (images) {
+					images.forEach((image, i) => {
+						images[i] = `${pathToCeramicStyleFolder}/${image}`;
+					});
+				}
+
+				if (additionalImages) {
+					additionalImages.forEach((image, i) => {
+						additionalImages[i] = `${pathToCeramicStyleFolder}/additional/${image}`;
+					});
+				}
+			});
+
+			return styles;
+		})
+		.then(styles => res.send(styles))
+		.catch((error) => { return next(error); });
+}
+
 function createCeramicStyle(req: Request, res: Response, next: NextFunction): void {
 	const ceramicStyle = req.body;
 
@@ -124,6 +152,7 @@ function updateCeramicStyle(req: Request<UpdateCeramicStyleParams>, res: Respons
 export const ceramicStyle = {
 	createCeramicStyle,
 	getCeramicStyles,
+	getCeramicStylesArticlesList,
 	updateCeramicStyle,
 	deleteCeramicStyle,
 };

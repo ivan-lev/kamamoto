@@ -18,7 +18,7 @@ const styleSchema = new Schema<Style>(
 
 		brief: {
 			type: String,
-			required: [true, 'Нужно указать ссылку на файл с картинкой'],
+			required: true,
 		},
 		description: {
 			type: String,
@@ -42,6 +42,23 @@ const styleSchema = new Schema<Style>(
 		mapImage: {
 			type: String,
 			default: '',
+		},
+		article: {
+			type: [
+				{
+					_id: false,
+					content: String,
+					slides: [
+						{
+							_id: false,
+							filename: String,
+							source: String,
+							caption: String,
+						},
+					],
+				},
+			],
+			default: [],
 		},
 	},
 	{ versionKey: false },

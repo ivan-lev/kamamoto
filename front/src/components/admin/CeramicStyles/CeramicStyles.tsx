@@ -2,7 +2,7 @@ import type { RootState } from '@/slices/admin';
 import type { CeramicStyle } from '@/types/ceramicStyles';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CeramicStylesForm from '@/components/admin/CeramicStyles/CeramicStylesForm';
+import CeramicStylesFormView from '@/components/admin/CeramicStyles/CeramicStylesFormView';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
@@ -95,7 +95,7 @@ export default function CeramicStyles() {
 							showModal={ showModal }
 							closeModal={ () => handleCloseModal() }
 						>
-							<CeramicStylesForm />
+							<CeramicStylesFormView />
 						</Modal>
 						<button className="button" onClick={ () => createNewCeramicStyle({ ...defaultCeramicStyle }) }>
 							Создать

@@ -42,6 +42,7 @@ export const ceramicStyleValidator = celebrate({
 		mapImage: Joi.string().messages({
 			'string.base': 'в поле mapImage нужно название файла',
 		}),
+		article: Joi.allow(),
 	}),
 });
 

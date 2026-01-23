@@ -5,12 +5,20 @@ import { PATHS } from '../../variables/variables';
 const {
 	BASE_API_URL,
 	CERAMIC_STYLES,
+	CERAMIC_STYLES_ARTICLES,
 } = PATHS;
 
 async function getCeramicStyles(isAdmin = false) {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
+	});
+	return checkResponseStatus(response);
+}
+
+async function getCeramicStylesArticles() {
+	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/${CERAMIC_STYLES_ARTICLES}/`, {
+		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
@@ -52,6 +60,7 @@ async function deleteCeramicStyle(token: string, name: string) {
 
 export const ceramicStyles = {
 	getCeramicStyles,
+	getCeramicStylesArticles,
 	createCeramicStyle,
 	updateCeramicStyle,
 	deleteCeramicStyle,

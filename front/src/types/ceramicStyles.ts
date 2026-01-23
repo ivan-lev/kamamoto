@@ -1,3 +1,5 @@
+import type { ArticleSection } from '@/components/visitor/Article/Article.types';
+
 export interface CeramicStyle {
 	name: string;
 	title: string;
@@ -8,6 +10,7 @@ export interface CeramicStyle {
 	images?: string[];
 	additionalImages?: string[];
 	mapImage: string;
+	article: ArticleSection[];
 }
 
 export const defaultCeramicStyle: CeramicStyle = {
@@ -20,4 +23,5 @@ export const defaultCeramicStyle: CeramicStyle = {
 	images: [],
 	additionalImages: [],
 	mapImage: '',
+	article: [],
 };
