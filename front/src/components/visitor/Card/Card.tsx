@@ -5,7 +5,7 @@ import './Card.scss';
 
 interface Props {
 	link: string;
-	name: string;
+	title: string;
 	image: string;
 }
 
@@ -15,7 +15,7 @@ const style = {
 	border: '1px solid var(--border-color)',
 };
 
-export default function Card({ link, name, image }: Props) {
+export default function Card({ link, title, image }: Props) {
 	const [srcToRender, setSrcToRender] = useState<string>(image);
 
 	return (
@@ -24,12 +24,12 @@ export default function Card({ link, name, image }: Props) {
 				<img
 					className="card__image"
 					alt="Изабражение лота"
-					src={ srcToRender }
+					src={ srcToRender || '/images/error.webp' }
 					onError={ () => setSrcToRender('/images/error.webp') }
 				/>
 			</picture>
 
-			<span className="card__name">{ name }</span>
+			<span className="card__name">{ title }</span>
 
 			<Link className="link card__link" to={ link } />
 		</div>
