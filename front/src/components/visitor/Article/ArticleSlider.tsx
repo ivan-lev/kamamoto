@@ -1,4 +1,4 @@
-import type { IArticleSlide } from '@/components/visitor/Article/Article.types';
+import type { ArticleSlide } from '@/components/visitor/Article/Article.types';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Picture from '@/components/visitor/Picture/Picture';
@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 interface Props {
-	slides: IArticleSlide[];
+	slides: ArticleSlide[];
 }
 
 const style = { aspectRatio: '3 / 2', width: '100%' };
@@ -26,7 +26,7 @@ export default function SliderArticle({ slides }: Props) {
 						<SwiperSlide className="article-slide">
 
 							<Picture
-								src={ slide.url }
+								src={ slide.filename }
 								alt="Слайд"
 								style={ style }
 								fetchpriority={ i === 0 ? 'high' : 'low' }

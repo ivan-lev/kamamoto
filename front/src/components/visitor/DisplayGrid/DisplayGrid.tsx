@@ -14,7 +14,7 @@ export default function DisplayGrid() {
 						const { link, title, thumbnail } = item; ;
 						return (
 							<li className="display-grid__element" key={ link }>
-								<Card link={ link } name={ title } image={ thumbnail } />
+								<Card link={ link } title={ title } image={ thumbnail } />
 							</li>
 						);
 					}) }

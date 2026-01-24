@@ -27,7 +27,7 @@ export default function Articles() {
 		<>
 			<PageTop title="Стили керамики" subtitle="" />
 
-			<Seo title="Камамото: статья на некоторую тему" description="Страница со статьёй на некоторую тему" />
+			<Seo title="Камамото: стили керамики" description="Страница со списком стилей керамики" />
 
 			<section className="section">
 				{ showPreloader

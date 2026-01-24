@@ -1,10 +1,10 @@
-export interface IArticleSlide {
-	url: string;
+export interface ArticleSlide {
+	filename: string;
 	source?: string;
 	caption?: string;
 };
 
-export interface IArticleBlock {
+export interface ArticleSection {
 	content: string;
-	slides?: IArticleSlide[];
+	slides?: ArticleSlide[];
 }

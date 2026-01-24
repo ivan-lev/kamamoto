@@ -48,6 +48,23 @@ function getCeramicStylesArticles(req: Request, res: Response, next: NextFunctio
 		.catch((error) => { return next(error); });
 }
 
+async function getCeramicStylesArticle(req: Request, res: Response, next: NextFunction) {
+	const { style } = req.params;
+	try {
+		const articleData = await CeramicStyleModel.findOne({ name: style }, '-_id -brief -thumbnail -description -images -additionalImages -mapImage -showArticle').lean();
+		const pathToSlidesFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${articleData?.name}`;
+		articleData?.article.forEach(section => section.slides?.forEach((slide) => {
+			if (!slide.filename.startsWith('http')) {
+				slide.filename = `${pathToSlidesFolder}/${slide.filename}`;
+			}
+		}));
+		res.send(articleData);
+	}
+	catch (error) {
+		return next(error);
+	}
+};
+
 function createCeramicStyle(req: Request, res: Response, next: NextFunction): void {
 	const ceramicStyle = req.body;
 
@@ -129,6 +146,7 @@ export const ceramicStyle = {
 	createCeramicStyle,
 	getCeramicStyles,
 	getCeramicStylesArticles,
+	getCeramicStylesArticle,
 	updateCeramicStyle,
 	deleteCeramicStyle,
 };
