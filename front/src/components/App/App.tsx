@@ -15,7 +15,7 @@ import AdminPartners from '@/components/admin/Partners/Partners';
 import Potters from '@/components/admin/Potters/Potters';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
 import About from '@/components/visitor/About/About';
-import Article from '@/components/visitor/Article/Article';
+import Articles from '@/components/visitor/Articles/Articles';
 import Assistants from '@/components/visitor/Assistants/Assistants';
 import Category from '@/components/visitor/Category/Category';
 import Collection from '@/components/visitor/Collection/Collection';
@@ -78,7 +78,7 @@ export default function App() {
 					<Route path="thanksletters/" element={ <ThanksLetters /> } />
 					<Route path="useful/" element={ <Useful /> } />
 					<Route path="useful/dictionary" element={ <Dictionary /> } />
-					<Route path="useful/ceramic-styles" element={ <Article /> } />
+					<Route path="useful/ceramic-styles" element={ <Articles /> } />
 					<Route path="useful/japanese-exhibitions" element={ <JapaneseExhibitions /> } />
 					<Route path="useful/japanese-societies" element={ <JapaneseSocieties /> } />
 				</Route>

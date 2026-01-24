@@ -28,7 +28,7 @@ export default function Useful() {
 							const { link, title, thumbnail } = item; ;
 							return (
 								<li className="display-grid__element" key={ title }>
-									<Card link={ link } name={ title } image={ thumbnail } />
+									<Card link={ link } title={ title } image={ thumbnail } />
 								</li>
 							);
 						}) }
