@@ -21,5 +21,5 @@ const errorLogger = expressWinston.errorLogger({
 	),
 });
 
-const logger = {requestLogger, errorLogger};
+const logger = { requestLogger, errorLogger };
 export default logger;

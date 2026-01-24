@@ -11,7 +11,7 @@ services:
       - app-net
     depends_on:
       - back
-    restart: unless-stopped
+    restart: no # one time run for build volume content
 
   back:
     build:
@@ -38,8 +38,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: coolLongUserName
-      MONGO_INITDB_ROOT_PASSWORD: coolStrongPassword
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:?MONGO_INITDB_ROOT_USERNAME is required}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?MONGO_INITDB_ROOT_PASSWORD is required}
     entrypoint: ["mongod", "--auth", "--bind_ip", "0.0.0.0"]
     volumes:
       - ./mongo/db_dump:/data/db
@@ -72,9 +72,7 @@ services:
       context: ./yuding
       dockerfile: Dockerfile
     container_name: yuding
-    networks:
-      - app-net
-    restart: unless-stopped
+    restart: no # one time run for build volume content
     volumes:
       - yuding_build:/srv/yuding
 
