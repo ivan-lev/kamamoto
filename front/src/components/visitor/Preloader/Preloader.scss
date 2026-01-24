@@ -1,8 +1,6 @@
 .preloader {
-	width: 100%;
-	min-width: 100px;
-	height: 100%;
-	min-height: 80svh;
+	position: absolute;
+	inset: 0;
 
 	background-color: transparent;
 	background-image: url('/__spritemap#sprite-preloader-view');

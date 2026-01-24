@@ -1,4 +1,6 @@
 .content {
+	position: relative;
+
 	display: flex;
 	flex: 1 0 auto;
 	flex-direction: column;
@@ -6,6 +8,11 @@
 	align-items: center;
 
 	width: 100%;
+
+	@media screen and (max-width: 768px) {
+		gap: var(--gap-32);
+		min-height: 500px;
+	}
 
 	@media screen and (max-width: 1024px) {
 		gap: var(--gap-32);
