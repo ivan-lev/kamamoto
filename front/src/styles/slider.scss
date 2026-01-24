@@ -90,7 +90,7 @@
 
 	@media (max-width: 1680px) {
 		padding-right: var(--section-padding);
-    padding-left: var(--section-padding);
+		padding-left: var(--section-padding);
 	}
 }
 
@@ -98,10 +98,10 @@
 	position: relative;
 
 	&__source {
-    position: absolute;
+		position: absolute;
 		z-index: var(--z-index-higher);
-    right: var(--gap-4);
-    bottom: var(--gap-4);
+		right: var(--gap-4);
+		bottom: var(--gap-4);
 
 		padding: 0 var(--gap-8);
 		border-radius: var(--border-radius-s);
@@ -119,8 +119,8 @@
 	&__caption {
 		position: absolute;
 		z-index: var(--z-index-higher);
-    top: var(--gap-4);
-    left: var(--gap-4);
+		top: var(--gap-4);
+		left: var(--gap-4);
 
 		padding: 0 var(--gap-8);
 		border-radius: var(--border-radius-s);

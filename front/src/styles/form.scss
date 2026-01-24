@@ -5,14 +5,22 @@
 	flex-direction: column;
 	gap: var(--gap-16);
 
-	padding: var(--gap-32);
+	padding: var(--gap-24);
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius-s);
 
 	background: var(--background-muted);
 
 	&__fieldset {
-		border: 0;
+		padding: var(--gap-24);
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+	}
+
+	&__legend {
+		margin-bottom: calc(-1 * var(--gap-16));
+		padding-right: var(--gap-8);
+		padding-left: var(--gap-8);
 	}
 
 	&__grid {
@@ -77,9 +85,9 @@
 
 	&__row-12--inline {
 		flex-direction: row;
-    gap: var(--gap-8);
-    align-items: center;
-    justify-content: flex-end;
+		gap: var(--gap-8);
+		align-items: center;
+		justify-content: flex-end;
 	}
 
 	&__request-status {

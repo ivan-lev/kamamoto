@@ -28,27 +28,27 @@
 	&__back-link {
 		cursor: pointer;
 
-    display: flex;
-    gap: var(--gap-8);
-    align-items: center;
-    justify-content: center;
+		display: flex;
+		gap: var(--gap-8);
+		align-items: center;
+		justify-content: center;
 
-    box-sizing: border-box;
+		box-sizing: border-box;
 		width: fit-content;
-    min-height: 40px;
-    padding: var(--gap-8) var(--gap-16);
-    border: 0;
-    border-radius: var(--border-radius-s);
+		min-height: 40px;
+		padding: var(--gap-8) var(--gap-16);
+		border: 0;
+		border-radius: var(--border-radius-s);
 
-    font-size: 13px;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--text-inverse);
+		font-size: 13px;
+		font-weight: 400;
+		font-style: normal;
+		color: var(--text-inverse);
 		text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
 
-    background-color: var(--text-default);
+		background-color: var(--text-default);
 	}
 
 	&__image-source-link {
