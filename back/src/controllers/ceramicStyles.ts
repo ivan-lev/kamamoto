@@ -32,8 +32,8 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 		.catch((error) => { return next(error); });
 }
 
-function getCeramicStylesArticlesList(req: Request, res: Response, next: NextFunction): void {
-	CeramicStyleModel.find({ showArticle: true }, '-_id -brief -showArticle')
+function getCeramicStylesArticles(req: Request, res: Response, next: NextFunction): void {
+	CeramicStyleModel.find({ showArticle: true }, '-_id -article -brief -description -images -additionalImages -mapImage -showArticle')
 		.then((styles: CeramicStyleType[]) => {
 			styles.forEach((style) => {
 				const { thumbnail } = style;
@@ -128,7 +128,7 @@ function updateCeramicStyle(req: Request<UpdateCeramicStyleParams>, res: Respons
 export const ceramicStyle = {
 	createCeramicStyle,
 	getCeramicStyles,
-	getCeramicStylesArticlesList,
+	getCeramicStylesArticles,
 	updateCeramicStyle,
 	deleteCeramicStyle,
 };

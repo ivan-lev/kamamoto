@@ -12,7 +12,7 @@ import Style from '../models/style';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
-const { EXHIBITS, POTTERS, STATIC_URL, STYLES } = PATHS;
+const { CERAMIC_STYLES, EXHIBITS, POTTERS, STATIC_URL } = PATHS;
 
 function getExhibits(req: Request, res: Response, next: NextFunction): void {
 	Exhibit
@@ -48,7 +48,7 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 			exhibit.additionalImages[i] = `${pathToExhibitFolder}/additional/${image}`;
 		});
 
-		exhibit.style.mapImage = `${STATIC_URL}/${STYLES}/${exhibit.style.name}/${exhibit.style.mapImage}`;
+		exhibit.style.mapImage = `${STATIC_URL}/${CERAMIC_STYLES}/${exhibit.style.name}/${exhibit.style.mapImage}`;
 
 		exhibit.potter.photo = `${STATIC_URL}/${POTTERS}/${exhibit.potter.photo}`;
 
