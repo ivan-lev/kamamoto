@@ -1,5 +1,5 @@
 import type { ArticleSlide } from '@/components/visitor/Article/Article.types';
-import { Pagination } from 'swiper/modules';
+import { Keyboard, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Picture from '@/components/visitor/Picture/Picture';
 import 'swiper/css';
@@ -16,7 +16,8 @@ export default function SliderArticle({ slides }: Props) {
 		&& (
 			<Swiper
 				className="article-slider"
-				modules={ [Pagination] }
+				keyboard={{ enabled: true, onlyInViewport: true }}
+				modules={ [Keyboard, Pagination] }
 				pagination={{ clickable: true }}
 				loop={ true }
 				speed={ 1000 }
