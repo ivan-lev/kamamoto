@@ -394,7 +394,7 @@ export default function ExhibitForm() {
 					</div>
 
 					<div className="form__row form__row-1">
-						<span>диаметр</span>
+						<span>&#8960;</span>
 						<input
 							className="input"
 							type="text"
@@ -406,7 +406,7 @@ export default function ExhibitForm() {
 					</div>
 
 					<div className="form__row form__row-1">
-						<span>диаметр ножки</span>
+						<span>&#8960; ножки</span>
 						<input
 							className="input"
 							type="text"
