@@ -17,22 +17,10 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 		.then((styles: CeramicStyleType[]) => {
 			if (isAdmin === 'false') {
 				styles.forEach((style) => {
-					const { thumbnail, images, additionalImages } = style;
+					const { thumbnail } = style;
 					const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${style.name}`;
 					if (thumbnail)
 						style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
-
-					if (images) {
-						images.forEach((image, i) => {
-							images[i] = `${pathToCeramicStyleFolder}/${image}`;
-						});
-					}
-
-					if (additionalImages) {
-						additionalImages.forEach((image, i) => {
-							additionalImages[i] = `${pathToCeramicStyleFolder}/additional/${image}`;
-						});
-					}
 				});
 			}
 
@@ -48,22 +36,10 @@ function getCeramicStylesArticlesList(req: Request, res: Response, next: NextFun
 	CeramicStyleModel.find({ showArticle: true }, '-_id -brief -showArticle')
 		.then((styles: CeramicStyleType[]) => {
 			styles.forEach((style) => {
-				const { thumbnail, images, additionalImages } = style;
+				const { thumbnail } = style;
 				const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${style.name}`;
 				if (thumbnail)
 					style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
-
-				if (images) {
-					images.forEach((image, i) => {
-						images[i] = `${pathToCeramicStyleFolder}/${image}`;
-					});
-				}
-
-				if (additionalImages) {
-					additionalImages.forEach((image, i) => {
-						additionalImages[i] = `${pathToCeramicStyleFolder}/additional/${image}`;
-					});
-				}
 			});
 
 			return styles;

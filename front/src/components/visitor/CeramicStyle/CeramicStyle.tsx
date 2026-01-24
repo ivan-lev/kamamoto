@@ -18,7 +18,7 @@ export default function StyleDescription({ data }: Props) {
 
 				<div className="description description--block">
 					<Picture
-						src={ `${STATIC_URL}/maps/${data.mapImage ? data.mapImage : 'dummy.svg'}` }
+						src={ `${data.mapImage ? data.mapImage : 'dummy.svg'}` }
 						alt="Локация гончарного центра"
 						additionalClass="description__photo description__photo--right"
 						style={ style }

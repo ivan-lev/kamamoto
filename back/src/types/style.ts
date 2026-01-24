@@ -17,8 +17,6 @@ export interface Style {
 	description: string;
 	showArticle: boolean;
 	thumbnail: string;
-	images: string[];
-	additionalImages: string[];
 	mapImage: string;
 	article: ArticleSection[];
 }

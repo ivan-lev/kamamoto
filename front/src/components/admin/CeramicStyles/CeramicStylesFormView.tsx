@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react';
 import type { RootState } from '@/slices/admin';
+import type { CeramicStyle } from '@/types/ceramicStyles';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CeramicStylesFormArticle from '@/components/admin/CeramicStyles/CeramicStyleFormArticle';
@@ -26,8 +27,10 @@ export default function CeramicStylesFormView() {
 			try {
 				const response = await api.ceramicStyles.createCeramicStyle(token, ceramicStyleToEdit);
 
-				const updatedCeramicStylesList = [...ceramicStylesList, response];
-				dispatch(setCeramicStyles(updatedCeramicStylesList));
+				const newCeramicStylesListData: CeramicStyle[] = [...ceramicStylesList, response];
+				newCeramicStylesListData.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+
+				dispatch(setCeramicStyles(newCeramicStylesListData));
 				dispatch(clearCeramicStyleForm());
 				setIsFormDisabled(false);
 				setSaveMessage('Стиль керамики создан');
@@ -40,24 +43,24 @@ export default function CeramicStylesFormView() {
 		}
 	};
 
-	function handleUpdateCeramicStyle() {
+	async function handleUpdateCeramicStyle() {
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
-			api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit, initialStyleName)
-				.then((response) => {
-					const updatedStylesList = ceramicStylesList.map(style => style.name !== initialStyleName ? style : response);
+			try {
+				const response = await api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit, initialStyleName);
+				const updatedStylesList = ceramicStylesList.map(style => style.name !== initialStyleName ? style : response);
 
-					dispatch(setCeramicStyles(updatedStylesList));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage(errorHandler(error));
-					return error.json();
-				});
+				dispatch(setCeramicStyles(updatedStylesList));
+				setIsFormDisabled(false);
+				setSaveMessage('Данные обновлены');
+			}
+			catch (error: any) {
+				console.error(error);
+				setIsFormDisabled(false);
+				setSaveMessage(errorHandler(error));
+				return error.json();
+			};
 		}
 	};
 

@@ -13,10 +13,8 @@ export default function CeramicStyleFormBasicInfo() {
 	const [initialStyleName, setInitialStyleName] = useState<string>('');
 
 	const {
-		additionalImages,
 		brief,
 		description,
-		images,
 		name,
 		title,
 		thumbnail,
@@ -26,11 +24,6 @@ export default function CeramicStyleFormBasicInfo() {
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value }));
-	};
-
-	function handleChangePhotos(event: ChangeEvent<HTMLInputElement>) {
-		const { name, value } = event.target;
-		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value.replace(/\s/g, '').split(',') }));
 	};
 
 	useEffect(() => {
@@ -101,30 +94,6 @@ export default function CeramicStyleFormBasicInfo() {
 						placeholder="мини карта"
 						value={ mapImage }
 						onChange={ handleChange }
-					/>
-				</div>
-
-				<div className="form__row form__row-12">
-					<span>изображения</span>
-					<input
-						className="input"
-						type="text"
-						name="images"
-						placeholder="изображения"
-						value={ images }
-						onChange={ handleChangePhotos }
-					/>
-				</div>
-
-				<div className="form__row form__row-12">
-					<span>дополнительные изображения</span>
-					<input
-						className="input"
-						type="text"
-						name="additionalImages"
-						placeholder="дополнительные изображения"
-						value={ additionalImages }
-						onChange={ handleChangePhotos }
 					/>
 				</div>
 

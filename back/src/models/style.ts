@@ -31,14 +31,6 @@ const styleSchema = new Schema<Style>(
 			type: String,
 			default: '',
 		},
-		images: {
-			type: [String],
-			default: [],
-		},
-		additionalImages: {
-			type: [String],
-			default: [],
-		},
 		mapImage: {
 			type: String,
 			default: '',

@@ -7,10 +7,8 @@ export interface CeramicStyle {
 	description?: string;
 	showArticle?: boolean;
 	thumbnail?: string;
-	images?: string[];
-	additionalImages?: string[];
 	mapImage: string;
-	article: ArticleSection[];
+	article?: ArticleSection[];
 }
 
 export const defaultCeramicStyle: CeramicStyle = {
@@ -20,8 +18,6 @@ export const defaultCeramicStyle: CeramicStyle = {
 	description: '',
 	showArticle: false,
 	thumbnail: '',
-	images: [],
-	additionalImages: [],
 	mapImage: '',
 	article: [],
 };
