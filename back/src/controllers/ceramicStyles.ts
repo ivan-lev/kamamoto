@@ -55,7 +55,7 @@ async function getCeramicStylesArticle(req: Request, res: Response, next: NextFu
 		const pathToSlidesFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${articleData?.name}`;
 		articleData?.article.forEach(section => section.slides?.forEach((slide) => {
 			if (!slide.filename.startsWith('http')) {
-				slide.filename = `${pathToSlidesFolder}/${slide.filename}`;
+				slide.filename = `${pathToSlidesFolder}/slides/${slide.filename}`;
 			}
 		}));
 		res.send(articleData);

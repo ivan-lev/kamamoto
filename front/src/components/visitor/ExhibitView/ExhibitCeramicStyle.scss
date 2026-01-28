@@ -1,0 +1,10 @@
+.exhibition-ceramic-style {
+	&__button {
+		width: fit-content;
+		text-decoration: none;
+
+		@media (max-width: 480px) {
+			width: 100%;
+		}
+	}
+}

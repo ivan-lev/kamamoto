@@ -116,8 +116,7 @@ export default function ExhibitForm() {
 	function handleSelectStyleChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
 		const styleTitle = styles.find(style => style.name === value)?.title || '';
-		const mapImage = styles.find(style => style.name === value)?.mapImage || '';
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { name: value, title: styleTitle, mapImage } }));
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { name: value, title: styleTitle } }));
 	};
 
 	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {

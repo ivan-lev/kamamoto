@@ -3,18 +3,16 @@ import type { ArticleSection } from '@/components/visitor/Article/Article.types'
 export interface CeramicStyle {
 	name: string;
 	title: string;
-	brief?: string;
-	description?: string;
-	showArticle?: boolean;
+	description: string;
+	showArticle: boolean;
 	thumbnail?: string;
 	mapImage: string;
-	article?: ArticleSection[];
+	article: ArticleSection[];
 }
 
 export const defaultCeramicStyle: CeramicStyle = {
 	name: '',
 	title: '',
-	brief: '',
 	description: '',
 	showArticle: false,
 	thumbnail: '',

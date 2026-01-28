@@ -16,10 +16,6 @@ const styleSchema = new Schema<Style>(
 			unique: true,
 		},
 
-		brief: {
-			type: String,
-			required: true,
-		},
 		description: {
 			type: String,
 		},

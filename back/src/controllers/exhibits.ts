@@ -33,7 +33,7 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 async function findExhibitById(req: Request, res: Response, next: NextFunction) {
 	try {
 		const exhibit = await Exhibit.findOne({ id: req.params.id }, '-_id')
-			.populate<{ style: IStyle }>({ path: 'style', select: '-_id name title brief showArticle mapImage' })
+			.populate<{ style: IStyle }>({ path: 'style', select: '-_id name title description mapImage showArticle' })
 			.populate<{ potter: IPotter }>({ path: 'potter', select: '-_id' })
 			.lean()
 			.orFail();
@@ -48,9 +48,15 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 			exhibit.additionalImages[i] = `${pathToExhibitFolder}/additional/${image}`;
 		});
 
-		exhibit.style.mapImage = `${STATIC_URL}/${CERAMIC_STYLES}/${exhibit.style.name}/${exhibit.style.mapImage}`;
+		if (exhibit.style.mapImage?.length !== 0 && exhibit.style.mapImage !== undefined) {
+			exhibit.style.mapImage = `${STATIC_URL}/${CERAMIC_STYLES}/${exhibit.style.name}/${exhibit.style.mapImage}`;
+		}
+		else {
+			exhibit.style.mapImage = '';
+		}
 
-		exhibit.potter.photo = `${STATIC_URL}/${POTTERS}/${exhibit.potter.photo}`;
+		if (exhibit.potter.photo?.length !== 0 && exhibit.style.mapImage !== undefined)
+			exhibit.potter.photo = `${STATIC_URL}/${POTTERS}/${exhibit.potter.photo}`;
 
 		res.send(exhibit);
 	}

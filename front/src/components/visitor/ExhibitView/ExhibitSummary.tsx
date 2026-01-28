@@ -1,15 +1,15 @@
 import type { RootState } from '@/slices/admin';
-import type { ExhibitExtended } from '@/types/exhibitType';
+import type { ExhibitVisitor } from '@/types/exhibitType';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import QR from '@/components/visitor/QR/QR';
-import './Summary.scss';
+import './ExhibitSummary.scss';
 
 interface Props {
-	exhibit: ExhibitExtended;
+	exhibit: ExhibitVisitor;
 }
 
-export default function Summary({ exhibit }: Props) {
+export default function ExhibitSummary({ exhibit }: Props) {
 	const complectations = useSelector((state: RootState) => state.complectations.complectations);
 	const [showTechInfo, setShowTechInfo] = useState(false);
 

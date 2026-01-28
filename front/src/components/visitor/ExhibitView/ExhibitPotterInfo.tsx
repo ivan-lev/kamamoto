@@ -7,14 +7,14 @@ interface Props {
 	potter: Potter;
 }
 
-export default function PotterInfo({ potter }: Props) {
+export default function ExhibitPotterInfo({ potter }: Props) {
 	return potter.info
 		&& (
 			<section className="section description description--block">
 				<div className="section__header">
 					<h2 className="title title--2">О мастере</h2>
 				</div>
-				{ potter.photo && (
+				{ potter.photo.length !== 0 && (
 					<Picture
 						additionalClass="description__photo description__photo--left"
 						src={ potter.photo }

@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
-import type { ExhibitShort } from '@/types/exhibitType';
+import type { ExhibitAdmin } from '@/types/exhibitType';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setExhibitsFiltered } from '@/slices/admin/exhibits';
@@ -22,7 +22,7 @@ export default function Filters() {
 			return;
 		}
 
-		const filteredList: ExhibitShort[] = exhibits.filter(exhibit => exhibit.name.toLowerCase().includes(query.toLowerCase()) || exhibit.id.toString().includes(query));
+		const filteredList: ExhibitAdmin[] = exhibits.filter(exhibit => exhibit.name.toLowerCase().includes(query.toLowerCase()) || exhibit.id.toString().includes(query));
 		dispatch(setExhibitsFiltered(filteredList));
 	}
 

@@ -13,10 +13,9 @@ export default function CeramicStyleFormBasicInfo() {
 	const [initialStyleName, setInitialStyleName] = useState<string>('');
 
 	const {
-		brief,
-		description,
 		name,
 		title,
+		description,
 		thumbnail,
 		mapImage,
 	} = ceramicStyleToEdit;
@@ -98,18 +97,7 @@ export default function CeramicStyleFormBasicInfo() {
 				</div>
 
 				<div className="form__row form__row-12">
-					<span>краткое описание</span>
-					<textarea
-						className="textarea"
-						name="brief"
-						placeholder="краткое описание"
-						value={ brief }
-						onChange={ handleChange }
-					/>
-				</div>
-
-				<div className="form__row form__row-12">
-					<span>полное описание</span>
+					<span>описание</span>
 					<textarea
 						className="textarea"
 						name="description"

@@ -1,16 +1,23 @@
-import type { CeramicStyle } from '@/types/ceramicStyles';
 import type { Potter } from '@/types/potter';
 import { defaultPotter } from '@/types/potter';
 
 export type Seasons = 'весна' | 'лето' | 'осень' | 'зима';
 
-export interface ExhibitExtended {
+export interface ExhibitVisitorStyle {
+	name: string;
+	title: string;
+	description: string;
+	mapImage: string;
+	showArticle: boolean;
+}
+
+export interface ExhibitVisitor {
 	id: number;
 	name: string;
 	thumbnail: string;
 	age?: string;
 	category: { name: string, title: string };
-	style?: CeramicStyle;
+	style: ExhibitVisitorStyle;
 	images: string[];
 	description?: string;
 
@@ -36,13 +43,13 @@ export interface ExhibitExtended {
 	isActive: boolean;
 }
 
-export interface ExhibitShort {
+export interface ExhibitAdmin {
 	id: number;
 	name: string;
 	thumbnail: string;
 	age?: string;
 	category: { name: string, title: string };
-	style?: CeramicStyle;
+	style?: { name: string, title: string };
 	images: string[];
 	description?: string;
 
@@ -68,13 +75,13 @@ export interface ExhibitShort {
 	isActive: boolean;
 }
 
-export const defaultExhibit: ExhibitExtended = {
+export const defaultExhibit: ExhibitVisitor = {
 	id: 0,
 	name: '',
 	thumbnail: '',
 	age: '',
 	category: { name: 'other', title: '' },
-	style: { name: 'unknown', title: '', mapImage: '' },
+	style: { name: 'unknown', title: '', description: '', mapImage: '', showArticle: false },
 	images: [],
 	description: '',
 
@@ -98,13 +105,13 @@ export const defaultExhibit: ExhibitExtended = {
 
 };
 
-export const defaultExhibitShort: ExhibitShort = {
+export const defaultExhibitAdmin: ExhibitAdmin = {
 	id: 0,
 	name: '',
 	thumbnail: '',
 	age: '',
 	category: { name: 'other', title: '' },
-	style: { name: 'unknown', title: '', mapImage: '' },
+	style: { name: 'unknown', title: '' },
 	images: [],
 	description: '',
 

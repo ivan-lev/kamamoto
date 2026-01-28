@@ -1,4 +1,4 @@
-import type { CeramicStyle } from '@/types/ceramicStyles';
+import type { Article as IArticle } from '@/components/visitor/Article/Article.types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import ArticleSection from '@/components/visitor/Article/ArticleSection';
@@ -10,34 +10,44 @@ import { api } from '@/utils/api/api';
 
 export default function Article() {
 	const { style } = useParams();
-	const [showPreloader, _setShowPreloader] = useState<boolean>(false);
-	const [articleInfo, setArticleInfo] = useState<CeramicStyle>();
+	const [articleInfo, setArticleInfo] = useState<IArticle | null>(null);
+	const [error, setError] = useState(false);
 
 	async function getCeramicStylesInfo(style: string) {
+		if (!style)
+			return;
+
 		try {
 			const data = await api.ceramicStyles.getCeramicStylesArticle(style);
 			setArticleInfo(data);
 		}
 		catch (error) {
 			console.error(error);
+			setError(true);
 		}
 	}
 
 	useEffect(() => {
-		if (style) {
-			getCeramicStylesInfo(style);
-		}
+		if (!style)
+			return;
+		getCeramicStylesInfo(style);
 	}, [style]);
+
+	if (error) {
+		return <div>Статья не найдена</div>;
+	}
+
+	if (!articleInfo) {
+		return <Preloader />;
+	}
 
 	return (
 		<>
-			{ articleInfo?.title && <PageTop title={ `Керамика ${articleInfo?.title}` } subtitle="" /> }
+			<PageTop title={ `Керамика ${articleInfo.title}` } subtitle="" />
 
-			<Seo title={ `Камамото: керамика ${articleInfo?.title}` } description={ `Страница со статьёй о керамике ${articleInfo?.title}` } />
+			<Seo title={ `Камамото: керамика ${articleInfo.title}` } description={ `Страница со статьёй о керамике ${articleInfo.title}` } />
 
-			{ showPreloader
-				? <Preloader />
-				: articleInfo?.article?.map((section, i) => <ArticleSection key={ i } section={ section } />) }
+			{ articleInfo.article?.map((section, i) => <ArticleSection key={ i } section={ section } />) }
 		</>
 	);
 }

@@ -1,10 +1,10 @@
-import type { ExhibitShort } from '@/types/exhibitType';
+import type { ExhibitAdmin } from '@/types/exhibitType';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '@/variables/variables';
 
 const { BASE_API_URL, EXHIBITS } = PATHS;
 
-async function getExhibits(): Promise<ExhibitShort[]> {
+async function getExhibits(): Promise<ExhibitAdmin[]> {
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/`, {
 		method: 'GET',
 	});
@@ -18,7 +18,7 @@ async function getExhibitById(id: string) {
 	return checkResponseStatus(response);
 }
 
-async function createExhibit(token: string, exhibit: ExhibitShort) {
+async function createExhibit(token: string, exhibit: ExhibitAdmin) {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/`, {
@@ -32,7 +32,7 @@ async function createExhibit(token: string, exhibit: ExhibitShort) {
 	return checkResponseStatus(response);
 }
 
-async function updateExhibit(token: string, exhibit: ExhibitShort) {
+async function updateExhibit(token: string, exhibit: ExhibitAdmin) {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${exhibit.id}`, {
@@ -46,7 +46,7 @@ async function updateExhibit(token: string, exhibit: ExhibitShort) {
 	return checkResponseStatus(response);
 }
 
-async function toggleExhibitActiveState(token: string, exhibit: ExhibitShort) {
+async function toggleExhibitActiveState(token: string, exhibit: ExhibitAdmin) {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${exhibit.id}`, {

@@ -1,19 +1,19 @@
-import type { ExhibitShort } from '@/types/exhibitType';
+import type { ExhibitAdmin } from '@/types/exhibitType';
 import { createSlice } from '@reduxjs/toolkit';
-import { defaultExhibitShort } from '@/types/exhibitType';
+import { defaultExhibitAdmin } from '@/types/exhibitType';
 import floatHandler from '@/utils/floatHandler';
 
 interface Exhibits {
-	exhibits: ExhibitShort[];
-	exhibitsFiltered: ExhibitShort[];
-	exhibitToEdit: ExhibitShort;
+	exhibits: ExhibitAdmin[];
+	exhibitsFiltered: ExhibitAdmin[];
+	exhibitToEdit: ExhibitAdmin;
 	isExistingExhibitEdited: boolean;
 }
 
 const initialState: Exhibits = {
 	exhibits: [],
 	exhibitsFiltered: [],
-	exhibitToEdit: { ...defaultExhibitShort },
+	exhibitToEdit: { ...defaultExhibitAdmin },
 	isExistingExhibitEdited: false,
 };
 
@@ -23,21 +23,21 @@ const exhibits = createSlice({
 	reducers: {
 
 		clearExhibitForm: (state) => {
-			state.exhibitToEdit = { ...defaultExhibitShort };
+			state.exhibitToEdit = { ...defaultExhibitAdmin };
 			state.isExistingExhibitEdited = false;
 		},
 
-		setExhibits: (state, action: { payload: ExhibitShort[] }) => {
+		setExhibits: (state, action: { payload: ExhibitAdmin[] }) => {
 			state.exhibits = action.payload;
 			return state;
 		},
 
-		setExhibitsFiltered: (state, action: { payload: ExhibitShort[] }) => {
+		setExhibitsFiltered: (state, action: { payload: ExhibitAdmin[] }) => {
 			state.exhibitsFiltered = action.payload;
 			return state;
 		},
 
-		setExhibitToEdit: (state, action: { payload: ExhibitShort }) => {
+		setExhibitToEdit: (state, action: { payload: ExhibitAdmin }) => {
 			const exhibit = { ...action.payload };
 			exhibit.id = Number(exhibit.id);
 			exhibit.length = floatHandler(exhibit.length || '');
