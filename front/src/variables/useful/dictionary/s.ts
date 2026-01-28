@@ -1,9 +1,10 @@
 import type { DictionarySection } from '@/variables/useful/dictionary/dictionary.types';
 
-export const c: DictionarySection = {
+export const s: DictionarySection = {
 	letter: 'с',
 	terms: [
 		{ title: '<span id="saku">Саку</span>', kanji: '作', definition: 'работа, продукция, сделал, изготовил - знак, который пишется после имени мастера, указывая на его авторство; часто можно встретить на крышках томобако' },
+		{ title: '<span id="sarayama">Сараяма</span>', kanji: '窯山', definition: 'термином "сараяма" (печь + гора) на Кюсю называют район, где производится керамика' },
 		{ title: '<span id="shodai">Сёдай</span>', kanji: '初代', definition: 'первое поколение, основатель династии' },
 		{ title: '<span id="shomen">Сёмэн</span>', kanji: '正面', definition: '"лицо" - лицевая сторона вещи' },
 		{ title: '<span id="siori">Сиори</span>', kanji: '栞', definition: 'закладка, путеводитель - лист с информацией о мастере, печи, истории местной разновидности керамики, прикладываемый к японским вещам)' },
