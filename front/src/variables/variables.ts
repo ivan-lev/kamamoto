@@ -3,9 +3,10 @@ const mode = import.meta.env.MODE;
 export const PATHS = Object.freeze({
 	BASE_API_URL: mode === 'production' ? '/api' : import.meta.env.VITE_BASE_API_DEV_URL,
 	STATIC_URL: mode === 'production' ? '/static' : 'http://localhost:3000/static/',
+
+	ARTICLES: 'articles',
 	CATEGORIES: 'categories',
 	CERAMIC_STYLES: 'ceramic-styles',
-	CERAMIC_STYLES_ARTICLES: 'ceramic-styles-articles',
 	COLLECTION: 'collection',
 	COMPLECTATION: 'complectation',
 	EXHIBIT: 'exhibits',
@@ -32,7 +33,6 @@ export const homepageSliderImages = [
 	'images/homepage-slider/08.webp',
 	'images/homepage-slider/09.webp',
 	'images/homepage-slider/10.webp',
-	'images/homepage-slider/11.webp',
 ];
 
 export const CATEGORIES: { [key: string]: string } = {
