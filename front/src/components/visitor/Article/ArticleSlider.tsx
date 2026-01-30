@@ -19,7 +19,7 @@ export default function SliderArticle({ slides }: Props) {
 				keyboard={{ enabled: true, onlyInViewport: true }}
 				modules={ [Keyboard, Pagination] }
 				pagination={{ clickable: true }}
-				loop={ true }
+				loop={ slides.length > 1 }
 				speed={ 1000 }
 			>
 				{ slides.map((slide, i) => {

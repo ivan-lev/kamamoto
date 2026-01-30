@@ -2,7 +2,8 @@ import type { RootState } from '@/slices/admin';
 import type { CeramicStyle } from '@/types/ceramicStyles';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CeramicStylesFormView from '@/components/admin/CeramicStyles/CeramicStylesFormView';
+import CeramicStyleFormView from '@/components/admin/CeramicStyles/CeramicStyleFormView';
+import CeramicStylesRow from '@/components/admin/CeramicStyles/CeramicStylesRow';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
@@ -62,6 +63,7 @@ export default function CeramicStyles() {
 				: (
 					<div className="container container--background-transparent">
 						<h1 className="title title--1">Стили керамики</h1>
+
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell table__cell--span-2">Имя</span>
@@ -70,33 +72,14 @@ export default function CeramicStyles() {
 								<span className="table__cell table__cell--span-3">Тхумб</span>
 								<span className="table__cell table__cell--centered"></span>
 							</div>
-							{ ceramicStylesList.map((style) => {
-								return (
-									<div
-										key={ style.name }
-										className="table__row"
-									>
-										<span className="table__cell table__cell--span-2">{ style.title }</span>
-										<span className="table__cell table__cell--span-3">{ style.name }</span>
-										<span className="table__cell table__cell--span-3">{ style.mapImage }</span>
-										<span className="table__cell table__cell--span-3">{ style.thumbnail }</span>
-										<div className="table__cell table__cell--centered">
-											<button
-												className="table__button table__button--edit"
-												onClick={ () => handleSetCeramicStyleToEdit(style) }
-											>
-											</button>
-										</div>
-									</div>
-								);
-							}) }
+
+							{ ceramicStylesList.map(style => <CeramicStylesRow key={ style.name } style={ style } action={ handleSetCeramicStyleToEdit } />) }
 						</div>
-						<Modal
-							showModal={ showModal }
-							closeModal={ () => handleCloseModal() }
-						>
-							<CeramicStylesFormView />
+
+						<Modal showModal={ showModal } closeModal={ () => handleCloseModal() }>
+							<CeramicStyleFormView />
 						</Modal>
+
 						<button className="button" onClick={ () => createNewCeramicStyle({ ...defaultCeramicStyle }) }>
 							Создать
 						</button>

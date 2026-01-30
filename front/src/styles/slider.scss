@@ -112,9 +112,9 @@
 		border-radius: var(--border-radius-s);
 
 		font-size: 12px;
-		color: var(--color-primary-050);
+		color: var(--slider-caption-bg);
 
-		background-color: var(--color-secondary-060);
+		background-color: var(--slider-source-bg);
 
 		&:hover {
 			color: var(--color-primary-100)
@@ -133,6 +133,6 @@
 		font-size: 12px;
 		color: var(--color-primary-100);
 
-		background-color: var(--color-secondary-100);
+		background-color: var(--slider-caption-bg);
 	}
 }

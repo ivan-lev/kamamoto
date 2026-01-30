@@ -9,7 +9,7 @@ import { clearCeramicStyleForm, setCeramicStyles } from '@/slices/admin/ceramicS
 import { api } from '@/utils/api/api';
 import errorHandler from '@/utils/errorHandler';
 
-export default function CeramicStylesFormView() {
+export default function CeramicStyleFormView() {
 	const dispatch = useDispatch();
 	const ceramicStylesList = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
 	const isExistingStyleEdited = useSelector((state: RootState) => state.ceramicStyles.isExistingStyleEdited);
