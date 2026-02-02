@@ -20,12 +20,6 @@ export default function CeramicStyles() {
 		(state: RootState) => state.ceramicStyles.isExistingStyleEdited,
 	);
 
-	function handleSetCeramicStyleToEdit(data: CeramicStyle) {
-		dispatch(setIsExistingStyleEdited(true));
-		dispatch(setCeramicStyleToEdit(data));
-		setShowModal(true);
-	}
-
 	function createNewCeramicStyle(data: CeramicStyle) {
 		dispatch(setIsExistingStyleEdited(false));
 		dispatch(setCeramicStyleToEdit(data));
@@ -69,11 +63,12 @@ export default function CeramicStyles() {
 								<span className="table__cell table__cell--span-2">Имя</span>
 								<span className="table__cell table__cell--span-3">Заголовок</span>
 								<span className="table__cell table__cell--span-3">Мини карта</span>
-								<span className="table__cell table__cell--span-3">Тхумб</span>
-								<span className="table__cell table__cell--centered"></span>
+								<span className="table__cell table__cell--span-2">Тхумб</span>
+								<span className="table__cell table__cell--centered">Ред</span>
+								<span className="table__cell table__cell--centered">Акт</span>
 							</div>
 
-							{ ceramicStylesList.map(style => <CeramicStylesRow key={ style.name } style={ style } action={ handleSetCeramicStyleToEdit } />) }
+							{ ceramicStylesList.map(style => <CeramicStylesRow key={ style.name } style={ style } setShowModal={ setShowModal } />) }
 						</div>
 
 						<Modal showModal={ showModal } closeModal={ () => handleCloseModal() }>

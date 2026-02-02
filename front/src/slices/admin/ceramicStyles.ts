@@ -33,6 +33,10 @@ const ceramicStyles = createSlice({
 		setIsExistingStyleEdited: (state, action: { payload: boolean }) => {
 			state.isExistingStyleEdited = action.payload;
 		},
+
+		updateCeramicStyle: (state, action: { payload: CeramicStyle }) => {
+			state.ceramicStylesList = state.ceramicStylesList.map(style => style.name !== action.payload.name ? style : action.payload);
+		},
 	},
 });
 
@@ -41,6 +45,7 @@ export const {
 	setCeramicStyleToEdit,
 	clearCeramicStyleForm,
 	setIsExistingStyleEdited,
+	updateCeramicStyle,
 } = ceramicStyles.actions;
 
 export default ceramicStyles.reducer;
