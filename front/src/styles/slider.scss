@@ -127,6 +127,8 @@
 		top: var(--gap-4);
 		left: var(--gap-4);
 
+    box-sizing: border-box;
+    max-width: calc(100% - var(--gap-8));
 		padding: 0 var(--gap-8);
 		border-radius: var(--border-radius-s);
 

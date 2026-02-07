@@ -1,6 +1,8 @@
+import { useLayoutEffect } from 'react';
 import Card from '@/components/visitor/Card/Card';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { PATHS } from '@/variables/variables';
 
 export default function Useful() {
@@ -10,6 +12,10 @@ export default function Useful() {
 		{ link: 'japanese-exhibitions', title: 'Японские выставки', thumbnail: '/images/useful/exhibitions/thumbnail.webp' },
 		{ link: 'japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
 	];
+
+	useLayoutEffect(() => {
+		scrollToTop();
+	});
 
 	return (
 		<>

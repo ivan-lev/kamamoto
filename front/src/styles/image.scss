@@ -1,3 +1,27 @@
 .article-image {
-	max-width: 100%;
+	&__left {
+		float: left;
+		width: 100%;
+		max-width: 400px;
+		margin: 0 var(--gap-16) var(--gap-16) 0;
+
+		@media (max-width: 768px) {
+			max-width: 100%;
+			margin-right:0;
+			margin-left: 0
+		}
+	}
+
+	&__right {
+		float: right;
+		width: 100%;
+		max-width: 400px;
+		margin: 0 var(--gap-16) var(--gap-16) 0;
+
+		@media (max-width: 768px) {
+			max-width: 100%;
+			margin-right:0;
+			margin-left: 0
+		}
+	}
 }

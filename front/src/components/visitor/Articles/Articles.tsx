@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Card from '@/components/visitor/Card/Card';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
-
 import { api } from '@/utils/api/api';
+import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function Articles() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -22,6 +22,10 @@ export default function Articles() {
 	useEffect(() => {
 		getArticles();
 	}, []);
+
+	useLayoutEffect(() => {
+		scrollToTop();
+	});
 
 	return (
 		<>

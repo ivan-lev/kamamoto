@@ -6,14 +6,14 @@ import { PATHS } from '@/variables/variables';
 import './ExhibitCeramicStyle.scss';
 
 interface Props {
-	data?: ExhibitVisitorStyle;
+	data: ExhibitVisitorStyle;
 }
 
 const style = { aspectRatio: 1, backgroundColor: 'transparent' };
 
 export default function ExhibitCeramicStyle({ data }: Props) {
 	const { CERAMIC_STYLES, USEFUL } = PATHS;
-	return data?.description && (
+	return data?.name !== 'unknown' && (
 		<section className="section exhibition-ceramic-style">
 			<div className="container">
 

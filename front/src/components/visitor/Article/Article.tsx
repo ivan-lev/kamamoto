@@ -1,12 +1,12 @@
 import type { Article as IArticle } from '@/components/visitor/Article/Article.types';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import ArticleSection from '@/components/visitor/Article/ArticleSection';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
-
 import { api } from '@/utils/api/api';
+import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function Article() {
 	const { style } = useParams();
@@ -32,6 +32,10 @@ export default function Article() {
 			return;
 		getCeramicStylesInfo(style);
 	}, [style]);
+
+	useLayoutEffect(() => {
+		scrollToTop();
+	}, []);
 
 	if (error) {
 		return <div>Статья не найдена</div>;
