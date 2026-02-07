@@ -24,9 +24,7 @@ app.use(logger.requestLogger); // winston requests logger
 app.use(helmet(helmetOptions)); // protect headers
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/static', express.static(path.join(__dirname, 'public'), {
-	maxAge: '1y',
-})); // public folder
+app.use('/static', express.static(path.join(__dirname, 'public'), { cacheControl: false })); // public folder
 app.use('/api', routes); // all routes goes through here in Docker
 app.use(logger.errorLogger); // winston error logger
 app.use(errors()); // celebrate error handler
