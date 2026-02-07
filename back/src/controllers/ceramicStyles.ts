@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Style as CeramicStyleType } from '../types/style';
-import type { DeleteCeramicStyleParams, UpdateCeramicStyleParams } from './ceramicStyles.types';
+import type { CeramicStyleArticlePayload, CeramicStylesListPayload, DeleteCeramicStyleParams, UpdateCeramicStyleParams } from './ceramicStyles.types';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
@@ -32,33 +32,44 @@ function getCeramicStyles(req: Request, res: Response, next: NextFunction): void
 		.catch((error) => { return next(error); });
 }
 
-function getCeramicStylesArticles(req: Request, res: Response, next: NextFunction): void {
-	CeramicStyleModel.find({ showArticle: true }, '-_id -article -brief -description -images -additionalImages -mapImage -showArticle')
-		.then((styles: CeramicStyleType[]) => {
-			styles.forEach((style) => {
-				const { thumbnail } = style;
-				const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${style.name}`;
-				if (thumbnail)
-					style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
-			});
+async function getCeramicStylesArticles(req: Request, res: Response, next: NextFunction) {
+	try {
+		const articlesList = await CeramicStyleModel.find({ showArticle: true }, '-_id -article -brief -description -mapImage -showArticle').lean<CeramicStylesListPayload[]>();
 
-			return styles;
-		})
-		.then(styles => res.send(styles))
-		.catch((error) => { return next(error); });
+		articlesList.forEach((article) => {
+			const { thumbnail } = article;
+			const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${article.name}`;
+			if (thumbnail)
+				article.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
+		});
+
+		res.send(articlesList);
+	}
+	catch (error) {
+		return next(error);
+	};
 }
 
 async function getCeramicStylesArticle(req: Request, res: Response, next: NextFunction) {
 	const { style } = req.params;
 	try {
-		const articleData = await CeramicStyleModel.findOne({ name: style }, '-_id -brief -thumbnail -description -images -additionalImages -mapImage -showArticle').lean();
-		const pathToSlidesFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${articleData?.name}`;
-		articleData?.article.forEach(section => section.slides?.forEach((slide) => {
+		const articleData = await CeramicStyleModel.findOne({ name: style }, '-_id title name article showArticle').lean<CeramicStyleArticlePayload>();
+
+		if (articleData === null || articleData.showArticle === false) {
+			res.status(404);
+			res.send();
+			return;
+		}
+
+		const { title, name, article } = articleData;
+
+		const pathToSlidesFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${name}`;
+		article.forEach(section => section.slides?.forEach((slide) => {
 			if (!slide.filename.startsWith('http')) {
 				slide.filename = `${pathToSlidesFolder}/slides/${slide.filename}`;
 			}
 		}));
-		res.send(articleData);
+		res.send({ title, name, article });
 	}
 	catch (error) {
 		return next(error);
