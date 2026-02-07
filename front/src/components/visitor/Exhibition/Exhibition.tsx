@@ -10,7 +10,6 @@ import Slider from '@/components/visitor/Slider/Slider';
 import { setExhibitionToDisplay } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
-import { PATHS } from '@/variables/variables';
 
 import './Exhibition.scss';
 
@@ -66,7 +65,6 @@ export default function Exhibition() {
 			<Seo
 				title={ `Камамото: выставка ${name}` }
 				description={ `Страница о выставке "${name}" с описанием и фотографиями` }
-				canonicalUrl={ `${PATHS.EXHIBITIONS}/${exhId}` }
 			/>
 
 			{ showPreloader

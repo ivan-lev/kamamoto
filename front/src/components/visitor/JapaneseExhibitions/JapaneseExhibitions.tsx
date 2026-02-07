@@ -1,6 +1,5 @@
 import parse from 'html-react-parser';
 import { useLayoutEffect } from 'react';
-import { useLocation } from 'react-router';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
@@ -8,8 +7,6 @@ import { japaneseExhibitions } from '@/variables/useful/japaneseExhibitions';
 import './JapaneseExhibitions.scss';
 
 export default function JapaneseExhibitions() {
-	const { pathname } = useLocation();
-
 	useLayoutEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -23,7 +20,6 @@ export default function JapaneseExhibitions() {
 			<Seo
 				title="Камамото: японские выставки"
 				description="Страница со списком выставок гончарного и прикладного искусства, проходящих в Японии"
-				canonicalUrl={ `${pathname.replace(/\//g, '')}` }
 			/>
 
 			<PageTop title="Японские керамические выставки" subtitle="На этой странице будет собрана информация о выставках гончарного и прикладного искусства, проходящих в Японии. Информация находится в процессе заполнения." />

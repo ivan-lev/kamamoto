@@ -13,14 +13,13 @@ import Slider from '@/components/visitor/Slider/Slider';
 import { setComplectations } from '@/slices/admin/complectations';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
-import { DESCRIPTION_DUMMY, PATHS } from '@/variables/variables';
+import { DESCRIPTION_DUMMY } from '@/variables/variables';
 
 export default function ExhibitView() {
 	const dispatch = useDispatch();
 	const complectations = useSelector((state: RootState) => state.complectations.complectations);
 	const exhibit = useSelector((state: RootState) => state.exhibit);
 	const exhibitId = useParams().exhibit;
-	const { category } = useParams();
 	const navigate = useNavigate();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -72,7 +71,6 @@ export default function ExhibitView() {
 			<Seo
 				title={ `Камамото: ${name?.charAt(0).toLowerCase()}${name?.slice(1)}` }
 				description={ `Страница на которой дана информация о предмете ${name?.charAt(0).toLowerCase()}${name?.slice(1)}, представлены фотографии и дана общая информация о виде данного ремесла` }
-				canonicalUrl={ `${PATHS.COLLECTION}/${category}/${exhibitId}` }
 			/>
 
 			{ showPreloader && <Preloader /> }

@@ -9,7 +9,7 @@ import Seo from '@/components/visitor/Seo/Seo';
 import { resetCategory, setCategory } from '@/slices/visitor/category';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api/api';
-import { CATEGORIES, PATHS } from '@/variables/variables';
+import { CATEGORIES } from '@/variables/variables';
 
 export default function Category() {
 	const { category } = useParams();
@@ -61,7 +61,6 @@ export default function Category() {
 					<Seo
 						title={ `Камамото: ${categoryTitle}` }
 						description={ `Страница с каталогом предметов из категории ${categoryTitle.toLowerCase()}` }
-						canonicalUrl={ `${PATHS.COLLECTION}/${category}/` }
 					/>
 
 					<PageTop title={ categoryTitle } />

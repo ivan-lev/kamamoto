@@ -1,12 +1,10 @@
 import { useLayoutEffect } from 'react';
-import { useLocation } from 'react-router';
 import Seo from '@/components/visitor/Seo/Seo';
 import SocialLinks from '@/components/visitor/SocialLinks/SocialLinks';
 import { links } from '@/variables/links';
 import './About.scss';
 
 export default function About() {
-	const { pathname } = useLocation();
 	const { personal } = links;
 
 	useLayoutEffect(() => {
@@ -22,7 +20,6 @@ export default function About() {
 			<Seo
 				title="Камамото: о коллекционере"
 				description="Страница с информацией о создателе сайта и владельце коллекции"
-				canonicalUrl={ `${pathname.replace(/\//g, '')}` }
 			/>
 
 			<section className="section">

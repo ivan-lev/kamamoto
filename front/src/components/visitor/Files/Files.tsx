@@ -1,6 +1,5 @@
 import type { Resources } from '@/types/fileType';
 import { useLayoutEffect } from 'react';
-import { useLocation } from 'react-router';
 import File from '@/components/visitor/File/File';
 import Seo from '@/components/visitor/Seo/Seo';
 import './Files.scss';
@@ -11,8 +10,6 @@ interface Props {
 }
 
 export default function Files({ title, files }: Props) {
-	const { pathname } = useLocation();
-
 	useLayoutEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -26,7 +23,6 @@ export default function Files({ title, files }: Props) {
 			<Seo
 				title={ `Камамото: ${title.charAt(0).toLowerCase()}${title.slice(1)}` }
 				description="Необходимые для сотрудничесва файлы: логотипы для афиш, qr-коды, шаблоны документов и прочее"
-				canonicalUrl={ `${pathname.replace(/\//g, '')}` }
 			/>
 
 			<section className="section page-top">

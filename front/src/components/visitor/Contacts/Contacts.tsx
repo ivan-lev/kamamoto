@@ -1,14 +1,12 @@
 import type { ChangeEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useLocation } from 'react-router';
 import Seo from '@/components/visitor/Seo/Seo';
 import SocialLinks from '@/components/visitor/SocialLinks/SocialLinks';
 import { links } from '@/variables/links';
 import './Contacts.scss';
 
 export default function Contacts() {
-	const { pathname } = useLocation();
 	const [mailData, setMailData] = useState({ name: '', email: '', message: '' });
 	const [isMessageSending, setIsMessageSending] = useState(false);
 	const [isSuccessSended, setIsSuccessSended] = useState(false);
@@ -76,7 +74,6 @@ export default function Contacts() {
 			<Seo
 				title="Камамото: кантакты и форма обратной связи"
 				description="Список ресурсов и контактов, по которым можно связаться с коллекционером"
-				canonicalUrl={ `${pathname.replace(/\//g, '')}` }
 			/>
 
 			<h1 className="title title--1">Контакты</h1>
