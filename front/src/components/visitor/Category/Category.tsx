@@ -9,6 +9,7 @@ import Seo from '@/components/visitor/Seo/Seo';
 import { resetCategory, setCategory } from '@/slices/visitor/category';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api/api';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { CATEGORIES } from '@/variables/variables';
 
 export default function Category() {
@@ -21,13 +22,7 @@ export default function Category() {
 	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	useEffect(() => {
 		if (category) {

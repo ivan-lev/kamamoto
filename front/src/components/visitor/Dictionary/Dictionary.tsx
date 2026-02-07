@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import { dictionary } from '@/variables/useful/dictionary/_index';
 import './Dictionary.scss';
@@ -51,13 +52,7 @@ export default function Dictionary() {
 		filterDictionaryByQuery();
 	}, [query]);
 
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	}, []);
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

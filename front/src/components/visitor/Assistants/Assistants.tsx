@@ -1,15 +1,10 @@
 import { useLayoutEffect } from 'react';
 import Seo from '@/components/visitor/Seo/Seo';
+import { scrollToTop } from '@/utils/scrollToTop';
 import './Assistants.scss';
 
 export default function Assistants() {
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

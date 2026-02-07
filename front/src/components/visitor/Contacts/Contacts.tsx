@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Seo from '@/components/visitor/Seo/Seo';
 import SocialLinks from '@/components/visitor/SocialLinks/SocialLinks';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { links } from '@/variables/links';
 import './Contacts.scss';
 
@@ -61,13 +62,7 @@ export default function Contacts() {
 		}
 	}, [showAlert]);
 
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

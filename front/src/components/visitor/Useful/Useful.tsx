@@ -12,9 +12,7 @@ export default function Useful() {
 		{ link: 'japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
 	];
 
-	useLayoutEffect(() => {
-		scrollToTop();
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

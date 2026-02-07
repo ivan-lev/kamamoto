@@ -1,19 +1,14 @@
 import { useLayoutEffect } from 'react';
 import Seo from '@/components/visitor/Seo/Seo';
 import SocialLinks from '@/components/visitor/SocialLinks/SocialLinks';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { links } from '@/variables/links';
 import './About.scss';
 
 export default function About() {
 	const { personal } = links;
 
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

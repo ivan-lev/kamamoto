@@ -33,9 +33,7 @@ export default function Article() {
 		getCeramicStylesInfo(style);
 	}, [style]);
 
-	useLayoutEffect(() => {
-		scrollToTop();
-	}, []);
+	useLayoutEffect(() => scrollToTop(), []);
 
 	if (error) {
 		return <div>Статья не найдена</div>;

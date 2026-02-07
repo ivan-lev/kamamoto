@@ -2,17 +2,12 @@ import parse from 'html-react-parser';
 import { useLayoutEffect } from 'react';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import { japaneseSocieties } from '@/variables/useful/japaneseSocieties';
 
 export default function JapaneseSocieties() {
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	}, []);
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

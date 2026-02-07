@@ -2,6 +2,7 @@ import type { Resources } from '@/types/fileType';
 import { useLayoutEffect } from 'react';
 import File from '@/components/visitor/File/File';
 import Seo from '@/components/visitor/Seo/Seo';
+import { scrollToTop } from '@/utils/scrollToTop';
 import './Files.scss';
 
 interface Props {
@@ -10,13 +11,7 @@ interface Props {
 }
 
 export default function Files({ title, files }: Props) {
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

@@ -13,6 +13,7 @@ import Slider from '@/components/visitor/Slider/Slider';
 import { setComplectations } from '@/slices/admin/complectations';
 import { resetExhibit, setExhibit } from '@/slices/visitor/exhibit';
 import { api } from '@/utils/api/api';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { DESCRIPTION_DUMMY } from '@/variables/variables';
 
 export default function ExhibitView() {
@@ -35,13 +36,7 @@ export default function ExhibitView() {
 		}
 	}, []);
 
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	useEffect(() => {
 		if (exhibitId) {

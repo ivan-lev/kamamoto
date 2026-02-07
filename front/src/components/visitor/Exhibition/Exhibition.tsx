@@ -9,6 +9,7 @@ import Seo from '@/components/visitor/Seo/Seo';
 import Slider from '@/components/visitor/Slider/Slider';
 import { setExhibitionToDisplay } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
+import { scrollToTop } from '@/utils/scrollToTop';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
 import './Exhibition.scss';
@@ -25,14 +26,6 @@ export default function Exhibition() {
 		(state: RootState) => state.exhibitions.exhibitionToDisplay,
 	);
 	const { name, city, address, place, year, dates, link, organisators, curators, poster, description, photos } = exhibitionToDisplay;
-
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
 
 	useEffect(() => {
 		// if some data stored in exhibitions state, get data from there
@@ -59,6 +52,8 @@ export default function Exhibition() {
 				}
 			});
 	}, [exhId]);
+
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>

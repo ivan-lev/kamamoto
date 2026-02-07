@@ -1,5 +1,4 @@
 import type { ChangeEvent } from 'react';
-
 import type { RootState } from '@/slices/admin/index';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +7,7 @@ import Seo from '@/components/visitor/Seo/Seo';
 import { setLetters } from '@/slices/admin/letters';
 import { clearPartnerForm, setPartnerToEdit } from '@/slices/admin/partners';
 import { api } from '@/utils/api/api';
+import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function Letters() {
 	const dispatch = useDispatch();
@@ -25,13 +25,7 @@ export default function Letters() {
 	const partnerToEdit = useSelector((state: RootState) => state.partners.partnerToEdit);
 	const { title, link, logo, isActive } = partnerToEdit;
 
-	useLayoutEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'instant',
-		});
-	});
+	useLayoutEffect(() => scrollToTop(), []);
 
 	// delete this. it is just for testing
 	useEffect(() => {
