@@ -40,7 +40,7 @@ const karaku: Incense[] = [
 		price: 0,
 		pricePerStick: 32,
 		isActive: true,
-		inStock: true,
+		inStock: false,
 	},
 
 	{
