@@ -29,7 +29,7 @@ export default function Articles() {
 
 	return (
 		<>
-			<PageTop title="Стили керамики" subtitle="" />
+			<PageTop title="Стили керамики" subtitle="" backLink="/useful/" />
 
 			<Seo title="Камамото: стили керамики" description="Страница со списком стилей керамики" />
 

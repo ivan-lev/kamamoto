@@ -6,10 +6,10 @@ import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function Useful() {
 	const cards = [
-		{ link: 'dictionary', title: 'Глоссарий', thumbnail: '/images/useful/dictionary.webp' },
-		{ link: 'ceramic-styles/', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
-		{ link: 'japanese-exhibitions', title: 'Японские выставки', thumbnail: '/images/useful/exhibitions/thumbnail.webp' },
-		{ link: 'japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
+		{ link: '/dictionary', title: 'Глоссарий', thumbnail: '/images/useful/dictionary.webp' },
+		{ link: '/ceramic-styles/', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
+		{ link: '/japanese-exhibitions', title: 'Японские выставки', thumbnail: '/images/useful/exhibitions/thumbnail.webp' },
+		{ link: '/japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
 	];
 
 	useLayoutEffect(() => scrollToTop(), []);

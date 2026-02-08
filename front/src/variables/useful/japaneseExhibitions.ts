@@ -45,7 +45,7 @@ export const japaneseExhibitions: Term[] = [
 		title: 'Выставка керамического искусства Мино - Мино Тогэй Тэн',
 		kanji: '美濃陶芸展',
 		image: '/images/useful/exhibitions/mino-togei-kyokai.webp',
-		description: 'Проводится в Музее Тосин Керамического Искусства Мино, организуется <a href="/useful/japanese-societies#mino-togei-kyokai">Ассоциацией керамического искусства Мино</a>',
+		description: 'Проводится в Музее Тосин Керамического Искусства Мино, организуется <a href="/japanese-societies#mino-togei-kyokai">Ассоциацией керамического искусства Мино</a>',
 	},
 	{
 		title: '<span id="nitten">Выставка Изящного Искусства Японии - Ниттэн</span>',

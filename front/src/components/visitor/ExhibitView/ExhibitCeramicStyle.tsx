@@ -12,7 +12,7 @@ interface Props {
 const style = { aspectRatio: 1, backgroundColor: 'transparent' };
 
 export default function ExhibitCeramicStyle({ data }: Props) {
-	const { CERAMIC_STYLES, USEFUL } = PATHS;
+	const { CERAMIC_STYLES } = PATHS;
 	return data?.name !== 'unknown' && (
 		<section className="section exhibition-ceramic-style">
 			<div className="container">
@@ -28,7 +28,7 @@ export default function ExhibitCeramicStyle({ data }: Props) {
 
 					{ parse(data.description, htmlParserOptions) }
 
-					{ data.showArticle && <a href={ `/${USEFUL}/${CERAMIC_STYLES}/${data.name}` } target="_blank" className="button exhibition-ceramic-style__button">Читать большую статью</a> }
+					{ data.showArticle && <a href={ `/${CERAMIC_STYLES}/${data.name}` } target="_blank" className="button exhibition-ceramic-style__button">Читать большую статью</a> }
 				</div>
 
 			</div>

@@ -78,11 +78,11 @@ export default function App() {
 					<Route path="exhibitions/:exhId" element={ <Exhibition /> } />
 					<Route path="thanksletters/" element={ <ThanksLetters /> } />
 					<Route path="useful/" element={ <Useful /> } />
-					<Route path="useful/dictionary" element={ <Dictionary /> } />
-					<Route path="useful/ceramic-styles" element={ <Articles /> } />
-					<Route path="useful/ceramic-styles/:style" element={ <Article /> } />
-					<Route path="useful/japanese-exhibitions" element={ <JapaneseExhibitions /> } />
-					<Route path="useful/japanese-societies" element={ <JapaneseSocieties /> } />
+					<Route path="dictionary" element={ <Dictionary /> } />
+					<Route path="ceramic-styles" element={ <Articles /> } />
+					<Route path="ceramic-styles/:style" element={ <Article /> } />
+					<Route path="japanese-exhibitions" element={ <JapaneseExhibitions /> } />
+					<Route path="japanese-societies" element={ <JapaneseSocieties /> } />
 				</Route>
 
 				<Route
