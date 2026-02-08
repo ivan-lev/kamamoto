@@ -1,5 +1,7 @@
 import { Element } from 'html-react-parser';
 
+const mode = import.meta.env.MODE;
+
 export const htmlParserOptions = {
 	replace(domNode: unknown) {
 		if (domNode instanceof Element) {
@@ -31,6 +33,9 @@ export const htmlParserOptions = {
 			else if (domNode.name === 'img') {
 				domNode.attribs.class = `article-image ${domNode.attribs.class}`;
 				domNode.attribs.crossorigin = 'anonymous';
+				if (mode !== 'production') {
+					domNode.attribs.src = `http://localhost:3000${domNode.attribs.src}`;
+				}
 			}
 
 			return domNode;
