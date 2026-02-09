@@ -12,8 +12,8 @@ interface Props {
 
 export default function CeramicStylesRow({ style, setShowModal }: Props) {
 	const dispatch = useDispatch();
-	const { USEFUL, CERAMIC_STYLES } = PATHS;
-	const link = `/${USEFUL}/${CERAMIC_STYLES}/${style.name}`;
+	const { CERAMIC_STYLES } = PATHS;
+	const link = `/${CERAMIC_STYLES}/${style.name}`;
 
 	function handleSetCeramicStyleToEdit(data: CeramicStyle) {
 		dispatch(setIsExistingStyleEdited(true));
@@ -37,7 +37,7 @@ export default function CeramicStylesRow({ style, setShowModal }: Props) {
 	return (
 		<div className="table__row">
 			{ style.showArticle
-				? <a className="link link_usual table__cell table__cell--span-2" href={ link }>{ style.title }</a>
+				? <a className="link link_usual table__cell table__cell--span-2" href={ link } target="_blank">{ style.title }</a>
 				: <span className="table__cell table__cell--span-2">{ style.title }</span> }
 			<span className="table__cell table__cell--span-3">{ style.name }</span>
 			<span className="table__cell table__cell--span-3">{ style.mapImage }</span>
