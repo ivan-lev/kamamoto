@@ -1,6 +1,6 @@
 import type { CartDisplayItem } from '@/components/Cart/Cart';
 
-export function buildCartText(list: CartDisplayItem[], totalPrice: number, deliveryPrice: number): string {
+export function buildCartText(list: CartDisplayItem[], totalPrice: number, deliveryPrice: number, discount: { percents: number, amount: number }): string {
 	let text = 'Список благовоний:\n\n';
 
 	list.forEach((item) => {
@@ -10,8 +10,11 @@ export function buildCartText(list: CartDisplayItem[], totalPrice: number, deliv
 	});
 
 	text += '\n==============================\n\n';
-	text += `Благовония: ${totalPrice}р, доставка: ${deliveryPrice}р\n`;
-	text += `Итого: ${totalPrice + deliveryPrice}р`;
+	text += `Благовония: ${totalPrice}р\n`;
+	text += `Доставка: ${deliveryPrice > 0 ? `${deliveryPrice}р` : 'бесплатно'}\n`;
+	if (discount.amount > 0)
+		text += `Скидка: -${discount.amount}р (${discount.percents}%)\n`;
+	text += `Итого: ${totalPrice - discount.amount + deliveryPrice}р`;
 
 	return text;
 }

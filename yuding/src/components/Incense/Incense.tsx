@@ -38,7 +38,7 @@ export default function Incense() {
 
 			<section className="section page-top">
 				<Breadcrumbs />
-				<h1 className="title title--1">{ `${incenseToDisplay?.title} от ${incenseToDisplay?.manufacturer.title}` }</h1>
+				<h1 className="title title--1">{ incenseToDisplay ? `${incenseToDisplay?.title} от ${incenseToDisplay?.manufacturer.title}` : '' }</h1>
 			</section>
 
 			<section className="section">
@@ -100,7 +100,7 @@ export default function Incense() {
 					{ incenseToDisplay?.inStock
 						? (
 							<div className="article__price">
-								<Counter count={ count } action={ setCount } />
+								<Counter count={ count } action={ setCount } maxQuantity={ incenseToDisplay.quantity || 50 } />
 
 								<button
 									className="button article__add-to-cart"

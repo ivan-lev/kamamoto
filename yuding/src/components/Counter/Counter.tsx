@@ -4,11 +4,15 @@ import './Counter.scss';
 
 interface Props {
 	count: number;
+	maxQuantity: number;
 	action: Dispatch<SetStateAction<number>>;
 }
 
-export default function Counter({ count, action }: Props) {
+export default function Counter({ count, maxQuantity, action }: Props) {
 	function increaseCount() {
+		if (count + 5 > maxQuantity)
+			return;
+
 		action(count + 5);
 	};
 

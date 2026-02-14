@@ -93,7 +93,7 @@ export default function Cart() {
 
 				</section>
 
-				<CartCopy items={ itemsToDisplay } totalPrice={ totalPrice } deliveryPrice={ deliveryPrice } />
+				<CartCopy items={ itemsToDisplay } totalPrice={ totalPrice } deliveryPrice={ deliveryPrice } discount={ discount } />
 			</>
 		);
 }

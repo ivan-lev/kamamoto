@@ -126,7 +126,7 @@ const lowSmoke: Incense[] = [
 		originalTitle: '清澄 香樹林',
 		slug: 'seikyo-kojurin',
 		description: 'Сэикё Кодзюрин — это версия знаменитых благовоний Кодзюрин с низким содержанием дыма. Мягкий сандал, произрастающий в штате Карнатака на юге Индии, в сочетании с цветочными и пряными нотами создает древесно-амбровый аромат. Идеально подходит для ароматизации помещения или для спокойной медитации.',
-		photos: ['seikyo-kojurin.jpg'],
+		photos: ['P1013719.webp', 'P1013723.webp', 'P1013720.webp', 'P1013724.webp', 'P1013721.webp'],
 		manufacturer: manufacturers.gyokushodo,
 		series: manufacturers.gyokushodo.series?.lowSmoke,
 		ingredients: [Ingredients.japaneseBayBark, Ingredients.charcoal, Ingredients.sandalwoodIndian, Ingredients.sandalwoodOil, Ingredients.borneol],
@@ -136,8 +136,9 @@ const lowSmoke: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 22,
+		quantity: 230,
 		isActive: true,
-		inStock: false,
+		inStock: true,
 	},
 ];
 

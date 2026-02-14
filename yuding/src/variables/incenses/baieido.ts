@@ -69,7 +69,7 @@ const premium: Incense[] = [
 		title: 'Сю Ко Коку (Собрание благоухающих стран)',
 		originalTitle: '聚香國',
 		description: 'Сю Ко Коку, что означает «Собрание благоухающих стран», — это высококачественные японские благовония премиум-класса, изготовленные из отборного индийского сандала, сладкого вьетнамского агара и традиционных китайских трав и специй. Как и все благовония Байэидо, они обладают чудесным теплым, древесным, пряным ароматом.',
-		photos: ['shu-koh-koku.webp'],
+		photos: ['P1013730.webp', 'P1013733.webp', 'P1013731.webp', 'P1013732.webp', 'P1013735.webp', 'P1013734.webp'],
 		origin: origin.japan,
 		manufacturer: manufacturers.baieido,
 		series: manufacturers.baieido.series?.premium,
@@ -79,8 +79,9 @@ const premium: Incense[] = [
 		lenght: 14,
 		price: 0,
 		pricePerStick: 48,
+		quantity: 160,
 		isActive: true,
-		inStock: false,
+		inStock: true,
 	},
 ];
 

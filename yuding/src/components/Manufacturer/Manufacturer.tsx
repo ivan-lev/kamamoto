@@ -29,7 +29,7 @@ export default function Manufacturer() {
 		<>
 			<section className="section page-top">
 				<Breadcrumbs />
-				<h1 className="title title--1">{ `${manufacturerToDisplay?.title}` }</h1>
+				<h1 className="title title--1">{ manufacturerToDisplay ? `${manufacturerToDisplay?.title}` : '' }</h1>
 			</section>
 
 			<section className="section manufacturer">

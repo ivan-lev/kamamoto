@@ -8,19 +8,34 @@ interface Props {
 	items: CartDisplayItem[];
 	totalPrice: number;
 	deliveryPrice: number;
+	discount: { percents: number, amount: number };
 };
 
-export default function CartCopy({ items, totalPrice, deliveryPrice }: Props) {
-	const [status, setStatus] = useState<string | null>(null);
+export default function CartCopy({ items, totalPrice, deliveryPrice, discount }: Props) {
+	const [status, setStatus] = useState<string>('');
+	const [visible, setVisible] = useState(false);
 
 	useEffect(() => {
-		setTimeout(() => {
-			setStatus('');
-		}, 3500);
+		if (!status)
+			return;
+
+		setVisible(true);
+
+		const hideTimeout = setTimeout(() => {
+			setVisible(false);
+		}, 1900);
+
+		return () => clearTimeout(hideTimeout);
 	}, [status]);
 
+	const handleTransitionEnd = () => {
+		if (!visible) {
+			setStatus('');
+		}
+	};
+
 	const handleCopy = async () => {
-		const text = buildCartText(items, totalPrice, deliveryPrice);
+		const text = buildCartText(items, totalPrice, deliveryPrice, discount);
 		const resultMessage = await copyToClipboard(text);
 		setStatus(resultMessage);
 	};
@@ -35,9 +50,11 @@ export default function CartCopy({ items, totalPrice, deliveryPrice }: Props) {
 				</a>
 			</div>
 
-			<span className="cart-copy__message">
-				{ status || (
-					<span>&nbsp;</span>) }
+			<span
+				className={ `cart-copy__message ${visible ? 'active' : ''}` }
+				onTransitionEnd={ handleTransitionEnd }
+			>
+				{ status }
 			</span>
 
 		</section>
