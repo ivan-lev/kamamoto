@@ -4,6 +4,37 @@ http://kamamoto.ru, http://158.255.5.107 {
 }
 
 kamamoto.ru {
+    # ID pages: remove trailing slash, i.e. '/bowls/1773' and 'exhibitions/8'
+	@idToRemoveSlash {
+        path_regexp id ^(.*/\d+)/$
+    }
+    redir @idToRemoveSlash {re.id.1} 301
+
+    # ===== Static pages: remove trailing slash =====
+    @staticToRemoveSlash {
+        path_regexp static ^/(about|assistants|contacts|dictionary|documents|downloads|thanksletters|japanese-exhibitions|japanese-societies|ceramic-styles/[^/]+)/$
+    }
+    redir @staticToRemoveSlash /{re.static.1} 301
+
+    # ===== Listing pages: force trailing slash =====
+    @listingToAddSlash {
+        path_regexp list ^(/collection(?:/[^/0-9][^/]*)?|/exhibitions|/useful|/ceramic-styles)$
+    }
+    redir @listingToAddSlash {re.list.1}/ 301
+
+    # Global headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    }
+
+    @assets {
+        not path /api/*
+        path *.js *.css *.svg *.png *.jpg *.woff *.woff2 *.webp
+    }
+    header @assets {
+        Cache-Control "public, max-age=31536000, immutable"
+    }
+
     # Set up compression for non-html text asets
     @compressed {
         path *.js *.css *.svg
@@ -16,18 +47,15 @@ kamamoto.ru {
             header_up Host {host}
             header_up X-Real-IP {remote}
         }
+
+        header {
+            Cache-Control "no-cache, must-revalidate"
+        }
     }
 
     # Static files from backend
     handle /static/* {
         reverse_proxy http://back:3000
-
-		@images {
-            path *.jpg *.jpeg *.png *.gif *.webp *.ico *.svg
-        }
-
-        # 1 year cache for images
-        header @images Cache-Control "public, max-age=31536000"
     }
 
     # ===== Yuding SPA =====
@@ -39,65 +67,42 @@ kamamoto.ru {
 
         # Correct 3-step SPA fallback
         try_files {path} {path}/ /index.html
+
+        file_server
     }
 
     # Serve static files
     root * /srv/front
 
-    @html {
-        header Content-Type text/html*
-    }
+    # ===== Main SPA =====
+    handle {
+        root * /srv/front
 
-    header @html {
-        Content-Security-Policy "
-            default-src 'self';
-            script-src 'self' 'unsafe-inline';
-            style-src 'self' 'unsafe-inline';
-            img-src 'self' https: data: blob:;
-            font-src 'self';
-            connect-src 'self' https:;
-            frame-src https: blob:;
-            frame-ancestors 'self' https:;
-        "
-    }
+        try_files {path} {path}/ /index.html
 
-    # Cache all other stuff
-    @assets {
-        path *.js *.css *.woff2 *.svg *.png *.jpg *.jpeg *.webp
-    }
-
-    header @assets {
-        Cache-Control "public, max-age=31536000, immutable"
-    }
-
-    # SPA fallback for any non-file
-    @notStatic {
-        not file
-        not path /yuding/*
-        path /*
-    }
-
-    handle @notStatic {
-        rewrite * /index.html
-        file_server
-
-        # Don't cache for SPA routes
         header {
-            Cache-Control "no-cache, must-revalidate"
-            -ETag
+            # X-My-Header "here"
+            # Cache-Control "no-cache, must-revalidate"
+            # Content-Security-Policy "
+            #     default-src 'self';
+            #     script-src 'self' 'unsafe-inline';
+            #     style-src 'self' 'unsafe-inline';
+            #     img-src 'self' https: data: blob:;
+            #     font-src 'self';
+            #     connect-src 'self' https:;
+            #     frame-src https: blob:;
+            #     frame-ancestors 'self' https:;
+            # "
+            # Cross-Origin-Opener-Policy "same-origin"
+            # Cross-Origin-Resource-Policy "same-site"
+            Permissions-Policy "geolocation=(), microphone=(), camera=()"
+            Referrer-Policy "strict-origin-when-cross-origin"
+            X-Content-Type-Options "nosniff"
+            X-Frame-Options "SAMEORIGIN"
+            # -ETag
+            match header Content-Type text/html*
         }
-    }
 
-    file_server
-
-    # Security headers
-    header {
-        Cross-Origin-Opener-Policy "same-origin"
-        Cross-Origin-Resource-Policy "same-site"
-        Permissions-Policy "geolocation=(), microphone=(), camera=()"
-        Referrer-Policy "strict-origin-when-cross-origin"
-        Strict-Transport-Security "max-age=86400"
-        X-Content-Type-Options nosniff
-        X-Frame-Options DENY
+        file_server
     }
 }
