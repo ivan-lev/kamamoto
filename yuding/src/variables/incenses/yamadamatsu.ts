@@ -3,6 +3,7 @@ import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/ingredients';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
+import { stock } from '@/variables/stock';
 
 const karaku: Incense[] = [
 	{
@@ -20,6 +21,7 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 16,
+		quantity: stock.yamadamatsu?.seifu,
 		isActive: true,
 		inStock: false,
 	},
@@ -39,6 +41,7 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 32,
+		quantity: stock.yamadamatsu?.shoren,
 		isActive: true,
 		inStock: false,
 	},
@@ -58,6 +61,7 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 22,
+		quantity: stock.yamadamatsu?.jinko,
 		isActive: true,
 		inStock: false,
 	},
@@ -77,6 +81,7 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 18,
+		quantity: stock.yamadamatsu?.byakudan,
 		isActive: true,
 		inStock: false,
 	},

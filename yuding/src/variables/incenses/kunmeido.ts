@@ -3,6 +3,7 @@ import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/ingredients';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
+import { stock } from '@/variables/stock';
 
 const reiryokoh: Incense[] = [
 	{
@@ -20,6 +21,7 @@ const reiryokoh: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 16,
+		quantity: stock.kunmeido?.reiryokoh,
 		isActive: true,
 		inStock: true,
 	},

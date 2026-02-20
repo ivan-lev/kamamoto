@@ -3,6 +3,7 @@ import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/ingredients';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
+import { stock } from '@/variables/stock';
 
 const daily: Incense[] = [
 	{
@@ -20,6 +21,7 @@ const daily: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 28,
+		quantity: stock.shoyeido?.madoka,
 		isActive: true,
 		inStock: true,
 	},
@@ -39,6 +41,7 @@ const daily: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 24,
+		quantity: stock.shoyeido?.kyonishiki,
 		isActive: true,
 		inStock: true,
 	},
@@ -58,6 +61,7 @@ const daily: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 36,
+		quantity: stock.shoyeido?.kinkaku,
 		isActive: true,
 		inStock: true,
 	},
@@ -79,6 +83,7 @@ const selects: Incense[] = [
 		lenght: 13,
 		price: 0,
 		pricePerStick: 28,
+		quantity: stock.shoyeido?.['baika-ju'],
 		isActive: true,
 		inStock: true,
 	},

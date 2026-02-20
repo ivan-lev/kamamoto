@@ -3,6 +3,7 @@ import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/ingredients';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
+import { stock } from '@/variables/stock';
 
 const premium: Incense[] = [
 	{
@@ -20,7 +21,7 @@ const premium: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 28,
-		quantity: 440,
+		quantity: stock.tennendo?.renzan,
 		isActive: true,
 		inStock: true,
 	},
@@ -40,7 +41,7 @@ const premium: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 24,
-		quantity: 440,
+		quantity: stock.tennendo?.karafune,
 		isActive: true,
 		inStock: true,
 	},
@@ -60,7 +61,7 @@ const premium: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 30,
-		quantity: 390,
+		quantity: stock.tennendo?.shingon,
 		isActive: true,
 		inStock: true,
 	},

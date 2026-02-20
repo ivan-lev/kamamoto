@@ -3,6 +3,7 @@ import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/ingredients';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
+import { stock } from '@/variables/stock';
 
 const daily: Incense[] = [
 	{
@@ -20,6 +21,7 @@ const daily: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 26,
+		quantity: stock.gyokushodo?.['jinko-hoen'],
 		isActive: true,
 		inStock: true,
 	},
@@ -39,6 +41,7 @@ const daily: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 38,
+		quantity: stock.gyokushodo?.['jinko-yomei'],
 		isActive: true,
 		inStock: true,
 	},
@@ -58,6 +61,7 @@ const daily: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 22,
+		quantity: stock.gyokushodo?.['jinko-kojurin'],
 		isActive: true,
 		inStock: true,
 	},
@@ -77,6 +81,7 @@ const daily: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 18,
+		quantity: stock.gyokushodo?.kojurin,
 		isActive: true,
 		inStock: true,
 	},
@@ -98,6 +103,7 @@ const lowSmoke: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 14,
+		quantity: stock.gyokushodo?.omiya,
 		isActive: true,
 		inStock: true,
 	},
@@ -117,6 +123,7 @@ const lowSmoke: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 16,
+		quantity: stock.gyokushodo?.sofu,
 		isActive: true,
 		inStock: true,
 	},
@@ -136,7 +143,7 @@ const lowSmoke: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 22,
-		quantity: 230,
+		quantity: stock.gyokushodo?.['seikyo-kojurin'],
 		isActive: true,
 		inStock: true,
 	},

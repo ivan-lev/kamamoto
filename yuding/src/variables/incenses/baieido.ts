@@ -3,6 +3,7 @@ import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/ingredients';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
+import { stock } from '@/variables/stock';
 
 const kobunboku: Incense[] = [
 	{
@@ -20,6 +21,7 @@ const kobunboku: Incense[] = [
 		lenght: 13,
 		price: 0,
 		pricePerStick: 28,
+		quantity: stock.baieido?.kobunboku,
 		isActive: true,
 		inStock: true,
 	},
@@ -39,6 +41,7 @@ const kobunboku: Incense[] = [
 		lenght: 13,
 		price: 0,
 		pricePerStick: 28,
+		quantity: stock.baieido?.['kaden-kobunboku'],
 		isActive: true,
 		inStock: true,
 	},
@@ -58,6 +61,7 @@ const kobunboku: Incense[] = [
 		lenght: 13,
 		price: 0,
 		pricePerStick: 32,
+		quantity: stock.baieido?.['bikou-kobunboku'],
 		isActive: true,
 		inStock: true,
 	},
@@ -74,12 +78,12 @@ const premium: Incense[] = [
 		manufacturer: manufacturers.baieido,
 		series: manufacturers.baieido.series?.premium,
 		ingredients: [Ingredients.sandalwoodIndian, Ingredients.aloeswoodVietnamese, Ingredients.patchouli, Ingredients.cassia, Ingredients.benzoin, Ingredients.florals, Ingredients.spices],
-		features: [Features.daily, Features.natural],
+		features: [Features.premium, Features.natural],
 		burnTime: 30,
 		lenght: 14,
 		price: 0,
 		pricePerStick: 48,
-		quantity: 160,
+		quantity: stock.baieido?.['shu-koh-koku'],
 		isActive: true,
 		inStock: true,
 	},
