@@ -16,7 +16,7 @@ export default function SliderArticle({ slides }: Props) {
 		&& (
 			<Swiper
 				className="article-slider"
-				keyboard={{ enabled: true, onlyInViewport: true }}
+				keyboard={{ enabled: true, onlyInViewport: true, pageUpDown: false }}
 				modules={ [Keyboard, Pagination] }
 				pagination={{ clickable: true }}
 				loop={ slides.length > 1 }

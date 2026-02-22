@@ -35,7 +35,7 @@ export default function Slider({ slides }: Props) {
 			<section className="section slider">
 				<Swiper
 					modules={ [Keyboard, Navigation, Thumbs] }
-					keyboard={{ enabled: true, onlyInViewport: true }}
+					keyboard={{ enabled: true, onlyInViewport: true, pageUpDown: false }}
 					navigation={ true }
 					spaceBetween={ 10 }
 					speed={ 1000 }
