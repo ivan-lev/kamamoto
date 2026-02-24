@@ -7,12 +7,10 @@ export default function Manufacturers() {
 	const [manufacturersList, setManufacturersList] = useState<string[]>([]);
 
 	useEffect(() => {
-		const list = [];
-		for (const property in manufacturers) {
-			const name = manufacturers[property].slug;
-			if (name !== 'unknown')
-				list.push(name);
-		}
+		const list = Object.values(manufacturers)
+			.map(manufacturer => manufacturer.slug)
+			.filter(name => name !== 'unknown');
+
 		setManufacturersList(list);
 	}, []);
 

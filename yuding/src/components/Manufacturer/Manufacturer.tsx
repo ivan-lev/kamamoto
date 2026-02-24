@@ -1,4 +1,4 @@
-import type { Incense as IIncense, Manufacturer as IManufacturer } from '@/variables/incences.types';
+import type { Incense as IIncense, Manufacturer as IManufacturer, manufacturersNames } from '@/variables/incences.types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
@@ -13,13 +13,15 @@ export default function Manufacturer() {
 	const [manufacturerToDisplay, setManufacturerToDisplay] = useState<IManufacturer>();
 	const [incensesToDisplay, setIncensesToDisplay] = useState<IIncense[]>();
 
+	function isManufacturerName(value: string): value is manufacturersNames {
+		return value in manufacturers;
+	}
+
 	useEffect(() => {
-		for (const manufacturer in manufacturers) {
-			if (manufacturer === manufacturerParam) {
-				setManufacturerToDisplay(manufacturers[manufacturer]);
-			}
+		if (manufacturerParam && isManufacturerName(manufacturerParam)) {
+			setManufacturerToDisplay(manufacturers[manufacturerParam]);
 		}
-	}, []);
+	}, [manufacturerParam]);
 
 	useEffect(() => {
 		setIncensesToDisplay(incenses.filter(incense => incense.manufacturer.slug === manufacturerParam && incense.isActive) || []);
