@@ -2,22 +2,23 @@ import { Features } from '@/variables/features';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
 
-export type manufacturersNames = 'baieido' | 'gyokushodo' | 'kunmeido' | 'kyukyodo' | 'shoyeido' | 'tennendo' | 'yamadamatsu' | 'unknown';
+export type manufacturersNames = 'baieido' | 'gyokushodo' | 'kunmeido' | 'kyukyodo' | 'seijudo' | 'shoyeido' | 'tennendo' | 'yamadamatsu' | 'unknown';
 
-export interface IncencesSeriesNames {
+export interface manufacturerIncencesNames {
 	baieido: 'kobunboku' | 'kaden-kobunboku' | 'bikou-kobunboku' | 'shu-koh-koku';
 	gyokushodo: 'jinko-hoen' | 'jinko-yomei' | 'jinko-kojurin' | 'kojurin' | 'omiya' | 'sofu' | 'seikyo-kojurin';
 	kunmeido: 'reiryokoh' | 'jinko-reiryokoh';
 	kyukyodo: 'shinnyo';
+	seijudo: 'byakudan' | 'jinko';
 	shoyeido: 'madoka' | 'kyonishiki' | 'kinkaku' | 'baika-ju';
 	tennendo: 'renzan' | 'karafune' | 'shingon';
-	yamadamatsu: 'seifu' | 'shoren' | 'jinko' | 'byakudan';
+	yamadamatsu: 'seifu' | 'shoren' | 'jinko' | 'byakudan' | 'kayo' | 'kagetsu' | 'oubai';
 	unknown: never;
 }
 
 export type Stock = {
-	[K in keyof IncencesSeriesNames]?:
-	Partial<Record<IncencesSeriesNames[K], number>>;
+	[K in keyof manufacturerIncencesNames]?:
+	Partial<Record<manufacturerIncencesNames[K], number>>;
 };
 
 interface Series {

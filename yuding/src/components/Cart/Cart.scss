@@ -19,8 +19,32 @@
 	}
 
 	&__price-info {
-		margin-left: auto;
 		text-align: right;
+
+		@media (max-width: 480px) {
+			margin-left: auto;
+		}
+	}
+
+	&__bottom {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+
+		@media (max-width: 480px) {
+			flex-direction: column;
+			gap: var(--gap-16)
+		}
+	}
+
+	&__clear.button {
+		align-self: start;
+    min-height: var(--input-height);
+		margin-top: auto;
+
+		@media (max-width: 768px) {
+			margin-top: revert;
+		}
 	}
 
 	.container {

@@ -87,4 +87,6 @@ const karaku: Incense[] = [
 	},
 ];
 
-export const yamadamatsuIncences: Incense[] = [...karaku];
+const premium: Incense[] = [];
+
+export const yamadamatsuIncences: Incense[] = [...karaku, ...premium];

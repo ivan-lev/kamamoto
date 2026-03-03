@@ -1,11 +1,13 @@
 .manufacturers {
 	display: grid;
-	grid-template-columns: repeat(7, minmax(0, 1fr));
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 	gap: var(--gap-24);
+	max-width: 1200px;
 
 	&__card {
 		position: relative;
 
+		padding: var(--gap-8);
 		border: 1px solid var(--background-muted);
 		border-radius: var(--border-radius-s);
 
@@ -13,14 +15,22 @@
 
 		transition: opacity 0.4s ease, background-color 0.4s ease;
 
-		&:hover {
-			opacity: 1;
-			background-color: var(--color-secondary-002);
+
+		@media (hover) {
+			&:hover {
+				opacity: 1;
+				background-color: var(--color-secondary-002);
+
+				.manufacturers__logo {
+					transform: scale(1.02);
+				}
+			}
 		}
 	}
 
 	&__logo {
 		width: 100%;
+		transition: transform 0.4s ease;
 	}
 
 	&__link {

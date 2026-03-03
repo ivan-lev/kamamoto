@@ -78,6 +78,11 @@ export function useCart() {
 		);
 	};
 
+	const clearCart = () => {
+		setItems([]);
+		localStorage.removeItem(STORAGE_KEY);
+	};
+
 	const getItemCount = (manufacturer: string, incense: string) =>
 		items.find(
 			i =>
@@ -89,6 +94,7 @@ export function useCart() {
 		items,
 		addItem,
 		removeItem,
+		clearCart,
 		getItemCount,
 	};
 }

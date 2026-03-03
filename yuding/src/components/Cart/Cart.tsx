@@ -14,7 +14,7 @@ export interface CartDisplayItem {
 }
 
 export default function Cart() {
-	const { addItem, items, removeItem } = useCart();
+	const { addItem, items, removeItem, clearCart } = useCart();
 	const [itemsToDisplay, setItemsToDisplay] = useState<CartDisplayItem[]>([]);
 	const [totalPrice, setTotalPrice] = useState<number>(0);
 	const [deliveryPrice, setDeliveryPrice] = useState<number>(countDeliveryPrice(0));
@@ -48,61 +48,70 @@ export default function Cart() {
 		setDiscount(countDiscount(newTotalPrice));
 	}, [items]);
 
-	return !items.length
-		? (<p>Корзина пуста</p>)
-		: (
-			<>
-				<section className="section cart">
-					<h2>Корзина</h2>
-
-					<div>
-						<p>Ниже находится список того, что вы выбрали. Что делать дальше:</p>
-						<br />
-						<ul>
-							<li>докрутить список до идеального варианта</li>
-							<li>нажать кнопку "Копировать корзину"</li>
-							<li>нажать кнопку "Написать мне" - вас перекинет в наш диалог в Телеграме </li>
-							<li>тапнуть по полю "Сообщение" и нажать "Вставить"</li>
-						</ul>
-					</div>
-
-					<p>* При увеличении общей стоимости благовоний сначала снижается стоимость доставки, а после 3500 р появляется скидка, которая увеличивается до 10%.</p>
-
-					<div className="container">
-						<div className="cart__list">
-							<div className="cart-row">
-								<div className="cart-row__item"><span></span></div>
-								<div className="cart-row__item"><span>название</span></div>
-								<div className="cart-row__item"><span>кол-во, шт</span></div>
-								<div className="cart-row__item"><span>ст-ть</span></div>
-								<div className="cart-row__item"><span></span></div>
+	return (
+		<>
+			<section className="section cart">
+				<h2>Корзина</h2>
+				{ items.length
+					? (
+						<>
+							<div>
+								<p>Ниже находится список того, что вы выбрали. Что делать дальше:</p>
+								<br />
+								<ul>
+									<li>докрутить список до идеального варианта</li>
+									<li>нажать кнопку "Копировать корзину"</li>
+									<li>нажать кнопку "Написать мне" - вас перекинет в наш диалог в Телеграме </li>
+									<li>тапнуть по полю "Сообщение" и нажать "Вставить"</li>
+								</ul>
 							</div>
 
-							{ itemsToDisplay.map(({ incense, count }) => (
-								<CartRow
-									key={ `${incense.manufacturer.slug}-${incense.slug}` }
-									item={ incense }
-									count={ count }
-									countEdit={ addItem }
-									removeAction={ () => removeItem(incense.manufacturer.slug, incense.slug) }
-								/>
-							)) }
-						</div>
+							<p>* При увеличении общей стоимости благовоний сначала снижается стоимость доставки, а после 3500 р появляется скидка, которая увеличивается до 10%.</p>
 
-						<p className="cart__price-info">
-							{ `Благовония: ${totalPrice}р` }
-							<br />
-							{ `Доставка: ${deliveryPrice ? `${deliveryPrice.toString()}р` : 'бесплатно'}` }
-							<br />
-							{ discount.amount > 0 && `Скидка: -${discount.amount}р (${discount.percents}%)` }
-							<br />
-							<b>{ `Итого: ${totalPrice - discount.amount + deliveryPrice}р` }</b>
-						</p>
-					</div>
+							<div className="container">
+								<div className="cart__list">
+									<div className="cart-row">
+										<div className="cart-row__item"><span></span></div>
+										<div className="cart-row__item"><span>название</span></div>
+										<div className="cart-row__item"><span>кол-во, шт</span></div>
+										<div className="cart-row__item"><span>ст-ть</span></div>
+										<div className="cart-row__item"><span></span></div>
+									</div>
 
-				</section>
+									{ itemsToDisplay.map(({ incense, count }) => (
+										<CartRow
+											key={ `${incense.manufacturer.slug}-${incense.slug}` }
+											item={ incense }
+											count={ count }
+											countEdit={ addItem }
+											removeAction={ () => removeItem(incense.manufacturer.slug, incense.slug) }
+										/>
+									)) }
+								</div>
 
-				<CartCopy items={ itemsToDisplay } totalPrice={ totalPrice } deliveryPrice={ deliveryPrice } discount={ discount } />
-			</>
-		);
+								<div className="cart__bottom">
+									<button className="button cart__clear" onClick={ clearCart }>Очистить корзину</button>
+
+									<p className="cart__price-info">
+										{ `Благовония: ${totalPrice}р` }
+										<br />
+										{ `Доставка: ${deliveryPrice ? `${deliveryPrice.toString()}р` : 'бесплатно'}` }
+										<br />
+										{ discount.amount > 0 && `Скидка: -${discount.amount}р (${discount.percents}%)` }
+										<br />
+										<b>{ `Итого: ${totalPrice - discount.amount + deliveryPrice}р` }</b>
+									</p>
+								</div>
+							</div>
+
+						</>
+					)
+
+					: <div className="container"><span>Ваша корзина пока пуста. Возможно вы заполняли её на другом устройстве - тогда она сохранилась там, а здесь нужно собрать её заново.</span></div> }
+
+			</section>
+
+			<CartCopy items={ itemsToDisplay } totalPrice={ totalPrice } deliveryPrice={ deliveryPrice } discount={ discount } />
+		</>
+	);
 }

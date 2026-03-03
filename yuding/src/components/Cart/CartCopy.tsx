@@ -43,7 +43,7 @@ export default function CartCopy({ items, totalPrice, deliveryPrice, discount }:
 	return (
 		<section className="section cart-copy">
 			<div className="cart-copy__actions">
-				<button className="button cart-copy__button" onClick={ handleCopy }>Копировать корзину</button>
+				{ items.length !== 0 && <button className="button cart-copy__button" onClick={ handleCopy }>Копировать корзину</button> }
 
 				<a target="_blank" className="link" href="https://t.me/ivanlev">
 					<button className="button">Написать мне</button>
