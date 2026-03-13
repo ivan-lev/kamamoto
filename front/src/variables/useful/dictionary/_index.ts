@@ -1,8 +1,3 @@
-// онисака - металлический порошок в керамике сино
-// https://en.wikipedia.org/wiki/Kinrande
-// karamono koraimono wamono
-// 大海茶入 - daikai chaire - форма чайницы
-
 import { a } from '@/variables/useful/dictionary/a';
 import { b } from '@/variables/useful/dictionary/b';
 import { d } from '@/variables/useful/dictionary/d';
