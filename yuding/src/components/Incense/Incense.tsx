@@ -17,7 +17,7 @@ export default function Incense() {
 	const inCart = getItemCount(manufacturerParam!, incenseParam!);
 
 	useEffect(() => {
-		setIncenseToDisplay(incenses.find(incense => incense.slug === incenseParam));
+		setIncenseToDisplay(incenses.find(incense => incense.slug === incenseParam && incense.manufacturer.slug === manufacturerParam));
 	}, []);
 
 	useEffect(() => {
@@ -100,7 +100,7 @@ export default function Incense() {
 					{ incenseToDisplay?.inStock
 						? (
 							<div className="article__price">
-								<Counter count={ count } action={ setCount } maxQuantity={ incenseToDisplay.quantity || 50 } />
+								<Counter count={ count } action={ setCount } maxQuantity={ incenseToDisplay.quantity } />
 
 								<button
 									className="button article__add-to-cart"
