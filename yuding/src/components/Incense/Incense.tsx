@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import Counter from '@/components/Counter/Counter';
 import Slider from '@/components/Slider/Slider';
-import { useCart } from '@/hooks/useCart';
+import { useCartContext } from '@/contexts/CartContext';
 import { incenses } from '@/variables/incenses/_index';
 import './Incense.scss';
 
@@ -13,7 +13,7 @@ export default function Incense() {
 	const [incenseToDisplay, setIncenseToDisplay] = useState<IIncense>();
 	const [photosToDisplay, setPhotosToDisplay] = useState<string[]>();
 	const [count, setCount] = useState<number>(5);
-	const { addItem, getItemCount } = useCart();
+	const { addItem, getItemCount } = useCartContext();
 	const inCart = getItemCount(manufacturerParam!, incenseParam!);
 
 	useEffect(() => {

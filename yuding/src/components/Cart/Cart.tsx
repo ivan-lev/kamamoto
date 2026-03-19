@@ -2,7 +2,7 @@ import type { Incense } from '@/variables/incences.types';
 import { useEffect, useState } from 'react';
 import CartCopy from '@/components/Cart/CartCopy';
 import CartRow from '@/components/Cart/CartRow';
-import { useCart } from '@/hooks/useCart';
+import { useCartContext } from '@/contexts/CartContext';
 import { countDeliveryPrice } from '@/utils/countDeliveryPrice';
 import { countDiscount } from '@/utils/countDiscount';
 import { incenses } from '@/variables/incenses/_index';
@@ -14,7 +14,7 @@ export interface CartDisplayItem {
 }
 
 export default function Cart() {
-	const { addItem, items, removeItem, clearCart } = useCart();
+	const { addItem, items, removeItem, clearCart } = useCartContext();
 	const [itemsToDisplay, setItemsToDisplay] = useState<CartDisplayItem[]>([]);
 	const [totalPrice, setTotalPrice] = useState<number>(0);
 	const [deliveryPrice, setDeliveryPrice] = useState<number>(countDeliveryPrice(0));
