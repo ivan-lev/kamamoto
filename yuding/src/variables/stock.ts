@@ -2,7 +2,7 @@ import type { Stock } from '@/variables/incences.types';
 
 export const stock: Stock = {
 	baieido: {
-		'kobunboku': 130,
+		'kobunboku': 115,
 		'kaden-kobunboku': 120,
 		'bikou-kobunboku': 125,
 		'shu-koh-koku': 150,
@@ -20,7 +20,7 @@ export const stock: Stock = {
 		reiryokoh: 180,
 	},
 	kyukyodo: {
-		shinnyo: 20,
+		shinnyo: 5,
 	},
 	seijudo: {
 		byakudan: 0,
@@ -28,20 +28,20 @@ export const stock: Stock = {
 	},
 	shoyeido: {
 		'madoka': 90,
-		'kyonishiki': 80,
+		'kyonishiki': 65,
 		'kinkaku': 80,
 		'baika-ju': 125,
 	},
 	tennendo: {
-		renzan: 395,
-		karafune: 395,
-		shingon: 345,
+		renzan: 320,
+		karafune: 350,
+		shingon: 285,
 	},
 	yamadamatsu: {
 		seifu: 0,
-		shoren: 9,
-		jinko: 0,
-		byakudan: 0,
+		shoren: 5,
+		jinko: 5,
+		byakudan: 40,
 	},
 	unknown: {},
 };

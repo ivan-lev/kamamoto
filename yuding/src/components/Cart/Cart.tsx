@@ -39,7 +39,8 @@ export default function Cart() {
 				count: cartItem.count,
 			});
 
-			newTotalPrice += cartItem.count * incense.pricePerStick;
+			if (incense.inStock && incense.quantity > 0)
+				newTotalPrice += cartItem.count * incense.pricePerStick;
 		});
 
 		setItemsToDisplay(result);

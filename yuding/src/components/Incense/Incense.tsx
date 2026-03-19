@@ -97,7 +97,7 @@ export default function Incense() {
 							) }
 					</div>
 
-					{ incenseToDisplay?.inStock
+					{ incenseToDisplay?.inStock && incenseToDisplay.quantity > 0
 						? (
 							<div className="article__price">
 								<Counter count={ count } action={ setCount } maxQuantity={ incenseToDisplay.quantity } />

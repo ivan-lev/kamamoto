@@ -12,6 +12,8 @@ interface Props {
 export default function CartRow({ item, count, countEdit, removeAction }: Props) {
 	const base = import.meta.env.BASE_URL;
 
+	const isInStock = item?.inStock && item.quantity > 0;
+
 	return (
 		<div className="cart-row">
 			<div className="cart-row__item cart-row__item--picture">
@@ -31,7 +33,7 @@ export default function CartRow({ item, count, countEdit, removeAction }: Props)
 			</div>
 
 			<div className="cart-row__item cart-row__item--counter">
-				{ item?.inStock
+				{ isInStock
 					? (
 						<div className="counter counter--cart">
 							<div className="input counter__buttons">
@@ -45,7 +47,7 @@ export default function CartRow({ item, count, countEdit, removeAction }: Props)
 			</div>
 
 			<div className="cart-row__item cart-row__item--price">
-				{ item?.inStock ? <span>{ `${count * item?.pricePerStick} р` }</span> : <span>-</span> }
+				{ isInStock ? <span>{ `${count * item?.pricePerStick} р` }</span> : <span>-</span> }
 			</div>
 
 			<div className="cart-row__item cart-row__item--delete">
