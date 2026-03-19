@@ -21,7 +21,7 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 16,
-		quantity: stock.yamadamatsu?.seifu,
+		quantity: stock.yamadamatsu?.seifu || 0,
 		isActive: true,
 		inStock: false,
 	},
@@ -41,9 +41,9 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 32,
-		quantity: stock.yamadamatsu?.shoren,
+		quantity: stock.yamadamatsu?.shoren || 0,
 		isActive: true,
-		inStock: false,
+		inStock: true,
 	},
 
 	{
@@ -61,9 +61,9 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 22,
-		quantity: stock.yamadamatsu?.jinko,
+		quantity: stock.yamadamatsu?.jinko || 0,
 		isActive: true,
-		inStock: false,
+		inStock: true,
 	},
 
 	{
@@ -81,9 +81,9 @@ const karaku: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 18,
-		quantity: stock.yamadamatsu?.byakudan,
+		quantity: stock.yamadamatsu?.byakudan || 0,
 		isActive: true,
-		inStock: false,
+		inStock: true,
 	},
 ];
 

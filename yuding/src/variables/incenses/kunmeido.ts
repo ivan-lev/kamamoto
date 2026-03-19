@@ -21,7 +21,7 @@ const reiryokoh: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 16,
-		quantity: stock.kunmeido?.reiryokoh,
+		quantity: stock.kunmeido?.reiryokoh || 0,
 		isActive: true,
 		inStock: true,
 	},

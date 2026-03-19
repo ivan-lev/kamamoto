@@ -3,6 +3,7 @@ import { Features } from '@/variables/features';
 import { Ingredients } from '@/variables/ingredients';
 import { manufacturers } from '@/variables/manufacturers/_index';
 import { origin } from '@/variables/origin';
+import { stock } from '@/variables/stock';
 
 export const premium: Incense[] = [
 	{
@@ -20,7 +21,7 @@ export const premium: Incense[] = [
 		origin: origin.japan,
 		price: 0,
 		pricePerStick: 45,
-		quantity: 50,
+		quantity: stock.kyukyodo?.shinnyo || 0,
 		isActive: true,
 		inStock: true,
 	},
