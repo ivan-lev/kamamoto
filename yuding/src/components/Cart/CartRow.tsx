@@ -17,13 +17,15 @@ export default function CartRow({ item, count, countEdit, removeAction }: Props)
 	return (
 		<div className="cart-row">
 			<div className="cart-row__item cart-row__item--picture">
-				<picture className="cart-row__picture">
-					<img
-						className="cart-row__image"
-						alt="Изабражение лота"
-						src={ `${base}images/incenses/${item?.manufacturer.slug}/${item?.slug}/${item?.photos[0]}` }
-					/>
-				</picture>
+				<Link target="_blank"className="link" to={ `/${item?.manufacturer.slug}/${item?.slug}` }>
+					<picture className="cart-row__picture">
+						<img
+							className="cart-row__image"
+							alt="Изабражение лота"
+							src={ `${base}images/incenses/${item?.manufacturer.slug}/${item?.slug}/${item?.photos[0]}` }
+						/>
+					</picture>
+				</Link>
 			</div>
 
 			<div className="cart-row__item cart-row__item--title">
