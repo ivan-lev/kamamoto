@@ -4,6 +4,7 @@ export enum Ingredients {
 	aloeswoodVietnamese = 'вьетнамский агар',
 	benzoin = 'бензоин',
 	borneol = 'борнеол', // 龍脳
+	campfor = 'камфора',
 	cassia = 'кассия',
 	charcoal = 'древесный уголь', // 木炭粉
 	cinnamon = 'корица', // 桂皮
