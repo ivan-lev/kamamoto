@@ -1,44 +1,51 @@
-import { Element } from 'html-react-parser';
+import { HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
 
 const mode = import.meta.env.MODE;
 
-export const htmlParserOptions = {
-	replace(domNode: unknown) {
-		if (domNode instanceof Element) {
-			if (domNode.name === 'p') {
-				domNode.attribs.class = 'text';
+function isElement(node: DOMNode): node is Element {
+  return node.type === 'tag';
+}
+
+export const htmlParserOptions: HTMLReactParserOptions = {
+	replace(domNode) {
+
+		if (isElement(domNode)) {
+      const { name, attribs } = domNode;
+
+			if (name === 'p') {
+				attribs.class = 'text';
 			}
 
-			else if (domNode.name === 'h2') {
-				domNode.attribs.class = 'section__header';
+			else if (name === 'h2') {
+				attribs.class = 'section__header';
 			}
 
-			else if (domNode.name === 'span') {
-				domNode.attribs.class = 'text';
+			else if (name === 'span') {
+				attribs.class = 'text';
 			}
 
-			else if (['ul', 'ol'].includes(domNode.name)) {
-				domNode.attribs.class = 'list';
+			else if (['ul', 'ol'].includes(name)) {
+				attribs.class = 'list';
 			}
 
-			else if (domNode.name === 'a') {
-				domNode.attribs.target = domNode.attribs.class === 'self' ? '_self' : '_blank';
-				domNode.attribs.class = 'link link_usual';
+			else if (name === 'a') {
+				attribs.target = attribs.class === 'self' ? '_self' : '_blank';
+				attribs.class = 'link link_usual';
 			}
 
-			else if (domNode.name === 'blockquote') {
-				domNode.attribs.class = 'blockquote';
+			else if (name === 'blockquote') {
+				attribs.class = 'blockquote';
 			}
 
-			else if (domNode.name === 'img') {
-				domNode.attribs.class = `article-image ${domNode.attribs.class}`;
-				domNode.attribs.crossorigin = 'anonymous';
+			else if (name === 'img') {
+				attribs.class = `article-image ${attribs.class || ''}`;
+				attribs.crossorigin = 'anonymous';
 				if (mode !== 'production') {
-					domNode.attribs.src = `http://localhost:3000${domNode.attribs.src}`;
+					attribs.src = `http://localhost:3000${attribs.src}`;
 				}
 			}
 
 			return domNode;
 		}
-	},
+	}
 };
