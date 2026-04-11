@@ -74,7 +74,8 @@ function updateLetter(req: Request, res: Response, next: NextFunction): void {
 }
 
 function deleteLetter(req: Request, res: Response, next: NextFunction): void {
-	Letter.findOneAndDelete({ id: req.params.id })
+	const id = Number(req.params.id);
+	Letter.findOneAndDelete({ id })
 		.orFail()
 		.select('_id')
 		.then(letter => res.send(letter))

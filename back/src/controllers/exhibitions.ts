@@ -62,7 +62,8 @@ function createExhibition(req: Request, res: Response, next: NextFunction): void
 }
 
 function getExhibitionById(req: Request, res: Response, next: NextFunction): void {
-	Exhibition.findOne({ id: req.params.id }, { _id: 0 })
+	const id = Number(req.params.id);
+	Exhibition.findOne({ id }, { _id: 0 })
 		.orFail()
 		.then((exhibition) => {
 			const { photos, poster } = exhibition;
@@ -97,7 +98,8 @@ function getExhibitionById(req: Request, res: Response, next: NextFunction): voi
 
 function updateExhibition(req: Request, res: Response, next: NextFunction): void {
 	const newExhibitionData: ExhibitionType = req.body;
-	Exhibition.findOneAndUpdate({ id: req.params.id }, newExhibitionData, {
+	const id = Number(req.params.id);
+	Exhibition.findOneAndUpdate({ id }, newExhibitionData, {
 		new: true,
 		runValidators: true,
 		projection: { _id: 0 },
@@ -122,7 +124,8 @@ function updateExhibition(req: Request, res: Response, next: NextFunction): void
 }
 
 function deleteExhibition(req: Request, res: Response, next: NextFunction): void {
-	Exhibition.findOneAndDelete({ id: req.params.id })
+	const id = Number(req.params.id);
+	Exhibition.findOneAndDelete({ id })
 		.orFail()
 		.then(exhibition => res.send(exhibition.id))
 		.catch((error) => {

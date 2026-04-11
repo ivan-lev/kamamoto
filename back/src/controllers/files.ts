@@ -74,7 +74,8 @@ function updateFile(req: Request, res: Response, next: NextFunction): void {
 }
 
 function deleteFile(req: Request, res: Response, next: NextFunction): void {
-	File.findOneAndDelete({ id: req.params.id })
+	const id = Number(req.params.id);
+	File.findOneAndDelete({ id })
 		.orFail()
 		.select('_id')
 		.then(file => res.send(file))

@@ -31,8 +31,9 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 }
 
 async function findExhibitById(req: Request, res: Response, next: NextFunction) {
+	const id = Number(req.params.id);
 	try {
-		const exhibit = await Exhibit.findOne({ id: req.params.id }, '-_id')
+		const exhibit = await Exhibit.findOne({ id }, '-_id')
 			.populate<{ style: IStyle }>({ path: 'style', select: '-_id name title description mapImage showArticle' })
 			.populate<{ potter: IPotter }>({ path: 'potter', select: '-_id' })
 			.lean()
@@ -79,8 +80,8 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 
 	try {
 		const category = await Category.findOne({ category: exhibit.category });
-		const style = await Style.findOne({ name: exhibit.style });
-		const potter = await Potter.findOne({ id: exhibit.potter });
+		const style = await Style.findOne({ name: String(exhibit.style) });
+		const potter = await Potter.findOne({ id: String(exhibit.potter) });
 
 		const result = await Exhibit.create({ ...exhibit, category: category?._id, style: style?._id, potter: potter?._id });
 		res.status(201).send(result);
@@ -103,7 +104,8 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 }
 
 function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
-	Exhibit.findOneAndDelete({ id: req.params.id })
+	const id = Number(req.params.id);
+	Exhibit.findOneAndDelete({ id })
 		.orFail()
 		.then((exhibit: ExhibitType) => res.send(exhibit))
 		.catch((error: any) => {
@@ -120,14 +122,15 @@ function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
 }
 
 async function updateExhibit(req: Request, res: Response, next: NextFunction) {
+	const id = Number(req.params.id);
 	const exhibit: ExhibitType = req.body;
 
 	try {
 		const category = await Category.findOne({ category: exhibit.category });
-		const style = await Style.findOne({ name: exhibit.style });
+		const style = await Style.findOne({ name: String(exhibit.style) });
 
 		const result = await Exhibit.findOneAndUpdate(
-			{ id: req.params.id },
+			{ id },
 			{ ...exhibit, category: category?._id, style: style?._id },
 			{ new: true, runValidators: true },
 		).select({ _id: 0 }).orFail().populate({

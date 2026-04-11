@@ -1,4 +1,7 @@
+import type { Types } from 'mongoose';
+
 export interface Potter {
+	_id: Types.ObjectId;
 	id: string;
 	name: string;
 	japaneseName?: string;

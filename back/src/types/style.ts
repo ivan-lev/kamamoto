@@ -1,3 +1,5 @@
+import type { Types } from 'mongoose';
+
 interface ArticleSlide {
 	filename: string;
 	source?: string;
@@ -10,7 +12,7 @@ interface ArticleSection {
 }
 
 export interface Style {
-	_id: string;
+	_id: Types.ObjectId;
 	name: string;
 	title: string;
 	description: string;
