@@ -2,8 +2,6 @@ import type { ArticleSlide } from '@/components/visitor/Article/Article.types';
 import { Keyboard, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Picture from '@/components/visitor/Picture/Picture';
-import 'swiper/css';
-import 'swiper/css/pagination';
 
 interface Props {
 	slides: ArticleSlide[];

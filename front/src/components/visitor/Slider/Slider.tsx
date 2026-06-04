@@ -4,9 +4,6 @@ import { useState } from 'react';
 import { Keyboard, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Picture from '@/components/visitor/Picture/Picture';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
 
 interface Props {
 	slides: string[];

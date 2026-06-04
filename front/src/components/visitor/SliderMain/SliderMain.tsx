@@ -2,9 +2,6 @@ import { Autoplay, EffectFade, Keyboard, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Picture from '@/components/visitor/Picture/Picture';
 import './SliderMain.scss';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
 
 interface Props {
 	slides: string[];
