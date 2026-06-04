@@ -27,6 +27,10 @@
 		border-radius: var(--border-radius-s);
 
 		background: var(--background-muted);
+
+		@media (max-width: 1024px) {
+			position: static;
+		}
 	}
 
 	&__content {

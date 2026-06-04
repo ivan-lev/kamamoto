@@ -1,16 +1,15 @@
-import { HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
+import type { DOMNode, Element, HTMLReactParserOptions } from 'html-react-parser';
 
 const mode = import.meta.env.MODE;
 
 function isElement(node: DOMNode): node is Element {
-  return node.type === 'tag';
+	return node.type === 'tag';
 }
 
 export const htmlParserOptions: HTMLReactParserOptions = {
 	replace(domNode) {
-
 		if (isElement(domNode)) {
-      const { name, attribs } = domNode;
+			const { name, attribs } = domNode;
 
 			if (name === 'p') {
 				attribs.class = 'text';
@@ -47,5 +46,5 @@ export const htmlParserOptions: HTMLReactParserOptions = {
 
 			return domNode;
 		}
-	}
+	},
 };

@@ -22,29 +22,26 @@ export default function CeramicStylesFormArticle() {
 		<fieldset className="form__fieldset">
 			<legend className="form__legend">Секции статьи</legend>
 
-			<div className="form__grid">
+			{ article?.map((section, index) => <CeramicStyleArticleSection key={ index } section={ section } sectionIndex={ index } />) }
 
-				{ article?.map((section, index) => <CeramicStyleArticleSection key={ index } section={ section } sectionIndex={ index } />) }
+			<div className="form__row form__row-12 form__row-12--inline">
+				<button className="button" type="button" onClick={ addArticleSection }>Добавить секцию</button>
 
-				<div className="form__row form__row-12 form__row-12--inline">
-					<button className="button" type="button" onClick={ addArticleSection }>Добавить секцию</button>
+				<span>Показать статью</span>
+				<label
+					className={ `checkbox-label ${
+						showArticle ? 'checkbox-label--checked' : ''
+					} ` }
+				>
+					<input
+						className="checkbox-input"
+						type="checkbox"
+						checked={ showArticle }
+						name="showArticle"
+						onChange={ handleCheckBox }
+					/>
+				</label>
 
-					<span>Показать статью</span>
-					<label
-						className={ `checkbox-label ${
-							showArticle ? 'checkbox-label--checked' : ''
-						} ` }
-					>
-						<input
-							className="checkbox-input"
-							type="checkbox"
-							checked={ showArticle }
-							name="showArticle"
-							onChange={ handleCheckBox }
-						/>
-					</label>
-
-				</div>
 			</div>
 		</fieldset>
 

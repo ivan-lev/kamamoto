@@ -71,8 +71,8 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 	}, [section.content]);
 
 	return (
-		<div style={{ gridColumn: '1 / -1' }} className="form__grid">
-			<div className="form__row form__row-3">
+		<div style={{ gridColumn: '1 / -1' }} className="form__grid form__grid--with-separator">
+			<div className="form__row form__row-9">
 				<span>
 					{ `секция ${sectionIndex + 1}` }
 				</span>
@@ -90,9 +90,7 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 						<img src="/__spritemap#sprite-arrow-turn-down-view"></img>
 					</button>
 				) }
-			</div>
 
-			<div className="form__row form__row-3">
 				<button type="button" className="checkbox-label checkbox-label--small" onClick={ deleteSection }>
 					<img src="/__spritemap#sprite-times-view"></img>
 				</button>

@@ -4,6 +4,7 @@ export const n: DictionarySection = {
 	letter: 'н',
 	terms: [
 		{ title: '<span id="nadare">Надарэ</span>', kanji: '傾れ', definition: 'подтёк глазури на керамическом изделии' },
+		{ title: '<span id="nanabake">Нанабакэ</span>', kanji: '萩の七化け', definition: '"семь изменений" - процесс изменения цвета керамики Хаги, при котором чай медленно окрашивает глину через тонкие трещины в глазури, углубляя и обогащая цвет и текстуру изделия' },
 		{ title: '<span id="nasu">Насу</span>', kanji: '茄子', definition: 'дословно "баклажан" - форма керамической чайницы тяирэ' },
 		{ title: '<span id="nihon-rokkoyo">Нихон роккоё</span>', kanji: '日本六古窯', definition: 'см. Роккоё' },
 		{ title: '<span id="noborigama">Ноборигама</span>', kanji: '登り窯', definition: 'многокамерные печи дровяного обжига, появившиеся в Японии (на Кюсю) в конце XVI' },

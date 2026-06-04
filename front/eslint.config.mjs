@@ -16,7 +16,7 @@ export default antfu({
 		'@stylistic/indent': ['error', 'tab'],
 		'@stylistic/indent-binary-ops': ['error', 'tab'],
 		'@stylistic/jsx-indent-props': ['error', 'tab'],
-		'@stylistic/jsx-curly-spacing': ['error', { when: 'always', children: true, spacing: { objectLiterals: 'never' } }],
+		'@stylistic/jsx-curly-spacing': ['error', { when: 'always', children: true, spacing: { objectLiterals: 'never', comments: 'never' } }],
 		'@stylistic/no-tabs': ['error', { allowIndentationTabs: true }],
 		'@stylistic/semi': ['error', 'always'],
 		'@stylistic/member-delimiter-style': ['error', {
