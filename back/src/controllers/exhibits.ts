@@ -132,7 +132,7 @@ async function updateExhibit(req: Request, res: Response, next: NextFunction) {
 		const result = await Exhibit.findOneAndUpdate(
 			{ id },
 			{ ...exhibit, category: category?._id, style: style?._id },
-			{ new: true, runValidators: true },
+			{ returnDocument: 'after', runValidators: true },
 		).select({ _id: 0 }).orFail().populate({
 			path: 'category',
 			select: 'name title -_id',

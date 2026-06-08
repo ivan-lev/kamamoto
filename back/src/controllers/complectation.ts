@@ -49,7 +49,7 @@ async function updateComplectation(req: Request, res: Response, next: NextFuncti
 		const result = await Complectation.findOneAndUpdate(
 			{ name },
 			payload,
-			{ new: true, runValidators: true },
+			{ returnDocument: 'after', runValidators: true },
 		).select({ _id: 0 }).orFail();
 
 		res.status(201).send(result);

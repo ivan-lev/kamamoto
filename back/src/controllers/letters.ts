@@ -51,7 +51,7 @@ function createLetter(req: Request, res: Response, next: NextFunction): void {
 function updateLetter(req: Request, res: Response, next: NextFunction): void {
 	const newLetterData: File = req.body;
 	Letter.findOneAndUpdate({ _id: req.params._id }, newLetterData, {
-		new: true,
+		returnDocument: 'after',
 		runValidators: true,
 	})
 		.orFail()

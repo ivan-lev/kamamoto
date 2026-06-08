@@ -4,32 +4,32 @@ import type { CeramicStyleArticlePayload, CeramicStylesListPayload, DeleteCerami
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
-import ceramicStylesSorter from '../middlewares/utils/ceramicStylesSorter';
 import CeramicStyleModel from '../models/style';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
 const { CERAMIC_STYLES, STATIC_URL } = PATHS;
 
-function getCeramicStyles(req: Request, res: Response, next: NextFunction): void {
+async function getCeramicStyles(req: Request, res: Response, next: NextFunction) {
 	const isAdmin = req.headers['is-admin'];
-	CeramicStyleModel.find({}, '-_id')
-		.then((styles: CeramicStyleType[]) => {
-			if (isAdmin === 'false') {
-				styles.forEach((style) => {
-					const { thumbnail } = style;
-					const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${style.name}`;
-					if (thumbnail)
-						style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
-				});
-			}
 
-			styles.sort(ceramicStylesSorter);
+	try {
+		const styles = await CeramicStyleModel.find({}, '-_id').lean<CeramicStyleType[]>();
 
-			return styles;
-		})
-		.then(styles => res.send(styles))
-		.catch((error) => { return next(error); });
+		if (isAdmin === 'false') {
+			styles.forEach((style) => {
+				const { thumbnail } = style;
+				const pathToCeramicStyleFolder = `${STATIC_URL}/${CERAMIC_STYLES}/${style.name}`;
+				if (thumbnail)
+					style.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
+			});
+		}
+
+		res.send(styles.sort((a, b) => a.title.localeCompare(b.title)));
+	}
+	catch (error) {
+		return next(error);
+	};
 }
 
 async function getCeramicStylesArticles(req: Request, res: Response, next: NextFunction) {
@@ -43,7 +43,7 @@ async function getCeramicStylesArticles(req: Request, res: Response, next: NextF
 				article.thumbnail = `${pathToCeramicStyleFolder}/${thumbnail}`;
 		});
 
-		res.send(articlesList);
+		res.send(articlesList.sort((a, b) => a.title.localeCompare(b.title)));
 	}
 	catch (error) {
 		return next(error);
@@ -69,6 +69,7 @@ async function getCeramicStylesArticle(req: Request, res: Response, next: NextFu
 				slide.filename = `${pathToSlidesFolder}/slides/${slide.filename}`;
 			}
 		}));
+
 		res.send({ title, name, article });
 	}
 	catch (error) {
@@ -127,7 +128,7 @@ function updateCeramicStyle(req: Request<UpdateCeramicStyleParams>, res: Respons
 	CeramicStyleModel.findOneAndUpdate(
 		{ name: ceramicStyleName },
 		newCeramicStyleData,
-		{ new: true, runValidators: true },
+		{ returnDocument: 'after', runValidators: true },
 	)
 		.select('-_id')
 		.orFail()

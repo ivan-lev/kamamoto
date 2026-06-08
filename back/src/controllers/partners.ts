@@ -75,7 +75,7 @@ function getPartnerById(req: Request, res: Response, next: NextFunction): void {
 function updatePartner(req: Request, res: Response, next: NextFunction): void {
 	const newPartnerData: PartnerType = req.body;
 	Partner.findOneAndUpdate({ _id: req.params._id }, newPartnerData, {
-		new: true,
+		returnDocument: 'after',
 		runValidators: true,
 	})
 		.orFail()

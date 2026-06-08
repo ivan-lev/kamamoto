@@ -100,7 +100,7 @@ function deleteCategory(req: Request, res: Response, next: NextFunction): void {
 function updateCategory(req: Request, res: Response, next: NextFunction): void {
 	const newCategoryData: CategoryType = req.body;
 	Category.findOneAndUpdate({ category: req.params.category }, newCategoryData, {
-		new: true,
+		returnDocument: 'after',
 		runValidators: true,
 	})
 		.orFail()

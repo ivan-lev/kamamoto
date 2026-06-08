@@ -82,7 +82,7 @@ async function updatePotter(req: Request, res: Response, next: NextFunction) {
 		const result = await Potter.findOneAndUpdate(
 			{ id: req.params.id },
 			potter,
-			{ new: true, runValidators: true },
+			{ returnDocument: 'after', runValidators: true },
 		).select({ _id: 0 }).orFail();
 
 		res.status(201).send(result);

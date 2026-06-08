@@ -100,7 +100,7 @@ function updateExhibition(req: Request, res: Response, next: NextFunction): void
 	const newExhibitionData: ExhibitionType = req.body;
 	const id = Number(req.params.id);
 	Exhibition.findOneAndUpdate({ id }, newExhibitionData, {
-		new: true,
+		returnDocument: 'after',
 		runValidators: true,
 		projection: { _id: 0 },
 	})

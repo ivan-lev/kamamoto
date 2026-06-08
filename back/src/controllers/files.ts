@@ -51,7 +51,7 @@ function createFile(req: Request, res: Response, next: NextFunction): void {
 function updateFile(req: Request, res: Response, next: NextFunction): void {
 	const newFileData: File = req.body;
 	File.findOneAndUpdate({ _id: req.params._id }, newFileData, {
-		new: true,
+		returnDocument: 'after',
 		runValidators: true,
 	})
 		.orFail()
