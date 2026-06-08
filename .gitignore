@@ -22,7 +22,7 @@ lerna-debug.log*
 *.sw?
 
 #Local files (builds, temporary, environment)
-/back/.env*
+.env
 temp
 dist
 dist-ssr
@@ -37,4 +37,5 @@ google*
 
 # Backend
 back/src/public
+back/.env*
 

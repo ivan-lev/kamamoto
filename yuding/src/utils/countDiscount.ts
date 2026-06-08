@@ -6,7 +6,7 @@ export function countDiscount(price: number): { percents: number, amount: number
 	else if (price < 4500) {
 		discount = 5;
 	}
-	else if (price < 5500) {
+	else {
 		discount = 10;
 	}
 	return { percents: discount, amount: Math.round(price / 100 * discount) };

@@ -51,6 +51,7 @@ export default function Cart() {
 
 	return (
 		<>
+			<title>Юй Дин - Корзина</title>
 			<section className="section cart">
 				<h2>Корзина</h2>
 				{ items.length
