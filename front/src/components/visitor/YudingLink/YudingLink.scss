@@ -1,5 +1,5 @@
 .yuding-link {
-	cursor: pointer;
+	cursor: default;
 
 	position: absolute;
 	z-index: var(--z-index-higher);
@@ -19,15 +19,8 @@
 	}
 
 	@media (max-width: 900px) {
-		top: revert;
-		bottom: calc(var(--gap-32) - var(--gap-8));
-		transform: translateY(0);
-	}
-
-	@media (max-width: 500px) {
-		top: revert;
-		bottom: calc(var(--gap-32) - var(--gap-8));
-		left: 100%;
-		transform: translateY(0);
+		top: calc(100% + var(--gap-8));
+		left: 50%;
+		transform: translate(-50%, 0);
 	}
 }
