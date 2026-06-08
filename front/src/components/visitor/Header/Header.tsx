@@ -1,5 +1,6 @@
 import Logo from '@/components/visitor/Logo/Logo';
 import Menu from '@/components/visitor/Menu/Menu';
+import YudingLink from '@/components/visitor/YudingLink/YudingLink';
 import './Header.scss';
 
 export default function Header() {
@@ -7,6 +8,7 @@ export default function Header() {
 		<header className="header">
 			<Logo />
 			<Menu />
+			<YudingLink />
 		</header>
 	);
 }

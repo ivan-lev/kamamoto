@@ -8,7 +8,7 @@
 	color: var(--text-default);
 	text-decoration: none;
 
-	transition: color 0.2s;
+	transition: color 0.4s ease, opacity 0.4s ease;
 
 	&:hover {
 		color: var(--text-default);

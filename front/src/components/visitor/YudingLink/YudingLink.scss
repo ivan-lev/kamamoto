@@ -1,0 +1,33 @@
+.yuding-link {
+	cursor: pointer;
+
+	position: absolute;
+	z-index: var(--z-index-higher);
+	top: 50%;
+	left: calc(100% + var(--gap-12));
+	transform: translateY(-50%);
+
+	opacity: 0.3;
+
+	&:hover {
+		opacity: 0.6;
+	}
+
+	.link__icon {
+		border: 0;
+		background: transparent;
+	}
+
+	@media (max-width: 900px) {
+		top: revert;
+		bottom: calc(var(--gap-32) - var(--gap-8));
+		transform: translateY(0);
+	}
+
+	@media (max-width: 500px) {
+		top: revert;
+		bottom: calc(var(--gap-32) - var(--gap-8));
+		left: 100%;
+		transform: translateY(0);
+	}
+}
