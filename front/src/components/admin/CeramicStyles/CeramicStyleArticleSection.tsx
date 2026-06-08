@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react';
 import type { ArticleSection } from '@/components/admin/CeramicStyles/ceramicStyles.types';
 import type { RootState } from '@/slices/admin';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CeramicStyleArticleSlide from '@/components/admin/CeramicStyles/CeramicStyleArticleSlide';
 import { setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
@@ -20,6 +20,7 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 	const { article } = ceramicStyleToEdit;
 	const currentSection = article[sectionIndex];
 	const { content, slides } = currentSection;
+	const [isArticleCollapsed, setIsArticleCollapsed] = useState(false);
 
 	const initialSlide = { filename: '', source: '', caption: '' };
 
@@ -71,14 +72,14 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 	}, [section.content]);
 
 	return (
-		<div style={{ gridColumn: '1 / -1' }} className="form__grid form__grid--with-separator">
-			<div className="form__row form__row-9">
+		<div className="form__grid container" style={{ padding: 'var(--gap-24)' }}>
+			<div className="form__row form__row-6">
 				<span>
 					{ `секция ${sectionIndex + 1}` }
 				</span>
 			</div>
 
-			<div className="form__row form__row-3 form__row-12--inline">
+			<div className="form__row form__row-6 form__row-12--inline">
 				{ sectionIndex !== 0 && (
 					<button type="button" className="checkbox-label checkbox-label--small" onClick={ () => moveSection('up') }>
 						<img src="/__spritemap#sprite-arrow-turn-up-view"></img>
@@ -94,9 +95,13 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 				<button type="button" className="checkbox-label checkbox-label--small" onClick={ deleteSection }>
 					<img src="/__spritemap#sprite-times-view"></img>
 				</button>
+
+				<button type="button" className="button button--xs" onClick={() => {setIsArticleCollapsed(!isArticleCollapsed)}} >
+					{ isArticleCollapsed ? 'развернуть' : 'Свернуть' }
+				</button>
 			</div>
 
-			<div className="form__row form__row-12">
+			<div className="form__row form__row-12" style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
 				<textarea
 					ref={ textareaRef }
 					className="textarea"
@@ -110,15 +115,17 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 				/>
 			</div>
 
-			<div className="form__row form__row-12">
+			<div className="form__row form__row-12"  style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
 				<span>
 					{ `слайды к секции ${sectionIndex + 1}` }
 				</span>
 			</div>
 
+			<div className="form__row form__row-12" style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
 			{ slides?.map((slide, index) => <CeramicStyleArticleSlide key={ sectionIndex + index.toString() } slide={ slide } slideIndex={ index } sectionIndex={ sectionIndex } />) }
+			</div>
 
-			<div className="form__row form__row-3">
+			<div className="form__row form__row-3" style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
 				<button type="button" className="button button--xs" onClick={ addSlideToSection }>Добавить слайд</button>
 			</div>
 		</div>
