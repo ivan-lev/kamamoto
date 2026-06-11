@@ -1,4 +1,3 @@
-import type { ChangeEvent, FormEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,12 +41,12 @@ export default function Login() {
 		}
 	}, [isLoggedIn]);
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = event.target;
 		setValues({ ...values, [name]: value });
 	};
 
-	const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+	const handleLogin = (event: React.SyntheticEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		setIsFormDisabled(true);
 		setIsMessageSending(true);

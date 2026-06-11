@@ -1,4 +1,3 @@
-import type { ChangeEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Seo from '@/components/visitor/Seo/Seo';
@@ -20,12 +19,12 @@ export default function Contacts() {
 		setIsButtonDisabled(!isButtonDisabled);
 	};
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = event.currentTarget;
 		setMailData({ ...mailData, [name]: value });
 	};
 
-	const sendEmail = (event: React.FormEvent<HTMLFormElement>): void => {
+	const sendEmail = (event: React.SyntheticEvent<HTMLFormElement>): void => {
 		event.preventDefault();
 
 		if (isButtonDisabled) {

@@ -1,5 +1,4 @@
 import type { RootState } from '@/slices/admin';
-import type { CeramicStyle } from '@/types/ceramicStyles';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CeramicStyleFormView from '@/components/admin/CeramicStyles/CeramicStyleFormView';
@@ -20,9 +19,9 @@ export default function CeramicStyles() {
 		(state: RootState) => state.ceramicStyles.isExistingStyleEdited,
 	);
 
-	function createNewCeramicStyle(data: CeramicStyle) {
+	function createNewCeramicStyle() {
 		dispatch(setIsExistingStyleEdited(false));
-		dispatch(setCeramicStyleToEdit(data));
+		dispatch(setCeramicStyleToEdit({ ...defaultCeramicStyle }));
 		setShowModal(true);
 	}
 
@@ -75,7 +74,7 @@ export default function CeramicStyles() {
 							<CeramicStyleFormView />
 						</Modal>
 
-						<button className="button" onClick={ () => createNewCeramicStyle({ ...defaultCeramicStyle }) }>
+						<button className="button" onClick={ () => createNewCeramicStyle() }>
 							Создать
 						</button>
 					</div>

@@ -1,4 +1,3 @@
-import type { FormEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import type { CeramicStyle } from '@/types/ceramicStyles';
 import { useEffect, useState } from 'react';
@@ -19,7 +18,7 @@ export default function CeramicStyleFormView() {
 	const [saveMessage, setSaveMessage] = useState<string>('');
 	const [initialStyleName, setInitialStyleName] = useState<string>('');
 
-	async function handleCreateCeramicStyle(event: FormEvent<HTMLFormElement>) {
+	async function handleCreateCeramicStyle(event: React.SyntheticEvent<HTMLFormElement>) {
 		event.preventDefault();
 		setIsFormDisabled(true);
 		const token = localStorage.getItem('kmmttkn');
