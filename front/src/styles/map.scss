@@ -1,0 +1,50 @@
+@import "leaflet/dist/leaflet.css";
+@import 'react-leaflet-markercluster/styles';
+
+.map {
+	width: 100%;
+	height: 700px;
+	border-radius: var(--border-radius-s);
+
+	.leaflet-control-attribution {
+		display: none;
+	}
+
+	.leaflet-tooltip {
+		padding: 2px 4px;
+
+		&::before {
+			display: none;
+		}
+	}
+
+	.leaflet-popup-tip {
+		height: 10px;
+	}
+
+	.marker-cluster-small {
+		color: black;
+		background-color: rgba(255, 255, 255, 0.7);
+
+		div {
+			background-color: #F0E76F;
+		}
+	}
+
+	.marker-cluster-medium {
+		color: black;
+		background-color: rgba(255, 255, 255, 0.7);
+
+		div {
+			background-color: #ECB65F;
+		}
+	}
+
+	@media (max-width: 480px) {
+		height: 80svh;
+	}
+}
+
+// про запас
+// зеленый A5CF83
+// темный оранжевый E89951

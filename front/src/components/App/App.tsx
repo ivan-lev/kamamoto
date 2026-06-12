@@ -32,6 +32,7 @@ import HomePage from '@/components/visitor/HomePage/HomePage';
 import JapaneseExhibitions from '@/components/visitor/JapaneseExhibitions/JapaneseExhibitions';
 import JapaneseSocieties from '@/components/visitor/JapaneseSocieties/JapaneseSocieties';
 import Main from '@/components/visitor/Main/Main';
+import Map from '@/components/visitor/Map/Map';
 import NotFound from '@/components/visitor/NotFound/NotFound';
 import OpeningScreen from '@/components/visitor/OpeningScreen/OpeningScreen';
 import ScrollToHash from '@/components/visitor/ScrollToHash/ScrollToHash';
@@ -83,6 +84,7 @@ export default function App() {
 					<Route path="ceramic-styles/:style" element={ <Article /> } />
 					<Route path="japanese-exhibitions" element={ <JapaneseExhibitions /> } />
 					<Route path="japanese-societies" element={ <JapaneseSocieties /> } />
+					<Route path="map" element={ <Map /> } />
 				</Route>
 
 				<Route
@@ -110,6 +112,7 @@ export default function App() {
 						<Route path="categories/" element={ <AdminCategories /> } />
 						<Route path="letters/" element={ <AdminLetters /> } />
 						<Route path="ceramic-styles/" element={ <AdminCeramicStyles /> } />
+						<Route path="features/" element={ <AdminCeramicStyles /> } />
 						<Route path="complectation/" element={ <Complectation /> } />
 						<Route path="potters/" element={ <Potters /> } />
 					</Route>
