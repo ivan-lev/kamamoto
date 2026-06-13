@@ -1,17 +1,17 @@
-import { Marker, Popup, Tooltip } from 'react-leaflet';
+import type { Marker as IMarker } from '@/components/visitor/Map/map.types';
 import L from 'leaflet';
-import { Marker as IMarker } from '@/components/visitor/Map/map.types';
+import { Marker, Popup, Tooltip } from 'react-leaflet';
 
 interface Props {
 	marker: IMarker;
-	icon: string
+	icon: string;
 }
 
 export default function MapMarker({ marker, icon }: Props) {
 	const currentIcon = new L.Icon({
-    iconUrl: `/__spritemap#sprite-${icon}-view`,
-    iconRetinaUrl: `/__spritemap#sprite-${icon}-view`,
-    iconSize: new L.Point(30, 30),
+		iconUrl: `/__spritemap#sprite-${icon}-view`,
+		iconRetinaUrl: `/__spritemap#sprite-${icon}-view`,
+		iconSize: new L.Point(30, 30),
 		iconAnchor: [0, 0],
 		popupAnchor: [15, -5],
 		tooltipAnchor: [15, 30],
@@ -19,16 +19,14 @@ export default function MapMarker({ marker, icon }: Props) {
 
 	return (
 		<Marker
-			position={marker.geocode}
-			icon={currentIcon}
+			position={ marker.geocode }
+			icon={ currentIcon }
 		>
 			{ marker.tooltip
-				&& (<Tooltip direction="bottom" permanent >{marker.tooltip}</Tooltip>)
-			}
+				&& (<Tooltip direction="bottom" permanent>{ marker.tooltip }</Tooltip>) }
 
 			{ marker.popup
-				&& (<Popup className='ololo'><span dangerouslySetInnerHTML={{ __html: marker.popup}}></span></Popup>)
-			}
+				&& (<Popup className="ololo"><span dangerouslySetInnerHTML={{ __html: marker.popup }}></span></Popup>) }
 		</Marker>
-	)
+	);
 }

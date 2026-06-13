@@ -57,7 +57,7 @@ export default function Contacts() {
 
 	useEffect(() => {
 		if (showAlert) {
-			setTimeout(() => setShowAlert(false), 5000);
+			setTimeout(setShowAlert, 5000, false);
 		}
 	}, [showAlert]);
 

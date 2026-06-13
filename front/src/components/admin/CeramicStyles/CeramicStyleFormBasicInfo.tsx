@@ -8,8 +8,6 @@ export default function CeramicStyleFormBasicInfo() {
 	const dispatch = useDispatch();
 	const isExistingStyleEdited = useSelector((state: RootState) => state.ceramicStyles.isExistingStyleEdited);
 	const ceramicStyleToEdit = useSelector((state: RootState) => state.ceramicStyles.ceramicStyleToEdit);
-
-	const [saveMessage, setSaveMessage] = useState<string>('');
 	const [initialStyleName, setInitialStyleName] = useState<string>('');
 
 	const {
@@ -24,12 +22,6 @@ export default function CeramicStyleFormBasicInfo() {
 		const { name, value } = event.target;
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value }));
 	};
-
-	useEffect(() => {
-		if (saveMessage) {
-			setTimeout(() => setSaveMessage(''), 3000);
-		}
-	}, [saveMessage]);
 
 	useEffect(() => {
 		// set initial style name to pass it to backend

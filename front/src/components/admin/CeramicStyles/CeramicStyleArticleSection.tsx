@@ -96,12 +96,12 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 					<img src="/__spritemap#sprite-times-view"></img>
 				</button>
 
-				<button type="button" className="button button--xs" onClick={() => {setIsArticleCollapsed(!isArticleCollapsed)}} >
+				<button type="button" className="button button--xs" onClick={ () => { setIsArticleCollapsed(!isArticleCollapsed); } }>
 					{ isArticleCollapsed ? 'развернуть' : 'Свернуть' }
 				</button>
 			</div>
 
-			<div className="form__row form__row-12" style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
+			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
 				<textarea
 					ref={ textareaRef }
 					className="textarea"
@@ -115,17 +115,17 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 				/>
 			</div>
 
-			<div className="form__row form__row-12"  style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
+			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
 				<span>
 					{ `слайды к секции ${sectionIndex + 1}` }
 				</span>
 			</div>
 
-			<div className="form__row form__row-12" style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
-			{ slides?.map((slide, index) => <CeramicStyleArticleSlide key={ sectionIndex + index.toString() } slide={ slide } slideIndex={ index } sectionIndex={ sectionIndex } />) }
+			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
+				{ slides?.map((slide, index) => <CeramicStyleArticleSlide key={ sectionIndex + index.toString() } slide={ slide } slideIndex={ index } sectionIndex={ sectionIndex } />) }
 			</div>
 
-			<div className="form__row form__row-3" style={{display: isArticleCollapsed ? 'none' : 'flex'}}>
+			<div className="form__row form__row-3" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
 				<button type="button" className="button button--xs" onClick={ addSlideToSection }>Добавить слайд</button>
 			</div>
 		</div>

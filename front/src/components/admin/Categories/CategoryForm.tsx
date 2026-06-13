@@ -40,7 +40,7 @@ export default function CategoryForm({ closeModal }: Props) {
 					dispatch(setIsExistingCategoryEdited(false));
 					setIsFormDisabled(false);
 					setSaveMessage('Новая категория в базе');
-					setTimeout(() => closeModal(), 1000);
+					setTimeout(closeModal, 1000);
 				})
 				.catch((error) => {
 					console.error(error);
@@ -83,7 +83,7 @@ export default function CategoryForm({ closeModal }: Props) {
 					dispatch(clearCategoryForm());
 					dispatch(setIsExistingCategoryEdited(false));
 					setSaveMessage('Категория удалена');
-					setTimeout(() => closeModal(), 1000);
+					setTimeout(closeModal, 1000);
 					setIsFormDisabled(false);
 				})
 				.catch((error) => {
@@ -95,7 +95,7 @@ export default function CategoryForm({ closeModal }: Props) {
 
 	useEffect(() => {
 		if (saveMessage) {
-			setTimeout(() => setSaveMessage(''), 3000);
+			setTimeout(setSaveMessage, 3000, '');
 		}
 	}, [saveMessage]);
 

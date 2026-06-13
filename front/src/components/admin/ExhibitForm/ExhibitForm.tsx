@@ -150,7 +150,7 @@ export default function ExhibitForm() {
 
 	useEffect(() => {
 		if (saveMessage) {
-			setTimeout(() => setSaveMessage(''), 3000);
+			setTimeout(setSaveMessage, 3000, '');
 		}
 	}, [saveMessage]);
 

@@ -1,4 +1,4 @@
-import L from 'leaflet';
+import type L from 'leaflet';
 
 interface Marker {
 	geocode: L.LatLngExpression;
