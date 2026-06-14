@@ -1,7 +1,0 @@
-*node_modules*
-back/logs
-*rsync*
-.gitignore
-*.md
-.DS_Store
-.dockerignore

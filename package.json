@@ -1,1 +1,18 @@
-{}
+{
+    "scripts": {
+        "dev": "concurrently \"dotenv -e .env -- bash -c 'cd front && npm run dev'\" \"cd back && npm run dev\" ",
+        "upload-all": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/'",
+        "upload-front": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./front/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/front/'",
+        "upload-public": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./back/src/public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/back/src/public/'",
+        "upload-back": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./back/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/back/'",
+        "upload-mongo": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./back/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/mongo/'",
+        "upload-yuding": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./yuding/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/yuding/'",
+        "yuding": "cd ./yuding && npm run dev"
+    },
+    "dependencies": {
+        "concurrently": "^10.0.3"
+    },
+    "devDependencies": {
+        "dotenv-cli": "^11.0.0"
+    }
+}

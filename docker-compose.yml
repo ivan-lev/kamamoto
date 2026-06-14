@@ -4,6 +4,8 @@ services:
     build: 
       context: ./front
       dockerfile: Dockerfile
+      args:
+        VITE_MAP_API_KEY: ${VITE_MAP_API_KEY}
     container_name: front
     volumes:
       - front_build:/srv/front
