@@ -15,7 +15,7 @@ export default function MapGroup({ title, markers, icon }: Props) {
 			<LayerGroup>
 				<MarkerClusterGroup showCoverageOnHover={ false }>
 					{ markers.map(marker => (
-						<MapMarker marker={ marker } icon={ icon } />
+						<MapMarker marker={ marker } icon={ icon } key={ marker.geocode.toString() } />
 					)) }
 				</MarkerClusterGroup>
 			</LayerGroup>

@@ -4,4 +4,5 @@ export interface Marker {
 	geocode: L.LatLngExpression;
 	tooltip: string;
 	popup?: TrustedHTML;
+	image?: string;
 }

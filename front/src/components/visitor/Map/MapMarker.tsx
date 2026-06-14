@@ -25,8 +25,13 @@ export default function MapMarker({ marker, icon }: Props) {
 			{ marker.tooltip
 				&& (<Tooltip direction="bottom" permanent>{ marker.tooltip }</Tooltip>) }
 
-			{ marker.popup
-				&& (<Popup className="ololo"><span dangerouslySetInnerHTML={{ __html: marker.popup }}></span></Popup>) }
+			{ (marker.popup || marker.image)
+				&& (
+					<Popup>
+						{ marker.image && <img className="map__image" src={ marker.image } /> }
+						{ marker.popup && <span dangerouslySetInnerHTML={{ __html: marker.popup }}></span> }
+					</Popup>
+				) }
 		</Marker>
 	);
 }
