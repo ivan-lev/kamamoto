@@ -5,11 +5,14 @@ import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 
 export default function Map() {
+	const count = otherKilns.length + sevenKilnsOfEnshu.length + sixOldKilns.length + traditionalKilns.length;
 	// const apiKey = import.meta.env.VITE_MAP_API_KEY;
 	return (
 		<>
 			<PageTop title="Карта японских гочарных центров" subtitle="Маркеры кликабельны" />
 			<Seo title="Камамото: карта гочарных центров" description="Страница с картой керамических центров" />
+
+			<section className="section"><p>{ `Карта содержит названия и примерные координаты ${count} гончарных центров Японии, но этот список не может претендовать на звание полного, и может пополняться по мере появления новой информации.` }</p></section>
 
 			<section className="section">
 				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } className="map">
