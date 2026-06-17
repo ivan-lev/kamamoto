@@ -28,7 +28,7 @@ export const traditionalKilns: Marker[] = [
 	{ geocode: [34.978522, 136.624900], tooltip: 'Ёккаити Банко', kanji: '萬古焼', romaji: 'yokkaichi banko', popup: 'Определена как Традиционное <br> народное ремесло в 1979 году', image: `${baseUrl}banko.webp` },
 	{ geocode: [35.473484, 133.053297], tooltip: 'Ивами', kanji: '石見焼', romaji: 'iwami', popup: 'Определена как Традиционное <br> народное ремесло в 1994 году', image: `${baseUrl}iwami.webp` },
 	{ geocode: [34.730283, 136.508588], tooltip: 'Ига', kanji: '伊賀焼', romaji: 'iga', popup: 'Определена как Традиционное <br> народное ремесло в 1982 году', image: `${baseUrl}iga.webp` },
-	{ geocode: [34.692263, 135.195586], tooltip: 'Идзуси', kanji: '出石焼', romaji: 'izushi', popup: 'Определена как Традиционное <br> народное ремесло в 1980 году', image: `${baseUrl}izushi.webp` },
+	{ geocode: [35.544226, 134.820103], tooltip: 'Идзуси', kanji: '出石焼', romaji: 'izushi', popup: 'Определена как Традиционное <br> народное ремесло в 1980 году', image: `${baseUrl}izushi.webp` },
 	{ geocode: [33.236371, 129.892132], tooltip: 'Имари / Арита', kanji: '伊万里焼 有田焼', romaji: 'imari arita', popup: 'Определены как Традиционные <br> народные ремёсла в 1977 году', image: `${baseUrl}arita.webp` },
 	{ geocode: [33.441394, 129.967726], tooltip: 'Карацу', kanji: '唐津焼', romaji: 'karatsu', popup: 'Определена как Традиционное <br> народное ремесло в 1988 году', image: `${baseUrl}karatsu.webp` },
 	{ geocode: [36.372701, 140.261230], tooltip: 'Касама', kanji: '笠間焼', romaji: 'kasama', popup: 'Определена как Традиционное <br> народное ремесло в 1992 году', image: `${baseUrl}kasama.webp` },
