@@ -23,7 +23,7 @@ export default function Map() {
 
 	function setMarkers() {
 		if (query === '') {
-			setFilteredOtherKilns(sevenKilnsOfEnshu);
+			setFilteredOtherKilns(otherKilns);
 			setFilteredSevenKilnsOfEnshu(sevenKilnsOfEnshu);
 			setFilteredSixOldKilns(sixOldKilns);
 			setFilteredTraditionalKilns(traditionalKilns);

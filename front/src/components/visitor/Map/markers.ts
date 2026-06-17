@@ -62,5 +62,6 @@ export const otherKilns: Marker[] = [
 	{ geocode: [34.98461, 135.75612], tooltip: 'Раку', kanji: '楽焼', romaji: 'raku', popup: '<a target="_blank" href="/ceramic-styles/raku">Читать статью</a>', image: `${baseUrl}raku.webp` },
 	{ geocode: [40.47911, 141.42032], tooltip: 'Хатинохэ', kanji: '八戸焼', romaji: 'hachinohe', popup: '', image: `${baseUrl}hachinohe.webp` },
 	{ geocode: [40.81234, 140.50819], tooltip: 'Цугару', kanji: '津軽焼', romaji: 'tsugaru', popup: '', image: `${baseUrl}tsugaru.webp` },
-	// { geocode: [0, 0], tooltip: '', popup: '' },
 ];
+
+// { geocode: [0, 0], tooltip: '', popup: '' },
