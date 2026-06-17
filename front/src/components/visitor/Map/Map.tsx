@@ -67,11 +67,12 @@ export default function Map() {
 
 				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } className="map">
 					{ /* бесплаьные карты если израсходуется лимит */ }
+					{ /* https://gist.github.com/bokub/dd85ffe1368bb10396f871111dff7201 */ }
+
+					{ /* бесплаьные с лимитом */ }
 					{ /* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */ }
 
-					{ /* апи ключ из maptiler.com с лимитом */ }
-					{ /* <TileLayer url={ `https://api.maptiler.com/maps/base-v4/{z}/{x}/{y}.png?key=${apiKey}` } /> */ }
-					<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+					<TileLayer url="https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
 					<LayersControl position="topright" collapsed={ false }>
 						<MapGroup title="Шесть ранних печей" markers={ filteredSixOldKilns } icon="kiln-six-old" />
 						<MapGroup title="Семь печей Энсю" markers={ filteredSevenKilnsOfEnshu } icon="kiln-enshu-seven" />
