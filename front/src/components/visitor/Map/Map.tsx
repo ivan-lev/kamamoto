@@ -1,3 +1,5 @@
+import type { Marker } from '@/components/visitor/Map/map.types';
+import { useEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer } from 'react-leaflet';
 import MapGroup from '@/components/visitor/Map/MapGroup';
 import { otherKilns, sevenKilnsOfEnshu, sixOldKilns, traditionalKilns } from '@/components/visitor/Map/markers';
@@ -6,15 +8,55 @@ import Seo from '@/components/visitor/Seo/Seo';
 
 export default function Map() {
 	const count = otherKilns.length + sevenKilnsOfEnshu.length + sixOldKilns.length + traditionalKilns.length;
+	const [query, setQuery] = useState<string>('');
+
+	const [filteredOtherKilns, setFilteredOtherKilns] = useState(otherKilns);
+	const [filteredSevenKilnsOfEnshu, setFilteredSevenKilnsOfEnshu] = useState(sevenKilnsOfEnshu);
+	const [filteredSixOldKilns, setFilteredSixOldKilns] = useState(sixOldKilns);
+	const [filteredTraditionalKilns, setFilteredTraditionalKilns] = useState(traditionalKilns);
+
 	// const apiKey = import.meta.env.VITE_MAP_API_KEY;
+
+	function filterMarkers(markers: Marker[]) {
+		return markers.filter(marker => marker.tooltip.toLowerCase().includes(query.toLowerCase()) || marker.kanji?.includes(query) || marker.romaji?.includes(query));
+	};
+
+	function setMarkers() {
+		if (query === '') {
+			setFilteredOtherKilns(sevenKilnsOfEnshu);
+			setFilteredSevenKilnsOfEnshu(sevenKilnsOfEnshu);
+			setFilteredSixOldKilns(sixOldKilns);
+			setFilteredTraditionalKilns(traditionalKilns);
+			return;
+		}
+
+		setFilteredOtherKilns(filterMarkers(otherKilns));
+		setFilteredSevenKilnsOfEnshu(filterMarkers(sevenKilnsOfEnshu));
+		setFilteredSixOldKilns(filterMarkers(sixOldKilns));
+		setFilteredTraditionalKilns(filterMarkers(traditionalKilns));
+	};
+
+	useEffect(() => {
+		setMarkers();
+	}, [query]);
+
 	return (
 		<>
 			<PageTop title="Карта японских гочарных центров" subtitle="Маркеры кликабельны" />
 			<Seo title="Камамото: карта гочарных центров" description="Страница с картой керамических центров" />
 
-			<section className="section"><p>{ `Карта содержит названия и примерные координаты ${count} гончарных центров Японии, но этот список не может претендовать на звание полного, и может пополняться по мере появления новой информации.` }</p></section>
+			<section className="section"><p>{ `Карта содержит названия и примерные координаты территорий, на которых расположены гончарные центры Японии. На данный момент их отмечено ${count}, но этот список не может претендовать на звание полного, и может пополняться по мере появления новой информации. Можно найти нужное вам название, введя его на русском, английском, или японском языках.` }</p></section>
 
-			<section className="section">
+			<section className="section description">
+				<input
+					name="text"
+					type="text"
+					className="input"
+					placeholder="поиск: русский/англ/кандзи"
+					value={ query }
+					onChange={ event => setQuery(event.target.value) }
+				/>
+
 				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } className="map">
 					{ /* бесплаьные карты если израсходуется лимит */ }
 					{ /* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */ }
@@ -23,10 +65,10 @@ export default function Map() {
 					{ /* <TileLayer url={ `https://api.maptiler.com/maps/base-v4/{z}/{x}/{y}.png?key=${apiKey}` } /> */ }
 					<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 					<LayersControl position="topright" collapsed={ false }>
-						<MapGroup title="Шесть ранних печей" markers={ sixOldKilns } icon="kiln-six-old" />
-						<MapGroup title="Семь печей Энсю" markers={ sevenKilnsOfEnshu } icon="kiln-enshu-seven" />
-						<MapGroup title="Японские традиционные ремёсла" markers={ traditionalKilns } icon="kiln-traditional" />
-						<MapGroup title="Другие стили керамики" markers={ otherKilns } icon="kiln-other" />
+						<MapGroup title="Шесть ранних печей" markers={ filteredSixOldKilns } icon="kiln-six-old" />
+						<MapGroup title="Семь печей Энсю" markers={ filteredSevenKilnsOfEnshu } icon="kiln-enshu-seven" />
+						<MapGroup title="Японские традиционные ремёсла" markers={ filteredTraditionalKilns } icon="kiln-traditional" />
+						<MapGroup title="Другие стили керамики" markers={ filteredOtherKilns } icon="kiln-other" />
 
 						{ /* <LayersControl.Overlay name="Feature group">
 								<FeatureGroup pathOptions={{ color: 'purple' }}>

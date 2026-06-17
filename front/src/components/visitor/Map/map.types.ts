@@ -3,6 +3,8 @@ import type L from 'leaflet';
 export interface Marker {
 	geocode: L.LatLngExpression;
 	tooltip: string;
-	popup?: TrustedHTML;
-	image?: string;
+	kanji: string;
+	romaji: string;
+	popup: TrustedHTML;
+	image: string;
 }
