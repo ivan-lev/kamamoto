@@ -5,9 +5,12 @@ import Seo from '@/components/visitor/Seo/Seo';
 import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function Useful() {
+	useLayoutEffect(() => scrollToTop(), []);
+
 	const cards = [
 		{ link: '/dictionary', title: 'Глоссарий', thumbnail: '/images/useful/dictionary.webp' },
 		{ link: '/ceramic-styles/', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
+		{ link: '/map/', title: 'Карта гончарных цетров', thumbnail: '/images/useful/map.webp' },
 		{ link: '/japanese-exhibitions', title: 'Японские выставки', thumbnail: '/images/useful/exhibitions/thumbnail.webp' },
 		{ link: '/japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
 	];

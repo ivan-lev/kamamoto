@@ -25,6 +25,10 @@
 		font-family: var(--main-font)
 	}
 
+	.leaflet-control-layers-selector {
+		margin-right: var(--gap-2);
+	}
+
 	.leaflet-tooltip {
     padding: 2px 4px;
     line-height: 1;

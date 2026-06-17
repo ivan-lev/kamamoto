@@ -150,7 +150,6 @@
 	<lastmod>2026-02-13T15:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
-
 <url>
 	<loc>https://kamamoto.ru/ceramic-styles/</loc>
 	<lastmod>2026-02-13T15:40:42+01:00</lastmod>
@@ -171,6 +170,11 @@
 	<lastmod>2026-02-13T15:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
+<url>
+	<loc>https://kamamoto.ru/ceramic-styles/raku</loc>
+	<lastmod>2026-02-13T15:40:42+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
 
 <url>
 	<loc>https://kamamoto.ru/japanese-exhibitions</loc>
@@ -182,5 +186,9 @@
 	<lastmod>2026-02-13T15:40:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
-
+<url>
+	<loc>https://kamamoto.ru/map</loc>
+	<lastmod>2026-02-13T15:40:42+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
 </urlset>
