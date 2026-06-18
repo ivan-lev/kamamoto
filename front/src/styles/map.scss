@@ -70,6 +70,10 @@
 	}
 
 	.marker-cluster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 34px !important;
     height: 34px !important;
 
@@ -80,6 +84,8 @@
 
 			width: 24px;
 			height: 24px;
+			margin-top: 0;
+			margin-left: 0;
 
 			font-size: 10px;
 			font-weight: 500;
@@ -91,7 +97,7 @@
 		background-color: rgba(255, 255, 255, 0.7);
 
 		div {
-			background-color: #F0E76F;
+			background-color: #FFCC00;
 		}
 	}
 
@@ -100,7 +106,7 @@
 		background-color: rgba(255, 255, 255, 0.7);
 
 		div {
-			background-color: #ECB65F;
+			background-color: #EBA333;
 		}
 	}
 
@@ -110,5 +116,5 @@
 }
 
 // про запас
-// зеленый A5CF83
-// темный оранжевый E89951
+// красный FF4B4B
+// коричневый 885555

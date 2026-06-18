@@ -52,10 +52,13 @@ export const traditionalKilns: Marker[] = [
 ];
 
 export const otherKilns: Marker[] = [
-	{ geocode: [39.38982, 141.11786], tooltip: 'Дай', kanji: '台焼', romaji: 'dai', popup: 'Дайяки — это вид керамики, обжигаемой в городе Ханамаки, префектура Иватэ. Характерной чертой дайяки является бледно-зеленый цвет, называемый "сахарная селадоновая глазурь"', image: `${baseUrl}dai.webp` },
+	{ geocode: [39.45142, 141.07370], tooltip: 'Дай', kanji: '台焼', romaji: 'dai', popup: 'Дайяки — это вид керамики, обжигаемой в городе Ханамаки, префектура Иватэ. Характерной чертой дайяки является бледно-зеленый цвет, называемый "сахарная селадоновая глазурь", или "намакою" (海鼠釉).', image: `${baseUrl}dai.webp` },
+	{ geocode: [38.42272, 140.82042], tooltip: 'Дайгамори', kanji: '台ヶ森焼', romaji: 'daigamori', popup: 'Дайгамори — это вид керамики, производимой в префектуре Мияги. Местная глина содержит различные минералы, такие как лигнит, железо и медь, которые, как считается, придают керамике её сложные цвета', image: `${baseUrl}daigamori.webp` },
 	{ geocode: [37.48931, 139.92719], tooltip: 'Айдзу Кэйдзан', kanji: '会津慶山焼', romaji: 'aizu keizan', popup: '', image: `${baseUrl}aizu-keizan.webp` },
+	{ geocode: [39.40237, 141.02915], tooltip: 'Кадзитё', kanji: '', romaji: 'kajicho', popup: 'Керамика Кадзитё изготавливается на гончсарном круге из глины, добываемой в городе Ханамаки, с добавлением песка из верхнего течения реки Тоёсава. Чайные чашки, сосуды для питья, кувшины и вазы в стиле Кадзитё просты по дизайну и предназначены в основном для повседневного использования. Они отличаются характерными зелеными и молочно-белыми цветами.', image: `${baseUrl}kajicho.webp` },
 	{ geocode: [43.79144, 142.31217], tooltip: 'Кита Арасияма', kanji: '北の嵐山 北嵐山', romaji: 'kita arashiyama', popup: '', image: `${baseUrl}kita-arashiyama.webp` },
 	{ geocode: [43.19535, 141.77832], tooltip: 'Кобуси', kanji: 'こぶ志焼', romaji: 'kobushi', popup: '', image: `${baseUrl}kobushi.webp` },
+	{ geocode: [40.17853, 141.75617], tooltip: 'Кокудзи', kanji: '小久慈焼', romaji: 'kokuji', popup: 'Кокудзи-яки - традиционное ремесло, зародившееся в городе Кудзи префектуры Иватэ. С более чем 200-летней историей, оно высоко ценится за  деревенский шарм, составляющими которого являются местная глина и уникальная глазурь из железного песка и пепла рисовой шелухи, которая создает тонкие белые и коричневые оттенки.', image: `${baseUrl}kokuji.webp` },
 	{ geocode: [39.46541, 140.37096], tooltip: 'Нараока', kanji: '楢岡焼', romaji: 'naraoka', popup: '', image: `${baseUrl}naraoka.webp` },
 	{ geocode: [37.58675, 140.43151], tooltip: 'Нихонмацу Банко', kanji: '二本松萬古焼', romaji: 'nihonmatsu banko', popup: '', image: `${baseUrl}nihonmatsu-banko.webp` },
 	{ geocode: [43.18901, 140.99623], tooltip: 'Отару', kanji: '小樽焼', romaji: 'otaru', popup: '', image: `${baseUrl}otaru.webp` },
@@ -64,6 +67,7 @@ export const otherKilns: Marker[] = [
 	{ geocode: [37.80103, 140.92096], tooltip: 'Сомакома', kanji: '相馬駒焼', romaji: 'somakoma', popup: '', image: `${baseUrl}somakoma.webp` },
 	{ geocode: [37.51683, 139.90717], tooltip: 'Тадзима Банко', kanji: '田島萬古焼', romaji: 'tajima banko', popup: '', image: `${baseUrl}tajima-banko.webp` },
 	{ geocode: [36.57008, 136.66437], tooltip: 'Охи', kanji: '大樋焼', romaji: 'ohi', popup: '<a target="_blank" href="/ceramic-styles/ohi">Читать статью</a>', image: `${baseUrl}ohi.webp` },
+	{ geocode: [38.93548, 141.12507], tooltip: 'Фудзисава', kanji: '藤沢焼', romaji: 'fujisawa', popup: 'Фудзисава-яки создается путем выдерживания керамики в печи анагама, отапливаемой сосновами дровами, в течение нескольких дней. Характерный цвет достигается за счет сосновой золы, которая прилипает к изделиям во время обжига и плавится. Именно это придает им особый оттенок. Текстура глины простая, но выразительная форма создаёт сильное и характерное ощущение.', image: `${baseUrl}fujisawa.webp` },
 	{ geocode: [34.98461, 135.75612], tooltip: 'Раку', kanji: '楽焼', romaji: 'raku', popup: '<a target="_blank" href="/ceramic-styles/raku">Читать статью</a>', image: `${baseUrl}raku.webp` },
 	{ geocode: [40.47911, 141.42032], tooltip: 'Хатинохэ', kanji: '八戸焼', romaji: 'hachinohe', popup: '', image: `${baseUrl}hachinohe.webp` },
 	{ geocode: [40.81234, 140.50819], tooltip: 'Цугару', kanji: '津軽焼', romaji: 'tsugaru', popup: '', image: `${baseUrl}tsugaru.webp` },

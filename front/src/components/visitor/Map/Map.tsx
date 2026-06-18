@@ -74,10 +74,10 @@ export default function Map() {
 
 					<TileLayer url="https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
 					<LayersControl position="topright" collapsed={ false }>
-						<MapGroup title="Шесть ранних печей" markers={ filteredSixOldKilns } icon="kiln-six-old" />
-						<MapGroup title="Семь печей Энсю" markers={ filteredSevenKilnsOfEnshu } icon="kiln-enshu-seven" />
-						<MapGroup title="Японские традиционные ремёсла" markers={ filteredTraditionalKilns } icon="kiln-traditional" />
-						<MapGroup title="Другие стили керамики" markers={ filteredOtherKilns } icon="kiln-other" />
+						<MapGroup title="Шесть ранних печей" markers={ filteredSixOldKilns } icon="marker-red" />
+						<MapGroup title="Семь печей Энсю" markers={ filteredSevenKilnsOfEnshu } icon="marker-brown" />
+						<MapGroup title="Японские традиционные ремёсла" markers={ filteredTraditionalKilns } icon="marker-orange" />
+						<MapGroup title="Другие стили керамики" markers={ filteredOtherKilns } icon="marker-yellow" />
 
 						{ /* <LayersControl.Overlay name="Feature group">
 								<FeatureGroup pathOptions={{ color: 'purple' }}>
