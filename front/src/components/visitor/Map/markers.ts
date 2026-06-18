@@ -52,16 +52,20 @@ export const traditionalKilns: Marker[] = [
 ];
 
 export const otherKilns: Marker[] = [
+	{ geocode: [37.48931, 139.92719], tooltip: 'Айдзу Кэйдзан', kanji: '会津慶山焼', romaji: 'aizu keizan', popup: '', image: `${baseUrl}aizu-keizan.webp` },
 	{ geocode: [43.79144, 142.31217], tooltip: 'Кита Арасияма', kanji: '北の嵐山 北嵐山', romaji: 'kita arashiyama', popup: '', image: `${baseUrl}kita-arashiyama.webp` },
 	{ geocode: [43.19535, 141.77832], tooltip: 'Кобуси', kanji: 'こぶ志焼', romaji: 'kobushi', popup: '', image: `${baseUrl}kobushi.webp` },
 	{ geocode: [39.46541, 140.37096], tooltip: 'Нараока', kanji: '楢岡焼', romaji: 'naraoka', popup: '', image: `${baseUrl}naraoka.webp` },
+	{ geocode: [37.58675, 140.43151], tooltip: 'Нихонмацу Банко', kanji: '二本松萬古焼', romaji: 'nihonmatsu banko', popup: '', image: `${baseUrl}nihonmatsu-banko.webp` },
 	{ geocode: [43.18901, 140.99623], tooltip: 'Отару', kanji: '小樽焼', romaji: 'otaru', popup: '', image: `${baseUrl}otaru.webp` },
 	{ geocode: [43.05970, 141.35381], tooltip: 'Саппоро', kanji: '札幌焼', romaji: 'sapporo', popup: '', image: `${baseUrl}sapporo.webp` },
 	{ geocode: [39.58798, 140.61699], tooltip: 'Сираива', kanji: '白岩焼', romaji: 'shiraiwa', popup: '', image: `${baseUrl}shiraiwa.webp` },
+	{ geocode: [37.80103, 140.92096], tooltip: 'Сомакома', kanji: '相馬駒焼', romaji: 'somakoma', popup: '', image: `${baseUrl}somakoma.webp` },
+	{ geocode: [37.51683, 139.90717], tooltip: 'Тадзима Банко', kanji: '田島萬古焼', romaji: 'tajima banko', popup: '', image: `${baseUrl}tajima-banko.webp` },
 	{ geocode: [36.57008, 136.66437], tooltip: 'Охи', kanji: '大樋焼', romaji: 'ohi', popup: '<a target="_blank" href="/ceramic-styles/ohi">Читать статью</a>', image: `${baseUrl}ohi.webp` },
 	{ geocode: [34.98461, 135.75612], tooltip: 'Раку', kanji: '楽焼', romaji: 'raku', popup: '<a target="_blank" href="/ceramic-styles/raku">Читать статью</a>', image: `${baseUrl}raku.webp` },
 	{ geocode: [40.47911, 141.42032], tooltip: 'Хатинохэ', kanji: '八戸焼', romaji: 'hachinohe', popup: '', image: `${baseUrl}hachinohe.webp` },
 	{ geocode: [40.81234, 140.50819], tooltip: 'Цугару', kanji: '津軽焼', romaji: 'tsugaru', popup: '', image: `${baseUrl}tsugaru.webp` },
 ];
 
-// { geocode: [0, 0], tooltip: '', popup: '' },
+// { geocode: [0, 0], tooltip: '', kanji: '', romaji: '', popup: '', image: `${baseUrl}.webp` },
