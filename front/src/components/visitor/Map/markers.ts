@@ -52,6 +52,7 @@ export const traditionalKilns: Marker[] = [
 ];
 
 export const otherKilns: Marker[] = [
+	{ geocode: [39.38982, 141.11786], tooltip: 'Дай', kanji: '台焼', romaji: 'dai', popup: 'Дайяки — это вид керамики, обжигаемой в городе Ханамаки, префектура Иватэ. Характерной чертой дайяки является бледно-зеленый цвет, называемый "сахарная селадоновая глазурь"', image: `${baseUrl}dai.webp` },
 	{ geocode: [37.48931, 139.92719], tooltip: 'Айдзу Кэйдзан', kanji: '会津慶山焼', romaji: 'aizu keizan', popup: '', image: `${baseUrl}aizu-keizan.webp` },
 	{ geocode: [43.79144, 142.31217], tooltip: 'Кита Арасияма', kanji: '北の嵐山 北嵐山', romaji: 'kita arashiyama', popup: '', image: `${baseUrl}kita-arashiyama.webp` },
 	{ geocode: [43.19535, 141.77832], tooltip: 'Кобуси', kanji: 'こぶ志焼', romaji: 'kobushi', popup: '', image: `${baseUrl}kobushi.webp` },
