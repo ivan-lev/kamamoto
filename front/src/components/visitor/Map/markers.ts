@@ -52,10 +52,12 @@ export const traditionalKilns: Marker[] = [
 ];
 
 export const otherKilns: Marker[] = [
+	{ geocode: [38.48234, 140.34454], tooltip: 'Готэн', kanji: '碁点焼', romaji: 'goten', popup: 'Готэн-яки - название керамики, производимой относительно молодой гончарной мастерской, основанной в 1984 году Хидэюки Судзуки. Мастерская расположена в Готене, городе Мураяма, префектура Ямагата, где протекает река Могами, одна из крупнейших рек Японии, часто упоминаемая в исторической поэзии', image: `${baseUrl}goten.webp` },
 	{ geocode: [39.45142, 141.07370], tooltip: 'Дай', kanji: '台焼', romaji: 'dai', popup: 'Дайяки — это вид керамики, обжигаемой в городе Ханамаки, префектура Иватэ. Характерной чертой дайяки является бледно-зеленый цвет, называемый "сахарная селадоновая глазурь", или "намакою" (海鼠釉).', image: `${baseUrl}dai.webp` },
 	{ geocode: [38.42272, 140.82042], tooltip: 'Дайгамори', kanji: '台ヶ森焼', romaji: 'daigamori', popup: 'Дайгамори — это вид керамики, производимой в префектуре Мияги. Местная глина содержит различные минералы, такие как лигнит, железо и медь, которые, как считается, придают керамике её сложные цвета', image: `${baseUrl}daigamori.webp` },
 	{ geocode: [37.48931, 139.92719], tooltip: 'Айдзу Кэйдзан', kanji: '会津慶山焼', romaji: 'aizu keizan', popup: '', image: `${baseUrl}aizu-keizan.webp` },
 	{ geocode: [39.40237, 141.02915], tooltip: 'Кадзитё', kanji: '', romaji: 'kajicho', popup: 'Керамика Кадзитё изготавливается на гончсарном круге из глины, добываемой в городе Ханамаки, с добавлением песка из верхнего течения реки Тоёсава. Чайные чашки, сосуды для питья, кувшины и вазы в стиле Кадзитё просты по дизайну и предназначены в основном для повседневного использования. Они отличаются характерными зелеными и молочно-белыми цветами.', image: `${baseUrl}kajicho.webp` },
+	{ geocode: [38.60474, 140.74043], tooltip: 'Киригомэ', kanji: '切込焼', romaji: 'kirigome', popup: 'Киригомэ — керамика префектуры Мияги. Киригомэ использует техники, заимствованные из керамики Имари, но её точное происхождение остаётся неизвестным. Самый старый документально подтвержденный датированный предмет, "чайная чашка с сине-белым рисунком граната", был изготовлен в 1835 году.', image: `${baseUrl}kirigome.webp` },
 	{ geocode: [43.79144, 142.31217], tooltip: 'Кита Арасияма', kanji: '北の嵐山 北嵐山', romaji: 'kita arashiyama', popup: '', image: `${baseUrl}kita-arashiyama.webp` },
 	{ geocode: [43.19535, 141.77832], tooltip: 'Кобуси', kanji: 'こぶ志焼', romaji: 'kobushi', popup: '', image: `${baseUrl}kobushi.webp` },
 	{ geocode: [40.17853, 141.75617], tooltip: 'Кокудзи', kanji: '小久慈焼', romaji: 'kokuji', popup: 'Кокудзи-яки - традиционное ремесло, зародившееся в городе Кудзи префектуры Иватэ. С более чем 200-летней историей, оно высоко ценится за  деревенский шарм, составляющими которого являются местная глина и уникальная глазурь из железного песка и пепла рисовой шелухи, которая создает тонкие белые и коричневые оттенки.', image: `${baseUrl}kokuji.webp` },
@@ -67,10 +69,99 @@ export const otherKilns: Marker[] = [
 	{ geocode: [37.80103, 140.92096], tooltip: 'Сомакома', kanji: '相馬駒焼', romaji: 'somakoma', popup: '', image: `${baseUrl}somakoma.webp` },
 	{ geocode: [37.51683, 139.90717], tooltip: 'Тадзима Банко', kanji: '田島萬古焼', romaji: 'tajima banko', popup: '', image: `${baseUrl}tajima-banko.webp` },
 	{ geocode: [36.57008, 136.66437], tooltip: 'Охи', kanji: '大樋焼', romaji: 'ohi', popup: '<a target="_blank" href="/ceramic-styles/ohi">Читать статью</a>', image: `${baseUrl}ohi.webp` },
-	{ geocode: [38.93548, 141.12507], tooltip: 'Фудзисава', kanji: '藤沢焼', romaji: 'fujisawa', popup: 'Фудзисава-яки создается путем выдерживания керамики в печи анагама, отапливаемой сосновами дровами, в течение нескольких дней. Характерный цвет достигается за счет сосновой золы, которая прилипает к изделиям во время обжига и плавится. Именно это придает им особый оттенок. Текстура глины простая, но выразительная форма создаёт сильное и характерное ощущение.', image: `${baseUrl}fujisawa.webp` },
+	{ geocode: [38.93548, 141.12507], tooltip: 'Фудзисава', kanji: '藤沢焼', romaji: 'fujisawa', popup: 'Фудзисава-яки создается путем выдерживания керамики в печи анагама в течение нескольких дней. Характерный цвет достигается за счет сосновой золы, которая прилипает к изделиям во время обжига и плавится. Именно это придает им особый оттенок. Текстура глины простая, но выразительная форма создаёт сильное и характерное ощущение.', image: `${baseUrl}fujisawa.webp` },
 	{ geocode: [34.98461, 135.75612], tooltip: 'Раку', kanji: '楽焼', romaji: 'raku', popup: '<a target="_blank" href="/ceramic-styles/raku">Читать статью</a>', image: `${baseUrl}raku.webp` },
 	{ geocode: [40.47911, 141.42032], tooltip: 'Хатинохэ', kanji: '八戸焼', romaji: 'hachinohe', popup: '', image: `${baseUrl}hachinohe.webp` },
 	{ geocode: [40.81234, 140.50819], tooltip: 'Цугару', kanji: '津軽焼', romaji: 'tsugaru', popup: '', image: `${baseUrl}tsugaru.webp` },
+	{ geocode: [38.26807, 140.87190], tooltip: 'Цуцуми', kanji: '堤焼', romaji: 'tsutsumi', popup: 'Зародившись более 300 лет назад в районе Цуцуми города Сэндай, керамика Цуцуми-яки известна своим простым, повседневным дизайном с текучей глазурью "морской огурец". В период своего расцвета в этом районе располагались десятки гончарных мастерских. Сегодня единственной действующей мастерской остается гончарная мастерская Цуцуми-яки Кэмба.', image: `${baseUrl}tsutsumi.webp` },
+	{ geocode: [38.24587, 140.33408], tooltip: 'Хирасимидзу', kanji: '平清水焼', romaji: 'hirashimizu', popup: 'Район Хирасимидзу, известный как "Деревня гончаров", расположен у южных предгорий горы Титосэ в юго-восточной части города Ямагата. Говорят, что Оно Тодзихэй, выходец из провинции Хитати, начал создавать местную керамику в эпоху Бунка.', image: `${baseUrl}hirashimizu.webp` },
 ];
 
 // { geocode: [0, 0], tooltip: '', kanji: '', romaji: '', popup: '', image: `${baseUrl}.webp` },
+
+// Goten-yaki (碁点焼)
+// Kami no hata-yaki (上の畑焼)
+// Narushima-yaki (成島焼)
+// Shinjō Higashiyama-yaki (新庄東山焼)
+// Jijōji-yaki (自性寺焼)
+// Shibutami-yaki (渋民焼)
+// Tsukiyono-yaki (月夜野焼)
+// Hannō-yaki (飯能焼)
+// Koisago-yaki (小砂焼)
+// Mikamo-yaki (三毳焼)
+// Imado-yaki (今戸焼)
+// Hōraku-yaki (豊楽焼)
+// Inuyama-yaki (犬山焼)
+// Ofukei-yaki (御深井焼)
+// Koito-yaki (小糸焼)
+// Oribe-yaki (織部焼)
+// Shino-yaki (志野焼)
+// Shibukusa-yaki (渋草焼)
+// Yamada-yaki (山田焼)
+// Suzu-yaki (珠洲焼)
+// Matsushiro-yaki (松代焼)
+// Obayashi-yaki (尾林焼)
+// Takatō-yaki (高遠焼)
+// Tenryūkyō-yaki (天竜峡焼)
+// Anchi-yaki (庵地焼)
+// Muramatsu-yaki (村松焼)
+// Moriyama-yaki (森山焼)
+// Shizuhata-yaki (賤機焼)
+// Etchū Maruyama-yaki (越中丸山焼)
+// Etchū Seto-yaki (越中瀬戸焼)
+// Kosugi-yaki (小杉焼)
+// Sansuke-yaki (三助焼)
+// Nōketsu-yaki (能穴焼)
+// Awaji ware (淡路焼), also known as Minpei or Mimpei ware
+// Akōunka-yaki (赤穂雲火焼)
+// Minpei-yaki (珉平焼)
+// Akogi-yaki (阿漕焼)
+// Mihama-yaki (御浜焼)
+// Kikkō-yaki (吉向焼)
+// Hatta-yaki (八田焼)
+// Konan-yaki (湖南焼)
+// Kotō-yaki (湖東焼)
+// Zuishi-yaki (瑞芝焼)
+// Himetani-yaki (姫谷焼)
+// Miyajima-yaki (宮島焼)
+// Hashima-yaki (羽島焼)
+// Mushiake-yaki (虫明焼)
+// Sakazu-yaki (酒津焼)
+// Banshōzan-yaki (萬祥山焼)
+// Fujina-yaki (布志名焼)
+// Hachiman-yaki (八幡焼)
+// Mijiro-yaki (御代焼)
+// Mori-yaki (母里焼)
+// Sodeshi-yaki (袖師焼)
+// Shussai-yaki (出西焼)
+// Yunotsu-yaki (温泉津焼)
+// Inkyūzan-yaki (因久山焼)
+// Hosshōji-yaki (法勝寺焼)
+// Kazuwa-yaki (上神焼)
+// Uradome-yaki (浦富焼)
+// Ushino-yaki (牛ノ戸焼)
+// Seiri-yaki (星里焼)
+// Sueda-yaki (末田焼)
+// Rakuzan-yaki (楽山焼)
+// Suigetsu-yaki (水月焼)
+// Kamikage-yaki (神懸焼)
+// Okamoto-yaki (岡本焼)
+// Rihei-yaki (理平焼)
+// Nōsayama-yaki (能茶山焼)
+// Odo-yaki (尾戸焼)
+// Uraharano-yaki (内原野焼)
+// Futagawa-yaki (二川焼)
+// Kamachi-yaki (蒲池焼)
+// Ichinose-yaki (一の瀬焼)
+// Ryūmonji-yaki (龍門司焼)
+// Tanegashima-yaki (種子島焼)
+// Koda-yaki (高田焼)
+// Komatsubara-yaki (小松原焼)
+// Tojō-yaki (都城焼)
+// Nagayo-yaki (長与焼)
+// Utsutsugawa-yaki (現川焼)
+// Hizen Yoshida-yaki (肥前吉田焼)
+// Hizen Ozaki-yaki (肥前尾崎焼)
+// Shiraishi-yaki (白石焼)
+// Ryūkyū-yaki (琉球焼)
+// Ishigaki-yaki (石垣焼)
