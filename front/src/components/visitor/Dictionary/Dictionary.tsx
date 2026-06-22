@@ -1,22 +1,15 @@
-import type { ChangeEvent } from 'react';
 import type { DictionarySection } from '@/variables/useful/dictionary/dictionary.types';
-import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import DictionaryBlock from '@/components/visitor/Dictionary/DictionatyBlock';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import { scrollToTop } from '@/utils/scrollToTop';
-import { htmlParserOptions } from '@/variables/htmlParserOptions';
 import { dictionary } from '@/variables/useful/dictionary/_index';
 import './Dictionary.scss';
 
 export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
 	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>(dictionary);
-
-	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-		const { value } = event.target;
-		setQuery(value);
-	};
 
 	function filterDictionaryByQuery() {
 		if (query === '')
@@ -73,7 +66,7 @@ export default function Dictionary() {
 							name="title"
 							placeholder="поиск: термин или описание"
 							value={ query }
-							onChange={ handleChange }
+							onChange={ event => setQuery(event.target.value) }
 						/>
 					</div>
 
@@ -95,31 +88,7 @@ export default function Dictionary() {
 				</div>
 
 				<div className="dictionary__list">
-					{ dictionaryFiltered.map((section) => {
-						return (
-							<div className="dictionary__block" key={ section.letter }>
-								<span className="dictionary__letter">
-									{ section.letter }
-								</span>
-
-								<div className="dictionary__table text">
-									{ section.terms.map((term) => {
-										return (
-											<div className="dictionary__row" key={ term.title }>
-												<div className="dictionary__cell dictionary__cell--span-2 dictionary__cell--title">
-													{ parse(term.title, htmlParserOptions) }
-												</div>
-												<span className="dictionary__cell dictionary__cell--span-2 dictionary__cell--kanji">{ term.kanji }</span>
-												<div className="dictionary__cell dictionary__cell--span-8 dictionary__cell--definition">
-													{ parse(term.definition, htmlParserOptions) }
-												</div>
-											</div>
-										);
-									}) }
-								</div>
-							</div>
-						);
-					}) }
+					{ dictionaryFiltered.map(section => <DictionaryBlock section={ section } />) }
 				</div>
 			</section>
 		</>

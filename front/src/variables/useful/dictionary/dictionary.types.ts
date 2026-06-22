@@ -1,6 +1,8 @@
-interface Term {
+export interface Term {
 	title: string;
 	kanji: string;
+	romaji?: string;
+	image?: string;
 	definition: string;
 }
 
