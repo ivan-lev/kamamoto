@@ -9,7 +9,7 @@ import { i } from '@/variables/useful/dictionary/i';
 import { k } from '@/variables/useful/dictionary/k';
 import { m } from '@/variables/useful/dictionary/m';
 import { n } from '@/variables/useful/dictionary/n';
-import { p } from '@/variables/useful/dictionary/p';
+import { r } from '@/variables/useful/dictionary/r';
 import { s } from '@/variables/useful/dictionary/s';
 import { t } from '@/variables/useful/dictionary/t';
 import { tsu } from '@/variables/useful/dictionary/tsu';
@@ -19,4 +19,4 @@ import { ya } from '@/variables/useful/dictionary/ya';
 import { yo } from '@/variables/useful/dictionary/yo';
 import { yu } from '@/variables/useful/dictionary/yu';
 
-export const dictionary = [a, b, w, g, d, yo, i, k, m, n, p, s, t, u, f, h, tsu, e, yu, ya];
+export const dictionary = [a, b, w, g, d, yo, i, k, m, n, r, s, t, u, f, h, tsu, e, yu, ya];
