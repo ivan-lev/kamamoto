@@ -4,9 +4,18 @@
 	gap: var(--gap-32);
 
 	&__filters {
+		position: sticky;
+		z-index: var(--z-index-high);
+		top: 0;
+
 		display: flex;
 		flex-direction: column;
 		gap: var(--gap-12);
+
+		padding: var(--gap-12) 0;
+
+		background-color: var(--color-primary-100);
+		box-shadow: 0px 10px 20px var(--color-primary-100);
 	}
 
 	&__filter-letters {
@@ -28,7 +37,7 @@
 
 		@media (max-width: 480px) {
 			flex: revert;
-			width: 30px;
+			width: 10%;
 		}
 	}
 
@@ -46,7 +55,7 @@
 
 	&__letter {
 		position: sticky;
-		top: var(--gap-24);
+		top: calc(var(--gap-96) + var(--gap-40));
 		font-size: 36px;
 		text-transform: uppercase;
 
@@ -71,6 +80,7 @@
 		display: grid;
 		grid-auto-rows: max-content;
 		grid-template-columns: repeat(12, minmax(0, 1fr));
+		grid-template-rows: auto 1fr;
 		gap: var(--gap-12) var(--gap-16);
 
 		margin-left: var(--gap-48);
@@ -91,8 +101,8 @@
 	}
 
 	&__title {
+		scroll-margin-top: calc(var(--gap-96) + var(--gap-60));
 		grid-column: 1 / 3;
-		align-self: end;
 
 		@media (max-width: 768px) {
 			grid-column: 1 / 7;
