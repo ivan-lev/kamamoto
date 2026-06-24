@@ -55,7 +55,7 @@ export default antfu({
 
 	// TypeScript and Vue are auto-detected, you can also explicitly enable them:
 	typescript: true,
-	vue: true,
+	vue: false,
 	jsonc: false,
 	yaml: false,
 	jsx: true,
@@ -63,5 +63,8 @@ export default antfu({
 	scss: true,
 
 	// `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-	ignores: [],
+	ignores: [
+		'dist/**',
+		'node_modules/**',
+	],
 });
