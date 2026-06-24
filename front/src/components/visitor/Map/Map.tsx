@@ -65,7 +65,7 @@ export default function Map() {
 					onChange={ event => setQuery(event.target.value) }
 				/>
 
-				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } className="map">
+				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ false } className="map">
 					{ /* бесплаьные карты если израсходуется лимит */ }
 					{ /* https://gist.github.com/bokub/dd85ffe1368bb10396f871111dff7201 */ }
 

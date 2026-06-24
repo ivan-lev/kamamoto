@@ -116,6 +116,10 @@
 		}
 	}
 
+	@media (max-width: 1600px) {
+		height: 700px;
+	}
+
 	@media (max-width: 480px) {
 		height: 80svh;
 	}
