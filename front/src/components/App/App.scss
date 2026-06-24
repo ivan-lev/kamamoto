@@ -11,12 +11,12 @@
 	padding-top: var(--gap-48);
 
 	font-weight: 400;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
 	line-height: 1.5;
 	text-rendering: optimizeLegibility;
 
-	font-synthesis: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
 	@media screen and (max-width: 768px) {
 		gap: var(--gap-48);
