@@ -7,7 +7,7 @@ interface Props {
 
 export default function DictionaryBlock({ section }: Props) {
 	return (
-		<div className="dictionary__block" key={ section.letter }>
+		<div className="dictionary__block">
 			<span className="dictionary__letter">
 				{ section.letter }
 			</span>
