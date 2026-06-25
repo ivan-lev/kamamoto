@@ -11,6 +11,13 @@ export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
 	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>(dictionary);
 
+	useEffect(() => {
+		document.querySelector('#dictionary')?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+	}, [dictionaryFiltered]);
+
 	function filterDictionaryByQuery() {
 		if (query === '')
 			resetFilters();
@@ -57,7 +64,7 @@ export default function Dictionary() {
 				backLink="/useful/"
 			/>
 
-			<section className="section dictionary">
+			<section className="section dictionary" id="dictionary">
 				<div className="dictionary__filters">
 					<div className="dictionary__filter-query">
 						<input
@@ -88,7 +95,7 @@ export default function Dictionary() {
 				</div>
 
 				<div className="dictionary__list">
-					{ dictionaryFiltered.map(section => <DictionaryBlock section={ section } />) }
+					{ dictionaryFiltered.map(section => <DictionaryBlock section={ section } key={ section.letter } />) }
 				</div>
 			</section>
 		</>
