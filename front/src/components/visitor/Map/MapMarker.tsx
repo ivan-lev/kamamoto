@@ -1,6 +1,7 @@
 import type { Marker as IMarker } from '@/components/visitor/Map/map.types';
 import L from 'leaflet';
 import { Marker, Popup, Tooltip } from 'react-leaflet';
+import { PATHS } from '@/variables/variables';
 
 interface Props {
 	marker: IMarker;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function MapMarker({ marker, icon }: Props) {
+	const basePath = PATHS.STATIC_URL;
+
 	const currentIcon = new L.Icon({
 		iconUrl: `/__spritemap#sprite-${icon}-view`,
 		iconRetinaUrl: `/__spritemap#sprite-${icon}-view`,
@@ -28,7 +31,7 @@ export default function MapMarker({ marker, icon }: Props) {
 			{ (marker.popup || marker.image)
 				&& (
 					<Popup>
-						{ marker.image && <img className="map__image" src={ marker.image } /> }
+						{ marker.image && <img className="map__image" src={ `${basePath}/map/${marker.image}` } /> }
 						{ marker.popup && <span dangerouslySetInnerHTML={{ __html: marker.popup }}></span> }
 					</Popup>
 				) }

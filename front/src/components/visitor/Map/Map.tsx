@@ -1,10 +1,11 @@
 import type { Marker } from '@/components/visitor/Map/map.types';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer } from 'react-leaflet';
 import MapGroup from '@/components/visitor/Map/MapGroup';
 import { otherKilns, sevenKilnsOfEnshu, sixOldKilns, traditionalKilns } from '@/components/visitor/Map/markers';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
+import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function Map() {
 	const count = otherKilns.length + sevenKilnsOfEnshu.length + sixOldKilns.length + traditionalKilns.length;
@@ -39,6 +40,8 @@ export default function Map() {
 	useEffect(() => {
 		setMarkers();
 	}, [query]);
+
+	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
 		<>
