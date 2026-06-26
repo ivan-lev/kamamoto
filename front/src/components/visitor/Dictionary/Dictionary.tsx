@@ -11,9 +11,22 @@ export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
 	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>(dictionary);
 
+	function countTerms() {
+		return dictionary.reduce((count, section) => count + section.terms.length, 0);
+	}
+
+	function scrollToFilters(behavior: ScrollBehavior = 'smooth') {
+		document.querySelector('#dictionary')?.scrollIntoView({
+			behavior,
+			block: 'start',
+		});
+	}
+
 	function filterDictionaryByQuery() {
-		if (query === '')
+		if (query === '') {
 			resetFilters();
+			return;
+		}
 
 		const querySanitized = query.trim().toLowerCase();
 		const filteredList: DictionarySection[] = [];
@@ -34,6 +47,7 @@ export default function Dictionary() {
 		});
 
 		setDictionaryFiltered(filteredList);
+		scrollToFilters();
 	}
 
 	function filterDictionaryByLetter(letter: string) {
@@ -44,6 +58,7 @@ export default function Dictionary() {
 			dictionarySection.letter === letter);
 
 		setDictionaryFiltered(filteredDictionary);
+		scrollToFilters();
 	};
 
 	function resetFilters() {
@@ -51,16 +66,14 @@ export default function Dictionary() {
 		setDictionaryFiltered(dictionary);
 	}
 
+	function onResetButton() {
+		resetFilters();
+		scrollToFilters('instant');
+	}
+
 	useEffect(() => {
 		filterDictionaryByQuery();
 	}, [query]);
-
-	useEffect(() => {
-		document.querySelector('#dictionary')?.scrollIntoView({
-			behavior: 'smooth',
-			block: 'start',
-		});
-	}, [dictionaryFiltered]);
 
 	useLayoutEffect(() => scrollToTop(), []);
 
@@ -76,9 +89,9 @@ export default function Dictionary() {
 
 			<section className="section dictionary" id="dictionary">
 				<p>
-					<span>Поиск работает на русском языке и по иероглифам. P.S.: помните, что в написании японских слов используется </span>
+					{ `На данный момент терминов в словаре ${countTerms()}. Поиск работает на русском языке и по иероглифам. P.S.: помните, что в написании японских слов используется ` }
 					<a className="link link_usual" target="_blank" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%9F%D0%BE%D0%BB%D0%B8%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0">система Поливанова</a>
-					<span> (например, используется буква 'э', а не 'е' и т.д.)</span>
+					{ ' (например, используется буква "э", а не "е" и т.д.)' }
 				</p>
 				<div className="dictionary__filters">
 					<div className="dictionary__filter-query">
@@ -106,7 +119,9 @@ export default function Dictionary() {
 						}) }
 					</div>
 
-					<button className="button dictionary__reset-button" onClick={ resetFilters }>Сбросить</button>
+					<button className="button dictionary__reset-button" onClick={ onResetButton }>
+						Сбросить
+					</button>
 				</div>
 
 				<div className="dictionary__list">
