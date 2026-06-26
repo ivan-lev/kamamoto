@@ -1,4 +1,4 @@
-import type { DictionarySection } from '@/variables/useful/dictionary/dictionary.types';
+import type { DictionarySection, Term } from '@/variables/useful/dictionary/dictionary.types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import DictionaryBlock from '@/components/visitor/Dictionary/DictionatyBlock';
 import PageTop from '@/components/visitor/PageTop/PageTop';
@@ -11,35 +11,38 @@ export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
 	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>(dictionary);
 
-	useEffect(() => {
-		document.querySelector('#dictionary')?.scrollIntoView({
-			behavior: 'smooth',
-			block: 'start',
-		});
-	}, [dictionaryFiltered]);
-
 	function filterDictionaryByQuery() {
 		if (query === '')
 			resetFilters();
 
+		const querySanitized = query.trim().toLowerCase();
 		const filteredList: DictionarySection[] = [];
+
+		const matches = (term: Term) =>
+			term.title.toLowerCase().includes(querySanitized)
+			|| term.definition.toLowerCase().includes(querySanitized)
+			|| term.romaji?.toLowerCase().includes(querySanitized)
+			|| term.kanji.includes(querySanitized);
 
 		dictionary.forEach((dictionarySection) => {
 			const { letter, terms } = dictionarySection;
-			const filteredTerms = terms.filter(term =>
-				term.title.toLowerCase().includes(query.toLowerCase()) || term.definition.toLowerCase().includes(query));
+			const filteredTerms = terms.filter(matches);
+
 			if (filteredTerms.length > 0) {
 				filteredList.push({ letter, terms: filteredTerms });
 			}
-			setDictionaryFiltered(filteredList);
 		});
+
+		setDictionaryFiltered(filteredList);
 	}
 
 	function filterDictionaryByLetter(letter: string) {
 		if (query !== '')
 			setQuery('');
 
-		const filteredDictionary = dictionary.filter(dictionarySection => dictionarySection.letter === letter);
+		const filteredDictionary = dictionary.filter(dictionarySection =>
+			dictionarySection.letter === letter);
+
 		setDictionaryFiltered(filteredDictionary);
 	};
 
@@ -52,6 +55,13 @@ export default function Dictionary() {
 		filterDictionaryByQuery();
 	}, [query]);
 
+	useEffect(() => {
+		document.querySelector('#dictionary')?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+	}, [dictionaryFiltered]);
+
 	useLayoutEffect(() => scrollToTop(), []);
 
 	return (
@@ -60,11 +70,16 @@ export default function Dictionary() {
 
 			<PageTop
 				title="Глоссарий"
-				subtitle="На этой странице собраны термины, которые могут встретиться в статьях о керамике и чайной церемонии, а также некоторые релевантные термины. P.S.: помните, что в написании японских слов используется система Поливанова (например, используется буква 'э', а не 'е' и т.д.)"
+				subtitle="На этой странице собраны термины, которые могут встретиться в статьях о керамике и чайной церемонии, а также некоторые релевантные термины."
 				backLink="/useful/"
 			/>
 
 			<section className="section dictionary" id="dictionary">
+				<p>
+					<span>Поиск работает на русском языке и по иероглифам. P.S.: помните, что в написании японских слов используется </span>
+					<a className="link link_usual" target="_blank" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%9F%D0%BE%D0%BB%D0%B8%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0">система Поливанова</a>
+					<span> (например, используется буква 'э', а не 'е' и т.д.)</span>
+				</p>
 				<div className="dictionary__filters">
 					<div className="dictionary__filter-query">
 						<input
