@@ -2,7 +2,7 @@ export interface Term {
 	title: string;
 	id: string;
 	kanji: string;
-	romaji?: string;
+	romaji: string;
 	image?: string;
 	definition: string;
 }
