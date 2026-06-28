@@ -1,15 +1,5 @@
 import type { Types } from 'mongoose';
-
-interface ArticleSlide {
-	filename: string;
-	source?: string;
-	caption?: string;
-};
-
-interface ArticleSection {
-	content: string;
-	slides?: ArticleSlide[];
-}
+import type { ArticleSection } from './article';
 
 export interface Style {
 	_id: Types.ObjectId;

@@ -1,32 +1,29 @@
 import { celebrate, Joi } from 'celebrate';
 import { REGEX } from '../../variables/regexes';
 
-const { CERAMIC_STYLE_NAME, CERAMIC_STYLE_TITLE } = REGEX;
+const { ARTICLE_NAME, ARTICLE_TITLE } = REGEX;
 
 export const ceramicStyleValidator = celebrate({
 	body: Joi.object().keys({
-		name: Joi.string().pattern(CERAMIC_STYLE_NAME).required().messages({
+		name: Joi.string().pattern(ARTICLE_NAME).required().messages({
 			'string.base': 'поле name должно быть строкой',
 			'string.empty': 'поле name должно содержать значение',
 			'string.pattern.base': 'поле name должно состоять из английских букв a-z',
 			'any.required': 'поле name обязательное',
 		}),
-		title: Joi.string().pattern(CERAMIC_STYLE_TITLE).required().messages({
+		title: Joi.string().pattern(ARTICLE_TITLE).required().messages({
 			'string.base': 'поле title должно быть строкой',
 			'string.empty': 'поле title должно содержать значение',
 			'string.pattern.base': 'поле title должно состоять из русских букв а-я',
 			'any.required': 'поле title обязательное',
 		}),
-		brief: Joi.string().required().messages({
-			'string.base': 'поле brief должно быть строкой',
-			'string.empty': 'поле brief должно содержать значение',
-			'any.required': 'поле brief обязательное',
-		}),
 		description: Joi.string().allow('').messages({
-			'string.base': 'поле brief должно быть строкой',
+			'string.base': 'поле description должно быть строкой',
+			'string.empty': 'поле description должно содержать значение',
+			'any.required': 'поле description обязательное',
 		}),
 		showArticle: Joi.boolean().messages({
-			'boolean.base': 'поле brief должно быть булевым',
+			'boolean.base': 'поле showArticle должно быть булевым',
 		}),
 		thumbnail: Joi.string().allow('').pattern(REGEX.IMAGE).messages({
 			'string.base': 'поле thumbnail должно быть строкой',
