@@ -5,5 +5,8 @@
   "execMap": {
     "ts": "ts-node-esm"
   },
-  "exec": "ts-node ./src/app.ts"
+  "exec": "ts-node -r dotenv/config ./src/app.ts",
+	"env": {
+    "DOTENV_CONFIG_PATH": "../.env"
+  }
 }
