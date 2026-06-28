@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
+import type { ArticlePayload, ArticlesListPayload } from '../types/article';
 import type { Style as CeramicStyleType } from '../types/style';
-import type { CeramicStyleArticlePayload, CeramicStylesListPayload, DeleteCeramicStyleParams, UpdateCeramicStyleParams } from './ceramicStyles.types';
 import { ConflictError } from '../errors/conflict-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { ValidationError } from '../errors/validation-error';
@@ -32,9 +32,9 @@ async function getCeramicStyles(req: Request, res: Response, next: NextFunction)
 	};
 }
 
-async function getCeramicStylesArticles(req: Request, res: Response, next: NextFunction) {
+async function getCeramicStylesArticlesList(req: Request, res: Response, next: NextFunction) {
 	try {
-		const articlesList = await CeramicStyleModel.find({ showArticle: true }, '-_id -article -brief -description -mapImage -showArticle').lean<CeramicStylesListPayload[]>();
+		const articlesList = await CeramicStyleModel.find({ showArticle: true }, '-_id -article -description -mapImage -showArticle').lean<ArticlesListPayload[]>();
 
 		articlesList.forEach((article) => {
 			const { thumbnail } = article;
@@ -53,7 +53,7 @@ async function getCeramicStylesArticles(req: Request, res: Response, next: NextF
 async function getCeramicStylesArticle(req: Request, res: Response, next: NextFunction) {
 	const { style } = req.params;
 	try {
-		const articleData = await CeramicStyleModel.findOne({ name: style }, '-_id title name article showArticle').lean<CeramicStyleArticlePayload>();
+		const articleData = await CeramicStyleModel.findOne({ name: style }, '-_id title name article showArticle').lean<ArticlePayload>();
 
 		if (articleData === null || articleData.showArticle === false) {
 			res.status(404);
@@ -102,7 +102,7 @@ function createCeramicStyle(req: Request, res: Response, next: NextFunction): vo
 		});
 }
 
-function deleteCeramicStyle(req: Request<DeleteCeramicStyleParams>, res: Response, next: NextFunction): void {
+function deleteCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): void {
 	const name = req.params.name;
 	CeramicStyleModel.findOneAndDelete({ name })
 		.orFail()
@@ -110,18 +110,18 @@ function deleteCeramicStyle(req: Request<DeleteCeramicStyleParams>, res: Respons
 		.then(style => res.send(style))
 		.catch((error) => {
 			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
+				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
 			}
 
 			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
+				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
 			}
 
 			return next(error);
 		});
 }
 
-function updateCeramicStyle(req: Request<UpdateCeramicStyleParams>, res: Response, next: NextFunction): void {
+function updateCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): void {
 	const newCeramicStyleData: CeramicStyleType = req.body;
 	const ceramicStyleName = req.params.name;
 
@@ -157,7 +157,7 @@ function updateCeramicStyle(req: Request<UpdateCeramicStyleParams>, res: Respons
 export const ceramicStyle = {
 	createCeramicStyle,
 	getCeramicStyles,
-	getCeramicStylesArticles,
+	getCeramicStylesArticlesList,
 	getCeramicStylesArticle,
 	updateCeramicStyle,
 	deleteCeramicStyle,
