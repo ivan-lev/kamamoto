@@ -13,6 +13,10 @@ export default function Contacts() {
 	const [showAlert, setShowAlert] = useState(false);
 	const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
+	const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+	const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+	const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 	const { name, email, message } = mailData;
 
 	const handleAgree = () => {
@@ -35,8 +39,8 @@ export default function Contacts() {
 		setIsButtonDisabled(true);
 		setShowAlert(false);
 		emailjs
-			.sendForm('service_j8t6eu8', 'template_f2efm3h', event.currentTarget, {
-				publicKey: 'jtX7nvhSOFpKkSfnY',
+			.sendForm(serviceId, templateId, event.currentTarget, {
+				publicKey,
 			})
 			.then(
 				(result) => {
@@ -125,8 +129,10 @@ export default function Contacts() {
 
 						<p>
 							<span className="contacts__agreement">
-								Вместе с текстом сообщения вы передаёте ваши персональные данные. Я не собираю и не
-								храню их, но прошу подтвердить своё согласие на их передачу&nbsp;&nbsp;&nbsp;
+								Вместе с текстом сообщения вы передаёте ваши персональные данные.
+								<br />
+								Я не собираю и не
+								храню их, но прошу подтвердить своё согласие на их передачу, чтобы я смог вам ответить&nbsp;&nbsp;&nbsp;
 							</span>
 							<input
 								className="contacts__agreement"
