@@ -3,8 +3,12 @@
 
   border-radius: 50%;
 
-	background-color: transparent;
-	filter: drop-shadow(10px 10px 4px var(--color-primary-100));
-  backdrop-filter: blur(2px);
+	background-color: #0e0e0eb0;
+	filter: drop-shadow(5px 5px 8px var(--color-primary-100));
 	box-shadow: none;
+
+	.link__icon {
+		width: 40px;
+		height: 40px;
+	}
 }
