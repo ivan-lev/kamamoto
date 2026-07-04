@@ -13,7 +13,11 @@ export const exhibitValidator = celebrate({
 		category: Joi.string().required(),
 		images: Joi.array().items(Joi.string()).required(),
 		additionalImages: Joi.array().items(Joi.string()),
-		thumbnail: Joi.string(),
+		thumbnail: Joi.string().required().messages({
+			'string.base': 'превью должно быть строкой',
+			'string.empty': 'превью не должно быть пустым',
+			'any.required': 'нужно заполнить название файла превью',
+		}),
 		style: Joi.string().required(),
 		description: Joi.string().allow('').required(),
 		potter: Joi.string().required(),

@@ -37,7 +37,7 @@ const exhibitSchema = new Schema<Exhibit>(
 
 		thumbnail: {
 			type: String,
-			required: [true, 'Нужно выбрать превьюшку'],
+			required: [true, 'Нужно выбрать картинку превью'],
 			default: 'thumb.jpg',
 		},
 

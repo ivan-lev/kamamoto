@@ -16,19 +16,12 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 	Exhibit
 		.find({})
 		.select({ _id: 0 })
-		.populate({
-			path: 'category',
-			select: 'title name -_id',
-		})
-		.populate({
-			path: 'style',
-			select: 'title name -_id',
-		})
-		.populate({
-			path: 'potter',
-			select: 'id name -_id',
-		})
-		.then((exhibits: ExhibitType[]) => res.send(exhibits))
+		.populate([
+			{	path: 'category', select: 'title name -_id' },
+			{ path: 'style', select: 'title name -_id' },
+			{ path: 'potter', select: 'id name -_id' },
+		])
+		.then((exhibits: ExhibitType[]) => res.send(exhibits.sort((first, second) => first.id - second.id)))
 		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); });
 }
 
@@ -36,8 +29,10 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 	const id = Number(req.params.id);
 	try {
 		const exhibit = await Exhibit.findOne({ id }, '-_id')
-			.populate<{ style: IStyle }>({ path: 'style', select: '-_id name title description mapImage showArticle' })
-			.populate<{ potter: IPotter }>({ path: 'potter', select: '-_id' })
+			.populate<{ style: IStyle; potter: IPotter }>([
+				{ path: 'style', select: '-_id name title description mapImage showArticle' },
+				{ path: 'potter', select: '-_id' },
+			])
 			.lean()
 			.orFail();
 
@@ -58,7 +53,7 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 			exhibit.style.mapImage = '';
 		}
 
-		if (exhibit.potter.photo?.length !== 0 && exhibit.style.mapImage !== undefined)
+		if (exhibit.potter.photo?.length !== 0 && exhibit.potter.photo !== undefined)
 			exhibit.potter.photo = `${STATIC_URL}/${POTTERS}/${exhibit.potter.photo}`;
 
 		res.send(exhibit);
@@ -75,7 +70,19 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 		const style = await Style.findOne({ name: String(exhibit.style) });
 		const potter = await Potter.findOne({ id: String(exhibit.potter) });
 
-		const result = await Exhibit.create({ ...exhibit, category: category?._id, style: style?._id, potter: potter?._id });
+		const createdExhibit = await Exhibit.create({
+			...exhibit,
+			category: category?._id,
+			style: style?._id,
+			potter: potter?._id,
+		});
+
+		const result = await createdExhibit.populate([
+			{ path: 'category', select: 'title name -_id' },
+			{ path: 'style', select: 'title name -_id' },
+			{ path: 'potter', select: 'id name -_id' },
+		]);
+
 		res.status(201).send(result);
 	}
 
@@ -103,16 +110,11 @@ async function updateExhibit(req: Request, res: Response, next: NextFunction) {
 			{ id },
 			{ ...exhibit, category: category?._id, style: style?._id, potter: potter?._id },
 			{ returnDocument: 'after', runValidators: true },
-		).select({ _id: 0 }).orFail().populate({
-			path: 'category',
-			select: 'name title -_id',
-		}).populate({
-			path: 'style',
-			select: 'name title -_id',
-		}).populate({
-			path: 'potter',
-			select: 'name id -_id',
-		});
+		).select({ _id: 0 }).orFail().populate([
+			{ path: 'category', select: 'name title -_id' },
+			{ path: 'style', select: 'name title -_id' },
+			{ path: 'potter', select: 'name id -_id' },
+		]);
 
 		res.status(201).send(result);
 	}
