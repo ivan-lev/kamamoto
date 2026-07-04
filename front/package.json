@@ -42,6 +42,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
+    "@babel/core": "^7.29.7",
+    "@rolldown/plugin-babel": "^0.2.3",
     "@spiriit/vite-plugin-svg-spritemap": "^7.0.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/leaflet": "^1.9.21",
@@ -49,7 +51,9 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
+    "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^10.5.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "sass": "^1.101.0",
     "stylelint": "^17.13.0",
     "stylelint-config-clean-order": "^10.0.0",

@@ -1,11 +1,17 @@
 import path from 'node:path';
+import babel from '@rolldown/plugin-babel';
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
 		VitePluginSvgSpritemap('./src/assets/icons/*.svg'),
+		react(),
+		babel({
+			presets: [reactCompilerPreset()],
+		}),
 	],
 	server: {
 		host: '0.0.0.0',
