@@ -1,8 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Potter as IPotter } from '../types/potter';
-import { ConflictError } from '../errors/conflict-error';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Potter from '../models/potter';
 import { ERROR_MESSAGES } from '../variables/messages';
 
@@ -13,7 +11,7 @@ async function getPotters(req: Request, res: Response, next: NextFunction) {
 		res.send(potters);
 	}
 
-	catch (error: any) { return next(error); };
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
 }
 
 async function getLNTPotters(req: Request, res: Response, next: NextFunction) {
@@ -23,7 +21,7 @@ async function getLNTPotters(req: Request, res: Response, next: NextFunction) {
 		res.send(potters);
 	}
 
-	catch (error: any) { return next(error); };
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
 }
 
 async function findPotterById(req: Request, res: Response, next: NextFunction) {
@@ -31,7 +29,7 @@ async function findPotterById(req: Request, res: Response, next: NextFunction) {
 		res.send('Some logic will be here if necessary');
 	}
 
-	catch (error: any) { return next(error); };
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
 	// try {
 	// 	const potter = await Potter.findOne({ id: req.params.id }, '-_id').orFail();
 
@@ -44,7 +42,7 @@ async function findPotterById(req: Request, res: Response, next: NextFunction) {
 	// 	res.send(potter);
 	// }
 
-	// catch (error: any) {
+	// catch (error) {
 	// 	if (error.name === 'CastError') {
 	// 		return next(new ValidationError(ERROR_MESSAGES.POTTER_WRONG_ID));
 	// 	}
@@ -68,21 +66,7 @@ async function createPotter(req: Request, res: Response, next: NextFunction) {
 		}
 	}
 
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.POTTER_WRONG_ID));
-		}
-
-		if (error.name === 'ValidationError') {
-			return next(new ValidationError(ERROR_MESSAGES.POTTER_WRONG_DATA));
-		}
-
-		if (error.code === 11000) {
-			return next(new ConflictError(ERROR_MESSAGES.POTTER_EXISTS));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
 }
 
 async function updatePotter(req: Request, res: Response, next: NextFunction) {
@@ -98,21 +82,7 @@ async function updatePotter(req: Request, res: Response, next: NextFunction) {
 		res.status(201).send(result);
 	}
 
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.POTTER_WRONG_ID));
-		}
-
-		if (error.name === 'ValidationError') {
-			return next(new ValidationError(ERROR_MESSAGES.POTTER_WRONG_DATA));
-		}
-
-		if (error.code === 11000) {
-			return next(new ConflictError(ERROR_MESSAGES.POTTER_EXISTS));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
 }
 
 async function deletePotter(req: Request, res: Response, next: NextFunction) {
@@ -121,17 +91,7 @@ async function deletePotter(req: Request, res: Response, next: NextFunction) {
 		res.send(result);
 	}
 
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.POTTER_WRONG_ID));
-		}
-
-		if (error.name === 'DocumentNotFoundError') {
-			return next(new NotFoundError(ERROR_MESSAGES.POTTER_NOT_FOUND));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
 }
 
 export const potter = {

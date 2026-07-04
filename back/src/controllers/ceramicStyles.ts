@@ -1,9 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { ArticlePayload, ArticlesListPayload } from '../types/article';
 import type { Style as CeramicStyleType } from '../types/style';
-import { ConflictError } from '../errors/conflict-error';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import CeramicStyleModel from '../models/style';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
@@ -27,9 +25,8 @@ async function getCeramicStyles(req: Request, res: Response, next: NextFunction)
 
 		res.send(styles.sort((a, b) => a.title.localeCompare(b.title)));
 	}
-	catch (error) {
-		return next(error);
-	};
+
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.CERAMIC_STYLE); }
 }
 
 async function getCeramicStylesArticlesList(req: Request, res: Response, next: NextFunction) {
@@ -45,9 +42,8 @@ async function getCeramicStylesArticlesList(req: Request, res: Response, next: N
 
 		res.send(articlesList.sort((a, b) => a.title.localeCompare(b.title)));
 	}
-	catch (error) {
-		return next(error);
-	};
+
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.CERAMIC_STYLE); }
 }
 
 async function getCeramicStylesArticle(req: Request, res: Response, next: NextFunction) {
@@ -72,9 +68,8 @@ async function getCeramicStylesArticle(req: Request, res: Response, next: NextFu
 
 		res.send({ title, name, article });
 	}
-	catch (error) {
-		return next(error);
-	}
+
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.CERAMIC_STYLE); }
 };
 
 function createCeramicStyle(req: Request, res: Response, next: NextFunction): void {
@@ -85,21 +80,7 @@ function createCeramicStyle(req: Request, res: Response, next: NextFunction): vo
 			const { _id, ...styleData } = ceramicStyle.toObject();
 			res.status(201).send(styleData);
 		})
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_DATA));
-			}
-
-			if (error.code === 11000) {
-				return next(new ConflictError(ERROR_MESSAGES.CATEGORY_EXISTS));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 function deleteCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): void {
@@ -108,17 +89,7 @@ function deleteCeramicStyle(req: Request<{ name: string }>, res: Response, next:
 		.orFail()
 		.select('name')
 		.then(style => res.send(style))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 function updateCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): void {
@@ -133,25 +104,7 @@ function updateCeramicStyle(req: Request<{ name: string }>, res: Response, next:
 		.select('-_id')
 		.orFail()
 		.then(style => res.send(style))
-		.catch((error) => {
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_DATA));
-			}
-
-			if (error.name === 'CastError') {
-				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
-			}
-
-			if (error.code === 11000) {
-				return next(new ConflictError(ERROR_MESSAGES.CATEGORY_EXISTS));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 export const ceramicStyle = {

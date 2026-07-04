@@ -1,8 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Partner as PartnerType } from '../types/partner';
-import { ConflictError } from '../errors/conflict-error';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Partner from '../models/partner';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
@@ -22,9 +20,8 @@ async function getPartners(req: Request, res: Response, next: NextFunction) {
 		});
 		res.send(newPartners);
 	}
-	catch (error) {
-		return next(error);
-	};
+
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); }
 }
 
 function createPartner(req: Request, res: Response, next: NextFunction): void {
@@ -32,25 +29,7 @@ function createPartner(req: Request, res: Response, next: NextFunction): void {
 
 	Partner.create({ ...partner })
 		.then(partner => res.status(201).send(partner))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.PARTNER_WRONG_ID));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.PARTNER_WRONG_DATA));
-			}
-
-			if (error.code === 11000) {
-				return next(new ConflictError(ERROR_MESSAGES.PARTNER_EXISTS));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.PARTNER_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
 }
 
 function getPartnerById(req: Request, res: Response, next: NextFunction): void {
@@ -59,17 +38,7 @@ function getPartnerById(req: Request, res: Response, next: NextFunction): void {
 		.then((partner) => {
 			res.send(partner);
 		})
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.PARTNER_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.PARTNER_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
 }
 
 function updatePartner(req: Request, res: Response, next: NextFunction): void {
@@ -80,21 +49,7 @@ function updatePartner(req: Request, res: Response, next: NextFunction): void {
 	})
 		.orFail()
 		.then(partner => res.send(partner))
-		.catch((error) => {
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.PARTNER_NOT_FOUND));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.PARTNER_WRONG_DATA));
-			}
-
-			if (error.name === 'CastError') {
-				return next(new NotFoundError(ERROR_MESSAGES.PARTNER_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
 }
 
 function deletePartner(req: Request, res: Response, next: NextFunction): void {
@@ -102,17 +57,7 @@ function deletePartner(req: Request, res: Response, next: NextFunction): void {
 		.orFail()
 		.select('_id')
 		.then(partner => res.send(partner))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.PARTNER_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.PARTNER_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
 }
 
 export const partners = {

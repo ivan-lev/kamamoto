@@ -2,9 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
 import type { Potter as IPotter } from '../types/potter';
 import type { Style as IStyle } from '../types/style';
-import { ConflictError } from '../errors/conflict-error';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 import Potter from '../models/potter';
@@ -31,7 +29,7 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 			select: 'id name -_id',
 		})
 		.then((exhibits: ExhibitType[]) => res.send(exhibits))
-		.catch((error: any) => { return next(error); });
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); });
 }
 
 async function findExhibitById(req: Request, res: Response, next: NextFunction) {
@@ -66,17 +64,7 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 		res.send(exhibit);
 	}
 
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-		}
-
-		if (error.name === 'DocumentNotFoundError') {
-			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); }
 }
 
 async function createExhibit(req: Request, res: Response, next: NextFunction) {
@@ -90,21 +78,8 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 		const result = await Exhibit.create({ ...exhibit, category: category?._id, style: style?._id, potter: potter?._id });
 		res.status(201).send(result);
 	}
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-		}
 
-		if (error.name === 'ValidationError') {
-			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
-		}
-
-		if (error.code === 11000) {
-			return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); }
 }
 
 function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
@@ -112,17 +87,7 @@ function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
 	Exhibit.findOneAndDelete({ id })
 		.orFail()
 		.then((exhibit: ExhibitType) => res.send(exhibit))
-		.catch((error: any) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); });
 }
 
 async function updateExhibit(req: Request, res: Response, next: NextFunction) {
@@ -151,21 +116,7 @@ async function updateExhibit(req: Request, res: Response, next: NextFunction) {
 
 		res.status(201).send(result);
 	}
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-		}
-
-		if (error.name === 'ValidationError') {
-			return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_DATA));
-		}
-
-		if (error.code === 11000) {
-			return next(new ConflictError(ERROR_MESSAGES.EXHIBIT_EXISTS));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); }
 }
 
 export const exhibit = {

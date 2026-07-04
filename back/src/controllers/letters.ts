@@ -1,8 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { File } from '../types/file';
-import { ConflictError } from '../errors/conflict-error';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Letter from '../models/letter';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
@@ -19,7 +17,7 @@ function getLetters(req: Request, res: Response, next: NextFunction): void {
 			});
 		})
 		.then(letters => res.send(letters))
-		.catch((error) => { return next(error); });
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.LETTER); });
 }
 
 function createLetter(req: Request, res: Response, next: NextFunction): void {
@@ -27,25 +25,7 @@ function createLetter(req: Request, res: Response, next: NextFunction): void {
 
 	Letter.create({ ...letter })
 		.then(letter => res.status(201).send(letter))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.LETTER_WRONG_ID));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.LETTER_WRONG_DATA));
-			}
-
-			if (error.code === 11000) {
-				return next(new ConflictError(ERROR_MESSAGES.LETTER_EXISTS));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.LETTER_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.LETTER); });
 }
 
 function updateLetter(req: Request, res: Response, next: NextFunction): void {
@@ -56,21 +36,7 @@ function updateLetter(req: Request, res: Response, next: NextFunction): void {
 	})
 		.orFail()
 		.then(letter => res.send(letter))
-		.catch((error) => {
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.LETTER_NOT_FOUND));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.LETTER_WRONG_DATA));
-			}
-
-			if (error.name === 'CastError') {
-				return next(new NotFoundError(ERROR_MESSAGES.LETTER_WRONG_ID));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.LETTER); });
 }
 
 function deleteLetter(req: Request, res: Response, next: NextFunction): void {
@@ -79,17 +45,7 @@ function deleteLetter(req: Request, res: Response, next: NextFunction): void {
 		.orFail()
 		.select('_id')
 		.then(letter => res.send(letter))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.LETTER_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.LETTER_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.LETTER); });
 }
 
 export const letters = {

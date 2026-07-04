@@ -1,9 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Category as CategoryType } from '../types/category';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
-import { ConflictError } from '../errors/conflict-error';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 import { ERROR_MESSAGES } from '../variables/messages';
@@ -25,7 +23,7 @@ function getCategories(req: Request, res: Response, next: NextFunction): void {
 			});
 		})
 		.then(categories => res.send(categories))
-		.catch((error) => { return next(error); });
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 function getExhibitsByCategory(req: Request, res: Response, next: NextFunction): void {
@@ -40,21 +38,11 @@ function getExhibitsByCategory(req: Request, res: Response, next: NextFunction):
 					});
 				})
 				.then(exhibits => res.send(exhibits))
-				.catch((error: any) => {
+				.catch((error) => {
 					return next(error);
 				});
 		})
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.EXHIBIT_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 function createCategory(req: Request, res: Response, next: NextFunction): void {
@@ -62,21 +50,7 @@ function createCategory(req: Request, res: Response, next: NextFunction): void {
 
 	Category.create({ ...category })
 		.then(category => res.status(201).send(category))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_DATA));
-			}
-
-			if (error.code === 11000) {
-				return next(new ConflictError(ERROR_MESSAGES.CATEGORY_EXISTS));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 function deleteCategory(req: Request, res: Response, next: NextFunction): void {
@@ -84,17 +58,7 @@ function deleteCategory(req: Request, res: Response, next: NextFunction): void {
 		.orFail()
 		.select('category')
 		.then(category => res.send(category))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 function updateCategory(req: Request, res: Response, next: NextFunction): void {
@@ -105,25 +69,7 @@ function updateCategory(req: Request, res: Response, next: NextFunction): void {
 	})
 		.orFail()
 		.then(category => res.send(category))
-		.catch((error) => {
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
-			}
-
-			if (error.name === 'ValidationError') {
-				return next(new ValidationError(ERROR_MESSAGES.CATEGORY_WRONG_DATA));
-			}
-
-			if (error.name === 'CastError') {
-				return next(new NotFoundError(ERROR_MESSAGES.CATEGORY_NOT_FOUND));
-			}
-
-			if (error.code === 11000) {
-				return next(new ConflictError(ERROR_MESSAGES.CATEGORY_EXISTS));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
 }
 
 export const category = {

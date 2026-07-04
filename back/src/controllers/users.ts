@@ -3,8 +3,7 @@ import type { Error } from 'mongoose';
 import type { UserDocument } from '../models/user';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET, NODE_ENV } from '../config';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import User from '../models/user';
 import { ERROR_MESSAGES } from '../variables/messages';
 
@@ -20,7 +19,7 @@ export function login(req: Request, res: Response, next: NextFunction): void {
 			);
 			res.send({ token });
 		})
-		.catch((error: Error) => { next(error); });
+		.catch((error: Error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
 }
 
 export function checkToken(req: any, res: Response, next: NextFunction): void {
@@ -33,15 +32,5 @@ export function checkToken(req: any, res: Response, next: NextFunction): void {
 	})
 		.orFail()
 		.then(() => res.send({ answer: `Token checked!` }))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.USER_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.USER_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
 }

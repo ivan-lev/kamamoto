@@ -1,8 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Complectation as IComplectation } from '../types/complectation';
-import { ConflictError } from '../errors/conflict-error';
-import { NotFoundError } from '../errors/not-found-error';
-import { ValidationError } from '../errors/validation-error';
+import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Complectation from '../models/complectation';
 import { ERROR_MESSAGES } from '../variables/messages';
 
@@ -19,25 +17,8 @@ async function createComplectation(req: Request, res: Response, next: NextFuncti
 		const { name, title } = result.toObject();
 		res.status(201).send({ name, title });
 	}
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.COMPLECTATION_WRONG_ID));
-		}
 
-		if (error.name === 'ValidationError') {
-			return next(new ValidationError(ERROR_MESSAGES.COMPLECTATION_WRONG_DATA));
-		}
-
-		if (error.code === 11000) {
-			return next(new ConflictError(ERROR_MESSAGES.COMPLECTATION_EXISTS));
-		}
-
-		if (error.name === 'DocumentNotFoundError') {
-			return next(new NotFoundError(ERROR_MESSAGES.COMPLECTATION_NOT_FOUND));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.COMPLECTATION); }
 }
 
 async function updateComplectation(req: Request, res: Response, next: NextFunction) {
@@ -54,42 +35,15 @@ async function updateComplectation(req: Request, res: Response, next: NextFuncti
 
 		res.status(201).send(result);
 	}
-	catch (error: any) {
-		if (error.name === 'CastError') {
-			return next(new ValidationError(ERROR_MESSAGES.COMPLECTATION_WRONG_ID));
-		}
 
-		if (error.name === 'ValidationError') {
-			return next(new ValidationError(ERROR_MESSAGES.COMPLECTATION_WRONG_DATA));
-		}
-
-		if (error.code === 11000) {
-			return next(new ConflictError(ERROR_MESSAGES.COMPLECTATION_EXISTS));
-		}
-
-		if (error.name === 'DocumentNotFoundError') {
-			return next(new NotFoundError(ERROR_MESSAGES.COMPLECTATION_NOT_FOUND));
-		}
-
-		return next(error);
-	};
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.COMPLECTATION); }
 }
 
 function deleteComplectation(req: Request, res: Response, next: NextFunction): void {
 	Complectation.findOneAndDelete({ name: req.params.name })
 		.orFail()
 		.then(complectation => res.send(complectation))
-		.catch((error) => {
-			if (error.name === 'CastError') {
-				return next(new ValidationError(ERROR_MESSAGES.COMPLECTATION_WRONG_ID));
-			}
-
-			if (error.name === 'DocumentNotFoundError') {
-				return next(new NotFoundError(ERROR_MESSAGES.COMPLECTATION_NOT_FOUND));
-			}
-
-			return next(error);
-		});
+		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.COMPLECTATION); });
 }
 
 export const complectation = {

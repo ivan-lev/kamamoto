@@ -40,7 +40,7 @@ const userSchema = new Schema(
 					.then(async (user: any) => {
 						if (user.email === undefined) {
 							throw new AuthorizationError(
-								ERROR_MESSAGES.USER_WRONG_CREDENTIALS,
+								ERROR_MESSAGES.USER.WRONG_CREDENTIALS,
 							);
 						}
 						return await bcrypt
@@ -48,7 +48,7 @@ const userSchema = new Schema(
 							.then((matched: boolean) => {
 								if (!matched) {
 									throw new AuthorizationError(
-										ERROR_MESSAGES.USER_WRONG_CREDENTIALS,
+										ERROR_MESSAGES.USER.WRONG_CREDENTIALS,
 									);
 								}
 								return user;
