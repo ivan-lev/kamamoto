@@ -46,7 +46,6 @@ export default function ExhibitView() {
 					setShowPreloader(false);
 				})
 				.catch((error) => {
-					console.error(error);
 					setShowPreloader(false);
 
 					if (error.status === 404) {

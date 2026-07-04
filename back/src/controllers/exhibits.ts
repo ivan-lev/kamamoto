@@ -2,6 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
 import type { Potter as IPotter } from '../types/potter';
 import type { Style as IStyle } from '../types/style';
+import { NotFoundError } from '../errors/not-found-error';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
@@ -35,6 +36,10 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 			])
 			.lean()
 			.orFail();
+
+		if (!exhibit.isActive) {
+			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT.NOT_FOUND));
+		}
 
 		const pathToExhibitFolder = `${STATIC_URL}/${EXHIBITS}/${exhibit.id}`;
 

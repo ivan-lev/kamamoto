@@ -1,6 +1,6 @@
 import type { Article as IArticle } from '@/components/visitor/Article/Article.types';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import ArticleSection from '@/components/visitor/Article/ArticleSection';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Preloader from '@/components/visitor/Preloader/Preloader';
@@ -11,7 +11,7 @@ import { scrollToTop } from '@/utils/scrollToTop';
 export default function Article() {
 	const { style } = useParams();
 	const [articleInfo, setArticleInfo] = useState<IArticle | null>(null);
-	const [error, setError] = useState(false);
+	const navigate = useNavigate();
 
 	async function getCeramicStylesInfo(style: string) {
 		if (!style)
@@ -21,9 +21,10 @@ export default function Article() {
 			const data = await api.ceramicStyles.getCeramicStylesArticle(style);
 			setArticleInfo(data);
 		}
-		catch (error) {
-			console.error(error);
-			setError(true);
+		catch (error: any) {
+			if (error.status === 404) {
+				navigate('/404', { replace: true });
+			}
 		}
 	}
 
@@ -34,10 +35,6 @@ export default function Article() {
 	}, [style]);
 
 	useLayoutEffect(() => scrollToTop(), []);
-
-	if (error) {
-		return <div>Статья не найдена</div>;
-	}
 
 	if (!articleInfo) {
 		return <Preloader />;
