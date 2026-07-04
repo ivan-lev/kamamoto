@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/Button';
 import { clearPotterForm, setPotters, setPotterToEdit } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
-import errorHandler from '@/utils/errorHandler';
 
 export default function PottersForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -53,8 +52,7 @@ export default function PottersForm() {
 			}
 			catch (error: any) {
 				setIsFormDisabled(false);
-				const errorJson = await error.json();
-				setSaveMessage(errorHandler(errorJson));
+				setSaveMessage((error.message));
 			}
 		}
 	};
@@ -71,10 +69,9 @@ export default function PottersForm() {
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
 				})
-				.catch((error) => {
-					console.error(error);
+				.catch((error: any) => {
 					setIsFormDisabled(false);
-					setSaveMessage(errorHandler(error).json());
+					setSaveMessage(error.messagr);
 				});
 		}
 	};
@@ -93,7 +90,7 @@ export default function PottersForm() {
 				.catch((error) => {
 					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage(errorHandler(error.json()));
+					setSaveMessage(error.message);
 				});
 		}
 	};

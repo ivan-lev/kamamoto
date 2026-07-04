@@ -6,7 +6,6 @@ import CeramicStylesFormArticle from '@/components/admin/CeramicStyles/CeramicSt
 import CeramicStyleFormBasicInfo from '@/components/admin/CeramicStyles/CeramicStyleFormBasicInfo';
 import { clearCeramicStyleForm, setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { api } from '@/utils/api/api';
-import errorHandler from '@/utils/errorHandler';
 
 export default function CeramicStyleFormView() {
 	const dispatch = useDispatch();
@@ -36,8 +35,7 @@ export default function CeramicStyleFormView() {
 			}
 			catch (error: any) {
 				setIsFormDisabled(false);
-				const errorJson = await error.json();
-				setSaveMessage(errorHandler(errorJson));
+				setSaveMessage(error.message || 'Что-то пошло не так :(');
 			}
 		}
 	};
@@ -55,10 +53,8 @@ export default function CeramicStyleFormView() {
 				setSaveMessage('Данные обновлены');
 			}
 			catch (error: any) {
-				console.error(error);
 				setIsFormDisabled(false);
-				setSaveMessage(errorHandler(error));
-				return error.json();
+				setSaveMessage(error.message || 'Что-то пошло не так :(');
 			};
 		}
 	};
@@ -75,12 +71,8 @@ export default function CeramicStyleFormView() {
 					setIsFormDisabled(false);
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					return error.json();
-				})
-				.then((error) => {
-					setSaveMessage(errorHandler(error));
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};

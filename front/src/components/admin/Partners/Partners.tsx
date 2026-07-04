@@ -62,9 +62,8 @@ export default function Partners() {
 					setSaveMessage('Новый партнёр в базе');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
@@ -90,9 +89,8 @@ export default function Partners() {
 					setSaveMessage('Данные обновлены');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};

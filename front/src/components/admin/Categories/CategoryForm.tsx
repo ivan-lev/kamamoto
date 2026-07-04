@@ -43,9 +43,8 @@ export default function CategoryForm({ closeModal }: Props) {
 					setTimeout(closeModal, 1000);
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	}
@@ -66,9 +65,8 @@ export default function CategoryForm({ closeModal }: Props) {
 					setSaveMessage('Данные обновлены');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	}
@@ -87,7 +85,7 @@ export default function CategoryForm({ closeModal }: Props) {
 					setIsFormDisabled(false);
 				})
 				.catch((error) => {
-					console.error(error);
+					console.error(error.message);
 					setIsFormDisabled(false);
 				});
 		}

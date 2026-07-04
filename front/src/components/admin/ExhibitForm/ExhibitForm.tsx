@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
+import type { ExhibitAdmin } from '@/types/exhibitType';
 import type { Potter } from '@/types/potter';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,16 +44,15 @@ export default function ExhibitForm({ closeModal }: Props) {
 		const token = localStorage.getItem('kmmttkn');
 		if (token) {
 			api.exhibits.createExhibit(token, { ...exhibitToEdit })
-				.then((response) => {
-					dispatch(setExhibits([...exhibits, response]));
+				.then((response: ExhibitAdmin) => {
+					dispatch(setExhibits([...exhibits, response].sort((first, second) => first.id - second.id)));
 					dispatch(clearExhibitForm());
 					setIsFormDisabled(false);
 					setSaveMessage('Лот создан');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
@@ -71,9 +71,8 @@ export default function ExhibitForm({ closeModal }: Props) {
 					setSaveMessage('Данные обновлены');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
@@ -90,9 +89,8 @@ export default function ExhibitForm({ closeModal }: Props) {
 					closeModal();
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
@@ -206,7 +204,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 
 				<div className="form__grid">
 					<div className="form__row form__row-2">
-						<span>номер</span>
+						<span>номер *</span>
 						<input
 							className="input"
 							type="text"
@@ -218,7 +216,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 					</div>
 
 					<div className="form__row form__row-10">
-						<span>название</span>
+						<span>название *</span>
 						<input
 							className="input"
 							type="text"
@@ -291,7 +289,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 					</div>
 
 					<div className="form__row form__row-2">
-						<span>тхумб</span>
+						<span>превью *</span>
 						<input
 							className="input"
 							type="text"
@@ -486,8 +484,8 @@ export default function ExhibitForm({ closeModal }: Props) {
 						<span className="form__request-status">{ saveMessage }</span>
 						{ !isExistingExhibitEdited && (
 							<>
-								<Button title="Очистить" action={ () => dispatch(clearExhibitForm()) } />
 								<Button title="Создать" action={ handleCreateExhibit } />
+								<Button title="Очистить" action={ () => dispatch(clearExhibitForm()) } />
 							</>
 						) }
 
@@ -502,8 +500,8 @@ export default function ExhibitForm({ closeModal }: Props) {
 								) }
 								{ !showConfirmation && (
 									<>
-										<Button title="Удалить" action={ () => setShowConfirmation(true) } />
 										<Button title="Сохранить" action={ handleUpdateExhibit } />
+										<Button title="Удалить" action={ () => setShowConfirmation(true) } />
 									</>
 								) }
 							</>

@@ -40,9 +40,8 @@ export default function Compleactation() {
 					setSaveMessage('Новая комплектация в базе');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
@@ -69,9 +68,8 @@ export default function Compleactation() {
 					setSaveMessage('Комплектация обновлена');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	}
@@ -88,9 +86,8 @@ export default function Compleactation() {
 					setSaveMessage('Комплектация обновлена');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		};
 	}

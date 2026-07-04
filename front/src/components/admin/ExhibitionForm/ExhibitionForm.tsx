@@ -72,9 +72,8 @@ export default function ExhibitionForm({ closeModal }: Props) {
 					setSaveMessage('Выставка создана');
 				})
 				.catch((error) => {
-					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
@@ -95,7 +94,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 				.catch((error) => {
 					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage('Что-то пошло не так :(');
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
