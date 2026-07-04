@@ -6,6 +6,7 @@ const potterRouter = Router();
 
 potterRouter.get('/', potter.getPotters);
 potterRouter.post('/', potterValidator, potter.createPotter);
+potterRouter.get('/lnt', potter.getLNTPotters);
 potterRouter.get('/:id', potterIdValidator, potter.findPotterById);
 potterRouter.delete('/:id', potterIdValidator, potter.deletePotter);
 potterRouter.patch('/:id', potterIdValidator, potter.updatePotter);

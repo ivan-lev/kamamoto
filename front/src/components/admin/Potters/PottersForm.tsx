@@ -25,11 +25,17 @@ export default function PottersForm() {
 		lifeDates,
 		photo,
 		info,
+		isLNT,
 	} = potterToEdit;
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		dispatch(setPotterToEdit({ ...potterToEdit, [name]: value }));
+	};
+
+	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
+		const { name, checked } = event.target;
+		dispatch(setPotterToEdit({ ...potterToEdit, [name]: checked }));
 	};
 
 	async function handleCreatePotter() {
@@ -101,7 +107,7 @@ export default function PottersForm() {
 	return (
 		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
-				<legend>Добавить гончара</legend>
+				<legend>{ !isExistingPotterEdited ? 'Добавить гончара' : 'Редактировать гончара' }</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-4">
@@ -162,6 +168,19 @@ export default function PottersForm() {
 							value={ photo }
 							onChange={ handleChange }
 						/>
+					</div>
+
+					<div className="form__row form__row-4">
+						<span>ЛНТ</span>
+						<label className={ `checkbox-label ${isLNT ? 'checkbox-label--checked' : ''}` }>
+							<input
+								className="checkbox-input"
+								type="checkbox"
+								checked={ isLNT }
+								name="isLNT"
+								onChange={ handleCheckBox }
+							/>
+						</label>
 					</div>
 
 					<div className="form__row form__row-12">

@@ -26,6 +26,10 @@ function getExhibits(req: Request, res: Response, next: NextFunction): void {
 			path: 'style',
 			select: 'title name -_id',
 		})
+		.populate({
+			path: 'potter',
+			select: 'id name -_id',
+		})
 		.then((exhibits: ExhibitType[]) => res.send(exhibits))
 		.catch((error: any) => { return next(error); });
 }
@@ -128,10 +132,11 @@ async function updateExhibit(req: Request, res: Response, next: NextFunction) {
 	try {
 		const category = await Category.findOne({ category: exhibit.category });
 		const style = await Style.findOne({ name: String(exhibit.style) });
+		const potter = await Potter.findOne({ id: String(exhibit.potter) });
 
 		const result = await Exhibit.findOneAndUpdate(
 			{ id },
-			{ ...exhibit, category: category?._id, style: style?._id },
+			{ ...exhibit, category: category?._id, style: style?._id, potter: potter?._id },
 			{ returnDocument: 'after', runValidators: true },
 		).select({ _id: 0 }).orFail().populate({
 			path: 'category',
@@ -139,6 +144,9 @@ async function updateExhibit(req: Request, res: Response, next: NextFunction) {
 		}).populate({
 			path: 'style',
 			select: 'name title -_id',
+		}).populate({
+			path: 'potter',
+			select: 'name id -_id',
 		});
 
 		res.status(201).send(result);

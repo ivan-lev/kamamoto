@@ -8,7 +8,17 @@ import { ERROR_MESSAGES } from '../variables/messages';
 
 async function getPotters(req: Request, res: Response, next: NextFunction) {
 	try {
-		const potters = await Potter.find({}).lean();
+		const potters = await Potter.find({}).select({ _id: 0 }).lean<IPotter[]>();
+		potters.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+		res.send(potters);
+	}
+
+	catch (error: any) { return next(error); };
+}
+
+async function getLNTPotters(req: Request, res: Response, next: NextFunction) {
+	try {
+		const potters = (await Potter.find({}).lean<IPotter[]>()).filter(potter => potter.isLNT === true);
 		potters.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 		res.send(potters);
 	}
@@ -126,6 +136,7 @@ async function deletePotter(req: Request, res: Response, next: NextFunction) {
 
 export const potter = {
 	getPotters,
+	getLNTPotters,
 	findPotterById,
 	createPotter,
 	updatePotter,

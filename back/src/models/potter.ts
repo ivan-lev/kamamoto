@@ -30,6 +30,12 @@ const potterSchema = new Schema<Potter>(
 		info: {
 			type: String,
 		},
+
+		isLNT: {
+			type: Boolean,
+			required: true,
+			default: false,
+		},
 	},
 	{ versionKey: false },
 );

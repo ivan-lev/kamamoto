@@ -53,7 +53,7 @@ export interface ExhibitAdmin {
 	images: string[];
 	description?: string;
 
-	potter: string;
+	potter: { name: string, id: string };
 
 	additionalImages: string[];
 	additionalDescription?: string;
@@ -115,7 +115,7 @@ export const defaultExhibitAdmin: ExhibitAdmin = {
 	images: [],
 	description: '',
 
-	potter: '690201704cdb3b65432973f2',
+	potter: { name: 'неизвестный гончар', id: 'unknown' },
 
 	additionalImages: [],
 	additionalDescription: '',

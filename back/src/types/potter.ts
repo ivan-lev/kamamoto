@@ -8,4 +8,5 @@ export interface Potter {
 	lifeDates?: string;
 	photo?: string;
 	info?: string;
+	isLNT: boolean;
 };

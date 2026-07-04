@@ -65,7 +65,7 @@ export default function Exhibits() {
 							showModal={ showModal }
 							closeModal={ () => setShowModal(false) }
 						>
-							<ExhibitForm />
+							<ExhibitForm closeModal={ () => setShowModal(false) } />
 						</Modal>
 					</div>
 				) }

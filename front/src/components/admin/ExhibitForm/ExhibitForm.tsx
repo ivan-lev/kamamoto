@@ -13,7 +13,11 @@ import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/
 import { setPotters } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
 
-export default function ExhibitForm() {
+interface Props {
+	closeModal: () => void;
+}
+
+export default function ExhibitForm({ closeModal }: Props) {
 	const dispatch = useDispatch();
 
 	const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
@@ -83,6 +87,7 @@ export default function ExhibitForm() {
 					const updatedExhibitsList = exhibits.filter(exhibit => exhibit.id !== response.id);
 					dispatch(setExhibits(updatedExhibitsList));
 					setIsFormDisabled(false);
+					closeModal();
 				})
 				.catch((error) => {
 					console.error(error);
@@ -97,7 +102,12 @@ export default function ExhibitForm() {
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value }));
 	};
 
-	function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
+	function handleCheckbox(event: ChangeEvent<HTMLInputElement>) {
+		const { name, checked } = event.target;
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: checked }));
+	};
+
+	function handleCategoryChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
 		const categoryTitle = categories.find(category => category.name === value)?.title || '';
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, category: { name: value, title: categoryTitle } }));
@@ -108,15 +118,16 @@ export default function ExhibitForm() {
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: value }));
 	};
 
-	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
-		const { name, checked } = event.target;
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: checked }));
-	};
-
-	function handleSelectStyleChange(event: ChangeEvent<HTMLSelectElement>) {
+	function handleStyleChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
 		const styleTitle = styles.find(style => style.name === value)?.title || '';
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { name: value, title: styleTitle } }));
+	};
+
+	function handlePotterChange(event: ChangeEvent<HTMLSelectElement>) {
+		const { value } = event.target;
+		const potterName = pottersList.find(potter => potter.id === value)?.name || '';
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, potter: { name: potterName, id: value } }));
 	};
 
 	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -223,10 +234,10 @@ export default function ExhibitForm() {
 						<select
 							className="select"
 							name="potter"
-							value={ exhibitToEdit.potter }
-							onChange={ event => handleSeasonChange(event) }
+							value={ exhibitToEdit.potter.id }
+							onChange={ event => handlePotterChange(event) }
 						>
-							{ pottersList.map(potter => <option key={ potter.id } value={ potter._id }>{ potter.name }</option>) }
+							{ pottersList.map(potter => <option key={ potter.id } value={ potter.id }>{ potter.name }</option>) }
 						</select>
 					</div>
 
@@ -236,7 +247,7 @@ export default function ExhibitForm() {
 							className="select"
 							name="style"
 							value={ exhibitToEdit.style?.name }
-							onChange={ event => handleSelectStyleChange(event) }
+							onChange={ event => handleStyleChange(event) }
 						>
 							{ styles.map(style => <option key={ style.name } value={ style.name }>{ style.title }</option>) }
 						</select>
@@ -249,7 +260,7 @@ export default function ExhibitForm() {
 							className="select"
 							name="category"
 							value={ exhibitToEdit.category.name }
-							onChange={ event => handleSelectChange(event) }
+							onChange={ event => handleCategoryChange(event) }
 						>
 							{ categories.map(category => <option key={ category.name } value={ category.name }>{ category.title }</option>) }
 						</select>
@@ -299,7 +310,7 @@ export default function ExhibitForm() {
 								type="checkbox"
 								checked={ exhibitToEdit.isActive }
 								name="isActive"
-								onChange={ handleCheckBox }
+								onChange={ handleCheckbox }
 							/>
 						</label>
 					</div>
@@ -491,8 +502,8 @@ export default function ExhibitForm() {
 								) }
 								{ !showConfirmation && (
 									<>
-										<Button title="Сохранить" action={ handleUpdateExhibit } />
 										<Button title="Удалить" action={ () => setShowConfirmation(true) } />
+										<Button title="Сохранить" action={ handleUpdateExhibit } />
 									</>
 								) }
 							</>
