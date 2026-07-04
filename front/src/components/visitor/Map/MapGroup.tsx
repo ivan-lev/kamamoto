@@ -13,7 +13,7 @@ export default function MapGroup({ title, markers, icon }: Props) {
 	return (
 		<LayersControl.Overlay checked name={ title }>
 			<LayerGroup>
-				<MarkerClusterGroup showCoverageOnHover={ false }>
+				<MarkerClusterGroup showCoverageOnHover={ false } chunkedLoading={ false }>
 					{ markers.map(marker => (
 						<MapMarker marker={ marker } icon={ icon } key={ marker.geocode.toString() } />
 					)) }

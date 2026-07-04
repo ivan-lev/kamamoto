@@ -51,11 +51,11 @@ export const traditionalKilns: Marker[] = [
 
 export const otherKilns: Marker[] = [
 	{ geocode: [38.48234, 140.34454], tooltip: 'Готэн', kanji: '碁点焼', romaji: 'goten', popup: 'Готэн-яки - название керамики, производимой относительно молодой гончарной мастерской, основанной в 1984 году Хидэюки Судзуки. Мастерская расположена в Готене, городе Мураяма, префектура Ямагата, где протекает река Могами, одна из крупнейших рек Японии, часто упоминаемая в исторической поэзии', image: 'goten.webp' },
-	{ geocode: [39.45142, 141.07370], tooltip: 'Дай', kanji: '台焼', romaji: 'dai', popup: 'Дайяки — это вид керамики, обжигаемой в городе Ханамаки, префектура Иватэ. Характерной чертой дайяки является бледно-зеленый цвет, называемый "сахарная селадоновая глазурь", или "намакою" (海鼠釉).', image: 'dai.webp' },
-	{ geocode: [38.42272, 140.82042], tooltip: 'Дайгамори', kanji: '台ヶ森焼', romaji: 'daigamori', popup: 'Дайгамори — это вид керамики, производимой в префектуре Мияги. Местная глина содержит различные минералы, такие как лигнит, железо и медь, которые, как считается, придают керамике её сложные цвета', image: 'daigamori.webp' },
+	{ geocode: [39.45142, 141.07370], tooltip: 'Дай', kanji: '台焼', romaji: 'dai', popup: 'Дайяки - это вид керамики, обжигаемой в городе Ханамаки, префектура Иватэ. Характерной чертой дайяки является бледно-зеленый цвет, называемый "сахарная селадоновая глазурь", или "намакою" (海鼠釉).', image: 'dai.webp' },
+	{ geocode: [38.42272, 140.82042], tooltip: 'Дайгамори', kanji: '台ヶ森焼', romaji: 'daigamori', popup: 'Дайгамори - это вид керамики, производимой в префектуре Мияги. Местная глина содержит различные минералы, такие как лигнит, железо и медь, которые, как считается, придают керамике её сложные цвета', image: 'daigamori.webp' },
 	{ geocode: [37.48931, 139.92719], tooltip: 'Айдзу Кэйдзан', kanji: '会津慶山焼', romaji: 'aizu keizan', popup: '', image: 'aizu-keizan.webp' },
 	{ geocode: [39.40237, 141.02915], tooltip: 'Кадзитё', kanji: '', romaji: 'kajicho', popup: 'Керамика Кадзитё изготавливается на гончсарном круге из глины, добываемой в городе Ханамаки, с добавлением песка из верхнего течения реки Тоёсава. Чайные чашки, сосуды для питья, кувшины и вазы в стиле Кадзитё просты по дизайну и предназначены в основном для повседневного использования. Они отличаются характерными зелеными и молочно-белыми цветами.', image: 'kajicho.webp' },
-	{ geocode: [38.60474, 140.74043], tooltip: 'Киригомэ', kanji: '切込焼', romaji: 'kirigome', popup: 'Киригомэ — керамика префектуры Мияги. Киригомэ использует техники, заимствованные из керамики Имари, но её точное происхождение остаётся неизвестным. Самый старый документально подтвержденный датированный предмет, "чайная чашка с сине-белым рисунком граната", был изготовлен в 1835 году.', image: 'kirigome.webp' },
+	{ geocode: [38.60474, 140.74043], tooltip: 'Киригомэ', kanji: '切込焼', romaji: 'kirigome', popup: 'Киригомэ - керамика префектуры Мияги. Киригомэ использует техники, заимствованные из керамики Имари, но её точное происхождение остаётся неизвестным. Самый старый документально подтвержденный датированный предмет, "чайная чашка с сине-белым рисунком граната", был изготовлен в 1835 году.', image: 'kirigome.webp' },
 	{ geocode: [43.79144, 142.31217], tooltip: 'Кита Арасияма', kanji: '北の嵐山 北嵐山', romaji: 'kita arashiyama', popup: '', image: 'kita-arashiyama.webp' },
 	{ geocode: [43.19535, 141.77832], tooltip: 'Кобуси', kanji: 'こぶ志焼', romaji: 'kobushi', popup: '', image: 'kobushi.webp' },
 	{ geocode: [40.17853, 141.75617], tooltip: 'Кокудзи', kanji: '小久慈焼', romaji: 'kokuji', popup: 'Кокудзи-яки - традиционное ремесло, зародившееся в городе Кудзи префектуры Иватэ. С более чем 200-летней историей, оно высоко ценится за  деревенский шарм, составляющими которого являются местная глина и уникальная глазурь из железного песка и пепла рисовой шелухи, которая создает тонкие белые и коричневые оттенки.', image: 'kokuji.webp' },
@@ -73,92 +73,92 @@ export const otherKilns: Marker[] = [
 	{ geocode: [40.81234, 140.50819], tooltip: 'Цугару', kanji: '津軽焼', romaji: 'tsugaru', popup: '', image: 'tsugaru.webp' },
 	{ geocode: [38.26807, 140.87190], tooltip: 'Цуцуми', kanji: '堤焼', romaji: 'tsutsumi', popup: 'Зародившись более 300 лет назад в районе Цуцуми города Сэндай, керамика Цуцуми-яки известна своим простым, повседневным дизайном с текучей глазурью "морской огурец". В период своего расцвета в этом районе располагались десятки гончарных мастерских. Сегодня единственной действующей мастерской остается гончарная мастерская Цуцуми-яки Кэмба.', image: 'tsutsumi.webp' },
 	{ geocode: [38.24587, 140.33408], tooltip: 'Хирасимидзу', kanji: '平清水焼', romaji: 'hirashimizu', popup: 'Район Хирасимидзу, известный как "Деревня гончаров", расположен у южных предгорий горы Титосэ в юго-восточной части города Ямагата. Говорят, что Оно Тодзихэй, выходец из провинции Хитати, начал создавать местную керамику в эпоху Бунка.', image: 'hirashimizu.webp' },
-	{ geocode: [38.57543, 140.51645], tooltip: 'Ками но Хата', kanji: '上の畑焼', romaji: 'kami no hata', popup: 'В префектуре Ямагата находится старейшая фарфоровая печь. Один из её характерных узоров - "Три вкуса", изображающий персики, гранаты и цитрон в форме руки Будды, который был завезён из Китая через Имари. Керамика Ками но Хата — единственная в Японии, где до сих пор используется этот узор.', image: 'kami-no-hata.webp' },
+	{ geocode: [38.57543, 140.51645], tooltip: 'Ками но Хата', kanji: '上の畑焼', romaji: 'kami no hata', popup: 'В префектуре Ямагата находится старейшая фарфоровая печь. Один из её характерных узоров - "Три вкуса", изображающий персики, гранаты и цитрон в форме руки Будды, который был завезён из Китая через Имари. Керамика Ками но Хата - единственная в Японии, где до сих пор используется этот узор.', image: 'kami-no-hata.webp' },
 	{ geocode: [38.05842, 140.04996], tooltip: 'Нарусима', kanji: '成島焼', romaji: 'narushima', popup: 'Местная керамика зародилась в 1781 году, когда лорд Уэсуги Ёдзан, построил печь в Нарусиме, княжество Ёнедзава. Печи продолжали работать до конца эпохи Мэйдзи, но с развитием железных дорог их вытеснила дешевая и качественная керамика Сэто, что в конечном итоге привело к их исчезновению. Художник-керамист Фудзио Вакуи потратил около 10 лет, чтобы воссоздать простую и сдержанную текстуру керамики Нарусима', image: 'narushima.webp' },
 	{ geocode: [38.75742, 140.31649], tooltip: 'Синдзё Хигасияма', kanji: '新庄東山焼', romaji: 'shinjo higashiyama', popup: 'Вакуи Яхэй, основатель производства хигасиямской керамики, был гончаром из провинции Этиго. Во время своего обучения, путешествуя по разным местам, он влюбился в местную глину и в 1841 году основал печь, ставшую официальной печью княжества Синдзё Тодзава. ', image: 'shinjo-higashiyama.webp' },
+	{ geocode: [36.35198, 138.89835], tooltip: 'Дзисёдзи', kanji: '自性寺焼', romaji: 'jishoji', popup: 'Единственная в префектуре Гунма признанная традиционная гончарная мастерская. Вещи Дзисёдзи изготавливаются из  глины, добываемой в регионе Акима города Аннака. Их характерной чертой является элегантная золотая цветочная глазурь, а для росписи используются оригинальные местные глазури, разработанные в результате исследований. В местной мастерской также производится неглазурованная каменная керамика, которая обжигается в дровяной печи в течение семи дней и ночей.', image: 'jishoji.webp' },
+	{ geocode: [36.50260, 138.96661], tooltip: 'Сибутами', kanji: '渋民焼', romaji: 'shibutami', popup: 'Основанная в 1986 году Мотоси Имаи и Токой Фукудой, печь Сибутами использует глину и глазурь, добываемые в городе Сибукава, и производит изделия преимущественно с железной глазурью. Хотя традиционно производство красной керамики считалось чрезвычайно сложной задачей, мастерам Сибутами удалось создать неповторимый красный цвет, который обладает уникальной красотой, не похожей ни на что другое.', image: 'shibutami.webp' },
+	{ geocode: [36.73963, 138.98463], tooltip: 'Цукиёно', kanji: '月夜野焼', romaji: 'tsukiyono', popup: 'В январе 1975 года в Цукиёно-мати, Тонэ-гун , префектура Гунма (ныне Минаками-мати), Ютаро Фукуда, представитель второго поколения семьи , во время прогулки обнаружил, что грунт, извлеченный при строительстве Синкансэн Дзёэцу, можно использовать в качестве глины для керамики. Было установлено, что большие залежи этой глины распространены в Цукиёно-мати, а также под рекой Окутонэ был обнаружен высококачественный фарфоровый керамический камень. Печь, в которой начали производить местную керамику была расположена ровно посередине между рекой и путём Синкансэн', image: 'tsukiyono.webp' },
+	{ geocode: [35.85160, 139.32023], tooltip: 'Ханно', kanji: '飯能焼', romaji: 'hanno', popup: 'Ханно-яки - это керамика, которая когда-то производилась в городе Ханно, префектура Сайтама. Считается, что период производства приходится примерно на 1832 - 1887 год. Примерно с 1975 года производство изделий из Ханно, которые выпускались до периода Мэйдзи возрождается вещи под этим названием стали продаваться в местных магазинах.', image: 'hanno.webp' },
+	{ geocode: [36.78845, 140.16175], tooltip: 'Койсаго', kanji: '小砂焼', romaji: 'koisago', popup: 'Местная керамика производится в Коисаго - районе в городе Накагава, префектура Тотиги, где была обнаружена подходящая глина. Начало производству было положено в конце периода Эдо, когда территория входила в состав княжества Мито, и правитель решил производить керамику в пределах княжества.', image: 'koisago.webp' },
+	{ geocode: [36.31384, 139.66144], tooltip: 'Микамо', kanji: '三毳焼', romaji: 'mikamo', popup: 'Черепица для крыш провинциальных храмов и женских монастырей провинции Симоцукэ изготавливалась методом обжига уже примерно со времён Хэйан. Микамо-яки - традиционное ремесло, признанное префектурой. Глину, богатую железом, и придающую изделиям деревенский шарм, добывают у подножия горы Микамо. Местные керамические изделия отличаются простотой и теплотой.', image: 'mikamo.webp' },
+	{ geocode: [35.71807, 139.80415], tooltip: 'Имадо', kanji: '今戸焼', romaji: 'imado', popup: 'Керамику Имадо обжигали в Имадо, Хасибе и окрестностях в районе Тайто, Токио. Первое упоминание об "изделиях Имадо" встречается в записях 1763 года. В конце периода Эдо около 50 семей изготавливали вещи Имадо, а в эпоху Тэнпо-Ансэй (1830-1860) Имадо был единственным местом производства манэки-нэко. Спрос на вещи из Имадо снизился из-за урбанизации, а также Великого землетрясения Канто и бомбардировок Токио. В настоящее время Юитиро Сираи, мастер-гончар в шестом поколении, является единственным ремесленником по изготовлению вещей Имадо.', image: 'imado.webp' },
+	{ geocode: [35.38227, 136.95973], tooltip: 'Инуяма', kanji: '犬山焼', romaji: 'inuyama', popup: 'Инуяма-яки - общее название для керамики, обжигаемой на территории города Инуяма, префектура Айти. Она известна своей белой керамикой, расписанной красной краской. После Реставрации Мэйдзи местная керамика переставала производится, но Сакудзюро Одзэки, ранее работавший изготовителем черепицы, в ноябре 1883 возродил производство.', image: 'inuyama.webp' },
+	{ geocode: [35.18621, 136.89849], tooltip: 'Офукэй', kanji: '御深井焼', romaji: 'ofukei', popup: 'Первоначально, в 1660 году, керамика Офукэй обжигалась в Офукэ-мару в замке Нагоя, но этот термин распространился и закрепился для обозначения местной керамики в целом, имеющей зольное покрытие с добавлением полевого шпата, и украшенной формами или печатными узорами.', image: 'ofukei.webp' },
+	{ geocode: [36.13554, 137.24007], tooltip: 'Който', kanji: '小糸焼', romaji: 'koito', popup: 'Които-яки — это керамика из города Такаяма, префектура Гифу. Было два периодна, когда производили местную керамику, и обе эти линии прерывались. Современный стиль Които был возрожден после войны Сабуро Нагакурой. Керамика Които известна уникальным стилем и характеризуется глубокой, приглушенной кобальтово-синей глазурью, называемой "Ао-Ирабо", которая является эволюцией Ирабо. 30 марта 1992 года ремесло было признано традиционным ремеслом префектуры Гифу.', image: 'koito.webp' },
+	{ geocode: [35.36285, 137.11405], tooltip: 'Орибэ', kanji: '織部焼', romaji: 'oribe', popup: 'Орибэ-яки — это стиль японской керамики, появившийся в шестнадцатом веке и узнаваемый по свободно нанесенной глазури, а также по асимметричным и эксцентричным формам. Многочисленные места расположения печей, где производился Орибе, разбросаны по всему региону Мино.', image: 'oribe.webp' },
+	{ geocode: [24.41587, 124.13439], tooltip: 'Исигаки', kanji: '石垣焼', romaji: 'ishigaki', popup: 'Керамика Исигаки-яки тесно связана с керамикой Ёрон-яки, основанной в 1970 году Кихатиро Канеко. Впервые увидев чайную чашу тэммоку, мастер был очарован желанием когда-нибудь изготовить подобную чашу, и это привело его к созданию керамики на острове Ёрон, в то время самом южном острове Японии. Готовясь к открытию гончарной мастерской, он экспериментировал с материалами и разработал технику сплавления стекла и керамики.', image: 'ishigaki.webp' },
+	{ geocode: [35.38348, 137.19164], tooltip: 'Сино', kanji: '志野焼', romaji: 'shino', popup: 'Происхождение керамики Сино восходит к периоду Муромати , когда мастер чайной церемонии Сино Сосин заказал гончарам в Мино ее производство. Для Сино характерен толстый слой глазури, а глазурованная поверхность покрыта сетью естественных трещин, с эффектом апельсиновой корки и множеством мелких пор', image: 'shino.webp' },
+	{ geocode: [36.14268, 137.23859], tooltip: 'Сибукуса', kanji: '渋草焼', romaji: 'shibukusa', popup: 'Керамика Сибукуса обжигается в городе Такаяма, префектура Гифу. Её производство началось в 1841 году, когда Тойода Томонао, магистрат провинции Хида, основал в Сибукусе совместную государственно-частную печь ди пригласил гончаров из провинций Хидзэн, Овари и Кага, а также художников. 30 марта 1992 года она была признана традиционным ремеслом префектуры Гифу.', image: 'shibukusa.webp' },
+	{ geocode: [36.14377, 137.22494], tooltip: 'Ямада', kanji: '山田焼', romaji: 'yamada', popup: 'Керамика ямада - гончарные изделия, обжигаемые в городе Такаяма, префектура Гифу. Считается, что она зародилась в середине периода Эдо, когда гончар из Сэто открыл здесь печь, и начал производство. Ее простой, но привлекательный дизайн, был лишен излишней вычурности и пользовались популярностью. 30 марта 1992 года это ремесло было признано традиционным ремеслом префектуры Гифу. По состоянию на 2006 год только гончарная мастерская Кобаяси производила керамику в народном стиле.', image: 'yamada.webp' },
+	{ geocode: [37.44363, 137.26476], tooltip: 'Судзу', kanji: '珠洲焼', romaji: 'suzu', popup: 'Керамика Судзу - один из представительных образцов керамики средневековой Японии, производившийся в окрестностях города Судзу, префектура Исикава, с конца XII века до конца XV ​​века. Она унаследовала технику изготовления <a href="https://en.wikipedia.org/wiki/Sue_pottery" target="_blank">керамики Суэ</a>, которая обжигалась с периода Кофун до периода Хэйан. Изделия Судзу, внезапно исчезнувшие около 400 лет назад, были возрождены городом Судзу в 1976 году. В 1989 году они были признаны традиционным ремеслом префектуры Исикава.', image: 'suzu.webp' },
+	{ geocode: [36.56233, 138.18309], tooltip: 'Мацусиро', kanji: '松代焼', romaji: 'matsushiro', popup: 'Керамика Мацусиро возникла около 200 лет назад (в середине периода Эдо), во времена Санады Юкитаки, 7-го правителя княжества Мацусиро. В то время керамику в Мацусиро доставляли верхом на лошадях, и многие изделия разбивались по дороге. Княжество распорядилось изготавливать керамику из местных материалов, и так появилась первые вещи Мацусиро. Сегодня керамика Мацусиро — это традиционное ремесло префектуры Нагано, сертифицированное губернатором префектуры. ', image: 'matsushiro.webp' },
 ];
 
 // { geocode: [0, 0], tooltip: '', kanji: '', romaji: '', popup: '', image: '.webp' },
+// { geocode: [0, 0], tooltip: 'Хораку', kanji: '豊楽焼', romaji: 'horaku', popup: '', image: 'horaku.webp' },
 
-// Jijōji-yaki (自性寺焼)
-// Shibutami-yaki (渋民焼)
-// Tsukiyono-yaki (月夜野焼)
-// Hannō-yaki (飯能焼)
-// Koisago-yaki (小砂焼)
-// Mikamo-yaki (三毳焼)
-// Imado-yaki (今戸焼)
-// Hōraku-yaki (豊楽焼)
-// Inuyama-yaki (犬山焼)
-// Ofukei-yaki (御深井焼)
-// Koito-yaki (小糸焼)
-// Oribe-yaki (織部焼)
-// Shino-yaki (志野焼)
-// Shibukusa-yaki (渋草焼)
-// Yamada-yaki (山田焼)
-// Suzu-yaki (珠洲焼)
-// Matsushiro-yaki (松代焼)
-// Obayashi-yaki (尾林焼)
-// Takatō-yaki (高遠焼)
-// Tenryūkyō-yaki (天竜峡焼)
-// Anchi-yaki (庵地焼)
-// Muramatsu-yaki (村松焼)
-// Moriyama-yaki (森山焼)
-// Shizuhata-yaki (賤機焼)
-// Etchū Maruyama-yaki (越中丸山焼)
-// Etchū Seto-yaki (越中瀬戸焼)
-// Kosugi-yaki (小杉焼)
-// Sansuke-yaki (三助焼)
-// Nōketsu-yaki (能穴焼)
-// Awaji ware (淡路焼), also known as Minpei or Mimpei ware
-// Akōunka-yaki (赤穂雲火焼)
-// Minpei-yaki (珉平焼)
-// Akogi-yaki (阿漕焼)
-// Mihama-yaki (御浜焼)
-// Kikkō-yaki (吉向焼)
-// Hatta-yaki (八田焼)
-// Konan-yaki (湖南焼)
-// Kotō-yaki (湖東焼)
-// Zuishi-yaki (瑞芝焼)
-// Himetani-yaki (姫谷焼)
-// Miyajima-yaki (宮島焼)
-// Hashima-yaki (羽島焼)
-// Mushiake-yaki (虫明焼)
-// Sakazu-yaki (酒津焼)
-// Banshōzan-yaki (萬祥山焼)
-// Fujina-yaki (布志名焼)
-// Hachiman-yaki (八幡焼)
-// Mijiro-yaki (御代焼)
-// Mori-yaki (母里焼)
-// Sodeshi-yaki (袖師焼)
-// Shussai-yaki (出西焼)
-// Yunotsu-yaki (温泉津焼)
-// Inkyūzan-yaki (因久山焼)
-// Hosshōji-yaki (法勝寺焼)
-// Kazuwa-yaki (上神焼)
-// Uradome-yaki (浦富焼)
-// Ushino-yaki (牛ノ戸焼)
-// Seiri-yaki (星里焼)
-// Sueda-yaki (末田焼)
-// Rakuzan-yaki (楽山焼)
-// Suigetsu-yaki (水月焼)
-// Kamikage-yaki (神懸焼)
-// Okamoto-yaki (岡本焼)
-// Rihei-yaki (理平焼)
-// Nōsayama-yaki (能茶山焼)
-// Odo-yaki (尾戸焼)
-// Uraharano-yaki (内原野焼)
-// Futagawa-yaki (二川焼)
-// Kamachi-yaki (蒲池焼)
-// Ichinose-yaki (一の瀬焼)
-// Ryūmonji-yaki (龍門司焼)
-// Tanegashima-yaki (種子島焼)
-// Koda-yaki (高田焼)
-// Komatsubara-yaki (小松原焼)
-// Tojō-yaki (都城焼)
-// Nagayo-yaki (長与焼)
-// Utsutsugawa-yaki (現川焼)
-// Hizen Yoshida-yaki (肥前吉田焼)
-// Hizen Ozaki-yaki (肥前尾崎焼)
-// Shiraishi-yaki (白石焼)
-// Ryūkyū-yaki (琉球焼)
-// Ishigaki-yaki (石垣焼)
+// { geocode: [0, 0], tooltip: 'Обаяси', kanji: '尾林焼', romaji: 'obayashi', popup: '', image: 'obayashi.webp' },
+// { geocode: [0, 0], tooltip: 'Такато', kanji: '高遠焼', romaji: 'takato', popup: '', image: 'takato.webp' },
+// { geocode: [0, 0], tooltip: 'Тэнрюкё', kanji: '天竜峡焼', romaji: 'tenryukyo', popup: '', image: 'tenryukyo.webp' },
+// { geocode: [0, 0], tooltip: 'Анти', kanji: '庵地焼', romaji: 'anchi', popup: '', image: 'anchi.webp' },
+// { geocode: [0, 0], tooltip: 'Мурамацу', kanji: '村松焼', romaji: 'muramatsu', popup: '', image: 'muramatsu.webp' },
+// { geocode: [0, 0], tooltip: 'Морияма', kanji: '森山焼', romaji: 'moriyama', popup: '', image: 'moriyama.webp' },
+// { geocode: [0, 0], tooltip: 'Сидзухата', kanji: '賤機焼', romaji: 'shizuhata', popup: '', image: 'shizuhata.webp' },
+// { geocode: [0, 0], tooltip: 'Эттю Маруяма', kanji: '越中丸山焼', romaji: 'etchu maruyama', popup: '', image: 'etchu-maruyama.webp' },
+// { geocode: [0, 0], tooltip: 'Эттю Сэто', kanji: '越中瀬戸焼', romaji: 'etchu seto', popup: '', image: 'etchu-seto.webp' },
+// { geocode: [0, 0], tooltip: 'Косуги', kanji: '小杉焼', romaji: 'kosugi', popup: '', image: 'kosugi.webp' },
+// { geocode: [0, 0], tooltip: 'Сансукэ', kanji: '三助焼', romaji: 'sansuke', popup: '', image: 'sansuke.webp' },
+// { geocode: [0, 0], tooltip: 'Нокэцу', kanji: '能穴焼', romaji: 'noketsu', popup: '', image: 'noketsu.webp' },
+// { geocode: [0, 0], tooltip: 'Авадзи', kanji: '淡路焼', romaji: 'awaji', popup: '', image: 'awaji.webp' },
+// { geocode: [0, 0], tooltip: 'Акоунка', kanji: '赤穂雲火焼', romaji: 'akounka', popup: '', image: 'akounka.webp' },
+// { geocode: [0, 0], tooltip: 'Минпэй', kanji: '珉平焼', romaji: 'minpei', popup: '', image: 'minpei.webp' },
+// { geocode: [0, 0], tooltip: 'Акоги', kanji: '阿漕焼', romaji: 'akogi', popup: '', image: 'akogi.webp' },
+// { geocode: [0, 0], tooltip: 'Михама', kanji: '御浜焼', romaji: 'mihama', popup: '', image: 'mihama.webp' },
+// { geocode: [0, 0], tooltip: 'Кикко', kanji: '吉向焼', romaji: 'kikko', popup: '', image: 'kikko.webp' },
+// { geocode: [0, 0], tooltip: 'Хатта', kanji: '八田焼', romaji: 'hatta', popup: '', image: 'hatta.webp' },
+// { geocode: [0, 0], tooltip: 'Конан', kanji: '湖南焼', romaji: 'konan', popup: '', image: 'konan.webp' },
+// { geocode: [0, 0], tooltip: 'Кото', kanji: '湖東焼', romaji: 'koto', popup: '', image: 'koto.webp' },
+// { geocode: [0, 0], tooltip: 'Дзуиси', kanji: '瑞芝焼', romaji: 'zuishi', popup: '', image: 'zuishi.webp' },
+// { geocode: [0, 0], tooltip: 'Химэтани', kanji: '姫谷焼', romaji: 'himetani', popup: '', image: 'himetani.webp' },
+// { geocode: [0, 0], tooltip: 'Миядзима', kanji: '宮島焼', romaji: 'miyajima', popup: '', image: 'miyajima.webp' },
+// { geocode: [0, 0], tooltip: 'Хасима', kanji: '羽島焼', romaji: 'hashima', popup: '', image: 'hashima.webp' },
+// { geocode: [0, 0], tooltip: 'Мусиакэ', kanji: '虫明焼', romaji: 'mushiake', popup: '', image: 'mushiake.webp' },
+// { geocode: [0, 0], tooltip: 'Сакадзу', kanji: '酒津焼', romaji: 'sakazu', popup: '', image: 'sakazu.webp' },
+// { geocode: [0, 0], tooltip: 'Бансёдзан', kanji: '萬祥山焼', romaji: 'banshozan', popup: '', image: 'banshozan.webp' },
+// { geocode: [0, 0], tooltip: 'Фудзина', kanji: '布志名焼', romaji: 'fujina', popup: '', image: 'fujina.webp' },
+// { geocode: [0, 0], tooltip: 'Хатиман', kanji: '八幡焼', romaji: 'hachiman', popup: '', image: 'hachiman.webp' },
+// { geocode: [0, 0], tooltip: 'Мидзиро', kanji: '御代焼', romaji: 'mijiro', popup: '', image: 'mijiro.webp' },
+// { geocode: [0, 0], tooltip: 'Мори', kanji: '母里焼', romaji: 'mori', popup: '', image: 'mori.webp' },
+// { geocode: [0, 0], tooltip: 'Содэси', kanji: '袖師焼', romaji: 'sodeshi', popup: '', image: 'sodeshi.webp' },
+// { geocode: [0, 0], tooltip: 'Сюссай', kanji: '出西焼', romaji: 'shussai', popup: '', image: 'shussai.webp' },
+// { geocode: [0, 0], tooltip: 'Юноцу', kanji: '温泉津焼', romaji: 'yunotsu', popup: '', image: 'yunotsu.webp' },
+// { geocode: [0, 0], tooltip: 'Инкюдзан', kanji: '因久山焼', romaji: 'inkyuzan', popup: '', image: 'inkyuzan.webp' },
+// { geocode: [0, 0], tooltip: 'Хоссёдзи', kanji: '法勝寺焼', romaji: 'hosshoji', popup: '', image: 'hosshoji.webp' },
+// { geocode: [0, 0], tooltip: 'Кадзува', kanji: '上神焼', romaji: 'kazuwa', popup: '', image: 'kazuwa.webp' },
+// { geocode: [0, 0], tooltip: 'Урадомэ', kanji: '浦富焼', romaji: 'uradome', popup: '', image: 'uradome.webp' },
+// { geocode: [0, 0], tooltip: 'Усино', kanji: '牛ノ戸焼', romaji: 'ushino', popup: '', image: 'ushino.webp' },
+// { geocode: [0, 0], tooltip: 'Сэйри', kanji: '星里焼', romaji: 'seiri', popup: '', image: 'seiri.webp' },
+// { geocode: [0, 0], tooltip: 'Суэда', kanji: '末田焼', romaji: 'sueda', popup: '', image: 'sueda.webp' },
+// { geocode: [0, 0], tooltip: 'Ракудзан', kanji: '楽山焼', romaji: 'rakuzan', popup: '', image: 'rakuzan.webp' },
+// { geocode: [0, 0], tooltip: 'Суйгэцу', kanji: '水月焼', romaji: 'suigetsu', popup: '', image: 'suigetsu.webp' },
+// { geocode: [0, 0], tooltip: 'Камикагэ', kanji: '神懸焼', romaji: 'kamikage', popup: '', image: 'kamikage.webp' },
+// { geocode: [0, 0], tooltip: 'Окамото', kanji: '岡本焼', romaji: 'okamoto', popup: '', image: 'okamoto.webp' },
+// { geocode: [0, 0], tooltip: 'Рихэй', kanji: '理平焼', romaji: 'rihei', popup: '', image: 'rihei.webp' },
+// { geocode: [0, 0], tooltip: 'Носаяма', kanji: '能茶山焼', romaji: 'nosayama', popup: '', image: 'nosayama.webp' },
+// { geocode: [0, 0], tooltip: 'Одо', kanji: '尾戸焼', romaji: 'odo', popup: '', image: 'odo.webp' },
+// { geocode: [0, 0], tooltip: 'Урахарано', kanji: '内原野焼', romaji: 'uraharano', popup: '', image: 'uraharano.webp' },
+// { geocode: [0, 0], tooltip: 'Футагава', kanji: '二川焼', romaji: 'futagawa', popup: '', image: 'futagawa.webp' },
+// { geocode: [0, 0], tooltip: 'Камати', kanji: '蒲池焼', romaji: 'kamachi', popup: '', image: 'kamachi.webp' },
+// { geocode: [0, 0], tooltip: 'Итиносэ', kanji: '一の瀬焼', romaji: 'ichinose', popup: '', image: 'ichinose.webp' },
+// { geocode: [0, 0], tooltip: 'Рюмондзи', kanji: '龍門司焼', romaji: 'ryumonji', popup: '', image: 'ryumonji.webp' },
+// { geocode: [0, 0], tooltip: 'Танэгасима', kanji: '種子島焼', romaji: 'tanegashima', popup: '', image: 'tanegashima.webp' },
+// { geocode: [0, 0], tooltip: 'Кода', kanji: '高田焼', romaji: 'koda', popup: '', image: 'koda.webp' },
+// { geocode: [0, 0], tooltip: 'Комацубара', kanji: '小松原焼', romaji: 'komatsubara', popup: '', image: 'komatsubara.webp' },
+// { geocode: [0, 0], tooltip: 'Тодзё', kanji: '都城焼', romaji: 'tojo', popup: '', image: 'tojo.webp' },
+// { geocode: [0, 0], tooltip: 'Нагаё', kanji: '長与焼', romaji: 'nagayo', popup: '', image: 'nagayo.webp' },
+// { geocode: [0, 0], tooltip: 'Уцуцугава', kanji: '現川焼', romaji: 'utsutsugawa', popup: '', image: 'utsutsugawa.webp' },
+// { geocode: [0, 0], tooltip: 'Хидзэн Ёсида', kanji: '肥前吉田焼', romaji: 'hizen yoshida', popup: '', image: 'hizen yoshida.webp' },
+// { geocode: [0, 0], tooltip: 'Хидзэн Одзаки', kanji: '肥前尾崎焼', romaji: 'hizen ozaki', popup: '', image: 'hizen ozaki.webp' },
+// { geocode: [0, 0], tooltip: 'Сираиси', kanji: '白石焼', romaji: 'shiraishi', popup: '', image: 'shiraishi.webp' },
+// { geocode: [0, 0], tooltip: 'Рюкю', kanji: '琉球焼', romaji: 'ryukyu', popup: '', image: 'ryukyu.webp' },

@@ -6,6 +6,7 @@ import { otherKilns, sevenKilnsOfEnshu, sixOldKilns, traditionalKilns } from '@/
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import { scrollToTop } from '@/utils/scrollToTop';
+import './Map.scss';
 
 export default function Map() {
 	const count = otherKilns.length + sevenKilnsOfEnshu.length + sixOldKilns.length + traditionalKilns.length;
@@ -18,16 +19,32 @@ export default function Map() {
 
 	// const apiKey = import.meta.env.VITE_MAP_API_KEY;
 
+	const normalizedQuery = query.trim().toLowerCase();
+
 	function filterMarkers(markers: Marker[]) {
-		return markers.filter(marker => marker.tooltip.toLowerCase().includes(query.toLowerCase()) || marker.kanji?.includes(query) || marker.romaji?.includes(query));
+		if (!normalizedQuery)
+			return markers;
+
+		return markers.filter(marker =>
+			marker.tooltip.toLowerCase().includes(normalizedQuery)
+			|| marker.kanji?.includes(query)
+			|| marker.romaji?.toLowerCase().includes(normalizedQuery),
+		);
+	};
+
+	function resetMarkers() {
+		if (query !== '')
+			setQuery('');
+
+		setFilteredOtherKilns(otherKilns);
+		setFilteredSevenKilnsOfEnshu(sevenKilnsOfEnshu);
+		setFilteredSixOldKilns(sixOldKilns);
+		setFilteredTraditionalKilns(traditionalKilns);
 	};
 
 	function setMarkers() {
 		if (query === '') {
-			setFilteredOtherKilns(otherKilns);
-			setFilteredSevenKilnsOfEnshu(sevenKilnsOfEnshu);
-			setFilteredSixOldKilns(sixOldKilns);
-			setFilteredTraditionalKilns(traditionalKilns);
+			resetMarkers();
 			return;
 		}
 
@@ -37,9 +54,7 @@ export default function Map() {
 		setFilteredTraditionalKilns(filterMarkers(traditionalKilns));
 	};
 
-	useEffect(() => {
-		setMarkers();
-	}, [query]);
+	useEffect(() => setMarkers(), [query]);
 
 	useLayoutEffect(() => scrollToTop(), []);
 
@@ -58,17 +73,20 @@ export default function Map() {
 
 			<section className="section"><p>{ `Карта содержит названия и примерные координаты территорий, на которых расположены гончарные центры Японии. На данный момент их отмечено ${count}, но этот список не может претендовать на звание полного, и может пополняться по мере появления новой информации. Можно найти нужное вам название, введя его на русском, английском, или японском языках.` }</p></section>
 
-			<section className="section description">
-				<input
-					name="text"
-					type="text"
-					className="input"
-					placeholder="поиск: русский / англ / кандзи"
-					value={ query }
-					onChange={ event => setQuery(event.target.value) }
-				/>
+			<section className="section map-section">
+				<div className="map-section__filters">
+					<input
+						name="text"
+						type="text"
+						className="input"
+						placeholder="поиск: рус / англ / кандзи"
+						value={ query }
+						onChange={ event => setQuery(event.target.value) }
+					/>
+					<button className="button button--xs map-section__button" onClick={ resetMarkers }>X</button>
+				</div>
 
-				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ false } className="map">
+				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } fadeAnimation={ false } className="map">
 					{ /* бесплаьные карты если израсходуется лимит */ }
 					{ /* https://gist.github.com/bokub/dd85ffe1368bb10396f871111dff7201 */ }
 

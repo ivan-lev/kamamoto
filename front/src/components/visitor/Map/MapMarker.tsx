@@ -1,6 +1,7 @@
 import type { Marker as IMarker } from '@/components/visitor/Map/map.types';
 import L from 'leaflet';
 import { Marker, Popup, Tooltip } from 'react-leaflet';
+import Picture from '@/components/visitor/Picture/Picture';
 import { PATHS } from '@/variables/variables';
 
 interface Props {
@@ -31,7 +32,7 @@ export default function MapMarker({ marker, icon }: Props) {
 			{ (marker.popup || marker.image)
 				&& (
 					<Popup>
-						{ marker.image && <img className="map__image" src={ `${basePath}/map/${marker.image}` } /> }
+						{ marker.image && <Picture additionalClass="map__image" alt={ `Изображение для маркера ${marker.tooltip}` } src={ `${basePath}/map/${marker.image}` } /> }
 						{ marker.popup && <span dangerouslySetInnerHTML={{ __html: marker.popup }}></span> }
 					</Popup>
 				) }
