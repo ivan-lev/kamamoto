@@ -1,12 +1,12 @@
 import type { HelmetOptions } from 'helmet';
 import path from 'node:path';
 import bodyParser from 'body-parser';
-import { errors } from 'celebrate';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import { BASE_URL, PORT } from './config';
 import errorHandler from './middlewares/error-handler';
+import celebrateErrorAdapter from './middlewares/error-handler-celebrate';
 import limiter from './middlewares/limiter';
 import logger from './middlewares/logger';
 import { connectToDatabase } from './mongoose';
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, 'public'), { cacheControl: false })); // public folder
 app.use('/api', routes); // all routes goes through here in Docker
 app.use(logger.errorLogger); // winston error logger
-app.use(errors()); // celebrate error handler
+app.use(celebrateErrorAdapter);// celebrate error handler
 app.use(errorHandler); // final error handler
 
 app.listen(PORT, () => {
