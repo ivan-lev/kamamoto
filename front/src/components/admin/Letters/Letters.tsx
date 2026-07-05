@@ -2,7 +2,7 @@ import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin/index';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Preloader from '@/components/visitor/Preloader/Preloader';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { setLetters } from '@/slices/admin/letters';
 import { clearPartnerForm, setPartnerToEdit } from '@/slices/admin/partners';

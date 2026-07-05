@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CeramicStyleFormView from '@/components/admin/CeramicStyles/CeramicStyleFormView';
 import CeramicStylesRow from '@/components/admin/CeramicStyles/CeramicStylesRow';
 import Modal from '@/components/shared/Modal';
-import Preloader from '@/components/visitor/Preloader/Preloader';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { setCeramicStyles, setCeramicStyleToEdit, setIsExistingStyleEdited } from '@/slices/admin/ceramicStyles';
 import { defaultCeramicStyle } from '@/types/ceramicStyles';

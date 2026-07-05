@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExhibitionForm from '@/components/admin/ExhibitionForm/ExhibitionForm';
 import Modal from '@/components/shared/Modal';
-import Preloader from '@/components/visitor/Preloader/Preloader';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { openEmptyExhibitionForm, setExhibitionsList, setExhibitionToEdit } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';

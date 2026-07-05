@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PottersForm from '@/components/admin/Potters/PottersForm';
 import Modal from '@/components/shared/Modal';
-import Preloader from '@/components/visitor/Preloader/Preloader';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { setIsExistingPotterEdited, setPotters, setPotterToEdit } from '@/slices/admin/potters';
 import { defaultPotter } from '@/types/potter';

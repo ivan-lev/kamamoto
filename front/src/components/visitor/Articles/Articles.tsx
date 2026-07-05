@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Card from '@/components/visitor/Card/Card';
 import PageTop from '@/components/visitor/PageTop/PageTop';
-import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { api } from '@/utils/api/api';
 import { scrollToTop } from '@/utils/scrollToTop';

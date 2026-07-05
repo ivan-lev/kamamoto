@@ -1,9 +1,9 @@
 import type { Article as IArticle } from '@/components/visitor/Article/Article.types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import ArticleSection from '@/components/visitor/Article/ArticleSection';
 import PageTop from '@/components/visitor/PageTop/PageTop';
-import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { api } from '@/utils/api/api';
 import { scrollToTop } from '@/utils/scrollToTop';

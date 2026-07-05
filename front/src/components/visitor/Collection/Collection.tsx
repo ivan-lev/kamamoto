@@ -1,9 +1,9 @@
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import DisplayGrid from '@/components/visitor/DisplayGrid/DisplayGrid';
 import PageTop from '@/components/visitor/PageTop/PageTop';
-import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { setCategories } from '@/slices/visitor/categories';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';

@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react';
 import type { Complectation } from '@/types/compleactation';
 import { useEffect, useState } from 'react';
-import Preloader from '@/components/visitor/Preloader/Preloader';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { api } from '@/utils/api/api';
 

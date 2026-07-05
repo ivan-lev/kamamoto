@@ -2,7 +2,7 @@ import type { RootState } from '@/slices/visitor';
 import type { File } from '@/types/file';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Preloader from '@/components/visitor/Preloader/Preloader';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { setLettersList } from '@/slices/visitor/letters';
 import { api } from '@/utils/api/api';

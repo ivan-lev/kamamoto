@@ -1,9 +1,9 @@
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import ExhibitionCard from '@/components/visitor/ExhibitionCard/ExhibitionCard';
 import PageTop from '@/components/visitor/PageTop/PageTop';
-import Preloader from '@/components/visitor/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { setExhibitionsList } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';

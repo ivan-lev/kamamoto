@@ -3,7 +3,7 @@ import type { RootState } from '@/slices/admin/index';
 import type { Partner } from '@/types/partnerType';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Preloader from '@/components/visitor/Preloader/Preloader';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { clearPartnerForm, setIsExistingPartnerEdited, setPartners, setPartnerToEdit } from '@/slices/admin/partners';
 import { api } from '@/utils/api/api';
