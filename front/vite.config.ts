@@ -41,11 +41,6 @@ export default defineConfig({
 
 					return 'assets/[name]-[hash][extname]';
 				},
-				manualChunks(id) {
-					if (id.includes('/components/admin/')) {
-						return 'admin';
-					}
-				},
 			},
 		},
 	},

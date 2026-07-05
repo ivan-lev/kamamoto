@@ -22,7 +22,7 @@ export default function Admin() {
 				.catch((error) => {
 					console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
 					dispatch(logout());
-					navigate('/login/');
+					navigate('/admin/login');
 				});
 		}
 	}, []);
@@ -31,6 +31,7 @@ export default function Admin() {
 		{ title: 'Лоты', path: 'exhibits/' },
 		{ title: 'Категории', path: 'categories/' },
 		{ title: 'Стили керамики', path: 'ceramic-styles/' },
+		// { title: 'Декоратиные приёмы', path: 'features/' },
 		{ title: 'Комплектация', path: 'complectation/' },
 		{ title: 'Гончары', path: 'potters/' },
 	];
@@ -87,7 +88,7 @@ export default function Admin() {
 								className="button"
 								onClick={ () => {
 									dispatch(logout());
-									navigate('/login');
+									navigate('/admin/login');
 								} }
 							>
 								Выйти
@@ -100,7 +101,7 @@ export default function Admin() {
 					</section>
 				)
 				: (
-					<Navigate to="/login/" replace />
+					<Navigate to="/admin/login" replace />
 				) }
 		</>
 	);

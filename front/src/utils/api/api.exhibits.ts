@@ -51,13 +51,14 @@ async function updateExhibit(token: string, exhibit: ExhibitAdmin) {
 async function toggleExhibitActiveState(token: string, exhibit: ExhibitAdmin) {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
+	const potter = exhibit.potter.id;
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${exhibit.id}`, {
 		method: 'PATCH',
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ ...exhibit, category, style }),
+		body: JSON.stringify({ ...exhibit, category, style, potter }),
 	});
 	return checkResponseStatus(response);
 }

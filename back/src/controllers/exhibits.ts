@@ -5,6 +5,7 @@ import type { Style as IStyle } from '../types/style';
 import { NotFoundError } from '../errors/not-found-error';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Category from '../models/category';
+import Complectation from '../models/complectation';
 import Exhibit from '../models/exhibit';
 import Potter from '../models/potter';
 import Style from '../models/style';
@@ -13,17 +14,21 @@ import { PATHS } from '../variables/paths';
 
 const { CERAMIC_STYLES, EXHIBITS, POTTERS, STATIC_URL } = PATHS;
 
-function getExhibits(req: Request, res: Response, next: NextFunction): void {
-	Exhibit
-		.find({})
-		.select({ _id: 0 })
-		.populate([
-			{	path: 'category', select: 'title name -_id' },
-			{ path: 'style', select: 'title name -_id' },
-			{ path: 'potter', select: 'id name -_id' },
-		])
-		.then((exhibits: ExhibitType[]) => res.send(exhibits.sort((first, second) => first.id - second.id)))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); });
+async function getExhibits(req: Request, res: Response, next: NextFunction) {
+	try {
+		const exhibits = await Exhibit
+			.find({})
+			.select({ _id: 0 })
+			.populate([
+				{	path: 'category', select: 'title name -_id' },
+				{ path: 'style', select: 'title name -_id' },
+				{ path: 'potter', select: 'id name -_id' },
+			]);
+
+		res.send(exhibits.sort((first, second) => first.id - second.id));
+	}
+
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); }
 }
 
 async function findExhibitById(req: Request, res: Response, next: NextFunction) {
@@ -40,6 +45,16 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 		if (!exhibit.isActive) {
 			return next(new NotFoundError(ERROR_MESSAGES.EXHIBIT.NOT_FOUND));
 		}
+
+		const complectations = await Complectation.find(
+			{ name: { $in: exhibit.complectation } },
+			'-_id name title',
+		);
+
+		exhibit.complectation = exhibit.complectation.map((name) => {
+			const found = complectations.find(c => c.name === name);
+			return found ? found.title : name;
+		});
 
 		const pathToExhibitFolder = `${STATIC_URL}/${EXHIBITS}/${exhibit.id}`;
 

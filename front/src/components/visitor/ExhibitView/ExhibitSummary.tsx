@@ -1,7 +1,5 @@
-import type { RootState } from '@/slices/admin';
 import type { ExhibitVisitor } from '@/types/exhibitType';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import QR from '@/components/visitor/QR/QR';
 import './ExhibitSummary.scss';
 
@@ -10,23 +8,11 @@ interface Props {
 }
 
 export default function ExhibitSummary({ exhibit }: Props) {
-	const complectations = useSelector((state: RootState) => state.complectations.complectations);
 	const [showTechInfo, setShowTechInfo] = useState(false);
 
 	const handleShowTechinfo = () => {
 		setShowTechInfo(!showTechInfo);
 	};
-
-	function parseComplectations() {
-		const result: string[] = [];
-		exhibit.complectation.forEach((exhibitComplectationItem) => {
-			const foundElement = complectations.find(complectationVariant => complectationVariant.name === exhibitComplectationItem);
-			if (foundElement) {
-				result.push(foundElement.title);
-			}
-		});
-		return result.join(', ');
-	}
 
 	return (
 		<section className="section">
@@ -149,9 +135,11 @@ export default function ExhibitSummary({ exhibit }: Props) {
 									</li>
 								) }
 
-								<li className="summary__list-element summary__list-element_justify">
-									{ exhibit?.complectation?.length !== 0 && `Комплектность: ${parseComplectations()} ` }
-								</li>
+								{ exhibit?.complectation.length !== 0 && (
+									<li className="summary__list-element summary__list-element_justify">
+										{ `Комплектность: ${exhibit.complectation.join(', ')} ` }
+									</li>
+								) }
 
 								<li className="summary__list-element summary__list-element_justify">
 									{ `Сохранность: ${exhibit?.preservation || 'не оценена'}` }
