@@ -5,7 +5,7 @@ import { origin } from '@/variables/origin';
 export type manufacturersNames = 'baieido' | 'gyokushodo' | 'kunmeido' | 'kyukyodo' | 'seijudo' | 'shoyeido' | 'tennendo' | 'yamadamatsu' | 'unknown';
 
 export interface manufacturerIncencesNames {
-	baieido: 'kobunboku' | 'kaden-kobunboku' | 'bikou-kobunboku' | 'shu-koh-koku';
+	baieido: 'kobunboku' | 'kaden-kobunboku' | 'bikou-kobunboku' | 'shu-koh-koku' | 'sawayaka-kobunboku';
 	gyokushodo: 'jinko-hoen' | 'jinko-yomei' | 'jinko-kojurin' | 'kojurin' | 'omiya' | 'sofu' | 'seikyo-kojurin';
 	kunmeido: 'reiryokoh' | 'jinko-reiryokoh';
 	kyukyodo: 'shinnyo';

@@ -65,6 +65,27 @@ const kobunboku: Incense[] = [
 		isActive: true,
 		inStock: true,
 	},
+
+
+	{
+		slug: 'sawayaka-kobunboku',
+		title: 'Саваяка Кобунбоку',
+		originalTitle: '爽やか 好文木',
+		description: 'Эти благовония изготовлены по традиционной формуле Кобунбоку с использованием большего количества высококачественных специй и немного меньшего количества сандалового дерева. Такое сочетание сандалового дерева, гвоздики, корицы, борнеола и других натуральных трав позволяет гораздо сильнее подчеркнуть ароматы гвоздики и корицы.',
+		photos: ['2111941.webp', '2111944.webp', '2111946.webp', '2111948.webp', '2111950.webp'],
+		origin: origin.japan,
+		manufacturer: manufacturers.baieido,
+		series: manufacturers.baieido.series?.kobunboku,
+		ingredients: [Ingredients.sandalwood, Ingredients.clove, Ingredients.cinnamon, Ingredients.borneol, Ingredients.herbsMedicine],
+		features: [Features.daily, Features.natural],
+		burnTime: 30,
+		lenght: 13,
+		price: 0,
+		pricePerStick: 32,
+		quantity: stock.baieido?.['sawayaka-kobunboku'] || 0,
+		isActive: true,
+		inStock: true,
+	},
 ];
 
 const premium: Incense[] = [
