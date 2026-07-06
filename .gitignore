@@ -36,6 +36,6 @@ yandex*
 google*
 
 # Backend
-back/src/public
+back/src/static
 back/.env*
 
