@@ -3,6 +3,9 @@ import type { Potter as IPotter } from '../types/potter';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Potter from '../models/potter';
 import { ERROR_MESSAGES } from '../variables/messages';
+import { PATHS } from '../variables/paths';
+
+const { POTTERS, STATIC_URL } = PATHS;
 
 async function getPotters(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -26,33 +29,18 @@ async function getLNTPotters(req: Request, res: Response, next: NextFunction) {
 
 async function findPotterById(req: Request, res: Response, next: NextFunction) {
 	try {
-		res.send('Some logic will be here if necessary');
+		const potter = await Potter.findOne({ id: req.params.id }, '-_id').orFail();
+
+		const pathToPotterFolder = `${STATIC_URL}/${POTTERS}/${potter.id}`;
+
+		if (potter.photo) {
+			potter.photo = `${pathToPotterFolder}/${potter.photo}`;
+		};
+
+		res.send(potter);
 	}
 
 	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
-	// try {
-	// 	const potter = await Potter.findOne({ id: req.params.id }, '-_id').orFail();
-
-	// 	const pathToPotterFolder = `${STATIC_URL}/${POTTERS}/${potter.id}`;
-
-	// 	if (potter.photo) {
-	// 		potter.photo = `${pathToPotterFolder}/${potter.photo}`;
-	// 	};
-
-	// 	res.send(potter);
-	// }
-
-	// catch (error) {
-	// 	if (error.name === 'CastError') {
-	// 		return next(new ValidationError(ERROR_MESSAGES.POTTER_WRONG_ID));
-	// 	}
-
-	// 	if (error.name === 'DocumentNotFoundError') {
-	// 		return next(new NotFoundError(ERROR_MESSAGES.POTTER_NOT_FOUND));
-	// 	}
-
-	// 	return next(error);
-	// };
 }
 
 async function createPotter(req: Request, res: Response, next: NextFunction) {

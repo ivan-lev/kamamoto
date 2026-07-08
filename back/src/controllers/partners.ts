@@ -24,40 +24,50 @@ async function getPartners(req: Request, res: Response, next: NextFunction) {
 	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); }
 }
 
-function createPartner(req: Request, res: Response, next: NextFunction): void {
+async function createPartner(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const partner = req.body;
 
-	Partner.create({ ...partner })
-		.then(partner => res.status(201).send(partner))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
+	try {
+		const createdPartner = await Partner.create({ ...partner });
+		res.status(201).send(createdPartner);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.PARTNER);
+	}
 }
 
-function getPartnerById(req: Request, res: Response, next: NextFunction): void {
-	Partner.findOne({ _id: req.params._id })
-		.orFail()
-		.then((partner) => {
-			res.send(partner);
-		})
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
+async function getPartnerById(req: Request, res: Response, next: NextFunction): Promise<void> {
+	try {
+		const partner = await Partner.findOne({ _id: req.params._id }).orFail();
+		res.send(partner);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.PARTNER);
+	}
 }
 
-function updatePartner(req: Request, res: Response, next: NextFunction): void {
+async function updatePartner(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const newPartnerData: PartnerType = req.body;
-	Partner.findOneAndUpdate({ _id: req.params._id }, newPartnerData, {
-		returnDocument: 'after',
-		runValidators: true,
-	})
-		.orFail()
-		.then(partner => res.send(partner))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
+	try {
+		const partner = await Partner.findOneAndUpdate({ _id: req.params._id }, newPartnerData, {
+			returnDocument: 'after',
+			runValidators: true,
+		}).orFail();
+		res.send(partner);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.PARTNER);
+	}
 }
 
-function deletePartner(req: Request, res: Response, next: NextFunction): void {
-	Partner.findOneAndDelete({ _id: req.params._id })
-		.orFail()
-		.select('_id')
-		.then(partner => res.send(partner))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
+async function deletePartner(req: Request, res: Response, next: NextFunction): Promise<void> {
+	try {
+		const partner = await Partner.findOneAndDelete({ _id: req.params._id }).orFail().select('_id');
+		res.send(partner);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.PARTNER);
+	}
 }
 
 export const partners = {

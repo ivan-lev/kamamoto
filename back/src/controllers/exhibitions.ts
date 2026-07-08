@@ -7,84 +7,94 @@ import { PATHS } from '../variables/paths';
 
 const { EXHIBITIONS, STATIC_URL } = PATHS;
 
-function getExhibitions(req: Request, res: Response, next: NextFunction): void {
+async function getExhibitions(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const isAdmin = req.headers['is-admin'];
-	Exhibition.find({}, { _id: 0 })
-		.then((exhibitions: ExhibitionType[]) => {
-			if (isAdmin === 'false') {
-				exhibitions.forEach((exhibition) => {
-					const { id, photos, poster } = exhibition;
-					const pathToExhibitionFolder = `${STATIC_URL}/${EXHIBITIONS}/${id}`;
+	try {
+		const exhibitions: ExhibitionType[] = await Exhibition.find({}, { _id: 0 });
 
-					if (photos) {
-						photos.forEach((photo, i) => {
-							photos[i] = `${pathToExhibitionFolder}/${photo}`;
-						});
-					}
+		if (isAdmin === 'false') {
+			exhibitions.forEach((exhibition) => {
+				const { id, photos, poster } = exhibition;
+				const pathToExhibitionFolder = `${STATIC_URL}/${EXHIBITIONS}/${id}`;
 
-					if (poster)
-						exhibition.poster = `${pathToExhibitionFolder}/${poster}`;
-				});
-			}
+				if (photos) {
+					photos.forEach((photo, i) => {
+						photos[i] = `${pathToExhibitionFolder}/${photo}`;
+					});
+				}
 
-			return exhibitions;
-		})
-		.then(exhibitions => res.send(exhibitions))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION); });
+				if (poster)
+					exhibition.poster = `${pathToExhibitionFolder}/${poster}`;
+			});
+		}
+
+		res.send(exhibitions);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION);
+	}
 }
 
-function createExhibition(req: Request, res: Response, next: NextFunction): void {
+async function createExhibition(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const exhibition = req.body;
 
-	Exhibition.create({ ...exhibition })
-		.then(exhibition => res.status(201).send(exhibition))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION); });
+	try {
+		const createdExhibition = await Exhibition.create({ ...exhibition });
+		res.status(201).send(createdExhibition);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION);
+	}
 }
 
-function getExhibitionById(req: Request, res: Response, next: NextFunction): void {
+async function getExhibitionById(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const id = Number(req.params.id);
-	Exhibition.findOne({ id }, { _id: 0 })
-		.orFail()
-		.then((exhibition) => {
-			const { photos, poster } = exhibition;
-			const pathToExhibitionFolder = `${STATIC_URL}/${EXHIBITIONS}/${exhibition.id}`;
+	try {
+		const exhibition = await Exhibition.findOne({ id }, { _id: 0 }).orFail();
+		const { photos, poster } = exhibition;
+		const pathToExhibitionFolder = `${STATIC_URL}/${EXHIBITIONS}/${exhibition.id}`;
 
-			if (photos.length) {
-				photos.forEach((photo, i) => {
-					photos[i] = `${pathToExhibitionFolder}/${photo}`;
-				});
-			}
+		if (photos.length) {
+			photos.forEach((photo, i) => {
+				photos[i] = `${pathToExhibitionFolder}/${photo}`;
+			});
+		}
 
-			if (poster)
-				exhibition.poster = `${pathToExhibitionFolder}/${poster}`;
+		if (poster)
+			exhibition.poster = `${pathToExhibitionFolder}/${poster}`;
 
-			return exhibition;
-		})
-		.then((exhibition) => {
-			res.send(exhibition);
-		})
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION); });
+		res.send(exhibition);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION);
+	}
 }
 
-function updateExhibition(req: Request, res: Response, next: NextFunction): void {
+async function updateExhibition(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const newExhibitionData: ExhibitionType = req.body;
 	const id = Number(req.params.id);
-	Exhibition.findOneAndUpdate({ id }, newExhibitionData, {
-		returnDocument: 'after',
-		runValidators: true,
-		projection: { _id: 0 },
-	})
-		.orFail()
-		.then(exhibition => res.send(exhibition))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION); });
+	try {
+		const exhibition = await Exhibition.findOneAndUpdate({ id }, newExhibitionData, {
+			returnDocument: 'after',
+			runValidators: true,
+			projection: { _id: 0 },
+		}).orFail();
+		res.send(exhibition);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION);
+	}
 }
 
-function deleteExhibition(req: Request, res: Response, next: NextFunction): void {
+async function deleteExhibition(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const id = Number(req.params.id);
-	Exhibition.findOneAndDelete({ id })
-		.orFail()
-		.then(exhibition => res.send(exhibition.id))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION); });
+	try {
+		const exhibition = await Exhibition.findOneAndDelete({ id }).orFail();
+		res.send(exhibition.id);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.EXHIBITION);
+	}
 }
 
 export const exhibition = {

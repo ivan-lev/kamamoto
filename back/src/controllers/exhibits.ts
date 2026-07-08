@@ -109,12 +109,15 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); }
 }
 
-function deleteExhibit(req: Request, res: Response, next: NextFunction): void {
+async function deleteExhibit(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const id = Number(req.params.id);
-	Exhibit.findOneAndDelete({ id })
-		.orFail()
-		.then((exhibit: ExhibitType) => res.send(exhibit))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT); });
+	try {
+		const exhibit: ExhibitType = await Exhibit.findOneAndDelete({ id }).orFail();
+		res.send(exhibit);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.EXHIBIT);
+	}
 }
 
 async function updateExhibit(req: Request, res: Response, next: NextFunction) {

@@ -7,45 +7,56 @@ import { PATHS } from '../variables/paths';
 
 const { STATIC_URL, LETTERS } = PATHS;
 
-function getFiles(req: Request, res: Response, next: NextFunction): void {
-	File.find({}, { _id: 0 })
-		.then((files: FileType[]) => {
-			return files.map((file) => {
-				file.name = `${STATIC_URL}/${LETTERS}/${file.name}`;
-				file.thumbnail = `${STATIC_URL}/${LETTERS}/${file.thumbnail}`;
-				return file;
-			});
-		})
-		.then(files => res.send(files))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.FILE); });
+async function getFiles(req: Request, res: Response, next: NextFunction): Promise<void> {
+	try {
+		const files: FileType[] = await File.find({}, { _id: 0 });
+		const result = files.map((file) => {
+			file.name = `${STATIC_URL}/${LETTERS}/${file.name}`;
+			file.thumbnail = `${STATIC_URL}/${LETTERS}/${file.thumbnail}`;
+			return file;
+		});
+		res.send(result);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.FILE);
+	}
 }
 
-function createFile(req: Request, res: Response, next: NextFunction): void {
+async function createFile(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const file = req.body;
 
-	File.create(file)
-		.then(file => res.status(201).send(file))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.FILE); });
+	try {
+		const createdFile = await File.create(file);
+		res.status(201).send(createdFile);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.FILE);
+	}
 }
 
-function updateFile(req: Request, res: Response, next: NextFunction): void {
+async function updateFile(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const newFileData: File = req.body;
-	File.findOneAndUpdate({ _id: req.params._id }, newFileData, {
-		returnDocument: 'after',
-		runValidators: true,
-	})
-		.orFail()
-		.then(file => res.send(file))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.FILE); });
+	try {
+		const file = await File.findOneAndUpdate({ _id: req.params._id }, newFileData, {
+			returnDocument: 'after',
+			runValidators: true,
+		}).orFail();
+		res.send(file);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.FILE);
+	}
 }
 
-function deleteFile(req: Request, res: Response, next: NextFunction): void {
+async function deleteFile(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const id = Number(req.params.id);
-	File.findOneAndDelete({ id })
-		.orFail()
-		.select('_id')
-		.then(file => res.send(file))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.FILE); });
+	try {
+		const file = await File.findOneAndDelete({ id }).orFail().select('_id');
+		res.send(file);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.FILE);
+	}
 }
 
 export const files = {

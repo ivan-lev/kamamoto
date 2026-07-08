@@ -72,39 +72,45 @@ async function getCeramicStylesArticle(req: Request, res: Response, next: NextFu
 	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.CERAMIC_STYLE); }
 };
 
-function createCeramicStyle(req: Request, res: Response, next: NextFunction): void {
+async function createCeramicStyle(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const ceramicStyle = req.body;
 
-	CeramicStyleModel.create(ceramicStyle)
-		.then((ceramicStyle) => {
-			const { _id, ...styleData } = ceramicStyle.toObject();
-			res.status(201).send(styleData);
-		})
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
+	try {
+		const createdStyle = await CeramicStyleModel.create(ceramicStyle);
+		const { _id, ...styleData } = createdStyle.toObject();
+		res.status(201).send(styleData);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
+	}
 }
 
-function deleteCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): void {
+async function deleteCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): Promise<void> {
 	const name = req.params.name;
-	CeramicStyleModel.findOneAndDelete({ name })
-		.orFail()
-		.select('name')
-		.then(style => res.send(style))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
+	try {
+		const style = await CeramicStyleModel.findOneAndDelete({ name }).orFail().select('name');
+		res.send(style);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
+	}
 }
 
-function updateCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): void {
+async function updateCeramicStyle(req: Request<{ name: string }>, res: Response, next: NextFunction): Promise<void> {
 	const newCeramicStyleData: CeramicStyleType = req.body;
 	const ceramicStyleName = req.params.name;
 
-	CeramicStyleModel.findOneAndUpdate(
-		{ name: ceramicStyleName },
-		newCeramicStyleData,
-		{ returnDocument: 'after', runValidators: true },
-	)
-		.select('-_id')
-		.orFail()
-		.then(style => res.send(style))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY); });
+	try {
+		const style = await CeramicStyleModel.findOneAndUpdate(
+			{ name: ceramicStyleName },
+			newCeramicStyleData,
+			{ returnDocument: 'after', runValidators: true },
+		).select('-_id').orFail();
+		res.send(style);
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
+	}
 }
 
 export const ceramicStyle = {

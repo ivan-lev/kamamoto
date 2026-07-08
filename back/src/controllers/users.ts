@@ -7,30 +7,35 @@ import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import User from '../models/user';
 import { ERROR_MESSAGES } from '../variables/messages';
 
-export function login(req: Request, res: Response, next: NextFunction): void {
+export async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const { email, password } = req.body;
 
-	return User.findUserByCredentials(email as string, password as string)
-		.then((user: UserDocument) => {
-			const token = jwt.sign(
-				{ _id: user._id },
-				NODE_ENV === 'production' ? JWT_SECRET : 'default-key',
-				{ expiresIn: '7d' },
-			);
-			res.send({ token });
-		})
-		.catch((error: Error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
+	try {
+		const user: UserDocument = await User.findUserByCredentials(email as string, password as string);
+		const token = jwt.sign(
+			{ _id: user._id },
+			NODE_ENV === 'production' ? JWT_SECRET : 'default-key',
+			{ expiresIn: '7d' },
+		);
+		res.send({ token });
+	}
+	catch (error) {
+		handleMongooseError(error as Error, next, ERROR_MESSAGES.PARTNER);
+	}
 }
 
-export function checkToken(req: any, res: Response, next: NextFunction): void {
+export async function checkToken(req: any, res: Response, next: NextFunction): Promise<void> {
 	const currentUserId = req.user._id;
 
-	User.findById(currentUserId, {
-		_id: 1,
-		email: 1,
-		name: 1,
-	})
-		.orFail()
-		.then(() => res.send({ answer: `Token checked!` }))
-		.catch((error) => { return handleMongooseError(error, next, ERROR_MESSAGES.PARTNER); });
+	try {
+		await User.findById(currentUserId, {
+			_id: 1,
+			email: 1,
+			name: 1,
+		}).orFail();
+		res.send({ answer: `Token checked!` });
+	}
+	catch (error) {
+		handleMongooseError(error, next, ERROR_MESSAGES.PARTNER);
+	}
 }
