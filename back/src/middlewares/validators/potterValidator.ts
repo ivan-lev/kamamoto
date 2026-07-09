@@ -15,6 +15,13 @@ export const potterValidator = celebrate({
 		lifeDates: Joi.string().allow(''),
 		photo: Joi.string().allow(''),
 		info: Joi.string().allow(''),
+		isLNT: Joi.boolean().messages({
+			'boolean.base': 'поле isLNT должно быть булевым',
+		}),
+		showArticle: Joi.boolean().messages({
+			'boolean.base': 'поле showArticle должно быть булевым',
+		}),
+		article: Joi.allow(),
 	}),
 });
 

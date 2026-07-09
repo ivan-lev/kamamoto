@@ -1,4 +1,5 @@
 import type { Types } from 'mongoose';
+import type { ArticleSection } from './article';
 
 export interface Potter {
 	_id: Types.ObjectId;
@@ -9,4 +10,6 @@ export interface Potter {
 	photo?: string;
 	info?: string;
 	isLNT: boolean;
+	article: ArticleSection[];
+	showArticle: boolean;
 };

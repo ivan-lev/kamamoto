@@ -36,6 +36,29 @@ const potterSchema = new Schema<Potter>(
 			required: true,
 			default: false,
 		},
+
+		showArticle: {
+			type: Boolean,
+			default: false,
+		},
+
+		article: {
+			type: [
+				{
+					_id: false,
+					content: String,
+					slides: [
+						{
+							_id: false,
+							filename: String,
+							source: String,
+							caption: String,
+						},
+					],
+				},
+			],
+			default: [],
+		},
 	},
 	{ versionKey: false },
 );

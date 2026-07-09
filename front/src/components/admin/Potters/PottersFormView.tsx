@@ -3,6 +3,7 @@ import type { RootState } from '@/slices/admin';
 import type { Potter } from '@/types/potter';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ArticleForm from '@/components/admin/shared/ArticleForm/ArticleForm';
 import Button from '@/components/shared/Button';
 import { clearPotterForm, setPotters, setPotterToEdit } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
@@ -191,36 +192,41 @@ export default function PottersForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-12 form__row-12--inline">
-						<span className="form__request-status">{ saveMessage }</span>
-						{ !isExistingPotterEdited && (
-							<>
-								<Button title="Очистить" action={ () => dispatch(clearPotterForm()) } />
-								<Button title="Создать" action={ handleCreatePotter } />
-							</>
-						) }
-
-						{ isExistingPotterEdited && (
-							<>
-								{ showConfirmation
-									? (
-										<>
-											<span>Точно удалить запись?</span>
-											<Button title="Да" action={ handleDeletePotter } />
-											<Button title="Нет" action={ () => setShowConfirmation(false) } />
-										</>
-									)
-									: (
-										<>
-											<Button title="Обновить" action={ handleUpdatePotter } />
-											<Button title="Удалить" action={ () => setShowConfirmation(true) } />
-										</>
-									) }
-							</>
-						) }
-					</div>
 				</div>
 			</fieldset>
+			<ArticleForm
+				entity={ potterToEdit }
+				onChange={ updatedPotter => dispatch(setPotterToEdit(updatedPotter)) }
+			/>
+
+			<div className="form__row form__row-12 form__row-12--inline">
+				<span className="form__request-status">{ saveMessage }</span>
+				{ !isExistingPotterEdited && (
+					<>
+						<Button title="Очистить" action={ () => dispatch(clearPotterForm()) } />
+						<Button title="Создать" action={ handleCreatePotter } />
+					</>
+				) }
+
+				{ isExistingPotterEdited && (
+					<>
+						{ showConfirmation
+							? (
+								<>
+									<span>Точно удалить запись?</span>
+									<Button title="Да" action={ handleDeletePotter } />
+									<Button title="Нет" action={ () => setShowConfirmation(false) } />
+								</>
+							)
+							: (
+								<>
+									<Button title="Обновить" action={ handleUpdatePotter } />
+									<Button title="Удалить" action={ () => setShowConfirmation(true) } />
+								</>
+							) }
+					</>
+				) }
+			</div>
 		</form>
 
 	);

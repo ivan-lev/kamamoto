@@ -2,7 +2,7 @@ import type { RootState } from '@/slices/admin';
 import type { Potter } from '@/types/potter';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PottersForm from '@/components/admin/Potters/PottersForm';
+import PottersFormView from '@/components/admin/Potters/PottersFormView';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
@@ -91,7 +91,7 @@ export default function Potters() {
 							showModal={ showModal }
 							closeModal={ () => handleCloseModal() }
 						>
-							<PottersForm />
+							<PottersFormView />
 						</Modal>
 						<button className="button" onClick={ () => handleOpenModal() }>
 							Создать

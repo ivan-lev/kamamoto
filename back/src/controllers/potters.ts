@@ -19,7 +19,7 @@ async function getPotters(req: Request, res: Response, next: NextFunction) {
 
 async function getLNTPotters(req: Request, res: Response, next: NextFunction) {
 	try {
-		const potters = (await Potter.find({}).select({ _id: 0, japaneseName: 0, lifeDates: 0, info: 0 }).lean<IPotter[]>()).filter(potter => potter.isLNT === true);
+		const potters = (await Potter.find({ showArticle: true }).select({ _id: 0, japaneseName: 0, lifeDates: 0, info: 0 }).lean<IPotter[]>()).filter(potter => potter.isLNT === true);
 		potters.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
 		potters.forEach((potter) => {

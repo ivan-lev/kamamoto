@@ -1,57 +1,51 @@
 import type { ChangeEvent } from 'react';
-import type { ArticleSection } from '@/components/admin/CeramicStyles/ceramicStyles.types';
-import type { RootState } from '@/slices/admin';
+import type { ArticleSection } from '@/components/visitor/Article/Article.types';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import CeramicStyleArticleSlide from '@/components/admin/CeramicStyles/CeramicStyleArticleSlide';
-import { setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
+import ArticleFormSlide from '@/components/admin/shared/ArticleForm/ArticleFormSlide';
 
 interface Props {
 	section: ArticleSection;
 	sectionIndex: number;
+	article: ArticleSection[];
+	onArticleChange: (newArticle: ArticleSection[]) => void;
 }
 
-export default function CeramicStyleArticleSection({ section, sectionIndex }: Props) {
-	const dispatch = useDispatch();
-	const ceramicStyleToEdit = useSelector((state: RootState) => state.ceramicStyles.ceramicStyleToEdit);
-
+export default function ArticleFormSection({ section, sectionIndex, article, onArticleChange }: Props) {
 	const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-	const { article } = ceramicStyleToEdit;
-	const currentSection = article[sectionIndex];
-	const { content, slides } = currentSection;
+	const { content, slides } = section;
 	const [isArticleCollapsed, setIsArticleCollapsed] = useState(false);
 
 	const initialSlide = { filename: '', source: '', caption: '' };
 
 	function updateSectionText(event: ChangeEvent<HTMLTextAreaElement>) {
 		const { name, value } = event.target;
-		const newArticleData = article?.map((section, index) => index === sectionIndex ? { ...section, [name]: value } : section);
-		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, article: newArticleData }));
+		const newArticleData = article.map((section, index) => index === sectionIndex ? { ...section, [name]: value } : section);
+		onArticleChange(newArticleData);
 	};
 
 	function deleteSection() {
 		const newArticleData = article.filter((_section, index) => index !== sectionIndex);
-		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, article: newArticleData }));
+		onArticleChange(newArticleData);
 	};
 
 	function moveSection(direction: 'up' | 'down') {
 		if (direction === 'up') {
 			const newArticleData = article.toSpliced(sectionIndex - 1, 0, article[sectionIndex]).toSpliced(sectionIndex + 1, 1);
-			dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, article: newArticleData }));
+			onArticleChange(newArticleData);
 		}
 
 		if (direction === 'down') {
 			const newArticleData = article.toSpliced(sectionIndex, 0, article[sectionIndex + 1]).toSpliced(sectionIndex + 2, 1);
-			dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, article: newArticleData }));
+			onArticleChange(newArticleData);
 		}
 	}
 
 	function addSlideToSection() {
 		const newSlidesData = slides?.length ? [...slides, Object.assign(initialSlide)] : [Object.assign(initialSlide)];
 		const newSectionData = { content, slides: newSlidesData };
-		const newArticleData = article?.map((section, index) => index === sectionIndex ? newSectionData : section);
-		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, article: newArticleData }));
+		const newArticleData = article.map((section, index) => index === sectionIndex ? newSectionData : section);
+		onArticleChange(newArticleData);
 	}
 
 	function resizeTextArea() {
@@ -122,7 +116,16 @@ export default function CeramicStyleArticleSection({ section, sectionIndex }: Pr
 			</div>
 
 			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
-				{ slides?.map((slide, index) => <CeramicStyleArticleSlide key={ sectionIndex + index.toString() } slide={ slide } slideIndex={ index } sectionIndex={ sectionIndex } />) }
+				{ slides?.map((slide, index) => (
+					<ArticleFormSlide
+						key={ sectionIndex + index.toString() }
+						slide={ slide }
+						slideIndex={ index }
+						sectionIndex={ sectionIndex }
+						article={ article }
+						onArticleChange={ onArticleChange }
+					/>
+				)) }
 			</div>
 
 			<div className="form__row form__row-3" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>

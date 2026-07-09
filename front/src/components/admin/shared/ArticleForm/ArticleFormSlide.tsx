@@ -1,19 +1,15 @@
 import type { ChangeEvent } from 'react';
-import type { ArticleSlide } from '@/components/admin/CeramicStyles/ceramicStyles.types';
-import type { RootState } from '@/slices/admin';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
+import type { ArticleSection, ArticleSlide } from '@/components/visitor/Article/Article.types';
 
 interface Props {
 	slide: ArticleSlide;
 	slideIndex: number;
 	sectionIndex: number;
+	article: ArticleSection[];
+	onArticleChange: (newArticle: ArticleSection[]) => void;
 }
 
-export default function CeramicStyleArticleSlide({ slide, slideIndex, sectionIndex }: Props) {
-	const dispatch = useDispatch();
-	const ceramicStyleToEdit = useSelector((state: RootState) => state.ceramicStyles.ceramicStyleToEdit);
-	const { article } = ceramicStyleToEdit;
+export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, article, onArticleChange }: Props) {
 	const currentSection = article[sectionIndex];
 	const { slides, content } = currentSection;
 	const { filename, source, caption } = slide;
@@ -23,14 +19,14 @@ export default function CeramicStyleArticleSlide({ slide, slideIndex, sectionInd
 		const newSlidesData = slides?.map((slide, index) => index !== slideIndex ? slide : { ...slide, [name]: value });
 		const newSectionData = { content, slides: newSlidesData };
 		const newArticleData = article.map((section, index) => index !== sectionIndex ? section : newSectionData);
-		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, article: newArticleData }));
+		onArticleChange(newArticleData);
 	}
 
 	function handleDeleteSlide() {
 		const newSlidesData = slides?.filter((_slide, index) => index !== slideIndex);
 		const newSectionData = { content, slides: newSlidesData || [] };
 		const newArticleData = article.map((section, index) => index !== sectionIndex ? section : newSectionData);
-		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, article: newArticleData }));
+		onArticleChange(newArticleData);
 	}
 
 	return (

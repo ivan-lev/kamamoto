@@ -2,9 +2,9 @@ import type { RootState } from '@/slices/admin';
 import type { CeramicStyle } from '@/types/ceramicStyles';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CeramicStylesFormArticle from '@/components/admin/CeramicStyles/CeramicStyleFormArticle';
 import CeramicStyleFormBasicInfo from '@/components/admin/CeramicStyles/CeramicStyleFormBasicInfo';
-import { clearCeramicStyleForm, setCeramicStyles } from '@/slices/admin/ceramicStyles';
+import ArticleForm from '@/components/admin/shared/ArticleForm/ArticleForm';
+import { clearCeramicStyleForm, setCeramicStyles, setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
 import { api } from '@/utils/api/api';
 
 export default function CeramicStyleFormView() {
@@ -100,7 +100,10 @@ export default function CeramicStyleFormView() {
 
 			<CeramicStyleFormBasicInfo />
 
-			<CeramicStylesFormArticle />
+			<ArticleForm
+				entity={ ceramicStyleToEdit }
+				onChange={ updatedStyle => dispatch(setCeramicStyleToEdit(updatedStyle)) }
+			/>
 
 			<div className="form__row form__row-12 form__row-12--inline">
 				<span className="form__request-status">{ saveMessage }</span>
