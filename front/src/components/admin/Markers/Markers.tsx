@@ -1,0 +1,105 @@
+import type { RootState } from '@/slices/admin';
+import type { Marker } from '@/types/marker';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import MarkersFormView from '@/components/admin/Markers/MarkersFormView';
+import Modal from '@/components/shared/Modal';
+import Preloader from '@/components/shared/Preloader/Preloader';
+import { MARKER_GROUPS } from '@/components/visitor/Map/markerGroups';
+import Seo from '@/components/visitor/Seo/Seo';
+import { setIsExistingMarkerEdited, setMarkers, setMarkerToEdit } from '@/slices/admin/markers';
+import { defaultMarker } from '@/types/marker';
+import { api } from '@/utils/api/api';
+
+export default function Markers() {
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const dispatch = useDispatch();
+	const markersList = useSelector((state: RootState) => state.markers.markersList);
+	const isExistingMarkerEdited = useSelector((state: RootState) => state.markers.isExistingMarkerEdited);
+
+	function handleSetMarkerToEdit(data: Marker) {
+		dispatch(setIsExistingMarkerEdited(true));
+		dispatch(setMarkerToEdit(data));
+		setShowModal(true);
+	}
+
+	function handleCloseModal() {
+		setShowModal(false);
+		if (isExistingMarkerEdited) {
+			dispatch(setMarkerToEdit({ ...defaultMarker }));
+			dispatch(setIsExistingMarkerEdited(false));
+		}
+	}
+
+	function handleOpenModal() {
+		dispatch(setMarkerToEdit({ ...defaultMarker }));
+		dispatch(setIsExistingMarkerEdited(false));
+		setShowModal(true);
+	}
+
+	useEffect(() => {
+		const token = localStorage.getItem('kmmttkn');
+		if (token) {
+			api.maps.getMarkers()
+				.then((markers) => {
+					dispatch(setMarkers(markers));
+					setShowPreloader(false);
+				})
+				.catch(error => console.error(error));
+		}
+	}, []);
+
+	return (
+		<>
+			<Seo title="Камамото: карта" />
+
+			{ showPreloader
+				? (
+					<Preloader />
+				)
+				: (
+					<div className="container container--background-transparent">
+						<h1 className="title title--1">Маркеры карты</h1>
+						<div className="table">
+							<div className="table__row">
+								<span className="table__cell table__cell--span-3">Название</span>
+								<span className="table__cell table__cell--span-4">Группа</span>
+								<span className="table__cell table__cell--span-3">Активен</span>
+								<span className="table__cell table__cell--centered"></span>
+							</div>
+							{ markersList.map((marker) => {
+								const groupTitle = MARKER_GROUPS.find(group => group.groupName === marker.groupName)?.title ?? marker.groupName;
+								return (
+									<div
+										key={ marker._id }
+										className="table__row"
+									>
+										<span className="table__cell table__cell--span-3">{ marker.title }</span>
+										<span className="table__cell table__cell--span-4">{ groupTitle }</span>
+										<span className="table__cell table__cell--span-3">{ marker.isActive ? 'Да' : 'Нет' }</span>
+										<div className="table__cell table__cell--centered">
+											<button
+												className="table__button table__button--edit"
+												onClick={ () => handleSetMarkerToEdit(marker) }
+											>
+											</button>
+										</div>
+									</div>
+								);
+							}) }
+						</div>
+						<Modal
+							showModal={ showModal }
+							closeModal={ () => handleCloseModal() }
+						>
+							<MarkersFormView />
+						</Modal>
+						<button className="button" onClick={ () => handleOpenModal() }>
+							Создать
+						</button>
+					</div>
+				) }
+		</>
+	);
+}

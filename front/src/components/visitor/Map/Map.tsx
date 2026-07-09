@@ -1,60 +1,47 @@
-import type { Marker } from '@/components/visitor/Map/map.types';
+import type { Marker, MarkerGroup } from '@/components/visitor/Map/map.types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { LayersControl, MapContainer, TileLayer } from 'react-leaflet';
+import Preloader from '@/components/shared/Preloader/Preloader';
 import MapGroup from '@/components/visitor/Map/MapGroup';
-import { otherKilns, sevenKilnsOfEnshu, sixOldKilns, traditionalKilns } from '@/components/visitor/Map/markers';
+import { MARKER_GROUPS } from '@/components/visitor/Map/markerGroups';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
+import { api } from '@/utils/api/api';
 import { scrollToTop } from '@/utils/scrollToTop';
 import './Map.scss';
 
 export default function Map() {
-	const count = otherKilns.length + sevenKilnsOfEnshu.length + sixOldKilns.length + traditionalKilns.length;
+	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	const [groups, setGroups] = useState<MarkerGroup[]>([]);
 	const [query, setQuery] = useState<string>('');
 
-	const [filteredOtherKilns, setFilteredOtherKilns] = useState(otherKilns);
-	const [filteredSevenKilnsOfEnshu, setFilteredSevenKilnsOfEnshu] = useState(sevenKilnsOfEnshu);
-	const [filteredSixOldKilns, setFilteredSixOldKilns] = useState(sixOldKilns);
-	const [filteredTraditionalKilns, setFilteredTraditionalKilns] = useState(traditionalKilns);
+	const count = groups.reduce((total, group) => total + group.markers.length, 0);
 
 	// const apiKey = import.meta.env.VITE_MAP_API_KEY;
 
 	const normalizedQuery = query.trim().toLowerCase();
 
-	function filterMarkers(markers: Marker[]) {
+	function getGroupMarkers(groupName: string): Marker[] {
+		const markers = groups.find(group => group.groupName === groupName)?.markers ?? [];
+
 		if (!normalizedQuery)
 			return markers;
 
 		return markers.filter(marker =>
-			marker.tooltip.toLowerCase().includes(normalizedQuery)
+			marker.title.toLowerCase().includes(normalizedQuery)
 			|| marker.kanji?.includes(query)
 			|| marker.romaji?.toLowerCase().includes(normalizedQuery),
 		);
 	};
 
-	function resetMarkers() {
-		if (query !== '')
-			setQuery('');
-
-		setFilteredOtherKilns(otherKilns);
-		setFilteredSevenKilnsOfEnshu(sevenKilnsOfEnshu);
-		setFilteredSixOldKilns(sixOldKilns);
-		setFilteredTraditionalKilns(traditionalKilns);
-	};
-
-	function setMarkers() {
-		if (query === '') {
-			resetMarkers();
-			return;
-		}
-
-		setFilteredOtherKilns(filterMarkers(otherKilns));
-		setFilteredSevenKilnsOfEnshu(filterMarkers(sevenKilnsOfEnshu));
-		setFilteredSixOldKilns(filterMarkers(sixOldKilns));
-		setFilteredTraditionalKilns(filterMarkers(traditionalKilns));
-	};
-
-	useEffect(() => setMarkers(), [query]);
+	useEffect(() => {
+		api.maps.getMarkerGroups()
+			.then((response) => {
+				setGroups(response);
+				setShowPreloader(false);
+			})
+			.catch(error => console.error(error));
+	}, []);
 
 	useLayoutEffect(() => scrollToTop(), []);
 
@@ -83,32 +70,34 @@ export default function Map() {
 						value={ query }
 						onChange={ event => setQuery(event.target.value) }
 					/>
-					<button className="button button--xs map-section__button" onClick={ resetMarkers }>X</button>
+					<button className="button button--xs map-section__button" onClick={ () => setQuery('') }>X</button>
 				</div>
 
-				<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } fadeAnimation={ false } className="map">
-					{ /* бесплаьные карты если израсходуется лимит */ }
-					{ /* https://gist.github.com/bokub/dd85ffe1368bb10396f871111dff7201 */ }
+				{ showPreloader
+					? (
+						<Preloader />
+					)
+					: (
+						<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } fadeAnimation={ false } className="map">
+							{ /* бесплаьные карты если израсходуется лимит */ }
+							{ /* https://gist.github.com/bokub/dd85ffe1368bb10396f871111dff7201 */ }
 
-					{ /* бесплаьные с лимитом */ }
-					{ /* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */ }
+							{ /* бесплаьные с лимитом */ }
+							{ /* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */ }
 
-					<TileLayer url="https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
-					<LayersControl position="topright" collapsed={ false }>
-						<MapGroup title="Шесть ранних печей" markers={ filteredSixOldKilns } icon="marker-red" />
-						<MapGroup title="Семь печей Энсю" markers={ filteredSevenKilnsOfEnshu } icon="marker-brown" />
-						<MapGroup title="Японские традиционные ремёсла" markers={ filteredTraditionalKilns } icon="marker-orange" />
-						<MapGroup title="Другие стили керамики" markers={ filteredOtherKilns } icon="marker-yellow" />
-
-						{ /* <LayersControl.Overlay name="Feature group">
-								<FeatureGroup pathOptions={{ color: 'purple' }}>
-									<Popup>Popup in FeatureGroup</Popup>
-									<Circle center={[36, 138]} radius={3500} />
-									<Rectangle bounds={[[37, 136], [36, 137],]} />
-								</FeatureGroup>
-							</LayersControl.Overlay> */ }
-					</LayersControl>
-				</MapContainer>
+							<TileLayer url="https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
+							<LayersControl position="topright" collapsed={ false }>
+								{ MARKER_GROUPS.map(group => (
+									<MapGroup
+										key={ group.groupName }
+										title={ group.title }
+										markers={ getGroupMarkers(group.groupName) }
+										icon={ group.icon }
+									/>
+								)) }
+							</LayersControl>
+						</MapContainer>
+					) }
 			</section>
 
 			<section className="section">

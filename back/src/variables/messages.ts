@@ -52,6 +52,13 @@ export const ERROR_MESSAGES = Object.freeze({
 		ALREADY_EXISTS: 'Файл с таким id уже существует',
 	},
 
+	MARKER: {
+		WRONG_DATA: 'При сохранении маркера переданы невалидные данные',
+		WRONG_ID: 'Передан некорректный id маркера',
+		NOT_FOUND: 'Маркер с таким id не найден',
+		ALREADY_EXISTS: 'Маркер с таким id уже существует',
+	},
+
 	LETTER: {
 		WRONG_DATA: 'При сохранении письма переданы невалидные данные',
 		WRONG_ID: 'Передан некорректный id письма',

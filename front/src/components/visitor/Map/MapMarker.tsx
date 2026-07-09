@@ -26,14 +26,14 @@ export default function MapMarker({ marker, icon }: Props) {
 			position={ marker.geocode }
 			icon={ currentIcon }
 		>
-			{ marker.tooltip
-				&& (<Tooltip direction="bottom" permanent>{ marker.tooltip }</Tooltip>) }
+			{ marker.title
+				&& (<Tooltip direction="bottom" permanent>{ marker.title }</Tooltip>) }
 
-			{ (marker.popup || marker.image)
+			{ (marker.info || marker.image)
 				&& (
 					<Popup>
-						{ marker.image && <Picture additionalClass="map__image" alt={ `Изображение для маркера ${marker.tooltip}` } src={ `${basePath}/map/${marker.image}` } /> }
-						{ marker.popup && <span dangerouslySetInnerHTML={{ __html: marker.popup }}></span> }
+						{ marker.image && <Picture additionalClass="map__image" alt={ `Изображение для маркера ${marker.title}` } src={ `${basePath}/map/${marker.image}` } /> }
+						{ marker.info && <span dangerouslySetInnerHTML={{ __html: marker.info }}></span> }
 					</Popup>
 				) }
 		</Marker>

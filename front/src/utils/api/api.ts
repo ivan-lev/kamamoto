@@ -5,6 +5,7 @@ import { complectation } from '@/utils/api/api.complectation';
 import { exhibitions } from '@/utils/api/api.exhibitions';
 import { exhibits } from '@/utils/api/api.exhibits';
 import { letters } from '@/utils/api/api.letters';
+import { maps } from '@/utils/api/api.maps';
 import { partners } from '@/utils/api/api.partners';
 import { potters } from '@/utils/api/api.potters';
 import { statistics } from '@/utils/api/api.statistics';
@@ -17,6 +18,7 @@ export const api = {
 	exhibitions,
 	exhibits,
 	letters,
+	maps,
 	partners,
 	potters,
 	statistics,

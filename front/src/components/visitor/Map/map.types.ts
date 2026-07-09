@@ -2,9 +2,14 @@ import type L from 'leaflet';
 
 export interface Marker {
 	geocode: L.LatLngExpression;
-	tooltip: string;
+	title: string;
 	kanji: string;
 	romaji: string;
-	popup: TrustedHTML;
+	info: TrustedHTML;
 	image: string;
+}
+
+export interface MarkerGroup {
+	groupName: string;
+	markers: Marker[];
 }

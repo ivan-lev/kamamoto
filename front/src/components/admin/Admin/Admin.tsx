@@ -22,7 +22,7 @@ export default function Admin() {
 				.catch((error) => {
 					console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
 					dispatch(logout());
-					navigate('/admin/login');
+					navigate('/admin/login', { replace: true });
 				});
 		}
 	}, []);
@@ -34,6 +34,7 @@ export default function Admin() {
 		// { title: 'Декоратиные приёмы', path: 'features/' },
 		{ title: 'Комплектация', path: 'complectation/' },
 		{ title: 'Гончары', path: 'potters/' },
+		{ title: 'Карта', path: 'map/' },
 	];
 
 	const listTwo = [
@@ -88,7 +89,7 @@ export default function Admin() {
 								className="button"
 								onClick={ () => {
 									dispatch(logout());
-									navigate('/admin/login');
+									navigate('/admin/login', { replace: true });
 								} }
 							>
 								Выйти
