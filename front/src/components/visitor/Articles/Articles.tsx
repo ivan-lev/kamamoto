@@ -46,7 +46,7 @@ export default function Articles() {
 										const { name, title, thumbnail } = article; ;
 										return (
 											<li className="display-grid__element" key={ name }>
-												<Card link={ name } title={ title } image={ thumbnail } />
+												<Card link={ name } title={ title } thumbnail={ thumbnail } />
 											</li>
 										);
 									}) }

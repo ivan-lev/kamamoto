@@ -74,7 +74,7 @@ async function findExhibitById(req: Request, res: Response, next: NextFunction) 
 		}
 
 		if (exhibit.potter.photo?.length !== 0 && exhibit.potter.photo !== undefined)
-			exhibit.potter.photo = `${STATIC_URL}/${POTTERS}/${exhibit.potter.photo}`;
+			exhibit.potter.photo = `${STATIC_URL}/${POTTERS}/${exhibit.potter.id}/${exhibit.potter.photo}`;
 
 		res.send(exhibit);
 	}

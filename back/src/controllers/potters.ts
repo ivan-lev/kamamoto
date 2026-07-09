@@ -5,7 +5,7 @@ import Potter from '../models/potter';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
-const { POTTERS, STATIC_URL } = PATHS;
+const { LNT_POTTERS, POTTERS, STATIC_URL } = PATHS;
 
 async function getPotters(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -19,9 +19,20 @@ async function getPotters(req: Request, res: Response, next: NextFunction) {
 
 async function getLNTPotters(req: Request, res: Response, next: NextFunction) {
 	try {
-		const potters = (await Potter.find({}).lean<IPotter[]>()).filter(potter => potter.isLNT === true);
+		const potters = (await Potter.find({}).select({ _id: 0, japaneseName: 0, lifeDates: 0, info: 0 }).lean<IPotter[]>()).filter(potter => potter.isLNT === true);
 		potters.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-		res.send(potters);
+
+		potters.forEach((potter) => {
+			const pathToPotterFolder = `${STATIC_URL}/${POTTERS}/${potter.id}`;
+
+			if (potter.photo) {
+				potter.photo = `${pathToPotterFolder}/${potter.photo}`;
+			};
+		});
+		const response = potters.map((potter) => {
+			return { thumbnail: potter.photo, title: potter.name, link: `/${LNT_POTTERS}/${potter.id}` };
+		});
+		res.send(response);
 	}
 
 	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }

@@ -13,6 +13,7 @@ export default function Useful() {
 		{ link: '/map/', title: 'Карта гончарных цетров', thumbnail: '/images/useful/map.webp' },
 		{ link: '/japanese-exhibitions', title: 'Японские выставки', thumbnail: '/images/useful/exhibitions/thumbnail.webp' },
 		{ link: '/japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
+		{ link: '/lnt-potters', title: 'Живые национальные сокровища', thumbnail: '/images/useful/lnt.webp' },
 	];
 
 	useLayoutEffect(() => scrollToTop(), []);
@@ -33,7 +34,7 @@ export default function Useful() {
 							const { link, title, thumbnail } = item; ;
 							return (
 								<li className="display-grid__element" key={ title }>
-									<Card link={ link } title={ title } image={ thumbnail } />
+									<Card link={ link } title={ title } thumbnail={ thumbnail } />
 								</li>
 							);
 						}) }

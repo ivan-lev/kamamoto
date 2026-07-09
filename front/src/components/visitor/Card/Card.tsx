@@ -6,7 +6,7 @@ import './Card.scss';
 interface Props {
 	link: string;
 	title: string;
-	image: string;
+	thumbnail: string;
 }
 
 const style = {
@@ -15,8 +15,8 @@ const style = {
 	border: '1px solid var(--border-color)',
 };
 
-export default function Card({ link, title, image }: Props) {
-	const [srcToRender, setSrcToRender] = useState<string>(image);
+export default function Card({ link, title, thumbnail }: Props) {
+	const [srcToRender, setSrcToRender] = useState<string>(thumbnail);
 
 	return (
 		<div className="card">

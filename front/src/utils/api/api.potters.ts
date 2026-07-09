@@ -15,6 +15,20 @@ async function getPotters(isAdmin = false) {
 	return checkResponseStatus(response);
 }
 
+async function getPotterById(id: string) {
+	const response = await fetch(`${BASE_API_URL}/${POTTERS}/${id}`, {
+		method: 'GET',
+	});
+	return checkResponseStatus(response);
+}
+
+async function getLNTPotters() {
+	const response = await fetch(`${BASE_API_URL}/${POTTERS}/lnt`, {
+		method: 'GET',
+	});
+	return checkResponseStatus(response);
+}
+
 async function createPotter(token: string, potter: Potter) {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/`, {
 		method: 'POST',
@@ -52,6 +66,8 @@ async function deletePotter(token: string, id: string) {
 
 export const potters = {
 	getPotters,
+	getLNTPotters,
+	getPotterById,
 	createPotter,
 	updatePotter,
 	deletePotter,

@@ -2,10 +2,10 @@ import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router';
 
 import About from '@/components/visitor/About/About';
-import Article from '@/components/visitor/Article/Article';
 import Articles from '@/components/visitor/Articles/Articles';
 import Assistants from '@/components/visitor/Assistants/Assistants';
 import Category from '@/components/visitor/Category/Category';
+import CeramicStyle from '@/components/visitor/CeramicStyle/CeramicStyle';
 import Collection from '@/components/visitor/Collection/Collection';
 import Contacts from '@/components/visitor/Contacts/Contacts';
 import Dictionary from '@/components/visitor/Dictionary/Dictionary';
@@ -18,6 +18,8 @@ import Header from '@/components/visitor/Header/Header';
 import HomePage from '@/components/visitor/HomePage/HomePage';
 import JapaneseExhibitions from '@/components/visitor/JapaneseExhibitions/JapaneseExhibitions';
 import JapaneseSocieties from '@/components/visitor/JapaneseSocieties/JapaneseSocieties';
+import LNTPotter from '@/components/visitor/LNTPotter/LNTPotter';
+import LNTPotters from '@/components/visitor/LNTPotters/LNTPotters';
 import Main from '@/components/visitor/Main/Main';
 import Map from '@/components/visitor/Map/Map';
 import NotFound from '@/components/visitor/NotFound/NotFound';
@@ -60,10 +62,12 @@ export default function VisitorView() {
 					<Route path="useful" element={ <Useful /> } />
 					<Route path="dictionary" element={ <Dictionary /> } />
 					<Route path="ceramic-styles" element={ <Articles /> } />
-					<Route path="ceramic-styles/:style" element={ <Article /> } />
+					<Route path="ceramic-styles/:style" element={ <CeramicStyle /> } />
 					<Route path="japanese-exhibitions" element={ <JapaneseExhibitions /> } />
 					<Route path="japanese-societies" element={ <JapaneseSocieties /> } />
 					<Route path="map" element={ <Map /> } />
+					<Route path="lnt-potters" element={ <LNTPotters /> } />
+					<Route path="lnt-potters/:potter" element={ <LNTPotter /> } />
 				</Route>
 
 				<Route path="*" element={ <NotFound /> } />
