@@ -14,6 +14,7 @@ export const PATHS = Object.freeze({
 	EXHIBITIONS: 'exhibitions',
 	IMAGES: 'images',
 	LETTERS: 'letters',
+	MAPS: 'maps',
 	PARTNERS: 'partners',
 	POTTERS: 'potters',
 	SIGNIN: 'signin',
@@ -53,6 +54,11 @@ export const LOGIN_MESSAGES = Object.freeze({
 	WRONG_EMAIL_FORMAT: 'Неправильный формат email-адреса',
 });
 
+export const STORAGE_KEYS = Object.freeze({
+	TOKEN: 'kmmttkn',
+	IS_LOGGED_IN: 'kmmtlgn',
+});
+
 export const DESCRIPTION_DUMMY = '<p>Описание в процессе подготовки</p>';
 
-export const SITE_VERSION = '2.3.3';
+export const SITE_VERSION = '2.5.1';
