@@ -18,7 +18,7 @@ export const categoryValidator = celebrate({
 		thumbnail: Joi.string().pattern(REGEX.IMAGE).required().messages({
 			'string.base': 'поле thumbnail должно быть строкой',
 			'string.empty': 'поле thumbnail должно содержать значение',
-			'string.pattern.base': 'поле thumbnail должно состоять из английских букв и заканчиваться на .jpg',
+			'string.pattern.base': 'поле thumbnail должно состоять из английских букв и заканчиваться на jpg или webp',
 			'any.required': 'поле thumbnail обязательное',
 		}),
 	}),

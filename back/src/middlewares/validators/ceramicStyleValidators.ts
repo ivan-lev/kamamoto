@@ -27,7 +27,7 @@ export const ceramicStyleValidator = celebrate({
 		}),
 		thumbnail: Joi.string().allow('').pattern(REGEX.IMAGE).messages({
 			'string.base': 'поле thumbnail должно быть строкой',
-			'string.pattern.base': 'поле thumbnail должно состоять из английских букв и заканчиваться на .jpg',
+			'string.pattern.base': 'поле thumbnail должно состоять из английских букв и заканчиваться на jpg или webp',
 			'any.required': 'поле thumbnail обязательное',
 		}),
 		images: Joi.array().items(Joi.string()).messages({
@@ -36,8 +36,10 @@ export const ceramicStyleValidator = celebrate({
 		additionalImages: Joi.array().items(Joi.string()).messages({
 			'array.base': 'в поле additionalImages нужно передать массив строк',
 		}),
-		mapImage: Joi.string().messages({
+		mapImage: Joi.string().allow('').pattern(REGEX.SVG).messages({
 			'string.base': 'в поле mapImage нужно название файла',
+			'string.empty': 'поле mapImage должно содержать значение',
+			'string.pattern.base': 'Файл должен иметь расширение .svg',
 		}),
 		article: Joi.allow(),
 	}),
