@@ -65,10 +65,12 @@ export default function Markers() {
 						<h1 className="title title--1">Маркеры карты</h1>
 						<div className="table">
 							<div className="table__row">
-								<span className="table__cell table__cell--span-3">Название</span>
+								<span className="table__cell table__cell--span-2">Название</span>
+								<span className="table__cell table__cell--span-2">Кандзи</span>
+								<span className="table__cell table__cell--span-2">Ромадзи</span>
 								<span className="table__cell table__cell--span-4">Группа</span>
-								<span className="table__cell table__cell--span-3">Активен</span>
-								<span className="table__cell table__cell--centered"></span>
+								<span className="table__cell">Активен</span>
+								<span className="table__cell table__cell--centered">Редакт-ть</span>
 							</div>
 							{ markersList.map((marker) => {
 								const groupTitle = MARKER_GROUPS.find(group => group.groupName === marker.groupName)?.title ?? marker.groupName;
@@ -77,9 +79,13 @@ export default function Markers() {
 										key={ marker._id }
 										className="table__row"
 									>
-										<span className="table__cell table__cell--span-3">{ marker.title }</span>
+										<span className="table__cell table__cell--span-2">{ marker.title }</span>
+										<span className="table__cell table__cell--span-2">{ marker.kanji }</span>
+										<span className="table__cell table__cell--span-2">{ marker.romaji }</span>
 										<span className="table__cell table__cell--span-4">{ groupTitle }</span>
-										<span className="table__cell table__cell--span-3">{ marker.isActive ? 'Да' : 'Нет' }</span>
+										<span className="table__cell">
+											<div className={ `checkbox-label checkbox-label--small ${marker.isActive ? 'checkbox-label--checked' : ''}` }></div>
+										</span>
 										<div className="table__cell table__cell--centered">
 											<button
 												className="table__button table__button--edit"
