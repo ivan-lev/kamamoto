@@ -1,31 +1,36 @@
+import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Preloader from '@/components/shared/Preloader/Preloader';
-import Card from '@/components/visitor/Card/Card';
+import DisplayGrid from '@/components/visitor/DisplayGrid/DisplayGrid';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
+import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api/api';
 import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function Articles() {
+	const dispatch = useDispatch();
+	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
-	const [articles, setArticles] = useState<{ name: string, title: string, thumbnail: string }[]>([]);
 
-	async function getArticles() {
-		try {
-			const articles = await api.ceramicStyles.getCeramicStylesArticles();
-			setArticles(articles);
-			setShowPreloader(false);
-		}
-		catch (error) { console.error(error); }
-	}
+	useLayoutEffect(() => scrollToTop(), []);
 
 	useEffect(() => {
-		getArticles();
-	}, []);
+		api.ceramicStyles.getCeramicStylesArticles()
+			.then((articles: { name: string, title: string, thumbnail: string }[]) => {
+				dispatch(setDisplayList(articles.map(({ name, title, thumbnail }) => ({ link: name, title, thumbnail }))));
+				setShowPreloader(false);
+			})
+			.catch((error) => {
+				console.error(error);
+				setShowPreloader(false);
+			});
 
-	useLayoutEffect(() => {
-		scrollToTop();
-	});
+		return () => {
+			dispatch(resetDisplayList());
+		};
+	}, []);
 
 	return (
 		<>
@@ -34,24 +39,12 @@ export default function Articles() {
 			<Seo title="Камамото: стили керамики" description="Страница со списком стилей керамики" />
 
 			<section className="section">
-				{ showPreloader
+				{ listToDisplay.length === 0 && showPreloader
 					? (
 						<Preloader />
 					)
 					: (
-						<div className="display-grid">
-							<ul className="display-grid__list">
-								{ articles.length !== 0
-									&& articles.map((article) => {
-										const { name, title, thumbnail } = article; ;
-										return (
-											<li className="display-grid__element" key={ name }>
-												<Card link={ name } title={ title } thumbnail={ thumbnail } />
-											</li>
-										);
-									}) }
-							</ul>
-						</div>
+						<DisplayGrid />
 					) }
 			</section>
 		</>
