@@ -26,6 +26,8 @@
 	--main-font: Raleway, Roboto, Inter, Helvetica, sans-serif;
 
 	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-gutter: stable;
 }
 
 body {
@@ -43,12 +45,16 @@ body {
 	color: var(--text-default);
 
 	background-color: var(--background-primary);
-}
 
-html,
-body {
-	scrollbar-width: thin;
-	scrollbar-gutter: stable;
+	// спрятать кнопки у инпутов с типом number
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		margin: 0;
+		-webkit-appearance: none;
+	}
+	input[type=number] {
+		-moz-appearance: textfield;
+	}
 }
 
 * {
