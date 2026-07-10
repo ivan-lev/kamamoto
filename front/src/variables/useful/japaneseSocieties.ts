@@ -1,9 +1,4 @@
-interface Term {
-	title: string;
-	kanji: string;
-	description: string;
-	image?: string;
-}
+import type { Term } from '@/components/visitor/TermsList/TermsList';
 
 export const japaneseSocieties: Term[] = [
 	{
