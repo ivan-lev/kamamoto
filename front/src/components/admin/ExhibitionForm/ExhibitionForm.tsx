@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/Button';
 import { clearExhibitionForm, setExhibitionsList, setExhibitionToDisplay } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 interface Props {
 	closeModal: () => void;
@@ -58,7 +60,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 
 	function handleCreateExhibition() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibitions.createExhibition(token, {
 				...exhibitionToDisplay,
@@ -80,7 +82,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 
 	function handleUpdateExhibition() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibitions.updateExhibition(token, exhibitionToDisplay)
 				.then((response) => {
@@ -100,7 +102,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 	};
 
 	function handleDeleteExhibition() {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibitions.deleteExhibition(token, exhibitionToDisplay)
 				.then((response: number) => {

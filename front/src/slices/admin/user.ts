@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 interface User {
 	isLoggedIn: boolean;
 }
 
 const initialState: User = {
-	isLoggedIn: JSON.parse(localStorage.getItem('kmmtlgn') || 'false'),
+	isLoggedIn: storage.get<boolean>(STORAGE_KEYS.IS_LOGGED_IN) ?? false,
 };
 
 const user = createSlice({
@@ -14,14 +16,14 @@ const user = createSlice({
 	reducers: {
 		login: (state, action) => {
 			state.isLoggedIn = true;
-			localStorage.setItem('kmmttkn', action.payload);
-			localStorage.setItem('kmmtlgn', 'true');
+			storage.set(STORAGE_KEYS.TOKEN, action.payload);
+			storage.set(STORAGE_KEYS.IS_LOGGED_IN, true);
 		},
 
 		logout: (state) => {
 			state.isLoggedIn = false;
-			localStorage.removeItem('kmmttkn');
-			localStorage.removeItem('kmmtlgn');
+			storage.remove(STORAGE_KEYS.TOKEN);
+			storage.remove(STORAGE_KEYS.IS_LOGGED_IN);
 		},
 	},
 });

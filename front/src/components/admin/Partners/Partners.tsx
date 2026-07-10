@@ -7,6 +7,8 @@ import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { clearPartnerForm, setIsExistingPartnerEdited, setPartners, setPartnerToEdit } from '@/slices/admin/partners';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function Partners() {
 	const dispatch = useDispatch();
@@ -51,7 +53,7 @@ export default function Partners() {
 
 	const handleCreatePartner = () => {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.partners.createPartner(token, title, link, logo, isActive)
 				.then((response) => {
@@ -75,7 +77,7 @@ export default function Partners() {
 
 	const handleUpdatePartner = () => {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.partners.updatePartner(token, partnerToEdit)
 				.then((response) => {
@@ -96,7 +98,7 @@ export default function Partners() {
 	};
 
 	const handleDeletePartner = () => {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.partners.deletePartner(token, partnerToEdit._id)
 				.then((response) => {

@@ -3,6 +3,8 @@ import type { ExhibitAdmin } from '@/types/exhibitType';
 import { useDispatch, useSelector } from 'react-redux';
 import { setExhibits, setExhibitToEdit, setIsExistingExhibitEdited } from '@/slices/admin/exhibits';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 interface Props {
 	exhibit: ExhibitAdmin;
@@ -21,7 +23,7 @@ export default function ExhibitsListRow({ exhibit, setShowModal }: Props) {
 	}
 
 	async function toggleExhibitActiveState(exhibit: ExhibitAdmin) {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		try {
 			const response = await api.exhibits.toggleExhibitActiveState(token || '', { ...exhibit, isActive: !exhibit.isActive });
 

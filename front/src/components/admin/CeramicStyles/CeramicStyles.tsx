@@ -9,6 +9,8 @@ import Seo from '@/components/visitor/Seo/Seo';
 import { setCeramicStyles, setCeramicStyleToEdit, setIsExistingStyleEdited } from '@/slices/admin/ceramicStyles';
 import { defaultCeramicStyle } from '@/types/ceramicStyles';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function CeramicStyles() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -34,7 +36,7 @@ export default function CeramicStyles() {
 	}
 
 	useEffect(() => {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.ceramicStyles.getCeramicStyles(true)
 				.then((styles) => {

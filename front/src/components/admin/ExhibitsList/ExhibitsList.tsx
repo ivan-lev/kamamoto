@@ -8,6 +8,8 @@ import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { clearExhibitForm, setExhibits, setIsExistingExhibitEdited } from '@/slices/admin/exhibits';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function Exhibits() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -23,7 +25,7 @@ export default function Exhibits() {
 	}
 
 	useEffect(() => {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibits.getExhibits()
 				.then((exhibits) => {

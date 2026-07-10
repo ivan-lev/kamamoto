@@ -6,6 +6,8 @@ import CeramicStyleFormBasicInfo from '@/components/admin/CeramicStyles/CeramicS
 import ArticleForm from '@/components/admin/shared/ArticleForm/ArticleForm';
 import { clearCeramicStyleForm, setCeramicStyles, setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function CeramicStyleFormView() {
 	const dispatch = useDispatch();
@@ -20,7 +22,7 @@ export default function CeramicStyleFormView() {
 	async function handleCreateCeramicStyle(event: React.SyntheticEvent<HTMLFormElement>) {
 		event.preventDefault();
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			try {
 				const response = await api.ceramicStyles.createCeramicStyle(token, ceramicStyleToEdit);
@@ -42,7 +44,7 @@ export default function CeramicStyleFormView() {
 
 	async function handleUpdateCeramicStyle() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			try {
 				const response = await api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit, initialStyleName);
@@ -61,7 +63,7 @@ export default function CeramicStyleFormView() {
 
 	function handleDeleteCeramicStyle() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.ceramicStyles.deleteCeramicStyle(token, ceramicStyleToEdit.name)
 				.then((response) => {

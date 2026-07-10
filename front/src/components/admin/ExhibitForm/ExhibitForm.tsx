@@ -13,6 +13,8 @@ import { setComplectations } from '@/slices/admin/complectations';
 import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exhibits';
 import { setPotters } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 interface Props {
 	closeModal: () => void;
@@ -41,7 +43,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 
 	function handleCreateExhibit() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibits.createExhibit(token, { ...exhibitToEdit })
 				.then((response: ExhibitAdmin) => {
@@ -59,7 +61,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 
 	function handleUpdateExhibit() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibits.updateExhibit(token, { ...exhibitToEdit })
 				.then((response) => {
@@ -79,7 +81,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 
 	const handleDeleteExhibit = () => {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibits.deleteExhibit(token, exhibitToEdit.id ?? 0)
 				.then((response) => {

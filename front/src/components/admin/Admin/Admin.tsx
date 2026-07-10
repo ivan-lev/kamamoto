@@ -6,7 +6,8 @@ import Logo from '@/components/visitor/Logo/Logo';
 import Seo from '@/components/visitor/Seo/Seo';
 import { logout } from '@/slices/admin/user';
 import { api } from '@/utils/api/api';
-import { LOGIN_MESSAGES } from '@/variables/variables';
+import { storage } from '@/utils/storage';
+import { LOGIN_MESSAGES, STORAGE_KEYS } from '@/variables/variables';
 import './Admin.scss';
 
 export default function Admin() {
@@ -16,7 +17,7 @@ export default function Admin() {
 	const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
 	useEffect(() => {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.auth.checkToken(token)
 				.catch((error) => {

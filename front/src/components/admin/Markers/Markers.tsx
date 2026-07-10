@@ -10,6 +10,8 @@ import Seo from '@/components/visitor/Seo/Seo';
 import { setIsExistingMarkerEdited, setMarkers, setMarkerToEdit } from '@/slices/admin/markers';
 import { defaultMarker } from '@/types/marker';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function Markers() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -39,7 +41,7 @@ export default function Markers() {
 	}
 
 	useEffect(() => {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.maps.getMarkers()
 				.then((markers) => {

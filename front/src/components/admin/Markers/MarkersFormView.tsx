@@ -7,6 +7,8 @@ import Button from '@/components/shared/Button';
 import { MARKER_GROUPS } from '@/components/visitor/Map/markerGroups';
 import { clearMarkerForm, setMarkers, setMarkerToEdit } from '@/slices/admin/markers';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function MarkersFormView() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -47,7 +49,7 @@ export default function MarkersFormView() {
 
 	async function handleCreateMarker() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			try {
 				const response = await api.maps.createMarker(token, markerToEdit);
@@ -67,7 +69,7 @@ export default function MarkersFormView() {
 
 	function handleUpdateMarker() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.maps.updateMarker(token, markerToEdit)
 				.then((response: Marker) => {
@@ -86,7 +88,7 @@ export default function MarkersFormView() {
 
 	function handleDeleteMarker() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.maps.deleteMarker(token, markerToEdit._id)
 				.then((response) => {
@@ -156,6 +158,7 @@ export default function MarkersFormView() {
 						<input
 							className="input"
 							type="number"
+							name="width"
 							step="any"
 							placeholder="широта"
 							value={ geocode[0] }
@@ -168,6 +171,7 @@ export default function MarkersFormView() {
 						<input
 							className="input"
 							type="number"
+							name="height"
 							step="any"
 							placeholder="долгота"
 							value={ geocode[1] }

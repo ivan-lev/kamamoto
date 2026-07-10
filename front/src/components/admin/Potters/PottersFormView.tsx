@@ -7,6 +7,8 @@ import ArticleForm from '@/components/admin/shared/ArticleForm/ArticleForm';
 import Button from '@/components/shared/Button';
 import { clearPotterForm, setPotters, setPotterToEdit } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function PottersForm() {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -40,7 +42,7 @@ export default function PottersForm() {
 
 	async function handleCreatePotter() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			try {
 				const response = await api.potters.createPotter(token, potterToEdit);
@@ -60,7 +62,7 @@ export default function PottersForm() {
 
 	function handleUpdatePotter() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.potters.updatePotter(token, potterToEdit)
 				.then((response: Potter) => {
@@ -79,7 +81,7 @@ export default function PottersForm() {
 
 	function handleDeletePotter() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.potters.deletePotter(token, potterToEdit.id)
 				.then((response) => {

@@ -7,6 +7,8 @@ import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { openEmptyExhibitionForm, setExhibitionsList, setExhibitionToEdit } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 export default function Exhibitions() {
 	const dispatch = useDispatch();
@@ -25,7 +27,7 @@ export default function Exhibitions() {
 	}
 
 	useEffect(() => {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.exhibitions.getExhibitions(true)
 				.then((exhibitions) => {

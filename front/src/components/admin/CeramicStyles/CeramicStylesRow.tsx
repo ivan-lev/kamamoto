@@ -3,7 +3,8 @@ import type { CeramicStyle } from '@/types/ceramicStyles';
 import { useDispatch } from 'react-redux';
 import { setCeramicStyleToEdit, setIsExistingStyleEdited, updateCeramicStyle } from '@/slices/admin/ceramicStyles';
 import { api } from '@/utils/api/api';
-import { PATHS } from '@/variables/variables';
+import { storage } from '@/utils/storage';
+import { PATHS, STORAGE_KEYS } from '@/variables/variables';
 
 interface Props {
 	style: CeramicStyle;
@@ -22,7 +23,7 @@ export default function CeramicStylesRow({ style, setShowModal }: Props) {
 	}
 
 	async function toggleActivateStyle() {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			try {
 				const response = await api.ceramicStyles.updateCeramicStyle(token, { ...style, showArticle: !style.showArticle }, style.name);

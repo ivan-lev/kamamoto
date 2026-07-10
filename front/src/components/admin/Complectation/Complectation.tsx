@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 const initialData: Complectation = { name: '', title: '' };
 
@@ -31,7 +33,7 @@ export default function Compleactation() {
 
 	function handleCreateComplectation() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.complectation.createComplectation(token, formData)
 				.then((response: Complectation) => {
@@ -59,7 +61,7 @@ export default function Compleactation() {
 
 	function handleUpdate(complectation: Complectation) {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.complectation.updateComplectation(token, complectation)
 				.then((response: Complectation) => {
@@ -76,7 +78,7 @@ export default function Compleactation() {
 
 	function handleDelete(complectationName: string) {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.complectation.deleteComplectation(token, complectationName)
 				.then((response: Complectation) => {

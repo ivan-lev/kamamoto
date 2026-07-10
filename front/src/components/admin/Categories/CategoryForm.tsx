@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/Button';
 import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
+import { storage } from '@/utils/storage';
+import { STORAGE_KEYS } from '@/variables/variables';
 
 interface Props {
 	closeModal: () => void;
@@ -31,7 +33,7 @@ export default function CategoryForm({ closeModal }: Props) {
 
 	function handleCreateCategory() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.categories.createCategory(token, name, title, thumbnail)
 				.then((response) => {
@@ -51,7 +53,7 @@ export default function CategoryForm({ closeModal }: Props) {
 
 	function handleUpdateCategory() {
 		setIsFormDisabled(true);
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.categories.updateCategory(token, { ...categoryToEdit })
 				.then((response) => {
@@ -72,7 +74,7 @@ export default function CategoryForm({ closeModal }: Props) {
 	}
 
 	function handleDeleteCategory() {
-		const token = localStorage.getItem('kmmttkn');
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			api.categories.deleteCategory(token, name)
 				.then((response) => {
