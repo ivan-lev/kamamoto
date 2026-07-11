@@ -1,4 +1,4 @@
-import type { DictionarySection } from '@/variables/useful/dictionary/dictionary.types';
+import type { DictionarySection } from '@/types/term';
 import DictionaryTerm from '@/components/visitor/Dictionary/DictionaryTerm';
 
 interface Props {

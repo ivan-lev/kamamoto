@@ -5,6 +5,7 @@ import Admin from '@/components/admin/Admin/Admin';
 import AdminCategories from '@/components/admin/Categories/Categories';
 import AdminCeramicStyles from '@/components/admin/CeramicStyles/CeramicStyles';
 import Complectation from '@/components/admin/Complectation/Complectation';
+import AdminDictionary from '@/components/admin/Dictionary/Dictionary';
 import AdminExhibitions from '@/components/admin/Exbitions/Exhibitions';
 import ExhibitsList from '@/components/admin/ExhibitsList/ExhibitsList';
 import Filters from '@/components/admin/Filters/Filters';
@@ -40,6 +41,7 @@ export default function AdminView() {
 					<Route path="features" element={ <AdminCeramicStyles /> } />
 					<Route path="complectation" element={ <Complectation /> } />
 					<Route path="potters" element={ <Potters /> } />
+					<Route path="dictionary" element={ <AdminDictionary /> } />
 					<Route path="map" element={ <Markers /> } />
 				</Route>
 			</Routes>

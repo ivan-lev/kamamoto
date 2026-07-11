@@ -9,6 +9,7 @@ import { maps } from '@/utils/api/api.maps';
 import { partners } from '@/utils/api/api.partners';
 import { potters } from '@/utils/api/api.potters';
 import { statistics } from '@/utils/api/api.statistics';
+import { terms } from '@/utils/api/api.terms';
 
 export const api = {
 	auth,
@@ -22,4 +23,5 @@ export const api = {
 	partners,
 	potters,
 	statistics,
+	terms,
 };

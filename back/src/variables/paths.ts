@@ -5,6 +5,7 @@ export const PATHS = Object.freeze({
 	COMPLECTATION: 'complectation',
 	CATEGORIES: 'categories',
 	CERAMIC_STYLES: 'ceramic-styles',
+	DICTIONARY: 'dictionary',
 	EXHIBITIONS: 'exhibitions',
 	EXHIBITS: 'exhibits',
 	FEATURES: 'features',
@@ -13,5 +14,6 @@ export const PATHS = Object.freeze({
 	PARTNERS: 'partners',
 	POTTERS: 'potters',
 	LNT_POTTERS: 'lnt-potters',
+	TERMS: 'terms',
 	STATIC_URL: NODE_ENV === 'production' ? `/${STATIC_URL}` : `${BASE_URL}:${PORT}/${STATIC_URL}`,
 });

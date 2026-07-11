@@ -15,6 +15,7 @@ import mapRouter from './maps';
 import partnerRouter from './partners';
 import potterRouter from './potters';
 import statisticsRouter from './statistics';
+import termRouter from './terms';
 import userRouter from './users';
 
 const routes = Router();
@@ -33,6 +34,7 @@ routes.use('/maps', mapRouter);
 routes.use('/letters', lettersRouter);
 routes.use('/files', lettersRouter);
 routes.use('/complectation', complectationRouter);
+routes.use('/terms', termRouter);
 routes.all('*splat', (req, res, next) => {
 	return next(new NotFoundError(ERROR_MESSAGES.PAGE_NOT_FOUND));
 });

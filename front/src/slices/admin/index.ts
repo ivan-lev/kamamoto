@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import categoriesReducer from '@/slices/admin/categories';
 import ceramicStylesReducer from '@/slices/admin/ceramicStyles';
 import comlectationReducer from '@/slices/admin/complectations';
+import dictionaryReducer from '@/slices/admin/dictionary';
 import exhibitionsReducer from '@/slices/admin/exhibitions';
 import exhibitsReducer from '@/slices/admin/exhibits';
 import lettersReducer from '@/slices/admin/letters';
@@ -15,6 +16,7 @@ export const adminStore = configureStore({
 		categories: categoriesReducer,
 		ceramicStyles: ceramicStylesReducer,
 		complectations: comlectationReducer,
+		dictionary: dictionaryReducer,
 		exhibitions: exhibitionsReducer,
 		exhibits: exhibitsReducer,
 		letters: lettersReducer,

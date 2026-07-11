@@ -1,15 +1,18 @@
-import type { DictionarySection, Term } from '@/variables/useful/dictionary/dictionary.types';
+import type { DictionarySection, Term } from '@/types/term';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import DictionaryBlock from '@/components/visitor/Dictionary/DictionatyBlock';
+import Preloader from '@/components/shared/Preloader/Preloader';
+import DictionaryBlock from '@/components/visitor/Dictionary/DictionaryBlock';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
+import { api } from '@/utils/api/api';
 import { scrollToTop } from '@/utils/scrollToTop';
-import { dictionary } from '@/variables/useful/dictionary/_index';
 import './Dictionary.scss';
 
 export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
-	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>(dictionary);
+	const [dictionary, setDictionary] = useState<DictionarySection[]>([]);
+	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	function countTerms() {
 		return dictionary.reduce((count, section) => count + section.terms.length, 0);
@@ -72,8 +75,15 @@ export default function Dictionary() {
 	}
 
 	useEffect(() => {
+		api.terms.getTerms()
+			.then(data => setDictionary(data))
+			.catch(error => console.error(error))
+			.finally(() => setIsLoading(false));
+	}, []);
+
+	useEffect(() => {
 		filterDictionaryByQuery();
-	}, [query]);
+	}, [query, dictionary]);
 
 	useLayoutEffect(() => scrollToTop(), []);
 
@@ -87,47 +97,53 @@ export default function Dictionary() {
 				backLink="/useful/"
 			/>
 
-			<section className="section dictionary" id="dictionary">
-				<p className="text">
-					{ `На данный момент терминов в словаре ${countTerms()}. Поиск работает на русском и английском языке, а также по иероглифам. P.S.: помните, что в написании японских слов используется ` }
-					<a className="link link_usual" target="_blank" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%9F%D0%BE%D0%BB%D0%B8%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0">система Поливанова</a>
-					{ ' (например, используется буква "э", а не "е" и т.д.)' }
-				</p>
-				<div className="dictionary__filters">
-					<div className="dictionary__filter-query">
-						<input
-							className="input"
-							type="text"
-							name="title"
-							placeholder="поиск: термин или описание"
-							value={ query }
-							onChange={ event => setQuery(event.target.value) }
-						/>
-					</div>
+			{ isLoading
+				? (
+					<Preloader />
+				)
+				: (
+					<section className="section dictionary" id="dictionary">
+						<p className="text">
+							{ `На данный момент терминов в словаре ${countTerms()}. Поиск работает на русском и английском языке, а также по иероглифам. P.S.: помните, что в написании японских слов используется ` }
+							<a className="link link_usual" target="_blank" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%9F%D0%BE%D0%BB%D0%B8%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0">система Поливанова</a>
+							{ ' (например, используется буква "э", а не "е" и т.д.)' }
+						</p>
+						<div className="dictionary__filters">
+							<div className="dictionary__filter-query">
+								<input
+									className="input"
+									type="text"
+									name="title"
+									placeholder="поиск: термин или описание"
+									value={ query }
+									onChange={ event => setQuery(event.target.value) }
+								/>
+							</div>
 
-					<div className="dictionary__filter-letters">
-						{ dictionary.map((section) => {
-							return (
-								<span
-									className="dictionary__filter-letter"
-									key={ section.letter }
-									onClick={ () => filterDictionaryByLetter(section.letter) }
-								>
-									{ section.letter }
-								</span>
-							);
-						}) }
-					</div>
+							<div className="dictionary__filter-letters">
+								{ dictionary.map((section) => {
+									return (
+										<span
+											className="dictionary__filter-letter"
+											key={ section.letter }
+											onClick={ () => filterDictionaryByLetter(section.letter) }
+										>
+											{ section.letter }
+										</span>
+									);
+								}) }
+							</div>
 
-					<button className="button dictionary__reset-button" onClick={ onResetButton }>
-						Сбросить
-					</button>
-				</div>
+							<button className="button dictionary__reset-button" onClick={ onResetButton }>
+								Сбросить
+							</button>
+						</div>
 
-				<div className="dictionary__list">
-					{ dictionaryFiltered.map(section => <DictionaryBlock section={ section } key={ section.letter } />) }
-				</div>
-			</section>
+						<div className="dictionary__list">
+							{ dictionaryFiltered.map(section => <DictionaryBlock section={ section } key={ section.letter } />) }
+						</div>
+					</section>
+				) }
 		</>
 	);
 }
