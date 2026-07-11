@@ -1,0 +1,13 @@
+name: CI Docs
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/**'
+
+jobs:
+  build:
+    uses: ./.github/workflows/_build.yml
+    with:
+      project: docs

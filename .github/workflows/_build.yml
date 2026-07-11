@@ -1,0 +1,31 @@
+name: Build project
+
+on:
+  workflow_call:
+    inputs:
+      project:
+        required: true
+        type: string
+      build_command:
+        required: false
+        type: string
+        default: 'npm run build'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.project }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: ${{ inputs.project }}/package-lock.json
+
+      - run: npm ci
+      - run: ${{ inputs.build_command }}
+        if: ${{ inputs.build_command != '' }}

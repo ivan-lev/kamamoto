@@ -1,0 +1,13 @@
+name: CI Front
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'front/**'
+
+jobs:
+  build:
+    uses: ./.github/workflows/_build.yml
+    with:
+      project: front
