@@ -18,6 +18,9 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 
 	const initialSlide = { filename: '', source: '', caption: '' };
 
+	const headingMatch = content.match(/<h[1-6]>(.*?)<\/h[1-6]>/);
+	const heading = headingMatch?.[1];
+
 	function updateSectionText(event: ChangeEvent<HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		const newArticleData = article.map((section, index) => index === sectionIndex ? { ...section, [name]: value } : section);
@@ -63,13 +66,13 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 
 	useEffect(() => {
 		resizeTextArea();
-	}, [section.content]);
+	}, [content]);
 
 	return (
 		<div className="form__grid container" style={{ padding: 'var(--gap-24)' }}>
 			<div className="form__row form__row-6">
 				<span>
-					{ `секция ${sectionIndex + 1}` }
+					{ `Секция ${sectionIndex + 1}${heading ? `: ${heading}` : ''}` }
 				</span>
 			</div>
 
@@ -101,7 +104,7 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 					className="textarea"
 					name="content"
 					placeholder="текстовая информация"
-					value={ section.content }
+					value={ content }
 					onChange={ (event) => {
 						updateSectionText(event);
 						resizeTextArea();
