@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./back/src/static:/app/dist/static
+      - ./static:/static
     networks:
       - app-net
     restart: always

@@ -2,12 +2,12 @@
     "scripts": {
         "dev": "concurrently \"dotenv -e .env -- bash -c 'cd front && npm run dev'\" \"cd back && npm run dev\" ",
         "upload-all": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/'",
-        "upload-front": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./front/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/front/'",
-        "upload-static": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./back/src/static/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/back/src/static/'",
-        "upload-back": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./back/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/back/'",
+        "upload-front": "dotenv -e .env -- bash -c 'rsync -zarvh --delete -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./front/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/front/'",
+        "upload-static": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./static/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/static/'",
+        "upload-back": "dotenv -e .env -- bash -c 'rsync -zarvh --delete -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./back/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/back/'",
         "upload-mongo": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./mongo/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/mongo/'",
-        "upload-yuding": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./yuding/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/yuding/'",
-        "upload-env": "dotenv -e .env -- bash -c 'rsync -avz -e \"ssh -p $DEPLOY_PORT\" ./.env $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/.env'",
+        "upload-yuding": "dotenv -e .env -- bash -c 'rsync -zarvh --delete -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./yuding/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/yuding/'",
+        "upload-config": "dotenv -e .env -- bash -c 'rsync -avz -e \"ssh -p $DEPLOY_PORT\" ./.env ./Caddyfile ./docker-compose.yml $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/'",
         "yuding": "cd ./yuding && npm run dev"
     },
     "dependencies": {

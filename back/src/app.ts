@@ -24,7 +24,7 @@ app.use(logger.requestLogger); // winston requests logger
 app.use(helmet(helmetOptions)); // protect headers
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/static', express.static(path.join(__dirname, 'static'), { cacheControl: false })); // public folder
+app.use('/static', express.static(path.resolve(__dirname, '../../static'), { cacheControl: false })); // public folder, lives outside back/ so deploys never wipe it
 app.use('/api', routes); // all routes goes through here in Docker
 app.use(logger.errorLogger); // winston error logger
 app.use(celebrateErrorAdapter);// celebrate error handler

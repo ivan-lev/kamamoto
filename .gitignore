@@ -35,5 +35,5 @@ node_modules
 yandex*
 google*
 
-# Backend
-back/src/static
+# Static assets (served by backend, deployed separately)
+/static
