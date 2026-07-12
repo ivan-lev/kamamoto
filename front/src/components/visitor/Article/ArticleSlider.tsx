@@ -21,27 +21,32 @@ export default function SliderArticle({ slides }: Props) {
 				speed={ 1000 }
 			>
 				{ slides.map((slide, i) => {
-					return (
-						<SwiperSlide className="article-slide">
+					if (slide.filename) {
+						return (
+							<SwiperSlide className="article-slide">
 
-							<Picture
-								src={ slide.filename }
-								alt="Слайд"
-								style={ style }
-								fetchpriority={ i === 0 ? 'high' : 'low' }
-								loading={ i === 0 ? 'eager' : 'lazy' }
-							/>
+								<Picture
+									src={ slide.filename }
+									alt="Слайд"
+									style={ style }
+									fetchpriority={ i === 0 ? 'high' : 'low' }
+									loading={ i === 0 ? 'eager' : 'lazy' }
+								/>
 
-							{ slide.source && (
-								<a href={ slide.source } className="link link--muted article-slide__source" target="_blank">Источник фото</a>
-							) }
+								{ slide.source && (
+									<a href={ slide.source } className="link link--muted article-slide__source" target="_blank">Источник фото</a>
+								) }
 
-							{ slide.caption && (
-								<span className="article-slide__caption">{ slide.caption }</span>
-							) }
+								{ slide.caption && (
+									<span className="article-slide__caption">{ slide.caption }</span>
+								) }
 
-						</SwiperSlide>
-					);
+							</SwiperSlide>
+						);
+					}
+					else {
+						return null;
+					}
 				}) }
 			</Swiper>
 		);
