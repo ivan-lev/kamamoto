@@ -18,7 +18,7 @@ async function getTerms(req: Request, res: Response, next: NextFunction) {
 
 	try {
 		const terms = await Term.find({}).select({ _id: 0 }).lean<ITerm[]>();
-		terms.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+		terms.sort((a, b) => a.title.localeCompare(b.title, 'ru'));
 
 		const sections = new Map<string, ITerm[]>();
 		terms.forEach((term) => {
