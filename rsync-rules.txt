@@ -6,18 +6,14 @@
 node_modules
 dist
 
-.env
 .git
 .gitignore
 .DS_Store
 .dockerignore
 
 back/logs
-back/.env
-
-front/.env
 
 docs
 
-mongo/dumps
-mongo/mongorestore.sh
+mongo/db_dump
+mongo/backups

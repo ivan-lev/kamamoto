@@ -39,7 +39,7 @@ services:
     image: mongo:8
     container_name: mongo
     ports:
-      - "27017:27017"
+      - "127.0.0.1:27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:?MONGO_INITDB_ROOT_USERNAME is required}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?MONGO_INITDB_ROOT_PASSWORD is required}
@@ -80,7 +80,6 @@ services:
       - yuding_build:/srv/yuding
 
 volumes:
-  mongo_data:
   front_build:
   yuding_build:
   caddy_data:
