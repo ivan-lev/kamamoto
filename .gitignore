@@ -29,7 +29,6 @@ dist-ssr
 node_modules
 *.local
 *.code-workspace
-*dump*
 
 # Frontend
 yandex*
@@ -37,3 +36,7 @@ google*
 
 # Static assets (served by backend, deployed separately)
 /static
+
+# Mongo data directory and local db:pull/db:push backups
+/mongo/db_dump
+/mongo/backups
