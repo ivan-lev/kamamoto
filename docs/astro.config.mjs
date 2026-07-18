@@ -23,27 +23,27 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Общая информация',
-					autogenerate: { directory: 'common' },
+					items: [{ autogenerate: { directory: 'common' } }],
 				},
 				{
 					label: 'Фронтенд',
-					autogenerate: { directory: 'frontend' },
+					items: [{ autogenerate: { directory: 'frontend' } }],
 				},
 				{
 					label: 'Бэкенд',
-					autogenerate: { directory: 'backend' },
+					items: [{ autogenerate: { directory: 'backend' } }],
 				},
 				{
 					label: 'Контент',
-					autogenerate: { directory: 'content' },
+					items: [{ autogenerate: { directory: 'content' } }],
 				},
 				{
 					label: 'Версии приложения',
-					autogenerate: { directory: 'versions' },
+					items: [{ autogenerate: { directory: 'versions' } }],
 				},
 				{
 					label: 'Остальное',
-					autogenerate: { directory: 'other' },
+					items: [{ autogenerate: { directory: 'other' } }],
 				},
 			],
 		}),
