@@ -9,6 +9,7 @@
 	&__image {
 		aspect-ratio: 3 / 2;
 		width: 100%;
+		border-radius: var(--border-radius-s);
 	}
 
 	.leaflet-control-attribution {

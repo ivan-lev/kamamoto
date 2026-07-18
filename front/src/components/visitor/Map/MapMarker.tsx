@@ -32,7 +32,7 @@ export default function MapMarker({ marker, icon }: Props) {
 			{ (marker.info || marker.image)
 				&& (
 					<Popup>
-						{ marker.image && <Picture additionalClass="map__image" alt={ `Изображение для маркера ${marker.title}` } src={ `${basePath}/map/${marker.image}` } /> }
+						{ marker.image && <Picture additionalClass="leaflet-map__image" alt={ `Изображение для маркера ${marker.title}` } src={ `${basePath}/map/${marker.image}` } /> }
 						{ marker.info && <span dangerouslySetInnerHTML={{ __html: marker.info }}></span> }
 					</Popup>
 				) }
