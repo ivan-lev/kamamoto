@@ -11,9 +11,9 @@ dist
 .DS_Store
 .dockerignore
 
-back/logs
+logs
 
 docs
 
-mongo/db_dump
-mongo/backups
+db_dump
+backups
