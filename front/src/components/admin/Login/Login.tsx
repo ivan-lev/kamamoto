@@ -34,13 +34,13 @@ export default function Login() {
 					dispatch(logout());
 				});
 		}
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (isLoggedIn) {
 			navigate('/admin/');
 		}
-	}, [isLoggedIn]);
+	}, [isLoggedIn, navigate]);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = event.target;

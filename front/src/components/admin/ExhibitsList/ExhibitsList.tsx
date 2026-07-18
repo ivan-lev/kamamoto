@@ -34,7 +34,7 @@ export default function Exhibits() {
 				})
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>

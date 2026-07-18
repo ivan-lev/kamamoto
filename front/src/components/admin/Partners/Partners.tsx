@@ -33,7 +33,7 @@ export default function Partners() {
 				setShowPreloader(false);
 			})
 			.catch(error => console.error(error));
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (saveMessage) {

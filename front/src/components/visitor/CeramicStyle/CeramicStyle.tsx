@@ -11,26 +11,18 @@ export default function CeremicStyle() {
 	const [articleInfo, setArticleInfo] = useState<IArticle | null>(null);
 	const navigate = useNavigate();
 
-	async function getCeramicStylesInfo(style: string) {
-		if (!style)
-			return;
-
-		try {
-			const data = await api.ceramicStyles.getCeramicStylesArticle(style);
-			setArticleInfo(data);
-		}
-		catch (error: any) {
-			if (error.status === 404) {
-				navigate('/404', { replace: true });
-			}
-		}
-	}
-
 	useEffect(() => {
 		if (!style)
 			return;
-		getCeramicStylesInfo(style);
-	}, [style]);
+
+		api.ceramicStyles.getCeramicStylesArticle(style)
+			.then(setArticleInfo)
+			.catch((error: any) => {
+				if (error.status === 404) {
+					navigate('/404', { replace: true });
+				}
+			});
+	}, [style, navigate]);
 
 	useLayoutEffect(() => scrollToTop(), []);
 

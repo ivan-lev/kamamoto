@@ -16,7 +16,7 @@ export default function Partners() {
 				.then(partners => dispatch(setPartnersList(partners)))
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch, partnersList.length]);
 
 	return partnersList.length !== 0
 		? (

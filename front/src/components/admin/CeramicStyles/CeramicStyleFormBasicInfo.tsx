@@ -1,6 +1,5 @@
 import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
 
@@ -8,7 +7,6 @@ export default function CeramicStyleFormBasicInfo() {
 	const dispatch = useDispatch();
 	const isExistingStyleEdited = useSelector((state: RootState) => state.ceramicStyles.isExistingStyleEdited);
 	const ceramicStyleToEdit = useSelector((state: RootState) => state.ceramicStyles.ceramicStyleToEdit);
-	const [initialStyleName, setInitialStyleName] = useState<string>('');
 
 	const {
 		name,
@@ -22,14 +20,6 @@ export default function CeramicStyleFormBasicInfo() {
 		const { name, value } = event.target;
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value }));
 	};
-
-	useEffect(() => {
-		// set initial style name to pass it to backend
-		// if it was changed on edit
-		if (!initialStyleName)
-			setInitialStyleName(ceramicStyleToEdit.name);
-		return () => setInitialStyleName('');
-	}, []);
 
 	return (
 		<fieldset className="form__fieldset">

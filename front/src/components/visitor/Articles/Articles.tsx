@@ -30,7 +30,7 @@ export default function Articles() {
 		return () => {
 			dispatch(resetDisplayList());
 		};
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>

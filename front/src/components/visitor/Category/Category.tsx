@@ -46,7 +46,7 @@ export default function Category() {
 			dispatch(resetCategory());
 			dispatch(resetDisplayList());
 		};
-	}, [category]);
+	}, [dispatch, navigate, category]);
 
 	return (
 		!allowedCategory

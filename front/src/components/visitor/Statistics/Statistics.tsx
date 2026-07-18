@@ -15,7 +15,7 @@ export default function Statistics() {
 				.then(statistics => dispatch(setStatistics(statistics)))
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch, statistics.isInitial]);
 
 	return statistics.exhibits === 0
 		? (

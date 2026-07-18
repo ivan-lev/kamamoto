@@ -30,10 +30,7 @@ export default function ThanksLetters() {
 					setShowPreloader(false);
 				});
 		}
-		else {
-			setShowPreloader(false);
-		}
-	}, []);
+	}, [dispatch, letters.length]);
 
 	return (
 		<>
@@ -48,7 +45,7 @@ export default function ThanksLetters() {
 			</section>
 
 			<section className="section thanks-letters">
-				{ showPreloader
+				{ letters.length === 0 && showPreloader
 					? (
 						<Preloader />
 					)

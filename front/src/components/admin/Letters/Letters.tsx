@@ -13,7 +13,7 @@ export default function Letters() {
 	const dispatch = useDispatch();
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
-	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+	const isFormDisabled = false;
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
 	const letters = useSelector((state: RootState) => state.letters.letters);
@@ -27,11 +27,6 @@ export default function Letters() {
 
 	useLayoutEffect(() => scrollToTop(), []);
 
-	// delete this. it is just for testing
-	useEffect(() => {
-		setIsFormDisabled(false);
-	});
-
 	useEffect(() => {
 		// dispatch(clearPartnerForm());
 		api.letters.getLetters()
@@ -40,7 +35,7 @@ export default function Letters() {
 				setShowPreloader(false);
 			})
 			.catch(error => console.error(error));
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (saveMessage) {

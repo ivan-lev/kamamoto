@@ -24,7 +24,7 @@ export default function Useful() {
 		return () => {
 			dispatch(resetDisplayList());
 		};
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>

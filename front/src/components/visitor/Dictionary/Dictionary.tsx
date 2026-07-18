@@ -1,5 +1,5 @@
 import type { DictionarySection, Term } from '@/types/term';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import DictionaryBlock from '@/components/visitor/Dictionary/DictionaryBlock';
 import PageTop from '@/components/visitor/PageTop/PageTop';
@@ -10,8 +10,8 @@ import './Dictionary.scss';
 
 export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
+	const [activeLetter, setActiveLetter] = useState<string | null>(null);
 	const [dictionary, setDictionary] = useState<DictionarySection[]>([]);
-	const [dictionaryFiltered, setDictionaryFiltered] = useState<DictionarySection[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	function countTerms() {
@@ -25,14 +25,16 @@ export default function Dictionary() {
 		});
 	}
 
-	function filterDictionaryByQuery() {
+	const dictionaryFiltered = useMemo(() => {
+		if (activeLetter) {
+			return dictionary.filter(section => section.letter === activeLetter);
+		}
+
 		if (query === '') {
-			resetFilters();
-			return;
+			return dictionary;
 		}
 
 		const querySanitized = query.trim().toLowerCase();
-		const filteredList: DictionarySection[] = [];
 
 		const matches = (term: Term) =>
 			term.title.toLowerCase().includes(querySanitized)
@@ -40,37 +42,36 @@ export default function Dictionary() {
 			|| term.romaji?.toLowerCase().includes(querySanitized)
 			|| term.kanji.includes(querySanitized);
 
-		dictionary.forEach((dictionarySection) => {
+		return dictionary.reduce<DictionarySection[]>((filteredList, dictionarySection) => {
 			const { letter, terms } = dictionarySection;
 			const filteredTerms = terms.filter(matches);
 
 			if (filteredTerms.length > 0) {
 				filteredList.push({ letter, terms: filteredTerms });
 			}
-		});
 
-		setDictionaryFiltered(filteredList);
-		scrollToFilters();
+			return filteredList;
+		}, []);
+	}, [dictionary, query, activeLetter]);
+
+	function handleQueryChange(value: string) {
+		setQuery(value);
+		setActiveLetter(null);
+
+		if (value !== '') {
+			scrollToFilters();
+		}
 	}
 
 	function filterDictionaryByLetter(letter: string) {
-		if (query !== '')
-			setQuery('');
-
-		const filteredDictionary = dictionary.filter(dictionarySection =>
-			dictionarySection.letter === letter);
-
-		setDictionaryFiltered(filteredDictionary);
+		setQuery('');
+		setActiveLetter(letter);
 		scrollToFilters();
 	};
 
-	function resetFilters() {
-		setQuery('');
-		setDictionaryFiltered(dictionary);
-	}
-
 	function onResetButton() {
-		resetFilters();
+		setQuery('');
+		setActiveLetter(null);
 		scrollToFilters('instant');
 	}
 
@@ -80,10 +81,6 @@ export default function Dictionary() {
 			.catch(error => console.error(error))
 			.finally(() => setIsLoading(false));
 	}, []);
-
-	useEffect(() => {
-		filterDictionaryByQuery();
-	}, [query, dictionary]);
 
 	useLayoutEffect(() => scrollToTop(), []);
 
@@ -116,7 +113,7 @@ export default function Dictionary() {
 									name="title"
 									placeholder="поиск: термин или описание"
 									value={ query }
-									onChange={ event => setQuery(event.target.value) }
+									onChange={ event => handleQueryChange(event.target.value) }
 								/>
 							</div>
 

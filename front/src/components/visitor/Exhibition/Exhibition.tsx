@@ -32,7 +32,6 @@ export default function Exhibition() {
 		if (exhibitions.length !== 0) {
 			const exhibition = exhibitions.find(exhibition => exhibition.id === Number.parseInt(exhId || '0'));
 			dispatch(setExhibitionToDisplay(exhibition));
-			setShowPreloader(false);
 			return;
 		}
 
@@ -51,7 +50,7 @@ export default function Exhibition() {
 					navigate('/404', { replace: true });
 				}
 			});
-	}, [exhId]);
+	}, [dispatch, navigate, exhId, exhibitions]);
 
 	useLayoutEffect(() => scrollToTop(), []);
 
@@ -62,7 +61,7 @@ export default function Exhibition() {
 				description={ `Страница о выставке "${name}" с описанием и фотографиями` }
 			/>
 
-			{ showPreloader
+			{ showPreloader && exhibitionToDisplay.id !== Number.parseInt(exhId || '0')
 				? (
 					<section className="section">
 						<Preloader />

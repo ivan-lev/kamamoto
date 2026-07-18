@@ -46,7 +46,7 @@ export default function ExhibitView() {
 			if (exhibitId)
 				dispatch(resetExhibit());
 		};
-	}, [exhibitId]);
+	}, [dispatch, navigate, exhibitId]);
 
 	return (
 		<>

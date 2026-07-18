@@ -11,26 +11,18 @@ export default function LNTPotter() {
 	const [potterInfo, setPotterInfo] = useState<IArticle | null>(null);
 	const navigate = useNavigate();
 
-	async function getPotterInfo(potter: string) {
-		if (!potter)
-			return;
-
-		try {
-			const data = await api.potters.getPotterById(potter);
-			setPotterInfo(data);
-		}
-		catch (error: any) {
-			if (error.status === 404) {
-				navigate('/404', { replace: true });
-			}
-		}
-	}
-
 	useEffect(() => {
 		if (!potter)
 			return;
-		getPotterInfo(potter);
-	}, [potter]);
+
+		api.potters.getPotterById(potter)
+			.then(setPotterInfo)
+			.catch((error: any) => {
+				if (error.status === 404) {
+					navigate('/404', { replace: true });
+				}
+			});
+	}, [potter, navigate]);
 
 	useLayoutEffect(() => scrollToTop(), []);
 

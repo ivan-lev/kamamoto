@@ -1,6 +1,6 @@
 import type { RootState } from '@/slices/admin';
 import type { CeramicStyle } from '@/types/ceramicStyles';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CeramicStyleFormBasicInfo from '@/components/admin/CeramicStyles/CeramicStyleFormBasicInfo';
 import ArticleForm from '@/components/admin/shared/ArticleForm/ArticleForm';
@@ -17,7 +17,7 @@ export default function CeramicStyleFormView() {
 
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
-	const [initialStyleName, setInitialStyleName] = useState<string>('');
+	const initialStyleName = useRef<string>('');
 
 	async function handleCreateCeramicStyle(event: React.SyntheticEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -47,8 +47,8 @@ export default function CeramicStyleFormView() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
 			try {
-				const response = await api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit, initialStyleName);
-				const updatedStylesList = ceramicStylesList.map(style => style.name !== initialStyleName ? style : response);
+				const response = await api.ceramicStyles.updateCeramicStyle(token, ceramicStyleToEdit, initialStyleName.current);
+				const updatedStylesList = ceramicStylesList.map(style => style.name !== initialStyleName.current ? style : response);
 
 				dispatch(setCeramicStyles(updatedStylesList));
 				setIsFormDisabled(false);
@@ -88,10 +88,12 @@ export default function CeramicStyleFormView() {
 	useEffect(() => {
 		// set initial style name to pass it to backend
 		// if it was changed on edit
-		if (!initialStyleName)
-			setInitialStyleName(ceramicStyleToEdit.name);
-		return () => setInitialStyleName('');
-	}, []);
+		if (!initialStyleName.current)
+			initialStyleName.current = ceramicStyleToEdit.name;
+		return () => {
+			initialStyleName.current = '';
+		};
+	}, [ceramicStyleToEdit.name]);
 
 	return (
 		<form

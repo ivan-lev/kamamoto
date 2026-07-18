@@ -26,10 +26,7 @@ export default function Exhibitions() {
 					setShowPreloader(false);
 				});
 		}
-		else {
-			setShowPreloader(false);
-		}
-	}, []);
+	}, [dispatch, exhibitions.length]);
 
 	return (
 		<>
@@ -41,7 +38,7 @@ export default function Exhibitions() {
 			<PageTop title="Выставки" />
 
 			<section className="section">
-				{ showPreloader
+				{ exhibitions.length === 0 && showPreloader
 					? (
 						<Preloader />
 					)

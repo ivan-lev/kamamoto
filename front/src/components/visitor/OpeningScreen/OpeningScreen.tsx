@@ -12,7 +12,7 @@ export default function OpeningScreen({ setIsFirstRender }: Props) {
 			document.body.style.overflow = 'revert';
 			setIsFirstRender(false);
 		}, 4000);
-	}, []);
+	}, [setIsFirstRender]);
 
 	return (
 		<section className="opening-screen">

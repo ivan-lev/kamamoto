@@ -15,16 +15,6 @@ export default function Dictionary() {
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const terms = useSelector((state: RootState) => state.dictionary.terms);
 
-	useEffect(() => {
-		api.terms.getTerms(true)
-			.then((sections) => {
-				const flatTerms = sections.flatMap(section => section.terms);
-				dispatch(setTerms(flatTerms));
-				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
-	}, []);
-
 	function openEmptyTermForm() {
 		dispatch(setIsExistingTermEdited(false));
 		dispatch(clearTermForm());
@@ -36,6 +26,16 @@ export default function Dictionary() {
 		dispatch(setTermToEdit(term));
 		setShowModal(true);
 	};
+
+	useEffect(() => {
+		api.terms.getTerms(true)
+			.then((sections) => {
+				const flatTerms = sections.flatMap(section => section.terms);
+				dispatch(setTerms(flatTerms));
+				setShowPreloader(false);
+			})
+			.catch(error => console.error(error));
+	}, [dispatch]);
 
 	return (
 		<>

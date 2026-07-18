@@ -22,7 +22,7 @@ export default function Categories() {
 				setShowPreloader(false);
 			})
 			.catch(error => console.error(error));
-	}, []);
+	}, [dispatch]);
 
 	function openEmptyCategoryForm() {
 		dispatch(setIsExistingCategoryEdited(false));

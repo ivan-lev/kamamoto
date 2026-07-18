@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { motionSettings } from '@/variables/motion';
 
 const { variants, transitions } = motionSettings;
@@ -12,26 +12,28 @@ interface Props {
 }
 
 export default function Modal({ showModal, closeModal, children }: Props) {
-	function handleOpenModal() {
-		document.body.style.overflow = 'hidden';
-		document.addEventListener('keydown', closeModalOnEsc, false);
-	}
-
-	function handleCloseModal() {
+	const handleCloseModal = useCallback(() => {
 		document.body.style.overflow = 'unset';
 		closeModal();
-		document.removeEventListener('keydown', closeModalOnEsc, false);
-	}
-
-	function closeModalOnEsc(event: KeyboardEvent) {
-		if (event.key === 'Escape') {
-			handleCloseModal();
-		}
-	}
+	}, [closeModal]);
 
 	useEffect(() => {
-		showModal ? handleOpenModal() : handleCloseModal();
-	}, [showModal]);
+		if (!showModal) {
+			handleCloseModal();
+			return;
+		}
+
+		document.body.style.overflow = 'hidden';
+
+		function closeModalOnEsc(event: KeyboardEvent) {
+			if (event.key === 'Escape') {
+				handleCloseModal();
+			}
+		}
+
+		document.addEventListener('keydown', closeModalOnEsc, false);
+		return () => document.removeEventListener('keydown', closeModalOnEsc, false);
+	}, [showModal, handleCloseModal]);
 
 	return (
 		<AnimatePresence>

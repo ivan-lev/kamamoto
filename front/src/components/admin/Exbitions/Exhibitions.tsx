@@ -36,7 +36,7 @@ export default function Exhibitions() {
 				})
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>

@@ -197,7 +197,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 				})
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch, categories.length, styles.length, complectations.length, pottersList.length]);
 
 	return (
 		<form className="form" inert={ isFormDisabled }>

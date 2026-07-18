@@ -49,7 +49,7 @@ export default function Potters() {
 				})
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>

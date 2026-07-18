@@ -1,5 +1,6 @@
 import antfu from '@antfu/eslint-config';
 import stylistic from '@stylistic/eslint-plugin';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default antfu({
 	plugins: {
@@ -67,4 +68,10 @@ export default antfu({
 		'dist/**',
 		'node_modules/**',
 	],
+}, {
+	files: ['**/*.{jsx,tsx}'],
+	plugins: {
+		'react-hooks': reactHooks,
+	},
+	rules: reactHooks.configs.recommended.rules,
 });

@@ -50,7 +50,7 @@ export default function Markers() {
 				})
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>

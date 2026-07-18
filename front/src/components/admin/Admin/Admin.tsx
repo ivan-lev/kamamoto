@@ -26,7 +26,7 @@ export default function Admin() {
 					navigate('/admin/login', { replace: true });
 				});
 		}
-	}, []);
+	}, [dispatch, navigate]);
 
 	const listOne = [
 		{ title: 'Лоты', path: 'exhibits/' },

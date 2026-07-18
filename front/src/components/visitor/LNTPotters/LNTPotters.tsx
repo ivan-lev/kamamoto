@@ -42,7 +42,7 @@ export default function LNTPotters() {
 		return () => {
 			dispatch(resetDisplayList());
 		};
-	}, [category]);
+	}, [category, dispatch, navigate]);
 
 	return (
 		<>

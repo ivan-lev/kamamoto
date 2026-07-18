@@ -24,7 +24,7 @@ export default function Collection() {
 		return () => {
 			dispatch(resetDisplayList());
 		};
-	}, [categories]);
+	}, [dispatch, categories]);
 
 	useEffect(() => {
 		if (categories.length === 0) {
@@ -39,10 +39,7 @@ export default function Collection() {
 					setShowPreloader(false);
 				});
 		}
-		else {
-			setShowPreloader(false);
-		}
-	}, []);
+	}, [dispatch, categories.length]);
 
 	return (
 		<>

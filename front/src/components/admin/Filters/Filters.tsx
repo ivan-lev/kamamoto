@@ -16,19 +16,18 @@ export default function Filters() {
 		setQuery(value);
 	};
 
-	function filterExhibits() {
+	useEffect(() => {
 		if (query === '') {
 			dispatch(setExhibitsFiltered(exhibits));
 			return;
 		}
 
-		const filteredList: ExhibitAdmin[] = exhibits.filter(exhibit => exhibit.name.toLowerCase().includes(query.toLowerCase()) || exhibit.id.toString().includes(query));
-		dispatch(setExhibitsFiltered(filteredList));
-	}
+		const filteredList: ExhibitAdmin[] = exhibits.filter((exhibit) => {
+			return exhibit.name.toLowerCase().includes(query.toLowerCase()) || exhibit.id.toString().includes(query);
+		});
 
-	useEffect(() => {
-		filterExhibits();
-	}, [query, exhibits]);
+		dispatch(setExhibitsFiltered(filteredList));
+	}, [query, exhibits, dispatch]);
 
 	return (
 		<div className="filters">

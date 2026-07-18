@@ -45,7 +45,7 @@ export default function CeramicStyles() {
 				})
 				.catch(error => console.error(error));
 		}
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>
