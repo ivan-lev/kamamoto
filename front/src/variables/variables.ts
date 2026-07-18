@@ -62,4 +62,4 @@ export const STORAGE_KEYS = Object.freeze({
 
 export const DESCRIPTION_DUMMY = '<p>Описание в процессе подготовки</p>';
 
-export const SITE_VERSION = '2.5.1s';
+export const SITE_VERSION = '2.5.4';

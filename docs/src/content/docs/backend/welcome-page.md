@@ -3,22 +3,26 @@ title: Описание Бэкенда
 description: Краткое описание проекта.
 ---
 
-Написать про CRUD
-
-Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.
-Writing a good guide requires thinking about what your users are trying to do.
-
 ### Tools and packages
 
 - [mongodb](https://www.mongodb.com/) - database used in project
 - [express](https://www.npmjs.com/package/express) - framework to work with Node.js
 - [mongoose](https://www.npmjs.com/package/mongoose) - tool to work with the MongoDB
-- 'winston' - for logging everything
+- `winston` / `express-winston` - for logging everything
+- `celebrate` - request validation (Joi) as express middleware
+- `jsonwebtoken` / `bcryptjs` - authentication and password hashing
+- `helmet` - security-related HTTP headers
+- `cors` - cross-origin requests configuration
+- `express-rate-limit` - rate limiting for the API
+- `validator` - string validation helpers
+- `dotenv` - loading environment variables from `.env`
 
 ### Directories
 
 `/routes` — folder with routing logic
-`/controllers` — folder with all controllers   
-`/models` — folder with files describing MongoDB schemes and models 
+`/controllers` — folder with all controllers
+`/models` — folder with files describing MongoDB schemes and models
+`/types` — folder with shared TypeScript types and interfaces
 `/errors` - error handling logic placed here
-`/middlewares` - stores all intermediate processing functions
+`/middlewares` - stores all intermediate processing functions (including `/middlewares/validators` for celebrate/Joi schemas)
+`/variables` - shared constants used across the backend
