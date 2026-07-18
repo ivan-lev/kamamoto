@@ -15,11 +15,11 @@ import Markers from '@/components/admin/Markers/Markers';
 import AdminPartners from '@/components/admin/Partners/Partners';
 import Potters from '@/components/admin/Potters/Potters';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
-import { adminStore } from '@/slices/admin';
+import { getAdminStore } from '@/slices/admin';
 
 export default function AdminView() {
 	return (
-		<Provider store={ adminStore }>
+		<Provider store={ getAdminStore() }>
 			<Routes>
 				<Route path="login" element={ <Login /> } />
 				<Route path="/" element={ <Admin /> }>

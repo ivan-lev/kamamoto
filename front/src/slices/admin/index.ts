@@ -11,20 +11,32 @@ import partnersReducer from '@/slices/admin/partners';
 import pottersReducer from '@/slices/admin/potters';
 import useReducer from '@/slices/admin/user';
 
-export const adminStore = configureStore({
-	reducer: {
-		categories: categoriesReducer,
-		ceramicStyles: ceramicStylesReducer,
-		complectations: comlectationReducer,
-		dictionary: dictionaryReducer,
-		exhibitions: exhibitionsReducer,
-		exhibits: exhibitsReducer,
-		letters: lettersReducer,
-		markers: markersReducer,
-		partners: partnersReducer,
-		potters: pottersReducer,
-		user: useReducer,
-	},
-});
+function createAdminStore() {
+	return configureStore({
+		reducer: {
+			categories: categoriesReducer,
+			ceramicStyles: ceramicStylesReducer,
+			complectations: comlectationReducer,
+			dictionary: dictionaryReducer,
+			exhibitions: exhibitionsReducer,
+			exhibits: exhibitsReducer,
+			letters: lettersReducer,
+			markers: markersReducer,
+			partners: partnersReducer,
+			potters: pottersReducer,
+			user: useReducer,
+		},
+	});
+}
 
-export type RootState = ReturnType<typeof adminStore.getState>;
+let adminStore: ReturnType<typeof createAdminStore> | undefined;
+
+export function getAdminStore() {
+	if (!adminStore) {
+		adminStore = createAdminStore();
+	}
+
+	return adminStore;
+}
+
+export type RootState = ReturnType<ReturnType<typeof createAdminStore>['getState']>;

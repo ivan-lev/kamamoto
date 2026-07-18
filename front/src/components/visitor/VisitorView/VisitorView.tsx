@@ -8,7 +8,7 @@ import Header from '@/components/visitor/Header/Header';
 import Main from '@/components/visitor/Main/Main';
 import ScrollToHash from '@/components/visitor/ScrollToHash/ScrollToHash';
 import ScrollToTopButton from '@/components/visitor/ScrollToTop/ScrollToTop';
-import { visitorStore } from '@/slices/visitor';
+import { getVisitorStore } from '@/slices/visitor';
 import { documents } from '@/variables/documents';
 import { files } from '@/variables/files';
 
@@ -36,7 +36,7 @@ const Useful = lazy(() => import('@/components/visitor/Useful/Useful'));
 
 export default function VisitorView() {
 	return (
-		<Provider store={ visitorStore }>
+		<Provider store={ getVisitorStore() }>
 			<Suspense fallback={ <Preloader /> }>
 				<Routes>
 					<Route
