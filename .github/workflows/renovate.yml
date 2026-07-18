@@ -5,10 +5,16 @@ on:
     # Saturday 00:00 (UTC+5) = Friday 19:00 UTC
     - cron: '0 19 * * 5'
   workflow_dispatch:
+  workflow_run:
+    workflows: ['CI Front', 'CI Back', 'CI Docs', 'CI Yuding']
+    types: [completed]
 
 jobs:
   renovate:
     runs-on: ubuntu-latest
+    # re-run automerge only when CI just went green on a renovate branch;
+    # schedule/manual triggers always run regardless
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && startsWith(github.event.workflow_run.head_branch, 'renovate/'))
     steps:
       - uses: actions/checkout@v5
 
