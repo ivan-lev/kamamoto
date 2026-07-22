@@ -13,7 +13,8 @@ export enum Ingredients {
 	fennel = 'фенхель', // 茴香
 	fenugreek = 'пажитник',
 	florals = 'травы',
-	japaneseBayBark = 'кора японского лавра', // 椨皮粉
+	frankincense = 'ладан', //乳香
+	japaneseBayTreeBark = 'табуноки', // 椨の木
 	herbsMedicine = 'медицинские травы',
 	kaikou = 'порошок раковин моллюсков', // 貝香
 	nard = 'нард', // 甘松

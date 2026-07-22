@@ -11,8 +11,8 @@ export interface manufacturerIncencesNames {
 	kyukyodo: 'shinnyo';
 	seijudo: 'byakudan' | 'jinko';
 	shoyeido: 'madoka' | 'kyonishiki' | 'kinkaku' | 'baika-ju';
-	tennendo: 'renzan' | 'karafune' | 'shingon';
-	yamadamatsu: 'seifu' | 'shoren' | 'jinko' | 'byakudan' | 'kayo' | 'kagetsu' | 'oubai';
+	tennendo: 'renzan' | 'karafune' | 'shingon' | 'khorokan' | 'nyuko';
+	yamadamatsu: 'seifu' | 'shoren' | 'jinko' | 'byakudan' | 'kayo' | 'kagetsu' | 'oubai' | 'suifu';
 	unknown: never;
 }
 

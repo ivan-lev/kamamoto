@@ -81,7 +81,7 @@ const kobunboku: Incense[] = [
 		burnTime: 30,
 		lenght: 13,
 		price: 0,
-		pricePerStick: 32,
+		pricePerStick: 43,
 		quantity: stock.baieido?.['sawayaka-kobunboku'] || 0,
 		isActive: true,
 		inStock: true,

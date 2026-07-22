@@ -147,6 +147,26 @@ const premium: Incense[] = [
 		isActive: true,
 		inStock: true,
 	},
+
+	{
+		title: 'Суйфу',
+		originalTitle: '',
+		slug: 'suifu',
+		description: 'Композиция Суйфу от Ямадамацу, с мягкими и сладкими нотками агарового дерева, оставляет у слушателя ощущение пребывания в зеленом древнем лесу. Одновременно бодрящая и расслабляющая, Суйфу — это превосходная, сдержанная композиция на основе агара.',
+		photos: ['P1014507.webp', 'P1014510.webp', 'P1014511.webp', 'P1014512.webp', 'P1014513.webp', 'P1014514.webp'],
+		manufacturer: manufacturers.yamadamatsu,
+		series: manufacturers.yamadamatsu.series?.premium,
+		ingredients: [Ingredients.aloeswood],
+		features: [Features.premium, Features.natural],
+		burnTime: 30,
+		lenght: 13.5,
+		origin: origin.japan,
+		price: 0,
+		pricePerStick: 42,
+		quantity: stock.yamadamatsu?.suifu || 0,
+		isActive: true,
+		inStock: true,
+	},
 ];
 
 export const yamadamatsuIncences: Incense[] = [...karaku, ...premium];
