@@ -5,20 +5,20 @@ http://kamamoto.ru, http://158.255.5.107 {
 
 kamamoto.ru {
     # ID pages: remove trailing slash, i.e. '/bowls/1773' and 'exhibitions/8'
-	@idToRemoveSlash {
+    @idToRemoveSlash {
         path_regexp id ^(.*/\d+)/$
     }
     redir @idToRemoveSlash {re.id.1} 301
 
     # ===== Static pages: remove trailing slash =====
     @staticToRemoveSlash {
-        path_regexp static ^/(about|assistants|contacts|dictionary|documents|downloads|thanksletters|japanese-exhibitions|japanese-societies|ceramic-styles/[^/]+)/$
+        path_regexp static ^/(about|assistants|contacts|dictionary|documents|downloads|thanksletters|japanese-exhibitions|japanese-societies|map|ceramic-styles/[^/]+|lnt-potters/[^/]+)/$
     }
     redir @staticToRemoveSlash /{re.static.1} 301
 
     # ===== Listing pages: force trailing slash =====
     @listingToAddSlash {
-        path_regexp list ^(/collection(?:/[^/0-9][^/]*)?|/exhibitions|/useful|/ceramic-styles)$
+        path_regexp list ^(/collection(?:/[^/0-9][^/]*)?|/exhibitions|/useful|/ceramic-styles|/lnt-potters)$
     }
     redir @listingToAddSlash {re.list.1}/ 301
 
@@ -71,35 +71,17 @@ kamamoto.ru {
         file_server
     }
 
-    # Serve static files
+    # ===== Main SPA =====
     root * /srv/front
 
-    # ===== Main SPA =====
     handle {
-        root * /srv/front
-
         try_files {path} {path}/ /index.html
 
         header {
-            # X-My-Header "here"
-            # Cache-Control "no-cache, must-revalidate"
-            # Content-Security-Policy "
-            #     default-src 'self';
-            #     script-src 'self' 'unsafe-inline';
-            #     style-src 'self' 'unsafe-inline';
-            #     img-src 'self' https: data: blob:;
-            #     font-src 'self';
-            #     connect-src 'self' https:;
-            #     frame-src https: blob:;
-            #     frame-ancestors 'self' https:;
-            # "
-            # Cross-Origin-Opener-Policy "same-origin"
-            # Cross-Origin-Resource-Policy "same-site"
             Permissions-Policy "geolocation=(), microphone=(), camera=()"
             Referrer-Policy "strict-origin-when-cross-origin"
             X-Content-Type-Options "nosniff"
             X-Frame-Options "SAMEORIGIN"
-            # -ETag
             match header Content-Type text/html*
         }
 
