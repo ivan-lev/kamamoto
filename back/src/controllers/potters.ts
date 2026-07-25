@@ -54,6 +54,23 @@ async function findPotterById(req: Request, res: Response, next: NextFunction) {
 	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
 }
 
+async function getPotterArticle(req: Request, res: Response, next: NextFunction) {
+	try {
+		const potter = await Potter.findOne({ id: req.params.id }, '-_id').orFail();
+		const pathToPotterFolder = `${STATIC_URL}/${POTTERS}/${potter.id}`;
+
+		potter.article.forEach(section => section.slides?.forEach((slide) => {
+			if (!slide.filename.startsWith('http') && slide.filename.trim() !== '') {
+				slide.filename = `${pathToPotterFolder}/slides/${slide.filename}`;
+			}
+		}));
+
+		res.send(potter);
+	}
+
+	catch (error) { return handleMongooseError(error, next, ERROR_MESSAGES.POTTER); }
+}
+
 async function createPotter(req: Request, res: Response, next: NextFunction) {
 	const potter: IPotter = req.body;
 
@@ -97,6 +114,7 @@ export const potter = {
 	getPotters,
 	getLNTPotters,
 	findPotterById,
+	getPotterArticle,
 	createPotter,
 	updatePotter,
 	deletePotter,
