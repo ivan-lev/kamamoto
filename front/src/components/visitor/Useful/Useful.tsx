@@ -15,10 +15,10 @@ export default function Useful() {
 		dispatch(setDisplayList([
 			{ link: '/dictionary', title: 'Глоссарий', thumbnail: '/images/useful/dictionary.webp' },
 			{ link: '/ceramic-styles/', title: 'Стили керамики', thumbnail: '/images/dummy.webp' },
-			{ link: '/map/', title: 'Карта гончарных цетров', thumbnail: '/images/useful/map.webp' },
+			{ link: '/map', title: 'Карта гончарных цетров', thumbnail: '/images/useful/map.webp' },
 			{ link: '/japanese-exhibitions', title: 'Японские выставки', thumbnail: '/images/useful/exhibitions/thumbnail.webp' },
 			{ link: '/japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
-			{ link: '/lnt-potters', title: 'Живые национальные сокровища', thumbnail: '/images/useful/lnt.webp' },
+			{ link: '/lnt-potters/', title: 'Живые национальные сокровища', thumbnail: '/images/useful/lnt.webp' },
 		]));
 
 		return () => {
