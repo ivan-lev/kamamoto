@@ -57,6 +57,13 @@ async function findPotterById(req: Request, res: Response, next: NextFunction) {
 async function getPotterArticle(req: Request, res: Response, next: NextFunction) {
 	try {
 		const potter = await Potter.findOne({ id: req.params.id }, '-_id').orFail();
+
+		if (potter === null || potter.showArticle === false) {
+			res.status(404);
+			res.send();
+			return;
+		}
+
 		const pathToPotterFolder = `${STATIC_URL}/${POTTERS}/${potter.id}`;
 
 		potter.article.forEach(section => section.slides?.forEach((slide) => {
