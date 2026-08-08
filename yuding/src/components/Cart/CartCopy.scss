@@ -8,6 +8,16 @@
 		display: flex;
 		gap: var(--gap-16);
 		justify-content: center;
+
+		.button,
+		.link {
+			flex-basis: 100%;
+		}
+
+		@media (max-width: 480px) {
+			flex-direction: column;
+			align-self: stretch;
+		}
 	}
 
 	&__button.button {

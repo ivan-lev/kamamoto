@@ -46,7 +46,11 @@ export default function CartCopy({ items, totalPrice, deliveryPrice, discount }:
 				{ items.length !== 0 && <button className="button cart-copy__button" onClick={ handleCopy }>Копировать корзину</button> }
 
 				<a target="_blank" className="link" href="https://t.me/ivanlev">
-					<button className="button">Написать мне</button>
+					<button className="button">Написать в Тг</button>
+				</a>
+
+				<a target="_blank" className="link" href="https://vk.ru/im/convo/212526578">
+					<button className="button">Написать в Вк</button>
 				</a>
 			</div>
 
