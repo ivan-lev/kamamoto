@@ -12,7 +12,7 @@
         "yuding": "cd ./yuding && npm run dev"
     },
     "dependencies": {
-        "concurrently": "^10.0.3"
+        "concurrently": "^10.0.4"
     },
     "devDependencies": {
         "dotenv-cli": "^11.0.0"
