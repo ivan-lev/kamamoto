@@ -28,6 +28,7 @@ export default function PottersForm() {
 		photo,
 		info,
 		isLNT,
+		showArticle,
 	} = potterToEdit;
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -170,7 +171,7 @@ export default function PottersForm() {
 						/>
 					</div>
 
-					<div className="form__row form__row-4">
+					<div className="form__row">
 						<span>ЛНТ</span>
 						<label className={ `checkbox-label ${isLNT ? 'checkbox-label--checked' : ''}` }>
 							<input
@@ -178,6 +179,19 @@ export default function PottersForm() {
 								type="checkbox"
 								checked={ isLNT }
 								name="isLNT"
+								onChange={ handleCheckBox }
+							/>
+						</label>
+					</div>
+
+					<div className="form__row form__row-2">
+						<span>Показать статью</span>
+						<label className={ `checkbox-label ${showArticle ? 'checkbox-label--checked' : ''} ` }>
+							<input
+								className="checkbox-input"
+								type="checkbox"
+								checked={ showArticle }
+								name="showArticle"
 								onChange={ handleCheckBox }
 							/>
 						</label>

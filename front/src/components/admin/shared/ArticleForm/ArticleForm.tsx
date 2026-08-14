@@ -1,10 +1,8 @@
-import type { ChangeEvent } from 'react';
 import type { ArticleSection } from '@/components/visitor/Article/Article.types';
 import ArticleFormSection from '@/components/admin/shared/ArticleForm/ArticleFormSection';
 
 export interface ArticleEntity {
 	article: ArticleSection[];
-	showArticle: boolean;
 }
 
 interface Props<T extends ArticleEntity> {
@@ -13,15 +11,10 @@ interface Props<T extends ArticleEntity> {
 }
 
 export default function ArticleForm<T extends ArticleEntity>({ entity, onChange }: Props<T>) {
-	const { article, showArticle } = entity;
+	const { article } = entity;
 
 	function updateArticle(newArticle: ArticleSection[]) {
 		onChange({ ...entity, article: newArticle });
-	}
-
-	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
-		const { checked } = event.target;
-		onChange({ ...entity, showArticle: checked });
 	}
 
 	function addArticleSection() {
@@ -42,25 +35,7 @@ export default function ArticleForm<T extends ArticleEntity>({ entity, onChange 
 				/>
 			)) }
 
-			<div className="form__row form__row-12 form__row-12--inline">
-				<button className="button" type="button" onClick={ addArticleSection }>Добавить секцию</button>
-
-				<span>Показать статью</span>
-				<label
-					className={ `checkbox-label ${
-						showArticle ? 'checkbox-label--checked' : ''
-					} ` }
-				>
-					<input
-						className="checkbox-input"
-						type="checkbox"
-						checked={ showArticle }
-						name="showArticle"
-						onChange={ handleCheckBox }
-					/>
-				</label>
-
-			</div>
+			<button className="button" style={{ margin: 'auto' }} type="button" onClick={ addArticleSection }>Добавить секцию</button>
 		</fieldset>
 
 	);

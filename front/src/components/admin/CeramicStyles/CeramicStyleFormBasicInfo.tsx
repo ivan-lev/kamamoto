@@ -14,11 +14,17 @@ export default function CeramicStyleFormBasicInfo() {
 		description,
 		thumbnail,
 		mapImage,
+		showArticle,
 	} = ceramicStyleToEdit;
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value }));
+	};
+
+	function handleCheckbox(event: ChangeEvent<HTMLInputElement>) {
+		const { name, checked } = event.target;
+		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: checked }));
 	};
 
 	return (
@@ -76,6 +82,19 @@ export default function CeramicStyleFormBasicInfo() {
 						value={ mapImage }
 						onChange={ handleChange }
 					/>
+				</div>
+
+				<div className="form__row form__row-4">
+					<span>Показать статью</span>
+					<label className={ `checkbox-label ${showArticle ? 'checkbox-label--checked' : ''} ` }>
+						<input
+							className="checkbox-input"
+							type="checkbox"
+							checked={ showArticle }
+							name="showArticle"
+							onChange={ handleCheckbox }
+						/>
+					</label>
 				</div>
 
 				<div className="form__row form__row-12">

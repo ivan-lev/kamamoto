@@ -28,18 +28,8 @@
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 		gap: var(--gap-8);
 
-		&--with-separator {
-			&::after {
-				content: '';
-
-				grid-column: 1 / -1;
-
-				box-sizing: border-box;
-				height: 1px;
-				margin: var(--gap-24);
-
-				background-color: var(--border-color);
-			}
+		&:not(:last-child) {
+			margin-bottom: var(--gap-12);
 		}
 	}
 
