@@ -34,7 +34,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo:8.3.7
+    image: mongo:8.3.8
     container_name: mongo
     ports:
       - "127.0.0.1:27017:27017"
