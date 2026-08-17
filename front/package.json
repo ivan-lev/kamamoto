@@ -29,7 +29,7 @@
     "html-react-parser": "^6.1.7",
     "leaflet": "^1.9.4",
     "lightningcss": "^1.33.0",
-    "motion": "^12.43.0",
+    "motion": "^13.1.0",
     "qrcode.react": "^4.2.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
