@@ -1,0 +1,135 @@
+.rich-editor {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-8);
+	width: 100%;
+
+	&__toolbar {
+		position: sticky;
+		z-index: 1;
+		top: 0;
+
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap-4);
+
+		padding: var(--gap-4);
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		background: var(--background-muted);
+	}
+
+	&__button {
+		cursor: pointer;
+
+		min-width: 32px;
+		height: 32px;
+		padding: 0 var(--gap-8);
+		border: 1px solid transparent;
+		border-radius: var(--border-radius-s);
+
+		font-family: var(--main-font);
+		font-size: 14px;
+		color: var(--text-default);
+
+		background: transparent;
+
+		&:hover:not(:disabled) {
+			border-color: var(--border-color);
+		}
+
+		&:disabled {
+			cursor: default;
+			opacity: 0.4;
+		}
+
+		&--active {
+			border-color: var(--border-color);
+			color: var(--text-inverse);
+			background: var(--button-background);
+		}
+
+		&--html {
+			margin-left: auto;
+			font-size: 12px;
+			letter-spacing: 1px;
+		}
+	}
+
+	&__textarea {
+		min-height: 150px;
+		font-family: monospace;
+	}
+
+	&__content {
+		box-sizing: border-box;
+		min-height: 150px;
+		padding: var(--gap-16) var(--gap-24);
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		font-size: 16px;
+		color: var(--text-default);
+
+		outline: none;
+
+		&:focus {
+			border-color: var(--text-muted);
+		}
+
+		h2 {
+			font-size: 24px;
+			font-weight: 400;
+		}
+
+		h3 {
+			font-size: 20px;
+			font-weight: 400;
+		}
+
+		ol,
+		ul {
+			padding-left: var(--gap-24);
+
+			li:not(:last-child) {
+				margin-bottom: var(--gap-8);
+			}
+
+			li > p:not(:last-child) {
+				margin-bottom: var(--gap-4);
+			}
+		}
+
+		blockquote {
+			padding-left: var(--gap-16);
+			border-left: 3px solid var(--border-color);
+			font-style: italic;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		img {
+			max-width: 30%;
+			border-radius: var(--border-radius-s);
+
+			&.ProseMirror-selectednode {
+				outline: 2px solid var(--text-muted);
+			}
+		}
+
+		p.is-editor-empty:first-child::before {
+			pointer-events: none;
+			content: attr(data-placeholder);
+
+			float: left;
+
+			height: 0;
+
+			color: var(--text-muted);
+		}
+	}
+}

@@ -1,7 +1,7 @@
-import type { ChangeEvent } from 'react';
 import type { ArticleSection } from '@/components/visitor/Article/Article.types';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import ArticleFormSlide from '@/components/admin/shared/ArticleForm/ArticleFormSlide';
+import RichTextEditor from '@/components/admin/shared/RichTextEditor/RichTextEditor';
 
 interface Props {
 	section: ArticleSection;
@@ -11,8 +11,6 @@ interface Props {
 }
 
 export default function ArticleFormSection({ section, sectionIndex, article, onArticleChange }: Props) {
-	const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-
 	const { content, slides } = section;
 	const [isArticleCollapsed, setIsArticleCollapsed] = useState(false);
 
@@ -21,9 +19,8 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 	const headingMatch = content.match(/<h[1-6]>(.*?)<\/h[1-6]>/);
 	const heading = headingMatch?.[1];
 
-	function updateSectionText(event: ChangeEvent<HTMLTextAreaElement>) {
-		const { name, value } = event.target;
-		const newArticleData = article.map((section, index) => index === sectionIndex ? { ...section, [name]: value } : section);
+	function updateSectionText(value: string) {
+		const newArticleData = article.map((section, index) => index === sectionIndex ? { ...section, content: value } : section);
 		onArticleChange(newArticleData);
 	};
 
@@ -50,23 +47,6 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 		const newArticleData = article.map((section, index) => index === sectionIndex ? newSectionData : section);
 		onArticleChange(newArticleData);
 	}
-
-	function resizeTextArea() {
-		const textarea = textareaRef.current;
-		if (!textarea)
-			return;
-
-		const scrollY = window.scrollY;
-
-		textarea.style.height = 'auto';
-		textarea.style.height = `${textarea.scrollHeight + 2}px`;
-
-		window.scrollTo({ top: scrollY });
-	}
-
-	useEffect(() => {
-		resizeTextArea();
-	}, [content]);
 
 	return (
 		<div className="form__grid container" style={{ padding: 'var(--gap-24)' }}>
@@ -99,16 +79,10 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 			</div>
 
 			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
-				<textarea
-					ref={ textareaRef }
-					className="textarea"
-					name="content"
-					placeholder="текстовая информация"
+				<RichTextEditor
 					value={ content }
-					onChange={ (event) => {
-						updateSectionText(event);
-						resizeTextArea();
-					} }
+					placeholder="текстовая информация"
+					onChange={ updateSectionText }
 				/>
 			</div>
 

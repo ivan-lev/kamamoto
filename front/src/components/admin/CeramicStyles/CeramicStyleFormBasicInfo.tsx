@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin';
 import { useDispatch, useSelector } from 'react-redux';
+import RichTextEditor from '@/components/admin/shared/RichTextEditor/RichTextEditor';
 import { setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
 
 export default function CeramicStyleFormBasicInfo() {
@@ -17,9 +18,13 @@ export default function CeramicStyleFormBasicInfo() {
 		showArticle,
 	} = ceramicStyleToEdit;
 
-	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+	function handleChange(event: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = event.target;
 		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, [name]: value }));
+	};
+
+	function handleDescriptionChange(value: string) {
+		dispatch(setCeramicStyleToEdit({ ...ceramicStyleToEdit, description: value }));
 	};
 
 	function handleCheckbox(event: ChangeEvent<HTMLInputElement>) {
@@ -99,12 +104,10 @@ export default function CeramicStyleFormBasicInfo() {
 
 				<div className="form__row form__row-12">
 					<span>описание</span>
-					<textarea
-						className="textarea"
-						name="description"
-						placeholder="полное описание"
+					<RichTextEditor
 						value={ description }
-						onChange={ handleChange }
+						placeholder="полное описание"
+						onChange={ handleDescriptionChange }
 					/>
 				</div>
 
