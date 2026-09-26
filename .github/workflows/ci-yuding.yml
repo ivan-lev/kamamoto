@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'yuding/**'
+      # сборка общая — правки в ней (в т.ч. бампы actions от Renovate) проверяем на каждом проекте
+      - '.github/workflows/_build.yml'
+      - '.github/workflows/ci-yuding.yml'
 
 jobs:
   build:
