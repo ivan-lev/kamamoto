@@ -46,7 +46,7 @@ assets/icons/*.svg     спрайт через vite-plugin-svg-spritemap: `/__sp
 ## Работа с API
 
 ```ts
-const token = storage.get<string>(STORAGE_KEYS.TOKEN);   // localStorage, значения в JSON
+const token = storage.get<string>(STORAGE_KEYS.TOKEN); // localStorage, значения в JSON
 if (token) {
 	try {
 		const response = await api.potters.updatePotter(token, potterToEdit);
