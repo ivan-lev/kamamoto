@@ -1,0 +1,40 @@
+# Известные проблемы и несостыковки
+
+Найдено при аудите 2026-09-27. Это **не задачи на исправление**: чинить только по просьбе пользователя. Но при правке соседнего кода эти паттерны не копировать и учитывать их поведение.
+Когда пункт исправлен, его нужно удалить отсюда.
+
+## Приватность и безопасность
+
+1. **`GET /api/exhibits/` публичный** и отдаёт все лоты, включая неактивные (`isActive: false`, сейчас их 23), вместе с `price`. Этим эндпоинтом пользуется админка, но auth-middleware пропускает любой GET. *Уточнить у пользователя, допустимо ли это.*
+2. Аналогично публичны `GET /api/maps/` (неактивные маркеры) и `GET /api/exhibitions/:id` (выставки с `isActive: false`).
+3. `auth.ts` защищает только `originalUrl === '/api/users/'`. `GET /api/users` без слэша проходит без проверки и падает в `checkToken` на `req.user._id` → 500. Данные не утекают, но это баг.
+4. `findUserByCredentials`: если пользователь не найден, `user` равен `null` → `TypeError` → 500 вместо 401 «Неправильные почта или пароль».
+5. Вне production JWT подписывается строкой `'default-key'`. Для dev это нормально, но `NODE_ENV` на проде должен оставаться `production` (он задан в docker-compose).
+
+## Сломанные эндпоинты
+
+6. **Удаление категории**: `categoryDeleteValidator` проверяет `params.name`, а роут объявлен как `/:category`. Любой `DELETE /categories/x` → 400.
+7. **Создание категории из админки**: фронт (`api.categories.createCategory`, `CategoryForm` с инпутом `name="category"`) шлёт `{ category, title, thumbnail }`, а `categoryValidator` требует `name` и не пропускает `category` → 400. Даже если создать категорию напрямую с одним `name`, её не найдут контроллеры, которые ищут по `{ category }`.
+8. Контроллеры категорий и `createExhibit`/`updateExhibit` ищут категорию по **легаси-полю `category`**, которого нет в схеме. Работает только потому, что у всех 8 документов в БД есть и `category`, и `name`. `CategoryForm` после обновления сравнивает `response.category`.
+9. `/api/files` подключён к `lettersRouter` (`routes/index.ts`), контроллер `files.ts` мёртвый.
+10. Letters POST/PATCH: `fileValidator` требует поле `preview`, а в модели и данных оно называется `thumbnail`. `updateLetter`/`updateFile` ищут по `req.params._id`, а роут объявлен как `/:id`. Фильтр `{ _id: undefined }` Mongoose, скорее всего, превратит в `{}` (известная ловушка), то есть **обновился бы первый попавшийся документ**. Сейчас это не срабатывает только потому, что раньше падает валидатор.
+11. Complectation: `PATCH /:id` ищет по `body.name` (параметр пути игнорируется, переименовать `name` нельзя); `complectationNameValidator` на DELETE проверяет body, а не params.
+12. Админка «Благодарственные письма» (`admin/Letters/Letters.tsx`) — заготовка, скопированная из партнёров: использует слайс `partners`. Создание и редактирование не работают.
+
+## Хрупкие места
+
+13. **Нет каскадов и проверки ссылок.** Если удалить стиль, гончара или категорию, на которые ссылаются лоты, `populate` вернёт `null`, и `GET /exhibits/:id` упадёт с 500 на `exhibit.style.mapImage` / `exhibit.potter.photo`. У 13 неактивных лотов поля `potter` нет совсем: если такой лот включить, будет 500.
+14. `createExhibit`/`updateExhibit`: если `category`/`style`/`potter` не нашлись по строке, ошибки нет. При создании срабатывает дефолт схемы, при обновлении Mongoose отбрасывает `undefined`, и поле не меняется.
+15. Заголовок `is-admin` трактуется по-разному (`=== 'true'` или `=== 'false'`) — таблица в `api.md`.
+16. Конфликты роутов: стиль с `name: 'articles'` и гончар с `id: 'lnt'` перекрываются статическими путями.
+17. `getPotterArticle` отдаёт документ гончара целиком (в том числе `info`, `isLNT`) и не превращает `photo` в URL. Проверка `potter === null` после `.orFail()` не нужна.
+18. `ceramicStyleValidator.title` — `^[а-яё-]+$`: пробелы запрещены, так что стиль из двух слов («Имари Арита») через валидатор не создать. PATCH стилей и гончаров идёт **без** валидатора body.
+19. Неверные блоки сообщений об ошибках: `login`/`checkToken` используют `ERROR_MESSAGES.PARTNER`, `getStatistics` — `USER`, create/update/delete стилей — `CATEGORY`.
+20. Коды ответа PATCH непоследовательны (200 или 201).
+21. `CATEGORIES` на фронте захардкожен: страница категории, которой нет в этом списке, отдаёт 404, даже если категория есть в БД.
+22. `VITE_EMAILJS_*` не передаются в Docker-сборку фронта (в `docker-compose.yml` build-arg только `VITE_MAP_API_KEY`, а `.dockerignore` исключает `.env`). В проде форма контактов, скорее всего, собирается с `undefined`. *Уточнить у пользователя.*
+23. `back/src/config.ts`: если `STATIC_URL` не задан, дефолт `${BASE_URL}:${PORT}/static` в dev-ветке `PATHS.STATIC_URL` даст дублированный префикс. Сейчас переменная задана в `.env`.
+
+## Незаконченная работа (WIP, не в git)
+
+24. «Декоративные приёмы» (`features`): `back/src/models/feature.ts`, `types/feature.ts`, `routes/features.ts` (untracked) + `controllers/features.ts`, `ERROR_MESSAGES.FEATURE`, `PATHS.FEATURES`. Роутер **не подключён**, POST валидируется `ceramicStyleValidator`, `getFeatureArticle` не пропускает пустые `filename`, `removeUnusedSlides` не вызывается, в `SLIDES_TARGETS` цели нет. Фронт: роут админки `features` рендерит `AdminCeramicStyles`, пункт меню закомментирован.
