@@ -138,7 +138,7 @@ export default function DictionaryForm({ closeModal }: Props) {
 							type="text"
 							name="letter"
 							placeholder="первая буква термина"
-							value={ letter }
+							value={ letter.toLowerCase() }
 							onChange={ handleChange }
 						/>
 					</div>

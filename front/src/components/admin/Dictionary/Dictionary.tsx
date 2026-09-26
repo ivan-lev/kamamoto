@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react';
 import type { RootState } from '@/slices/admin/index';
 import type { Term } from '@/types/term';
 import { useEffect, useState } from 'react';
@@ -8,12 +9,26 @@ import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { clearTermForm, setIsExistingTermEdited, setTerms, setTermToEdit } from '@/slices/admin/dictionary';
 import { api } from '@/utils/api/api';
+import '@/components/admin/Filters/Filters.scss';
 
 export default function Dictionary() {
 	const dispatch = useDispatch();
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [query, setQuery] = useState<string>('');
 	const terms = useSelector((state: RootState) => state.dictionary.terms);
+
+	const termsFiltered = query === ''
+		? terms
+		: terms.filter((term) => {
+			return term.title.toLowerCase().includes(query.toLowerCase())
+				|| term.letter.toLowerCase().includes(query.toLowerCase())
+				|| term.kanji.includes(query);
+		});
+
+	function handleQueryChange(event: ChangeEvent<HTMLInputElement>) {
+		setQuery(event.target.value);
+	}
 
 	function openEmptyTermForm() {
 		dispatch(setIsExistingTermEdited(false));
@@ -46,49 +61,64 @@ export default function Dictionary() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
 
-						<h1 className="title title--1">Словарь</h1>
-						<div className="table">
-							<div className="table__row">
-								<span className="table__cell table__cell--span-3">Заголовок</span>
-								<span className="table__cell table__cell--span-2">Id</span>
-								<span className="table__cell table__cell--span-2">Буква</span>
-								<span className="table__cell table__cell--span-4">Файл изображения</span>
-								<span className="table__cell table__cell--centered"></span>
-							</div>
-
-							{ terms.map((term) => {
-								const { id, title, letter, image } = term;
-								return (
-									<div key={ id } className="table__row">
-										<span className="table__cell table__cell--span-3">{ title }</span>
-										<span className="table__cell table__cell--span-2">{ id }</span>
-										<span className="table__cell table__cell--span-2">{ letter }</span>
-										<span className="table__cell table__cell--span-4">{ image }</span>
-										<span className="table__cell table__cell--centered">
-											<button
-												className="table__button table__button--edit"
-												onClick={ () => handleEditTerm(term) }
-											>
-											</button>
-										</span>
-									</div>
-								);
-							}) }
+					<>
+						<div className="filters">
+							<input
+								className="input"
+								type="text"
+								name="query"
+								placeholder="поиск: часть названия, кандзи"
+								value={ query }
+								onChange={ handleQueryChange }
+							/>
 						</div>
 
-						<Modal
-							showModal={ showModal }
-							closeModal={ () => setShowModal(false) }
-						>
-							<DictionaryForm closeModal={ () => setShowModal(false) } />
-						</Modal>
+						<div className="container container--background-transparent">
 
-						<button className="button" onClick={ openEmptyTermForm }>
-							Создать
-						</button>
-					</div>
+							<h1 className="title title--1">Словарь</h1>
+
+							<div className="table">
+								<div className="table__row">
+									<span className="table__cell table__cell--span-3">Заголовок</span>
+									<span className="table__cell table__cell--span-2">Id</span>
+									<span className="table__cell table__cell--span-2">Буква</span>
+									<span className="table__cell table__cell--span-4">Файл изображения</span>
+									<span className="table__cell table__cell--centered"></span>
+								</div>
+
+								{ termsFiltered.map((term) => {
+									const { id, title, letter, image } = term;
+									return (
+										<div key={ id } className="table__row">
+											<span className="table__cell table__cell--span-3">{ title }</span>
+											<span className="table__cell table__cell--span-2">{ id }</span>
+											<span className="table__cell table__cell--span-2">{ letter }</span>
+											<span className="table__cell table__cell--span-4">{ image }</span>
+											<span className="table__cell table__cell--centered">
+												<button
+													className="table__button table__button--edit"
+													onClick={ () => handleEditTerm(term) }
+												>
+												</button>
+											</span>
+										</div>
+									);
+								}) }
+							</div>
+
+							<Modal
+								showModal={ showModal }
+								closeModal={ () => setShowModal(false) }
+							>
+								<DictionaryForm closeModal={ () => setShowModal(false) } />
+							</Modal>
+
+							<button className="button" onClick={ openEmptyTermForm }>
+								Создать
+							</button>
+						</div>
+					</>
 				) }
 		</>
 	);

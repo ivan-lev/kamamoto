@@ -3,6 +3,7 @@
 }
 
 .admin {
+	overflow: auto;
 	display: grid;
 	grid-template-columns: 300px auto;
 	grid-template-rows: auto;
@@ -10,12 +11,15 @@
 
 	box-sizing: border-box;
 	width: 100%;
+	height: 100%;
+	max-height: 100svh;
+	padding-top: var(--gap-48);
 	padding-right: var(--gap-48);
 	padding-left: var(--gap-48);
 
 	&__sidebar {
 		position: sticky;
-		top: var(--gap-48);
+		top: 0;
 
 		display: flex;
 		flex-direction: column;
