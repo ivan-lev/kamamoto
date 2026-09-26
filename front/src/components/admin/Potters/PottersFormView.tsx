@@ -213,6 +213,7 @@ export default function PottersForm() {
 			<ArticleForm
 				entity={ potterToEdit }
 				onChange={ updatedPotter => dispatch(setPotterToEdit(updatedPotter)) }
+				slidesStorage={{ target: 'potters', key: potterToEdit.id, emptyKeyHint: 'Чтобы загружать слайды, сначала укажите id гончара' }}
 			/>
 
 			<div className="form__row form__row-12 form__row-12--inline">

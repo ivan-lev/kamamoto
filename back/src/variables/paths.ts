@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { BASE_URL, NODE_ENV, PORT, STATIC_URL } from '../config';
 import 'dotenv/config';
 
@@ -15,5 +16,7 @@ export const PATHS = Object.freeze({
 	POTTERS: 'potters',
 	LNT_POTTERS: 'lnt-potters',
 	TERMS: 'terms',
+	// public folder on disk, lives outside back/ so deploys never wipe it
+	STATIC_DIR: path.resolve(__dirname, '../../../static'),
 	STATIC_URL: NODE_ENV === 'production' ? `/${STATIC_URL}` : `${BASE_URL}:${PORT}/${STATIC_URL}`,
 });

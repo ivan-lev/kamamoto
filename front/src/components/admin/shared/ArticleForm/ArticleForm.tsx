@@ -1,4 +1,4 @@
-import type { ArticleSection } from '@/components/visitor/Article/Article.types';
+import type { ArticleSection, SlidesStorage } from '@/components/visitor/Article/Article.types';
 import ArticleFormSection from '@/components/admin/shared/ArticleForm/ArticleFormSection';
 
 export interface ArticleEntity {
@@ -8,9 +8,10 @@ export interface ArticleEntity {
 interface Props<T extends ArticleEntity> {
 	entity: T;
 	onChange: (updatedEntity: T) => void;
+	slidesStorage?: SlidesStorage;
 }
 
-export default function ArticleForm<T extends ArticleEntity>({ entity, onChange }: Props<T>) {
+export default function ArticleForm<T extends ArticleEntity>({ entity, onChange, slidesStorage }: Props<T>) {
 	const { article } = entity;
 
 	function updateArticle(newArticle: ArticleSection[]) {
@@ -32,6 +33,7 @@ export default function ArticleForm<T extends ArticleEntity>({ entity, onChange 
 					sectionIndex={ index }
 					article={ article }
 					onArticleChange={ updateArticle }
+					slidesStorage={ slidesStorage }
 				/>
 			)) }
 

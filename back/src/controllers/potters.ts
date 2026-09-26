@@ -2,6 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import type { Potter as IPotter } from '../types/potter';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Potter from '../models/potter';
+import { removeUnusedSlides } from '../utils/slides';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
@@ -95,12 +96,19 @@ async function createPotter(req: Request, res: Response, next: NextFunction) {
 async function updatePotter(req: Request, res: Response, next: NextFunction) {
 	const potter: IPotter = req.body;
 
+	const potterId = req.params.id as string;
+
 	try {
+		const previousPotter = await Potter.findOne({ id: potterId }, 'article').lean<Pick<IPotter, 'article'>>();
 		const result = await Potter.findOneAndUpdate(
-			{ id: req.params.id },
+			{ id: potterId },
 			potter,
 			{ returnDocument: 'after', runValidators: true },
 		).select({ _id: 0 }).orFail();
+
+		// При смене id слайды остаются в папке со старым id, поэтому их не трогаем
+		if (previousPotter && result.id === potterId)
+			await removeUnusedSlides('potters', potterId, previousPotter.article, result.article);
 
 		res.status(201).send(result);
 	}

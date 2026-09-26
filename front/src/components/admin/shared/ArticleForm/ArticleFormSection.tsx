@@ -1,20 +1,30 @@
-import type { ArticleSection } from '@/components/visitor/Article/Article.types';
-import { useState } from 'react';
+import type { ArticleSection, ArticleSlide, SlidesStorage, UploadedSlide } from '@/components/visitor/Article/Article.types';
+import { useEffect, useRef, useState } from 'react';
 import ArticleFormSlide from '@/components/admin/shared/ArticleForm/ArticleFormSlide';
+import ArticleFormSlidesDropzone from '@/components/admin/shared/ArticleForm/ArticleFormSlidesDropzone';
 import RichTextEditor from '@/components/admin/shared/RichTextEditor/RichTextEditor';
+import { PATHS } from '@/variables/variables';
 
 interface Props {
 	section: ArticleSection;
 	sectionIndex: number;
 	article: ArticleSection[];
 	onArticleChange: (newArticle: ArticleSection[]) => void;
+	slidesStorage?: SlidesStorage;
 }
 
-export default function ArticleFormSection({ section, sectionIndex, article, onArticleChange }: Props) {
+export default function ArticleFormSection({ section, sectionIndex, article, onArticleChange, slidesStorage }: Props) {
 	const { content, slides } = section;
 	const [isArticleCollapsed, setIsArticleCollapsed] = useState(false);
 
-	const initialSlide = { filename: '', source: '', caption: '' };
+	// Загрузка файлов асинхронная: пока она идёт, статью могут успеть поправить,
+	// поэтому новые слайды добавляем к актуальной версии статьи
+	const latestArticleRef = useRef(article);
+	useEffect(() => {
+		latestArticleRef.current = article;
+	}, [article]);
+
+	const slidesUrl = slidesStorage?.key ? `${PATHS.STATIC_URL}/${slidesStorage.target}/${slidesStorage.key}/slides` : undefined;
 
 	const headingMatch = content.match(/<h[1-6]>(.*?)<\/h[1-6]>/);
 	const heading = headingMatch?.[1];
@@ -41,10 +51,11 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 		}
 	}
 
-	function addSlideToSection() {
-		const newSlidesData = slides?.length ? [...slides, Object.assign(initialSlide)] : [Object.assign(initialSlide)];
-		const newSectionData = { content, slides: newSlidesData };
-		const newArticleData = article.map((section, index) => index === sectionIndex ? newSectionData : section);
+	function addUploadedSlides(uploadedSlides: UploadedSlide[]) {
+		const newSlides: ArticleSlide[] = uploadedSlides.map(({ filename }) => ({ filename, source: '', caption: '' }));
+		const newArticleData = latestArticleRef.current.map((section, index) => index === sectionIndex
+			? { ...section, slides: [...section.slides ?? [], ...newSlides] }
+			: section);
 		onArticleChange(newArticleData);
 	}
 
@@ -101,13 +112,17 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 						sectionIndex={ sectionIndex }
 						article={ article }
 						onArticleChange={ onArticleChange }
+						slidesUrl={ slidesUrl }
 					/>
 				)) }
 			</div>
 
-			<div className="form__row form__row-3" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
-				<button type="button" className="button button--xs" onClick={ addSlideToSection }>Добавить слайд</button>
-			</div>
+			{ !isArticleCollapsed && (
+				<ArticleFormSlidesDropzone
+					slidesStorage={ slidesStorage }
+					onUpload={ addUploadedSlides }
+				/>
+			) }
 		</div>
 	);
 };

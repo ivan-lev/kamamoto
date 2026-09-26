@@ -20,6 +20,7 @@ export const PATHS = Object.freeze({
 	SIGNIN: 'signin',
 	STATISTICS: 'statistics',
 	TERMS: 'terms',
+	UPLOADS: 'uploads',
 	USEFUL: 'useful',
 	USERS: 'users',
 });

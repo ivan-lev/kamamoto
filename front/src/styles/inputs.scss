@@ -28,6 +28,16 @@
 		color: var(--text-disabled);
 		background-color: var(--background-hover);
 	}
+
+	&_readonly {
+		cursor: default;
+		color: var(--text-muted);
+		background-color: var(--background-hover);
+
+		&:focus-visible {
+			outline: none;
+		}
+	}
 }
 
 .textarea {

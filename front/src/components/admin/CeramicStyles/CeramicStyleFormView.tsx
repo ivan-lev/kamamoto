@@ -107,6 +107,7 @@ export default function CeramicStyleFormView() {
 			<ArticleForm
 				entity={ ceramicStyleToEdit }
 				onChange={ updatedStyle => dispatch(setCeramicStyleToEdit(updatedStyle)) }
+				slidesStorage={{ target: 'ceramic-styles', key: ceramicStyleToEdit.name, emptyKeyHint: 'Чтобы загружать слайды, сначала укажите имя стиля' }}
 			/>
 
 			<div className="form__row form__row-12 form__row-12--inline">

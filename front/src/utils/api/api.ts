@@ -10,6 +10,7 @@ import { partners } from '@/utils/api/api.partners';
 import { potters } from '@/utils/api/api.potters';
 import { statistics } from '@/utils/api/api.statistics';
 import { terms } from '@/utils/api/api.terms';
+import { uploads } from '@/utils/api/api.uploads';
 
 export const api = {
 	auth,
@@ -24,4 +25,5 @@ export const api = {
 	potters,
 	statistics,
 	terms,
+	uploads,
 };

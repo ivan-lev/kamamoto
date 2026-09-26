@@ -1,0 +1,59 @@
+.slides-dropzone {
+	flex-direction: column;
+	gap: var(--gap-8);
+
+	&__area {
+		cursor: pointer;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		box-sizing: border-box;
+		width: 100%;
+		min-height: 80px;
+		padding: var(--gap-16);
+		border: 2px dashed var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		font-size: 13px;
+		color: var(--text-muted);
+		text-align: center;
+
+		background: var(--background-muted);
+
+		transition: border-color 0.2s, color 0.2s;
+
+		&:hover:not(&--disabled),
+		&--active {
+			border-color: var(--text-muted);
+			color: var(--text-default);
+		}
+
+		&--disabled {
+			cursor: not-allowed;
+			color: var(--text-disabled);
+		}
+	}
+
+	&__input {
+		display: none;
+	}
+
+	&__error {
+		font-size: 13px;
+		color: var(--color-error, #c0392b);
+	}
+
+	&__preview {
+		flex-shrink: 0;
+
+		width: 60px;
+		height: 40px;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		object-fit: cover;
+		background: var(--background-muted);
+	}
+}

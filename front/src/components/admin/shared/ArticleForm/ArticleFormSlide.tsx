@@ -7,12 +7,17 @@ interface Props {
 	sectionIndex: number;
 	article: ArticleSection[];
 	onArticleChange: (newArticle: ArticleSection[]) => void;
+	slidesUrl?: string;
 }
 
-export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, article, onArticleChange }: Props) {
+export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, article, onArticleChange, slidesUrl }: Props) {
 	const currentSection = article[sectionIndex];
 	const { slides, content } = currentSection;
 	const { filename, source, caption } = slide;
+
+	const previewSrc = filename.startsWith('http')
+		? filename
+		: filename && slidesUrl ? `${slidesUrl}/${filename}` : undefined;
 
 	function handleChange(event: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = event.target;
@@ -32,7 +37,10 @@ export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, arti
 	return (
 		<div className="form__row form__row-12 form__row-12--inline">
 			{ `${slideIndex + 1}.` }
-			<input className="input" value={ filename } name="filename" placeholder="название файла" onChange={ handleChange } />
+			{ previewSrc
+				? <img className="slides-dropzone__preview" src={ previewSrc } alt={ filename } />
+				: <span className="slides-dropzone__preview" /> }
+			<input className="input input_readonly" value={ filename } name="filename" placeholder="название файла" title={ filename } readOnly />
 			<input className="input" value={ source } name="source" placeholder="источник" onChange={ handleChange } />
 			<input className="input" value={ caption } name="caption" placeholder="подпись" onChange={ handleChange } />
 			<button type="button" className="checkbox-label checkbox-label--small" onClick={ handleDeleteSlide }>
