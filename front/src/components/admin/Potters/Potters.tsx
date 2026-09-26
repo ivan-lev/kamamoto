@@ -1,7 +1,7 @@
 import type { RootState } from '@/slices/admin';
-import type { Potter } from '@/types/potter';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PotterRow from '@/components/admin/Potters/PotterRow';
 import PottersFormView from '@/components/admin/Potters/PottersFormView';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/shared/Preloader/Preloader';
@@ -18,12 +18,6 @@ export default function Potters() {
 	const dispatch = useDispatch();
 	const pottersList = useSelector((state: RootState) => state.potters.pottersList);
 	const isExistingPotterEdited = useSelector((state: RootState) => state.potters.isExistingPotterEdited);
-
-	function handleSetPotterToEdit(data: Potter) {
-		dispatch(setIsExistingPotterEdited(true));
-		dispatch(setPotterToEdit(data));
-		setShowModal(true);
-	}
 
 	function handleCloseModal() {
 		setShowModal(false);
@@ -69,25 +63,7 @@ export default function Potters() {
 								<span className="table__cell table__cell--span-4">Имя на японском</span>
 								<span className="table__cell table__cell--centered"></span>
 							</div>
-							{ pottersList.map((potter) => {
-								return (
-									<div
-										key={ potter.id }
-										className="table__row"
-									>
-										<span className="table__cell table__cell--span-3">{ potter.id }</span>
-										<span className="table__cell table__cell--span-4">{ potter.name }</span>
-										<span className="table__cell table__cell--span-4">{ potter.japaneseName }</span>
-										<div className="table__cell table__cell--centered">
-											<button
-												className="table__button table__button--edit"
-												onClick={ () => handleSetPotterToEdit(potter) }
-											>
-											</button>
-										</div>
-									</div>
-								);
-							}) }
+							{ pottersList.map(potter => <PotterRow key={ potter.id } potter={ potter } setShowModal={ setShowModal } />) }
 						</div>
 						<Modal
 							showModal={ showModal }
