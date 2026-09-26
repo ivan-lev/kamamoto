@@ -57,3 +57,49 @@
 		background: var(--background-muted);
 	}
 }
+
+.slide-row {
+	position: relative;
+	align-items: center;
+
+	&__handle {
+		cursor: grab;
+		user-select: none;
+
+		padding: 0 var(--gap-4);
+
+		font-size: 18px;
+		color: var(--text-muted);
+
+		&:active {
+			cursor: grabbing;
+		}
+	}
+
+	&--dragged {
+		opacity: 0.4;
+	}
+
+	&--drop-before,
+	&--drop-after {
+		&::after {
+			content: '';
+
+			position: absolute;
+			right: 0;
+			left: 0;
+
+			height: 2px;
+
+			background: var(--text-default);
+		}
+	}
+
+	&--drop-before::after {
+		top: calc(var(--gap-4) * -1);
+	}
+
+	&--drop-after::after {
+		bottom: calc(var(--gap-4) * -1);
+	}
+}

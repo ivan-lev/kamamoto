@@ -50,12 +50,17 @@ export default function ArticleFormSlidesDropzone({ slidesStorage, onUpload }: P
 	}
 
 	function handleDragOver(event: DragEvent<HTMLLabelElement>) {
+		// реагируем только на файлы, а не на перетаскиваемые слайды
+		if (!event.dataTransfer.types.includes('Files'))
+			return;
 		event.preventDefault();
 		if (!isDisabled)
 			setIsDragOver(true);
 	}
 
 	function handleDrop(event: DragEvent<HTMLLabelElement>) {
+		if (!event.dataTransfer.types.includes('Files'))
+			return;
 		event.preventDefault();
 		setIsDragOver(false);
 		if (!isDisabled)

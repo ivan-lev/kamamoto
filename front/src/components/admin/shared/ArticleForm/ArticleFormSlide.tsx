@@ -1,5 +1,14 @@
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, DragEvent } from 'react';
 import type { ArticleSection, ArticleSlide } from '@/components/visitor/Article/Article.types';
+
+export interface SlideDragProps {
+	isDragged: boolean;
+	dropPosition?: 'before' | 'after';
+	onDragStart: (event: DragEvent<HTMLElement>) => void;
+	onDragOver: (event: DragEvent<HTMLElement>) => void;
+	onDrop: (event: DragEvent<HTMLElement>) => void;
+	onDragEnd: () => void;
+}
 
 interface Props {
 	slide: ArticleSlide;
@@ -8,9 +17,10 @@ interface Props {
 	article: ArticleSection[];
 	onArticleChange: (newArticle: ArticleSection[]) => void;
 	slidesUrl?: string;
+	drag: SlideDragProps;
 }
 
-export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, article, onArticleChange, slidesUrl }: Props) {
+export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, article, onArticleChange, slidesUrl, drag }: Props) {
 	const currentSection = article[sectionIndex];
 	const { slides, content } = currentSection;
 	const { filename, source, caption } = slide;
@@ -35,8 +45,21 @@ export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, arti
 	}
 
 	return (
-		<div className="form__row form__row-12 form__row-12--inline">
-			{ `${slideIndex + 1}.` }
+		<div
+			className={ `form__row form__row-12 form__row-12--inline slide-row${drag.isDragged ? ' slide-row--dragged' : ''}${drag.dropPosition ? ` slide-row--drop-${drag.dropPosition}` : ''}` }
+			onDragOver={ drag.onDragOver }
+			onDrop={ drag.onDrop }
+		>
+			<span
+				className="slide-row__handle"
+				title="Перетащите, чтобы изменить порядок"
+				draggable
+				onDragStart={ drag.onDragStart }
+				onDragEnd={ drag.onDragEnd }
+			>
+				⠿
+			</span>
+			{ /* { `${slideIndex + 1}.` } */ }
 			{ previewSrc
 				? <img className="slides-dropzone__preview" src={ previewSrc } alt={ filename } />
 				: <span className="slides-dropzone__preview" /> }
