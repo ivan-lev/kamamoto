@@ -15,11 +15,19 @@ jobs:
     # re-run automerge only when CI just went green on a renovate branch;
     # schedule/manual triggers always run regardless
     if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && startsWith(github.event.workflow_run.head_branch, 'renovate/'))
+    # один PR запускает CI нескольких проектов, и они завершаются почти одновременно —
+    # ставим запуски в очередь, чтобы не толкались на одних ветках.
+    # На уровне job, а не workflow: иначе пропущенные по if запуски вытесняли бы из очереди настоящие
+    concurrency:
+      group: renovate
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v5
 
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v46.2.2
+        env:
+          # глобальная опция: в renovate.json её нельзя — он же читается как конфиг репозитория
+          RENOVATE_REPOSITORIES: ivan-lev/kamamoto
         with:
-          configurationFile: renovate.json
           token: '${{ secrets.RENOVATE_TOKEN }}'

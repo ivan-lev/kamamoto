@@ -37,4 +37,4 @@
 
 ## Незаконченная работа (WIP, не в git)
 
-24. «Декоративные приёмы» (`features`): `back/src/models/feature.ts`, `types/feature.ts`, `routes/features.ts` (untracked) + `controllers/features.ts`, `ERROR_MESSAGES.FEATURE`, `PATHS.FEATURES`. Роутер **не подключён**, POST валидируется `ceramicStyleValidator`, `getFeatureArticle` не пропускает пустые `filename`, `removeUnusedSlides` не вызывается, в `SLIDES_TARGETS` цели нет. Фронт: роут админки `features` рендерит `AdminCeramicStyles`, пункт меню закомментирован.
+24. «Декоративные приёмы» (`features`): `back/src/models/feature.ts`, `types/feature.ts`, `routes/features.ts`, `controllers/features.ts` (закоммичены только чтобы собирался CI), `ERROR_MESSAGES.FEATURE`, `PATHS.FEATURES`. Роутер **не подключён**, POST валидируется `ceramicStyleValidator`, `getFeatureArticle` не пропускает пустые `filename`, `removeUnusedSlides` не вызывается, в `SLIDES_TARGETS` цели нет. Фронт: роут админки `features` рендерит `AdminCeramicStyles`, пункт меню закомментирован.

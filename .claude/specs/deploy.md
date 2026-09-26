@@ -53,4 +53,7 @@ Caddy также отвечает за канонические URL (301): уб�
 
 - GitHub Actions: `ci-front`, `ci-back`, `ci-docs`, `ci-yuding` на PR в `main`. Они только запускают `npm ci && npm run build` в нужной папке (`_build.yml`, Node 24). Линтера и тестов в CI нет.
 - Renovate (self-hosted workflow, по пятницам): minor/patch мёржатся автоматически, major — нет.
+  - Automerge срабатывает, только если по PR прошёл хотя бы один CI. CI запускается по путям `back/**`, `front/**`, `docs/**`, `yuding/**`, поэтому PR, которые трогают только `docker-compose.yml` или workflow, вливаются вручную.
+  - Сломанная сборка любого проекта блокирует все PR, которые его затрагивают. CI собирает с чистого checkout, так что незакоммиченный файл, на который ссылается закоммиченный код, ломает CI, хотя локально всё собирается.
+  - Лимиты на число PR сняты (`prHourlyLimit`/`prConcurrentLimit: 0`): при запуске раз в неделю дефолтные 2 PR/час давали очередь из ~20 обновлений. `repositories` задаётся через env `RENOVATE_REPOSITORIES` в workflow, а не в `renovate.json`.
 - Для ручного обновления зависимостей есть скилл `.claude/skills/update-deps` (`/update-deps`).

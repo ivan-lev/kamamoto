@@ -1,8 +1,9 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"repositories": ["ivan-lev/kamamoto"],
 	"extends": ["config:recommended"],
 	"platformAutomerge": false,
+	"prHourlyLimit": 0,
+	"prConcurrentLimit": 0,
 	"packageRules": [
 		{
 			"matchUpdateTypes": ["patch", "minor"],
