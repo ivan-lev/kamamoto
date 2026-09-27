@@ -110,6 +110,7 @@ Body лота: `category`, `style`, `potter` передаются **строка
 | DELETE | `/:id` | `termIdValidator` | удалённый документ |
 
 `id` — `[a-z0-9-]+`, `image` — `*.jpg/webp` или `''`, обязательны `title`, `definition`, `letter`.
+PATCH удаляет с диска прежнюю картинку, если `image` сменился или стал `''`, DELETE — картинку удалённого термина. В обоих случаях файл остаётся, если на него ссылается другой термин.
 
 ## Maps — маркеры карты `/maps`
 
@@ -159,3 +160,9 @@ Body лота: `category`, `style`, `potter` передаются **строка
 `POST /slides/:target/:key`, multipart, поле `files` (до 30 файлов по 20 МБ, image/jpeg|png|webp|avif|gif).
 `target` ∈ `SLIDES_TARGETS` (`ceramic-styles`, `potters`), `key` — `[\w-]+`.
 Ответ 201: `[{ filename, url }]`. `filename` уже транслитерирован и уникален в папке, в статью записывается именно он.
+
+`POST /images/:target`, multipart, одно поле `file` (20 МБ) — одиночная картинка записи в `/static/<папка раздела>/<файл>`.
+`target` ∈ `IMAGE_TARGETS` (`back/src/utils/images.ts`): сейчас только `dictionary`, форматы jpeg|webp (как в `termValidator`).
+Имя файла в multipart — желаемое имя (фронт шлёт `id` термина). Ответ 201: `{ filename, url }`, запись в БД фронт сохраняет отдельным запросом.
+
+Для обоих эндпоинтов расширение файла берётся из MIME-типа, а не из имени (`x.html` с `image/jpeg` сохранится как `x.jpg`). Существующие файлы не перезаписываются, к имени добавляется `-1`, `-2`…

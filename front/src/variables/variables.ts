@@ -9,6 +9,7 @@ export const PATHS = Object.freeze({
 	CERAMIC_STYLES: 'ceramic-styles',
 	COLLECTION: 'collection',
 	COMPLECTATION: 'complectation',
+	DICTIONARY: 'dictionary',
 	EXHIBIT: 'exhibits',
 	EXHIBITS: 'exhibits',
 	EXHIBITIONS: 'exhibitions',

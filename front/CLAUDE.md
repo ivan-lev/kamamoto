@@ -25,7 +25,7 @@ components/
   App/                 роутер верхнего уровня: /admin/* (lazy) и /* (VisitorView)
   visitor/<Name>/      страницы и блоки сайта; <Name>.tsx + <Name>.scss рядом
   admin/<Name>/        разделы админки (формы, таблицы)
-  admin/shared/        ArticleForm (редактор статей со слайдами), RichTextEditor (tiptap)
+  admin/shared/        ArticleForm (редактор статей со слайдами), RichTextEditor (tiptap), ImageDropzone (одна картинка записи)
   shared/              Button, Modal, Preloader — общие для обеих частей
 slices/visitor/*       RTK-слайсы сайта, стор создаётся лениво (getVisitorStore)
 slices/admin/*         RTK-слайсы админки, отдельный стор (getAdminStore)
@@ -75,6 +75,10 @@ if (token) {
 - Админка: `<ArticleForm entity onChange slidesStorage={{ target, key, emptyKeyHint }} />`. Секции редактируются в tiptap (`RichTextEditor`), слайды загружаются drag'n'drop через `ArticleFormSlidesDropzone`.
 - На сайте `<Article data=... />` → `ArticleSection` (HTML разбирается через `html-react-parser` + `htmlParserOptions`, который расставляет БЭМ-классы тегам) + `ArticleSlider` (swiper).
 - Внешние слайды (URL, начинающийся с `http`) бэк не трогает. Локальные превращаются в `${STATIC_URL}/<раздел>/<key>/slides/<file>`.
+
+## Одиночная картинка записи (словарь)
+
+`<ImageDropzone previewSrc filename mimeTypes onSelect onRemove />` только выбирает файл, загружает его форма при сохранении: `api.uploads.uploadImage` → имя файла в запись → сохранение записи. Так брошенные правки не оставляют файлов на сервере. Старую картинку удаляет бэкенд при сохранении записи. Образец — `admin/Dictionary/DictionaryForm.tsx`.
 
 ## Стили
 

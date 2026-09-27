@@ -2,6 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import type { Term as ITerm } from '../types/term';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Term from '../models/term';
+import { removeImage } from '../utils/images';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 
@@ -56,11 +57,17 @@ async function updateTerm(req: Request, res: Response, next: NextFunction) {
 	const term: ITerm = req.body;
 
 	try {
+		const previousTerm = await Term.findOne({ id: req.params.id }).lean<ITerm>().orFail();
 		const result = await Term.findOneAndUpdate(
 			{ id: req.params.id },
 			term,
 			{ returnDocument: 'after', runValidators: true },
 		).select({ _id: 0 }).orFail();
+
+		// картинку заменили или убрали — старый файл больше не нужен, если на него не ссылается другой термин
+		const previousImage = previousTerm.image;
+		if (previousImage && previousImage !== result.image && !(await Term.exists({ image: previousImage })))
+			await removeImage('dictionary', previousImage);
 
 		res.status(201).send(result);
 	}
@@ -71,6 +78,11 @@ async function updateTerm(req: Request, res: Response, next: NextFunction) {
 async function deleteTerm(req: Request, res: Response, next: NextFunction) {
 	try {
 		const result = await Term.findOneAndDelete({ id: req.params.id }).orFail();
+
+		// картинка удалённого термина больше не нужна, если на неё не ссылается другой термин
+		if (result.image && !(await Term.exists({ image: result.image })))
+			await removeImage('dictionary', result.image);
+
 		res.send(result);
 	}
 

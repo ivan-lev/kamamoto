@@ -1,0 +1,29 @@
+// Зона перетаскивания и ошибка — общие классы slides-dropzone (styles/slides-dropzone.scss),
+// чтобы поле выглядело так же, как загрузка слайдов в статьях
+.image-dropzone {
+	gap: var(--gap-8);
+
+	&__body {
+		display: flex;
+		gap: var(--gap-16);
+		align-items: stretch;
+	}
+
+	&__preview {
+		flex-shrink: 0;
+
+		width: 160px;
+		height: 120px;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius-s);
+
+		object-fit: cover;
+		background: var(--background-muted);
+	}
+
+	&__file {
+		display: flex;
+		gap: var(--gap-8);
+		align-items: center;
+	}
+}
