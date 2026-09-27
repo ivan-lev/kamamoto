@@ -1,6 +1,6 @@
 # Backend (back/)
 
-Express 5 + Mongoose 9 на TypeScript (CommonJS, `module: node16`, strict). Точка входа — `src/app.ts`, в проде работает собранный `dist/app.js` внутри Docker.
+Express 5 + Mongoose 9 на TypeScript (CommonJS, `module: node20` + `moduleResolution: node16`, strict). `node20` нужен, чтобы из CommonJS можно было `require()` ESM-only пакеты (celebrate 16+); в рантайме это умеет Node ≥ 20.19, прод и CI — Node 24. Точка входа — `src/app.ts`, в проде работает собранный `dist/app.js` внутри Docker.
 
 ## Команды
 
