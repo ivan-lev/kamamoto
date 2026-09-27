@@ -18,12 +18,14 @@ export default function Dictionary() {
 	const [query, setQuery] = useState<string>('');
 	const terms = useSelector((state: RootState) => state.dictionary.terms);
 
-	const termsFiltered = query === ''
+	const normalizedQuery = query.trim().toLowerCase();
+	const termsFiltered = normalizedQuery === ''
 		? terms
 		: terms.filter((term) => {
-			return term.title.toLowerCase().includes(query.toLowerCase())
-				|| term.letter.toLowerCase().includes(query.toLowerCase())
-				|| term.kanji.includes(query);
+			// бэк отдаёт термины через lean(), дефолты схемы не подставляются — у старых записей поля может не быть
+			return [term.title, term.letter, term.id, term.romaji]
+				.some(field => (field ?? '').toLowerCase().includes(normalizedQuery))
+				|| (term.kanji ?? '').includes(query.trim());
 		});
 
 	function handleQueryChange(event: ChangeEvent<HTMLInputElement>) {
@@ -68,7 +70,7 @@ export default function Dictionary() {
 								className="input"
 								type="text"
 								name="query"
-								placeholder="поиск: часть названия, кандзи"
+								placeholder="поиск: название, id, ромадзи, кандзи"
 								value={ query }
 								onChange={ handleQueryChange }
 							/>
