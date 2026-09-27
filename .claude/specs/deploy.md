@@ -30,6 +30,10 @@ Caddy также отвечает за канонические URL (301): уб�
 
 `restart.sh <up|down|prune|all|front|back|caddy|mongo|yuding>` — пересборка и перезапуск сервисов на VPS.
 
+Обновление образа (`mongo`, `caddy`): сначала `docker compose pull <service>`, и только когда образ скачан — бэкап и `./restart.sh <service>`. Скрипт сначала останавливает и удаляет контейнер, поэтому если образ не скачается, сервис останется лежать.
+- С VPS `docker pull` из Docker Hub может падать с `TLS handshake timeout` (2026-09-27, mongo 8.3.11), хотя `registry-1.docker.io`, `auth.docker.io` и `production.cloudflare.docker.com` отвечают. Обход без перезапуска Docker: `docker pull mirror.gcr.io/library/<image>:<tag> && docker tag mirror.gcr.io/library/<image>:<tag> <image>:<tag>`.
+- Бэкап БД на VPS: `DB_NAME=... bash mongo/dump.sh > mongo/backups/<name>.gz` из папки с compose. Архив `--archive --gzip` не проверяется через `gunzip -t`: смотреть на строки `done dumping` и размер.
+
 ## Деплой (из корня, rsync по ssh)
 
 | Скрипт | Что уходит на сервер |
