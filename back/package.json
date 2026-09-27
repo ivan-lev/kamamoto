@@ -23,7 +23,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.3.0",
-    "celebrate": "^15.0.3",
+    "celebrate": "^16.0.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.0",
     "express": "^5.2.1",
