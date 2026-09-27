@@ -61,6 +61,11 @@
 		}
 	}
 
+	&__create-button {
+		position: sticky;
+		bottom: var(--gap-48);
+	}
+
 	@media (max-width: 1024px) {
 		grid-template-areas: revert;
 		grid-template-columns: 1fr;

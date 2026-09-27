@@ -103,7 +103,7 @@ export default function Markers() {
 						>
 							<MarkersFormView />
 						</Modal>
-						<button className="button" onClick={ () => handleOpenModal() }>
+						<button className="button admin__create-button" onClick={ () => handleOpenModal() }>
 							Создать
 						</button>
 					</div>

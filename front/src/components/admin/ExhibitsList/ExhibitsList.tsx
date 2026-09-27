@@ -61,7 +61,7 @@ export default function Exhibits() {
 							)) }
 						</div>
 
-						<button className="button" onClick={ handleOpenEmptyForm }>Создать лот</button>
+						<button className="button admin__create-button" onClick={ handleOpenEmptyForm }>Создать лот</button>
 
 						<Modal
 							showModal={ showModal }

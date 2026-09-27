@@ -114,7 +114,7 @@ export default function Dictionary() {
 								<DictionaryForm closeModal={ () => setShowModal(false) } />
 							</Modal>
 
-							<button className="button" onClick={ openEmptyTermForm }>
+							<button className="button admin__create-button" onClick={ openEmptyTermForm }>
 								Создать
 							</button>
 						</div>

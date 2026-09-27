@@ -83,7 +83,7 @@ export default function Exhibitions() {
 							<ExhibitionForm closeModal={ () => setShowModal(false) } />
 						</Modal>
 
-						<button className="button" onClick={ handleCreateExhibition }>
+						<button className="button admin__create-button" onClick={ handleCreateExhibition }>
 							Создать
 						</button>
 					</div>

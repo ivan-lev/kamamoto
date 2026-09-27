@@ -76,7 +76,7 @@ export default function CeramicStyles() {
 							<CeramicStyleFormView />
 						</Modal>
 
-						<button className="button" onClick={ () => createNewCeramicStyle() }>
+						<button className="button admin__create-button" onClick={ () => createNewCeramicStyle() }>
 							Создать
 						</button>
 					</div>

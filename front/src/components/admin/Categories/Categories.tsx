@@ -82,7 +82,7 @@ export default function Categories() {
 							<CategoryForm closeModal={ () => setShowModal(false) } />
 						</Modal>
 
-						<button className="button" onClick={ openEmptyCategoryForm }>
+						<button className="button admin__create-button" onClick={ openEmptyCategoryForm }>
 							Создать
 						</button>
 					</div>
