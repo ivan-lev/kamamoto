@@ -18,6 +18,11 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
+	* {
+		scrollbar-color: var(--color-secondary-100) var(--color-primary-200);
+		scrollbar-width: thin;
+	}
+
 	@media screen and (max-width: 768px) {
 		gap: var(--gap-48);
 	}
