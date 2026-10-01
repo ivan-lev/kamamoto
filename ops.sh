@@ -11,7 +11,7 @@ if [ -z "$SERVICE" ]; then
   echo "Commands:"
   echo "  up       — build and start all services"
   echo "  down     — stop and remove all containers"
-  echo "  prune    — remove unused docker networks, images, containers"
+  echo "  prune    — remove stopped containers, unused networks, dangling images, build cache"
   echo "  all      — rebuild all services from scratch (no cache)"
   echo ""
   echo "Services (rebuild single):"
@@ -61,10 +61,18 @@ case "$SERVICE" in
     echo "===== All services stopped ====="
     ;;
   prune)
+    # тома не трогаем: в caddy_data сертификаты, в front_build/yuding_build сборки.
+    # image prune без -a: иначе после down удалятся образы mongo/caddy, а pull с VPS бывает недоступен
+    echo "===== Disk usage before ====="
+    df -h /
     echo "===== Pruning unused docker resources ====="
+    docker container prune -f
     docker network prune -f
     docker image prune -f
-    docker container prune -f
+    docker builder prune -f # кэш сборки копится от build --no-cache
+    echo "===== Disk usage after ====="
+    df -h /
+    docker system df
     echo "===== Prune done ====="
     ;;
   all)

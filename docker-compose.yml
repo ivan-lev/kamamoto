@@ -1,3 +1,10 @@
+# ротация логов контейнеров: без неё json-логи растут бесконечно и забивают диск VPS
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
 
   front:
@@ -7,6 +14,7 @@ services:
       args:
         VITE_MAP_API_KEY: ${VITE_MAP_API_KEY}
     container_name: front
+    logging: *default-logging
     volumes:
       - front_build:/srv/front
     networks:
@@ -20,6 +28,7 @@ services:
       context: ./back
       dockerfile: Dockerfile
     container_name: back
+    logging: *default-logging
     environment:
       - NODE_ENV=production
       - DB_HOST=mongo
@@ -36,6 +45,7 @@ services:
   mongo:
     image: mongo:8.3.11
     container_name: mongo
+    logging: *default-logging
     ports:
       - "127.0.0.1:27017:27017"
     environment:
@@ -51,6 +61,7 @@ services:
   caddy:
     image: caddy:2.11.4
     container_name: caddy
+    logging: *default-logging
     ports:
       - "80:80"
       - "443:443"
@@ -73,6 +84,7 @@ services:
       context: ./yuding
       dockerfile: Dockerfile
     container_name: yuding
+    logging: *default-logging
     restart: no # one time run for build volume content
     volumes:
       - yuding_build:/srv/yuding

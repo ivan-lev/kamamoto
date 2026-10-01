@@ -28,10 +28,12 @@
 
 Caddy также отвечает за канонические URL (301): убирает хвостовой слэш у `/<...>/<число>/` и у страниц из списка `@staticToRemoveSlash`, добавляет его у списков из `@listingToAddSlash`. Статике выставлен кэш `max-age=31536000, immutable`, поэтому файлы с тем же именем не обновятся у пользователей — отсюда правило «не перезаписывать файлы, а давать новое имя».
 
-`restart.sh <up|down|prune|all|front|back|caddy|mongo|yuding>` — пересборка и перезапуск сервисов на VPS.
+`ops.sh <up|down|prune|all|front|back|caddy|mongo|yuding>` — управление docker compose на VPS: пересборка и перезапуск сервисов, чистка диска (до 2026-10-01 скрипт назывался `restart.sh`).
 
-Обновление образа (`mongo`, `caddy`): сначала `docker compose pull <service>`, и только когда образ скачан — бэкап и `./restart.sh <service>`. Скрипт сначала останавливает и удаляет контейнер, поэтому если образ не скачается, сервис останется лежать.
+Обновление образа (`mongo`, `caddy`): сначала `docker compose pull <service>`, и только когда образ скачан — бэкап и `./ops.sh <service>`. Скрипт сначала останавливает и удаляет контейнер, поэтому если образ не скачается, сервис останется лежать.
 - С VPS `docker pull` из Docker Hub может падать с `TLS handshake timeout` (2026-09-27, mongo 8.3.11), хотя `registry-1.docker.io`, `auth.docker.io` и `production.cloudflare.docker.com` отвечают. Обход без перезапуска Docker: `docker pull mirror.gcr.io/library/<image>:<tag> && docker tag mirror.gcr.io/library/<image>:<tag> <image>:<tag>`.
+- Если любой GET отдаёт `{"message":"На сервере произошла ошибка, которую не идентифицировали :("}`, а в `docker compose logs back` видно `MongoServerSelectionError ... mongo:27017`, значит Mongo лежит. Дальше смотреть `docker compose ps -a mongo` и `docker compose logs mongo`. Бэк переподключается сам каждые 5 с, перезапускать его не нужно.
+- Диск VPS заканчивается (2026-10-01: Mongo в `Restarting (100)`, `No space left on device` на `mongod.lock`). Место съедают пересборки с `--no-cache`: старые образы и кэш сборки. Безопасная очистка — `./ops.sh prune`: он удаляет остановленные контейнеры, неиспользуемые сети, образы без тега и кэш сборки, а до и после показывает `df -h`. Старые теги `mongo`/`caddy` он не трогает (`image prune` без `-a`, чтобы после `down` не пришлось заново скачивать образы). Их удалять вручную через `docker rmi`. Логи ротируются: у контейнеров в `docker-compose.yml` (`x-logging`, 3×10 МБ), у winston в бэке (`variables/logs.ts`, тоже 3×10 МБ). Ещё место занимают бэкапы `mongo/backups/backup-*.gz`, они копятся с каждым `db:push`. **Нельзя** `docker volume prune` и `system prune --volumes`: удалятся сертификаты в `caddy_data` и сборка фронта.
 - Бэкап БД на VPS: `DB_NAME=... bash mongo/dump.sh > mongo/backups/<name>.gz` из папки с compose. Архив `--archive --gzip` не проверяется через `gunzip -t`: смотреть на строки `done dumping` и размер.
 
 ## Деплой (из корня, rsync по ssh)
@@ -40,10 +42,10 @@ Caddy также отвечает за канонические URL (301): уб�
 |---|---|
 | `upload:front` / `upload:back` / `upload:yuding` | соответствующая папка, с `--delete` |
 | `upload:static` | `static/` (без `--delete`) |
-| `upload:config` | `.env`, `Caddyfile`, `docker-compose.yml` + `mongo/` |
+| `upload:config` | `.env`, `Caddyfile`, `docker-compose.yml`, `ops.sh` + `mongo/` |
 | `upload:all` | весь репозиторий |
 
-Исключения — в `rsync-rules.txt`: `node_modules`, `dist`, `.git`, `*.md`, `docs`, `logs`, `db_dump`, `backups` и т.д. После загрузки на VPS запускается `./restart.sh <service>`.
+Исключения — в `rsync-rules.txt`: `node_modules`, `dist`, `.git`, `*.md`, `docs`, `logs`, `db_dump`, `backups` и т.д. После загрузки на VPS запускается `./ops.sh <service>`.
 
 ## Синхронизация БД (`mongo/`)
 
