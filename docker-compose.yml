@@ -44,7 +44,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo:8.3.11
+    image: mongo:9.0.2
     container_name: mongo
     logging: *default-logging
     ports:
