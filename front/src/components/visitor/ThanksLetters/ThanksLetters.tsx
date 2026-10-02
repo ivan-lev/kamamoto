@@ -34,10 +34,7 @@ export default function ThanksLetters() {
 
 	return (
 		<>
-			<Seo
-				title="Камамото: благодарственные письма"
-				description="Слова благодарности от людей и организиций, с которыми проводили совместные мероприятия"
-			/>
+			<Seo title="Камамото: благодарственные письма" />
 
 			<section className="section page-top">
 				<h1 className="title title--1">Благодарственные письма</h1>

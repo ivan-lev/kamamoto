@@ -47,13 +47,10 @@ export default function Map() {
 
 	return (
 		<>
-			<Seo
-				title="Камамото: карта гочарных центров"
-				description="Страница с картой керамических центров"
-			/>
+			<Seo title="Камамото: карта гончарных центров" />
 
 			<PageTop
-				title="Карта японских гочарных центров"
+				title="Карта японских гончарных центров"
 				subtitle="Маркеры кликабельны"
 				backLink="/useful/"
 			/>
@@ -87,7 +84,10 @@ export default function Map() {
 								{ /* бесплаьные с лимитом */ }
 								{ /* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */ }
 
-								<TileLayer url="https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
+								{ /* красивые */ }
+								{ /* https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png */ }
+
+								<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 								<LayersControl position="topright" collapsed={ false }>
 									{ MARKER_GROUPS.map(group => (
 										<MapGroup

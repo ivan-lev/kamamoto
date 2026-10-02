@@ -53,10 +53,7 @@ export default function Category() {
 			? (<Navigate to="/404" replace />)
 			: (
 				<>
-					<Seo
-						title={ `Камамото: ${categoryTitle}` }
-						description={ `Страница с каталогом предметов из категории ${categoryTitle.toLowerCase()}` }
-					/>
+					<Seo title={ `Камамото: ${categoryTitle}` } />
 
 					<PageTop title={ categoryTitle } />
 

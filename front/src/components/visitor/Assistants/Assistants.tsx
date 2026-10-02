@@ -8,10 +8,7 @@ export default function Assistants() {
 
 	return (
 		<>
-			<Seo
-				title="Камамото: помощники проекта"
-				description="Страница о людях, внесших вклад в развитие коллекции: мастера чайной церемонии, востоковеды"
-			/>
+			<Seo title="Камамото: помощники проекта" />
 
 			<section className="section page-top">
 				<h1 className="title title--1">Помощники проекта</h1>

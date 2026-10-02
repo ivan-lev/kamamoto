@@ -33,7 +33,6 @@ export default function CeremicStyle() {
 	return (
 		<Article
 			seoTitle={ `Камамото: керамика ${articleInfo.title}` }
-			seoDescription={ `Страница со статьёй о керамике ${articleInfo.title}` }
 			title={ `Керамика ${articleInfo.title}` }
 			subtitle=""
 			data={ articleInfo }

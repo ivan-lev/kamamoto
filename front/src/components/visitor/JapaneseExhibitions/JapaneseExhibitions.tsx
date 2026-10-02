@@ -10,10 +10,7 @@ export default function JapaneseExhibitions() {
 
 	return (
 		<>
-			<Seo
-				title="Камамото: японские выставки"
-				description="Страница со списком выставок гончарного и прикладного искусства, проходящих в Японии"
-			/>
+			<Seo title="Камамото: японские выставки" />
 
 			<PageTop
 				title="Японские керамические выставки"

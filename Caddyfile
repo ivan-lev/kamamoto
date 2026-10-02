@@ -75,7 +75,9 @@ kamamoto.ru {
     root * /srv/front
 
     handle {
-        try_files {path} {path}/ /index.html
+        # Existing files are served by Caddy, SPA routes go to backend for per-page meta tags
+        @spaRoute not file {path} {path}/
+        reverse_proxy @spaRoute http://back:3000
 
         header {
             Permissions-Policy "geolocation=(), microphone=(), camera=()"

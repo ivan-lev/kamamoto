@@ -45,10 +45,7 @@ export default function Collection() {
 		<>
 			<PageTop title="Коллекция" />
 
-			<Seo
-				title="Камамото: коллекция японской керамики"
-				description="Страница с каталогом общих категорий, на которые разделена коллекция"
-			/>
+			<Seo title="Камамото: коллекция японской керамики" />
 
 			<section className="section">
 				{ categories.length === 0 && showPreloader

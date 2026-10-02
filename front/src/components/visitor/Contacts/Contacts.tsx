@@ -69,10 +69,7 @@ export default function Contacts() {
 
 	return (
 		<>
-			<Seo
-				title="Камамото: контакты и форма обратной связи"
-				description="Список ресурсов и контактов, по которым можно со мной связаться"
-			/>
+			<Seo title="Камамото: контакты и форма обратной связи" />
 
 			<h1 className="title title--1">Контакты</h1>
 			<p className="text text--muted">

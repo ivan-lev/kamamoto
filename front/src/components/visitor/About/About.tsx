@@ -12,10 +12,7 @@ export default function About() {
 
 	return (
 		<>
-			<Seo
-				title="Камамото: о коллекционере"
-				description="Страница с информацией о создателе сайта и владельце коллекции"
-			/>
+			<Seo title="Камамото: о коллекционере" />
 
 			<section className="section">
 				<div className="about">

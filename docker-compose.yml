@@ -36,6 +36,7 @@ services:
       - ./.env
     volumes:
       - ./static:/static
+      - front_build:/srv/front:ro # index.html for per-page meta tags
     networks:
       - app-net
     restart: always

@@ -8,7 +8,7 @@ import './HomePage.scss';
 export default function HomePage() {
 	return (
 		<>
-			<Seo title="Камамото: японская керамика" description="Частная коллекция японской керамики и предметов ручной работы, выполненных с применением традиционных техник а также сайт, посвященный японской керамике" />
+			<Seo title="Камамото: японская керамика" />
 
 			<div className="container container--background-transparent">
 				<h1 className="title title--homepage">Камамото - японская керамика</h1>

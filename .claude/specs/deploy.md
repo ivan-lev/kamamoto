@@ -21,10 +21,12 @@
 | Сервис | Что делает |
 |---|---|
 | `front` | собирает `dist` и копирует его в volume `front_build`, после чего завершается (`restart: no`). Build-arg — только `VITE_MAP_API_KEY` |
-| `back` | `node dist/app.js` на :3000, env из `.env`, `NODE_ENV=production`, `DB_HOST=mongo`, `./static` смонтирован в `/static` |
+| `back` | `node dist/app.js` на :3000, env из `.env`, `NODE_ENV=production`, `DB_HOST=mongo`, `./static` смонтирован в `/static`, volume `front_build` — в `/srv/front` (read-only, оттуда берётся `index.html` для страниц сайта) |
 | `mongo` | `mongo:8.x` с `--auth`, данные в `./mongo/db_dump`, порт доступен только на `127.0.0.1:27017` |
-| `caddy` | HTTPS, `kamamoto.ru`: `/api/*` и `/static/*` проксируются в back:3000, `/yuding/*` — SPA yuding, остальное — SPA front (`try_files ... /index.html`) |
+| `caddy` | HTTPS, `kamamoto.ru`: `/api/*` и `/static/*` проксируются в back:3000, `/yuding/*` — SPA yuding, существующие файлы из `/srv/front` отдаёт сам, остальные пути сайта (`@spaRoute`) проксирует в back:3000, который возвращает `index.html` с мета-тегами страницы |
 | `yuding` | побочный проект, собирается так же, как front |
+
+Страницы сайта зависят от бэка: если `back` лежит, не открывается ничего, кроме главной. При выкатке изменений в `controllers/pages.ts` вместе с `Caddyfile` сначала обновлять и перезапускать `back`, потом `caddy`: иначе Caddy проксирует страницы в бэк без нужного роута, и вместо сайта будет «Cannot GET». Пока идёт `./ops.sh front`, volume `front_build` на пару секунд пустеет, и страницы сайта в это время отвечают 500.
 
 Caddy также отвечает за канонические URL (301): убирает хвостовой слэш у `/<...>/<число>/` и у страниц из списка `@staticToRemoveSlash`, добавляет его у списков из `@listingToAddSlash`. Статике выставлен кэш `max-age=31536000, immutable`, поэтому файлы с тем же именем не обновятся у пользователей — отсюда правило «не перезаписывать файлы, а давать новое имя».
 

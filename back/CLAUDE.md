@@ -12,7 +12,7 @@ npx tsc --noEmit && npx eslint .   # проверка перед сдачей
 
 ## Как проходит запрос
 
-`app.ts`: `limiter` (10000 запросов / 15 мин) → `cors()` → winston request logger (`logs/request.log`) → `helmet` → body-parser → `/static` (express.static из `../static`) → `/api` → winston error logger → `celebrateErrorAdapter` → `errorHandler`.
+`app.ts`: `limiter` (10000 запросов / 15 мин) → `cors()` → winston request logger (`logs/request.log`) → `helmet` → body-parser → `/static` (express.static из `../static`) → `/api` → `GET /{*splat}` (HTML страниц сайта, `controllers/pages.ts`) → winston error logger → `celebrateErrorAdapter` → `errorHandler`.
 
 `routes/index.ts`: `POST /signin` открыт → `auth` → все роутеры.
 
@@ -68,6 +68,22 @@ async function updateThing(req: Request, res: Response, next: NextFunction) {
 - Имя файла транслитерируется в латиницу. Существующие файлы **не перезаписываются**, к имени добавляется `-1`, `-2`: картинки кэшируются на год, и под старым именем показывалась бы старая версия.
 - Разрешённые `target` сейчас: `ceramic-styles` (key = `style.name`), `potters` (key = `potter.id`). Как подключить новый раздел — в `recipes.md`.
 - При PATCH статьи контроллер вызывает `removeUnusedSlides(target, key, before, after)`: удаляет с диска только файлы, которые были в статье до сохранения и исчезли после. Если в том же PATCH сменился ключ (name/id), слайды не трогаются: они остаются в старой папке и **не переносятся**.
+
+## HTML страниц и мета-теги (`controllers/pages.ts`)
+
+Мессенджеры и соцсети не выполняют JS, поэтому `Seo` на фронте им не виден. На прод Caddy отдаёт сам только существующие файлы сборки (и `/` — там есть `index.html`), а остальные пути сайта проксирует в бэк. `renderPage` читает `PATHS.FRONT_INDEX` (на проде `/srv/front/index.html` из volume `front_build`, локально `front/dist/index.html` — нужен `npm run build` во `front/`) и подставляет мета-теги страницы.
+
+- Файл читается на каждый запрос, без кэша, чтобы пересборка фронта подхватывалась без рестарта бэка.
+- `og:url` и `<link rel="canonical">` (`applyUrl`) ставятся **любой** странице, которую отдаёт бэк, по `req.path`. Canonical вставляется перед `</head>`, а не заменяется: в `index.html` его нет, и если вставка не сработает, страница останется без canonical, а не объявит себя главной. Главную `/` Caddy отдаёт сам, без canonical.
+- `findPageMeta(path)` проходит по таблице `PAGE_ROUTES` и берёт первый подошедший шаблон (порядок важен: лот раньше категории, статичные страницы последними). Поддержаны: лот (`isActive`), категория (поиск по `name`), выставка (без проверки `isActive` — как `GET /exhibitions/:id`), стиль и гончар (если `showArticle !== false` — как их API статей), статичные страницы из `variables/staticPages.ts`. Видимость повторяет API, который вызывает фронт: скрытое не должно светиться в мета-тегах. Нет совпадения или записи → обычный `index.html` с общими тегами, статус 200: страницу 404 по-прежнему показывает фронт.
+- Заголовки повторяют `<Seo>` соответствующих страниц фронта. Описания живут **только на бэке** (фронтовый `Seo` рендерит один `<title>`): берутся из HTML-поля записи (`description` / `info`), если оно пустое — запасной текст. Заголовки и описания статичных страниц — в `variables/staticPages.ts`; ключ — путь без слэшей, он же папка `static/pages/<ключ>/` для `og.jpg`.
+- Новая сущность = функция `get<Entity>Meta(param)`, возвращающая `PageMeta`, + строка в `PAGE_ROUTES`. Новая статичная страница = запись в `STATIC_PAGES`.
+- Картинка превью — `getOgImage(...папка)` из `utils/ogImage.ts`: ищет `static/<папка>/og.jpg`, иначе отдаёт `PATHS.DEFAULT_OG_IMAGE` (`front/public/images/og-image.jpg`, его теги в `index.html` — размеры и `og:image:alt` — тогда не трогаются; для своей картинки `og:image:alt` = `ogTitle`). `og.jpg` — отдельный файл, потому что webp понимают не все соцсети. К адресу добавляется `?v=<mtime>`: и Caddy, и соцсети кешируют картинку по URL, так что заменённый `og.jpg` подхватывается сразу.
+- Значения из БД экранируются (`escapeAttribute`), описание проходит через `toPlainText` (убирает теги) и `truncate`: `description` — до 160 символов (сниппет Google), `og:description` — до 125 (превью в соцсетях), многоточие входит в лимит.
+- Ошибка БД не роняет страницу: логируется, отдаются общие теги. Ошибка чтения `index.html` → 500.
+- CSP от helmet в HTML-ответе снимается (`removeHeader`): он рассчитан на API и сломал бы карту, emailjs и внешние слайды.
+- `/static/*`, для которого не нашлось файла, пропускается дальше (404), а не превращается в HTML.
+- Проверка локально: `curl -s localhost:3000/collection/bowls/1337 | grep -E '<title|og:'` (в dev `og:image` указывает на localhost — это нормально).
 
 ## Подводные камни
 

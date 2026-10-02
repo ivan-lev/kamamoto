@@ -86,7 +86,7 @@ export default function Dictionary() {
 
 	return (
 		<>
-			<Seo title="Камамото: глоссарий" description="Страница с терминами, связанными с японской керамикой и чайной церемонией, а также релевантные термины" />
+			<Seo title="Камамото: глоссарий" />
 
 			<PageTop
 				title="Глоссарий"

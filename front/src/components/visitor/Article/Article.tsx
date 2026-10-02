@@ -5,16 +5,15 @@ import Seo from '@/components/visitor/Seo/Seo';
 
 interface Props {
 	seoTitle: string;
-	seoDescription: string;
 	title: string;
 	subtitle?: string;
 	data: IArticle;
 }
 
-export default function Article({ seoTitle, seoDescription, title, subtitle, data }: Props) {
+export default function Article({ seoTitle, title, subtitle, data }: Props) {
 	return (
 		<>
-			<Seo title={ seoTitle } description={ seoDescription } />
+			<Seo title={ seoTitle } />
 
 			<PageTop title={ title } subtitle={ subtitle } />
 

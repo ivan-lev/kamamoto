@@ -36,12 +36,13 @@
 
 ## 3. Новая публичная страница
 
-1. Компонент `components/visitor/<Name>/<Name>.tsx` (+ `.scss`). Внутри `<Seo title="Камамото: ..." description="..." />`, `<PageTop title=... />`, контент в `<section className="section">`, `useLayoutEffect(() => scrollToTop(), [])`.
+1. Компонент `components/visitor/<Name>/<Name>.tsx` (+ `.scss`). Внутри `<Seo title="Камамото: ..." />`, `<PageTop title=... />`, контент в `<section className="section">`, `useLayoutEffect(() => scrollToTop(), [])`.
 2. `lazy()`-импорт и `<Route>` в `VisitorView.tsx`.
 3. Ссылка: меню и подвал в `variables/links.ts`, раздел «Полезное» в `Useful.tsx`.
 4. `Caddyfile` — добавить путь в `@staticToRemoveSlash` (одиночная страница) или в `@listingToAddSlash` (список со слэшем на конце). Этот файл деплоится отдельно (`upload:config` + рестарт caddy), сказать об этом пользователю.
 5. `front/public/sitemap.xml` и `front/public/llms.txt`.
 6. Если страница грузит данные: preloader, пока данных нет; при `error.status === 404` — `navigate('/404', { replace: true })`.
+7. Мета-теги для превью в мессенджерах (бэк): статичная страница — запись в `back/src/variables/staticPages.ts` (`title` — как в `<Seo>`, `description` — только здесь); страница записи из БД — функция `get<Entity>Meta` + строка в `PAGE_ROUTES` в `back/src/controllers/pages.ts`. См. [back/CLAUDE.md](../../back/CLAUDE.md#html-страниц-и-мета-теги).
 
 ## 4. Статья со слайдами для нового раздела
 

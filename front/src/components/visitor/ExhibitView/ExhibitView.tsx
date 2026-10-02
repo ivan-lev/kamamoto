@@ -50,10 +50,7 @@ export default function ExhibitView() {
 
 	return (
 		<>
-			<Seo
-				title={ `Камамото: ${name?.charAt(0).toLowerCase()}${name?.slice(1)}` }
-				description={ `Страница на которой дана информация о предмете ${name?.charAt(0).toLowerCase()}${name?.slice(1)}, представлены фотографии и дана общая информация о виде данного ремесла` }
-			/>
+			<Seo title={ `Камамото: ${name?.charAt(0).toLowerCase()}${name?.slice(1)}` } />
 
 			{ showPreloader && <Preloader /> }
 			{ !showPreloader

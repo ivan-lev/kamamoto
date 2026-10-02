@@ -36,7 +36,7 @@ export default function Articles() {
 		<>
 			<PageTop title="Стили керамики" subtitle="" backLink="/useful/" />
 
-			<Seo title="Камамото: стили керамики" description="Страница со списком стилей керамики" />
+			<Seo title="Камамото: стили керамики" />
 
 			<section className="section">
 				{ listToDisplay.length === 0 && showPreloader

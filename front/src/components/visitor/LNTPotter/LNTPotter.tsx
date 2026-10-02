@@ -33,7 +33,6 @@ export default function LNTPotter() {
 	return (
 		<Article
 			seoTitle={ `Камамото: гончар ${potterInfo.name}` }
-			seoDescription={ `Страница со статьёй о гончаре ${potterInfo.name}` }
 			title={ potterInfo.name }
 			data={ potterInfo }
 		/>

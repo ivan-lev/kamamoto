@@ -1,13 +1,10 @@
 interface Props {
 	title: string;
-	description?: string;
 }
 
-export default function Seo({ title, description }: Props) {
-	return (
-		<>
-			<title>{ title }</title>
-			<meta name="description" content={ description || 'Частная коллекция японской керамики и предметов ручной работы, выполненных с применением традиционных техник. Сотрудничество в организации выставок и мероприятий' } />
-		</>
-	);
+// Только заголовок вкладки: при переходах внутри SPA сервер не участвует.
+// description и og:* для поисковиков и соцсетей подставляет бэк (back/src/controllers/pages.ts),
+// а React 19 не заменил бы тег из index.html, а добавил второй
+export default function Seo({ title }: Props) {
+	return <title>{ title }</title>;
 }
