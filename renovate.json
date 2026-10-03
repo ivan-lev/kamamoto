@@ -12,6 +12,17 @@
 		{
 			"matchUpdateTypes": ["major"],
 			"automerge": false
+		},
+		{
+			"description": "docker-compose.yml не запускает ни один CI — без проверок Renovate не автомержит",
+			"matchManagers": ["docker-compose"],
+			"ignoreTests": true
+		},
+		{
+			"description": "renovate.yml тоже вне CI; бампы actions в _build.yml проверяются сборкой — их не трогаем",
+			"matchManagers": ["github-actions"],
+			"matchFileNames": [".github/workflows/renovate.yml"],
+			"ignoreTests": true
 		}
 	]
 }
