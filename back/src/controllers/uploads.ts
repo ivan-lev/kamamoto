@@ -4,11 +4,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import multer from 'multer';
 import { ValidationError } from '../errors/validation-error';
-import { getImageFolder, IMAGE_TARGETS, isImageTarget } from '../utils/images';
+import { getImageFolder, IMAGE_TARGETS, isImageTarget, isValidImageKey } from '../utils/images';
+import { findOgFile, getOgFolder, isOgTarget, removeOgFiles } from '../utils/ogImage';
 import { getSlidesFolder, isSlidesTarget, isValidSlidesKey } from '../utils/slides';
 import { ERROR_MESSAGES } from '../variables/messages';
 
 const IMAGE_MIME_REGEX = /^image\/(?:jpeg|png|webp|avif|gif)$/;
+const OG_MIME_REGEX = /^image\/(?:jpeg|webp)$/;
 const MAX_FILE_SIZE = 20 * 1024 * 1024;
 const MAX_FILES = 30;
 
@@ -20,6 +22,8 @@ const MIME_EXTENSIONS: Record<string, string> = {
 	'image/webp': '.webp',
 	'image/avif': '.avif',
 	'image/gif': '.gif',
+	// только для одиночных картинок (карты стилей): в слайды svg не пропускает IMAGE_MIME_REGEX
+	'image/svg+xml': '.svg',
 };
 
 const CYRILLIC = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
@@ -50,6 +54,29 @@ function getRequestImageTarget(req: Request) {
 		throw new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_TARGET);
 
 	return target;
+}
+
+function getRequestImageFolder(req: Request) {
+	const target = getRequestImageTarget(req);
+	const key = req.params.key as string | undefined;
+
+	if (!isValidImageKey(target, key))
+		throw new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_KEY);
+
+	return getImageFolder(target, key);
+}
+
+function getRequestOgFolder(req: Request) {
+	const target = req.params.target as string;
+	const key = req.params.key as string;
+
+	if (!isOgTarget(target))
+		throw new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_TARGET);
+
+	if (!isValidSlidesKey(key))
+		throw new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_KEY);
+
+	return getOgFolder(target, key);
 }
 
 // Файлы одного запроса пишутся параллельно, поэтому занятые имена запоминаем, не дожидаясь записи на диск
@@ -123,7 +150,7 @@ const uploadSlidesFiles = multer({
 }).array('files', MAX_FILES);
 
 const uploadImageFile = multer({
-	storage: createStorage(req => getImageFolder(getRequestImageTarget(req)), 'image'),
+	storage: createStorage(getRequestImageFolder, 'image'),
 	fileFilter: (req, file, callback) => {
 		try {
 			const { mimeRegex, wrongTypeMessage } = IMAGE_TARGETS[getRequestImageTarget(req)];
@@ -135,6 +162,33 @@ const uploadImageFile = multer({
 		catch (error) {
 			callback(error as Error);
 		}
+	},
+	limits: { fileSize: MAX_FILE_SIZE, files: 1 },
+}).single('file');
+
+// og-картинка всегда называется og.jpg / og.webp (так её находит getOgImage) и перезаписывается:
+// кэш браузеров и соцсетей сбрасывает версия ?v=<mtime> в адресе
+const uploadOgFile = multer({
+	storage: multer.diskStorage({
+		destination: (req, _file, callback) => {
+			try {
+				const { dir } = getRequestOgFolder(req);
+				fs.mkdirSync(dir, { recursive: true });
+				callback(null, dir);
+			}
+			catch (error) {
+				callback(error as Error, '');
+			}
+		},
+		filename: (_req, file, callback) => {
+			callback(null, `og${MIME_EXTENSIONS[file.mimetype]}`);
+		},
+	}),
+	fileFilter: (_req, file, callback) => {
+		if (OG_MIME_REGEX.test(file.mimetype))
+			return callback(null, true);
+
+		callback(new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_TYPE_JPG_WEBP));
 	},
 	limits: { fileSize: MAX_FILE_SIZE, files: 1 },
 }).single('file');
@@ -153,7 +207,7 @@ function uploadSlides(req: Request, res: Response, next: NextFunction) {
 	});
 }
 
-// Одна картинка записи (например, термина словаря). В БД запись сохраняет фронт, отдельным запросом
+// Одна картинка записи (термина словаря, тхумб или карта стиля). В БД запись сохраняет фронт, отдельным запросом
 function uploadImage(req: Request, res: Response, next: NextFunction) {
 	uploadImageFile(req, res, (error: unknown) => {
 		if (error)
@@ -162,12 +216,60 @@ function uploadImage(req: Request, res: Response, next: NextFunction) {
 		if (!req.file)
 			return next(new ValidationError(ERROR_MESSAGES.UPLOAD.NO_FILES));
 
-		const { url } = getImageFolder(getRequestImageTarget(req));
+		const { url } = getRequestImageFolder(req);
 		res.status(201).send({ filename: req.file.filename, url: `${url}/${req.file.filename}` });
 	});
+}
+
+async function sendOgFile(req: Request, res: Response, status = 200) {
+	const { dir, url } = getRequestOgFolder(req);
+	const ogFile = await findOgFile(dir);
+	res.status(status).json(ogFile && { filename: ogFile.filename, url: `${url}/${ogFile.filename}?v=${ogFile.version}` });
+}
+
+// Текущая og-картинка записи или null. Публичная, как и сама картинка в static/
+async function getOg(req: Request, res: Response, next: NextFunction) {
+	try {
+		await sendOgFile(req, res);
+	}
+	catch (error) {
+		next(error);
+	}
+}
+
+function uploadOg(req: Request, res: Response, next: NextFunction) {
+	uploadOgFile(req, res, async (error: unknown) => {
+		try {
+			if (error)
+				throw getUploadError(error, ERROR_MESSAGES.UPLOAD.ONLY_ONE);
+
+			if (!req.file)
+				throw new ValidationError(ERROR_MESSAGES.UPLOAD.NO_FILES);
+
+			// og другого формата заслонил бы новую картинку (jpg ищется первым)
+			await removeOgFiles(getRequestOgFolder(req).dir, req.file.filename);
+			await sendOgFile(req, res, 201);
+		}
+		catch (uploadError) {
+			next(uploadError);
+		}
+	});
+}
+
+async function deleteOg(req: Request, res: Response, next: NextFunction) {
+	try {
+		await removeOgFiles(getRequestOgFolder(req).dir);
+		res.json(null);
+	}
+	catch (error) {
+		next(error);
+	}
 }
 
 export const uploads = {
 	uploadSlides,
 	uploadImage,
+	getOg,
+	uploadOg,
+	deleteOg,
 };

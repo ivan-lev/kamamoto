@@ -19,6 +19,10 @@
 
 		object-fit: cover;
 		background: var(--background-muted);
+
+		&--contain {
+			object-fit: contain;
+		}
 	}
 
 	&__file {

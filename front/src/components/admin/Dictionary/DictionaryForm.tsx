@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import type { PendingImage } from '@/components/admin/shared/ImageDropzone/ImageDropzone';
 import type { RootState } from '@/slices/admin';
 import type { Term } from '@/types/term';
 import { useEffect, useState } from 'react';
@@ -12,12 +13,6 @@ import { PATHS, STORAGE_KEYS } from '@/variables/variables';
 
 // Форматы, которые бэкенд принимает для картинок словаря (IMAGE_TARGETS в back/src/utils/images.ts)
 const IMAGE_MIME_TYPES = ['image/jpeg', 'image/webp'];
-
-// Выбранная, но ещё не загруженная картинка
-interface PendingImage {
-	file: File;
-	previewUrl: string;
-}
 
 interface Props {
 	closeModal: () => void;
@@ -79,7 +74,7 @@ export default function DictionaryForm({ closeModal }: Props) {
 		if (!pendingImage)
 			return termToEdit;
 
-		const { filename } = await api.uploads.uploadImage(token, PATHS.DICTIONARY, pendingImage.file, termToEdit.id.trim());
+		const { filename } = await api.uploads.uploadImage(token, PATHS.DICTIONARY, pendingImage.file, { filename: termToEdit.id.trim() });
 		const termWithImage = { ...termToEdit, image: filename };
 		dispatch(setTermToEdit(termWithImage));
 		clearPendingImage();

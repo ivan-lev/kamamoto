@@ -77,9 +77,9 @@ if (token) {
 - На сайте `<Article data=... />` → `ArticleSection` (HTML разбирается через `html-react-parser` + `htmlParserOptions`, который расставляет БЭМ-классы тегам) + `ArticleSlider` (swiper).
 - Внешние слайды (URL, начинающийся с `http`) бэк не трогает. Локальные превращаются в `${STATIC_URL}/<раздел>/<key>/slides/<file>`.
 
-## Одиночная картинка записи (словарь)
+## Одиночная картинка записи (словарь, тхумб и карта стиля)
 
-`<ImageDropzone previewSrc filename mimeTypes onSelect onRemove />` только выбирает файл, загружает его форма при сохранении: `api.uploads.uploadImage` → имя файла в запись → сохранение записи. Так брошенные правки не оставляют файлов на сервере. Старую картинку удаляет бэкенд при сохранении записи. Образец — `admin/Dictionary/DictionaryForm.tsx`.
+`<ImageDropzone previewSrc filename mimeTypes onSelect onRemove />` (+ необязательные `label`, `rowClassName`, `previewFit` и `size` — точный размер в пикселях, проверяется при выборе файла через `createImageBitmap`) только выбирает файл, загружает его форма при сохранении: `api.uploads.uploadImage(token, target, file, { filename, key })` → имя файла в запись → сохранение записи. Так брошенные правки не оставляют файлов на сервере. Старую картинку удаляет бэкенд при сохранении записи. Образцы — `admin/Dictionary/DictionaryForm.tsx` (одна картинка) и `admin/CeramicStyles/CeramicStyleFormView.tsx` (две картинки в папке записи, выбранные файлы хранятся во View, поля рисует `CeramicStyleFormBasicInfo`). Там же og-картинка: в записи её нет, форма узнаёт её через `api.uploads.getOgImage` и после сохранения стиля загружает (`uploadOgImage`) или удаляет (`deleteOgImage`).
 
 ## Стили
 

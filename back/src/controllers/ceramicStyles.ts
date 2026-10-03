@@ -3,6 +3,7 @@ import type { ArticlePayload, ArticlesListPayload } from '../types/article';
 import type { Style as CeramicStyleType } from '../types/style';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import CeramicStyleModel from '../models/style';
+import { removeImage } from '../utils/images';
 import { removeUnusedSlides } from '../utils/slides';
 import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
@@ -102,16 +103,22 @@ async function updateCeramicStyle(req: Request<{ name: string }>, res: Response,
 	const ceramicStyleName = req.params.name;
 
 	try {
-		const previousStyle = await CeramicStyleModel.findOne({ name: ceramicStyleName }, 'article').lean<Pick<CeramicStyleType, 'article'>>();
+		const previousStyle = await CeramicStyleModel.findOne({ name: ceramicStyleName }, 'article thumbnail mapImage').lean<Pick<CeramicStyleType, 'article' | 'thumbnail' | 'mapImage'>>();
 		const style = await CeramicStyleModel.findOneAndUpdate(
 			{ name: ceramicStyleName },
 			newCeramicStyleData,
 			{ returnDocument: 'after', runValidators: true },
 		).select('-_id').orFail();
 
-		// При смене имени слайды остаются в папке со старым именем, поэтому их не трогаем
-		if (previousStyle && style.name === ceramicStyleName)
+		// При смене имени слайды и картинки остаются в папке со старым именем, поэтому их не трогаем
+		if (previousStyle && style.name === ceramicStyleName) {
 			await removeUnusedSlides('ceramic-styles', ceramicStyleName, previousStyle.article, style.article);
+
+			// тхумб или карту заменили либо убрали — старый файл больше не нужен
+			await Promise.all((['thumbnail', 'mapImage'] as const)
+				.filter(field => previousStyle[field] && previousStyle[field] !== style[field])
+				.map(field => removeImage('ceramic-styles', previousStyle[field], ceramicStyleName)));
+		}
 
 		res.send(style);
 	}

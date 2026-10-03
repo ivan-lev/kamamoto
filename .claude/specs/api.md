@@ -161,8 +161,17 @@ PATCH удаляет с диска прежнюю картинку, если `im
 `target` ∈ `SLIDES_TARGETS` (`ceramic-styles`, `potters`), `key` — `[\w-]+`.
 Ответ 201: `[{ filename, url }]`. `filename` уже транслитерирован и уникален в папке, в статью записывается именно он.
 
-`POST /images/:target`, multipart, одно поле `file` (20 МБ) — одиночная картинка записи в `/static/<папка раздела>/<файл>`.
-`target` ∈ `IMAGE_TARGETS` (`back/src/utils/images.ts`): сейчас только `dictionary`, форматы jpeg|webp (как в `termValidator`).
-Имя файла в multipart — желаемое имя (фронт шлёт `id` термина). Ответ 201: `{ filename, url }`, запись в БД фронт сохраняет отдельным запросом.
+`POST /images/:target` и `POST /images/:target/:key`, multipart, одно поле `file` (20 МБ) — одиночная картинка записи в `/static/<папка раздела>/<файл>` или, для разделов с `hasKey`, в `/static/<папка раздела>/<key>/<файл>` (`key` — `[\w-]+`; лишний или недостающий `key` → 400).
+`target` ∈ `IMAGE_TARGETS` (`back/src/utils/images.ts`):
+- `dictionary` — без `key`, jpeg|webp (как в `termValidator`), фронт шлёт имя = `id` термина;
+- `ceramic-styles` — `key` = `name` стиля, jpeg|webp|svg (тхумб — jpg/webp, карта — svg; поле↔формат проверяет `ceramicStyleValidator`), фронт шлёт имя = `name` стиля → `bizen.webp`, `bizen.svg`. Заменённые тхумб и карту `PATCH /ceramic-styles/:name` удаляет с диска (если имя стиля не менялось).
+
+Имя файла в multipart — желаемое имя. Ответ 201: `{ filename, url }`, запись в БД фронт сохраняет отдельным запросом.
+
+`/og/:target/:key` — og-картинка записи `/static/<папка раздела>/<key>/og.jpg|og.webp`. В БД её нет, `getOgImage` (`utils/ogImage.ts`) находит файл по имени, jpg приоритетнее.
+`target` ∈ `OG_TARGETS` (сейчас только `ceramic-styles`, key = `name` стиля), `key` — `[\w-]+`.
+- `GET` (публичный) → `{ filename, url }` или `null`; в `url` версия `?v=<mtime>`.
+- `POST`, multipart, поле `file` (jpeg|webp, 20 МБ) → 201 `{ filename, url }`. Файл **перезаписывается** (`og.<ext>`), og другого формата удаляется.
+- `DELETE` → `null`, удаляет og.jpg и og.webp.
 
 Для обоих эндпоинтов расширение файла берётся из MIME-типа, а не из имени (`x.html` с `image/jpeg` сохранится как `x.jpg`). Существующие файлы не перезаписываются, к имени добавляется `-1`, `-2`…

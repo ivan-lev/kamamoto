@@ -101,6 +101,7 @@ export const ERROR_MESSAGES = Object.freeze({
 		WRONG_KEY: 'Некорректное название папки для загрузки',
 		WRONG_TYPE: 'Можно загружать только изображения jpg, png, webp, avif или gif',
 		WRONG_TYPE_JPG_WEBP: 'Можно загружать только изображения jpg или webp',
+		WRONG_TYPE_JPG_WEBP_SVG: 'Можно загружать только изображения jpg, webp или svg',
 		TOO_LARGE: 'Файл слишком большой, максимум 20 МБ',
 		TOO_MANY: 'За один раз можно загрузить не больше 30 файлов',
 		ONLY_ONE: 'Можно загрузить только один файл',

@@ -2,24 +2,57 @@ import type { ChangeEvent, DragEvent } from 'react';
 import { useState } from 'react';
 import '@/components/admin/shared/ImageDropzone/ImageDropzone.scss';
 
+// Выбранная, но ещё не загруженная картинка
+export interface PendingImage {
+	file: File;
+	previewUrl: string;
+}
+
 interface Props {
+	label?: string;
+	// ширина в сетке формы
+	rowClassName?: string;
+	// contain — показать картинку целиком (например, карту), а не обрезать
+	previewFit?: 'cover' | 'contain';
 	previewSrc?: string;
 	filename?: string;
 	// MIME-типы, которые примет бэкенд для раздела
 	mimeTypes: string[];
+	// точный размер в пикселях, если картинка должна быть именно такой (например, og 1200 × 630)
+	size?: { width: number, height: number };
 	hint?: string;
 	onSelect: (file: File) => void;
 	onRemove: () => void;
 }
 
 // Поле для одной картинки: файл перетаскивают или выбирают, а загружает его форма при сохранении
-export default function ImageDropzone({ previewSrc, filename, mimeTypes, hint, onSelect, onRemove }: Props) {
+export default function ImageDropzone({ label = 'Картинка', rowClassName = 'form__row-12', previewFit = 'cover', previewSrc, filename, mimeTypes, size, hint, onSelect, onRemove }: Props) {
 	const [isDragOver, setIsDragOver] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 
-	const formats = mimeTypes.map(type => type.replace('image/', '').replace('jpeg', 'jpg')).join(', ');
+	const formats = mimeTypes.map(type => type.replace('image/', '').replace('jpeg', 'jpg').replace('+xml', '')).join(', ');
+	const sizeText = size && `${size.width} × ${size.height}`;
+	const previewClassName = `image-dropzone__preview${previewFit === 'contain' ? ' image-dropzone__preview--contain' : ''}`;
 
-	function selectFile(fileList: FileList | null) {
+	// Размер узнаём у браузера: он декодирует картинку сам, без библиотек
+	async function getSizeError(file: File) {
+		if (!size)
+			return '';
+
+		try {
+			const bitmap = await createImageBitmap(file);
+			const { width, height } = bitmap;
+			bitmap.close();
+			return width === size.width && height === size.height
+				? ''
+				: `Нужна картинка ${sizeText}, а у этой ${width} × ${height}`;
+		}
+		catch {
+			return 'Не удалось прочитать картинку';
+		}
+	}
+
+	async function selectFile(fileList: FileList | null) {
 		const files = [...fileList ?? []];
 		if (!files.length)
 			return;
@@ -31,6 +64,12 @@ export default function ImageDropzone({ previewSrc, filename, mimeTypes, hint, o
 
 		if (!mimeTypes.includes(files[0].type)) {
 			setErrorMessage(`Подходят только картинки ${formats}`);
+			return;
+		}
+
+		const sizeError = await getSizeError(files[0]);
+		if (sizeError) {
+			setErrorMessage(sizeError);
 			return;
 		}
 
@@ -59,13 +98,13 @@ export default function ImageDropzone({ previewSrc, filename, mimeTypes, hint, o
 	}
 
 	return (
-		<div className="form__row form__row-12 image-dropzone">
-			<span>Картинка</span>
+		<div className={ `form__row ${rowClassName} image-dropzone` }>
+			<span>{ label }</span>
 
 			<div className="image-dropzone__body">
 				{ previewSrc
-					? <img className="image-dropzone__preview" src={ previewSrc } alt={ filename } />
-					: <span className="image-dropzone__preview" /> }
+					? <img className={ previewClassName } src={ previewSrc } alt={ filename } />
+					: <span className={ previewClassName } /> }
 
 				<label
 					className={ `slides-dropzone__area${isDragOver ? ' slides-dropzone__area--active' : ''}` }
@@ -79,7 +118,7 @@ export default function ImageDropzone({ previewSrc, filename, mimeTypes, hint, o
 						accept={ mimeTypes.join(',') }
 						onChange={ handleFileInput }
 					/>
-					{ hint || `Перетащите картинку (${formats}) сюда или нажмите, чтобы выбрать` }
+					{ hint || `Перетащите картинку (${formats}${sizeText ? `, ${sizeText}` : ''}) сюда или нажмите, чтобы выбрать` }
 				</label>
 			</div>
 
