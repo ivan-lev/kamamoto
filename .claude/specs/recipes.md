@@ -40,7 +40,7 @@
 2. `lazy()`-импорт и `<Route>` в `VisitorView.tsx`.
 3. Ссылка: меню и подвал в `variables/links.ts`, раздел «Полезное» в `Useful.tsx`.
 4. `Caddyfile` — добавить путь в `@staticToRemoveSlash` (одиночная страница) или в `@listingToAddSlash` (список со слэшем на конце). Этот файл деплоится отдельно (`upload:config` + рестарт caddy), сказать об этом пользователю.
-5. `front/public/sitemap.xml` и `front/public/llms.txt`.
+5. `front/public/llms.txt`. Sitemap собирает бэк: статичная страница попадёт в него из `STATIC_PAGES` (п. 7), список со слэшем на конце нужно ещё добавить в `LISTING_PAGES` (там же). Страницы нового типа записей из БД — запрос в `back/src/controllers/sitemap.ts`.
 6. Если страница грузит данные: preloader, пока данных нет; при `error.status === 404` — `navigate('/404', { replace: true })`.
 7. Мета-теги для превью в мессенджерах (бэк): статичная страница — запись в `back/src/variables/staticPages.ts` (`title` — как в `<Seo>`, `description` — только здесь); страница записи из БД — функция `get<Entity>Meta` + строка в `PAGE_ROUTES` в `back/src/controllers/pages.ts`. См. [back/CLAUDE.md](../../back/CLAUDE.md#html-страниц-и-мета-теги).
 
@@ -58,7 +58,7 @@
 Категории частично захардкожены:
 1. Документ в `categories` с полями `name`, **`category` (то же значение — на него завязаны запросы)**, `title` (строчными), `thumbnail`. Файл — в `static/categories/`.
 2. `front/src/variables/variables.ts` → `CATEGORIES` (иначе страница категории отдаст 404) и `types/exhibitCategory.ts`.
-3. `sitemap.xml`, `llms.txt`.
+3. `llms.txt`. В sitemap категория и её лоты попадут сами.
 
 ## 6. Выпуск версии сайта
 

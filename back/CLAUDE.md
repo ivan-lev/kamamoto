@@ -12,7 +12,7 @@ npx tsc --noEmit && npx eslint .   # проверка перед сдачей
 
 ## Как проходит запрос
 
-`app.ts`: `limiter` (10000 запросов / 15 мин) → `cors()` → winston request logger (`logs/request.log`) → `helmet` → body-parser → `/static` (express.static из `../static`) → `/api` → `GET /{*splat}` (HTML страниц сайта, `controllers/pages.ts`) → winston error logger → `celebrateErrorAdapter` → `errorHandler`.
+`app.ts`: `limiter` (10000 запросов / 15 мин) → `cors()` → winston request logger (`logs/request.log`) → `helmet` → body-parser → `/static` (express.static из `../static`) → `/api` → `GET /sitemap.xml` (`controllers/sitemap.ts`) → `GET /{*splat}` (HTML страниц сайта, `controllers/pages.ts`) → winston error logger → `celebrateErrorAdapter` → `errorHandler`.
 
 `routes/index.ts`: `POST /signin` открыт → `auth` → все роутеры.
 
@@ -84,6 +84,17 @@ async function updateThing(req: Request, res: Response, next: NextFunction) {
 - CSP от helmet в HTML-ответе снимается (`removeHeader`): он рассчитан на API и сломал бы карту, emailjs и внешние слайды.
 - `/static/*`, для которого не нашлось файла, пропускается дальше (404), а не превращается в HTML.
 - Проверка локально: `curl -s localhost:3000/collection/bowls/1337 | grep -E '<title|og:'` (в dev `og:image` указывает на localhost — это нормально).
+
+## sitemap.xml (`controllers/sitemap.ts`)
+
+Статичного файла нет: Caddy не находит `/sitemap.xml` в сборке фронта и проксирует запрос в бэк. Маршрут зарегистрирован до `renderPage`, иначе на этот адрес ушёл бы HTML. Адрес sitemap указан в `front/public/robots.txt`.
+
+- Собирается из БД и час хранится в памяти процесса (`CACHE_TTL`): частые запросы к sitemap не нагружают Mongo, а новые записи появляются в нём с задержкой до часа или сразу после рестарта бэка. Кэшируется промис, поэтому одновременные запросы ждут одну сборку.
+- В sitemap попадают: главная, `STATIC_PAGES`, категории, активные лоты (`/collection/<category.name>/<id>`; лот, чья категория не нашлась, пропускается), активные выставки, стили с `showArticle: true`, гончары с `showArticle: true` и `isLNT: true`. Условия — как в API списков: в sitemap только страницы, на которые есть ссылки на сайте.
+- Адреса — в том виде, в каком их оставляет Caddy: страницы-списки из `LISTING_PAGES` (`variables/staticPages.ts`) — со слэшем на конце, остальные без. Если меняется `@listingToAddSlash` в `Caddyfile`, нужно поправить и `LISTING_PAGES`.
+- `lastmod` и `priority` не пишутся: в схемах нет `timestamps`, а `priority` Google игнорирует.
+- Ошибка БД → 500 (поисковик повторит запрос позже), а не обрезанный sitemap. Ошибка не кэшируется: следующий запрос соберёт sitemap заново.
+- Проверка локально: `curl -s localhost:3000/sitemap.xml | xmllint --noout -`.
 
 ## Подводные камни
 

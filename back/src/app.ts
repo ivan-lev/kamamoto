@@ -5,6 +5,7 @@ import express from 'express';
 import helmet from 'helmet';
 import { BASE_URL, PORT } from './config';
 import { pages } from './controllers/pages';
+import { sitemap } from './controllers/sitemap';
 import errorHandler from './middlewares/error-handler';
 import celebrateErrorAdapter from './middlewares/error-handler-celebrate';
 import limiter from './middlewares/limiter';
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/static', express.static(PATHS.STATIC_DIR, { cacheControl: false })); // public folder, lives outside back/ so deploys never wipe it
 app.use('/api', routes); // all routes goes through here in Docker
+app.get('/sitemap.xml', sitemap.getSitemap); // до renderPage, иначе вместо xml уйдёт html страницы
 app.get('/{*splat}', pages.renderPage); // html страниц сайта с мета-тегами
 app.use(logger.errorLogger); // winston error logger
 app.use(celebrateErrorAdapter);// celebrate error handler

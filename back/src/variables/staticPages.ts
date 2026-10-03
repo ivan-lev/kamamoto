@@ -64,3 +64,7 @@ export const STATIC_PAGES: Readonly<Record<string, { title: string; description:
 		description: 'Страница со списком Живых национальных сокровищ',
 	},
 });
+
+// Страницы-списки, адрес которых заканчивается слэшем (Caddy редиректит на него, @listingToAddSlash).
+// Нужно для sitemap: адрес без слэша там был бы редиректом, а не страницей
+export const LISTING_PAGES: ReadonlySet<string> = new Set(['collection', 'exhibitions', 'useful', 'ceramic-styles', 'lnt-potters']);
