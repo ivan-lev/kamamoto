@@ -31,8 +31,11 @@ export default function Exhibition() {
 		// if some data stored in exhibitions state, get data from there
 		if (exhibitions.length !== 0) {
 			const exhibition = exhibitions.find(exhibition => exhibition.id === Number.parseInt(exhId || '0'));
-			dispatch(setExhibitionToDisplay(exhibition));
-			return;
+			// неактивная выставка приходит в списке без описания и фото — за ней идём в API, он ответит 404
+			if (exhibition?.isActive) {
+				dispatch(setExhibitionToDisplay(exhibition));
+				return;
+			}
 		}
 
 		// if no data about exhibitions in the store

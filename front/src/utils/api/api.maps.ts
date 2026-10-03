@@ -8,9 +8,11 @@ const {
 	MAPS,
 } = PATHS;
 
-async function getMarkers(): Promise<Marker[]> {
+// все маркеры, включая неактивные, — бэк отдаёт только с токеном
+async function getMarkers(token: string): Promise<Marker[]> {
 	const response = await fetch(`${BASE_API_URL}/${MAPS}/`, {
 		method: 'GET',
+		headers: { Authorization: `Bearer ${token}` },
 	});
 	return checkResponseStatus(response);
 }

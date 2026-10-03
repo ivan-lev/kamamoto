@@ -7,10 +7,11 @@ const {
 	EXHIBITIONS,
 } = PATHS;
 
-async function getExhibitions(isAdmin = false) {
+// с токеном — все выставки с сырыми именами файлов (админка), без — только активные с URL (сайт)
+async function getExhibitions(token?: string) {
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITIONS}/`, {
 		method: 'GET',
-		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
+		headers: token ? { Authorization: `Bearer ${token}` } : {},
 	});
 	return checkResponseStatus(response);
 }

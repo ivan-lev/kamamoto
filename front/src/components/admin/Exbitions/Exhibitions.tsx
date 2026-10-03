@@ -29,7 +29,7 @@ export default function Exhibitions() {
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
-			api.exhibitions.getExhibitions(true)
+			api.exhibitions.getExhibitions(token)
 				.then((exhibitions) => {
 					dispatch(setExhibitionsList(exhibitions));
 					setShowPreloader(false);

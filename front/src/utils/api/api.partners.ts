@@ -7,10 +7,11 @@ const {
 	PARTNERS,
 } = PATHS;
 
-async function getPartners(isAdmin = false) {
+// с токеном — все партнёры с сырым именем логотипа (админка), без — только активные с URL (сайт)
+async function getPartners(token?: string) {
 	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/`, {
 		method: 'GET',
-		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
+		headers: token ? { Authorization: `Bearer ${token}` } : {},
 	});
 	return checkResponseStatus(response);
 }

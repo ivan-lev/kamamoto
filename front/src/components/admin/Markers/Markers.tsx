@@ -43,7 +43,7 @@ export default function Markers() {
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 		if (token) {
-			api.maps.getMarkers()
+			api.maps.getMarkers(token)
 				.then((markers) => {
 					dispatch(setMarkers(markers));
 					setShowPreloader(false);

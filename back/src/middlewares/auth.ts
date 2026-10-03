@@ -5,13 +5,9 @@ import { JWT_SECRET, NODE_ENV } from '../config';
 import { AuthorizationError } from '../errors/authorization-error';
 import { ERROR_MESSAGES } from '../variables/messages';
 
-export function auth(req: any, res: Response, next: NextFunction): void {
+// проверяет Bearer-токен и кладёт payload в req.user
+function verifyToken(req: any, next: NextFunction): void {
 	const { authorization }: { authorization: string } = req.headers;
-
-	// pass next all get requests if it is not user login checking
-	if (req.method === 'GET' && req.originalUrl !== '/api/users/') {
-		return next();
-	}
 
 	if (!authorization?.startsWith('Bearer ')) {
 		return next(new AuthorizationError(ERROR_MESSAGES.UNAUTHORIZED));
@@ -33,4 +29,28 @@ export function auth(req: any, res: Response, next: NextFunction): void {
 
 	req.user = payload;
 	next();
+}
+
+// глобальная: GET публичные, остальные методы — по токену. Закрытые GET помечаются requireAuth в роутере
+export function auth(req: any, res: Response, next: NextFunction): void {
+	if (req.method === 'GET') {
+		return next();
+	}
+
+	verifyToken(req, next);
+}
+
+// GET, которые нужны только админке
+export function requireAuth(req: any, res: Response, next: NextFunction): void {
+	verifyToken(req, next);
+}
+
+// GET для всех: с токеном контроллер отдаёт данные для админки, без — публичные.
+// Битый токен — 401, а не публичный ответ: иначе форма админки молча получила бы URL вместо имён файлов
+export function optionalAuth(req: any, res: Response, next: NextFunction): void {
+	if (!req.headers.authorization) {
+		return next();
+	}
+
+	verifyToken(req, next);
 }

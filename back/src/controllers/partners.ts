@@ -7,16 +7,15 @@ import { PATHS } from '../variables/paths';
 
 const { STATIC_URL, PARTNERS } = PATHS;
 
-async function getPartners(req: Request, res: Response, next: NextFunction) {
-	// check if request was made from admin panel
-	// and return thumb in appropriate format below
-	const isAdmin = req.headers['is-admin'];
+// с токеном (optionalAuth) — все партнёры с сырым именем логотипа для админки, без — только активные с URL
+async function getPartners(req: any, res: Response, next: NextFunction) {
+	const isAdmin = Boolean(req.user);
 	try {
-		const partners = await Partner.find({});
+		const partners = await Partner.find(isAdmin ? {} : { isActive: true });
 		const newPartners = partners.map((partner: PartnerType) => {
 			const { _id, isActive, link, logo, title } = partner;
 			const logoPath = `${STATIC_URL}/${PARTNERS}/${logo}`;
-			return { _id, isActive, link, title, logo: isAdmin === 'true' ? logo : logoPath };
+			return { _id, isActive, link, title, logo: isAdmin ? logo : logoPath };
 		});
 		res.send(newPartners);
 	}

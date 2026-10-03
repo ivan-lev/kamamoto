@@ -27,12 +27,15 @@ export default function Partners() {
 
 	useEffect(() => {
 		dispatch(clearPartnerForm());
-		api.partners.getPartners(true)
-			.then((partners) => {
-				dispatch(setPartners(partners));
-				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
+		if (token) {
+			api.partners.getPartners(token)
+				.then((partners) => {
+					dispatch(setPartners(partners));
+					setShowPreloader(false);
+				})
+				.catch(error => console.error(error));
+		}
 	}, [dispatch]);
 
 	useEffect(() => {

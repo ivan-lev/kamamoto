@@ -128,7 +128,7 @@ async function getCategoryMeta(name: string): Promise<PageMeta | undefined> {
 }
 
 async function getExhibitionMeta(id: string): Promise<PageMeta | undefined> {
-	const exhibition = await Exhibition.findOne({ id: Number(id) }, '-_id id name description').lean();
+	const exhibition = await Exhibition.findOne({ id: Number(id), isActive: true }, '-_id id name description').lean();
 	if (!exhibition)
 		return undefined;
 

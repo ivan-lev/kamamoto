@@ -4,9 +4,11 @@ import { PATHS } from '@/variables/variables';
 
 const { BASE_API_URL, EXHIBITS } = PATHS;
 
-async function getExhibits(): Promise<ExhibitAdmin[]> {
+// все лоты, включая неактивные, — бэк отдаёт только с токеном
+async function getExhibits(token: string): Promise<ExhibitAdmin[]> {
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/`, {
 		method: 'GET',
+		headers: { Authorization: `Bearer ${token}` },
 	});
 	return checkResponseStatus(response);
 }
