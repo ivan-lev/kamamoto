@@ -115,8 +115,8 @@ export default function DictionaryForm({ closeModal }: Props) {
 				return updatedTerm.id !== term.id ? term : updatedTerm;
 			});
 			dispatch(setTerms(newTermsList));
-			dispatch(clearTermForm());
-			dispatch(setIsExistingTermEdited(false));
+			// форма остаётся открытой с сохранёнными данными, чтобы можно было продолжить правку
+			dispatch(setTermToEdit(updatedTerm));
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {
