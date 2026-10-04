@@ -5,9 +5,10 @@
 	"prHourlyLimit": 0,
 	"prConcurrentLimit": 0,
 	"lockFileMaintenance": {
-		"description": "Renovate бампает только прямые зависимости — транзитивные с уязвимостями застревают в лок-файлах",
+		"description": "Renovate бампает только прямые зависимости — транзитивные с уязвимостями застревают в лок-файлах. Расписание: дефолт — «before 4am on monday», а workflow запускается только в пятницу в 19:00 UTC",
 		"enabled": true,
-		"automerge": true
+		"automerge": true,
+		"schedule": ["on friday"]
 	},
 	"packageRules": [
 		{
@@ -28,6 +29,12 @@
 			"matchManagers": ["github-actions"],
 			"matchFileNames": [".github/workflows/renovate.yml"],
 			"ignoreTests": true
+		},
+		{
+			"description": "Ветки без CI: после ребейза Renovate не мержит в том же запуске, а следующий запуск никакой CI не вызовет — PR висят до пятницы и там снова ребейзятся. Без ребейза они мержатся первым же запуском",
+			"matchManagers": ["docker-compose", "github-actions"],
+			"matchFileNames": ["docker-compose.yml", ".github/workflows/renovate.yml"],
+			"rebaseWhen": "conflicted"
 		}
 	]
 }
