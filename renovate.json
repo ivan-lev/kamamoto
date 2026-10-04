@@ -4,6 +4,11 @@
 	"platformAutomerge": false,
 	"prHourlyLimit": 0,
 	"prConcurrentLimit": 0,
+	"lockFileMaintenance": {
+		"description": "Renovate бампает только прямые зависимости — транзитивные с уязвимостями застревают в лок-файлах",
+		"enabled": true,
+		"automerge": true
+	},
 	"packageRules": [
 		{
 			"matchUpdateTypes": ["patch", "minor"],
