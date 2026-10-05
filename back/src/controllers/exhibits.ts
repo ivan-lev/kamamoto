@@ -86,7 +86,7 @@ async function createExhibit(req: Request, res: Response, next: NextFunction) {
 	const exhibit: ExhibitType = req.body;
 
 	try {
-		const category = await Category.findOne({ category: exhibit.category });
+		const category = await Category.findOne({ name: String(exhibit.category) });
 		const style = await Style.findOne({ name: String(exhibit.style) });
 		const potter = await Potter.findOne({ id: String(exhibit.potter) });
 
@@ -125,7 +125,7 @@ async function updateExhibit(req: Request, res: Response, next: NextFunction) {
 	const exhibit: ExhibitType = req.body;
 
 	try {
-		const category = await Category.findOne({ category: exhibit.category });
+		const category = await Category.findOne({ name: String(exhibit.category) });
 		const style = await Style.findOne({ name: String(exhibit.style) });
 		const potter = await Potter.findOne({ id: String(exhibit.potter) });
 

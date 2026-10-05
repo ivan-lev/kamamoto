@@ -31,65 +31,68 @@ export default function CategoryForm({ closeModal }: Props) {
 		dispatch(setCategoryToEdit({ ...categoryToEdit, [name]: value }));
 	}
 
-	function handleCreateCategory() {
-		setIsFormDisabled(true);
+	async function handleCreateCategory() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.categories.createCategory(token, name, title, thumbnail)
-				.then((response) => {
-					dispatch(setCategories([...categories, response]));
-					dispatch(clearCategoryForm());
-					dispatch(setIsExistingCategoryEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Новая категория в базе');
-					setTimeout(closeModal, 1000);
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const createdCategory = await api.categories.createCategory(token, { name, title, thumbnail });
+			dispatch(setCategories([...categories, createdCategory]));
+			dispatch(clearCategoryForm());
+			dispatch(setIsExistingCategoryEdited(false));
+			setSaveMessage('Новая категория в базе');
+			setTimeout(closeModal, 1000);
+		}
+		catch (error) {
+			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+		}
+		finally {
+			setIsFormDisabled(false);
 		}
 	}
 
-	function handleUpdateCategory() {
-		setIsFormDisabled(true);
+	async function handleUpdateCategory() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.categories.updateCategory(token, { ...categoryToEdit })
-				.then((response) => {
-					const newCategoriesList = categories.map((category) => {
-						return response.category !== category.name ? category : response;
-					});
-					dispatch(setCategories(newCategoriesList));
-					dispatch(clearCategoryForm());
-					dispatch(setIsExistingCategoryEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const updatedCategory = await api.categories.updateCategory(token, { name, title, thumbnail });
+			dispatch(setCategories(categories.map(category => category.name === updatedCategory.name ? updatedCategory : category)));
+			setSaveMessage('Данные обновлены');
+		}
+		catch (error) {
+			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+		}
+		finally {
+			setIsFormDisabled(false);
 		}
 	}
 
-	function handleDeleteCategory() {
+	async function handleDeleteCategory() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.categories.deleteCategory(token, name)
-				.then((response) => {
-					const newCategoriesList = categories.filter(cat => cat.name !== response.category);
-					dispatch(setCategories(newCategoriesList));
-					dispatch(clearCategoryForm());
-					dispatch(setIsExistingCategoryEdited(false));
-					setSaveMessage('Категория удалена');
-					setTimeout(closeModal, 1000);
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					console.error(error.message);
-					setIsFormDisabled(false);
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const deletedCategory = await api.categories.deleteCategory(token, name);
+			dispatch(setCategories(categories.filter(category => category.name !== deletedCategory.name)));
+			dispatch(clearCategoryForm());
+			dispatch(setIsExistingCategoryEdited(false));
+			setSaveMessage('Категория удалена');
+			setTimeout(closeModal, 1000);
+		}
+		catch (error) {
+			// например, 409: в категории есть лоты
+			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+		}
+		finally {
+			setShowConfirmation(false);
+			setIsFormDisabled(false);
 		}
 	}
 
@@ -124,10 +127,12 @@ export default function CategoryForm({ closeModal }: Props) {
 						<input
 							className="input"
 							type="text"
-							name="category"
+							name="name"
 							placeholder="по-английски"
 							value={ name }
 							onChange={ handleChange }
+							// имя — это адрес страницы категории и папка с og-картинкой: при переименовании они бы разъехались
+							readOnly={ isExistingCategoryEdited }
 						/>
 					</div>
 

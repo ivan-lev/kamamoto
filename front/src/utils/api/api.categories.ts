@@ -22,14 +22,14 @@ async function getCategories(isAdmin = false) {
 	return checkResponseStatus(response);
 }
 
-async function createCategory(token: string, category: string, title: string, thumbnail: string) {
+async function createCategory(token: string, category: Category) {
 	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`,
 		},
-		body: JSON.stringify({ category, title, thumbnail }),
+		body: JSON.stringify(category),
 	});
 	return checkResponseStatus(response);
 }
@@ -46,8 +46,8 @@ async function updateCategory(token: string, category: Category) {
 	return checkResponseStatus(response);
 }
 
-async function deleteCategory(token: string, category: string) {
-	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${category}`, {
+async function deleteCategory(token: string, name: string) {
+	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${name}`, {
 		method: 'DELETE',
 		headers: {
 			'Authorization': `Bearer ${token}`,

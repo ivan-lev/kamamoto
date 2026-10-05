@@ -55,10 +55,8 @@
 
 ## 5. Новая категория коллекции
 
-Категории частично захардкожены:
-1. Документ в `categories` с полями `name`, **`category` (то же значение — на него завязаны запросы)**, `title` (строчными), `thumbnail`. Файл — в `static/categories/`.
-2. `front/src/variables/variables.ts` → `CATEGORIES` (иначе страница категории отдаст 404) и `types/exhibitCategory.ts`.
-3. `llms.txt`. В sitemap категория и её лоты попадут сами.
+1. Создать в админке («Категории» → «Создать»): `name` латиницей (это адрес `/collection/<name>/`), `title` строчными по-русски, `thumbnail`. Файл картинки — в `static/categories/`, превью для соцсетей (необязательно) — `static/categories/<name>/og.jpg`.
+2. `front/public/llms.txt`. В sitemap категория и её лоты попадут сами, страница на фронте заработает без правок кода.
 
 ## 6. Выпуск версии сайта
 

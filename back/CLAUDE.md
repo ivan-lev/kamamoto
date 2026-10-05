@@ -99,7 +99,7 @@ async function updateThing(req: Request, res: Response, next: NextFunction) {
 
 ## Подводные камни
 
-- Модель `category`: в документах БД есть и легаси-поле `category`, и `name` (с одинаковым значением). Контроллеры категорий и `createExhibit`/`updateExhibit` ищут по `{ category: ... }`. Подробности — в known-issues.
+- Модель `category`: в документах БД осталось легаси-поле `category` (дублирует `name`). Код его больше не читает, искать категорию только по `name`. Удалить поле из БД — отдельный `$unset` на проде.
 - `/api/files` сейчас подключён к `lettersRouter` (опечатка). Контроллер `files.ts` не используется.
 - `routes/features.ts`, `controllers/features.ts`, `models/feature.ts` — **незаконченная работа** (раздел «декоративные приёмы»). Роутер не подключён в `routes/index.ts`, POST использует валидатор стилей керамики.
 - Ответы на PATCH разные: где-то 200, где-то 201. Фронт на код успеха не смотрит, но в новом коде PATCH должен отвечать 200.

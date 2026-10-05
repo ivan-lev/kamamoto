@@ -48,7 +48,7 @@
 | PATCH | `/:id` | `exhibitValidator` (без проверки params) | 201, обновлённый лот |
 | DELETE | `/:id` | `id` число | удалённый документ |
 
-Body лота: `category`, `style`, `potter` передаются **строками** (`category.name`, `style.name`, `potter.id`). Бэк ищет по ним ObjectId: категорию — по легаси-полю `category`, стиль — по `name`, гончара — по `id`.
+Body лота: `category`, `style`, `potter` передаются **строками** (`category.name`, `style.name`, `potter.id`). Бэк ищет по ним ObjectId: категорию и стиль — по `name`, гончара — по `id`.
 Обязательные поля Joi: `id` (0–9999), `name` (≥ 10 символов), `category`, `images[]`, `thumbnail`, `style`, `description` (можно `''`), `potter`, `complectation[]`, `preservation` (можно `''`). Числовые размеры принимают число, `''` или `null`.
 
 ## Categories `/categories`
@@ -56,10 +56,10 @@ Body лота: `category`, `style`, `potter` передаются **строка
 | Метод | Путь | Валидатор | Ответ |
 |---|---|---|---|
 | GET | `/` | — | `[{ name, title, thumbnail }]` (про `is-admin` — см. выше) |
-| GET | `/:category` | — | карточки активных лотов категории: `[{ link: '<id>', title, thumbnail: URL }]`. Если категории нет → 404 |
-| POST | `/` | `categoryValidator`: `name` `[a-z]+`, `title` `[а-я]+`, `thumbnail` `*.jpg/webp` | 201 |
-| PATCH | `/:category` | — | обновлённая категория |
-| DELETE | `/:category` | `categoryDeleteValidator` — **сломан**, см. known-issues | |
+| GET | `/:name` | — | карточки активных лотов категории: `[{ link: '<id>', title, thumbnail: URL }]`. Если категории нет → 404 |
+| POST | `/` | `categoryValidator`: `name` `[a-z]+`, `title` `[а-я]+`, `thumbnail` `*.jpg/webp` (все обязательны) | 201, созданная категория. `name` занят → 409 |
+| PATCH | `/:name` | `categoryUpdateValidator`: params `name` + тот же body, что у POST | обновлённая категория без `_id`. Админка `name` не меняет: это адрес страницы и папка с og |
+| DELETE | `/:name` | `categoryDeleteValidator` (params `name`) | `{ name }`. Если на категорию ссылается хотя бы один лот → 409 |
 
 ## Ceramic styles `/ceramic-styles`
 

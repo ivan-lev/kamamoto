@@ -31,7 +31,7 @@ slices/visitor/*       RTK-слайсы сайта, стор создаётся 
 slices/admin/*         RTK-слайсы админки, отдельный стор (getAdminStore)
 utils/api/api.<x>.ts   fetch-обёртки по сущностям, собраны в `api` (utils/api/api.ts)
 types/*                интерфейсы + default-объекты для форм (defaultExhibitAdmin и т.п.)
-variables/*            PATHS, CATEGORIES, STORAGE_KEYS, SITE_VERSION, ссылки меню, статичный контент
+variables/*            PATHS, STORAGE_KEYS, SITE_VERSION, ссылки меню, статичный контент
 styles/*.scss          глобальные БЭМ-блоки (button, form, table, section, text, title...), variables.scss — CSS-переменные
 assets/icons/*.svg     спрайт через vite-plugin-svg-spritemap: `/__spritemap#sprite-<file>-view`
 ```
@@ -89,7 +89,6 @@ if (token) {
 
 ## Подводные камни
 
-- `CATEGORIES` в `variables/variables.ts` — **захардкоженный** список категорий: страница `Category` показывает 404 для категорий не из этого списка. Если категория добавлена в БД, её нужно добавить и сюда (и в `llms.txt`; в sitemap она попадёт сама).
 - `SITE_VERSION` (`variables.ts`) и `version` в `package.json` меняются вместе (сейчас 2.5.4).
 - При новой публичной странице обновляем `public/llms.txt` и, если нужно, `Caddyfile`. `sitemap.xml` во фронте нет: его собирает из БД бэк (`back/src/controllers/sitemap.ts`), статичная страница попадает туда из `STATIC_PAGES`.
 - `/api` в `public/robots.txt` не закрывать: контент страниц приходит из API уже в браузере, и без него Google при рендере видит пустую оболочку SPA. Скрытого API без токена не отдаёт.

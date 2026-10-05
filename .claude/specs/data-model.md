@@ -8,7 +8,7 @@ MongoDB 8. База `DB_NAME`, аутентификация через `authSour
 | Сущность | Модель → коллекция | Публичный ключ | Где на фронте | Файлы в `static/` |
 |---|---|---|---|---|
 | Лот (экспонат) | `exhibit` → `exhibits` | `id: number` (unique, 0–9999) | `/collection/<category>/<id>` | `exhibits/<id>/<images[]>`, `exhibits/<id>/<thumbnail>`, `exhibits/<id>/additional/<additionalImages[]>`, `exhibits/<id>/og.jpg` |
-| Категория | `category` → `categories` | `name` (+ легаси `category` с тем же значением) | `/collection/<name>/` | `categories/<thumbnail>`, `categories/<name>/og.jpg` |
+| Категория | `category` → `categories` | `name` (unique; в документах ещё есть легаси-поле `category` с тем же значением, код его не читает) | `/collection/<name>/` | `categories/<thumbnail>`, `categories/<name>/og.jpg` |
 | Стиль керамики | `style` → `styles` | `name` (unique, `[a-z-]+`) | `/ceramic-styles/<name>` | `ceramic-styles/<name>/<thumbnail>`, `.../<mapImage>.svg`, `.../slides/*`, `.../og.jpg` или `og.webp` (не в БД, `/uploads/og`) |
 | Гончар | `potter` → `potters` | `id: string` (unique, латиница) | `/lnt-potters/<id>` | `potters/<id>/<photo>`, `potters/<id>/slides/*`, `potters/<id>/og.jpg` |
 | Выставка | `exhibition` → `exhibitions` | `id: number` (unique, > 0) | `/exhibitions/<id>` | `exhibitions/<id>/<photos[]>`, `exhibitions/<id>/<poster>`, `exhibitions/<id>/og.jpg` |
@@ -56,7 +56,7 @@ article: {
 
 ## Прочие схемы (кратко)
 
-- **category**: `name`, `title` (unique, строчными: «чаши»), `thumbnail`. Сейчас 8 категорий: bowls, caddies, cups, other, plates, teapots, vases, archive — список продублирован во фронте (`variables.ts` → `CATEGORIES`, `types/exhibitCategory.ts`).
+- **category**: `name` (unique), `title` (unique, строчными: «чаши»), `thumbnail`. Сейчас 8 категорий: bowls, caddies, cups, other, plates, teapots, vases, archive. Фронт берёт список и заголовки из API, своей копии у него нет.
 - **style**: `name`, `title` (unique), `description` (HTML, показывается в карточке лота), `thumbnail`, `mapImage` (svg-миникарта), `showArticle`, `article`.
 - **potter**: `id`, `name` (unique), `japaneseName`, `lifeDates`, `photo`, `info` (HTML), `isLNT` (живое национальное сокровище), `showArticle`, `article`.
 - **exhibition**: `id`, `year`, `dates` (строка), `city`, `address`, `place`, `name`, `link` (URL или ''), `description`, `photos[]`, `poster`, `curators`, `organisators`, `isActive`.
@@ -72,7 +72,6 @@ article: {
 | Что | Бэк | Фронт |
 |---|---|---|
 | Группы маркеров | `back/src/variables/markerGroups.ts` (`MARKER_GROUP_NAMES`) | `front/src/components/visitor/Map/markerGroups.ts` (`MARKER_GROUPS` + title + icon) |
-| Категории | коллекция `categories` | `front/src/variables/variables.ts` (`CATEGORIES`), `types/exhibitCategory.ts` |
 | Цели загрузки слайдов | `back/src/utils/slides.ts` (`SLIDES_TARGETS`) | `slidesStorage.target` в формах админки |
 | Имена папок статики | `back/src/variables/paths.ts` (`PATHS`) | `front/src/variables/variables.ts` (`PATHS`), `MapMarker.tsx` (`/map`) |
 

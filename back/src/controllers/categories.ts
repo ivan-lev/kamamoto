@@ -1,7 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Category as CategoryType } from '../types/category';
 import type { Exhibit as ExhibitType } from '../types/exhibit';
-import { handleMongooseError } from '../middlewares//error-handler-mongoose';
+import { ConflictError } from '../errors/conflict-error';
+import { handleMongooseError } from '../middlewares/error-handler-mongoose';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 import { ERROR_MESSAGES } from '../variables/messages';
@@ -30,7 +31,7 @@ async function getCategories(req: Request, res: Response, next: NextFunction): P
 async function getExhibitsByCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
 	let category;
 	try {
-		category = await Category.findOne({ category: req.params.category }).orFail();
+		category = await Category.findOne({ name: req.params.name }).orFail();
 	}
 	catch (error) {
 		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
@@ -64,10 +65,16 @@ async function createCategory(req: Request, res: Response, next: NextFunction): 
 
 async function deleteCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
 	try {
-		const category = await Category.findOneAndDelete({ category: req.params.category })
-			.orFail()
-			.select('category');
-		res.send(category);
+		const category = await Category.findOne({ name: req.params.name }).orFail();
+
+		// без проверки лоты остались бы со ссылкой в никуда, и их страницы падали бы с 500
+		if (await Exhibit.exists({ category: category._id })) {
+			next(new ConflictError(ERROR_MESSAGES.CATEGORY.HAS_EXHIBITS));
+			return;
+		}
+
+		await category.deleteOne();
+		res.send({ name: category.name });
 	}
 	catch (error) {
 		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
@@ -77,10 +84,10 @@ async function deleteCategory(req: Request, res: Response, next: NextFunction): 
 async function updateCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
 	const newCategoryData: CategoryType = req.body;
 	try {
-		const category = await Category.findOneAndUpdate({ category: req.params.category }, newCategoryData, {
+		const category = await Category.findOneAndUpdate({ name: req.params.name }, newCategoryData, {
 			returnDocument: 'after',
 			runValidators: true,
-		}).orFail();
+		}).select({ _id: 0 }).orFail();
 		res.send(category);
 	}
 	catch (error) {

@@ -7,7 +7,7 @@ const categorySchema = new Schema<Category>(
 		name: {
 			type: String,
 			required: [true, 'Нужно указать название категории на латиннице'],
-			// unique: true,
+			unique: true,
 		},
 
 		title: {
