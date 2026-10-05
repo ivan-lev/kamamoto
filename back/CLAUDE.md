@@ -32,6 +32,7 @@ npx tsc --noEmit && npx eslint .   # проверка перед сдачей
 | `variables/paths.ts` | `PATHS`: имена папок в `static/`, `STATIC_DIR`, `STATIC_URL` | имя папки = сегмент URL |
 | `variables/regexes.ts` | `REGEX` для валидаторов | |
 | `utils/slides.ts` | загрузка и удаление слайдов статей | см. ниже |
+| `utils/gallery.ts` | разделы для `POST /uploads/gallery` (фото лота) | файлы не удаляются при правке записи |
 
 ## Обработка ошибок — канон
 

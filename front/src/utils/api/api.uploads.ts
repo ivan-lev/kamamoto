@@ -24,6 +24,20 @@ async function uploadSlides(token: string, target: string, key: string, files: F
 	return checkResponseStatus(response);
 }
 
+// Несколько картинок в папку записи (фото лота): /static/<папка раздела>/<key>[/<подпапка>].
+// target задаёт бэкенд (GALLERY_TARGETS в utils/gallery.ts), имена файлов в ответе уже уникальны в папке
+async function uploadGallery(token: string, target: string, key: string, files: File[]): Promise<UploadedImage[]> {
+	const formData = new FormData();
+	files.forEach(file => formData.append('files', file));
+
+	const response = await fetch(`${BASE_API_URL}/${UPLOADS}/gallery/${target}/${encodeURIComponent(key)}`, {
+		method: 'POST',
+		headers: { Authorization: `Bearer ${token}` },
+		body: formData,
+	});
+	return checkResponseStatus(response);
+}
+
 // Одна картинка записи: /static/<target>/<файл> или /static/<target>/<key>/<файл>.
 // target и нужен ли ему key, задаёт бэкенд (IMAGE_TARGETS в utils/images.ts).
 // filename — желаемое имя без расширения (например, id термина); бэк транслитерирует его и не перезапишет существующий файл
@@ -70,6 +84,7 @@ async function deleteOgImage(token: string, target: string, key: string): Promis
 
 export const uploads = {
 	uploadSlides,
+	uploadGallery,
 	uploadImage,
 	getOgImage,
 	uploadOgImage,

@@ -5,8 +5,8 @@ import type { Potter } from '@/types/potter';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ComplectationItem from '@/components/admin/ComplectationItem/ComplectationItem';
+import GalleryField from '@/components/admin/shared/GalleryField/GalleryField';
 import Button from '@/components/shared/Button';
-import Tag from '@/components/visitor/Tag/Tag';
 import { setCategories } from '@/slices/admin/categories';
 import { setCeramicStyles } from '@/slices/admin/ceramicStyles';
 import { setComplectations } from '@/slices/admin/complectations';
@@ -14,7 +14,7 @@ import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/
 import { setPotters } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
 import { storage } from '@/utils/storage';
-import { STORAGE_KEYS } from '@/variables/variables';
+import { PATHS, STORAGE_KEYS } from '@/variables/variables';
 
 interface Props {
 	closeModal: () => void;
@@ -27,10 +27,6 @@ export default function ExhibitForm({ closeModal }: Props) {
 	const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 	const [saveMessage, setSaveMessage] = useState<string>('');
 
-	// TO DO костыль - нужно переделать
-	const [photoName, setPhotoName] = useState<string>('');
-	const [additionalPhotoName, setAdditionalPhotoName] = useState<string>('');
-
 	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
 	const exhibitToEdit = useSelector((state: RootState) => state.exhibits.exhibitToEdit);
 	const isExistingExhibitEdited = useSelector((state: RootState) => state.exhibits.isExistingExhibitEdited);
@@ -40,6 +36,11 @@ export default function ExhibitForm({ closeModal }: Props) {
 	const pottersList = useSelector((state: RootState) => state.potters.pottersList);
 
 	const seasons = ['', 'весна', 'лето', 'осень', 'зима'];
+
+	// фото лежат в папке лота, поэтому без номера их не загрузить и не показать
+	const photosKey = exhibitToEdit.id ? String(exhibitToEdit.id) : undefined;
+	const photosUrl = photosKey && `${PATHS.STATIC_URL}/exhibits/${photosKey}`;
+	const photosHint = 'Чтобы добавить фотографии, укажите номер лота';
 
 	function handleCreateExhibit() {
 		setIsFormDisabled(true);
@@ -130,33 +131,9 @@ export default function ExhibitForm({ closeModal }: Props) {
 		dispatch(setExhibitToEdit({ ...exhibitToEdit, potter: { name: potterName, id: value } }));
 	};
 
-	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-		const { name, value } = event.target;
-		setPhotoName(value);
-		if (value.slice(-1) === ',' || value.slice(-1) === ' ') {
-			dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: [...exhibitToEdit.images || [], value.substring(0, value.length - 1)] }));
-			setPhotoName('');
-		}
-	};
-
-	function handleChangeAdditionalPhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-		const { name, value } = event.target;
-		setAdditionalPhotoName(value);
-		if (value.slice(-1) === ',' || value.slice(-1) === ' ') {
-			dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: [...exhibitToEdit.additionalImages || [], value.substring(0, value.length - 1)] }));
-			setAdditionalPhotoName('');
-		}
-	};
-
-	// TO DO костыль - нужно унифицировать
-	function handleDeletePhoto(photoToDelete: string) {
-		const filteredPhotos = exhibitToEdit.images?.filter(photo => photo !== photoToDelete);
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, images: filteredPhotos }));
-	}
-
-	function handleDeleteAdditionalPhoto(photoToDelete: string) {
-		const filteredPhotos = exhibitToEdit.additionalImages?.filter(photo => photo !== photoToDelete);
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, additionalImages: filteredPhotos }));
+	// загрузка, порядок и удаление фотографий — из GalleryField
+	function handlePhotosListChange(name: 'images' | 'additionalImages', photos: string[]) {
+		dispatch(setExhibitToEdit({ ...exhibitToEdit, [name]: photos }));
 	}
 
 	useEffect(() => {
@@ -317,17 +294,14 @@ export default function ExhibitForm({ closeModal }: Props) {
 
 					<div className="form__row form__row-12">
 						<span>фотографии</span>
-						<input
-							className="input"
-							type="text"
-							name="images"
-							placeholder="фотографии"
-							value={ photoName }
-							onChange={ handleChangePhotos }
+						<GalleryField
+							items={ exhibitToEdit.images ?? [] }
+							onChange={ photos => handlePhotosListChange('images', photos) }
+							target="exhibits"
+							uploadKey={ photosKey }
+							emptyKeyHint={ photosHint }
+							previewBaseUrl={ photosUrl }
 						/>
-						<div className="tags">
-							{ exhibitToEdit?.images?.map(image => <Tag key={ image } title={ image } action={ () => handleDeletePhoto(image) } />) }
-						</div>
 					</div>
 
 					<div className="form__row form__row-12">
@@ -354,17 +328,14 @@ export default function ExhibitForm({ closeModal }: Props) {
 
 					<div className="form__row form__row-12">
 						<span>дополнительные фотографии</span>
-						<input
-							className="input"
-							type="text"
-							name="additionalImages"
-							placeholder="названия через запятую без пробелов с расширением"
-							value={ additionalPhotoName }
-							onChange={ handleChangeAdditionalPhotos }
+						<GalleryField
+							items={ exhibitToEdit.additionalImages ?? [] }
+							onChange={ photos => handlePhotosListChange('additionalImages', photos) }
+							target="exhibits-additional"
+							uploadKey={ photosKey }
+							emptyKeyHint={ photosHint }
+							previewBaseUrl={ photosUrl && `${photosUrl}/additional` }
 						/>
-						<div className="tags">
-							{ exhibitToEdit?.additionalImages?.map(image => <Tag key={ image } title={ image } action={ () => handleDeleteAdditionalPhoto(image) } />) }
-						</div>
 					</div>
 
 					<div className="form__row form__row-1">

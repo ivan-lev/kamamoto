@@ -1,0 +1,73 @@
+.sortable-tags {
+	// элементы и плитка загрузки — по колонке на каждый
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: var(--gap-8);
+	padding-top: var(--gap-2);
+
+	&__item {
+		cursor: grab;
+		user-select: none;
+
+		position: relative;
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-4);
+
+		// иначе длинное имя файла растянет колонку и троеточие не сработает
+		min-width: 0;
+
+		&:active {
+			cursor: grabbing;
+		}
+
+		&--dragged {
+			opacity: 0.4;
+		}
+
+		&--drop-before,
+		&--drop-after {
+			&::after {
+				content: '';
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+
+				width: 2px;
+
+				background: var(--text-default);
+			}
+		}
+
+		&--drop-before::after {
+			left: calc(var(--gap-8) / -2 - 1px);
+		}
+
+		&--drop-after::after {
+			right: calc(var(--gap-8) / -2 - 1px);
+		}
+	}
+
+	&__preview {
+		aspect-ratio: 3 / 2;
+		width: 100%;
+		border-radius: var(--border-radius-m);
+
+		object-fit: cover;
+		background: var(--background-muted);
+
+		&--missing {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			box-sizing: border-box;
+			border: 1px dashed var(--border-color);
+
+			font-size: 12px;
+			color: var(--text-muted);
+		}
+	}
+}

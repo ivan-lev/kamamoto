@@ -161,6 +161,10 @@ PATCH удаляет с диска прежнюю картинку, если `im
 `target` ∈ `SLIDES_TARGETS` (`ceramic-styles`, `potters`), `key` — `[\w-]+`.
 Ответ 201: `[{ filename, url }]`. `filename` уже транслитерирован и уникален в папке, в статью записывается именно он.
 
+`POST /gallery/:target/:key`, multipart, поле `files` (лимиты и форматы — как у слайдов) — фото записи в её папку.
+`target` ∈ `GALLERY_TARGETS` (`back/src/utils/gallery.ts`): `exhibits` → `/static/exhibits/<key>/`, `exhibits-additional` → `/static/exhibits/<key>/additional/`; `key` — номер лота (1–4 цифры).
+Ответ 201: `[{ filename, url }]`. Имена фронт дописывает в `images` / `additionalImages` и сохраняет запись отдельным запросом. Файлы, убранные из записи, с диска не удаляются (в той же папке тхумб и `og.jpg`).
+
 `POST /images/:target` и `POST /images/:target/:key`, multipart, одно поле `file` (20 МБ) — одиночная картинка записи в `/static/<папка раздела>/<файл>` или, для разделов с `hasKey`, в `/static/<папка раздела>/<key>/<файл>` (`key` — `[\w-]+`; лишний или недостающий `key` → 400).
 `target` ∈ `IMAGE_TARGETS` (`back/src/utils/images.ts`):
 - `dictionary` — без `key`, jpeg|webp (как в `termValidator`), фронт шлёт имя = `id` термина;

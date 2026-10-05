@@ -1,0 +1,54 @@
+.gallery-field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-4);
+
+	&__add {
+		cursor: pointer;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		box-sizing: border-box;
+		width: 100%;
+		border: 2px dashed var(--border-color);
+		border-radius: var(--border-radius-m);
+
+		background: var(--background-muted);
+
+		transition: border-color 0.2s, opacity 0.2s;
+
+		&:hover:not(&--disabled),
+		&--active {
+			border-color: var(--text-muted);
+		}
+
+		&--disabled {
+			cursor: not-allowed;
+			opacity: 0.4;
+		}
+
+		&:only-child {
+			aspect-ratio: 1;
+		}
+	}
+
+	&__input {
+		display: none;
+	}
+
+	&__icon {
+		width: 40%;
+		height: 40%;
+	}
+
+	&__hint {
+		font-size: 13px;
+		color: var(--text-muted);
+
+		&--error {
+			color: var(--color-error, #c0392b);
+		}
+	}
+}

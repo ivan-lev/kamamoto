@@ -25,7 +25,7 @@ components/
   App/                 роутер верхнего уровня: /admin/* (lazy) и /* (VisitorView)
   visitor/<Name>/      страницы и блоки сайта; <Name>.tsx + <Name>.scss рядом
   admin/<Name>/        разделы админки (формы, таблицы)
-  admin/shared/        ArticleForm (редактор статей со слайдами), RichTextEditor (tiptap), ImageDropzone (одна картинка записи)
+  admin/shared/        ArticleForm (редактор статей со слайдами), RichTextEditor (tiptap), ImageDropzone (одна картинка записи), SortableTags (теги-строки: перетаскивание, удаление, превью картинок по `previewBaseUrl`), GalleryField (SortableTags + загрузка файлов перетаскиванием через `/uploads/gallery`, фото лота)
   shared/              Button, Modal, Preloader — общие для обеих частей
 slices/visitor/*       RTK-слайсы сайта, стор создаётся лениво (getVisitorStore)
 slices/admin/*         RTK-слайсы админки, отдельный стор (getAdminStore)

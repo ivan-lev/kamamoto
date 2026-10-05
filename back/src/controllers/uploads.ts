@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import multer from 'multer';
 import { ValidationError } from '../errors/validation-error';
+import { getGalleryFolder, isGalleryTarget, isValidGalleryKey } from '../utils/gallery';
 import { getImageFolder, IMAGE_TARGETS, isImageTarget, isValidImageKey } from '../utils/images';
 import { findOgFile, getOgFolder, isOgTarget, removeOgFiles } from '../utils/ogImage';
 import { getSlidesFolder, isSlidesTarget, isValidSlidesKey } from '../utils/slides';
@@ -45,6 +46,19 @@ function getRequestSlidesFolder(req: Request) {
 		throw new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_KEY);
 
 	return getSlidesFolder(target, key);
+}
+
+function getRequestGalleryFolder(req: Request) {
+	const target = req.params.target as string;
+	const key = req.params.key as string;
+
+	if (!isGalleryTarget(target))
+		throw new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_TARGET);
+
+	if (!isValidGalleryKey(target, key))
+		throw new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_KEY);
+
+	return getGalleryFolder(target, key);
 }
 
 function getRequestImageTarget(req: Request) {
@@ -138,16 +152,33 @@ function getUploadError(error: unknown, tooManyMessage: string) {
 	return new ValidationError(message);
 }
 
-const uploadSlidesFiles = multer({
-	storage: createStorage(getRequestSlidesFolder, 'slide'),
-	fileFilter: (_req, file, callback) => {
-		if (IMAGE_MIME_REGEX.test(file.mimetype))
-			return callback(null, true);
+// Несколько картинок за раз (слайды статьи, фото лота): отличаются только папкой и запасным именем файла
+function createMultipleUpload(getFolder: (req: Request) => UploadFolder, fallbackName: string) {
+	const uploadFiles = multer({
+		storage: createStorage(getFolder, fallbackName),
+		fileFilter: (_req, file, callback) => {
+			if (IMAGE_MIME_REGEX.test(file.mimetype))
+				return callback(null, true);
 
-		callback(new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_TYPE));
-	},
-	limits: { fileSize: MAX_FILE_SIZE, files: MAX_FILES },
-}).array('files', MAX_FILES);
+			callback(new ValidationError(ERROR_MESSAGES.UPLOAD.WRONG_TYPE));
+		},
+		limits: { fileSize: MAX_FILE_SIZE, files: MAX_FILES },
+	}).array('files', MAX_FILES);
+
+	return function (req: Request, res: Response, next: NextFunction) {
+		uploadFiles(req, res, (error: unknown) => {
+			if (error)
+				return next(getUploadError(error, ERROR_MESSAGES.UPLOAD.TOO_MANY));
+
+			const files = req.files as Express.Multer.File[] | undefined;
+			if (!files?.length)
+				return next(new ValidationError(ERROR_MESSAGES.UPLOAD.NO_FILES));
+
+			const { url } = getFolder(req);
+			res.status(201).send(files.map(file => ({ filename: file.filename, url: `${url}/${file.filename}` })));
+		});
+	};
+}
 
 const uploadImageFile = multer({
 	storage: createStorage(getRequestImageFolder, 'image'),
@@ -193,19 +224,10 @@ const uploadOgFile = multer({
 	limits: { fileSize: MAX_FILE_SIZE, files: 1 },
 }).single('file');
 
-function uploadSlides(req: Request, res: Response, next: NextFunction) {
-	uploadSlidesFiles(req, res, (error: unknown) => {
-		if (error)
-			return next(getUploadError(error, ERROR_MESSAGES.UPLOAD.TOO_MANY));
+const uploadSlides = createMultipleUpload(getRequestSlidesFolder, 'slide');
 
-		const files = req.files as Express.Multer.File[] | undefined;
-		if (!files?.length)
-			return next(new ValidationError(ERROR_MESSAGES.UPLOAD.NO_FILES));
-
-		const { url } = getRequestSlidesFolder(req);
-		res.status(201).send(files.map(file => ({ filename: file.filename, url: `${url}/${file.filename}` })));
-	});
-}
+// Фото записи (лота). В БД имена файлов сохраняет фронт, отдельным запросом
+const uploadGallery = createMultipleUpload(getRequestGalleryFolder, 'image');
 
 // Одна картинка записи (термина словаря, тхумб или карта стиля). В БД запись сохраняет фронт, отдельным запросом
 function uploadImage(req: Request, res: Response, next: NextFunction) {
@@ -268,6 +290,7 @@ async function deleteOg(req: Request, res: Response, next: NextFunction) {
 
 export const uploads = {
 	uploadSlides,
+	uploadGallery,
 	uploadImage,
 	getOg,
 	uploadOg,
