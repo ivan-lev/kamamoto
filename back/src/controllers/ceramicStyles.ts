@@ -83,7 +83,7 @@ async function createCeramicStyle(req: Request, res: Response, next: NextFunctio
 		res.status(201).send(styleData);
 	}
 	catch (error) {
-		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
+		handleMongooseError(error, next, ERROR_MESSAGES.CERAMIC_STYLE);
 	}
 }
 
@@ -94,7 +94,7 @@ async function deleteCeramicStyle(req: Request<{ name: string }>, res: Response,
 		res.send(style);
 	}
 	catch (error) {
-		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
+		handleMongooseError(error, next, ERROR_MESSAGES.CERAMIC_STYLE);
 	}
 }
 
@@ -123,7 +123,7 @@ async function updateCeramicStyle(req: Request<{ name: string }>, res: Response,
 		res.send(style);
 	}
 	catch (error) {
-		handleMongooseError(error, next, ERROR_MESSAGES.CATEGORY);
+		handleMongooseError(error, next, ERROR_MESSAGES.CERAMIC_STYLE);
 	}
 }
 

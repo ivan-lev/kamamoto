@@ -1,11 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
-import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 import Exhibition from '../models/exhibition';
 import Letters from '../models/letter';
 import Partners from '../models/partner';
-import { ERROR_MESSAGES } from '../variables/messages';
 
 export async function getStatistics(req: Request, res: Response, next: NextFunction): Promise<void> {
 	try {
@@ -18,7 +16,8 @@ export async function getStatistics(req: Request, res: Response, next: NextFunct
 		]);
 		res.send({ exhibits, exhibitions, categories, partners, letters });
 	}
+	// у подсчёта нет ошибок, которые переводит handleMongooseError: только сбой БД → 500
 	catch (error) {
-		handleMongooseError(error, next, ERROR_MESSAGES.USER);
+		next(error);
 	}
 }
