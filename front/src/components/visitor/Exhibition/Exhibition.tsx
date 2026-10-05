@@ -2,13 +2,15 @@ import type { RootState } from '@/slices/visitor';
 import parse from 'html-react-parser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import Preloader from '@/components/shared/Preloader/Preloader';
+import NotFound from '@/components/visitor/NotFound/NotFound';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import Slider from '@/components/visitor/Slider/Slider';
 import { setExhibitionToDisplay } from '@/slices/visitor/exhibitions';
 import { api } from '@/utils/api/api';
+import { isPageMissing } from '@/utils/api/api.common';
 import { scrollToTop } from '@/utils/scrollToTop';
 import { htmlParserOptions } from '@/variables/htmlParserOptions';
 
@@ -18,10 +20,11 @@ export default function Exhibition() {
 	const dispatch = useDispatch();
 	const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
 	const exhId = useParams().exhId;
-	const navigate = useNavigate();
 	const options = htmlParserOptions;
 
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	// адрес, по которому выставки не оказалось: при переходе на другой адрес страница снова грузится
+	const [missingExhibition, setMissingExhibition] = useState<string>();
 	const exhibitionToDisplay = useSelector(
 		(state: RootState) => state.exhibitions.exhibitionToDisplay,
 	);
@@ -49,13 +52,16 @@ export default function Exhibition() {
 				console.error(error);
 				setShowPreloader(false);
 
-				if (error.status === 404) {
-					navigate('/404', { replace: true });
-				}
+				if (isPageMissing(error))
+					setMissingExhibition(exhId);
 			});
-	}, [dispatch, navigate, exhId, exhibitions]);
+	}, [dispatch, exhId, exhibitions]);
 
 	useLayoutEffect(() => scrollToTop(), []);
+
+	if (missingExhibition === exhId) {
+		return <NotFound />;
+	}
 
 	return (
 		<>

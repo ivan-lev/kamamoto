@@ -40,7 +40,7 @@ assets/icons/*.svg     спрайт через vite-plugin-svg-spritemap: `/__sp
 
 - Сайт: `components/visitor/VisitorView/VisitorView.tsx`, все страницы — `lazy()`. Layout: Header, Main (Outlet), Footer.
 - Админка: `components/admin/AdminView/AdminView.tsx` → `Admin` (сайдбар + Outlet, без логина редиректит на `/admin/login`).
-- Для 404 используется `navigate('/404', { replace: true })`, путь ловит `*` → `NotFound`.
+- **404 без редиректа**: неизвестный путь ловит `<Route path="*">` внутри layout, а страница записи, если записи нет, сама рендерит `<NotFound />` по тому же адресу (паттерн: `const [missingX, setMissingX] = useState<string>()`, в `catch` — `if (isPageMissing(error)) setMissingX(param)`, в рендере — `if (missingX === param) return <NotFound />`). `navigate('/404')` не использовать: адрес теряется, а поисковики видят 200 на исходном URL. HTTP-статус 404 ставит бэк (`pages.ts`), фронт про статус ничего не знает.
 - **Хвостовые слэши задаёт Caddy** (301-редиректы): у страниц-списков слэш есть (`/collection/`, `/exhibitions/`, `/ceramic-styles/`, `/lnt-potters/`, `/useful/`), у остальных нет. Новая страница = правка регулярок в `Caddyfile`, иначе будут дубли URL для SEO.
 
 ## Работа с API
@@ -59,7 +59,7 @@ if (token) {
 }
 ```
 
-- Все запросы проходят через `checkResponseStatus`: при `!ok` он бросает `ApiError(message, status)`, где `message` — текст ошибки с бэкенда. Страницы сайта по `error.status === 404` уводят на `/404`.
+- Все запросы проходят через `checkResponseStatus`: при `!ok` он бросает `ApiError(message, status)`, где `message` — текст ошибки с бэкенда. `isPageMissing(error)` из `api.common.ts` — «страницы по этому адресу нет»: 404 или 400 (параметр адреса не прошёл валидацию, например `/exhibitions/abc`).
 - Для форм админки GET вызывается с `isAdmin = true`: добавляется заголовок `is-admin: 'true'`, и бэк отдаёт сырые имена файлов вместо URL.
 - Закрытые GET (`getExhibits`, `getMarkers`) принимают `token`, `getExhibitions(token?)` и `getPartners(token?)` — тоже (у партнёров без токена приходят только активные). У выставок: с токеном бэк отдаёт все выставки в формате админки, без — для сайта (неактивные — только поля карточки, без описания и фото; страница выставки за такой идёт в API и получает 404). Токен админка берёт из `storage.get(STORAGE_KEYS.TOKEN)`.
 - RTK Query не используется: запросы идут из `useEffect` компонентов, результат кладётся в слайс через `dispatch`.

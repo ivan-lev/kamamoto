@@ -1,26 +1,29 @@
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import DisplayGrid from '@/components/visitor/DisplayGrid/DisplayGrid';
+import NotFound from '@/components/visitor/NotFound/NotFound';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
 import { resetCategory, setCategory } from '@/slices/visitor/category';
 import { resetDisplayList, setDisplayList } from '@/slices/visitor/list';
 import { api } from '@/utils/api/api';
+import { isPageMissing } from '@/utils/api/api.common';
 import { scrollToTop } from '@/utils/scrollToTop';
 import { CATEGORIES } from '@/variables/variables';
 
 export default function Category() {
 	const { category } = useParams();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const allowedCategory = Object.keys(CATEGORIES).includes(category || '');
 
 	const categoryTitle = allowedCategory ? CATEGORIES[category!].toLowerCase() : 'японская керамика';
 	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
+	// адрес, по которому категории не оказалось: при переходе на другой адрес страница снова грузится
+	const [missingCategory, setMissingCategory] = useState<string>();
 
 	useLayoutEffect(() => scrollToTop(), []);
 
@@ -36,9 +39,8 @@ export default function Category() {
 					console.error(error);
 					setShowPreloader(false);
 
-					if (error.status === 404) {
-						navigate('/404', { replace: true });
-					}
+					if (isPageMissing(error))
+						setMissingCategory(category);
 				});
 		}
 
@@ -46,11 +48,11 @@ export default function Category() {
 			dispatch(resetCategory());
 			dispatch(resetDisplayList());
 		};
-	}, [dispatch, navigate, category]);
+	}, [dispatch, category]);
 
 	return (
-		!allowedCategory
-			? (<Navigate to="/404" replace />)
+		!allowedCategory || missingCategory === category
+			? (<NotFound />)
 			: (
 				<>
 					<Seo title={ `Камамото: ${categoryTitle}` } />

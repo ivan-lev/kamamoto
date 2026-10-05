@@ -6,6 +6,7 @@ import Preloader from '@/components/shared/Preloader/Preloader';
 import Footer from '@/components/visitor/Footer/Footer';
 import Header from '@/components/visitor/Header/Header';
 import Main from '@/components/visitor/Main/Main';
+import NotFound from '@/components/visitor/NotFound/NotFound';
 import ScrollToHash from '@/components/visitor/ScrollToHash/ScrollToHash';
 import ScrollToTopButton from '@/components/visitor/ScrollToTop/ScrollToTop';
 import { getVisitorStore } from '@/slices/visitor';
@@ -30,7 +31,6 @@ const JapaneseSocieties = lazy(() => import('@/components/visitor/JapaneseSociet
 const LNTPotter = lazy(() => import('@/components/visitor/LNTPotter/LNTPotter'));
 const LNTPotters = lazy(() => import('@/components/visitor/LNTPotters/LNTPotters'));
 const Map = lazy(() => import('@/components/visitor/Map/Map'));
-const NotFound = lazy(() => import('@/components/visitor/NotFound/NotFound'));
 const ThanksLetters = lazy(() => import('@/components/visitor/ThanksLetters/ThanksLetters'));
 const Useful = lazy(() => import('@/components/visitor/Useful/Useful'));
 
@@ -72,9 +72,8 @@ export default function VisitorView() {
 						<Route path="map" element={ <Map /> } />
 						<Route path="lnt-potters" element={ <LNTPotters /> } />
 						<Route path="lnt-potters/:potter" element={ <LNTPotter /> } />
+						<Route path="*" element={ <NotFound /> } />
 					</Route>
-
-					<Route path="*" element={ <NotFound /> } />
 				</Routes>
 			</Suspense>
 		</Provider>

@@ -7,7 +7,7 @@ import Potter from '../models/potter';
 import Style from '../models/style';
 import { getOgImage } from '../utils/ogImage';
 import { PATHS } from '../variables/paths';
-import { STATIC_PAGES } from '../variables/staticPages';
+import { NOT_FOUND_TITLE, STATIC_PAGES } from '../variables/staticPages';
 
 const { CATEGORIES, CERAMIC_STYLES, DEFAULT_OG_IMAGE, EXHIBITIONS, EXHIBITS, FRONT_INDEX, PAGES, POTTERS, SITE_URL } = PATHS;
 
@@ -183,6 +183,9 @@ async function getStaticPageMeta(key: string): Promise<PageMeta | undefined> {
 	};
 }
 
+// страницы, у которых нет своих мета-тегов: им остаются общие из index.html
+const PAGES_WITHOUT_META = /^\/(?:admin(?:\/.*)?)?$/;
+
 // Порядок важен: берётся первый подошедший шаблон (лот раньше категории, статичные страницы последними)
 const PAGE_ROUTES: { pattern: RegExp; getMeta: (param: string) => Promise<PageMeta | undefined> }[] = [
 	{ pattern: /^\/collection\/[^/]+\/(\d+)$/, getMeta: getExhibitMeta },
@@ -211,12 +214,22 @@ async function renderPage(req: Request, res: Response, next: NextFunction) {
 
 	try {
 		let html = applyUrl(await fs.readFile(FRONT_INDEX, 'utf8'), `${SITE_URL}${req.path}`);
+		let status = 200;
 
-		// если БД недоступна, сайт всё равно должен открыться — с общими мета-тегами
+		// если БД недоступна, сайт всё равно должен открыться — с общими мета-тегами и статусом 200
 		try {
-			const meta = await findPageMeta(req.path);
-			if (meta)
-				html = applyMeta(html, meta);
+			if (!PAGES_WITHOUT_META.test(req.path)) {
+				const meta = await findPageMeta(req.path);
+				if (meta) {
+					html = applyMeta(html, meta);
+				}
+				else {
+					// настоящий 404, а не 200: иначе поисковики индексируют несуществующие адреса (soft 404).
+					// Страницу «не найдено» по-прежнему рисует фронт, по тому же адресу
+					status = 404;
+					html = html.replace(/<title>[^<]*<\/title>/, `<title>${NOT_FOUND_TITLE}</title>`);
+				}
+			}
 		}
 		catch (error) {
 			console.error(error);
@@ -224,7 +237,7 @@ async function renderPage(req: Request, res: Response, next: NextFunction) {
 
 		// CSP от helmet рассчитан на API и сломал бы карту, emailjs и внешние слайды
 		res.removeHeader('Content-Security-Policy');
-		res.type('html').send(html);
+		res.status(status).type('html').send(html);
 	}
 	catch (error) { return next(error); }
 }

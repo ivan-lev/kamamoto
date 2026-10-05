@@ -1,7 +1,7 @@
 import type { RootState } from '@/slices/visitor';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import DisplayGrid from '@/components/visitor/DisplayGrid/DisplayGrid';
 import PageTop from '@/components/visitor/PageTop/PageTop';
@@ -13,7 +13,6 @@ import { scrollToTop } from '@/utils/scrollToTop';
 export default function LNTPotters() {
 	const { category } = useParams();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const listToDisplay = useSelector((state: RootState) => state.list.displayList);
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
@@ -30,10 +29,6 @@ export default function LNTPotters() {
 			catch (error: any) {
 				console.error(error);
 				setShowPreloader(false);
-
-				if (error.status === 404) {
-					navigate('/404', { replace: true });
-				}
 			}
 		}
 
@@ -42,7 +37,7 @@ export default function LNTPotters() {
 		return () => {
 			dispatch(resetDisplayList());
 		};
-	}, [category, dispatch, navigate]);
+	}, [category, dispatch]);
 
 	return (
 		<>

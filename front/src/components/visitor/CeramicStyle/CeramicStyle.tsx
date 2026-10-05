@@ -1,15 +1,18 @@
 import type { Article as IArticle } from '@/components/visitor/Article/Article.types';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import Article from '@/components/visitor/Article/Article';
+import NotFound from '@/components/visitor/NotFound/NotFound';
 import { api } from '@/utils/api/api';
+import { isPageMissing } from '@/utils/api/api.common';
 import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function CeremicStyle() {
 	const { style } = useParams();
 	const [articleInfo, setArticleInfo] = useState<IArticle | null>(null);
-	const navigate = useNavigate();
+	// адрес, по которому записи не оказалось: при переходе на другой адрес страница снова грузится
+	const [missingStyle, setMissingStyle] = useState<string>();
 
 	useEffect(() => {
 		if (!style)
@@ -17,14 +20,17 @@ export default function CeremicStyle() {
 
 		api.ceramicStyles.getCeramicStylesArticle(style)
 			.then(setArticleInfo)
-			.catch((error: any) => {
-				if (error.status === 404) {
-					navigate('/404', { replace: true });
-				}
+			.catch((error) => {
+				if (isPageMissing(error))
+					setMissingStyle(style);
 			});
-	}, [style, navigate]);
+	}, [style]);
 
 	useLayoutEffect(() => scrollToTop(), []);
+
+	if (missingStyle === style) {
+		return <NotFound />;
+	}
 
 	if (!articleInfo) {
 		return <Preloader />;
