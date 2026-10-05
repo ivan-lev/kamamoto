@@ -1,8 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Error } from 'mongoose';
-import type { UserDocument } from '../models/user';
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET, NODE_ENV } from '../config';
+import { JWT_KEY } from '../config';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import User from '../models/user';
 import { ERROR_MESSAGES } from '../variables/messages';
@@ -11,16 +10,12 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
 	const { email, password } = req.body;
 
 	try {
-		const user: UserDocument = await User.findUserByCredentials(email as string, password as string);
-		const token = jwt.sign(
-			{ _id: user._id },
-			NODE_ENV === 'production' ? JWT_SECRET : 'default-key',
-			{ expiresIn: '7d' },
-		);
+		const user = await User.findUserByCredentials(email as string, password as string);
+		const token = jwt.sign({ _id: user._id }, JWT_KEY, { expiresIn: '7d' });
 		res.send({ token });
 	}
 	catch (error) {
-		handleMongooseError(error as Error, next, ERROR_MESSAGES.PARTNER);
+		handleMongooseError(error as Error, next, ERROR_MESSAGES.USER);
 	}
 }
 
@@ -36,6 +31,6 @@ export async function checkToken(req: any, res: Response, next: NextFunction): P
 		res.send({ answer: `Token checked!` });
 	}
 	catch (error) {
-		handleMongooseError(error, next, ERROR_MESSAGES.PARTNER);
+		handleMongooseError(error, next, ERROR_MESSAGES.USER);
 	}
 }

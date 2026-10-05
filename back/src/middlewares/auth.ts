@@ -1,7 +1,7 @@
 import type { NextFunction, Response } from 'express';
 
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET, NODE_ENV } from '../config';
+import { JWT_KEY } from '../config';
 import { AuthorizationError } from '../errors/authorization-error';
 import { ERROR_MESSAGES } from '../variables/messages';
 
@@ -17,10 +17,7 @@ function verifyToken(req: any, next: NextFunction): void {
 	let payload;
 
 	try {
-		payload = jwt.verify(
-			token,
-			NODE_ENV === 'production' ? JWT_SECRET : 'default-key',
-		);
+		payload = jwt.verify(token, JWT_KEY);
 	}
 	catch (error) {
 		console.error(error);

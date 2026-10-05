@@ -11,7 +11,7 @@ export interface UserDocument extends User, Document {
 }
 
 interface UserModel extends Model<UserDocument> {
-	findUserByCredentials: (email: string, password: string) => any;
+	findUserByCredentials: (email: string, password: string) => Promise<UserDocument>;
 }
 
 const userSchema = new Schema(
@@ -34,26 +34,13 @@ const userSchema = new Schema(
 	},
 	{
 		statics: {
-			findUserByCredentials(email: string, password: string): any {
-				return this.findOne({ email })
-					.select('+password')
-					.then(async (user: any) => {
-						if (user.email === undefined) {
-							throw new AuthorizationError(
-								ERROR_MESSAGES.USER.WRONG_CREDENTIALS,
-							);
-						}
-						return await bcrypt
-							.compare(password, user.password as string)
-							.then((matched: boolean) => {
-								if (!matched) {
-									throw new AuthorizationError(
-										ERROR_MESSAGES.USER.WRONG_CREDENTIALS,
-									);
-								}
-								return user;
-							});
-					});
+			async findUserByCredentials(email: string, password: string): Promise<UserDocument> {
+				const user = await this.findOne({ email }).select('+password');
+				// одинаковый ответ на неверную почту и неверный пароль: не подсказываем, какие адреса есть в базе
+				if (!user || !(await bcrypt.compare(password, user.password as string)))
+					throw new AuthorizationError(ERROR_MESSAGES.USER.WRONG_CREDENTIALS);
+
+				return user;
 			},
 		},
 		versionKey: 'false',

@@ -14,7 +14,7 @@
 | mongo | `MONGO_INITDB_ROOT_USERNAME`, `MONGO_INITDB_ROOT_PASSWORD` | контейнер mongo |
 
 `front/.env` (в репозитории): только `VITE_BASE_API_DEV_URL`.
-Если переменной в `back/src/config.ts` нет, подставляется заглушка вида `'CHECK_JWT_SECRET'`. Так что пропущенная переменная не роняет приложение, а даёт странное поведение.
+Если переменной в `back/src/config.ts` нет, подставляется заглушка вида `'CHECK_DB_HOST'`. Так что пропущенная переменная не роняет приложение, а даёт странное поведение. Исключения — `NODE_ENV` и `JWT_SECRET`: если `NODE_ENV` не `production`/`development` или в production `JWT_SECRET` короче 32 символов, бэк не стартует (новый секрет: `openssl rand -base64 48`; после смены все входы в админку слетают).
 
 ## Прод (VPS, docker compose)
 
