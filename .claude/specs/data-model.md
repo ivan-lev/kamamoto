@@ -8,7 +8,7 @@ MongoDB 8. База `DB_NAME`, аутентификация через `authSour
 | Сущность | Модель → коллекция | Публичный ключ | Где на фронте | Файлы в `static/` |
 |---|---|---|---|---|
 | Лот (экспонат) | `exhibit` → `exhibits` | `id: number` (unique, 0–9999) | `/collection/<category>/<id>` | `exhibits/<id>/<images[]>`, `exhibits/<id>/<thumbnail>`, `exhibits/<id>/additional/<additionalImages[]>`, `exhibits/<id>/og.jpg` |
-| Категория | `category` → `categories` | `name` (unique; в документах ещё есть легаси-поле `category` с тем же значением, код его не читает) | `/collection/<name>/` | `categories/<thumbnail>`, `categories/<name>/og.jpg` |
+| Категория | `category` → `categories` | `name` (unique) | `/collection/<name>/` | `categories/<thumbnail>`, `categories/<name>/og.jpg` |
 | Стиль керамики | `style` → `styles` | `name` (unique, `[a-z-]+`) | `/ceramic-styles/<name>` | `ceramic-styles/<name>/<thumbnail>`, `.../<mapImage>.svg`, `.../slides/*`, `.../og.jpg` или `og.webp` (не в БД, `/uploads/og`) |
 | Гончар | `potter` → `potters` | `id: string` (unique, латиница) | `/lnt-potters/<id>` | `potters/<id>/<photo>`, `potters/<id>/slides/*`, `potters/<id>/og.jpg` |
 | Выставка | `exhibition` → `exhibitions` | `id: number` (unique, > 0) | `/exhibitions/<id>` | `exhibitions/<id>/<photos[]>`, `exhibitions/<id>/<poster>`, `exhibitions/<id>/og.jpg` |
