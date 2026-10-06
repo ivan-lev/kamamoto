@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/Button';
 import { clearCategoryForm, setCategories, setCategoryToEdit, setIsExistingCategoryEdited } from '@/slices/admin/categories';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { STORAGE_KEYS } from '@/variables/variables';
 
@@ -46,7 +47,7 @@ export default function CategoryForm({ closeModal }: Props) {
 			setTimeout(closeModal, 1000);
 		}
 		catch (error) {
-			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+			setSaveMessage(getErrorMessage(error));
 		}
 		finally {
 			setIsFormDisabled(false);
@@ -65,7 +66,7 @@ export default function CategoryForm({ closeModal }: Props) {
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {
-			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+			setSaveMessage(getErrorMessage(error));
 		}
 		finally {
 			setIsFormDisabled(false);
@@ -88,7 +89,7 @@ export default function CategoryForm({ closeModal }: Props) {
 		}
 		catch (error) {
 			// например, 409: в категории есть лоты
-			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+			setSaveMessage(getErrorMessage(error));
 		}
 		finally {
 			setShowConfirmation(false);

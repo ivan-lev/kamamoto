@@ -2,8 +2,9 @@ import type { ChangeEvent, DragEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import SortableTags from '@/components/admin/shared/SortableTags/SortableTags';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
-import { STORAGE_KEYS } from '@/variables/variables';
+import { ERROR_MESSAGES, STORAGE_KEYS } from '@/variables/variables';
 import '@/components/admin/shared/GalleryField/GalleryField.scss';
 
 interface Props {
@@ -50,7 +51,7 @@ export default function GalleryField({ items, onChange, target, uploadKey, empty
 			latestOnChangeRef.current([...latestItemsRef.current, ...uploadedImages.map(({ filename }) => filename)]);
 		}
 		catch (error) {
-			setErrorMessage(error instanceof Error ? error.message : 'Не удалось загрузить файлы');
+			setErrorMessage(getErrorMessage(error, ERROR_MESSAGES.UPLOAD));
 		}
 		finally {
 			setIsUploading(false);

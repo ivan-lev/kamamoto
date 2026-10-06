@@ -26,7 +26,7 @@ export default function LNTPotters() {
 				dispatch(setDisplayList(response));
 				setShowPreloader(false);
 			}
-			catch (error: any) {
+			catch (error) {
 				console.error(error);
 				setShowPreloader(false);
 			}

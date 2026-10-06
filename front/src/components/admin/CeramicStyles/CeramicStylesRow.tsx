@@ -29,7 +29,7 @@ export default function CeramicStylesRow({ style, setShowModal }: Props) {
 				const response = await api.ceramicStyles.updateCeramicStyle(token, { ...style, showArticle: !style.showArticle }, style.name);
 				dispatch(updateCeramicStyle(response));
 			}
-			catch (error: any) {
+			catch (error) {
 				console.error(error);
 			}
 		}

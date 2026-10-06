@@ -53,13 +53,14 @@ if (token) {
 		// обновить список в слайсе
 		setSaveMessage('Данные обновлены');
 	}
-	catch (error: any) {
-		setSaveMessage(error.message || 'Что-то пошло не так :(');
+	catch (error) {
+		setSaveMessage(getErrorMessage(error));
 	}
 }
 ```
 
 - Все запросы проходят через `checkResponseStatus`: при `!ok` он бросает `ApiError(message, status)`, где `message` — текст ошибки с бэкенда. `isPageMissing(error)` из `api.common.ts` — «страницы по этому адресу нет»: 404 или 400 (параметр адреса не прошёл валидацию, например `/exhibitions/abc`).
+- **Ошибки — только через `api.common.ts`.** Текст для пользователя — `getErrorMessage(error, fallback?)`: сообщение с бэка или запасной текст из `ERROR_MESSAGES` (`variables.ts`, по умолчанию «Что-то пошло не так :(»). Нужен статус — `error instanceof ApiError`. Ошибку не типизировать как `any` (ни в `catch`, ни в `.catch(...)`): тогда опечатка в поле молча даёт `undefined`. Это ловит правило `no-restricted-syntax` в `eslint.config.mjs` (такое же — у бэка).
 - Для форм админки GET вызывается с `isAdmin = true`: добавляется заголовок `is-admin: 'true'`, и бэк отдаёт сырые имена файлов вместо URL.
 - Закрытые GET (`getExhibits`, `getMarkers`) принимают `token`, `getExhibitions(token?)` и `getPartners(token?)` — тоже (у партнёров без токена приходят только активные). У выставок: с токеном бэк отдаёт все выставки в формате админки, без — для сайта (неактивные — только поля карточки, без описания и фото; страница выставки за такой идёт в API и получает 404). Токен админка берёт из `storage.get(STORAGE_KEYS.TOKEN)`.
 - RTK Query не используется: запросы идут из `useEffect` компонентов, результат кладётся в слайс через `dispatch`.

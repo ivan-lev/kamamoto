@@ -51,7 +51,7 @@ export default function Contacts() {
 					setMailData({ name: '', email: '', message: '' });
 				},
 				(error) => {
-					console.error(error.text);
+					console.error(error);
 					setIsSuccessSended(false);
 					setShowAlert(true);
 					setIsMessageSending(false);

@@ -8,6 +8,7 @@ import CeramicStyleFormBasicInfo, { STYLE_IMAGE_FIELDS } from '@/components/admi
 import ArticleForm from '@/components/admin/shared/ArticleForm/ArticleForm';
 import { clearCeramicStyleForm, setCeramicStyles, setCeramicStyleToEdit } from '@/slices/admin/ceramicStyles';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { PATHS, STORAGE_KEYS } from '@/variables/variables';
 
@@ -115,9 +116,9 @@ export default function CeramicStyleFormView() {
 				setIsFormDisabled(false);
 				setSaveMessage('Стиль керамики создан');
 			}
-			catch (error: any) {
+			catch (error) {
 				setIsFormDisabled(false);
-				setSaveMessage(error.message || 'Что-то пошло не так :(');
+				setSaveMessage(getErrorMessage(error));
 			}
 		}
 	};
@@ -135,9 +136,9 @@ export default function CeramicStyleFormView() {
 				setIsFormDisabled(false);
 				setSaveMessage('Данные обновлены');
 			}
-			catch (error: any) {
+			catch (error) {
 				setIsFormDisabled(false);
-				setSaveMessage(error.message || 'Что-то пошло не так :(');
+				setSaveMessage(getErrorMessage(error));
 			};
 		}
 	};
@@ -155,7 +156,7 @@ export default function CeramicStyleFormView() {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};

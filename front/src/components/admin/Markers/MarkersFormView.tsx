@@ -7,6 +7,7 @@ import Button from '@/components/shared/Button';
 import { MARKER_GROUPS } from '@/components/visitor/Map/markerGroups';
 import { clearMarkerForm, setMarkers, setMarkerToEdit } from '@/slices/admin/markers';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { STORAGE_KEYS } from '@/variables/variables';
 
@@ -60,9 +61,9 @@ export default function MarkersFormView() {
 				setIsFormDisabled(false);
 				setSaveMessage('Маркер создан');
 			}
-			catch (error: any) {
+			catch (error) {
 				setIsFormDisabled(false);
-				setSaveMessage(error.message || 'Что-то пошло не так :(');
+				setSaveMessage(getErrorMessage(error));
 			}
 		}
 	};
@@ -79,9 +80,9 @@ export default function MarkersFormView() {
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
 				})
-				.catch((error: any) => {
+				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};
@@ -100,7 +101,7 @@ export default function MarkersFormView() {
 				.catch((error) => {
 					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage(error.message);
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/shared/Button';
 import { clearExhibitionForm, setExhibitionsList, setExhibitionToDisplay } from '@/slices/admin/exhibitions';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { STORAGE_KEYS } from '@/variables/variables';
 
@@ -75,7 +76,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};
@@ -96,7 +97,7 @@ export default function ExhibitionForm({ closeModal }: Props) {
 				.catch((error) => {
 					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};

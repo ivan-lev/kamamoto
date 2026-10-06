@@ -13,6 +13,7 @@ import { setComplectations } from '@/slices/admin/complectations';
 import { clearExhibitForm, setExhibits, setExhibitToEdit } from '@/slices/admin/exhibits';
 import { setPotters } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { PATHS, STORAGE_KEYS } from '@/variables/variables';
 
@@ -55,7 +56,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};
@@ -75,7 +76,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};
@@ -93,7 +94,7 @@ export default function ExhibitForm({ closeModal }: Props) {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};

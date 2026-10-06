@@ -6,6 +6,7 @@ import Logo from '@/components/visitor/Logo/Logo';
 import Seo from '@/components/visitor/Seo/Seo';
 import { login, logout } from '@/slices/admin/user';
 import { api } from '@/utils/api/api';
+import { ApiError } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { LOGIN_MESSAGES, STORAGE_KEYS } from '@/variables/variables';
 import './Login.scss';
@@ -60,8 +61,7 @@ export default function Login() {
 			})
 			.catch((error) => {
 				console.error(error);
-				const errorStatus = error.status;
-				switch (errorStatus) {
+				switch (error instanceof ApiError ? error.status : undefined) {
 					case 400:
 						setLoginError(LOGIN_MESSAGES.WRONG_EMAIL_FORMAT);
 						break;
@@ -76,7 +76,6 @@ export default function Login() {
 				}
 				setIsFormDisabled(false);
 				setIsMessageSending(false);
-				return error.status;
 			});
 	};
 

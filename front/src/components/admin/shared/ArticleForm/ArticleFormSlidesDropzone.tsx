@@ -2,8 +2,9 @@ import type { ChangeEvent, DragEvent } from 'react';
 import type { SlidesStorage, UploadedSlide } from '@/components/visitor/Article/Article.types';
 import { useState } from 'react';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
-import { STORAGE_KEYS } from '@/variables/variables';
+import { ERROR_MESSAGES, STORAGE_KEYS } from '@/variables/variables';
 
 interface Props {
 	slidesStorage?: SlidesStorage;
@@ -42,7 +43,7 @@ export default function ArticleFormSlidesDropzone({ slidesStorage, onUpload }: P
 			onUpload(uploadedSlides);
 		}
 		catch (error) {
-			setErrorMessage(error instanceof Error ? error.message : 'Не удалось загрузить файлы');
+			setErrorMessage(getErrorMessage(error, ERROR_MESSAGES.UPLOAD));
 		}
 		finally {
 			setIsUploading(false);

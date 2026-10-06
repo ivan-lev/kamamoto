@@ -7,6 +7,7 @@ import ArticleForm from '@/components/admin/shared/ArticleForm/ArticleForm';
 import Button from '@/components/shared/Button';
 import { clearPotterForm, setPotters, setPotterToEdit } from '@/slices/admin/potters';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { STORAGE_KEYS } from '@/variables/variables';
 
@@ -54,9 +55,9 @@ export default function PottersForm() {
 				setIsFormDisabled(false);
 				setSaveMessage('Гончар создан');
 			}
-			catch (error: any) {
+			catch (error) {
 				setIsFormDisabled(false);
-				setSaveMessage((error.message));
+				setSaveMessage(getErrorMessage(error));
 			}
 		}
 	};
@@ -73,9 +74,9 @@ export default function PottersForm() {
 					setIsFormDisabled(false);
 					setSaveMessage('Данные обновлены');
 				})
-				.catch((error: any) => {
+				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};
@@ -94,7 +95,7 @@ export default function PottersForm() {
 				.catch((error) => {
 					console.error(error);
 					setIsFormDisabled(false);
-					setSaveMessage(error.message);
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};

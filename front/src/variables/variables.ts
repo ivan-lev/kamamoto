@@ -39,6 +39,12 @@ export const homepageSliderImages = [
 	'images/homepage-slider/10.webp',
 ];
 
+// запасные тексты, когда у ошибки нет своего сообщения (сбой сети, баг)
+export const ERROR_MESSAGES = Object.freeze({
+	DEFAULT: 'Что-то пошло не так :(',
+	UPLOAD: 'Не удалось загрузить файлы',
+});
+
 export const LOGIN_MESSAGES = Object.freeze({
 	WRONG_CREDEINTIALS: 'Неправильный email или пароль.',
 	LOGIN_ERROR: 'Ошибка логина...',

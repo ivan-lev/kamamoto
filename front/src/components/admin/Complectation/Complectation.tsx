@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { STORAGE_KEYS } from '@/variables/variables';
 
@@ -43,7 +44,7 @@ export default function Compleactation() {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	};
@@ -71,7 +72,7 @@ export default function Compleactation() {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		}
 	}
@@ -89,7 +90,7 @@ export default function Compleactation() {
 				})
 				.catch((error) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.message || 'Что-то пошло не так :(');
+					setSaveMessage(getErrorMessage(error));
 				});
 		};
 	}

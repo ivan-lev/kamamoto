@@ -29,7 +29,7 @@ export default function PotterRow({ potter, setShowModal }: Props) {
 				const response = await api.potters.updatePotter(token, { ...potter, showArticle: !potter.showArticle });
 				dispatch(updatePotter(response));
 			}
-			catch (error: any) {
+			catch (error) {
 				console.error(error);
 			}
 		}

@@ -8,6 +8,7 @@ import ImageDropzone from '@/components/admin/shared/ImageDropzone/ImageDropzone
 import Button from '@/components/shared/Button';
 import { clearTermForm, setIsExistingTermEdited, setTerms, setTermToEdit } from '@/slices/admin/dictionary';
 import { api } from '@/utils/api/api';
+import { getErrorMessage } from '@/utils/api/api.common';
 import { storage } from '@/utils/storage';
 import { PATHS, STORAGE_KEYS } from '@/variables/variables';
 
@@ -96,7 +97,7 @@ export default function DictionaryForm({ closeModal }: Props) {
 			setTimeout(closeModal, 1000);
 		}
 		catch (error) {
-			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+			setSaveMessage(getErrorMessage(error));
 		}
 		finally {
 			setIsFormDisabled(false);
@@ -120,7 +121,7 @@ export default function DictionaryForm({ closeModal }: Props) {
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {
-			setSaveMessage((error instanceof Error && error.message) || 'Что-то пошло не так :(');
+			setSaveMessage(getErrorMessage(error));
 		}
 		finally {
 			setIsFormDisabled(false);
@@ -141,7 +142,7 @@ export default function DictionaryForm({ closeModal }: Props) {
 					setIsFormDisabled(false);
 				})
 				.catch((error) => {
-					console.error(error.message);
+					console.error(error);
 					setIsFormDisabled(false);
 				});
 		}
