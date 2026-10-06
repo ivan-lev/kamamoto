@@ -33,6 +33,10 @@ const potters = createSlice({
 		setIsExistingPotterEdited: (state, action: { payload: boolean }) => {
 			state.isExistingPotterEdited = action.payload;
 		},
+
+		updatePotter: (state, action: { payload: Potter }) => {
+			state.pottersList = state.pottersList.map(potter => potter.id !== action.payload.id ? potter : action.payload);
+		},
 	},
 });
 
@@ -41,6 +45,7 @@ export const {
 	setPotterToEdit,
 	clearPotterForm,
 	setIsExistingPotterEdited,
+	updatePotter,
 } = potters.actions;
 
 export default potters.reducer;

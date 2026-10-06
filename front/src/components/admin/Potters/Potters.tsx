@@ -58,9 +58,10 @@ export default function Potters() {
 						<h1 className="title title--1">Гончары</h1>
 						<div className="table">
 							<div className="table__row">
-								<span className="table__cell table__cell--span-3">id</span>
 								<span className="table__cell table__cell--span-4">Имя</span>
-								<span className="table__cell table__cell--span-4">Имя на японском</span>
+								<span className="table__cell table__cell--span-3">id</span>
+								<span className="table__cell table__cell--span-3">Имя на японском</span>
+								<span className="table__cell table__cell--centered">В статьях</span>
 								<span className="table__cell table__cell--centered"></span>
 							</div>
 							{ pottersList.map(potter => <PotterRow key={ potter.id } potter={ potter } setShowModal={ setShowModal } />) }

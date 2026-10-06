@@ -75,7 +75,7 @@ export default function PottersForm() {
 				})
 				.catch((error: any) => {
 					setIsFormDisabled(false);
-					setSaveMessage(error.messagr);
+					setSaveMessage(error.message || 'Что-то пошло не так :(');
 				});
 		}
 	};
