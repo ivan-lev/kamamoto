@@ -28,13 +28,20 @@ export default function Login() {
 
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.auth.checkToken(token)
-				.catch((error) => {
-					console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
-					dispatch(logout());
-				});
+		if (!token)
+			return;
+
+		async function checkToken(token: string) {
+			try {
+				await api.auth.checkToken(token);
+			}
+			catch (error) {
+				console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
+				dispatch(logout());
+			}
 		}
+
+		checkToken(token);
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -48,36 +55,36 @@ export default function Login() {
 		setValues({ ...values, [name]: value });
 	};
 
-	const handleLogin = (event: React.SyntheticEvent<HTMLFormElement>) => {
+	async function handleLogin(event: React.SyntheticEvent<HTMLFormElement>) {
 		event.preventDefault();
 		setIsFormDisabled(true);
 		setIsMessageSending(true);
-		api.auth.authorize(email, password)
-			.then((response) => {
-				dispatch(login(response.token));
-				setIsFormDisabled(false);
-				setIsMessageSending(false);
-				navigate('/admin/');
-			})
-			.catch((error) => {
-				console.error(error);
-				switch (error instanceof ApiError ? error.status : undefined) {
-					case 400:
-						setLoginError(LOGIN_MESSAGES.WRONG_EMAIL_FORMAT);
-						break;
-					case 401:
-						setLoginError(LOGIN_MESSAGES.WRONG_CREDEINTIALS);
-						break;
-					case 500:
-						setLoginError(LOGIN_MESSAGES.LOGIN_ERROR);
-						break;
-					default:
-						setLoginError('Неизвестная ошибка');
-				}
-				setIsFormDisabled(false);
-				setIsMessageSending(false);
-			});
-	};
+		try {
+			const { token } = await api.auth.authorize(email, password);
+			dispatch(login(token));
+			navigate('/admin/');
+		}
+		catch (error) {
+			console.error(error);
+			switch (error instanceof ApiError ? error.status : undefined) {
+				case 400:
+					setLoginError(LOGIN_MESSAGES.WRONG_EMAIL_FORMAT);
+					break;
+				case 401:
+					setLoginError(LOGIN_MESSAGES.WRONG_CREDEINTIALS);
+					break;
+				case 500:
+					setLoginError(LOGIN_MESSAGES.LOGIN_ERROR);
+					break;
+				default:
+					setLoginError('Неизвестная ошибка');
+			}
+		}
+		finally {
+			setIsFormDisabled(false);
+			setIsMessageSending(false);
+		}
+	}
 
 	return (
 		<>

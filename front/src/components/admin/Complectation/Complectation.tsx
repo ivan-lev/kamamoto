@@ -19,12 +19,18 @@ export default function Compleactation() {
 	const [formData, setFormData] = useState<Complectation>(initialData);
 
 	useEffect(() => {
-		api.complectation.getComplections()
-			.then((complectations) => {
+		async function fetchComplectations() {
+			try {
+				const complectations: Complectation[] = await api.complectation.getComplections();
 				setComplectations(complectations.toSorted((a, b) => a.title.localeCompare(b.title)));
 				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchComplectations();
 	}, []);
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,22 +38,24 @@ export default function Compleactation() {
 		setFormData({ ...formData, [name]: value });
 	};
 
-	function handleCreateComplectation() {
-		setIsFormDisabled(true);
+	async function handleCreateComplectation() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.complectation.createComplectation(token, formData)
-				.then((response: Complectation) => {
-					setComplectations([...complectations, response]);
-					setIsFormDisabled(false);
-					setSaveMessage('Новая комплектация в базе');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const response: Complectation = await api.complectation.createComplectation(token, formData);
+			setComplectations([...complectations, response]);
+			setSaveMessage('Новая комплектация в базе');
 		}
-	};
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
 	function handleEdit(complectation: Complectation) {
 		console.warn(complectation);
@@ -60,39 +68,42 @@ export default function Compleactation() {
 		setIsDataEdited(false);
 	};
 
-	function handleUpdate(complectation: Complectation) {
-		setIsFormDisabled(true);
+	async function handleUpdate(complectation: Complectation) {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.complectation.updateComplectation(token, complectation)
-				.then((response: Complectation) => {
-					setComplectations(complectations.map(complectation => complectation.name !== response.name ? complectation : response));
-					setIsFormDisabled(false);
-					setSaveMessage('Комплектация обновлена');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const response: Complectation = await api.complectation.updateComplectation(token, complectation);
+			setComplectations(complectations.map(item => item.name !== response.name ? item : response));
+			setSaveMessage('Комплектация обновлена');
+		}
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
 		}
 	}
 
-	function handleDelete(complectationName: string) {
-		setIsFormDisabled(true);
+	async function handleDelete(complectationName: string) {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.complectation.deleteComplectation(token, complectationName)
-				.then((response: Complectation) => {
-					console.warn(response);
-					setComplectations(complectations.filter(complectation => complectation.name !== response.name));
-					setIsFormDisabled(false);
-					setSaveMessage('Комплектация обновлена');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
-		};
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const response: Complectation = await api.complectation.deleteComplectation(token, complectationName);
+			setComplectations(complectations.filter(complectation => complectation.name !== response.name));
+			setSaveMessage('Комплектация обновлена');
+		}
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
 	}
 
 	return (

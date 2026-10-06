@@ -42,14 +42,20 @@ export default function Markers() {
 
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.maps.getMarkers(token)
-				.then((markers) => {
-					dispatch(setMarkers(markers));
-					setShowPreloader(false);
-				})
-				.catch(error => console.error(error));
+		if (!token)
+			return;
+
+		async function fetchMarkers(token: string) {
+			try {
+				dispatch(setMarkers(await api.maps.getMarkers(token)));
+				setShowPreloader(false);
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchMarkers(token);
 	}, [dispatch]);
 
 	return (

@@ -10,11 +10,19 @@ export default function Statistics() {
 	const statistics = useSelector((state: RootState) => state.statistics);
 
 	useEffect(() => {
-		if (statistics.isInitial) {
-			api.statistics.getStatistics()
-				.then(statistics => dispatch(setStatistics(statistics)))
-				.catch(error => console.error(error));
+		if (!statistics.isInitial)
+			return;
+
+		async function fetchStatistics() {
+			try {
+				dispatch(setStatistics(await api.statistics.getStatistics()));
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchStatistics();
 	}, [dispatch, statistics.isInitial]);
 
 	return statistics.exhibits === 0

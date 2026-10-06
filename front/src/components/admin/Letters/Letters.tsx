@@ -29,12 +29,17 @@ export default function Letters() {
 
 	useEffect(() => {
 		// dispatch(clearPartnerForm());
-		api.letters.getLetters()
-			.then((letters) => {
-				dispatch(setLetters(letters));
+		async function fetchLetters() {
+			try {
+				dispatch(setLetters(await api.letters.getLetters()));
 				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchLetters();
 	}, [dispatch]);
 
 	useEffect(() => {

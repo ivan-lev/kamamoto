@@ -45,13 +45,18 @@ export default function Dictionary() {
 	};
 
 	useEffect(() => {
-		api.terms.getTerms(true)
-			.then((sections) => {
-				const flatTerms = sections.flatMap(section => section.terms);
-				dispatch(setTerms(flatTerms));
+		async function fetchTerms() {
+			try {
+				const sections = await api.terms.getTerms(true);
+				dispatch(setTerms(sections.flatMap(section => section.terms)));
 				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchTerms();
 	}, [dispatch]);
 
 	return (

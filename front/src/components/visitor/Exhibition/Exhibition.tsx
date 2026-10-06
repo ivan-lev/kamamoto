@@ -43,18 +43,22 @@ export default function Exhibition() {
 
 		// if no data about exhibitions in the store
 		// get data first
-		api.exhibitions.getExhibitionById(exhId || '0')
-			.then((response) => {
-				dispatch(setExhibitionToDisplay(response));
-				setShowPreloader(false);
-			})
-			.catch((error) => {
+		async function fetchExhibition(id: string | undefined) {
+			try {
+				dispatch(setExhibitionToDisplay(await api.exhibitions.getExhibitionById(id || '0')));
+			}
+			catch (error) {
 				console.error(error);
-				setShowPreloader(false);
 
 				if (isPageMissing(error))
-					setMissingExhibition(exhId);
-			});
+					setMissingExhibition(id);
+			}
+			finally {
+				setShowPreloader(false);
+			}
+		}
+
+		fetchExhibition(exhId);
 	}, [dispatch, exhId, exhibitions]);
 
 	useLayoutEffect(() => scrollToTop(), []);

@@ -11,12 +11,17 @@ export default function Statistics() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
 	useEffect(() => {
-		api.statistics.getStatistics()
-			.then((response) => {
-				setStatistics(response);
+		async function fetchStatistics() {
+			try {
+				setStatistics(await api.statistics.getStatistics());
 				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchStatistics();
 	}, []);
 
 	return showPreloader

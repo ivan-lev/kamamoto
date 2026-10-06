@@ -143,32 +143,43 @@ export default function CeramicStyleFormView() {
 		}
 	};
 
-	function handleDeleteCeramicStyle() {
-		setIsFormDisabled(true);
+	async function handleDeleteCeramicStyle() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.ceramicStyles.deleteCeramicStyle(token, ceramicStyleToEdit.name)
-				.then((response) => {
-					const updatedStylesList = ceramicStylesList.filter(style => style.name !== response.name);
-					dispatch(setCeramicStyles(updatedStylesList));
-					dispatch(clearCeramicStyleForm());
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const response = await api.ceramicStyles.deleteCeramicStyle(token, ceramicStyleToEdit.name);
+			dispatch(setCeramicStyles(ceramicStylesList.filter(style => style.name !== response.name)));
+			dispatch(clearCeramicStyleForm());
 		}
-	};
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
 	useEffect(() => {
 		if (!openedStyleName)
 			return;
 
 		let isActual = true;
-		api.uploads.getOgImage(PATHS.CERAMIC_STYLES, openedStyleName)
-			.then(image => isActual && setOgImage(image))
-			.catch(error => console.error(error));
+
+		async function fetchOgImage(name: string) {
+			try {
+				const image = await api.uploads.getOgImage(PATHS.CERAMIC_STYLES, name);
+				if (isActual)
+					setOgImage(image);
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchOgImage(openedStyleName);
 		return () => {
 			isActual = false;
 		};

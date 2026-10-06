@@ -28,14 +28,20 @@ export default function Exhibitions() {
 
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibitions.getExhibitions(token)
-				.then((exhibitions) => {
-					dispatch(setExhibitionsList(exhibitions));
-					setShowPreloader(false);
-				})
-				.catch(error => console.error(error));
+		if (!token)
+			return;
+
+		async function fetchExhibitions(token: string) {
+			try {
+				dispatch(setExhibitionsList(await api.exhibitions.getExhibitions(token)));
+				setShowPreloader(false);
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchExhibitions(token);
 	}, [dispatch]);
 
 	return (

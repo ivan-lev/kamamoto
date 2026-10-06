@@ -16,12 +16,17 @@ export default function Categories() {
 	const categories = useSelector((state: RootState) => state.categories.categories);
 
 	useEffect(() => {
-		api.categories.getCategories(true)
-			.then((response) => {
-				dispatch(setCategories(response));
+		async function fetchCategories() {
+			try {
+				dispatch(setCategories(await api.categories.getCategories(true)));
 				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchCategories();
 	}, [dispatch]);
 
 	function openEmptyCategoryForm() {

@@ -18,18 +18,22 @@ export default function ThanksLetters() {
 	});
 
 	useEffect(() => {
-		if (letters.length === 0) {
-			api.letters.getLetters()
-				.then((letters) => {
-					dispatch(setLettersList(letters));
-					setShowPreloader(false);
-				})
-				.catch((error) => {
-					console.error(error);
+		if (letters.length > 0)
+			return;
 
-					setShowPreloader(false);
-				});
+		async function fetchLetters() {
+			try {
+				dispatch(setLettersList(await api.letters.getLetters()));
+			}
+			catch (error) {
+				console.error(error);
+			}
+			finally {
+				setShowPreloader(false);
+			}
 		}
+
+		fetchLetters();
 	}, [dispatch, letters.length]);
 
 	return (

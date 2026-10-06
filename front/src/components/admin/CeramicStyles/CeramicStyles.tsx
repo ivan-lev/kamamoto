@@ -37,14 +37,20 @@ export default function CeramicStyles() {
 
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.ceramicStyles.getCeramicStyles(true)
-				.then((styles) => {
-					dispatch(setCeramicStyles(styles));
-					setShowPreloader(false);
-				})
-				.catch(error => console.error(error));
+		if (!token)
+			return;
+
+		async function fetchCeramicStyles() {
+			try {
+				dispatch(setCeramicStyles(await api.ceramicStyles.getCeramicStyles(true)));
+				setShowPreloader(false);
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchCeramicStyles();
 	}, [dispatch]);
 
 	return (

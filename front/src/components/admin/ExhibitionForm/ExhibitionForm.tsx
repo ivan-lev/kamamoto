@@ -59,67 +59,69 @@ export default function ExhibitionForm({ closeModal }: Props) {
 		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: checked }));
 	};
 
-	function handleCreateExhibition() {
-		setIsFormDisabled(true);
+	async function handleCreateExhibition() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibitions.createExhibition(token, {
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const createdExhibition = await api.exhibitions.createExhibition(token, {
 				...exhibitionToDisplay,
 				id: Number(id),
 				year: Number(year),
-			})
-				.then((response) => {
-					dispatch(setExhibitionsList([...exhibitionsList, response]));
-					dispatch(clearExhibitionForm());
-					setIsFormDisabled(false);
-					setSaveMessage('Выставка создана');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+			});
+			dispatch(setExhibitionsList([...exhibitionsList, createdExhibition]));
+			dispatch(clearExhibitionForm());
+			setSaveMessage('Выставка создана');
 		}
-	};
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
-	function handleUpdateExhibition() {
+	async function handleUpdateExhibition() {
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
+		if (!token)
+			return;
+
 		setIsFormDisabled(true);
-		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibitions.updateExhibition(token, exhibitionToDisplay)
-				.then((response) => {
-					const updatedExhibitionsList = exhibitionsList.map((exhibition) => {
-						return exhibition.id !== exhibitionToDisplay.id ? exhibition : response;
-					});
-					dispatch(setExhibitionsList(updatedExhibitionsList));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		try {
+			const updatedExhibition = await api.exhibitions.updateExhibition(token, exhibitionToDisplay);
+			dispatch(setExhibitionsList(exhibitionsList.map(exhibition => exhibition.id !== exhibitionToDisplay.id ? exhibition : updatedExhibition)));
+			setSaveMessage('Данные обновлены');
 		}
-	};
+		catch (error) {
+			console.error(error);
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
-	function handleDeleteExhibition() {
+	async function handleDeleteExhibition() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibitions.deleteExhibition(token, exhibitionToDisplay)
-				.then((response: number) => {
-					const updatedExhibitionsList = exhibitionsList.filter(exhibition => exhibition.id !== response);
-					dispatch(setExhibitionsList(updatedExhibitionsList));
-					dispatch(clearExhibitionForm());
-					setIsFormDisabled(false);
-					setShowConfirmation(false);
-					closeModal();
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-				});
+		if (!token)
+			return;
+
+		try {
+			const deletedId: number = await api.exhibitions.deleteExhibition(token, exhibitionToDisplay);
+			dispatch(setExhibitionsList(exhibitionsList.filter(exhibition => exhibition.id !== deletedId)));
+			dispatch(clearExhibitionForm());
+			setShowConfirmation(false);
+			closeModal();
 		}
-	};
+		catch (error) {
+			console.error(error);
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
 	useEffect(() => {
 		if (saveMessage) {

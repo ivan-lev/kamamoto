@@ -76,10 +76,19 @@ export default function Dictionary() {
 	}
 
 	useEffect(() => {
-		api.terms.getTerms()
-			.then(data => setDictionary(data))
-			.catch(error => console.error(error))
-			.finally(() => setIsLoading(false));
+		async function fetchTerms() {
+			try {
+				setDictionary(await api.terms.getTerms());
+			}
+			catch (error) {
+				console.error(error);
+			}
+			finally {
+				setIsLoading(false);
+			}
+		}
+
+		fetchTerms();
 	}, []);
 
 	useLayoutEffect(() => scrollToTop(), []);

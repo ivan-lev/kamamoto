@@ -17,15 +17,20 @@ export default function Articles() {
 	useLayoutEffect(() => scrollToTop(), []);
 
 	useEffect(() => {
-		api.ceramicStyles.getCeramicStylesArticles()
-			.then((articles: { name: string, title: string, thumbnail: string }[]) => {
+		async function fetchArticles() {
+			try {
+				const articles: { name: string, title: string, thumbnail: string }[] = await api.ceramicStyles.getCeramicStylesArticles();
 				dispatch(setDisplayList(articles.map(({ name, title, thumbnail }) => ({ link: name, title, thumbnail }))));
-				setShowPreloader(false);
-			})
-			.catch((error) => {
+			}
+			catch (error) {
 				console.error(error);
+			}
+			finally {
 				setShowPreloader(false);
-			});
+			}
+		}
+
+		fetchArticles();
 
 		return () => {
 			dispatch(resetDisplayList());

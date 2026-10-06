@@ -43,59 +43,61 @@ export default function ExhibitForm({ closeModal }: Props) {
 	const photosUrl = photosKey && `${PATHS.STATIC_URL}/exhibits/${photosKey}`;
 	const photosHint = 'Чтобы добавить фотографии, укажите номер лота';
 
-	function handleCreateExhibit() {
-		setIsFormDisabled(true);
+	async function handleCreateExhibit() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibits.createExhibit(token, { ...exhibitToEdit })
-				.then((response: ExhibitAdmin) => {
-					dispatch(setExhibits([...exhibits, response].sort((first, second) => first.id - second.id)));
-					dispatch(clearExhibitForm());
-					setIsFormDisabled(false);
-					setSaveMessage('Лот создан');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const createdExhibit: ExhibitAdmin = await api.exhibits.createExhibit(token, { ...exhibitToEdit });
+			dispatch(setExhibits([...exhibits, createdExhibit].sort((first, second) => first.id - second.id)));
+			dispatch(clearExhibitForm());
+			setSaveMessage('Лот создан');
+		}
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
 		}
 	};
 
-	function handleUpdateExhibit() {
-		setIsFormDisabled(true);
+	async function handleUpdateExhibit() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibits.updateExhibit(token, { ...exhibitToEdit })
-				.then((response) => {
-					const newExhibitsList = exhibits.map((exhibit) => {
-						return response.id !== exhibit.id ? exhibit : response;
-					});
-					dispatch(setExhibits(newExhibitsList));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const updatedExhibit = await api.exhibits.updateExhibit(token, { ...exhibitToEdit });
+			dispatch(setExhibits(exhibits.map(exhibit => updatedExhibit.id !== exhibit.id ? exhibit : updatedExhibit)));
+			setSaveMessage('Данные обновлены');
+		}
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
 		}
 	};
 
-	const handleDeleteExhibit = () => {
-		setIsFormDisabled(true);
+	async function handleDeleteExhibit() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibits.deleteExhibit(token, exhibitToEdit.id ?? 0)
-				.then((response) => {
-					const updatedExhibitsList = exhibits.filter(exhibit => exhibit.id !== response.id);
-					dispatch(setExhibits(updatedExhibitsList));
-					setIsFormDisabled(false);
-					closeModal();
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const deletedExhibit = await api.exhibits.deleteExhibit(token, exhibitToEdit.id ?? 0);
+			dispatch(setExhibits(exhibits.filter(exhibit => exhibit.id !== deletedExhibit.id)));
+			closeModal();
+		}
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
 		}
 	};
 
@@ -144,36 +146,30 @@ export default function ExhibitForm({ closeModal }: Props) {
 	}, [saveMessage]);
 
 	useEffect(() => {
-		if (categories.length === 0) {
-			api.categories.getCategories(true)
-				.then((response) => {
-					dispatch(setCategories(response));
-				})
-				.catch(error => console.error(error));
+		// справочники для выпадающих списков: грузим только те, которых ещё нет в сторе
+		async function load<T>(request: Promise<T>, onLoad: (data: T) => void) {
+			try {
+				onLoad(await request);
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
 
-		if (styles.length === 0) {
-			api.ceramicStyles.getCeramicStyles(true)
-				.then((styles) => {
-					dispatch(setCeramicStyles(styles));
-				})
-				.catch(error => console.error(error));
-		}
+		if (categories.length === 0)
+			load(api.categories.getCategories(true), categories => dispatch(setCategories(categories)));
+
+		if (styles.length === 0)
+			load(api.ceramicStyles.getCeramicStyles(true), styles => dispatch(setCeramicStyles(styles)));
 
 		if (complectations.length === 0) {
-			api.complectation.getComplections()
-				.then((complectations) => {
-					dispatch(setComplectations(complectations.toSorted((a, b) => a.title.localeCompare(b.title))));
-				})
-				.catch(error => console.error(error));
+			load(api.complectation.getComplections(), complectations =>
+				dispatch(setComplectations(complectations.toSorted((a, b) => a.title.localeCompare(b.title)))));
 		}
 
 		if (pottersList.length === 0) {
-			api.potters.getPotters()
-				.then((potters: Potter[]) => {
-					dispatch(setPotters(potters.toSorted((a, b) => a.name.localeCompare(b.name))));
-				})
-				.catch(error => console.error(error));
+			load(api.potters.getPotters(), (potters: Potter[]) =>
+				dispatch(setPotters(potters.toSorted((a, b) => a.name.localeCompare(b.name)))));
 		}
 	}, [dispatch, categories.length, styles.length, complectations.length, pottersList.length]);
 

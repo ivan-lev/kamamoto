@@ -35,12 +35,17 @@ export default function Map() {
 	};
 
 	useEffect(() => {
-		api.maps.getMarkerGroups()
-			.then((response) => {
-				setGroups(response);
+		async function fetchMarkerGroups() {
+			try {
+				setGroups(await api.maps.getMarkerGroups());
 				setShowPreloader(false);
-			})
-			.catch(error => console.error(error));
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchMarkerGroups();
 	}, []);
 
 	useLayoutEffect(() => scrollToTop(), []);

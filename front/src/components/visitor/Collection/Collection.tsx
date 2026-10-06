@@ -27,18 +27,22 @@ export default function Collection() {
 	}, [dispatch, categories]);
 
 	useEffect(() => {
-		if (categories.length === 0) {
-			api.categories.getCategories()
-				.then((categories) => {
-					dispatch(setCategories(categories));
-					setShowPreloader(false);
-				})
-				.catch((error) => {
-					console.error(error);
+		if (categories.length > 0)
+			return;
 
-					setShowPreloader(false);
-				});
+		async function fetchCategories() {
+			try {
+				dispatch(setCategories(await api.categories.getCategories()));
+			}
+			catch (error) {
+				console.error(error);
+			}
+			finally {
+				setShowPreloader(false);
+			}
 		}
+
+		fetchCategories();
 	}, [dispatch, categories.length]);
 
 	return (

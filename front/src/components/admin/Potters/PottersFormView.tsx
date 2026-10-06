@@ -62,43 +62,44 @@ export default function PottersForm() {
 		}
 	};
 
-	function handleUpdatePotter() {
-		setIsFormDisabled(true);
+	async function handleUpdatePotter() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.potters.updatePotter(token, potterToEdit)
-				.then((response: Potter) => {
-					const updatedPottersList = pottersList.map(potter => potter.id !== response.id ? potter : response);
+		if (!token)
+			return;
 
-					dispatch(setPotters(updatedPottersList));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
-		}
-	};
-
-	function handleDeletePotter() {
 		setIsFormDisabled(true);
-		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.potters.deletePotter(token, potterToEdit.id)
-				.then((response) => {
-					const updatedPottersList = pottersList.filter(potter => potter.id !== response.id);
-					dispatch(setPotters(updatedPottersList));
-					dispatch(clearPotterForm());
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		try {
+			const response: Potter = await api.potters.updatePotter(token, potterToEdit);
+			dispatch(setPotters(pottersList.map(potter => potter.id !== response.id ? potter : response)));
+			setSaveMessage('Данные обновлены');
 		}
-	};
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
+
+	async function handleDeletePotter() {
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const response = await api.potters.deletePotter(token, potterToEdit.id);
+			dispatch(setPotters(pottersList.filter(potter => potter.id !== response.id)));
+			dispatch(clearPotterForm());
+		}
+		catch (error) {
+			console.error(error);
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
 	useEffect(() => {
 		if (saveMessage) {

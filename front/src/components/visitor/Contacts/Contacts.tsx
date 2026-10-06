@@ -28,7 +28,7 @@ export default function Contacts() {
 		setMailData({ ...mailData, [name]: value });
 	};
 
-	const sendEmail = (event: React.SyntheticEvent<HTMLFormElement>): void => {
+	const sendEmail = async (event: React.SyntheticEvent<HTMLFormElement>): Promise<void> => {
 		event.preventDefault();
 
 		if (isButtonDisabled) {
@@ -38,25 +38,20 @@ export default function Contacts() {
 		setIsMessageSending(true);
 		setIsButtonDisabled(true);
 		setShowAlert(false);
-		emailjs
-			.sendForm(serviceId, templateId, event.currentTarget, {
-				publicKey,
-			})
-			.then(
-				(result) => {
-					console.warn(result.text);
-					setIsSuccessSended(true);
-					setShowAlert(true);
-					setIsMessageSending(false);
-					setMailData({ name: '', email: '', message: '' });
-				},
-				(error) => {
-					console.error(error);
-					setIsSuccessSended(false);
-					setShowAlert(true);
-					setIsMessageSending(false);
-				},
-			);
+		try {
+			const result = await emailjs.sendForm(serviceId, templateId, event.currentTarget, { publicKey });
+			console.warn(result.text);
+			setIsSuccessSended(true);
+			setMailData({ name: '', email: '', message: '' });
+		}
+		catch (error) {
+			console.error(error);
+			setIsSuccessSended(false);
+		}
+		finally {
+			setShowAlert(true);
+			setIsMessageSending(false);
+		}
 	};
 
 	useEffect(() => {

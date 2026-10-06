@@ -128,23 +128,24 @@ export default function DictionaryForm({ closeModal }: Props) {
 		}
 	}
 
-	function handleDeleteTerm() {
+	async function handleDeleteTerm() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.terms.deleteTerm(token, id)
-				.then((response) => {
-					const newTermsList = terms.filter(term => term.id !== response.id);
-					dispatch(setTerms(newTermsList));
-					dispatch(clearTermForm());
-					dispatch(setIsExistingTermEdited(false));
-					setSaveMessage('Термин удалён');
-					setTimeout(closeModal, 1000);
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-				});
+		if (!token)
+			return;
+
+		try {
+			const deletedTerm = await api.terms.deleteTerm(token, id);
+			dispatch(setTerms(terms.filter(term => term.id !== deletedTerm.id)));
+			dispatch(clearTermForm());
+			dispatch(setIsExistingTermEdited(false));
+			setSaveMessage('Термин удалён');
+			setTimeout(closeModal, 1000);
+		}
+		catch (error) {
+			console.error(error);
+		}
+		finally {
+			setIsFormDisabled(false);
 		}
 	}
 

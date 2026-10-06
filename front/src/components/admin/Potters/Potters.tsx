@@ -35,14 +35,20 @@ export default function Potters() {
 
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.potters.getPotters()
-				.then((potters) => {
-					dispatch(setPotters(potters));
-					setShowPreloader(false);
-				})
-				.catch(error => console.error(error));
+		if (!token)
+			return;
+
+		async function fetchPotters() {
+			try {
+				dispatch(setPotters(await api.potters.getPotters()));
+				setShowPreloader(false);
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchPotters();
 	}, [dispatch]);
 
 	return (

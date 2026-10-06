@@ -15,17 +15,22 @@ export default function Exhibitions() {
 	const exhibitions = useSelector((state: RootState) => state.exhibitions.exhibitionsList);
 
 	useEffect(() => {
-		if (exhibitions.length === 0) {
-			api.exhibitions.getExhibitions()
-				.then((response) => {
-					dispatch(setExhibitionsList(response));
-					setShowPreloader(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setShowPreloader(false);
-				});
+		if (exhibitions.length > 0)
+			return;
+
+		async function fetchExhibitions() {
+			try {
+				dispatch(setExhibitionsList(await api.exhibitions.getExhibitions()));
+			}
+			catch (error) {
+				console.error(error);
+			}
+			finally {
+				setShowPreloader(false);
+			}
 		}
+
+		fetchExhibitions();
 	}, [dispatch, exhibitions.length]);
 
 	return (

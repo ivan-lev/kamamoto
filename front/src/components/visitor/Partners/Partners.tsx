@@ -11,11 +11,19 @@ export default function Partners() {
 	const partnersList = useSelector((state: RootState) => state.partners);
 
 	useEffect(() => {
-		if (partnersList.length === 0) {
-			api.partners.getPartners()
-				.then(partners => dispatch(setPartnersList(partners)))
-				.catch(error => console.error(error));
+		if (partnersList.length > 0)
+			return;
+
+		async function fetchPartners() {
+			try {
+				dispatch(setPartnersList(await api.partners.getPartners()));
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchPartners();
 	}, [dispatch, partnersList.length]);
 
 	return partnersList.length !== 0

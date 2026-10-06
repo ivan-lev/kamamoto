@@ -18,14 +18,21 @@ export default function Admin() {
 
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.auth.checkToken(token)
-				.catch((error) => {
-					console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
-					dispatch(logout());
-					navigate('/admin/login', { replace: true });
-				});
+		if (!token)
+			return;
+
+		async function checkToken(token: string) {
+			try {
+				await api.auth.checkToken(token);
+			}
+			catch (error) {
+				console.error(LOGIN_MESSAGES.TOKEN_ERROR, error);
+				dispatch(logout());
+				navigate('/admin/login', { replace: true });
+			}
 		}
+
+		checkToken(token);
 	}, [dispatch, navigate]);
 
 	const listOne = [

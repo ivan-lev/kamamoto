@@ -45,20 +45,24 @@ export default function Category() {
 	}, [dispatch, categories.length]);
 
 	useEffect(() => {
+		async function fetchExhibits(name: string) {
+			try {
+				dispatch(setDisplayList(await api.categories.getExhibitsByCategory(name)));
+			}
+			catch (error) {
+				console.error(error);
+
+				if (isPageMissing(error))
+					setMissingCategory(name);
+			}
+			finally {
+				setShowPreloader(false);
+			}
+		}
+
 		if (category) {
 			dispatch(setCategory(category));
-			api.categories.getExhibitsByCategory(category)
-				.then((response) => {
-					dispatch(setDisplayList(response));
-					setShowPreloader(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setShowPreloader(false);
-
-					if (isPageMissing(error))
-						setMissingCategory(category);
-				});
+			fetchExhibits(category);
 		}
 
 		return () => {

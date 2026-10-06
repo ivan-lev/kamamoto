@@ -68,43 +68,44 @@ export default function MarkersFormView() {
 		}
 	};
 
-	function handleUpdateMarker() {
-		setIsFormDisabled(true);
+	async function handleUpdateMarker() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.maps.updateMarker(token, markerToEdit)
-				.then((response: Marker) => {
-					const updatedMarkersList = markersList.map(marker => marker._id !== response._id ? marker : response);
+		if (!token)
+			return;
 
-					dispatch(setMarkers(updatedMarkersList));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
-		}
-	};
-
-	function handleDeleteMarker() {
 		setIsFormDisabled(true);
-		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.maps.deleteMarker(token, markerToEdit._id)
-				.then((response) => {
-					const updatedMarkersList = markersList.filter(marker => marker._id !== response._id);
-					dispatch(setMarkers(updatedMarkersList));
-					dispatch(clearMarkerForm());
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		try {
+			const response: Marker = await api.maps.updateMarker(token, markerToEdit);
+			dispatch(setMarkers(markersList.map(marker => marker._id !== response._id ? marker : response)));
+			setSaveMessage('Данные обновлены');
 		}
-	};
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
+
+	async function handleDeleteMarker() {
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const response = await api.maps.deleteMarker(token, markerToEdit._id);
+			dispatch(setMarkers(markersList.filter(marker => marker._id !== response._id)));
+			dispatch(clearMarkerForm());
+		}
+		catch (error) {
+			console.error(error);
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
 	useEffect(() => {
 		if (saveMessage) {

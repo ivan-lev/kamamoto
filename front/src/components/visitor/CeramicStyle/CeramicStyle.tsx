@@ -18,12 +18,17 @@ export default function CeremicStyle() {
 		if (!style)
 			return;
 
-		api.ceramicStyles.getCeramicStylesArticle(style)
-			.then(setArticleInfo)
-			.catch((error) => {
+		async function fetchArticle(name: string) {
+			try {
+				setArticleInfo(await api.ceramicStyles.getCeramicStylesArticle(name));
+			}
+			catch (error) {
 				if (isPageMissing(error))
-					setMissingStyle(style);
-			});
+					setMissingStyle(name);
+			}
+		}
+
+		fetchArticle(style);
 	}, [style]);
 
 	useLayoutEffect(() => scrollToTop(), []);

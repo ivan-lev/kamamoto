@@ -18,12 +18,17 @@ export default function LNTPotter() {
 		if (!potter)
 			return;
 
-		api.potters.getPotterById(potter)
-			.then(setPotterInfo)
-			.catch((error) => {
+		async function fetchPotter(id: string) {
+			try {
+				setPotterInfo(await api.potters.getPotterById(id));
+			}
+			catch (error) {
 				if (isPageMissing(error))
-					setMissingPotter(potter);
-			});
+					setMissingPotter(id);
+			}
+		}
+
+		fetchPotter(potter);
 	}, [potter]);
 
 	useLayoutEffect(() => scrollToTop(), []);

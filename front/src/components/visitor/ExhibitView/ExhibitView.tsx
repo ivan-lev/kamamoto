@@ -30,19 +30,21 @@ export default function ExhibitView() {
 	useLayoutEffect(() => scrollToTop(), []);
 
 	useEffect(() => {
-		if (exhibitId) {
-			api.exhibits.getExhibitById(exhibitId)
-				.then((response) => {
-					dispatch(setExhibit(response));
-					setShowPreloader(false);
-				})
-				.catch((error) => {
-					setShowPreloader(false);
-
-					if (isPageMissing(error))
-						setMissingExhibit(exhibitId);
-				});
+		async function fetchExhibit(id: string) {
+			try {
+				dispatch(setExhibit(await api.exhibits.getExhibitById(id)));
+			}
+			catch (error) {
+				if (isPageMissing(error))
+					setMissingExhibit(id);
+			}
+			finally {
+				setShowPreloader(false);
+			}
 		}
+
+		if (exhibitId)
+			fetchExhibit(exhibitId);
 
 		return () => {
 			if (exhibitId)

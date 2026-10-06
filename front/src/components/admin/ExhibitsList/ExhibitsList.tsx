@@ -26,14 +26,20 @@ export default function Exhibits() {
 
 	useEffect(() => {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.exhibits.getExhibits(token)
-				.then((exhibits) => {
-					dispatch(setExhibits(exhibits));
-					setShowPreloader(false);
-				})
-				.catch(error => console.error(error));
+		if (!token)
+			return;
+
+		async function fetchExhibits(token: string) {
+			try {
+				dispatch(setExhibits(await api.exhibits.getExhibits(token)));
+				setShowPreloader(false);
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchExhibits(token);
 	}, [dispatch]);
 
 	return (

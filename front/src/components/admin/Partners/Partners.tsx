@@ -29,14 +29,20 @@ export default function Partners() {
 	useEffect(() => {
 		dispatch(clearPartnerForm());
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.partners.getPartners(token)
-				.then((partners) => {
-					dispatch(setPartners(partners));
-					setShowPreloader(false);
-				})
-				.catch(error => console.error(error));
+		if (!token)
+			return;
+
+		async function fetchPartners(token: string) {
+			try {
+				dispatch(setPartners(await api.partners.getPartners(token)));
+				setShowPreloader(false);
+			}
+			catch (error) {
+				console.error(error);
+			}
 		}
+
+		fetchPartners(token);
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -55,69 +61,71 @@ export default function Partners() {
 		dispatch(setPartnerToEdit({ ...partnerToEdit, [name]: checked }));
 	};
 
-	const handleCreatePartner = () => {
-		setIsFormDisabled(true);
+	async function handleCreatePartner() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.partners.createPartner(token, title, link, logo, isActive)
-				.then((response) => {
-					dispatch(setPartners([...partners, response]));
-					dispatch(clearPartnerForm());
-					dispatch(setIsExistingPartnerEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Новый партнёр в базе');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
+		if (!token)
+			return;
+
+		setIsFormDisabled(true);
+		try {
+			const createdPartner = await api.partners.createPartner(token, title, link, logo, isActive);
+			dispatch(setPartners([...partners, createdPartner]));
+			dispatch(clearPartnerForm());
+			dispatch(setIsExistingPartnerEdited(false));
+			setSaveMessage('Новый партнёр в базе');
 		}
-	};
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
 	const handleEditPartner = (partner: Partner) => {
 		dispatch(setPartnerToEdit(partner));
 		dispatch(setIsExistingPartnerEdited(true));
 	};
 
-	const handleUpdatePartner = () => {
-		setIsFormDisabled(true);
+	async function handleUpdatePartner() {
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.partners.updatePartner(token, partnerToEdit)
-				.then((response) => {
-					const newPartnersList = partners.map((partner) => {
-						return response._id !== partner._id ? partner : response;
-					});
-					dispatch(setPartners(newPartnersList));
-					dispatch(clearPartnerForm());
-					dispatch(setIsExistingPartnerEdited(false));
-					setIsFormDisabled(false);
-					setSaveMessage('Данные обновлены');
-				})
-				.catch((error) => {
-					setIsFormDisabled(false);
-					setSaveMessage(getErrorMessage(error));
-				});
-		}
-	};
+		if (!token)
+			return;
 
-	const handleDeletePartner = () => {
-		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
-		if (token) {
-			api.partners.deletePartner(token, partnerToEdit._id)
-				.then((response) => {
-					const newPartnersList = partners.filter(partner => partner._id !== response._id);
-					dispatch(setPartners(newPartnersList));
-					dispatch(clearPartnerForm());
-					dispatch(setIsExistingPartnerEdited(false));
-					setIsFormDisabled(false);
-				})
-				.catch((error) => {
-					console.error(error);
-					setIsFormDisabled(false);
-				});
+		setIsFormDisabled(true);
+		try {
+			const updatedPartner = await api.partners.updatePartner(token, partnerToEdit);
+			dispatch(setPartners(partners.map(partner => updatedPartner._id !== partner._id ? partner : updatedPartner)));
+			dispatch(clearPartnerForm());
+			dispatch(setIsExistingPartnerEdited(false));
+			setSaveMessage('Данные обновлены');
 		}
-	};
+		catch (error) {
+			setSaveMessage(getErrorMessage(error));
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
+
+	async function handleDeletePartner() {
+		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
+		if (!token)
+			return;
+
+		try {
+			const deletedPartner = await api.partners.deletePartner(token, partnerToEdit._id);
+			dispatch(setPartners(partners.filter(partner => partner._id !== deletedPartner._id)));
+			dispatch(clearPartnerForm());
+			dispatch(setIsExistingPartnerEdited(false));
+		}
+		catch (error) {
+			console.error(error);
+		}
+		finally {
+			setIsFormDisabled(false);
+		}
+	}
 
 	const handleCancelEditPartner = () => {
 		dispatch(clearPartnerForm());
