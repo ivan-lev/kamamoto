@@ -1,7 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
-import type { Error } from 'mongoose';
+import type { AuthRequest } from '../types/auth';
 import jwt from 'jsonwebtoken';
 import { JWT_KEY } from '../config';
+import { AuthorizationError } from '../errors/authorization-error';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import User from '../models/user';
 import { ERROR_MESSAGES } from '../variables/messages';
@@ -15,11 +16,15 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
 		res.send({ token });
 	}
 	catch (error) {
-		handleMongooseError(error as Error, next, ERROR_MESSAGES.USER);
+		handleMongooseError(error, next, ERROR_MESSAGES.USER);
 	}
 }
 
-export async function checkToken(req: any, res: Response, next: NextFunction): Promise<void> {
+export async function checkToken(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+	// роут закрыт requireAuth, но без этой проверки контракт держался бы только на роутере
+	if (!req.user)
+		return next(new AuthorizationError(ERROR_MESSAGES.UNAUTHORIZED));
+
 	const currentUserId = req.user._id;
 
 	try {

@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
+import type { AuthRequest } from '../types/auth';
 import type { Exhibition as ExhibitionType } from '../types/exhibition';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Exhibition from '../models/exhibition';
@@ -8,7 +9,7 @@ import { PATHS } from '../variables/paths';
 const { EXHIBITIONS, STATIC_URL } = PATHS;
 
 // с токеном (optionalAuth) — все выставки с сырыми именами файлов для админки, без — для сайта, с URL
-async function getExhibitions(req: any, res: Response, next: NextFunction): Promise<void> {
+async function getExhibitions(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
 	const isAdmin = Boolean(req.user);
 	try {
 		const exhibitions: ExhibitionType[] = await Exhibition.find({}, { _id: 0 });

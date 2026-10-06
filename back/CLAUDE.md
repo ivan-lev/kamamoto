@@ -16,7 +16,7 @@ npx tsc --noEmit && npx eslint .   # проверка перед сдачей
 
 `routes/index.ts`: `POST /signin` открыт → `auth` → все роутеры.
 
-`middlewares/auth.ts`: глобальная `auth` пропускает любой `GET`, для остальных методов проверяет `Bearer`-JWT и кладёт payload в `req.user`. Закрытые GET помечаются в роутере: `requireAuth` — только с токеном (`GET /users/`, `/exhibits/`, `/maps/`), `optionalAuth` — токен необязателен, но если пришёл, должен быть валидным, иначе 401 (`GET /exhibitions/`, `/partners/`: контроллер смотрит на `req.user`). Новый GET, который отдаёт неактивные записи или служебные поля, закрывать так же. Ключ подписи JWT — `JWT_KEY` из `config.ts`, он вычисляется при старте: при `NODE_ENV=development` (задан в `nodemon.json`) это захардкоженный `'default-key'`, при `production` — `JWT_SECRET` длиной не меньше 32 символов. Любое другое значение `NODE_ENV` или короткий/пустой секрет на проде **роняют бэк при старте** — так задумано: иначе токены подписывались бы ключом из публичного репозитория. Локальный токен на проде не работает, и наоборот.
+`middlewares/auth.ts`: глобальная `auth` пропускает любой `GET`, для остальных методов проверяет `Bearer`-JWT и кладёт в `req.user` `{ _id }` (токен с другим payload → 401). Контроллер, который читает `req.user`, принимает `AuthRequest` из `types/auth.ts`, а не `any`: глобально расширять `Express.Request` через `.d.ts` нельзя — ts-node в `npm run dev` такие файлы не подхватывает. Закрытые GET помечаются в роутере: `requireAuth` — только с токеном (`GET /users/`, `/exhibits/`, `/maps/`), `optionalAuth` — токен необязателен, но если пришёл, должен быть валидным, иначе 401 (`GET /exhibitions/`, `/partners/`: контроллер смотрит на `req.user`). Новый GET, который отдаёт неактивные записи или служебные поля, закрывать так же. Ключ подписи JWT — `JWT_KEY` из `config.ts`, он вычисляется при старте: при `NODE_ENV=development` (задан в `nodemon.json`) это захардкоженный `'default-key'`, при `production` — `JWT_SECRET` длиной не меньше 32 символов. Любое другое значение `NODE_ENV` или короткий/пустой секрет на проде **роняют бэк при старте** — так задумано: иначе токены подписывались бы ключом из публичного репозитория. Локальный токен на проде не работает, и наоборот.
 
 ## Структура `src/`
 
@@ -49,7 +49,7 @@ async function updateThing(req: Request, res: Response, next: NextFunction) {
 }
 ```
 
-`handleMongooseError` переводит ошибки: `CastError` → 400 WRONG_ID, `ValidationError` → 400 WRONG_DATA, `DocumentNotFoundError` (из `.orFail()`) → 404, код `11000` → 409. Всё остальное уходит в `errorHandler`, и клиент получает 500 с `DEFAULT_MESSAGE`. Сообщение ошибки клиенту не показывается.
+`handleMongooseError(error: unknown, ...)` распознаёт ошибки через `instanceof` (`mongoose.Error.*`, `mongo.MongoServerError`) и переводит: `CastError` → 400 WRONG_ID, `ValidationError` → 400 WRONG_DATA, `DocumentNotFoundError` (из `.orFail()`) → 404, код `11000` → 409. Всё остальное уходит в `errorHandler`, и клиент получает 500 с `DEFAULT_MESSAGE`. Сообщение ошибки клиенту не показывается.
 
 Ответ об ошибке всегда имеет вид `{ message: string }`. Фронт читает именно `message`.
 
@@ -103,4 +103,5 @@ async function updateThing(req: Request, res: Response, next: NextFunction) {
 - `/api/files` сейчас подключён к `lettersRouter` (опечатка). Контроллер `files.ts` не используется.
 - `routes/features.ts`, `controllers/features.ts`, `models/feature.ts` — **незаконченная работа** (раздел «декоративные приёмы»). Роутер не подключён в `routes/index.ts`, POST использует валидатор стилей керамики.
 - Ответы на PATCH разные: где-то 200, где-то 201. Фронт на код успеха не смотрит, но в новом коде PATCH должен отвечать 200.
+- Явный `any` запрещён линтером (`ts/no-explicit-any`). Вместо него — `unknown` + проверка типа (`instanceof`, `typeof`, `'поле' in obj`).
 - `console.log` запрещён линтером (разрешён `console.warn` / `console.error`). Если очень нужно, `// eslint-disable-line no-console`.

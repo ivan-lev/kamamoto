@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
+import type { AuthRequest } from '../types/auth';
 import type { Partner as PartnerType } from '../types/partner';
 import { handleMongooseError } from '../middlewares//error-handler-mongoose';
 import Partner from '../models/partner';
@@ -8,7 +9,7 @@ import { PATHS } from '../variables/paths';
 const { STATIC_URL, PARTNERS } = PATHS;
 
 // с токеном (optionalAuth) — все партнёры с сырым именем логотипа для админки, без — только активные с URL
-async function getPartners(req: any, res: Response, next: NextFunction) {
+async function getPartners(req: AuthRequest, res: Response, next: NextFunction) {
 	const isAdmin = Boolean(req.user);
 	try {
 		const partners = await Partner.find(isAdmin ? {} : { isActive: true });
