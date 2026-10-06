@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { File } from '@/types/file';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -7,7 +8,7 @@ const lettersSlice = createSlice({
 	name: 'letters',
 	initialState,
 	reducers: {
-		setLettersList: (state, action) => {
+		setLettersList: (state, action: PayloadAction<File[]>) => {
 			if (state.length === 0) {
 				return [...action.payload];
 			}

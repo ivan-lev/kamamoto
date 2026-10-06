@@ -1,4 +1,5 @@
 import type { Category } from '@/types/category';
+import type { DisplayListItem } from '@/types/displayListType';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
@@ -7,14 +8,14 @@ const {
 	CATEGORIES,
 } = PATHS;
 
-async function getExhibitsByCategory(category: string) {
+async function getExhibitsByCategory(category: string): Promise<DisplayListItem[]> {
 	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${category}`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
-async function getCategories(isAdmin = false) {
+async function getCategories(isAdmin = false): Promise<Category[]> {
 	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
@@ -22,7 +23,7 @@ async function getCategories(isAdmin = false) {
 	return checkResponseStatus(response);
 }
 
-async function createCategory(token: string, category: Category) {
+async function createCategory(token: string, category: Category): Promise<Category> {
 	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/`, {
 		method: 'POST',
 		headers: {
@@ -34,7 +35,7 @@ async function createCategory(token: string, category: Category) {
 	return checkResponseStatus(response);
 }
 
-async function updateCategory(token: string, category: Category) {
+async function updateCategory(token: string, category: Category): Promise<Category> {
 	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${category.name}`, {
 		method: 'PATCH',
 		headers: {
@@ -46,7 +47,7 @@ async function updateCategory(token: string, category: Category) {
 	return checkResponseStatus(response);
 }
 
-async function deleteCategory(token: string, name: string) {
+async function deleteCategory(token: string, name: string): Promise<Pick<Category, 'name'>> {
 	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/${name}`, {
 		method: 'DELETE',
 		headers: {

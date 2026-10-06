@@ -10,6 +10,13 @@ export interface CeramicStyle {
 	article: ArticleSection[];
 }
 
+// карточка статьи в списке /ceramic-styles (GET /ceramic-styles/articles), thumbnail — URL
+export interface CeramicStylePreview {
+	name: string;
+	title: string;
+	thumbnail: string;
+}
+
 export const defaultCeramicStyle: CeramicStyle = {
 	name: '',
 	title: '',

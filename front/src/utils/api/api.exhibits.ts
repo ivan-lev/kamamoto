@@ -1,4 +1,4 @@
-import type { ExhibitAdmin } from '@/types/exhibitType';
+import type { ExhibitAdmin, ExhibitVisitor } from '@/types/exhibitType';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '@/variables/variables';
 
@@ -13,14 +13,14 @@ async function getExhibits(token: string): Promise<ExhibitAdmin[]> {
 	return checkResponseStatus(response);
 }
 
-async function getExhibitById(id: string) {
+async function getExhibitById(id: string): Promise<ExhibitVisitor> {
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${id}`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
-async function createExhibit(token: string, exhibit: ExhibitAdmin) {
+async function createExhibit(token: string, exhibit: ExhibitAdmin): Promise<ExhibitAdmin> {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
 	const potter = exhibit.potter.id;
@@ -35,7 +35,7 @@ async function createExhibit(token: string, exhibit: ExhibitAdmin) {
 	return checkResponseStatus(response);
 }
 
-async function updateExhibit(token: string, exhibit: ExhibitAdmin) {
+async function updateExhibit(token: string, exhibit: ExhibitAdmin): Promise<ExhibitAdmin> {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
 	const potter = exhibit.potter.id;
@@ -50,7 +50,7 @@ async function updateExhibit(token: string, exhibit: ExhibitAdmin) {
 	return checkResponseStatus(response);
 }
 
-async function toggleExhibitActiveState(token: string, exhibit: ExhibitAdmin) {
+async function toggleExhibitActiveState(token: string, exhibit: ExhibitAdmin): Promise<ExhibitAdmin> {
 	const category = exhibit.category?.name;
 	const style = exhibit.style?.name;
 	const potter = exhibit.potter.id;
@@ -65,7 +65,7 @@ async function toggleExhibitActiveState(token: string, exhibit: ExhibitAdmin) {
 	return checkResponseStatus(response);
 }
 
-async function deleteExhibit(token: string, id: number) {
+async function deleteExhibit(token: string, id: number): Promise<Pick<ExhibitAdmin, 'id'>> {
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITS}/${id}`, {
 		method: 'DELETE',
 		headers: {

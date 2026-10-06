@@ -5,7 +5,7 @@ const { BASE_API_URL, SIGNIN, USERS } = PATHS;
 
 // Authorization logic
 
-async function authorize(email: string, password: string) {
+async function authorize(email: string, password: string): Promise<{ token: string }> {
 	const response = await fetch(`${BASE_API_URL}/${SIGNIN}`, {
 		method: 'POST',
 		headers: {
@@ -16,7 +16,7 @@ async function authorize(email: string, password: string) {
 	return checkResponseStatus(response);
 }
 
-async function checkToken(token: string) {
+async function checkToken(token: string): Promise<{ answer: string }> {
 	const response = await fetch(`${BASE_API_URL}/${USERS}/`, {
 		method: 'GET',
 		headers: {

@@ -16,14 +16,22 @@ export function getErrorMessage(error: unknown, fallback: string = ERROR_MESSAGE
 	return (error instanceof Error && error.message) || fallback;
 }
 
-export async function checkResponseStatus(response: Response) {
-	const data = await response.json().catch(() => null);
+function getResponseMessage(data: unknown): string | undefined {
+	if (typeof data === 'object' && data !== null && 'message' in data && typeof data.message === 'string')
+		return data.message;
+}
+
+// T — формат успешного ответа, его объявляет функция API в своей сигнатуре (Promise<...>).
+// Это единственное место, где мы верим бэку на слово: ответ во время выполнения не проверяется,
+// поэтому типы в front/src/types/* должны совпадать с тем, что реально отдаёт бэк (см. .claude/specs/api.md)
+export async function checkResponseStatus<T = unknown>(response: Response): Promise<T> {
+	const data: unknown = await response.json().catch(() => null);
 
 	if (!response.ok) {
-		const message = data?.message ?? `Ошибка ${response.status}`;
+		const message = getResponseMessage(data) ?? `Ошибка ${response.status}`;
 		console.error(message);
-		return Promise.reject(new ApiError(message, response.status));
+		throw new ApiError(message, response.status);
 	}
 
-	return data;
+	return data as T;
 }

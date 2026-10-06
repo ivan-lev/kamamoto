@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Partner } from '@/types/partnerType';
 import { createSlice } from '@reduxjs/toolkit';
 import { defaultPartner } from '@/types/partnerType';
@@ -18,11 +19,11 @@ const partners = createSlice({
 	name: 'partners',
 	initialState,
 	reducers: {
-		setPartners: (state, action) => {
+		setPartners: (state, action: PayloadAction<Partner[]>) => {
 			state.partners = [...action.payload];
 		},
 
-		setPartnerToEdit: (state, action) => {
+		setPartnerToEdit: (state, action: PayloadAction<Partner>) => {
 			state.partnerToEdit = { ...action.payload };
 		},
 
@@ -30,7 +31,7 @@ const partners = createSlice({
 			state.partnerToEdit = { ...defaultPartner };
 		},
 
-		setIsExistingPartnerEdited: (state, action) => {
+		setIsExistingPartnerEdited: (state, action: PayloadAction<boolean>) => {
 			state.isExistingPartnerEdited = action.payload;
 		},
 	},

@@ -1,9 +1,10 @@
-import type { Exhibition } from '@/types/exhibitionType';
+import type { PublicExhibition } from '@/types/exhibitionType';
 import { Link } from 'react-router';
 import './ExhibitionCard.scss';
 
 interface Props {
-	exhibition: Exhibition;
+	// в публичном списке неактивная выставка приходит только с полями карточки
+	exhibition: PublicExhibition;
 }
 
 export default function ExhibitionCard({ exhibition }: Props) {

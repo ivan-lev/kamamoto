@@ -1,8 +1,9 @@
-import type { displayListType } from '@/types/displayListType';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { DisplayListItem } from '@/types/displayListType';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface listState {
-	displayList: displayListType[];
+	displayList: DisplayListItem[];
 }
 
 const initialState: listState = {
@@ -13,7 +14,7 @@ const listSlice = createSlice({
 	name: 'list',
 	initialState,
 	reducers: {
-		setDisplayList: (state, action) => {
+		setDisplayList: (state, action: PayloadAction<DisplayListItem[]>) => {
 			state.displayList = action.payload;
 		},
 

@@ -1,4 +1,4 @@
-import type { Article as IArticle } from '@/components/visitor/Article/Article.types';
+import type { Potter } from '@/types/potter';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Preloader from '@/components/shared/Preloader/Preloader';
@@ -10,7 +10,7 @@ import { scrollToTop } from '@/utils/scrollToTop';
 
 export default function LNTPotter() {
 	const { potter } = useParams();
-	const [potterInfo, setPotterInfo] = useState<IArticle | null>(null);
+	const [potterInfo, setPotterInfo] = useState<Potter | null>(null);
 	// адрес, по которому записи не оказалось: при переходе на другой адрес страница снова грузится
 	const [missingPotter, setMissingPotter] = useState<string>();
 

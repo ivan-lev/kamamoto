@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Exhibition } from '@/types/exhibitionType';
 import { createSlice } from '@reduxjs/toolkit';
 import { defaultExhibition } from '@/types/exhibitionType';
@@ -18,11 +19,11 @@ const exhibitions = createSlice({
 	name: 'exhibitions',
 	initialState,
 	reducers: {
-		setExhibitionsList: (state, action) => {
+		setExhibitionsList: (state, action: PayloadAction<Exhibition[]>) => {
 			state.exhibitionsList = [...action.payload];
 		},
 
-		setExhibitionToEdit: (state, action) => {
+		setExhibitionToEdit: (state, action: PayloadAction<number>) => {
 			state.exhibitionToEdit = state.exhibitionsList.find(exhibition => exhibition.id === action.payload) || defaultExhibition;
 			state.isExistingExhibitionEdited = true;
 		},
@@ -40,7 +41,7 @@ const exhibitions = createSlice({
 			state.exhibitionToEdit = { ...defaultExhibition, id: state.exhibitionsList.length + 1 };
 		},
 
-		setExhibitionToDisplay: (state, action) => {
+		setExhibitionToDisplay: (state, action: PayloadAction<Exhibition>) => {
 			state.exhibitionToEdit = { ...action.payload };
 		},
 	},

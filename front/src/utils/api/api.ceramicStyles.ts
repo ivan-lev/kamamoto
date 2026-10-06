@@ -1,4 +1,5 @@
-import type { CeramicStyle } from '@/types/ceramicStyles';
+import type { Article } from '@/components/visitor/Article/Article.types';
+import type { CeramicStyle, CeramicStylePreview } from '@/types/ceramicStyles';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
@@ -8,7 +9,7 @@ const {
 	ARTICLES,
 } = PATHS;
 
-async function getCeramicStyles(isAdmin = false) {
+async function getCeramicStyles(isAdmin = false): Promise<CeramicStyle[]> {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
@@ -16,21 +17,21 @@ async function getCeramicStyles(isAdmin = false) {
 	return checkResponseStatus(response);
 }
 
-async function getCeramicStylesArticles() {
+async function getCeramicStylesArticles(): Promise<CeramicStylePreview[]> {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/${ARTICLES}/`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
-async function getCeramicStylesArticle(style: string) {
+async function getCeramicStylesArticle(style: string): Promise<Article> {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/${style}`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
-async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle) {
+async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle): Promise<CeramicStyle> {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/`, {
 		method: 'POST',
 		headers: {
@@ -42,7 +43,7 @@ async function createCeramicStyle(token: string, ceramicStyle: CeramicStyle) {
 	return checkResponseStatus(response);
 }
 
-async function updateCeramicStyle(token: string, style: CeramicStyle, initialName: string) {
+async function updateCeramicStyle(token: string, style: CeramicStyle, initialName: string): Promise<CeramicStyle> {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/${initialName}`, {
 		method: 'PATCH',
 		headers: {
@@ -54,7 +55,7 @@ async function updateCeramicStyle(token: string, style: CeramicStyle, initialNam
 	return checkResponseStatus(response);
 }
 
-async function deleteCeramicStyle(token: string, name: string) {
+async function deleteCeramicStyle(token: string, name: string): Promise<Pick<CeramicStyle, 'name'>> {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/${name}`, {
 		method: 'DELETE',
 		headers: {

@@ -1,3 +1,4 @@
+import type { DisplayListItem } from '@/types/displayListType';
 import type { Potter } from '@/types/potter';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
@@ -7,7 +8,7 @@ const {
 	POTTERS,
 } = PATHS;
 
-async function getPotters(isAdmin = false) {
+async function getPotters(isAdmin = false): Promise<Potter[]> {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/`, {
 		method: 'GET',
 		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
@@ -15,21 +16,21 @@ async function getPotters(isAdmin = false) {
 	return checkResponseStatus(response);
 }
 
-async function getPotterById(id: string) {
+async function getPotterById(id: string): Promise<Potter> {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/${id}`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
-async function getLNTPotters() {
+async function getLNTPotters(): Promise<DisplayListItem[]> {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/lnt`, {
 		method: 'GET',
 	});
 	return checkResponseStatus(response);
 }
 
-async function createPotter(token: string, potter: Potter) {
+async function createPotter(token: string, potter: Potter): Promise<Potter> {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/`, {
 		method: 'POST',
 		headers: {
@@ -41,7 +42,7 @@ async function createPotter(token: string, potter: Potter) {
 	return checkResponseStatus(response);
 }
 
-async function updatePotter(token: string, potter: Potter) {
+async function updatePotter(token: string, potter: Potter): Promise<Potter> {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/${potter.id}`, {
 		method: 'PATCH',
 		headers: {
@@ -53,7 +54,7 @@ async function updatePotter(token: string, potter: Potter) {
 	return checkResponseStatus(response);
 }
 
-async function deletePotter(token: string, id: string) {
+async function deletePotter(token: string, id: string): Promise<Potter> {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/${id}`, {
 		method: 'DELETE',
 		headers: {

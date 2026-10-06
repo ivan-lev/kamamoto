@@ -15,7 +15,7 @@ async function getTerms(isAdmin = false): Promise<DictionarySection[]> {
 	return checkResponseStatus(response);
 }
 
-async function createTerm(token: string, term: Term) {
+async function createTerm(token: string, term: Term): Promise<Term> {
 	const response = await fetch(`${BASE_API_URL}/${TERMS}/`, {
 		method: 'POST',
 		headers: {
@@ -27,7 +27,7 @@ async function createTerm(token: string, term: Term) {
 	return checkResponseStatus(response);
 }
 
-async function updateTerm(token: string, term: Term) {
+async function updateTerm(token: string, term: Term): Promise<Term> {
 	const response = await fetch(`${BASE_API_URL}/${TERMS}/${term.id}`, {
 		method: 'PATCH',
 		headers: {
@@ -39,7 +39,7 @@ async function updateTerm(token: string, term: Term) {
 	return checkResponseStatus(response);
 }
 
-async function deleteTerm(token: string, id: string) {
+async function deleteTerm(token: string, id: string): Promise<Term> {
 	const response = await fetch(`${BASE_API_URL}/${TERMS}/${id}`, {
 		method: 'DELETE',
 		headers: {

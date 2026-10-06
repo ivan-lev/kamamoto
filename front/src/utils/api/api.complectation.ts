@@ -11,7 +11,7 @@ async function getComplections(): Promise<Complectation[]> {
 	return checkResponseStatus(response);
 }
 
-async function createComplectation(token: string, complectation: Complectation) {
+async function createComplectation(token: string, complectation: Complectation): Promise<Complectation> {
 	const response = await fetch(`${BASE_API_URL}/${COMPLECTATION}/`, {
 		method: 'POST',
 		headers: {
@@ -23,7 +23,7 @@ async function createComplectation(token: string, complectation: Complectation) 
 	return checkResponseStatus(response);
 }
 
-async function updateComplectation(token: string, complectation: Complectation) {
+async function updateComplectation(token: string, complectation: Complectation): Promise<Complectation> {
 	const response = await fetch(`${BASE_API_URL}/${COMPLECTATION}/${complectation.name}`, {
 		method: 'PATCH',
 		headers: {
@@ -35,7 +35,7 @@ async function updateComplectation(token: string, complectation: Complectation) 
 	return checkResponseStatus(response);
 }
 
-async function deleteComplectation(token: string, complectationName: string) {
+async function deleteComplectation(token: string, complectationName: string): Promise<Complectation> {
 	const response = await fetch(`${BASE_API_URL}/${COMPLECTATION}/${complectationName}`, {
 		method: 'DELETE',
 		headers: {

@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { storage } from '@/utils/storage';
 import { STORAGE_KEYS } from '@/variables/variables';
@@ -14,7 +15,7 @@ const user = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		login: (state, action) => {
+		login: (state, action: PayloadAction<string>) => {
 			state.isLoggedIn = true;
 			storage.set(STORAGE_KEYS.TOKEN, action.payload);
 			storage.set(STORAGE_KEYS.IS_LOGGED_IN, true);

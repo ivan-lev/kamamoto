@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Statistics as StatisticsType } from '@/types/statistics';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -11,7 +12,7 @@ const statisticsSlice = createSlice({
 	name: 'statistics',
 	initialState,
 	reducers: {
-		setStatistics: (state, action) => { return { ...state, ...action.payload, isInitial: false }; },
+		setStatistics: (state, action: PayloadAction<StatisticsType>) => { return { ...state, ...action.payload, isInitial: false }; },
 	},
 });
 

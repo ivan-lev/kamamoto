@@ -1,9 +1,10 @@
-import type { Exhibition, Exhibitions } from '@/types/exhibitionType';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { Exhibition, PublicExhibition } from '@/types/exhibitionType';
 import { createSlice } from '@reduxjs/toolkit';
 import { defaultExhibition } from '@/types/exhibitionType';
 
 interface exhibitionsState {
-	exhibitionsList: Exhibitions;
+	exhibitionsList: PublicExhibition[];
 	exhibitionToDisplay: Exhibition;
 }
 
@@ -16,13 +17,13 @@ const exhibitionsSlice = createSlice({
 	name: 'exhibitions',
 	initialState,
 	reducers: {
-		setExhibitionsList: (state, action) => {
+		setExhibitionsList: (state, action: PayloadAction<PublicExhibition[]>) => {
 			if (state.exhibitionsList.length === 0) {
 				state.exhibitionsList = [...action.payload];
 			}
 		},
 
-		setExhibitionToDisplay: (state, action) => {
+		setExhibitionToDisplay: (state, action: PayloadAction<Exhibition>) => {
 			state.exhibitionToDisplay = { ...action.payload };
 		},
 

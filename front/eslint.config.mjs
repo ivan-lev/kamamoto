@@ -11,16 +11,8 @@ export default antfu({
 		'eslint-comments/no-unlimited-disable': 'off',
 		'no-underscore-dangle': ['error', { allow: ['_id'] }],
 		'regexp/no-obscure-range': ['error', { allowed: ['alphanumeric', 'а-я'] }],
-		// any у ошибки отключает проверку типов: опечатка вроде error.messagr молча даёт undefined.
-		// Без аннотации переменная в catch — unknown; для текста ошибки есть getErrorMessage.
-		// Первые два селектора — дефолт antfu, правило перезаписывает его целиком
-		'no-restricted-syntax': ['error', 'TSEnumDeclaration[const=true]', 'TSExportAssignment', {
-			selector: 'CatchClause[param.typeAnnotation.typeAnnotation.type="TSAnyKeyword"]',
-			message: 'Не типизируйте ошибку как any: без аннотации она unknown',
-		}, {
-			selector: 'CallExpression[callee.property.name="catch"] > :function[params.0.typeAnnotation.typeAnnotation.type="TSAnyKeyword"]',
-			message: 'Не типизируйте ошибку как any: используйте unknown',
-		}],
+		// any отключает проверку типов: опечатка в поле молча даёт undefined. Нужен «любой» тип — unknown + проверка
+		'ts/no-explicit-any': 'error',
 		'@stylistic/no-mixed-spaces-and-tabs': 'error',
 		'@stylistic/no-multi-spaces': 'error',
 		'@stylistic/quotes': ['error', 'single'],

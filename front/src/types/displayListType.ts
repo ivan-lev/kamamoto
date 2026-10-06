@@ -1,6 +1,6 @@
-export interface displayListType {
-	id: number;
-	thumbnail: string;
-	title: string;
+// карточка в сетке DisplayGrid: категории, лоты категории, статьи стилей, гончары LNT
+export interface DisplayListItem {
 	link: string;
+	title: string;
+	thumbnail: string;
 }

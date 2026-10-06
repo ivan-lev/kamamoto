@@ -1,3 +1,4 @@
+import type { Statistics } from '@/types/statistics';
 import { checkResponseStatus } from '@/utils/api/api.common';
 import { PATHS } from '../../variables/variables';
 
@@ -6,7 +7,7 @@ const {
 	STATISTICS,
 } = PATHS;
 
-async function getStatistics() {
+async function getStatistics(): Promise<Statistics> {
 	const response = await fetch(`${BASE_API_URL}/${STATISTICS}/`, {
 		method: 'GET',
 	});

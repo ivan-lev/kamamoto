@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Term } from '@/types/term';
 import { createSlice } from '@reduxjs/toolkit';
 import { defaultTerm } from '@/types/term';
@@ -18,11 +19,11 @@ const dictionary = createSlice({
 	name: 'dictionary',
 	initialState,
 	reducers: {
-		setTerms: (state, action) => {
+		setTerms: (state, action: PayloadAction<Term[]>) => {
 			state.terms = [...action.payload];
 		},
 
-		setTermToEdit: (state, action) => {
+		setTermToEdit: (state, action: PayloadAction<Term>) => {
 			state.termToEdit = { ...action.payload };
 		},
 
@@ -30,7 +31,7 @@ const dictionary = createSlice({
 			state.termToEdit = { ...defaultTerm };
 		},
 
-		setIsExistingTermEdited: (state, action) => {
+		setIsExistingTermEdited: (state, action: PayloadAction<boolean>) => {
 			state.isExistingTermEdited = action.payload;
 		},
 	},

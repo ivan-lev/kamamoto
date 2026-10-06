@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Complectation } from '@/types/compleactation';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -13,7 +14,7 @@ const complectations = createSlice({
 	name: 'complectations',
 	initialState,
 	reducers: {
-		setComplectations: (state, action) => {
+		setComplectations: (state, action: PayloadAction<Complectation[]>) => {
 			state.complectations = [...action.payload];
 		},
 	},

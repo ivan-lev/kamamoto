@@ -17,6 +17,12 @@ export interface Exhibition {
 
 export type Exhibitions = Exhibition[];
 
+// неактивная выставка в публичном списке (GET /exhibitions/ без токена): только поля карточки, без описания и фото
+export type ExhibitionCard = Pick<Exhibition, 'id' | 'year' | 'dates' | 'city' | 'place' | 'name'> & { isActive: false };
+
+// элемент публичного списка выставок: активная приходит целиком, неактивная — карточкой
+export type PublicExhibition = (Exhibition & { isActive: true }) | ExhibitionCard;
+
 export const defaultExhibition: Exhibition = {
 	id: 0,
 	year: new Date().getFullYear(),

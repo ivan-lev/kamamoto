@@ -7,7 +7,7 @@ interface Props {
 	seoTitle: string;
 	title: string;
 	subtitle?: string;
-	data: IArticle;
+	data: Pick<IArticle, 'article'>;
 }
 
 export default function Article({ seoTitle, title, subtitle, data }: Props) {

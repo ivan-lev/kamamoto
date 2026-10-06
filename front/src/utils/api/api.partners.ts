@@ -8,7 +8,7 @@ const {
 } = PATHS;
 
 // с токеном — все партнёры с сырым именем логотипа (админка), без — только активные с URL (сайт)
-async function getPartners(token?: string) {
+async function getPartners(token?: string): Promise<Partner[]> {
 	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/`, {
 		method: 'GET',
 		headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -16,7 +16,7 @@ async function getPartners(token?: string) {
 	return checkResponseStatus(response);
 }
 
-async function createPartner(token: string, title: string, link: string, logo: string, isActive: boolean) {
+async function createPartner(token: string, title: string, link: string, logo: string, isActive: boolean): Promise<Partner> {
 	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/`, {
 		method: 'POST',
 		headers: {
@@ -28,7 +28,7 @@ async function createPartner(token: string, title: string, link: string, logo: s
 	return checkResponseStatus(response);
 }
 
-async function updatePartner(token: string, partner: Partner) {
+async function updatePartner(token: string, partner: Partner): Promise<Partner> {
 	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/${partner._id}`, {
 		method: 'PATCH',
 		headers: {
@@ -40,7 +40,7 @@ async function updatePartner(token: string, partner: Partner) {
 	return checkResponseStatus(response);
 }
 
-async function deletePartner(token: string, id: string) {
+async function deletePartner(token: string, id: string): Promise<Pick<Partner, '_id'>> {
 	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/${id}`, {
 		method: 'DELETE',
 		headers: {

@@ -24,7 +24,7 @@ async function getMarkerGroups(): Promise<MarkerGroup[]> {
 	return checkResponseStatus(response);
 }
 
-async function createMarker(token: string, marker: Marker) {
+async function createMarker(token: string, marker: Marker): Promise<Marker> {
 	const response = await fetch(`${BASE_API_URL}/${MAPS}/`, {
 		method: 'POST',
 		headers: {
@@ -36,7 +36,7 @@ async function createMarker(token: string, marker: Marker) {
 	return checkResponseStatus(response);
 }
 
-async function updateMarker(token: string, marker: Marker) {
+async function updateMarker(token: string, marker: Marker): Promise<Marker> {
 	const response = await fetch(`${BASE_API_URL}/${MAPS}/${marker._id}`, {
 		method: 'PATCH',
 		headers: {
@@ -48,7 +48,7 @@ async function updateMarker(token: string, marker: Marker) {
 	return checkResponseStatus(response);
 }
 
-async function deleteMarker(token: string, id: string) {
+async function deleteMarker(token: string, id: string): Promise<Pick<Marker, '_id'>> {
 	const response = await fetch(`${BASE_API_URL}/${MAPS}/${id}`, {
 		method: 'DELETE',
 		headers: {

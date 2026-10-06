@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Category } from '@/types/category';
 import { createSlice } from '@reduxjs/toolkit';
 import { defaultCategory } from '@/types/category';
@@ -18,11 +19,11 @@ const categories = createSlice({
 	name: 'categories',
 	initialState,
 	reducers: {
-		setCategories: (state, action) => {
+		setCategories: (state, action: PayloadAction<Category[]>) => {
 			state.categories = [...action.payload];
 		},
 
-		setCategoryToEdit: (state, action) => {
+		setCategoryToEdit: (state, action: PayloadAction<Category>) => {
 			state.categoryToEdit = { ...action.payload };
 		},
 
@@ -30,7 +31,7 @@ const categories = createSlice({
 			state.categoryToEdit = { ...defaultCategory };
 		},
 
-		setIsExistingCategoryEdited: (state, action) => {
+		setIsExistingCategoryEdited: (state, action: PayloadAction<boolean>) => {
 			state.isExistingCategoryEdited = action.payload;
 		},
 	},

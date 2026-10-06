@@ -1,12 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { Category } from '@/types/category';
 import { createSlice } from '@reduxjs/toolkit';
-
-interface Category {
-	name: string;
-	title: string;
-	thumbnail: string;
-	thumbnailPath: string;
-}
 
 const initialState: Category[] = [];
 
