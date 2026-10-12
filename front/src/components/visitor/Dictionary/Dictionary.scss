@@ -101,8 +101,45 @@
 	}
 
 	&__title {
+		cursor: pointer;
 		scroll-margin-top: calc(var(--gap-96) + var(--gap-60));
+
+		display: flex;
 		grid-column: 1 / 3;
+		align-items: center;
+
+		width: fit-content;
+
+		&::after {
+			content: '';
+
+			position: static;
+
+			display: inline-block;
+
+			width: 0.9em;
+			height: 0.9em;
+			margin-left: var(--gap-8);
+
+			vertical-align: -0.1em;
+
+			opacity: 0;
+			background-image: url('/__spritemap#sprite-copy-view');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+
+			transition: opacity 0.4s ease;
+
+			// На тач-устройствах ховера нет — показываем иконку всегда
+			@media (hover: none) {
+				opacity: 1;
+			}
+		}
+
+		&:hover::after {
+			opacity: 1;
+		}
 
 		@media (max-width: 768px) {
 			grid-column: 1 / 7;

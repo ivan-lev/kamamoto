@@ -8,9 +8,18 @@ interface Props {
 }
 
 export default function DictionaryTerm({ term }: Props) {
+	async function copyTerm() {
+		try {
+			await navigator.clipboard.writeText(`${term.title} (${term.kanji}) - ${term.definition}`);
+		}
+		catch (error) {
+			console.error(error);
+		}
+	}
+
 	return (
 		<div className="dictionary__row" key={ term.title }>
-			<p className="dictionary__title" id={ term.id }>
+			<p className="dictionary__title" id={ term.id } onClick={ copyTerm }>
 				{ term.title }
 			</p>
 
