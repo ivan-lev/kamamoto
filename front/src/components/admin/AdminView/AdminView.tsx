@@ -8,7 +8,6 @@ import Complectation from '@/components/admin/Complectation/Complectation';
 import AdminDictionary from '@/components/admin/Dictionary/Dictionary';
 import AdminExhibitions from '@/components/admin/Exbitions/Exhibitions';
 import ExhibitsList from '@/components/admin/ExhibitsList/ExhibitsList';
-import Filters from '@/components/admin/Filters/Filters';
 import AdminLetters from '@/components/admin/Letters/Letters';
 import Login from '@/components/admin/Login/Login';
 import Markers from '@/components/admin/Markers/Markers';
@@ -24,15 +23,7 @@ export default function AdminView() {
 				<Route path="login" element={ <Login /> } />
 				<Route path="/" element={ <Admin /> }>
 					<Route index element={ <AdminStatistics /> } />
-					<Route
-						path="exhibits"
-						element={ (
-							<>
-								<Filters />
-								<ExhibitsList />
-							</>
-						) }
-					/>
+					<Route path="exhibits" element={ <ExhibitsList /> } />
 					<Route path="exhibitions" element={ <AdminExhibitions /> } />
 					<Route path="partners" element={ <AdminPartners /> } />
 					<Route path="categories" element={ <AdminCategories /> } />

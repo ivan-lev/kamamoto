@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExhibitForm from '@/components/admin/ExhibitForm/ExhibitForm';
 import ExhibitsListRow from '@/components/admin/ExhibitsListRow/ExhibitsListRow';
+import Filters from '@/components/admin/shared/Filters/Filters';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
@@ -14,9 +15,15 @@ import { STORAGE_KEYS } from '@/variables/variables';
 export default function Exhibits() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [query, setQuery] = useState<string>('');
 
 	const dispatch = useDispatch();
-	const exhibitsFiltered = useSelector((state: RootState) => state.exhibits.exhibitsFiltered);
+	const exhibits = useSelector((state: RootState) => state.exhibits.exhibits);
+
+	const normalizedQuery = query.trim().toLowerCase();
+	const exhibitsFiltered = normalizedQuery
+		? exhibits.filter(exhibit => exhibit.name.toLowerCase().includes(normalizedQuery) || exhibit.id.toString().includes(normalizedQuery))
+		: exhibits;
 
 	function handleOpenEmptyForm() {
 		dispatch(setIsExistingExhibitEdited(false));
@@ -53,6 +60,13 @@ export default function Exhibits() {
 				: (
 					<div className="container container--background-transparent">
 						<h1 className="title title--1">Лоты</h1>
+
+						<Filters
+							query={ query }
+							searchPlaceholder="поиск: часть названия или номер лота"
+							onQueryChange={ setQuery }
+						/>
+
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell">ID</span>

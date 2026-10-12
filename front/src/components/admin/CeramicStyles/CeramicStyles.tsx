@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CeramicStyleFormView from '@/components/admin/CeramicStyles/CeramicStyleFormView';
 import CeramicStylesRow from '@/components/admin/CeramicStyles/CeramicStylesRow';
+import Filters from '@/components/admin/shared/Filters/Filters';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import Seo from '@/components/visitor/Seo/Seo';
@@ -15,11 +16,17 @@ import { STORAGE_KEYS } from '@/variables/variables';
 export default function CeramicStyles() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [query, setQuery] = useState<string>('');
 	const dispatch = useDispatch();
 	const ceramicStylesList = useSelector((state: RootState) => state.ceramicStyles.ceramicStylesList);
 	const isExistingStyleEdited = useSelector(
 		(state: RootState) => state.ceramicStyles.isExistingStyleEdited,
 	);
+
+	const normalizedQuery = query.trim().toLowerCase();
+	const ceramicStylesFiltered = normalizedQuery
+		? ceramicStylesList.filter(style => style.title.toLowerCase().includes(normalizedQuery) || style.name.toLowerCase().includes(normalizedQuery))
+		: ceramicStylesList;
 
 	function createNewCeramicStyle() {
 		dispatch(setIsExistingStyleEdited(false));
@@ -65,6 +72,12 @@ export default function CeramicStyles() {
 					<div className="container container--background-transparent">
 						<h1 className="title title--1">Стили керамики</h1>
 
+						<Filters
+							query={ query }
+							searchPlaceholder="поиск: часть заголовка или имени стиля"
+							onQueryChange={ setQuery }
+						/>
+
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell table__cell--span-2">Имя</span>
@@ -75,7 +88,7 @@ export default function CeramicStyles() {
 								<span className="table__cell table__cell--centered">Акт</span>
 							</div>
 
-							{ ceramicStylesList.map(style => <CeramicStylesRow key={ style.name } style={ style } setShowModal={ setShowModal } />) }
+							{ ceramicStylesFiltered.map(style => <CeramicStylesRow key={ style.name } style={ style } setShowModal={ setShowModal } />) }
 						</div>
 
 						<Modal showModal={ showModal } closeModal={ () => handleCloseModal() }>

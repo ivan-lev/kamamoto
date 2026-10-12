@@ -3,6 +3,7 @@ import type { Marker } from '@/types/marker';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MarkersFormView from '@/components/admin/Markers/MarkersFormView';
+import Filters from '@/components/admin/shared/Filters/Filters';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/shared/Preloader/Preloader';
 import { MARKER_GROUPS } from '@/components/visitor/Map/markerGroups';
@@ -16,9 +17,21 @@ import { STORAGE_KEYS } from '@/variables/variables';
 export default function Markers() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [query, setQuery] = useState<string>('');
 	const dispatch = useDispatch();
 	const markersList = useSelector((state: RootState) => state.markers.markersList);
 	const isExistingMarkerEdited = useSelector((state: RootState) => state.markers.isExistingMarkerEdited);
+
+	const normalizedQuery = query.trim().toLowerCase();
+	const markersFiltered = normalizedQuery
+		// кандзи и ромадзи в схеме необязательные и без дефолтов — у части маркеров их может не быть
+		? markersList.filter(marker => [marker.title, marker.kanji, marker.romaji, getGroupTitle(marker.groupName)]
+			.some(field => (field ?? '').toLowerCase().includes(normalizedQuery)))
+		: markersList;
+
+	function getGroupTitle(groupName: string) {
+		return MARKER_GROUPS.find(group => group.groupName === groupName)?.title ?? groupName;
+	}
 
 	function handleSetMarkerToEdit(data: Marker) {
 		dispatch(setIsExistingMarkerEdited(true));
@@ -69,6 +82,13 @@ export default function Markers() {
 				: (
 					<div className="container container--background-transparent">
 						<h1 className="title title--1">Маркеры карты</h1>
+
+						<Filters
+							query={ query }
+							searchPlaceholder="поиск: название, кандзи, ромадзи, группа"
+							onQueryChange={ setQuery }
+						/>
+
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell table__cell--span-2">Название</span>
@@ -78,8 +98,8 @@ export default function Markers() {
 								<span className="table__cell">Активен</span>
 								<span className="table__cell table__cell--centered">Редакт-ть</span>
 							</div>
-							{ markersList.map((marker) => {
-								const groupTitle = MARKER_GROUPS.find(group => group.groupName === marker.groupName)?.title ?? marker.groupName;
+							{ markersFiltered.map((marker) => {
+								const groupTitle = getGroupTitle(marker.groupName);
 								return (
 									<div
 										key={ marker._id }
