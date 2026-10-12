@@ -2,5 +2,5 @@
 	position: sticky;
 	z-index: var(--z-index-high);
 	top: 0;
-	backdrop-filter: blur(5px);
+	backdrop-filter: var(--blur-m);
 }

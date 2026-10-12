@@ -43,7 +43,6 @@
 	--slider-caption-bg: #ffffff99;
 	--slider-source-bg: #666666cc;
 
-
 	// Buttons
 	--button-background: var(--color-secondary-100);
 
@@ -60,4 +59,6 @@
 
 	// Other
 	--input-height: var(--gap-32);
+	--blur-m: blur(5px);
+	--blur-s: blur(0.5px);
 }
