@@ -15,7 +15,12 @@ import routes from './routes';
 import { PATHS } from './variables/paths';
 
 const app = express();
-const helmetOptions: HelmetOptions = { crossOriginResourcePolicy: false };
+const helmetOptions: HelmetOptions = {
+	crossOriginResourcePolicy: false,
+	// дефолтный no-referrer доходит до браузера в ответах 304 (Caddy их не перезаписывает),
+	// и тайлы OSM уходят без Referer — сервер отдаёт заглушку «Access blocked»
+	referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+};
 
 connectToDatabase();
 

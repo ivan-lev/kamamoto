@@ -83,6 +83,7 @@ async function updateThing(req: Request, res: Response, next: NextFunction) {
 - Значения из БД экранируются (`escapeAttribute`), описание проходит через `toPlainText` (убирает теги) и `truncate`: `description` — до 160 символов (сниппет Google), `og:description` — до 125 (превью в соцсетях), многоточие входит в лимит.
 - Ошибка БД не роняет страницу: логируется, отдаются общие теги. Ошибка чтения `index.html` → 500.
 - CSP от helmet в HTML-ответе снимается (`removeHeader`): он рассчитан на API и сломал бы карту, emailjs и внешние слайды.
+- `Referrer-Policy` в helmet — `strict-origin-when-cross-origin`, а не дефолтный `no-referrer`: Caddy перезаписывает заголовок только при `Content-Type: text/html`, а в ответе 304 его нет, и браузер подхватывал `no-referrer` из 304. Без Referer тайлы OSM на карте приходят заглушкой «Access blocked».
 - `/static/*`, для которого не нашлось файла, пропускается дальше (404), а не превращается в HTML.
 - Проверка локально: `curl -s localhost:3000/collection/bowls/1337 | grep -E '<title|og:'` (в dev `og:image` указывает на localhost — это нормально).
 
