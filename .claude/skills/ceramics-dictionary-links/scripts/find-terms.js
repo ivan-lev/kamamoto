@@ -180,10 +180,16 @@ function findMentions(term, blocks) {
 			// Заголовки и текст внешних ссылок не считаются упоминанием
 			if (node.heading || (node.link && node.link.dictionaryId === null))
 				continue;
+			// Часть ссылки на другой, более длинный термин — не упоминание: «роккоё» в «нихон роккоё»
+			const otherLinkText = node.link && node.link.dictionaryId !== term.id
+				? stripTags(content.slice(node.link.start, node.link.end)).trim()
+				: null;
 			for (const { re } of term.readingRes) {
 				re.lastIndex = 0;
 				let m;
 				while ((m = re.exec(node.text))) {
+					if (otherLinkText && m[0].length < otherLinkText.length)
+						continue;
 					const start = node.start + m.index;
 					const end = start + m[0].length;
 					if (node.italic)
