@@ -78,6 +78,7 @@ if (token) {
 - Структура данных: `article: { content: string (HTML), slides?: { filename, source?, caption? }[] }[]`. Флаг `showArticle` открывает статью публично.
 - Админка: `<ArticleForm entity onChange slidesStorage={{ target, key, emptyKeyHint }} />`. Секции редактируются в tiptap (`RichTextEditor`), слайды загружаются drag'n'drop через `ArticleFormSlidesDropzone`.
 - На сайте `<Article data=... />` → `ArticleSection` (HTML разбирается через `html-react-parser` + `htmlParserOptions`, который расставляет БЭМ-классы тегам) + `ArticleSlider` (swiper).
+- Список источников: `htmlParserOptions` даёт `ul`/`ol` класс `list list--sources` (сетка до 4 колонок, `list.scss`), если ближайший предыдущий элемент — `<h3>` с текстом «Источники» или «Список источников» (регистр и двоеточие не важны). Классы в HTML статьи поставить нельзя (tiptap их выбрасывает), поэтому список узнаётся только по заголовку. Формат блока — в `.claude/specs/articles.md`, «Список источников статьи».
 - Внешние слайды (URL, начинающийся с `http`) бэк не трогает. Локальные превращаются в `${STATIC_URL}/<раздел>/<key>/slides/<file>`.
 
 ## Одиночная картинка записи (словарь, тхумб и карта стиля)
