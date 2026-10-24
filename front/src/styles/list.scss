@@ -19,6 +19,27 @@
 		padding-left: var(--gap-24);
 	}
 
+	// Источники статьи: не больше 4 колонок, колонка не уже самого длинного домена
+	&--sources {
+		--sources-column-gap: var(--gap-32);
+		--sources-min-width: 280px;
+
+		display: grid;
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(max(min(var(--sources-min-width), 100%), (100% - 3 * var(--sources-column-gap)) / 4), 1fr)
+		);
+		gap: var(--gap-8) var(--sources-column-gap);
+
+		li:not(:last-child) {
+			margin-bottom: 0;
+		}
+
+		li {
+			overflow-wrap: anywhere;
+		}
+	}
+
 	@media screen and (max-width: 900px) {
 		font-size: 14px;
 	}
