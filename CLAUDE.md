@@ -24,7 +24,7 @@
 - [.claude/specs/recipes.md](.claude/specs/recipes.md) — чек-листы: новая сущность, новая страница, статья со слайдами, версия сайта
 - [.claude/specs/deploy.md](.claude/specs/deploy.md) — env, docker, Caddy, деплой через rsync, синхронизация БД
 - [.claude/specs/known-issues.md](.claude/specs/known-issues.md) — найденные баги и несостыковки (**прочитать перед правкой затронутого кода, не копировать эти паттерны**)
-- [.claude/specs/articles.md](.claude/specs/articles.md) — правила текста статей о керамике (транскрипция, термины, эпохи, источники, разметка, запись в базу); их используют скиллы `ceramics-article-write` и `ceramics-article-review`
+- [.claude/specs/articles.md](.claude/specs/articles.md) — правила текста статей о керамике (транскрипция, термины, эпохи, источники, разметка, запись в базу); их используют скиллы `ceramics-article-write`, `ceramics-article-review`, `ceramics-dictionary-links` и `ceramics-dictionary-terms` (пополнение и правка словаря)
 
 ## Команды
 
