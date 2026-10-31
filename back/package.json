@@ -37,7 +37,7 @@
     "winston": "^3.19.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^9.3.0",
+    "@antfu/eslint-config": "^10.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/multer": "^2.2.0",
