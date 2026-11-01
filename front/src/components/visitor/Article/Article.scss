@@ -1,0 +1,10 @@
+.article {
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+  gap: var(--gap-48);
+	align-items: center;
+
+	width: 100%;
+}

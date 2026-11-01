@@ -1,0 +1,136 @@
+.article-navigation-container {
+	position: absolute;
+	z-index: var(--z-index-high);
+	top: 0;
+	bottom: 0;
+	left: calc(var(--gap-32) * -1);
+
+	@media screen and (max-width: 1920px) {
+	left: calc(var(--gap-16) * -1);
+	}
+
+	@media screen and (max-width: 1660px) {
+		left: var(--gap-8);
+	}
+
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
+}
+
+.article-navigation {
+	--item-width: var(--gap-16);
+	--item-width-active: calc(var(--gap-16) * 1.6);
+	--gap-size: var(--gap-16);
+
+	position: sticky;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s, visibility 0.5s;
+
+	&--visible {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-4);
+		list-style: none;
+	}
+
+	&__item {
+		cursor: pointer;
+
+		position: relative;
+
+		display: block;
+
+		height: var(--item-width);
+		padding: 0;
+		border: none;
+
+		font-family: inherit;
+
+		background: none;
+	}
+
+	&__dot {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+
+		&::before {
+			content: '';
+
+			position: absolute;
+			left: 0;
+			transform: translateY(-50%);
+
+			width: var(--item-width);
+			height: var(--gap-size);
+		}
+
+		&::after {
+			content: '';
+
+			position: absolute;
+			left: 0;
+			transform: translateY(-50%);
+
+			width: 16px;
+			height: 3px;
+			border-radius: 1px;
+
+			background-color: var(--color-secondary-060);
+
+			transition: width 0.4s, height 0.4s, background-color 0.4s;
+		}
+	}
+
+	&__item--active &__dot {
+
+		&::before {
+			width: var(--item-width-active);
+		}
+
+		&::after {
+			width: var(--item-width-active);
+			background-color: var(--color-secondary-100);
+		}
+	}
+
+	&__title {
+		pointer-events: none;
+
+		position: absolute;
+		top: 50%;
+		left: var(--gap-32);
+		transform: translateY(-50%);
+
+		overflow: hidden;
+
+		max-width: 320px;
+		padding: var(--gap-8) var(--gap-12);
+		border-radius: var(--border-radius-m);
+
+		font-size: 14px;
+		line-height: 1.3;
+		color: var(--text-default);
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		visibility: hidden;
+		opacity: 0;
+		background-color: var(--background-secondary);
+
+		transition: opacity 0.4s, visibility 0.4s;
+	}
+
+	&__item:hover &__title,
+	&__item:focus-visible &__title {
+		visibility: visible;
+		opacity: 1;
+	}
+}
