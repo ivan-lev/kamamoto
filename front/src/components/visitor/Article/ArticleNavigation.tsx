@@ -13,7 +13,7 @@ interface NavigationItem {
 	title: string;
 }
 
-const HEADING_SELECTOR = 'h2.section__header';
+const HEADING_SELECTOR = 'h1, h2.section__header';
 
 export default function ArticleNavigation({ containerRef, refreshKey }: Props) {
 	const navRef = useRef<HTMLElement>(null);
