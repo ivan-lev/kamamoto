@@ -38,7 +38,7 @@ export default function SliderArticle({ slides }: Props) {
 								) }
 
 								{ slide.caption && (
-									<span className="article-slide__caption">{ slide.caption }</span>
+									<p className="article-slide__caption">{ slide.caption }</p>
 								) }
 
 							</SwiperSlide>

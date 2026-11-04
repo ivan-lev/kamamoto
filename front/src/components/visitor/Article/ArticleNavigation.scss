@@ -3,11 +3,7 @@
 	z-index: var(--z-index-high);
 	top: 0;
 	bottom: 0;
-	left: calc(var(--gap-32) * -1);
-
-	@media screen and (max-width: 1920px) {
-	left: calc(var(--gap-16) * -1);
-	}
+	left: calc(var(--gap-48) * -1);
 
 	@media screen and (max-width: 1660px) {
 		left: var(--gap-8);
