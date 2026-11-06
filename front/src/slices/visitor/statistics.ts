@@ -6,7 +6,7 @@ interface StatisticsStateType extends StatisticsType {
 	isInitial: boolean;
 }
 
-const initialState: StatisticsStateType = { isInitial: true, exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
+const initialState: StatisticsStateType = { isInitial: true, exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0, articles: 0, terms: 0, mapPins: 0 };
 
 const statisticsSlice = createSlice({
 	name: 'statistics',

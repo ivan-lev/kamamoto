@@ -4,7 +4,7 @@ import Preloader from '@/components/shared/Preloader/Preloader';
 import { api } from '@/utils/api/api';
 import './Statistics.scss';
 
-const defaultStatistics: StatisticsType = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0 };
+const defaultStatistics: StatisticsType = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0, articles: 0, terms: 0, mapPins: 0 };
 
 export default function Statistics() {
 	const [statistics, setStatistics] = useState<StatisticsType>(defaultStatistics);
@@ -43,7 +43,7 @@ export default function Statistics() {
 					<div className="statistics__dashboard-element">
 						<img className="statistics__element-icon" src="/__spritemap#sprite-bowl-view" alt="иконка" />
 						<span className="statistics__element-title">
-							Экспонаты:&nbsp;
+							Лоты:&nbsp;
 							{ statistics.exhibits }
 						</span>
 					</div>
@@ -69,6 +69,30 @@ export default function Statistics() {
 						<span className="statistics__element-title">
 							Письма:&nbsp;
 							{ statistics.letters }
+						</span>
+					</div>
+
+					<div className="statistics__dashboard-element">
+						<img className="statistics__element-icon" src="/__spritemap#sprite-books-view" alt="иконка" />
+						<span className="statistics__element-title">
+							Статьи:&nbsp;
+							{ statistics.articles }
+						</span>
+					</div>
+
+					<div className="statistics__dashboard-element">
+						<img className="statistics__element-icon" src="/__spritemap#sprite-book-open-view" alt="иконка" />
+						<span className="statistics__element-title">
+							Термины:&nbsp;
+							{ statistics.terms }
+						</span>
+					</div>
+
+					<div className="statistics__dashboard-element">
+						<img className="statistics__element-icon" src="/__spritemap#sprite-map-view" alt="иконка" />
+						<span className="statistics__element-title">
+							Пины:&nbsp;
+							{ statistics.mapPins }
 						</span>
 					</div>
 

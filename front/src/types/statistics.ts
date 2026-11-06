@@ -4,4 +4,7 @@ export interface Statistics {
 	categories: number;
 	partners: number;
 	letters: number;
+	articles: number;
+	terms: number;
+	mapPins: number;
 }
