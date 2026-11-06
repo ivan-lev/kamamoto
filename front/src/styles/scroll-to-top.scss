@@ -1,6 +1,8 @@
 .scroll-to-top.custom-styles {
 	z-index: var(--z-index-higher);
 
+	width: var(--gap-32);
+	height: var(--gap-32);
   border-radius: 50%;
 
 	background-color: #0e0e0eb0;
