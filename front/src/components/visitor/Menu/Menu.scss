@@ -52,4 +52,30 @@
 		transform: scaleX(1) translate(0, 0);
 		visibility: visible;
 	}
+
+	&__search {
+		cursor: pointer;
+
+		width: calc(var(--gap-16) + var(--gap-4));
+		height: calc(var(--gap-16) + var(--gap-4));
+		border: 0;
+
+		background: none;
+
+		.link__icon {
+			position: relative;
+			top: 3px;
+
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			border: 0;
+
+			background: none;
+
+			@media screen and (max-width: 768px) {
+				top: 0;
+			}
+		}
+	}
 }

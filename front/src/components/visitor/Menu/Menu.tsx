@@ -19,7 +19,14 @@ export default function Menu() {
 						</li>
 					);
 				}) }
+				<button
+					className="link link_navigational menu__search"
+					onClick={ () => {} }
+				>
+					<img className="link__icon" src="/__spritemap#sprite-search-view" alt="иконка" title="В разарботке" />
+				</button>
 			</ul>
+
 		</nav>
 	);
 }
