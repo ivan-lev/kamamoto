@@ -28,6 +28,7 @@
 	--main-font: Raleway, Roboto, Inter, Helvetica, sans-serif;
 
 	scroll-behavior: smooth;
+	scrollbar-color: var(--color-secondary-100) var(--color-primary-200);
 	scrollbar-width: thin;
 	scrollbar-gutter: stable;
 }

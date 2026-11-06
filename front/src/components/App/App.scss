@@ -8,7 +8,6 @@
 	width: 100%;
 	max-width: 1600px;
 	min-height: 100vh;
-	// padding-top: var(--gap-48);
 
 	font-weight: 400;
 	font-synthesis: none;
@@ -17,11 +16,6 @@
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
-	* {
-		scrollbar-color: var(--color-secondary-100) var(--color-primary-200);
-		scrollbar-width: thin;
-	}
 
 	@media screen and (max-width: 768px) {
 		gap: var(--gap-48);
