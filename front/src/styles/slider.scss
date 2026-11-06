@@ -98,8 +98,35 @@
 }
 
 .article-slider {
+	aspect-ratio: 3 / 2;
 	width: 100%;
 	max-width: 1280px;
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		--swiper-navigation-size: 20px;
+
+		padding: var(--gap-8);
+		border: 1px solid var(--color-secondary-100);
+    border-radius: 50%;
+
+    background: var(--color-primary-050);
+		filter: none;
+    backdrop-filter: var(--blur-s);
+	}
+
+	.swiper-button-prev {
+		.swiper-navigation-icon {
+			position: relative;
+			left: -1px;
+		}
+	}
+	.swiper-button-next {
+		.swiper-navigation-icon {
+			position: relative;
+			left: 1px;
+		}
+	}
 }
 
 .article-slide {
