@@ -14,18 +14,24 @@ interface Props {
 
 const breakpoints: Record<number, SwiperOptions> = {
 	0: {
-		slidesPerView: 5.5,
+		slidesPerView: 6.5,
+		spaceBetween: 4,
+	},
+	481: {
+		slidesPerView: 6.5,
+		spaceBetween: 4,
+	},
+	769: {
+		slidesPerView: 7.5,
 		spaceBetween: 8,
 	},
-	768: {
-		slidesPerView: 7.5,
-	},
-	1024: {
+	1025: {
 		slidesPerView: 10,
+		spaceBetween: 8,
 	},
 };
 
-const style = { aspectRatio: '3 / 2', width: '100%' };
+const style = { aspectRatio: '3 / 3', width: '100%' };
 
 export default function Slider({ slides }: Props) {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
@@ -36,7 +42,6 @@ export default function Slider({ slides }: Props) {
 				<Swiper
 					modules={ [Navigation, Thumbs] }
 					navigation={ true }
-					spaceBetween={ 10 }
 					speed={ 1000 }
 					thumbs={{ swiper: thumbsSwiper }}
 				>
@@ -47,13 +52,11 @@ export default function Slider({ slides }: Props) {
 					breakpoints={ breakpoints }
 					modules={ [Navigation] }
 					onSwiper={ setThumbsSwiper }
-					spaceBetween={ 10 }
-					slidesPerView={ 10 }
 					watchSlidesProgress={ true }
 				>
 					{ slides.map(thumb => (
 						<SwiperSlide>
-							<Picture src={ thumb } style={ style } alt="Мини изображение слайда"></Picture>
+							<Picture src={ thumb } style={ style } alt="Миниатюра слайда"></Picture>
 						</SwiperSlide>
 					)) }
 				</Swiper>

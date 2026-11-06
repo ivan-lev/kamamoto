@@ -12,13 +12,19 @@ interface Props {
 const breakpoints: Record<number, SwiperOptions> = {
 	0: {
 		slidesPerView: 5.5,
+		spaceBetween: 4,
+	},
+	481: {
+		slidesPerView: 6.5,
 		spaceBetween: 8,
 	},
 	768: {
 		slidesPerView: 7.5,
+		spaceBetween: 8,
 	},
 	1024: {
-		slidesPerView: 10,
+		slidesPerView: 9.5,
+		spaceBetween: 8,
 	},
 };
 
@@ -34,7 +40,6 @@ export default function Slider({ slides }: Props) {
 					modules={ [Keyboard, Navigation, Thumbs] }
 					keyboard={{ enabled: true, onlyInViewport: true, pageUpDown: false }}
 					navigation={ true }
-					spaceBetween={ 10 }
 					speed={ 1000 }
 					thumbs={{ swiper: thumbsSwiper }}
 				>
@@ -46,12 +51,10 @@ export default function Slider({ slides }: Props) {
 						breakpoints={ breakpoints }
 						modules={ [Navigation] }
 						onSwiper={ setThumbsSwiper }
-						spaceBetween={ 10 }
-						slidesPerView={ 10 }
 						watchSlidesProgress={ true }
 					>
 						{ slides.map(thumb => (
-							<SwiperSlide>
+							<SwiperSlide className="swiper-thumb">
 								<Picture src={ thumb } style={ style } alt="Мини изображение слайда" fallback="/images/error-thumbnail.webp"></Picture>
 							</SwiperSlide>
 						)) }

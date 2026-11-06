@@ -10,85 +10,8 @@
 	gap: var(--gap-8);
 	width: 100%;
 
-	.swiper {
-		width: 100%;
-		border-radius: var(--border-radius-m);
-	}
-
-	.swiper-button-prev,
-	.swiper-button-next {
-		--swiper-navigation-color: var(--color-secondary-100);
-
-		filter: drop-shadow(var(--gap-2) var(--gap-4) var(--gap-4) var(--color-primary-100));
-
-		&::before {
-			content: '';
-
-			position: absolute;
-			top: 50%;
-			transform: translate(0%, -50%);
-
-			width: 300%;
-			height: 300%;
-		}
-
-		@media(max-width: 768px) {
-			--swiper-navigation-size: 30px;
-		}
-
-		@media(max-width: 480px) {
-			--swiper-navigation-size: 20px;
-		}
-	}
-
-	.swiper-button-prev {
-		left: var(--gap-24);
-
-		@media screen and (max-width: 768px) {
-			left: var(--gap-12);
-		}
-	}
-
-	.swiper-button-next {
-		right: var(--gap-24);
-
-		@media screen and (max-width: 768px) {
-			right: var(--gap-12);
-		}
-	}
-
-	.swiper-pagination {
-		--swiper-pagination-bottom: 0;
-		--swiper-pagination-top: 0;
-
-		position: relative;
-		margin-top: var(--gap-12);
-	}
-
-	.swiper-pagination-bullet {
-		--swiper-pagination-color: var(--color-secondary-100);
-		--swiper-pagination-bullet-width: var(--gap-12);
-		--swiper-pagination-bullet-height: var(--gap-12);
-		--swiper-pagination-bullet-inactive-color: var(--color-secondary-100);
-		--swiper-pagination-bullet-inactive-opacity: 0.4;
-		--swiper-pagination-bullet-horizontal-gap: 6px;
-
-		border: 1px solid var(--color-primary-050);
-	}
-
-	.swiper-thumbs {
-		border-radius: var(--border-radius-s);
-
-		.swiper-slide {
-			cursor: pointer;
-			box-sizing: border-box;
-			border: 1px solid var(--color-secondary-015);
-			border-radius: var(--border-radius-s);
-		}
-
-		.swiper-slide-thumb-active {
-			border: 1px solid var(--color-secondary-060);
-		}
+	@media (max-width: 480px) {
+		gap: var(--gap-4)
 	}
 
 	@media (max-width: 1680px) {
@@ -97,36 +20,91 @@
 	}
 }
 
+.swiper {
+	--swiper-navigation-sides-offset: var(--gap-16);
+	--swiper-navigation-color: var(--color-secondary-100);
+	--swiper-navigation-size: var(--gap-12);
+
+	--swiper-pagination-bottom: 0;
+	--swiper-pagination-top: 0;
+	--swiper-pagination-color: var(--color-secondary-100);
+	--swiper-pagination-bullet-width: var(--gap-12);
+	--swiper-pagination-bullet-height: var(--gap-12);
+	--swiper-pagination-bullet-inactive-color: var(--color-secondary-100);
+	--swiper-pagination-bullet-inactive-opacity: 0.4;
+	--swiper-pagination-bullet-horizontal-gap: 6px;
+
+	width: 100%;
+	border-radius: var(--border-radius-m);
+
+	@media (max-width: 768px) {
+		--swiper-navigation-sides-offset: var(--gap-12);
+		--swiper-navigation-size: var(--gap-16);
+	}
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+	padding: var(--gap-8);
+	border: 1px solid var(--color-secondary-080);
+	border-radius: 50%;
+
+	background: var(--color-primary-050);
+	backdrop-filter: var(--blur-s);
+
+	&::before {
+		content: '';
+
+		position: absolute;
+		top: 50%;
+		transform: translate(0%, -50%);
+
+		width: 200%;
+		height: 200%;
+	}
+}
+
+.swiper-button-prev {
+	.swiper-navigation-icon {
+		position: relative;
+		left: -1px;
+	}
+}
+
+.swiper-button-next {
+	.swiper-navigation-icon {
+		position: relative;
+		left: 1px;
+	}
+}
+
+.swiper-pagination {
+	position: relative;
+	margin-top: var(--gap-12);
+}
+
+.swiper-pagination-bullet {
+	border: 1px solid var(--color-primary-050);
+}
+
+.swiper-thumbs {
+	border-radius: var(--border-radius-s);
+}
+
+.swiper-thumb {
+	cursor: pointer;
+	box-sizing: border-box;
+	border: 1px solid var(--color-secondary-015);
+	border-radius: var(--border-radius-s);
+}
+
+.swiper-slide-thumb-active {
+	border: 1px solid var(--color-secondary-060);
+}
+
 .article-slider {
 	aspect-ratio: 3 / 2;
 	width: 100%;
-	max-width: 1280px;
-
-	.swiper-button-prev,
-	.swiper-button-next {
-		--swiper-navigation-size: 20px;
-
-		padding: var(--gap-8);
-		border: 1px solid var(--color-secondary-100);
-    border-radius: 50%;
-
-    background: var(--color-primary-050);
-		filter: none;
-    backdrop-filter: var(--blur-s);
-	}
-
-	.swiper-button-prev {
-		.swiper-navigation-icon {
-			position: relative;
-			left: -1px;
-		}
-	}
-	.swiper-button-next {
-		.swiper-navigation-icon {
-			position: relative;
-			left: 1px;
-		}
-	}
 }
 
 .article-slide {

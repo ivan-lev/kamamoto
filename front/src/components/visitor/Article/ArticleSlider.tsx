@@ -15,15 +15,19 @@ const style = { aspectRatio: '3 / 2', width: '100%' };
 const breakpoints: Record<number, SwiperOptions> = {
 	0: {
 		slidesPerView: 6.5,
+		spaceBetween: 4,
+	},
+	481: {
+		slidesPerView: 6.5,
 		spaceBetween: 8,
 	},
-	768: {
+	769: {
 		slidesPerView: 10.5,
-		spaceBetween: 5,
+		spaceBetween: 8,
 	},
-	1024: {
+	1025: {
 		slidesPerView: 15.5,
-		spaceBetween: 4,
+		spaceBetween: 8,
 	},
 };
 
@@ -82,7 +86,7 @@ export default function SliderArticle({ slides }: Props) {
 							watchSlidesProgress={ true }
 						>
 							{ slides.map(slide => (
-								<SwiperSlide>
+								<SwiperSlide className="swiper-thumb">
 									<Picture src={ slide.filename || '' } style={ style } alt={ slide.caption || 'Миниатюра слайда' }></Picture>
 								</SwiperSlide>
 							)) }
