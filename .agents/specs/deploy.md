@@ -48,7 +48,7 @@ Caddy также отвечает за канонические URL (301): уб�
 | `upload:config` | `.env`, `Caddyfile`, `docker-compose.yml`, `ops.sh` + `mongo/` |
 | `upload:all` | весь репозиторий |
 
-Исключения — в `rsync-rules.txt`: `node_modules`, `dist`, `.git`, `*.md`, `docs`, `logs`, `db_dump`, `backups` и т.д. После загрузки на VPS запускается `./ops.sh <service>`.
+Исключения — в `rsync-rules.txt`: `node_modules`, `dist`, `.git`, `*.md`, `logs`, `db_dump`, `backups` и т.д. После загрузки на VPS запускается `./ops.sh <service>`.
 
 ## Синхронизация БД (`mongo/`)
 
@@ -60,9 +60,9 @@ Caddy также отвечает за канонические URL (301): уб�
 
 ## CI / зависимости
 
-- GitHub Actions: `ci-front`, `ci-back`, `ci-docs`, `ci-yuding` на PR в `main`. Они только запускают `npm ci && npm run build` в нужной папке (`_build.yml`, Node 24). Линтера и тестов в CI нет.
+- GitHub Actions: `ci-front`, `ci-back`, `ci-yuding` на PR в `main`. Они только запускают `npm ci && npm run build` в нужной папке (`_build.yml`, Node 24). Линтера и тестов в CI нет.
 - Renovate (self-hosted workflow, по пятницам): minor/patch мёржатся автоматически, major — нет.
-  - Automerge срабатывает, только если по PR прошёл хотя бы один CI. CI запускается по путям `back/**`, `front/**`, `docs/**`, `yuding/**`, плюс общий `_build.yml` и свой `ci-*.yml` (правка `_build.yml` прогоняет сборку всех четырёх проектов). Под `docker-compose.yml` и `renovate.yml` CI нет, поэтому для них в `renovate.json` стоит `ignoreTests: true` (с 2026-10-03): их minor/patch вливаются без проверок. Слияние в `main` на прод само не выкатывается.
+  - Automerge срабатывает, только если по PR прошёл хотя бы один CI. CI запускается по путям `back/**`, `front/**`, `yuding/**`, плюс общий `_build.yml` и свой `ci-*.yml` (правка `_build.yml` прогоняет сборку всех трёх проектов). Под `docker-compose.yml` и `renovate.yml` CI нет, поэтому для них в `renovate.json` стоит `ignoreTests: true` (с 2026-10-03): их minor/patch вливаются без проверок. Слияние в `main` на прод само не выкатывается.
   - Сломанная сборка любого проекта блокирует все PR, которые его затрагивают. CI собирает с чистого checkout, так что незакоммиченный файл, на который ссылается закоммиченный код, ломает CI, хотя локально всё собирается.
   - Лимиты на число PR сняты (`prHourlyLimit`/`prConcurrentLimit: 0`): при запуске раз в неделю дефолтные 2 PR/час давали очередь из ~20 обновлений. `repositories` задаётся через env `RENOVATE_REPOSITORIES` в workflow, а не в `renovate.json`.
 - Для ручного обновления зависимостей есть скилл `.claude/skills/update-deps` (`/update-deps`).
