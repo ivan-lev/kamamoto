@@ -56,11 +56,35 @@
 	&__search {
 		cursor: pointer;
 
+		position: relative;
+
 		width: calc(var(--gap-16) + var(--gap-4));
 		height: calc(var(--gap-16) + var(--gap-4));
 		border: 0;
 
 		background: none;
+
+		&::after {
+			pointer-events: none;
+			content: 'В разработке';
+
+			position: absolute;
+			top: 140%;
+			transform: translateX(-50%);
+
+			width: 110px;
+			padding: var(--gap-8);
+			border: 1px solid var(--border-color);
+
+			opacity: 0;
+			background: var(--color-primary-100);
+
+			transition: opacity 0.4s ease;
+		}
+
+		&:hover::after {
+				opacity: 1;
+		}
 
 		.link__icon {
 			position: relative;
