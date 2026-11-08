@@ -12,9 +12,11 @@ export default function SearchResultItem({ item }: Props) {
 
 	return (
 		<li className="search-result">
-			{ thumbnail && (
-				<Picture src={ thumbnail } alt={ title } additionalClass="search-result__thumbnail" />
-			) }
+			{ thumbnail
+				? (
+					<Picture src={ thumbnail } alt={ title } additionalClass="search-result__thumbnail" />
+				)
+				: <div className="search-result__thumbnail search-result__thumbnail--empty">Изображения нет</div> }
 			<div className="search-result__body">
 				<span className="title title--3 search-result__title">{ title }</span>
 				{ snippet && <p className="search-result__snippet">{ snippet }</p> }

@@ -3,6 +3,7 @@
 
 	display: flex;
 	gap: var(--gap-12);
+	align-items: center;
 
 	box-sizing: border-box;
 	padding: var(--gap-12);
@@ -50,8 +51,33 @@
 		flex-shrink: 0;
 
 		aspect-ratio: 3 / 2;
-		width: 100px;
+		width: 100%;
+		max-width: 150px;
+    height: fit-content;
 		border-radius: var(--border-radius-s);
+
+		&--empty {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			box-sizing: border-box;
+			padding: var(--gap-12);
+			border: 1px dashed var(--color-secondary-100);
+
+			text-align: center;
+
+			opacity: 0.5;
+		}
+
+		@media (max-width: 768px) {
+			aspect-ratio: 1;
+		}
+
+		@media (max-width: 480px) {
+			aspect-ratio: 21 / 9;
+			max-width: unset;
+		}
 	}
 
 	&__body {
@@ -68,5 +94,9 @@
 		position: absolute;
 		z-index: var(--z-index-high);
 		inset: 0;
+	}
+
+	@media (max-width: 480px) {
+		flex-direction: column;
 	}
 }
