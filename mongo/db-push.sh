@@ -10,6 +10,7 @@ set -euo pipefail
 
 : "${DEPLOY_HOST:?}" "${DEPLOY_PORT:?}" "${DEPLOY_USER:?}" "${DEPLOY_PATH:?}"
 : "${DB_NAME:?}" "${DB_HOST:?}" "${DB_PORT:?}" "${DB_USER:?}" "${DB_PASS:?}"
+: "${MONGO_INITDB_ROOT_USERNAME:?}" "${MONGO_INITDB_ROOT_PASSWORD:?}"
 
 REMOTE="$DEPLOY_USER@$DEPLOY_HOST"
 STAMP=$(date +%Y%m%d-%H%M%S)
@@ -21,5 +22,8 @@ echo "    saved to $DEPLOY_PATH/mongo/backups/backup-$STAMP.gz on the VPS"
 echo "==> Dumping local database ($DB_HOST:$DB_PORT/$DB_NAME) and pushing to VPS (replaces all data there)..."
 mongodump --host "$DB_HOST" --port "$DB_PORT" --db "$DB_NAME" -u "$DB_USER" -p "$DB_PASS" --authenticationDatabase admin --archive --gzip \
 	| ssh -p "$DEPLOY_PORT" "$REMOTE" "cd '$DEPLOY_PATH' && DB_NAME='$DB_NAME' bash mongo/restore.sh"
+
+echo "==> Rebuilding search indexes on the VPS..."
+ssh -p "$DEPLOY_PORT" "$REMOTE" "cd '$DEPLOY_PATH' && MONGO_INITDB_ROOT_USERNAME='$MONGO_INITDB_ROOT_USERNAME' MONGO_INITDB_ROOT_PASSWORD='$MONGO_INITDB_ROOT_PASSWORD' bash mongo/search/indexes/rebuild.sh"
 
 echo "==> Done."

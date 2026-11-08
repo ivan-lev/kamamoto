@@ -1,0 +1,47 @@
+{
+  "mappings": {
+    "dynamic": false,
+    "fields": {
+      "title": {
+        "type": "string",
+        "analyzer": "lucene.standard",
+        "multi": {
+          "ru": {
+            "type": "string",
+            "analyzer": "lucene.russian"
+          },
+          "ja": {
+            "type": "string",
+            "analyzer": "lucene.japanese"
+          }
+        }
+      },
+      "kanji": {
+        "type": "string",
+        "analyzer": "lucene.japanese"
+      },
+      "romaji": {
+        "type": "string",
+        "analyzer": "lucene.standard"
+      },
+      "id": {
+        "type": "string",
+        "analyzer": "lucene.standard"
+      },
+      "definition": {
+        "type": "string",
+        "analyzer": "lucene.standard",
+        "multi": {
+          "ru": {
+            "type": "string",
+            "analyzer": "lucene.russian"
+          },
+          "ja": {
+            "type": "string",
+            "analyzer": "lucene.japanese"
+          }
+        }
+      }
+    }
+  }
+}

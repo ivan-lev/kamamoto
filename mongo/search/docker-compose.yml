@@ -1,0 +1,65 @@
+# Локальная среда разработки с MongoDB Search (mongot).
+# Запуск: docker compose -f mongo/search/docker-compose.yml up -d
+# Поднимает однодолевой replica set (rs0) + mongot.
+# Внимание: это НЕ production-конфигурация. Production — docker-compose.yml в корне.
+services:
+
+  mongo:
+    image: mongo:9.0.4
+    container_name: kamamoto-mongo-dev
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27017:27017" # только локально, наружу не публикуем
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:?required}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?required}
+    command:
+      - "--replSet"
+      - "rs0"
+      - "--auth"
+      - "--bind_ip_all"
+      - "--keyFile"
+      - "/etc/mongo/keyfile"
+      - "--setParameter"
+      - "mongotHost=mongot:27028"
+      - "--setParameter"
+      - "searchIndexManagementHostAndPort=mongot:27028"
+      - "--setParameter"
+      - "skipAuthenticationToSearchIndexManagementServer=false"
+      - "--setParameter"
+      - "useGrpcForSearch=true"
+    volumes:
+      - mongo_dev_data:/data/db
+      - ./keyfile:/etc/mongo/keyfile:ro
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    networks:
+      - search-dev
+
+  mongot:
+    image: mongodb/mongodb-community-search:1.70.6
+    container_name: kamamoto-mongot-dev
+    restart: unless-stopped
+    # Порты наружу НЕ публикуем: mongot доступен только из внутренней сети
+    volumes:
+      - mongot_dev_data:/data/mongot
+      - ./mongot.yml:/mongot-community/config.default.yml:ro
+      - ./mongot-password:/etc/mongot/secrets/password:ro
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - search-dev
+
+volumes:
+  mongo_dev_data:
+  mongot_dev_data:
+
+networks:
+  search-dev:
+    name: search-dev
+    driver: bridge

@@ -1,0 +1,27 @@
+.search-input {
+	position: relative;
+
+	&__submit.button {
+    position: absolute;
+    top: 50%;
+    right: var(--gap-4);
+    transform: translateY(-50%);
+
+    width: 24px;
+    height: 24px;
+		padding: var(--gap-4);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-s);
+
+    color: var(--color-secondary-100);
+
+    background-color: var(--background-muted);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+	}
+
+	&__icon {
+		transform: rotate(90deg);
+	}
+}

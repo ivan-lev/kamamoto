@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "dev": "concurrently \"dotenv -e .env -- bash -c 'cd front && npm run dev'\" \"cd back && npm run dev\" ",
+        "dev": "dotenv -e .env -- bash -c 'docker compose -f mongo/search/docker-compose.yml up -d' && concurrently \"dotenv -e .env -- bash -c 'cd front && npm run dev'\" \"cd back && npm run dev\" ",
         "upload:all": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/'",
         "upload:front": "dotenv -e .env -- bash -c 'rsync -zarvh --delete -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./front/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/front/'",
         "upload:static": "dotenv -e .env -- bash -c 'rsync -zarvh -e \"ssh -p $DEPLOY_PORT\" --exclude-from=\"rsync-rules.txt\" ./static/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/static/'",

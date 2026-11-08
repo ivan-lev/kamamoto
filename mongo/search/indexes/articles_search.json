@@ -1,0 +1,59 @@
+{
+  "mappings": {
+    "dynamic": false,
+    "fields": {
+      "title": {
+        "type": "string",
+        "analyzer": "lucene.standard",
+        "multi": {
+          "ru": {
+            "type": "string",
+            "analyzer": "lucene.russian"
+          },
+          "ja": {
+            "type": "string",
+            "analyzer": "lucene.japanese"
+          }
+        }
+      },
+      "name": {
+        "type": "string",
+        "analyzer": "lucene.standard"
+      },
+      "description": {
+        "type": "string",
+        "analyzer": "lucene.standard",
+        "multi": {
+          "ru": {
+            "type": "string",
+            "analyzer": "lucene.russian"
+          },
+          "ja": {
+            "type": "string",
+            "analyzer": "lucene.japanese"
+          }
+        }
+      },
+      "article": {
+        "type": "document",
+        "dynamic": false,
+        "fields": {
+          "content": {
+            "type": "string",
+            "analyzer": "lucene.standard",
+            "multi": {
+              "ru": {
+                "type": "string",
+                "analyzer": "lucene.russian"
+              },
+              "ja": {
+                "type": "string",
+                "analyzer": "lucene.japanese"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 
 import { DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER } from './config';
 
-const connectionString = `mongodb://${DB_USER}:${encodeURIComponent(DB_PASS)}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`;
+// directConnection: БД работает как однодолевой replica set (нужно для MongoDB Search),
+// а имя члена RS изнутри docker-сети ("mongo") не резолвится снаружи — поэтому подключаемся напрямую
+const connectionString = `mongodb://${DB_USER}:${encodeURIComponent(DB_PASS)}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin&directConnection=true`;
 
 const RECONNECT_DELAY = 5000;
 let connecting = false;
