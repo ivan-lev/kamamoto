@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react';
+import type * as React from 'react';
 import { useState } from 'react';
 import './SearchInput.scss';
 
@@ -14,7 +14,7 @@ interface Props {
 export default function SearchInput({ initialValue = '', placeholder = 'Поиск', onSubmit }: Props) {
 	const [value, setValue] = useState<string>(initialValue);
 
-	function handleSubmit(event: FormEvent<HTMLFormElement>) {
+	function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
 		event.preventDefault();
 
 		const query = value.trim();
