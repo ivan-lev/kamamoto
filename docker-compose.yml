@@ -52,9 +52,41 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:?MONGO_INITDB_ROOT_USERNAME is required}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?MONGO_INITDB_ROOT_PASSWORD is required}
-    command: ["--auth", "--bind_ip", "0.0.0.0"]
+    # однодолевой replica set rs0 — обязателен для MongoDB Search (mongot)
+    command:
+      - "--auth"
+      - "--bind_ip"
+      - "0.0.0.0"
+      - "--replSet"
+      - "rs0"
+      - "--keyFile"
+      - "/etc/mongo/keyfile"
+      - "--setParameter"
+      - "mongotHost=mongot:27028"
+      - "--setParameter"
+      - "searchIndexManagementHostAndPort=mongot:27028"
+      - "--setParameter"
+      - "skipAuthenticationToSearchIndexManagementServer=false"
+      - "--setParameter"
+      - "useGrpcForSearch=true"
     volumes:
       - ./mongo/db_dump:/data/db
+      - ./mongo/search/keyfile:/etc/mongo/keyfile:ro
+    restart: always
+    networks:
+      - app-net
+    depends_on:
+      - mongot
+
+  mongot:
+    image: mongodb/mongodb-community-search:1.70.6
+    container_name: mongot
+    logging: *default-logging
+    # порты наружу не публикуем: mongot доступен только внутри app-net
+    volumes:
+      - mongot_data:/data/mongot
+      - ./mongo/search/mongot.yml:/mongot-community/config.default.yml:ro
+      - ./mongo/search/mongot-password:/etc/mongot/secrets/password:ro
     restart: always
     networks:
       - app-net
@@ -95,6 +127,7 @@ volumes:
   yuding_build:
   caddy_data:
   caddy_config:
+  mongot_data:
 
 networks:
   app-net:
