@@ -36,7 +36,7 @@ export default function SearchInput({ initialValue = '', placeholder = 'Поис
 				aria-label="Поисковый запрос"
 			/>
 			<button className="button button--xs search-input__submit" type="submit" aria-label="Искать">
-				<img className="search-input__icon" src="/__spritemap#sprite-arrow-up-view" alt="Искать" />
+				<img className="button__icon search-input__icon" src="/__spritemap#sprite-arrow-up-view" alt="Искать" />
 			</button>
 		</form>
 	);

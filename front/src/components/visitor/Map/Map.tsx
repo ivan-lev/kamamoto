@@ -80,7 +80,9 @@ export default function Map() {
 									value={ query }
 									onChange={ event => setQuery(event.target.value) }
 								/>
-								<button className="button button--xs map-section__button" onClick={ () => setQuery('') }>X</button>
+								<button className="button button--xs map-section__button" onClick={ () => setQuery('') }>
+									<img className="button__icon" src="/__spritemap#sprite-x-view" alt="Искать" />
+								</button>
 							</div>
 							<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } fadeAnimation={ false } className="leaflet-map">
 								{ /* бесплаьные карты если израсходуется лимит */ }

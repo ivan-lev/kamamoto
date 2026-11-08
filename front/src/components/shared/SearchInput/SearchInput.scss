@@ -1,6 +1,10 @@
 .search-input {
 	position: relative;
 
+	&__field.input {
+		background: var(--background-secondary);
+	}
+
 	&__submit.button {
     position: absolute;
     top: 50%;
@@ -15,7 +19,7 @@
 
     color: var(--color-secondary-100);
 
-    background-color: var(--background-secondary);
+    background-color: var(--background-muted);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 75%;
@@ -23,6 +27,5 @@
 
 	&__icon {
 		transform: rotate(90deg);
-		max-width: 100%;
 	}
 }
