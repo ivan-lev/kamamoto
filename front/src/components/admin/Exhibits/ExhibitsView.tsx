@@ -1,8 +1,8 @@
 import type { RootState } from '@/slices/admin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ExhibitForm from '@/components/admin/ExhibitForm/ExhibitForm';
-import ExhibitsListRow from '@/components/admin/ExhibitsListRow/ExhibitsListRow';
+import ExhibitsForm from '@/components/admin/Exhibits/ExhibitsForm';
+import ExhibitsListRow from '@/components/admin/Exhibits/ExhibitsListRow';
 import Filters from '@/components/admin/shared/Filters/Filters';
 import Modal from '@/components/shared/Modal';
 import Preloader from '@/components/shared/Preloader/Preloader';
@@ -58,7 +58,7 @@ export default function Exhibits() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Лоты</h1>
 
 						<Filters
@@ -87,9 +87,9 @@ export default function Exhibits() {
 							showModal={ showModal }
 							closeModal={ () => setShowModal(false) }
 						>
-							<ExhibitForm closeModal={ () => setShowModal(false) } />
+							<ExhibitsForm closeModal={ () => setShowModal(false) } />
 						</Modal>
-					</div>
+					</>
 				) }
 		</>
 	);

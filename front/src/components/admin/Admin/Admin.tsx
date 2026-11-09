@@ -60,7 +60,7 @@ export default function Admin() {
 			{ isLoggedIn
 				? (
 					<section className="admin">
-						<div className="admin__sidebar">
+						<div className="admin__section admin__section--sidebar">
 							<Logo />
 							<ul className="admin__list">
 								<li>
@@ -105,7 +105,7 @@ export default function Admin() {
 							</button>
 						</div>
 
-						<div className="admin__content">
+						<div className="admin__section">
 							<Outlet />
 						</div>
 					</section>

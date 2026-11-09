@@ -21,7 +21,7 @@ interface Props {
 	closeModal: () => void;
 }
 
-export default function ExhibitForm({ closeModal }: Props) {
+export default function ExhibitsForm({ closeModal }: Props) {
 	const dispatch = useDispatch();
 
 	const [showConfirmation, setShowConfirmation] = useState<boolean>(false);

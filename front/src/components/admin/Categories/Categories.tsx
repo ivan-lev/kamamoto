@@ -50,7 +50,7 @@ export default function Categories() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 
 						<h1 className="title title--1">Категории</h1>
 						<div className="table">
@@ -90,7 +90,7 @@ export default function Categories() {
 						<button className="button admin__create-button" onClick={ openEmptyCategoryForm }>
 							Создать
 						</button>
-					</div>
+					</>
 				) }
 		</>
 	);

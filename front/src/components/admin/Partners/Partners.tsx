@@ -141,8 +141,9 @@ export default function Partners() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Партнёры</h1>
+
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell table__cell--span-10">Название</span>
@@ -286,7 +287,7 @@ export default function Partners() {
 								</div>
 							</fieldset>
 						</form>
-					</div>
+					</>
 				) }
 		</>
 	);

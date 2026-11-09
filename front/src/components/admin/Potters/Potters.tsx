@@ -68,7 +68,7 @@ export default function Potters() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Гончары</h1>
 
 						<Filters
@@ -96,7 +96,7 @@ export default function Potters() {
 						<button className="button admin__create-button" onClick={ () => handleOpenModal() }>
 							Создать
 						</button>
-					</div>
+					</>
 				) }
 		</>
 	);

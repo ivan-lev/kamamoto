@@ -80,7 +80,7 @@ export default function Markers() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Маркеры карты</h1>
 
 						<Filters
@@ -132,7 +132,7 @@ export default function Markers() {
 						<button className="button admin__create-button" onClick={ () => handleOpenModal() }>
 							Создать
 						</button>
-					</div>
+					</>
 				) }
 		</>
 	);

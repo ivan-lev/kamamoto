@@ -69,7 +69,7 @@ export default function CeramicStyles() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Стили керамики</h1>
 
 						<Filters
@@ -98,7 +98,7 @@ export default function CeramicStyles() {
 						<button className="button admin__create-button" onClick={ () => createNewCeramicStyle() }>
 							Создать
 						</button>
-					</div>
+					</>
 				) }
 		</>
 	);

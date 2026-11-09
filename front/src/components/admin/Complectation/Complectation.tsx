@@ -115,8 +115,9 @@ export default function Compleactation() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Комплектация</h1>
+
 						<div className="table">
 							<div className="table__row">
 								<span className="table__cell table__cell--span-5">title</span>
@@ -226,7 +227,7 @@ export default function Compleactation() {
 								</div>
 							</fieldset>
 						</form>
-					</div>
+					</>
 				) }
 		</>
 	);
