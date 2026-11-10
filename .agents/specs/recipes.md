@@ -32,7 +32,7 @@
 5. Роут в `components/admin/AdminView/AdminView.tsx` + пункт меню в `components/admin/Admin/Admin.tsx` (`listOne` / `listTwo`).
 6. Публичная часть — см. рецепт 3.
 
-**Доки:** `.claude/specs/api.md`, `.claude/specs/data-model.md`.
+**Доки:** `.agents/specs/api.md`, `.agents/specs/data-model.md`.
 
 ## 3. Новая публичная страница
 

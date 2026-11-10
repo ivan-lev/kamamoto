@@ -7,7 +7,7 @@ description: Расстановка ссылок на словарь /dictionary
 
 Словарь `/dictionary` пополняется, а статьи, написанные раньше, о новых терминах не знают. Задача — пройти по опубликованным статьям и поставить ссылку на словарь на первое упоминание каждого термина, у которого её ещё нет. Текст статьи при этом не меняется — только разметка вокруг термина.
 
-Правила оформления терминов — в [.claude/specs/articles.md](../../../.claude/specs/articles.md), разделы «Термины», «Ссылки внутри сайта» и «Локальная база». **Прочитай их перед началом работы.**
+Правила оформления терминов — в [.agents/specs/articles.md](../../../.agents/specs/articles.md), разделы «Термины», «Ссылки внутри сайта» и «Локальная база». **Прочитай их перед началом работы.**
 
 ## Что сказать при вызове
 
@@ -26,9 +26,9 @@ description: Расстановка ссылок на словарь /dictionary
 Скрипт [find-terms.js](scripts/find-terms.js) читает словарь и статьи из локального API (`http://localhost:3000`, база не нужна). Если бэк не отвечает — попроси запустить `npm run dev`. Запуск из корня репозитория:
 
 ```bash
-node .claude/skills/ceramics-dictionary-links/scripts/find-terms.js
+node .agents/skills/ceramics-dictionary-links/scripts/find-terms.js
 # одна статья и только новые термины:
-ONLY=styles:karatsu,potters:kaneshige-toyo TERMS=kohiki,tataki node .claude/skills/ceramics-dictionary-links/scripts/find-terms.js
+ONLY=styles:karatsu,potters:kaneshige-toyo TERMS=kohiki,tataki node .agents/skills/ceramics-dictionary-links/scripts/find-terms.js
 ```
 
 `ONLY` — `<коллекция>:<ключ>` (`styles`, `potters`, `features`; ключи — в «Где живут статьи»), так можно взять и черновик. `TERMS` — `id` терминов.
@@ -77,7 +77,7 @@ ONLY=styles:karatsu,potters:kaneshige-toyo TERMS=kohiki,tataki node .claude/skil
 
 ```bash
 DRY_RUN=1 ONLY_N=3,4,13 EDITS_FILE="$PWD/temp/dictionary-links/edits.json" \
-	node_modules/.bin/dotenv -e .env -- bash -c 'mongosh --quiet --host "$DB_HOST" --port "$DB_PORT" -u "$DB_USER" -p "$DB_PASS" --authenticationDatabase admin "$DB_NAME" --file .claude/skills/ceramics-dictionary-links/scripts/apply-links.js'
+	node_modules/.bin/dotenv -e .env -- bash -c 'mongosh --quiet --host "$DB_HOST" --port "$DB_PORT" -u "$DB_USER" -p "$DB_PASS" --authenticationDatabase admin "$DB_NAME" --file .agents/skills/ceramics-dictionary-links/scripts/apply-links.js'
 ```
 
 Если прогон чистый — бэкап по разделу «Локальная база» (`<ключ>` — `dictionary-links`, действие — `edit`) и тот же запуск без `DRY_RUN`. Если статья пропущена — перезапусти `find-terms.js` для неё (`ONLY=…`) и разбери находки заново.

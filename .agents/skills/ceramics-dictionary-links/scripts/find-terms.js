@@ -1,6 +1,6 @@
 // Ищет в опубликованных статьях первые упоминания терминов словаря и проверяет ссылки на /dictionary.
 // Читает только локальный API, в базу ничего не пишет.
-// Запуск из корня репозитория: node .claude/skills/ceramics-dictionary-links/scripts/find-terms.js
+// Запуск из корня репозитория: node .agents/skills/ceramics-dictionary-links/scripts/find-terms.js
 // Параметры — переменными окружения:
 // ONLY=styles:karatsu,potters:kaneshige-toyo — только эти статьи (можно и черновики)
 // TERMS=kohiki,tataki — только эти термины (id), например недавно добавленные в словарь
