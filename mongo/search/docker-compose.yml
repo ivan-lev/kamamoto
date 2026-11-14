@@ -5,7 +5,7 @@
 services:
 
   mongo:
-    image: mongo:9.0.4
+    image: mongo:9.0.8
     container_name: kamamoto-mongo-dev
     restart: unless-stopped
     ports:
