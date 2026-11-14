@@ -41,7 +41,7 @@ services:
       - search-dev
 
   mongot:
-    image: mongodb/mongodb-community-search:1.70.6
+    image: mongodb/mongodb-community-search:1.78.0
     container_name: kamamoto-mongot-dev
     restart: unless-stopped
     # Порты наружу НЕ публикуем: mongot доступен только из внутренней сети
