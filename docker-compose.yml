@@ -79,7 +79,7 @@ services:
       - mongot
 
   mongot:
-    image: mongodb/mongodb-community-search:1.70.6
+    image: mongodb/mongodb-community-search:1.78.0
     container_name: mongot
     logging: *default-logging
     # порты наружу не публикуем: mongot доступен только внутри app-net
