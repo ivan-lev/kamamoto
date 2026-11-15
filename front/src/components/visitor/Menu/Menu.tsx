@@ -1,3 +1,4 @@
+import type { NavLinkRenderProps } from 'react-router';
 import { NavLink } from 'react-router';
 import { links } from '@/variables/links';
 import './Menu.scss';
@@ -16,7 +17,7 @@ export default function Menu({ isSearchOpen, onSearchToggle }: Props) {
 					return (
 						<li key={ link.url }>
 							<NavLink
-								className={ ({ isActive }) => `menu__link ${isActive ? 'menu__link_active' : ''}` }
+								className={ ({ isActive }: NavLinkRenderProps) => `menu__link ${isActive ? 'menu__link_active' : ''}` }
 								to={ link.url }
 							>
 								{ link.title }
