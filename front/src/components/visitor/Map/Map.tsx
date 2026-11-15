@@ -1,8 +1,10 @@
 import type { Marker, MarkerGroup } from '@/components/visitor/Map/map.types';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { LayersControl, MapContainer, TileLayer } from 'react-leaflet';
+import { LayersControl, MapContainer } from 'react-leaflet';
 import Preloader from '@/components/shared/Preloader/Preloader';
+import JapanGeoJSON from '@/components/visitor/Map/JapanGeoJSON';
 import MapGroup from '@/components/visitor/Map/MapGroup';
+import MapPoints from '@/components/visitor/Map/MapPoints';
 import { MARKER_GROUPS } from '@/components/visitor/Map/markerGroups';
 import PageTop from '@/components/visitor/PageTop/PageTop';
 import Seo from '@/components/visitor/Seo/Seo';
@@ -70,6 +72,7 @@ export default function Map() {
 						<section className="section">
 							<p>{ `Карта содержит названия и примерные координаты территорий, на которых расположены гончарные центры Японии. На данный момент их отмечено ${count}, но этот список не может претендовать на звание полного, и может пополняться по мере появления новой информации. Можно найти нужное вам название, введя его на русском, английском, или японском языках.` }</p>
 						</section>
+
 						<section className="section map-section">
 							<div className="map-section__filters">
 								<input
@@ -84,17 +87,21 @@ export default function Map() {
 									<img className="button__icon" src="/__spritemap#sprite-x-view" alt="Искать" />
 								</button>
 							</div>
-							<MapContainer center={ [38.205, 138.253] } zoom={ 5 } scrollWheelZoom={ true } fadeAnimation={ false } className="leaflet-map">
-								{ /* бесплаьные карты если израсходуется лимит */ }
-								{ /* https://gist.github.com/bokub/dd85ffe1368bb10396f871111dff7201 */ }
 
-								{ /* бесплаьные с лимитом */ }
-								{ /* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */ }
+							<MapContainer
+								center={ [38.20, 138.25] }
+								zoom={ 5 }
+								minZoom={ 5 }
+								maxZoom={ 12 }
+								scrollWheelZoom={ true }
+								fadeAnimation={ false }
+								className="leaflet-map"
+								maxBounds={ [[22, 108], [48, 163]] }
+								maxBoundsViscosity={ 1 }
+							>
+								<JapanGeoJSON />
+								<MapPoints />
 
-								{ /* красивые */ }
-								{ /* https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png */ }
-
-								<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 								<LayersControl position="topright" collapsed={ false }>
 									{ MARKER_GROUPS.map(group => (
 										<MapGroup
@@ -107,6 +114,7 @@ export default function Map() {
 								</LayersControl>
 							</MapContainer>
 						</section>
+
 						<section className="section description">
 							<p className="text">Шесть ранних печей и Семь печей Кобори Энсю - исторические термины. Печи, находящиеся в этих категориях могут быть традиционным ремеслом Японии или отдельной префектуры, но для удобства вынесены в отдельные категории.</p>
 							<ul className="list">

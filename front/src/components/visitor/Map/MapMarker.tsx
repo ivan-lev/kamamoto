@@ -12,13 +12,15 @@ interface Props {
 export default function MapMarker({ marker, icon }: Props) {
 	const basePath = PATHS.STATIC_URL;
 
+	// центр иконки ровно на координате: иначе точка визуально смещена
+	// от своего места и на малом зуме «уезжает» в море
 	const currentIcon = new L.Icon({
 		iconUrl: `/__spritemap#sprite-${icon}-view`,
 		iconRetinaUrl: `/__spritemap#sprite-${icon}-view`,
 		iconSize: new L.Point(30, 30),
-		iconAnchor: [0, 0],
-		popupAnchor: [15, -5],
-		tooltipAnchor: [15, 30],
+		iconAnchor: [15, 15],
+		popupAnchor: [0, -20],
+		tooltipAnchor: [0, 15],
 	});
 
 	return (

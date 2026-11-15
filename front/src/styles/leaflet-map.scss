@@ -6,6 +6,90 @@
 	height: 900px;
 	border-radius: var(--border-radius-s);
 
+	// базовый цвет контейнера виден, пока не отрисуются тайлы паттерна
+	// океана (OceanPatternLayer в JapanGeoJSON)
+	background-color: var(--color-secondary-030);
+
+	// океан: тайл с волнами из public/waves-pattern-light.svg.
+	// Тайлы создаёт GridLayer, период паттерна 306px -
+	// должен совпадать с PATTERN_TILE_SIZE в JapanGeoJSON.tsx.
+	// Размер тайла 307px (= период + 1px): соседние тайлы перекрываются,
+	// закрывая суб-пиксельные щели на стыках (уровень тайлов сдвинут
+	// на дробное число пикселей - сквозь щели просвечивает фон контейнера).
+	// Благодаря периодичности паттерна нахлёст бесшовный.
+	// !important - Leaflet задаёт размер тайла инлайново
+	.ocean-pattern-tile {
+		width: 307px !important;
+		height: 307px !important;
+
+		background-image: url('/images/waves-pattern-light.svg');
+		background-repeat: repeat;
+		background-size: 306px 306px;
+	}
+
+	// подписи и точки точек карты (MapPoints).
+	// ВАЖНО: Leaflet позиционирует корневой div маркера инлайновым transform -
+	// CSS-смещение на .map-label не сработает. Смещай вложенный элемент
+	// (.map-label__text) через transform: translate(...)
+	.map-label {
+		// pointer-events: none;
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+
+		.map-label__dot {
+			flex: none;
+			border: 1px solid #26221e;
+			border-radius: 50%;
+		}
+
+		.map-label__text {
+			display: inline-block;
+			font-family: var(--main-font);
+			white-space: nowrap;
+		}
+	}
+
+	// название префектуры
+	.map-label--prefecture {
+		.map-label__text {
+			transform: translate(-50%, -50%); // текст по центру точки-координаты
+			font-size: 16px;
+			color: var(--color-secondary-060);
+			text-shadow:
+				0 0 3px #26221e,
+				0 0 3px #26221e;
+		}
+	}
+
+	// столица страны
+	.map-label--capital {
+		.map-label__dot {
+			width: 12px;
+			height: 12px;
+			background-color: #ffb627;
+		}
+
+		.map-label__text {
+			font-size: 13px;
+			color: var(--color-secondary-060);
+		}
+	}
+
+	// кастомный город
+	.map-label--city {
+		.map-label__dot {
+			width: 8px;
+			height: 8px;
+			background-color: #ff9505;
+		}
+
+		.map-label__text {
+			font-size: 11px;
+			color: var(--color-secondary-060);
+		}
+	}
+
 	&__image {
 		aspect-ratio: 3 / 2;
 		width: 100%;
