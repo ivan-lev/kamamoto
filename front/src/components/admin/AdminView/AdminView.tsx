@@ -11,6 +11,7 @@ import ExhibitsView from '@/components/admin/Exhibits/ExhibitsView';
 import AdminLetters from '@/components/admin/Letters/Letters';
 import Login from '@/components/admin/Login/Login';
 import Markers from '@/components/admin/Markers/Markers';
+import Meibutsu from '@/components/admin/Meibutsu/Meibutsu';
 import AdminPartners from '@/components/admin/Partners/Partners';
 import Potters from '@/components/admin/Potters/Potters';
 import AdminStatistics from '@/components/admin/Statistics/Statistics';
@@ -32,6 +33,7 @@ export default function AdminView() {
 					<Route path="features" element={ <AdminCeramicStyles /> } />
 					<Route path="complectation" element={ <Complectation /> } />
 					<Route path="potters" element={ <Potters /> } />
+					<Route path="meibutsu" element={ <Meibutsu /> } />
 					<Route path="dictionary" element={ <AdminDictionary /> } />
 					<Route path="map" element={ <Markers /> } />
 				</Route>

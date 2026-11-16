@@ -31,6 +31,8 @@ const JapaneseSocieties = lazy(() => import('@/components/visitor/JapaneseSociet
 const LNTPotter = lazy(() => import('@/components/visitor/LNTPotter/LNTPotter'));
 const LNTPotters = lazy(() => import('@/components/visitor/LNTPotters/LNTPotters'));
 const Map = lazy(() => import('@/components/visitor/Map/Map'));
+const MeibutsuArticle = lazy(() => import('@/components/visitor/MeibutsuArticle/MeibutsuArticle'));
+const MeibutsuList = lazy(() => import('@/components/visitor/MeibutsuList/MeibutsuList'));
 const SearchPage = lazy(() => import('@/components/visitor/Search/SearchPage'));
 const ThanksLetters = lazy(() => import('@/components/visitor/ThanksLetters/ThanksLetters'));
 const Useful = lazy(() => import('@/components/visitor/Useful/Useful'));
@@ -74,6 +76,8 @@ export default function VisitorView() {
 						<Route path="search" element={ <SearchPage /> } />
 						<Route path="lnt-potters" element={ <LNTPotters /> } />
 						<Route path="lnt-potters/:potter" element={ <LNTPotter /> } />
+						<Route path="meibutsu" element={ <MeibutsuList /> } />
+						<Route path="meibutsu/:id" element={ <MeibutsuArticle /> } />
 						<Route path="*" element={ <NotFound /> } />
 					</Route>
 				</Routes>

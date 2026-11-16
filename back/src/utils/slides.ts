@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PATHS } from '../variables/paths';
 
-const { CERAMIC_STYLES, POTTERS, STATIC_DIR, STATIC_URL } = PATHS;
+const { CERAMIC_STYLES, MEIBUTSU, POTTERS, STATIC_DIR, STATIC_URL } = PATHS;
 
 // Разделы, в статьи которых можно загружать слайды.
 // Слайды лежат в /static/<папка раздела>/<key>/slides, где key — name стиля, id гончара и т.д.
@@ -11,6 +11,7 @@ const { CERAMIC_STYLES, POTTERS, STATIC_DIR, STATIC_URL } = PATHS;
 // и вызывать removeUnusedSlides при сохранении статьи
 export const SLIDES_TARGETS = {
 	'ceramic-styles': CERAMIC_STYLES,
+	'meibutsu': MEIBUTSU,
 	'potters': POTTERS,
 } as const satisfies Record<string, string>;
 

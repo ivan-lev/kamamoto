@@ -63,6 +63,10 @@ export const STATIC_PAGES: Readonly<Record<string, { title: string; description:
 		title: 'Камамото: Живые национальные сокровища',
 		description: 'Страница со списком Живых национальных сокровищ',
 	},
+	'meibutsu': {
+		title: 'Камамото: вещи с именем',
+		description: 'Статьи о знаменитых предметах чайной утвари — мэйбуцу (名物), получивших собственные имена',
+	},
 });
 
 // Заголовок страницы, которой нет (ответ 404). Продублирован из <Seo> в front/src/components/visitor/NotFound
@@ -70,4 +74,4 @@ export const NOT_FOUND_TITLE = 'Камамото: страница не найд
 
 // Страницы-списки, адрес которых заканчивается слэшем (Caddy редиректит на него, @listingToAddSlash).
 // Нужно для sitemap: адрес без слэша там был бы редиректом, а не страницей
-export const LISTING_PAGES: ReadonlySet<string> = new Set(['collection', 'exhibitions', 'useful', 'ceramic-styles', 'lnt-potters']);
+export const LISTING_PAGES: ReadonlySet<string> = new Set(['collection', 'exhibitions', 'useful', 'ceramic-styles', 'lnt-potters', 'meibutsu']);

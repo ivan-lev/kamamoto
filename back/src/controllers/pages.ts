@@ -3,13 +3,14 @@ import fs from 'node:fs/promises';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 import Exhibition from '../models/exhibition';
+import Meibutsu from '../models/meibutsu';
 import Potter from '../models/potter';
 import Style from '../models/style';
 import { getOgImage } from '../utils/ogImage';
 import { PATHS } from '../variables/paths';
 import { NOT_FOUND_TITLE, STATIC_PAGES } from '../variables/staticPages';
 
-const { CATEGORIES, CERAMIC_STYLES, DEFAULT_OG_IMAGE, EXHIBITIONS, EXHIBITS, FRONT_INDEX, PAGES, POTTERS, SITE_URL } = PATHS;
+const { CATEGORIES, CERAMIC_STYLES, DEFAULT_OG_IMAGE, EXHIBITIONS, EXHIBITS, FRONT_INDEX, MEIBUTSU, PAGES, POTTERS, SITE_URL } = PATHS;
 
 interface PageMeta {
 	title: string;
@@ -168,6 +169,19 @@ async function getPotterMeta(id: string): Promise<PageMeta | undefined> {
 	};
 }
 
+async function getMeibutsuMeta(id: string): Promise<PageMeta | undefined> {
+	const meibutsu = await Meibutsu.findOne({ id }, '-_id id name info showArticle').lean();
+	if (!meibutsu || meibutsu.showArticle === false)
+		return undefined;
+
+	return {
+		title: `Камамото: вещь с именем ${meibutsu.name}`,
+		ogTitle: meibutsu.name,
+		description: toPlainText(meibutsu.info || '') || `Страница со статьёй о вещи с именем ${meibutsu.name}`,
+		image: await getOgImage(MEIBUTSU, meibutsu.id),
+	};
+}
+
 async function getStaticPageMeta(key: string): Promise<PageMeta | undefined> {
 	// hasOwn, а не `in`: иначе путь /constructor найдёт свойство прототипа
 	if (!Object.hasOwn(STATIC_PAGES, key))
@@ -193,6 +207,7 @@ const PAGE_ROUTES: { pattern: RegExp; getMeta: (param: string) => Promise<PageMe
 	{ pattern: /^\/exhibitions\/(\d+)$/, getMeta: getExhibitionMeta },
 	{ pattern: /^\/ceramic-styles\/([^/]+)$/, getMeta: getCeramicStyleMeta },
 	{ pattern: /^\/lnt-potters\/([^/]+)$/, getMeta: getPotterMeta },
+	{ pattern: /^\/meibutsu\/([^/]+)$/, getMeta: getMeibutsuMeta },
 	{ pattern: /^\/([^/]+)\/?$/, getMeta: getStaticPageMeta },
 ];
 

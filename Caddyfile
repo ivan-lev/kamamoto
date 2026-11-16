@@ -12,13 +12,13 @@ kamamoto.ru {
 
     # ===== Static pages: remove trailing slash =====
     @staticToRemoveSlash {
-        path_regexp static ^/(about|assistants|contacts|dictionary|documents|downloads|thanksletters|japanese-exhibitions|japanese-societies|map|ceramic-styles/[^/]+|lnt-potters/[^/]+)/$
+        path_regexp static ^/(about|assistants|contacts|dictionary|documents|downloads|thanksletters|japanese-exhibitions|japanese-societies|map|ceramic-styles/[^/]+|lnt-potters/[^/]+|meibutsu/[^/]+)/$
     }
     redir @staticToRemoveSlash /{re.static.1} 301
 
     # ===== Listing pages: force trailing slash =====
     @listingToAddSlash {
-        path_regexp list ^(/collection(?:/[^/0-9][^/]*)?|/exhibitions|/useful|/ceramic-styles|/lnt-potters)$
+        path_regexp list ^(/collection(?:/[^/0-9][^/]*)?|/exhibitions|/useful|/ceramic-styles|/lnt-potters|/meibutsu)$
     }
     redir @listingToAddSlash {re.list.1}/ 301
 

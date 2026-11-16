@@ -2,6 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import Category from '../models/category';
 import Exhibit from '../models/exhibit';
 import Exhibition from '../models/exhibition';
+import Meibutsu from '../models/meibutsu';
 import Potter from '../models/potter';
 import Style from '../models/style';
 import { PATHS } from '../variables/paths';
@@ -28,12 +29,13 @@ function escapeXml(value: string) {
 // Адреса — в том виде, в каком их оставляет Caddy (со слэшем или без), иначе поисковик получит редирект.
 // lastmod не пишем: в схемах нет timestamps, а одинаковая фиктивная дата хуже отсутствующей
 async function buildSitemap() {
-	const [categories, exhibits, exhibitions, styles, potters] = await Promise.all([
+	const [categories, exhibits, exhibitions, styles, potters, meibutsu] = await Promise.all([
 		Category.find({}, 'name').lean(),
 		Exhibit.find({ isActive: true }, '-_id id category').sort({ id: 1 }).lean(),
 		Exhibition.find({ isActive: true }, '-_id id').sort({ id: 1 }).lean(),
 		Style.find({ showArticle: true }, '-_id name').lean(),
 		Potter.find({ showArticle: true, isLNT: true }, '-_id id').lean(),
+		Meibutsu.find({ showArticle: true }, '-_id id').lean(),
 	]);
 
 	const categoryNames = new Map(categories.map(category => [String(category._id), category.name]));
@@ -53,6 +55,7 @@ async function buildSitemap() {
 		...exhibitions.map(exhibition => `/exhibitions/${exhibition.id}`),
 		...styles.map(style => `/ceramic-styles/${style.name}`),
 		...potters.map(potter => `/lnt-potters/${potter.id}`),
+		...meibutsu.map(item => `/meibutsu/${item.id}`),
 	];
 
 	const urls = paths.map(path => `\t<url><loc>${escapeXml(encodeURI(`${SITE_URL}${path}`))}</loc></url>`);

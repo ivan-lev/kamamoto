@@ -73,7 +73,7 @@ if (token) {
 Слайс админки хранит `list`, `<entity>ToEdit` и `isExisting<Entity>Edited`. Отсюда два режима формы: «Создать/Очистить» и «Сохранить/Удалить». На время запроса форма блокируется через `inert={ isFormDisabled }`, результат показывается в `saveMessage`, который сбрасывается через 3 секунды.
 Хорошие свежие образцы: `admin/CeramicStyles/*`, `admin/Potters/*`, `admin/Dictionary/*`, `admin/Markers/*`.
 
-## Статьи (стили керамики, LNT-гончары)
+## Статьи (стили керамики, LNT-гончары, вещи с именем)
 
 - Структура данных: `article: { content: string (HTML), slides?: { filename, source?, caption? }[] }[]`. Флаг `showArticle` открывает статью публично.
 - Админка: `<ArticleForm entity onChange slidesStorage={{ target, key, emptyKeyHint }} />`. Секции редактируются в tiptap (`RichTextEditor`), слайды загружаются drag'n'drop через `ArticleFormSlidesDropzone`.

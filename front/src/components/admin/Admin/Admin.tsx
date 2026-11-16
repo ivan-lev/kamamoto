@@ -42,6 +42,7 @@ export default function Admin() {
 		// { title: 'Декоратиные приёмы', path: 'features/' },
 		{ title: 'Комплектация', path: 'complectation/' },
 		{ title: 'Гончары', path: 'potters/' },
+		{ title: 'Вещи с именем', path: 'meibutsu/' },
 		{ title: 'Словарь', path: 'dictionary/' },
 		{ title: 'Карта', path: 'map/' },
 	];

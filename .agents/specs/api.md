@@ -23,6 +23,7 @@
 | `GET /ceramic-styles/` | иначе (в том числе без заголовка!) | `is-admin: false` |
 | `GET /exhibitions/` | заголовок не используется: с токеном | без токена |
 | `GET /potters/` | всегда | никогда |
+| `GET /meibutsu/` | всегда | никогда |
 | `GET /exhibits/` (только с токеном) | всегда | никогда |
 
 Фронтовые `api.*.getX(isAdmin = false)` всегда отправляют заголовок явно (`'true'` или `'false'`), так что на практике всё работает. В новом коде использовать форму `req.headers['is-admin'] === 'true'`.
@@ -87,6 +88,20 @@ Body лота: `category`, `style`, `potter` передаются **строка
 | DELETE | `/:id` | `id` | удалённый документ |
 
 Гончар с `id: 'lnt'` будет перекрыт роутом `/lnt`.
+
+## Meibutsu — вещи с именем `/meibutsu`
+
+| Метод | Путь | Валидатор | Ответ |
+|---|---|---|---|
+| GET | `/` | — | все записи, сырые имена файлов (для админки), сортировка по `name` |
+| GET | `/articles` | — | `[{ id, name, photo: URL }]` для `showArticle: true` (карточки списка `/meibutsu/`) |
+| GET | `/:id` | `id` строка | полный документ, `photo` и слайды → URL. `showArticle: false` или нет записи → 404 **с пустым телом** |
+| POST | `/` | `meibutsuValidator` | 201, созданная запись без `_id` |
+| PATCH | `/:id` | `meibutsuIdValidator` (body не валидируется) | 200, плюс чистка удалённых слайдов и заменённого фото с диска |
+| DELETE | `/:id` | `id` строка | удалённый документ |
+
+`id` — `[a-z0-9-]+` (адрес статьи `/meibutsu/<id>` и папка в `static/meibutsu/<id>/`), `name` — русское название (≥ 3 символов, unique), `photo` — `*.jpg/webp` или `''`, `info` — HTML, `showArticle` — публикация статьи.
+Запись с `id: 'articles'` открыть нельзя (перекрыта статическим роутом).
 
 ## Exhibitions — выставки `/exhibitions`
 
@@ -158,7 +173,7 @@ PATCH удаляет с диска прежнюю картинку, если `im
 ## Uploads `/uploads`
 
 `POST /slides/:target/:key`, multipart, поле `files` (до 30 файлов по 20 МБ, image/jpeg|png|webp|avif|gif).
-`target` ∈ `SLIDES_TARGETS` (`ceramic-styles`, `potters`), `key` — `[\w-]+`.
+`target` ∈ `SLIDES_TARGETS` (`ceramic-styles`, `meibutsu`, `potters`), `key` — `[\w-]+`.
 Ответ 201: `[{ filename, url }]`. `filename` уже транслитерирован и уникален в папке, в статью записывается именно он.
 
 `POST /gallery/:target/:key`, multipart, поле `files` (лимиты и форматы — как у слайдов) — фото записи в её папку.
@@ -168,7 +183,8 @@ PATCH удаляет с диска прежнюю картинку, если `im
 `POST /images/:target` и `POST /images/:target/:key`, multipart, одно поле `file` (20 МБ) — одиночная картинка записи в `/static/<папка раздела>/<файл>` или, для разделов с `hasKey`, в `/static/<папка раздела>/<key>/<файл>` (`key` — `[\w-]+`; лишний или недостающий `key` → 400).
 `target` ∈ `IMAGE_TARGETS` (`back/src/utils/images.ts`):
 - `dictionary` — без `key`, jpeg|webp (как в `termValidator`), фронт шлёт имя = `id` термина;
-- `ceramic-styles` — `key` = `name` стиля, jpeg|webp|svg (тхумб — jpg/webp, карта — svg; поле↔формат проверяет `ceramicStyleValidator`), фронт шлёт имя = `name` стиля → `bizen.webp`, `bizen.svg`. Заменённые тхумб и карту `PATCH /ceramic-styles/:name` удаляет с диска (если имя стиля не менялось).
+- `ceramic-styles` — `key` = `name` стиля, jpeg|webp|svg (тхумб — jpg/webp, карта — svg; поле↔формат проверяет `ceramicStyleValidator`), фронт шлёт имя = `name` стиля → `bizen.webp`, `bizen.svg`. Заменённые тхумб и карту `PATCH /ceramic-styles/:name` удаляет с диска (если имя стиля не менялось);
+- `meibutsu` — `key` = `id` вещи, jpeg|webp (фото вещи, как в `meibutsuValidator`), фронт шлёт имя = `id`. Заменённое фото `PATCH /meibutsu/:id` удаляет с диска (если id не менялся).
 
 Имя файла в multipart — желаемое имя. Ответ 201: `{ filename, url }`, запись в БД фронт сохраняет отдельным запросом.
 

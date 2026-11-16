@@ -6,6 +6,7 @@ import { exhibitions } from '@/utils/api/api.exhibitions';
 import { exhibits } from '@/utils/api/api.exhibits';
 import { letters } from '@/utils/api/api.letters';
 import { maps } from '@/utils/api/api.maps';
+import { meibutsu } from '@/utils/api/api.meibutsu';
 import { partners } from '@/utils/api/api.partners';
 import { potters } from '@/utils/api/api.potters';
 import { searchApi } from '@/utils/api/api.search';
@@ -22,6 +23,7 @@ export const api = {
 	exhibits,
 	letters,
 	maps,
+	meibutsu,
 	partners,
 	potters,
 	search: searchApi,

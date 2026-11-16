@@ -11,6 +11,7 @@ MongoDB 8. База `DB_NAME`, аутентификация через `authSour
 | Категория | `category` → `categories` | `name` (unique) | `/collection/<name>/` | `categories/<thumbnail>`, `categories/<name>/og.jpg` |
 | Стиль керамики | `style` → `styles` | `name` (unique, `[a-z-]+`) | `/ceramic-styles/<name>` | `ceramic-styles/<name>/<thumbnail>`, `.../<mapImage>.svg`, `.../slides/*`, `.../og.jpg` или `og.webp` (не в БД, `/uploads/og`) |
 | Гончар | `potter` → `potters` | `id: string` (unique, латиница) | `/lnt-potters/<id>` | `potters/<id>/<photo>`, `potters/<id>/slides/*`, `potters/<id>/og.jpg` |
+| Вещь с именем | `meibutsu` → `meibutsus` | `id: string` (unique, `[a-z0-9-]+`) | `/meibutsu/<id>` | `meibutsu/<id>/<photo>`, `meibutsu/<id>/slides/*`, `meibutsu/<id>/og.jpg` |
 | Выставка | `exhibition` → `exhibitions` | `id: number` (unique, > 0) | `/exhibitions/<id>` | `exhibitions/<id>/<photos[]>`, `exhibitions/<id>/<poster>`, `exhibitions/<id>/og.jpg` |
 | Термин словаря | `term` → `terms` | `id: string` (`[a-z0-9-]+`) | `/dictionary` (якоря) | `dictionary/<image>` |
 | Маркер карты | `marker` → `markers` | `_id` | `/map` | `map/<image>` |
@@ -42,7 +43,7 @@ MongoDB 8. База `DB_NAME`, аутентификация через `authSour
 | `season` | `'весна' \| 'лето' \| 'осень' \| 'зима'` | в схеме — просто String |
 | `isActive` | boolean | default false. Неактивный лот не показывается на сайте, но есть в `GET /exhibits/` |
 
-## Статьи (общая структура для `style`, `potter`, `feature`)
+## Статьи (общая структура для `style`, `potter`, `meibutsu`, `feature`)
 
 ```ts
 showArticle: boolean;                       // публикация статьи
@@ -59,6 +60,7 @@ article: {
 - **category**: `name` (unique), `title` (unique, строчными: «чаши»), `thumbnail`. Сейчас 8 категорий: bowls, caddies, cups, other, plates, teapots, vases, archive. Фронт берёт список и заголовки из API, своей копии у него нет.
 - **style**: `name`, `title` (unique), `description` (HTML, показывается в карточке лота), `thumbnail`, `mapImage` (svg-миникарта), `showArticle`, `article`.
 - **potter**: `id`, `name` (unique), `japaneseName`, `lifeDates`, `photo`, `info` (HTML), `isLNT` (живое национальное сокровище), `showArticle`, `article`.
+- **meibutsu**: `id` (адрес `/meibutsu/<id>` и папка в статику), `name` (unique, русское название вещи), `japaneseName`, `photo` (jpg/webp в `meibutsu/<id>/`), `info` (HTML), `showArticle`, `article`.
 - **exhibition**: `id`, `year`, `dates` (строка), `city`, `address`, `place`, `name`, `link` (URL или ''), `description`, `photos[]`, `poster`, `curators`, `organisators`, `isActive`.
 - **term**: `id`, `title`, `kanji`, `romaji`, `image`, `definition` (HTML), `letter` (первая буква раздела словаря, задаётся вручную).
 - **marker**: `geocode [lat, lng]`, `title`, `kanji`, `romaji`, `info` (HTML), `image`, `isActive`, `groupName`.
@@ -72,7 +74,7 @@ article: {
 | Что | Бэк | Фронт |
 |---|---|---|
 | Группы маркеров | `back/src/variables/markerGroups.ts` (`MARKER_GROUP_NAMES`) | `front/src/components/visitor/Map/markerGroups.ts` (`MARKER_GROUPS` + title + icon) |
-| Цели загрузки слайдов | `back/src/utils/slides.ts` (`SLIDES_TARGETS`) | `slidesStorage.target` в формах админки |
+| Цели загрузки слайдов | `back/src/utils/slides.ts` (`SLIDES_TARGETS`: ceramic-styles, meibutsu, potters) | `slidesStorage.target` в формах админки |
 | Имена папок статики | `back/src/variables/paths.ts` (`PATHS`) | `front/src/variables/variables.ts` (`PATHS`), `MapMarker.tsx` (`/map`) |
 
 ## Работа с данными

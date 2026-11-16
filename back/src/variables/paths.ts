@@ -12,6 +12,7 @@ export const PATHS = Object.freeze({
 	FEATURES: 'features',
 	LETTERS: 'letters',
 	MAPS: 'maps',
+	MEIBUTSU: 'meibutsu',
 	PARTNERS: 'partners',
 	POTTERS: 'potters',
 	LNT_POTTERS: 'lnt-potters',

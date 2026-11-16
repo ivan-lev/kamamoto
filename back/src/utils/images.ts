@@ -4,7 +4,7 @@ import { ERROR_MESSAGES } from '../variables/messages';
 import { PATHS } from '../variables/paths';
 import { isValidSlidesKey } from './slides';
 
-const { CERAMIC_STYLES, DICTIONARY, STATIC_DIR, STATIC_URL } = PATHS;
+const { CERAMIC_STYLES, DICTIONARY, MEIBUTSU, STATIC_DIR, STATIC_URL } = PATHS;
 
 // Разделы с одиночными картинками записи (не слайды статьи). Файл лежит в /static/<папка раздела>/<файл>,
 // а если у раздела hasKey — в папке записи /static/<папка раздела>/<key>/<файл> (key — name стиля и т.п.).
@@ -22,6 +22,13 @@ export const IMAGE_TARGETS = {
 		hasKey: true,
 		mimeRegex: /^image\/(?:jpeg|webp|svg\+xml)$/,
 		wrongTypeMessage: ERROR_MESSAGES.UPLOAD.WRONG_TYPE_JPG_WEBP_SVG,
+	},
+	// фото вещи с именем (meibutsuValidator пропускает только jpg/webp)
+	'meibutsu': {
+		folder: MEIBUTSU,
+		hasKey: true,
+		mimeRegex: /^image\/(?:jpeg|webp)$/,
+		wrongTypeMessage: ERROR_MESSAGES.UPLOAD.WRONG_TYPE_JPG_WEBP,
 	},
 } as const satisfies Record<string, { folder: string; hasKey: boolean; mimeRegex: RegExp; wrongTypeMessage: string }>;
 

@@ -19,6 +19,7 @@ export default function Useful() {
 			{ link: '/japanese-exhibitions', title: 'Японские выставки', thumbnail: '/images/useful/exhibitions/thumbnail.webp' },
 			{ link: '/japanese-societies', title: 'Японские керамические сообщества', thumbnail: '/images/useful/societies.webp' },
 			{ link: '/lnt-potters/', title: 'Живые национальные сокровища', thumbnail: '/images/useful/lnt.webp' },
+			{ link: '/meibutsu/', title: 'Вещи с именем', thumbnail: '/images/dummy.webp' },
 		]));
 
 		return () => {

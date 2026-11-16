@@ -67,7 +67,7 @@ async function updateThing(req: Request, res: Response, next: NextFunction) {
 
 - `POST /api/uploads/slides/:target/:key` (multipart, поле `files`, до 30 файлов по 20 МБ, только jpeg/png/webp/avif/gif). Файлы кладутся в `static/<SLIDES_TARGETS[target]>/<key>/slides/`.
 - Имя файла транслитерируется в латиницу. Существующие файлы **не перезаписываются**, к имени добавляется `-1`, `-2`: картинки кэшируются на год, и под старым именем показывалась бы старая версия.
-- Разрешённые `target` сейчас: `ceramic-styles` (key = `style.name`), `potters` (key = `potter.id`). Как подключить новый раздел — в `recipes.md`.
+- Разрешённые `target` сейчас: `ceramic-styles` (key = `style.name`), `meibutsu` (key = `meibutsu.id`), `potters` (key = `potter.id`). Как подключить новый раздел — в `recipes.md`.
 - При PATCH статьи контроллер вызывает `removeUnusedSlides(target, key, before, after)`: удаляет с диска только файлы, которые были в статье до сохранения и исчезли после. Если в том же PATCH сменился ключ (name/id), слайды не трогаются: они остаются в старой папке и **не переносятся**.
 
 ## HTML страниц и мета-теги (`controllers/pages.ts`)
