@@ -81,7 +81,13 @@ export const defaultExhibit: ExhibitVisitor = {
 	thumbnail: '',
 	age: '',
 	category: { name: 'other', title: '' },
-	style: { name: 'unknown', title: '', description: '', mapImage: '', showArticle: false },
+	style: {
+		name: 'unknown',
+		title: '',
+		description: '',
+		mapImage: '',
+		showArticle: false,
+	},
 	images: [],
 	description: '',
 

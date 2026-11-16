@@ -95,7 +95,9 @@ export default function Partners() {
 		setIsFormDisabled(true);
 		try {
 			const updatedPartner = await api.partners.updatePartner(token, partnerToEdit);
-			dispatch(setPartners(partners.map(partner => updatedPartner._id !== partner._id ? partner : updatedPartner)));
+			dispatch(setPartners(partners.map(partner => updatedPartner._id !== partner._id
+				? partner
+				: updatedPartner)));
 			dispatch(clearPartnerForm());
 			dispatch(setIsExistingPartnerEdited(false));
 			setSaveMessage('Данные обновлены');
@@ -171,7 +173,9 @@ export default function Partners() {
 						<form className="form">
 							<fieldset className="form__fieldset" disabled={ isFormDisabled }>
 								<legend className="form__legend">
-									{ !isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра' }
+									{ !isExistingPartnerEdited
+										? 'Добавить партнёра'
+										: 'Редактировать данные партнёра' }
 								</legend>
 
 								<div className="form__grid">

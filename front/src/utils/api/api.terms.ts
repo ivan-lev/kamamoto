@@ -10,7 +10,9 @@ const {
 async function getTerms(isAdmin = false): Promise<DictionarySection[]> {
 	const response = await fetch(`${BASE_API_URL}/${TERMS}/`, {
 		method: 'GET',
-		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
+		headers: {
+			'is-admin': isAdmin ? 'true' : 'false',
+		},
 	});
 	return checkResponseStatus(response);
 }

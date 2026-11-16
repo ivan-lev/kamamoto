@@ -76,7 +76,9 @@ export default function Compleactation() {
 		setIsFormDisabled(true);
 		try {
 			const response: Complectation = await api.complectation.updateComplectation(token, complectation);
-			setComplectations(complectations.map(item => item.name !== response.name ? item : response));
+			setComplectations(complectations.map(item => item.name !== response.name
+				? item
+				: response));
 			setSaveMessage('Комплектация обновлена');
 		}
 		catch (error) {
@@ -145,7 +147,9 @@ export default function Compleactation() {
 						<form className="form">
 							<fieldset className="form__fieldset" disabled={ isFormDisabled }>
 								<legend className="form__legend">
-									{ !isDataEdited ? 'Добавить комлектацию' : 'Редактировать данные партнёра' }
+									{ !isDataEdited
+										? 'Добавить комлектацию'
+										: 'Редактировать данные партнёра' }
 								</legend>
 
 								<div className="form__grid">

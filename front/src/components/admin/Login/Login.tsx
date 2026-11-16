@@ -66,7 +66,9 @@ export default function Login() {
 		}
 		catch (error) {
 			console.error(error);
-			switch (error instanceof ApiError ? error.status : undefined) {
+			switch (error instanceof ApiError
+				? error.status
+				: undefined) {
 				case 400:
 					setLoginError(LOGIN_MESSAGES.WRONG_EMAIL_FORMAT);
 					break;
@@ -128,7 +130,9 @@ export default function Login() {
 									className={ `login__password-input input ${
 										isMessageSending ? 'input_disabled' : ''
 									}` }
-									type={ !isPasswordShowed ? 'password' : 'text' }
+									type={ !isPasswordShowed
+										? 'password'
+										: 'text' }
 									name="password"
 									id="password"
 									placeholder="Введите пароль"

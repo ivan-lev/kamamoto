@@ -15,7 +15,12 @@ export default function SliderMain({ slides }: Props) {
 	return (
 		<section className="section slider">
 			<Swiper
-				modules={ [Autoplay, EffectFade, Keyboard, Navigation] }
+				modules={ [
+					Autoplay,
+					EffectFade,
+					Keyboard,
+					Navigation,
+				] }
 				keyboard={{ enabled: true, onlyInViewport: true }}
 				navigation={ true }
 				speed={ 1000 }
@@ -31,8 +36,12 @@ export default function SliderMain({ slides }: Props) {
 						<Picture
 							src={ slide }
 							style={ style }
-							fetchpriority={ i === 0 ? 'high' : 'low' }
-							loading={ i === 0 ? 'eager' : 'lazy' }
+							fetchpriority={ i === 0
+								? 'high'
+								: 'low' }
+							loading={ i === 0
+								? 'eager'
+								: 'lazy' }
 							alt="Слайд"
 							additionalClass="slider-main__picture"
 						/>

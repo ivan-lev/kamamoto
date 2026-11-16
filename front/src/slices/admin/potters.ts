@@ -35,7 +35,9 @@ const potters = createSlice({
 		},
 
 		updatePotter: (state, action: { payload: Potter }) => {
-			state.pottersList = state.pottersList.map(potter => potter.id !== action.payload.id ? potter : action.payload);
+			state.pottersList = state.pottersList.map(potter => potter.id !== action.payload.id
+				? potter
+				: action.payload);
 		},
 	},
 });

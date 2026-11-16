@@ -10,7 +10,9 @@ export default defineConfig({
 		VitePluginSvgSpritemap('./src/assets/icons/*.svg'),
 		react(),
 		babel({
-			presets: [reactCompilerPreset()],
+			presets: [
+				reactCompilerPreset(),
+			],
 		}),
 	],
 	server: {

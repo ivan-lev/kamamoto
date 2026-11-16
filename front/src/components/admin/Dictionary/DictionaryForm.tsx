@@ -35,7 +35,9 @@ export default function DictionaryForm({ closeModal }: Props) {
 	const { title, id, kanji, romaji, image, definition, letter } = termToEdit;
 
 	const imagePreviewSrc = pendingImage?.previewUrl
-		?? (image ? `${PATHS.STATIC_URL}/${PATHS.DICTIONARY}/${image}` : undefined);
+		?? (image
+			? `${PATHS.STATIC_URL}/${PATHS.DICTIONARY}/${image}`
+			: undefined);
 
 	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
@@ -45,7 +47,10 @@ export default function DictionaryForm({ closeModal }: Props) {
 	function handleImageSelect(file: File) {
 		if (pendingImage)
 			URL.revokeObjectURL(pendingImage.previewUrl);
-		setPendingImage({ file, previewUrl: URL.createObjectURL(file) });
+		setPendingImage({
+			file,
+			previewUrl: URL.createObjectURL(file),
+		});
 	}
 
 	function clearPendingImage() {
@@ -75,7 +80,9 @@ export default function DictionaryForm({ closeModal }: Props) {
 		if (!pendingImage)
 			return termToEdit;
 
-		const { filename } = await api.uploads.uploadImage(token, PATHS.DICTIONARY, pendingImage.file, { filename: termToEdit.id.trim() });
+		const { filename } = await api.uploads.uploadImage(token, PATHS.DICTIONARY, pendingImage.file, {
+			filename: termToEdit.id.trim(),
+		});
 		const termWithImage = { ...termToEdit, image: filename };
 		dispatch(setTermToEdit(termWithImage));
 		clearPendingImage();
@@ -113,7 +120,9 @@ export default function DictionaryForm({ closeModal }: Props) {
 		try {
 			const updatedTerm = await api.terms.updateTerm(token, await getTermWithUploadedImage(token));
 			const newTermsList = terms.map((term) => {
-				return updatedTerm.id !== term.id ? term : updatedTerm;
+				return updatedTerm.id !== term.id
+					? term
+					: updatedTerm;
 			});
 			dispatch(setTerms(newTermsList));
 			// форма остаётся открытой с сохранёнными данными, чтобы можно было продолжить правку
@@ -159,7 +168,9 @@ export default function DictionaryForm({ closeModal }: Props) {
 		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
 				<legend className="form__legend">
-					{ !isExistingTermEdited ? 'Добавить термин' : 'Редактировать термин' }
+					{ !isExistingTermEdited
+						? 'Добавить термин'
+						: 'Редактировать термин' }
 				</legend>
 
 				<div className="form__grid">

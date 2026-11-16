@@ -29,7 +29,9 @@ export default function ArticleFormSlidesDropzone({ slidesStorage, onUpload }: P
 	}
 
 	async function uploadFiles(fileList: FileList | null) {
-		const files = [...fileList ?? []].filter(file => file.type.startsWith('image/'));
+		const files = [
+			...fileList ?? [],
+		].filter(file => file.type.startsWith('image/'));
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 
 		if (!slidesStorage?.key || !token || !files.length)

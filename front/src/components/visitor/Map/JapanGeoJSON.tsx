@@ -68,7 +68,16 @@ export default function JapanGeoJSON({
 				// ?v= - сброс кэша браузера при пересборке файлов
 				fillLayer = L.geoJSON(
 					collection as GeoJSON.GeoJsonObject,
-					{ style: { fillColor, fillOpacity, color: borderColor, weight: 1.5, renderer }, interactive: false },
+					{
+						style: {
+							fillColor,
+							fillOpacity,
+							color: borderColor,
+							weight: 1.5,
+							renderer,
+						},
+						interactive: false,
+					},
 				).addTo(map);
 
 				return loadGeoJSON('/japan-prefectures-borders.geojson?v=3');
@@ -82,7 +91,15 @@ export default function JapanGeoJSON({
 				// В файле обводок - уникальные дуги, каждая граница рисуется один раз
 				strokeLayer = L.geoJSON(
 					data as GeoJSON.GeoJsonObject,
-					{ style: { color: borderColor, weight, fill: false, renderer }, interactive: false },
+					{
+						style: {
+							color: borderColor,
+							weight,
+							fill: false,
+							renderer,
+						},
+						interactive: false,
+					},
 				).addTo(map);
 			})
 			.catch(error => console.error(error));
@@ -95,7 +112,14 @@ export default function JapanGeoJSON({
 			if (fillLayer)
 				map.removeLayer(fillLayer);
 		};
-	}, [map, url, fillColor, fillOpacity, borderColor, weight]);
+	}, [
+		map,
+		url,
+		fillColor,
+		fillOpacity,
+		borderColor,
+		weight,
+	]);
 
 	return null;
 }

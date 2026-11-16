@@ -70,7 +70,9 @@ export default function PottersForm() {
 		setIsFormDisabled(true);
 		try {
 			const response: Potter = await api.potters.updatePotter(token, potterToEdit);
-			dispatch(setPotters(pottersList.map(potter => potter.id !== response.id ? potter : response)));
+			dispatch(setPotters(pottersList.map(potter => potter.id !== response.id
+				? potter
+				: response)));
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {
@@ -110,7 +112,11 @@ export default function PottersForm() {
 	return (
 		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
-				<legend>{ !isExistingPotterEdited ? 'Добавить гончара' : 'Редактировать гончара' }</legend>
+				<legend>
+					{ !isExistingPotterEdited
+						? 'Добавить гончара'
+						: 'Редактировать гончара' }
+				</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-4">

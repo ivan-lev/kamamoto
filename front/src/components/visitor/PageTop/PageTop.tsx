@@ -17,7 +17,9 @@ export default function PageTop({ title, subtitle, backLink }: Props) {
 			<div className="page-top__breadcrumbs">
 				<Link to={ backLink || '..' } className="link link_navigational" relative="path">
 					<img className="link__icon" src="/__spritemap#sprite-arrow-left-view" alt="иконка" />
-					{ topLevelPaths.includes(location) ? 'На главную' : 'Назад' }
+					{ topLevelPaths.includes(location)
+						? 'На главную'
+						: 'Назад' }
 				</Link>
 			</div>
 

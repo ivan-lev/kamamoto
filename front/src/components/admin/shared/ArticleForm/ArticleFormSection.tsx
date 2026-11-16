@@ -31,13 +31,17 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 		latestArticleRef.current = article;
 	}, [article]);
 
-	const slidesUrl = slidesStorage?.key ? `${PATHS.STATIC_URL}/${slidesStorage.target}/${slidesStorage.key}/slides` : undefined;
+	const slidesUrl = slidesStorage?.key
+		? `${PATHS.STATIC_URL}/${slidesStorage.target}/${slidesStorage.key}/slides`
+		: undefined;
 
 	const headingMatch = content.match(/<h[1-6]>(.*?)<\/h[1-6]>/);
 	const heading = headingMatch?.[1];
 
 	function updateSectionText(value: string) {
-		const newArticleData = article.map((section, index) => index === sectionIndex ? { ...section, content: value } : section);
+		const newArticleData = article.map((section, index) => index === sectionIndex
+			? { ...section, content: value }
+			: section);
 		onArticleChange(newArticleData);
 	};
 
@@ -63,7 +67,9 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 			return;
 
 		const newSlides = slides.toSpliced(fromIndex, 1).toSpliced(toIndex, 0, slides[fromIndex]);
-		const newArticleData = article.map((section, index) => index === sectionIndex ? { ...section, slides: newSlides } : section);
+		const newArticleData = article.map((section, index) => index === sectionIndex
+			? { ...section, slides: newSlides }
+			: section);
 		onArticleChange(newArticleData);
 	}
 
@@ -73,7 +79,11 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 		return {
 			isDragged: draggedSlideIndex === slideIndex,
 			// слайд встанет на место целевого: при движении вниз — после него, вверх — перед ним
-			dropPosition: isDropTarget ? (draggedSlideIndex < slideIndex ? 'after' : 'before') : undefined,
+			dropPosition: isDropTarget
+				? (draggedSlideIndex < slideIndex
+					? 'after'
+					: 'before')
+				: undefined,
 
 			onDragStart: (event: DragEvent<HTMLElement>) => {
 				event.dataTransfer.effectAllowed = 'move';
@@ -112,7 +122,13 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 	function addUploadedSlides(uploadedSlides: UploadedSlide[]) {
 		const newSlides: ArticleSlide[] = uploadedSlides.map(({ filename }) => ({ filename, source: '', caption: '' }));
 		const newArticleData = latestArticleRef.current.map((section, index) => index === sectionIndex
-			? { ...section, slides: [...section.slides ?? [], ...newSlides] }
+			? {
+				...section,
+				slides: [
+					...section.slides ?? [],
+					...newSlides,
+				],
+			}
 			: section);
 		onArticleChange(newArticleData);
 	}
@@ -121,7 +137,9 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 		<div className="form__grid container" style={{ padding: 'var(--gap-24)' }}>
 			<div className="form__row form__row-6">
 				<span>
-					{ `Секция ${sectionIndex + 1}${heading ? `: ${heading}` : ''}` }
+					{ `Секция ${sectionIndex + 1}${heading
+						? `: ${heading}`
+						: ''}` }
 				</span>
 			</div>
 
@@ -147,7 +165,12 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 				</button>
 			</div>
 
-			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
+			<div
+				className="form__row form__row-12"
+				style={{
+					display: isArticleCollapsed ? 'none' : 'flex',
+				}}
+			>
 				<RichTextEditor
 					value={ content }
 					placeholder="текстовая информация"
@@ -155,13 +178,23 @@ export default function ArticleFormSection({ section, sectionIndex, article, onA
 				/>
 			</div>
 
-			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
+			<div
+				className="form__row form__row-12"
+				style={{
+					display: isArticleCollapsed ? 'none' : 'flex',
+				}}
+			>
 				<span>
 					{ `слайды к секции ${sectionIndex + 1}` }
 				</span>
 			</div>
 
-			<div className="form__row form__row-12" style={{ display: isArticleCollapsed ? 'none' : 'flex' }}>
+			<div
+				className="form__row form__row-12"
+				style={{
+					display: isArticleCollapsed ? 'none' : 'flex',
+				}}
+			>
 				{ slides?.map((slide, index) => (
 					<ArticleFormSlide
 						key={ sectionIndex + index.toString() }

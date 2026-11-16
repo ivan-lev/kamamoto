@@ -51,7 +51,10 @@ export default function ExhibitionForm({ closeModal }: Props) {
 
 	function handleChangePhotos(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { name, value } = event.target;
-		dispatch(setExhibitionToDisplay({ ...exhibitionToDisplay, [name]: value.replace(/\s/g, ',').split(',') }));
+		dispatch(setExhibitionToDisplay({
+			...exhibitionToDisplay,
+			[name]: value.replace(/\s/g, ',').split(','),
+		}));
 	};
 
 	function handleCheckBox(event: ChangeEvent<HTMLInputElement>) {
@@ -91,7 +94,9 @@ export default function ExhibitionForm({ closeModal }: Props) {
 		setIsFormDisabled(true);
 		try {
 			const updatedExhibition = await api.exhibitions.updateExhibition(token, exhibitionToDisplay);
-			dispatch(setExhibitionsList(exhibitionsList.map(exhibition => exhibition.id !== exhibitionToDisplay.id ? exhibition : updatedExhibition)));
+			dispatch(setExhibitionsList(exhibitionsList.map(exhibition => exhibition.id !== exhibitionToDisplay.id
+				? exhibition
+				: updatedExhibition)));
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {

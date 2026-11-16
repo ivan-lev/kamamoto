@@ -97,7 +97,9 @@ export default function Letters() {
 						<form className="form">
 							<fieldset className="form__fieldset" disabled={ isFormDisabled }>
 								<legend className="form__field-legend">
-									{ !isExistingPartnerEdited ? 'Добавить партнёра' : 'Редактировать данные партнёра' }
+									{ !isExistingPartnerEdited
+										? 'Добавить партнёра'
+										: 'Редактировать данные партнёра' }
 								</legend>
 								<div className="form__grid">
 									<div className="form__row-10">

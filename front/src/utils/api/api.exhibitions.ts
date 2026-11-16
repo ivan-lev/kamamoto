@@ -14,7 +14,9 @@ function getExhibitions(): Promise<PublicExhibition[]>;
 async function getExhibitions(token?: string): Promise<Exhibition[] | PublicExhibition[]> {
 	const response = await fetch(`${BASE_API_URL}/${EXHIBITIONS}/`, {
 		method: 'GET',
-		headers: token ? { Authorization: `Bearer ${token}` } : {},
+		headers: token
+			? { Authorization: `Bearer ${token}` }
+			: {},
 	});
 	return checkResponseStatus(response);
 }

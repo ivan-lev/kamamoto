@@ -27,26 +27,36 @@ export default function ArticleFormSlide({ slide, slideIndex, sectionIndex, arti
 
 	const previewSrc = filename.startsWith('http')
 		? filename
-		: filename && slidesUrl ? `${slidesUrl}/${filename}` : undefined;
+		: filename && slidesUrl
+			? `${slidesUrl}/${filename}`
+			: undefined;
 
 	function handleChange(event: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = event.target;
-		const newSlidesData = slides?.map((slide, index) => index !== slideIndex ? slide : { ...slide, [name]: value });
+		const newSlidesData = slides?.map((slide, index) => index !== slideIndex
+			? slide
+			: { ...slide, [name]: value });
 		const newSectionData = { content, slides: newSlidesData };
-		const newArticleData = article.map((section, index) => index !== sectionIndex ? section : newSectionData);
+		const newArticleData = article.map((section, index) => index !== sectionIndex
+			? section
+			: newSectionData);
 		onArticleChange(newArticleData);
 	}
 
 	function handleDeleteSlide() {
 		const newSlidesData = slides?.filter((_slide, index) => index !== slideIndex);
 		const newSectionData = { content, slides: newSlidesData || [] };
-		const newArticleData = article.map((section, index) => index !== sectionIndex ? section : newSectionData);
+		const newArticleData = article.map((section, index) => index !== sectionIndex
+			? section
+			: newSectionData);
 		onArticleChange(newArticleData);
 	}
 
 	return (
 		<div
-			className={ `form__row form__row-12 form__row-12--inline slide-row${drag.isDragged ? ' slide-row--dragged' : ''}${drag.dropPosition ? ` slide-row--drop-${drag.dropPosition}` : ''}` }
+			className={ `form__row form__row-12 form__row-12--inline slide-row${drag.isDragged ? ' slide-row--dragged' : ''}${drag.dropPosition
+				? ` slide-row--drop-${drag.dropPosition}`
+				: ''}` }
 			onDragOver={ drag.onDragOver }
 			onDrop={ drag.onDrop }
 		>

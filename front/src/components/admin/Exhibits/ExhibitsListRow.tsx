@@ -28,7 +28,9 @@ export default function ExhibitsListRow({ exhibit, setShowModal }: Props) {
 			const response = await api.exhibits.toggleExhibitActiveState(token || '', { ...exhibit, isActive: !exhibit.isActive });
 
 			const newExhibitsList = exhibits.map((exhibit) => {
-				return response.id !== exhibit.id ? exhibit : response;
+				return response.id !== exhibit.id
+					? exhibit
+					: response;
 			});
 			dispatch(setExhibits(newExhibitsList));
 		}

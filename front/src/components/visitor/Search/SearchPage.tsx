@@ -54,7 +54,9 @@ export default function SearchPage() {
 	// запрос из URL ещё не подтверждён результатом — значит, идёт загрузка
 	// (пустое состояние без запроса и загрузка вычисляются, а не пишутся в эффекте)
 	const isStale = loadedQuery !== confirmedQuery;
-	const viewStatus: Status = confirmedQuery === '' ? 'idle' : (isStale ? 'loading' : status);
+	const viewStatus: Status = confirmedQuery === ''
+		? 'idle'
+		: (isStale ? 'loading' : status);
 
 	useEffect(() => scrollToTop(), []);
 

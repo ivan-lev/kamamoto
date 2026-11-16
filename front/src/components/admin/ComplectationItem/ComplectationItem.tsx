@@ -17,12 +17,17 @@ export default function ComplectationItem({ complectation }: Props) {
 			dispatch(setExhibitToEdit({ ...exhibitToEdit, complectation: newComplectation }));
 		}
 		else {
-			dispatch(setExhibitToEdit({ ...exhibitToEdit, complectation: [...exhibitComplectationArray, complectation.name] }));
+			dispatch(setExhibitToEdit({
+				...exhibitToEdit,
+				complectation: [...exhibitComplectationArray, complectation.name],
+			}));
 		}
 	};
 	return (
 		<span
-			className={ `complectation ${exhibitToEdit.complectation?.includes(complectation.name) ? 'active' : ''}` }
+			className={ `complectation ${exhibitToEdit.complectation?.includes(complectation.name)
+				? 'active'
+				: ''}` }
 			onClick={ onClick }
 		>
 			{ complectation.title }

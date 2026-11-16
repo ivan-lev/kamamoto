@@ -63,8 +63,11 @@ export default function SortableTags({ items, onChange, previewBaseUrl, children
 			classNames.push('sortable-tags__item--dragged');
 
 		// тег встанет на место целевого: при движении вперёд — после него, назад — перед ним
-		if (draggedIndex !== null && dropTargetIndex === index && draggedIndex !== index)
-			classNames.push(`sortable-tags__item--drop-${draggedIndex < index ? 'after' : 'before'}`);
+		if (draggedIndex !== null && dropTargetIndex === index && draggedIndex !== index) {
+			classNames.push(`sortable-tags__item--drop-${draggedIndex < index
+				? 'after'
+				: 'before'}`);
+		}
 
 		return classNames.join(' ');
 	}

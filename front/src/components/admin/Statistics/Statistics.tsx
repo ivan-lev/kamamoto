@@ -4,7 +4,16 @@ import Preloader from '@/components/shared/Preloader/Preloader';
 import { api } from '@/utils/api/api';
 import './Statistics.scss';
 
-const defaultStatistics: StatisticsType = { exhibits: 0, exhibitions: 0, categories: 0, partners: 0, letters: 0, articles: 0, terms: 0, mapPins: 0 };
+const defaultStatistics: StatisticsType = {
+	exhibits: 0,
+	exhibitions: 0,
+	categories: 0,
+	partners: 0,
+	letters: 0,
+	articles: 0,
+	terms: 0,
+	mapPins: 0,
+};
 
 export default function Statistics() {
 	const [statistics, setStatistics] = useState<StatisticsType>(defaultStatistics);

@@ -30,7 +30,13 @@ export default function CeramicStyleFormView() {
 
 	function handleImageSelect(slot: StyleImageSlot, file: File) {
 		clearPendingImage(slot);
-		setPendingImages(images => ({ ...images, [slot]: { file, previewUrl: URL.createObjectURL(file) } }));
+		setPendingImages(images => ({
+			...images,
+			[slot]: {
+				file,
+				previewUrl: URL.createObjectURL(file),
+			},
+		}));
 	}
 
 	function clearPendingImage(slot: StyleImageSlot) {
@@ -108,7 +114,11 @@ export default function CeramicStyleFormView() {
 				await saveOgImage(token, response.name);
 
 				const newCeramicStylesListData: CeramicStyle[] = [...ceramicStylesList, response];
-				newCeramicStylesListData.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+				newCeramicStylesListData.sort((a, b) => (a.title > b.title)
+					? 1
+					: ((b.title > a.title)
+						? -1
+						: 0));
 
 				dispatch(setCeramicStyles(newCeramicStylesListData));
 				dispatch(clearCeramicStyleForm());
@@ -130,7 +140,9 @@ export default function CeramicStyleFormView() {
 			try {
 				const response = await api.ceramicStyles.updateCeramicStyle(token, await getStyleWithUploadedImages(token), initialStyleName.current);
 				await saveOgImage(token, response.name);
-				const updatedStylesList = ceramicStylesList.map(style => style.name !== initialStyleName.current ? style : response);
+				const updatedStylesList = ceramicStylesList.map(style => style.name !== initialStyleName.current
+					? style
+					: response);
 
 				dispatch(setCeramicStyles(updatedStylesList));
 				setIsFormDisabled(false);

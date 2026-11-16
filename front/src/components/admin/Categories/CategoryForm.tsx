@@ -62,7 +62,9 @@ export default function CategoryForm({ closeModal }: Props) {
 		setIsFormDisabled(true);
 		try {
 			const updatedCategory = await api.categories.updateCategory(token, { name, title, thumbnail });
-			dispatch(setCategories(categories.map(category => category.name === updatedCategory.name ? updatedCategory : category)));
+			dispatch(setCategories(categories.map(category => category.name === updatedCategory.name
+				? updatedCategory
+				: category)));
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {
@@ -107,7 +109,9 @@ export default function CategoryForm({ closeModal }: Props) {
 		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
 				<legend className="form__legend">
-					{ !isExistingCategoryEdited ? 'Добавить категорию' : 'Редактировать категорию' }
+					{ !isExistingCategoryEdited
+						? 'Добавить категорию'
+						: 'Редактировать категорию' }
 				</legend>
 
 				<div className="form__grid">

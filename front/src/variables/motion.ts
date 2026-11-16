@@ -8,7 +8,11 @@ const variants = Object.freeze({
 });
 
 const transitions = Object.freeze({
-	common: { duration: 0.5, delay: 0, ease: [easeOut] },
+	common: {
+		duration: 0.5,
+		delay: 0,
+		ease: [easeOut],
+	},
 });
 
 export const motionSettings = Object.freeze({

@@ -19,7 +19,14 @@ export default function ArticleForm<T extends ArticleEntity>({ entity, onChange,
 	}
 
 	function addArticleSection() {
-		updateArticle(article ? [...article, { content: '', slides: [] }] : [{ content: '', slides: [] }]);
+		updateArticle(article
+			? [
+				...article,
+				{ content: '', slides: [] },
+			]
+			: [
+				{ content: '', slides: [] },
+			]);
 	}
 
 	return (

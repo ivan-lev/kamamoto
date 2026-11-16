@@ -76,7 +76,9 @@ export default function MarkersFormView() {
 		setIsFormDisabled(true);
 		try {
 			const response: Marker = await api.maps.updateMarker(token, markerToEdit);
-			dispatch(setMarkers(markersList.map(marker => marker._id !== response._id ? marker : response)));
+			dispatch(setMarkers(markersList.map(marker => marker._id !== response._id
+				? marker
+				: response)));
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {
@@ -116,7 +118,11 @@ export default function MarkersFormView() {
 	return (
 		<form className="form" inert={ isFormDisabled }>
 			<fieldset className="form__fieldset">
-				<legend>{ !isExistingMarkerEdited ? 'Добавить маркер' : 'Редактировать маркер' }</legend>
+				<legend>
+					{ !isExistingMarkerEdited
+						? 'Добавить маркер'
+						: 'Редактировать маркер' }
+				</legend>
 
 				<div className="form__grid">
 					<div className="form__row form__row-4">

@@ -39,7 +39,9 @@ export default function ExhibitsForm({ closeModal }: Props) {
 	const seasons = ['', 'весна', 'лето', 'осень', 'зима'];
 
 	// фото лежат в папке лота, поэтому без номера их не загрузить и не показать
-	const photosKey = exhibitToEdit.id ? String(exhibitToEdit.id) : undefined;
+	const photosKey = exhibitToEdit.id
+		? String(exhibitToEdit.id)
+		: undefined;
 	const photosUrl = photosKey && `${PATHS.STATIC_URL}/exhibits/${photosKey}`;
 	const photosHint = 'Чтобы добавить фотографии, укажите номер лота';
 
@@ -71,7 +73,9 @@ export default function ExhibitsForm({ closeModal }: Props) {
 		setIsFormDisabled(true);
 		try {
 			const updatedExhibit = await api.exhibits.updateExhibit(token, { ...exhibitToEdit });
-			dispatch(setExhibits(exhibits.map(exhibit => updatedExhibit.id !== exhibit.id ? exhibit : updatedExhibit)));
+			dispatch(setExhibits(exhibits.map(exhibit => updatedExhibit.id !== exhibit.id
+				? exhibit
+				: updatedExhibit)));
 			setSaveMessage('Данные обновлены');
 		}
 		catch (error) {
@@ -114,7 +118,10 @@ export default function ExhibitsForm({ closeModal }: Props) {
 	function handleCategoryChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
 		const categoryTitle = categories.find(category => category.name === value)?.title || '';
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, category: { name: value, title: categoryTitle } }));
+		dispatch(setExhibitToEdit({
+			...exhibitToEdit,
+			category: { name: value, title: categoryTitle },
+		}));
 	};
 
 	function handleSeasonChange(event: ChangeEvent<HTMLSelectElement>) {
@@ -125,13 +132,19 @@ export default function ExhibitsForm({ closeModal }: Props) {
 	function handleStyleChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
 		const styleTitle = styles.find(style => style.name === value)?.title || '';
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, style: { name: value, title: styleTitle } }));
+		dispatch(setExhibitToEdit({
+			...exhibitToEdit,
+			style: { name: value, title: styleTitle },
+		}));
 	};
 
 	function handlePotterChange(event: ChangeEvent<HTMLSelectElement>) {
 		const { value } = event.target;
 		const potterName = pottersList.find(potter => potter.id === value)?.name || '';
-		dispatch(setExhibitToEdit({ ...exhibitToEdit, potter: { name: potterName, id: value } }));
+		dispatch(setExhibitToEdit({
+			...exhibitToEdit,
+			potter: { name: potterName, id: value },
+		}));
 	};
 
 	// загрузка, порядок и удаление фотографий — из GalleryField
@@ -171,7 +184,13 @@ export default function ExhibitsForm({ closeModal }: Props) {
 			load(api.potters.getPotters(), (potters: Potter[]) =>
 				dispatch(setPotters(potters.toSorted((a, b) => a.name.localeCompare(b.name)))));
 		}
-	}, [dispatch, categories.length, styles.length, complectations.length, pottersList.length]);
+	}, [
+		dispatch,
+		categories.length,
+		styles.length,
+		complectations.length,
+		pottersList.length,
+	]);
 
 	return (
 		<form className="form" inert={ isFormDisabled }>

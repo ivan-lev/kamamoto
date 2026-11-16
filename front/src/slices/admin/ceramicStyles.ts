@@ -35,7 +35,9 @@ const ceramicStyles = createSlice({
 		},
 
 		updateCeramicStyle: (state, action: { payload: CeramicStyle }) => {
-			state.ceramicStylesList = state.ceramicStylesList.map(style => style.name !== action.payload.name ? style : action.payload);
+			state.ceramicStylesList = state.ceramicStylesList.map(style => style.name !== action.payload.name
+				? style
+				: action.payload);
 		},
 	},
 });

@@ -11,7 +11,9 @@ const {
 async function getPartners(token?: string): Promise<Partner[]> {
 	const response = await fetch(`${BASE_API_URL}/${PARTNERS}/`, {
 		method: 'GET',
-		headers: token ? { Authorization: `Bearer ${token}` } : {},
+		headers: token
+			? { Authorization: `Bearer ${token}` }
+			: {},
 	});
 	return checkResponseStatus(response);
 }

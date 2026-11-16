@@ -32,7 +32,9 @@ export default function ImageDropzone({ label = 'Картинка', rowClassName
 
 	const formats = mimeTypes.map(type => type.replace('image/', '').replace('jpeg', 'jpg').replace('+xml', '')).join(', ');
 	const sizeText = size && `${size.width} × ${size.height}`;
-	const previewClassName = `image-dropzone__preview${previewFit === 'contain' ? ' image-dropzone__preview--contain' : ''}`;
+	const previewClassName = `image-dropzone__preview${previewFit === 'contain'
+		? ' image-dropzone__preview--contain'
+		: ''}`;
 
 	// Размер узнаём у браузера: он декодирует картинку сам, без библиотек
 	async function getSizeError(file: File) {
@@ -53,7 +55,9 @@ export default function ImageDropzone({ label = 'Картинка', rowClassName
 	}
 
 	async function selectFile(fileList: FileList | null) {
-		const files = [...fileList ?? []];
+		const files = [
+			...fileList ?? [],
+		];
 		if (!files.length)
 			return;
 
@@ -118,7 +122,9 @@ export default function ImageDropzone({ label = 'Картинка', rowClassName
 						accept={ mimeTypes.join(',') }
 						onChange={ handleFileInput }
 					/>
-					{ hint || `Перетащите картинку (${formats}${sizeText ? `, ${sizeText}` : ''}) сюда или нажмите, чтобы выбрать` }
+					{ hint || `Перетащите картинку (${formats}${sizeText
+						? `, ${sizeText}`
+						: ''}) сюда или нажмите, чтобы выбрать` }
 				</label>
 			</div>
 

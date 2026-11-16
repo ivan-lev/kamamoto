@@ -18,7 +18,9 @@ async function getExhibitsByCategory(category: string): Promise<DisplayListItem[
 async function getCategories(isAdmin = false): Promise<Category[]> {
 	const response = await fetch(`${BASE_API_URL}/${CATEGORIES}/`, {
 		method: 'GET',
-		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
+		headers: {
+			'is-admin': isAdmin ? 'true' : 'false',
+		},
 	});
 	return checkResponseStatus(response);
 }

@@ -12,7 +12,9 @@ const {
 async function getCeramicStyles(isAdmin = false): Promise<CeramicStyle[]> {
 	const response = await fetch(`${BASE_API_URL}/${CERAMIC_STYLES}/`, {
 		method: 'GET',
-		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
+		headers: {
+			'is-admin': isAdmin ? 'true' : 'false',
+		},
 	});
 	return checkResponseStatus(response);
 }

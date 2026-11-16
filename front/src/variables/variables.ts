@@ -1,8 +1,12 @@
 const mode = import.meta.env.MODE;
 
 export const PATHS = Object.freeze({
-	BASE_API_URL: mode === 'production' ? '/api' : import.meta.env.VITE_BASE_API_DEV_URL,
-	STATIC_URL: mode === 'production' ? '/static' : 'http://localhost:3000/static',
+	BASE_API_URL: mode === 'production'
+		? '/api'
+		: import.meta.env.VITE_BASE_API_DEV_URL,
+	STATIC_URL: mode === 'production'
+		? '/static'
+		: 'http://localhost:3000/static',
 
 	ARTICLES: 'articles',
 	CATEGORIES: 'categories',

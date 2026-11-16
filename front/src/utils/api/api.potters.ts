@@ -11,7 +11,9 @@ const {
 async function getPotters(isAdmin = false): Promise<Potter[]> {
 	const response = await fetch(`${BASE_API_URL}/${POTTERS}/`, {
 		method: 'GET',
-		headers: { 'is-admin': isAdmin ? 'true' : 'false' },
+		headers: {
+			'is-admin': isAdmin ? 'true' : 'false',
+		},
 	});
 	return checkResponseStatus(response);
 }

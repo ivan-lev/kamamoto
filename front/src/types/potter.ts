@@ -12,4 +12,14 @@ export interface Potter {
 	showArticle: boolean;
 }
 
-export const defaultPotter: Potter = { id: '', name: '', japaneseName: '', lifeDates: '', photo: '', info: '', isLNT: false, article: [], showArticle: false };
+export const defaultPotter: Potter = {
+	id: '',
+	name: '',
+	japaneseName: '',
+	lifeDates: '',
+	photo: '',
+	info: '',
+	isLNT: false,
+	article: [],
+	showArticle: false,
+};

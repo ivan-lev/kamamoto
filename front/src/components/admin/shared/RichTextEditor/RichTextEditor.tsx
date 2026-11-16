@@ -31,7 +31,9 @@ const ImageWithClass = Image.extend({
 
 const baseExtensions = [
 	StarterKit.configure({
-		heading: { levels: [2, 3] },
+		heading: {
+			levels: [2, 3],
+		},
 		italic: false,
 		code: false,
 		codeBlock: false,
@@ -55,7 +57,9 @@ function formatHtml(html: string) {
 }
 
 function getEditorHtml(editor: Editor) {
-	return editor.isEmpty ? '' : formatHtml(editor.getHTML());
+	return editor.isEmpty
+		? ''
+		: formatHtml(editor.getHTML());
 }
 
 function Toolbar({ editor, isHtmlMode, onToggleHtmlMode }: { editor: Editor, isHtmlMode: boolean, onToggleHtmlMode: () => void }) {
@@ -95,17 +99,76 @@ function Toolbar({ editor, isHtmlMode, onToggleHtmlMode }: { editor: Editor, isH
 	}
 
 	const buttons = [
-		{ label: 'H2', title: 'Заголовок', isActive: state.isH2, action: () => editor.chain().focus().toggleHeading({ level: 2 }).run() },
-		{ label: 'H3', title: 'Подзаголовок', isActive: state.isH3, action: () => editor.chain().focus().toggleHeading({ level: 3 }).run() },
-		{ label: '¶', title: 'Абзац', isActive: state.isParagraph, action: () => editor.chain().focus().setParagraph().run() },
-		{ label: 'Ж', title: 'Жирный (Ctrl+B)', isActive: state.isBold, action: () => editor.chain().focus().toggleBold().run(), style: { fontWeight: 700 } },
-		{ label: 'К', title: 'Курсив (Ctrl+I)', isActive: state.isItalic, action: () => editor.chain().focus().toggleItalic().run(), style: { fontStyle: 'italic' } },
-		{ label: 'З', title: 'Зачёркнутый (Ctrl+Shift+S)', isActive: state.isStrike, action: () => editor.chain().focus().toggleStrike().run(), style: { textDecoration: 'line-through' } },
-		{ label: 'Ч', title: 'Подчёркнутый (Ctrl+U)', isActive: state.isUnderline, action: () => editor.chain().focus().toggleUnderline().run(), style: { textDecoration: 'underline' } },
-		{ label: '•', title: 'Маркированный список', isActive: state.isBulletList, action: () => editor.chain().focus().toggleBulletList().run() },
-		{ label: '1.', title: 'Нумерованный список', isActive: state.isOrderedList, action: () => editor.chain().focus().toggleOrderedList().run() },
-		{ label: '❝', title: 'Цитата', isActive: state.isBlockquote, action: () => editor.chain().focus().toggleBlockquote().run() },
-		{ label: '🔗', title: 'Ссылка', isActive: state.isLink, action: setLink },
+		{
+			label: 'H2',
+			title: 'Заголовок',
+			isActive: state.isH2,
+			action: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
+		},
+		{
+			label: 'H3',
+			title: 'Подзаголовок',
+			isActive: state.isH3,
+			action: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
+		},
+		{
+			label: '¶',
+			title: 'Абзац',
+			isActive: state.isParagraph,
+			action: () => editor.chain().focus().setParagraph().run(),
+		},
+		{
+			label: 'Ж',
+			title: 'Жирный (Ctrl+B)',
+			isActive: state.isBold,
+			action: () => editor.chain().focus().toggleBold().run(),
+			style: { fontWeight: 700 },
+		},
+		{
+			label: 'К',
+			title: 'Курсив (Ctrl+I)',
+			isActive: state.isItalic,
+			action: () => editor.chain().focus().toggleItalic().run(),
+			style: { fontStyle: 'italic' },
+		},
+		{
+			label: 'З',
+			title: 'Зачёркнутый (Ctrl+Shift+S)',
+			isActive: state.isStrike,
+			action: () => editor.chain().focus().toggleStrike().run(),
+			style: { textDecoration: 'line-through' },
+		},
+		{
+			label: 'Ч',
+			title: 'Подчёркнутый (Ctrl+U)',
+			isActive: state.isUnderline,
+			action: () => editor.chain().focus().toggleUnderline().run(),
+			style: { textDecoration: 'underline' },
+		},
+		{
+			label: '•',
+			title: 'Маркированный список',
+			isActive: state.isBulletList,
+			action: () => editor.chain().focus().toggleBulletList().run(),
+		},
+		{
+			label: '1.',
+			title: 'Нумерованный список',
+			isActive: state.isOrderedList,
+			action: () => editor.chain().focus().toggleOrderedList().run(),
+		},
+		{
+			label: '❝',
+			title: 'Цитата',
+			isActive: state.isBlockquote,
+			action: () => editor.chain().focus().toggleBlockquote().run(),
+		},
+		{
+			label: '🔗',
+			title: 'Ссылка',
+			isActive: state.isLink,
+			action: setLink,
+		},
 	];
 
 	return (
@@ -147,7 +210,10 @@ export default function RichTextEditor({ value, placeholder, onChange }: Props) 
 	const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
 	const editor = useEditor({
-		extensions: [...baseExtensions, Placeholder.configure({ placeholder })],
+		extensions: [
+			...baseExtensions,
+			Placeholder.configure({ placeholder }),
+		],
 		content: value,
 		editorProps: {
 			attributes: { class: 'rich-editor__content description' },

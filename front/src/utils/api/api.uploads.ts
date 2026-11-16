@@ -45,7 +45,9 @@ async function uploadImage(token: string, target: string, file: File, { filename
 	const formData = new FormData();
 	formData.append('file', file, filename || file.name);
 
-	const keyPath = key ? `/${encodeURIComponent(key)}` : '';
+	const keyPath = key
+		? `/${encodeURIComponent(key)}`
+		: '';
 	const response = await fetch(`${BASE_API_URL}/${UPLOADS}/images/${target}${keyPath}`, {
 		method: 'POST',
 		headers: { Authorization: `Bearer ${token}` },

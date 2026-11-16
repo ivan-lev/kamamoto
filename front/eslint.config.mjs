@@ -9,8 +9,18 @@ export default antfu({
 
 	rules: {
 		'eslint-comments/no-unlimited-disable': 'off',
-		'no-underscore-dangle': ['error', { allow: ['_id'] }],
-		'regexp/no-obscure-range': ['error', { allowed: ['alphanumeric', 'а-я'] }],
+		'no-underscore-dangle': [
+			'error',
+			{
+				allow: ['_id'],
+			},
+		],
+		'regexp/no-obscure-range': [
+			'error',
+			{
+				allowed: ['alphanumeric', 'а-я'],
+			},
+		],
 		// any отключает проверку типов: опечатка в поле молча даёт undefined. Нужен «любой» тип — unknown + проверка
 		'ts/no-explicit-any': 'error',
 		'@stylistic/no-mixed-spaces-and-tabs': 'error',
@@ -19,32 +29,48 @@ export default antfu({
 		'@stylistic/indent': ['error', 'tab'],
 		'@stylistic/indent-binary-ops': ['error', 'tab'],
 		'@stylistic/jsx-indent-props': ['error', 'tab'],
-		'@stylistic/jsx-curly-spacing': ['error', { when: 'always', children: true, spacing: { objectLiterals: 'never' } }],
-		'@stylistic/jsx-one-expression-per-line': ['warn', { allow: 'single-child' }],
-		'@stylistic/no-tabs': ['error', { allowIndentationTabs: true }],
+		'@stylistic/jsx-curly-spacing': [
+			'error',
+			{
+				when: 'always',
+				children: true,
+				spacing: { objectLiterals: 'never' },
+			},
+		],
+		'@stylistic/jsx-one-expression-per-line': [
+			'warn',
+			{ allow: 'single-child' },
+		],
+		'@stylistic/no-tabs': [
+			'error',
+			{ allowIndentationTabs: true },
+		],
 		'@stylistic/semi': ['error', 'always'],
-		'@stylistic/member-delimiter-style': ['error', {
-			multiline: {
-				delimiter: 'comma',
-				requireLast: true,
-			},
-			singleline: {
-				delimiter: 'comma',
-				requireLast: false,
-			},
-			overrides: {
-				interface: {
-					multiline: {
-						delimiter: 'semi',
-						requireLast: true,
-					},
-					singleline: {
-						delimiter: 'semi',
-						requireLast: false,
+		'@stylistic/member-delimiter-style': [
+			'error',
+			{
+				multiline: {
+					delimiter: 'comma',
+					requireLast: true,
+				},
+				singleline: {
+					delimiter: 'comma',
+					requireLast: false,
+				},
+				overrides: {
+					interface: {
+						multiline: {
+							delimiter: 'semi',
+							requireLast: true,
+						},
+						singleline: {
+							delimiter: 'semi',
+							requireLast: false,
+						},
 					},
 				},
 			},
-		}],
+		],
 	},
 
 	overrides: {

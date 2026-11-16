@@ -22,7 +22,12 @@ export default function Dictionary() {
 		? terms
 		: terms.filter((term) => {
 			// бэк отдаёт термины через lean(), дефолты схемы не подставляются — у старых записей поля может не быть
-			return [term.title, term.letter, term.id, term.romaji]
+			return [
+				term.title,
+				term.letter,
+				term.id,
+				term.romaji,
+			]
 				.some(field => (field ?? '').toLowerCase().includes(normalizedQuery))
 				|| (term.kanji ?? '').includes(query.trim());
 		});

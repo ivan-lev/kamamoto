@@ -17,7 +17,9 @@ function getText(node: ChildNode): string {
 	if (node instanceof Text) {
 		return node.data;
 	}
-	return isElement(node) ? node.children.map(child => getText(child)).join('') : '';
+	return isElement(node)
+		? node.children.map(child => getText(child)).join('')
+		: '';
 }
 
 function isSourcesList(node: Element) {
@@ -51,11 +53,15 @@ export const htmlParserOptions: HTMLReactParserOptions = {
 			}
 
 			else if (['ul', 'ol'].includes(name)) {
-				attribs.class = isSourcesList(domNode) ? 'list list--sources' : 'list';
+				attribs.class = isSourcesList(domNode)
+					? 'list list--sources'
+					: 'list';
 			}
 
 			else if (name === 'a') {
-				attribs.target = attribs.class === 'self' ? '_self' : '_blank';
+				attribs.target = attribs.class === 'self'
+					? '_self'
+					: '_blank';
 				attribs.class = 'link link_usual';
 			}
 

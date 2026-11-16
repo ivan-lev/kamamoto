@@ -60,7 +60,9 @@ export default function CeramicStyleFormBasicInfo({ pendingImages, ogImage, onIm
 	function getImagePreviewSrc(field: StyleImageField) {
 		const savedImage = ceramicStyleToEdit[field];
 		return pendingImages[field]?.previewUrl
-			?? (savedImage ? `${PATHS.STATIC_URL}/${PATHS.CERAMIC_STYLES}/${name}/${savedImage}` : undefined);
+			?? (savedImage
+				? `${PATHS.STATIC_URL}/${PATHS.CERAMIC_STYLES}/${name}/${savedImage}`
+				: undefined);
 	}
 
 	function getImageHint(slot: StyleImageSlot) {

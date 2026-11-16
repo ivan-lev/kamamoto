@@ -37,7 +37,9 @@ export default function GalleryField({ items, onChange, target, uploadKey, empty
 	const isDisabled = !uploadKey || isUploading;
 
 	async function uploadFiles(fileList: FileList | null) {
-		const files = [...fileList ?? []].filter(file => file.type.startsWith('image/'));
+		const files = [
+			...fileList ?? [],
+		].filter(file => file.type.startsWith('image/'));
 		const token = storage.get<string>(STORAGE_KEYS.TOKEN);
 
 		if (!uploadKey || !token || !files.length)
@@ -48,7 +50,10 @@ export default function GalleryField({ items, onChange, target, uploadKey, empty
 
 		try {
 			const uploadedImages = await api.uploads.uploadGallery(token, target, uploadKey, files);
-			latestOnChangeRef.current([...latestItemsRef.current, ...uploadedImages.map(({ filename }) => filename)]);
+			latestOnChangeRef.current([
+				...latestItemsRef.current,
+				...uploadedImages.map(({ filename }) => filename),
+			]);
 		}
 		catch (error) {
 			setErrorMessage(getErrorMessage(error, ERROR_MESSAGES.UPLOAD));
@@ -108,7 +113,9 @@ export default function GalleryField({ items, onChange, target, uploadKey, empty
 		>
 			<SortableTags items={ items } onChange={ onChange } previewBaseUrl={ previewBaseUrl }>
 				<label
-					className={ `gallery-field__add${isDragOver && !isDisabled ? ' gallery-field__add--active' : ''}${isDisabled ? ' gallery-field__add--disabled' : ''}` }
+					className={ `gallery-field__add${isDragOver && !isDisabled
+						? ' gallery-field__add--active'
+						: ''}${isDisabled ? ' gallery-field__add--disabled' : ''}` }
 					title={ uploadKey ? 'Перетащите изображения сюда или нажмите, чтобы выбрать' : emptyKeyHint }
 				>
 					<input

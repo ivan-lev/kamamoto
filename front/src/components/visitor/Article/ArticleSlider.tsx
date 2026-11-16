@@ -56,8 +56,12 @@ export default function SliderArticle({ slides }: Props) {
 										src={ slide.filename }
 										alt={ slide.caption || 'Слайд' }
 										style={ style }
-										fetchpriority={ i === 0 ? 'high' : 'low' }
-										loading={ i === 0 ? 'eager' : 'lazy' }
+										fetchpriority={ i === 0
+											? 'high'
+											: 'low' }
+										loading={ i === 0
+											? 'eager'
+											: 'lazy' }
 									/>
 
 									{ slide.source && (
