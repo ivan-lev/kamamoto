@@ -9,4 +9,6 @@ export const MARKER_GROUP_NAMES = Object.freeze([
 	'prefecture',
 	'capital',
 	'city',
+	'town',
+	'village',
 ]);

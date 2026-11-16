@@ -16,6 +16,8 @@ const ZOOM_FROM: Record<string, number> = {
 	capital: 5,
 	prefecture: 8,
 	city: 9,
+	town: 9,
+	village: 9,
 };
 
 const POINT_GROUP_NAMES = ['capital', 'prefecture', 'city'] as const;
@@ -58,6 +60,12 @@ export default function MapPoints({ groups }: Props) {
 	useEffect(() => {
 		let layer: L.LayerGroup | undefined;
 
+		// отдельная панель с зумом ниже маркерной (600): точки карты
+		// всегда под маркерами печей с иконками
+		if (!map.getPane('map-points-pane')) {
+			map.createPane('map-points-pane').style.zIndex = '550';
+		}
+
 		const rebuild = () => {
 			if (!layer)
 				return;
@@ -72,6 +80,7 @@ export default function MapPoints({ groups }: Props) {
 					// подпись названия префектуры: смещение текста относительно
 					// точки правится в css (.map-label__text -> transform)
 					L.marker(p.geocode, {
+						pane: 'map-points-pane',
 						icon: L.divIcon({
 							className: 'map-label map-label--prefecture',
 							html: `<span class="map-label__text">${p.title || p.kanji || ''}</span>`,
@@ -92,6 +101,7 @@ export default function MapPoints({ groups }: Props) {
 						: 8;
 
 					L.marker(p.geocode, {
+						pane: 'map-points-pane',
 						icon: L.divIcon({
 							className: `map-label map-label--${p.kind}`,
 							html: `<i class="map-label__dot"></i><span class="map-label__text">${p.title || p.romaji || ''}</span>`,

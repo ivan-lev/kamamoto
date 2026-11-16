@@ -13,4 +13,6 @@ export const MARKER_GROUPS: MarkerGroupConfig[] = [
 	{ groupName: 'prefecture', title: 'Названия префектур' },
 	{ groupName: 'capital', title: 'Столицы' },
 	{ groupName: 'city', title: 'Города' },
+	{ groupName: 'town', title: 'Посёлки' },
+	{ groupName: 'village', title: 'Деревни' },
 ];

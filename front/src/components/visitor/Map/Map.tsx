@@ -106,7 +106,9 @@ export default function Map() {
 								<MapPoints groups={ groups } />
 
 								<LayersControl position="topright" collapsed={ false }>
-									{ MARKER_GROUPS.map(group => (
+									{ /* сервисные группы точек (prefecture/capital/city/town/village) без icon
+									    рендерятся MapPoints без тултипов - в слои-маркеры их не включаем */ }
+									{ MARKER_GROUPS.filter(group => group.icon).map(group => (
 										<MapGroup
 											key={ group.groupName }
 											title={ group.title }

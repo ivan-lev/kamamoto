@@ -90,6 +90,34 @@
 		}
 	}
 
+	// посёлок - пока повторяет стили города
+	.map-label--town {
+		.map-label__dot {
+			width: 8px;
+			height: 8px;
+			background-color: #ff9505;
+		}
+
+		.map-label__text {
+			font-size: 11px;
+			color: var(--color-secondary-060);
+		}
+	}
+
+	// деревня - пока повторяет стили города
+	.map-label--village {
+		.map-label__dot {
+			width: 8px;
+			height: 8px;
+			background-color: #ff9505;
+		}
+
+		.map-label__text {
+			font-size: 11px;
+			color: var(--color-secondary-060);
+		}
+	}
+
 	&__image {
 		aspect-ratio: 3 / 2;
 		width: 100%;
