@@ -22,6 +22,10 @@
 
 	background-color: var(--button-background);
 
+	&__icon {
+		max-width: 100%;
+	}
+
 	&--sending {
 		color: transparent;
 

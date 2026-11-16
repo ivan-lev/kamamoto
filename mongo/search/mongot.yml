@@ -1,0 +1,29 @@
+syncSource:
+  replicaSet:
+    hostAndPort: "mongo:27017"
+    scramAuth:
+      username: mongotUser
+      passwordFile: /etc/mongot/secrets/password
+      authSource: admin
+      tls:
+        enabled: false
+
+storage:
+  dataPath: /data/mongot
+
+server:
+  name: mongot-dev
+  grpc:
+    address: "0.0.0.0:27028"
+    tls:
+      mode: disabled # только внутри docker-сети, без внешнего доступа
+
+metrics:
+  enabled: true
+  address: "0.0.0.0:8081"
+
+healthCheck:
+  address: "0.0.0.0:8080"
+
+logging:
+  verbosity: INFO

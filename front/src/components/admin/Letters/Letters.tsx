@@ -67,7 +67,7 @@ export default function Letters() {
 					<Preloader />
 				)
 				: (
-					<section className="container container--background-transparent admin-partners">
+					<>
 						<h1 className="title title--1">Благодарственные письма (в разработке)</h1>
 
 						<div className="table">
@@ -221,7 +221,7 @@ export default function Letters() {
 								</div>
 							</fieldset>
 						</form>
-					</section>
+					</>
 				) }
 		</>
 	);

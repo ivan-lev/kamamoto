@@ -8,6 +8,7 @@ import { letters } from '@/utils/api/api.letters';
 import { maps } from '@/utils/api/api.maps';
 import { partners } from '@/utils/api/api.partners';
 import { potters } from '@/utils/api/api.potters';
+import { searchApi } from '@/utils/api/api.search';
 import { statistics } from '@/utils/api/api.statistics';
 import { terms } from '@/utils/api/api.terms';
 import { uploads } from '@/utils/api/api.uploads';
@@ -23,6 +24,7 @@ export const api = {
 	maps,
 	partners,
 	potters,
+	search: searchApi,
 	statistics,
 	terms,
 	uploads,

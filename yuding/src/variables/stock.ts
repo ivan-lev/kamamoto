@@ -4,7 +4,7 @@ export const stock: Stock = {
 	baieido: {
 		'bikou-kobunboku': 0,
 		'kobunboku': 0,
-		'kaden-kobunboku': 20,
+		'kaden-kobunboku': 0,
 		'shu-koh-koku': 100,
 		'sawayaka-kobunboku': 85,
 	},
@@ -24,13 +24,13 @@ export const stock: Stock = {
 		shinnyo: 0,
 	},
 	seijudo: {
-		byakudan: 100,
+		byakudan: 95,
 		jinko: 0,
 	},
 	shoyeido: {
 		'baika-ju': 120,
 		'kyonishiki': 45,
-		'kinkaku': 60,
+		'kinkaku': 30,
 		'madoka': 85,
 	},
 	tennendo: {

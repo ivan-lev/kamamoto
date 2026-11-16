@@ -40,3 +40,7 @@ google*
 # Mongo data directory and local db:pull/db:push backups
 /mongo/db_dump
 /mongo/backups
+
+# MongoDB Search secrets (generated per machine, see mongo/search/README.md)
+/mongo/search/keyfile
+/mongo/search/mongot-password

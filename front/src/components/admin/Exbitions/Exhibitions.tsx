@@ -53,7 +53,7 @@ export default function Exhibitions() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Выставки</h1>
 						<div className="table">
 							<div className="table__row">
@@ -92,7 +92,7 @@ export default function Exhibitions() {
 						<button className="button admin__create-button" onClick={ handleCreateExhibition }>
 							Создать
 						</button>
-					</div>
+					</>
 				) }
 		</>
 	);

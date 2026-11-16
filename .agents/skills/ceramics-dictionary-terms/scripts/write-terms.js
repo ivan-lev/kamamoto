@@ -1,7 +1,7 @@
 // Добавление и правка терминов словаря в локальной базе (коллекция terms).
 // Запуск из корня репозитория через mongosh (значения .env не выводятся):
 //   DRY_RUN=1 TERMS_FILE="$PWD/temp/dictionary-terms/terms.json" \
-//     node_modules/.bin/dotenv -e .env -- bash -c 'mongosh --quiet --host "$DB_HOST" --port "$DB_PORT" -u "$DB_USER" -p "$DB_PASS" --authenticationDatabase admin "$DB_NAME" --file .claude/skills/ceramics-dictionary-terms/scripts/write-terms.js'
+//     node_modules/.bin/dotenv -e .env -- bash -c 'mongosh --quiet --host "$DB_HOST" --port "$DB_PORT" -u "$DB_USER" -p "$DB_PASS" --authenticationDatabase admin "$DB_NAME" --file .agents/skills/ceramics-dictionary-terms/scripts/write-terms.js'
 //
 // Формат TERMS_FILE — массив:
 //   { "action": "insert", "term": { id, title, kanji, romaji, definition, letter } }

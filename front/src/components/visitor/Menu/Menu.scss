@@ -56,6 +56,8 @@
 	&__search {
 		cursor: pointer;
 
+		position: relative;
+
 		width: calc(var(--gap-16) + var(--gap-4));
 		height: calc(var(--gap-16) + var(--gap-4));
 		border: 0;

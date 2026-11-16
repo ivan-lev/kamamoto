@@ -12,7 +12,6 @@
 | `back/` | REST API под `/api` + раздача `/static` | Express 5, Mongoose 9, celebrate/Joi, JWT, multer |
 | `mongo/` | скрипты синхронизации БД local ↔ VPS | bash, mongodump/mongorestore |
 | `static/` | картинки и файлы контента. **Не в git** (есть в `.gitignore`), деплоится отдельно | раздаёт back |
-| `docs/` | документация для людей (Astro Starlight) + changelog версий | Astro |
 | `yuding/` | **побочный проект — не анализировать и не трогать без явной просьбы** | |
 | `Caddyfile`, `docker-compose.yml`, `ops.sh` | прод-инфраструктура на VPS | Caddy, Docker |
 

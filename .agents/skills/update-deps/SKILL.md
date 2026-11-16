@@ -1,6 +1,6 @@
 ---
 name: update-deps
-description: Update npm dependencies, docker-compose image tags, and GitHub Actions versions across this monorepo's workspaces (root, back, front, yuding, docs), syncing package.json ranges to match. Use when the user shares a Renovate Dependency Dashboard issue, asks to update/bump dependencies, or asks to apply Renovate updates.
+description: Update npm dependencies, docker-compose image tags, and GitHub Actions versions across this monorepo's workspaces (root, back, front, yuding), syncing package.json ranges to match. Use when the user shares a Renovate Dependency Dashboard issue, asks to update/bump dependencies, or asks to apply Renovate updates.
 ---
 
 # Update dependencies (kamamoto monorepo)
@@ -24,7 +24,6 @@ This repo has independent `package.json` files (own `node_modules` /
 - `back/` — 2-space
 - `front/` — 2-space
 - `yuding/` — 2-space
-- `docs/` — 2-space
 
 Verify this list still matches reality (`ls */package.json`) before running —
 a new workspace may have been added since this skill was written.

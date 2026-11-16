@@ -17,15 +17,19 @@ export default function Potters() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [query, setQuery] = useState<string>('');
+	const [onlyWithArticle, setOnlyWithArticle] = useState<boolean>(false);
+	const [onlyLNT, setOnlyLNT] = useState<boolean>(false);
 	const dispatch = useDispatch();
 	const pottersList = useSelector((state: RootState) => state.potters.pottersList);
 	const isExistingPotterEdited = useSelector((state: RootState) => state.potters.isExistingPotterEdited);
 
 	const normalizedQuery = query.trim().toLowerCase();
-	const pottersFiltered = normalizedQuery
-		// japaneseName в схеме необязательный, а бэк отдаёт гончаров через lean() — поля может не быть
-		? pottersList.filter(potter => [potter.name, potter.id, potter.japaneseName].some(field => (field ?? '').toLowerCase().includes(normalizedQuery)))
-		: pottersList;
+	// фильтры складываются: гончар должен совпадать и с чекбоксами, и с поиском
+	const pottersFiltered = pottersList
+		.filter(potter => (!onlyWithArticle || potter.showArticle) && (!onlyLNT || potter.isLNT))
+		.filter(potter => !normalizedQuery
+			// japaneseName в схеме необязательный, а бэк отдаёт гончаров через lean() — поля может не быть
+			|| [potter.name, potter.id, potter.japaneseName].some(field => (field ?? '').toLowerCase().includes(normalizedQuery)));
 
 	function handleCloseModal() {
 		setShowModal(false);
@@ -68,14 +72,37 @@ export default function Potters() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
+					<>
 						<h1 className="title title--1">Гончары</h1>
 
 						<Filters
 							query={ query }
 							searchPlaceholder="поиск: имя, id, имя на японском"
 							onQueryChange={ setQuery }
-						/>
+						>
+							<label className="filters__checkbox">
+								<span className={ `checkbox-label ${onlyWithArticle ? 'checkbox-label--checked' : ''}` }>
+									<input
+										className="checkbox-input"
+										type="checkbox"
+										checked={ onlyWithArticle }
+										onChange={ e => setOnlyWithArticle(e.target.checked) }
+									/>
+								</span>
+								Выложена статья
+							</label>
+							<label className="filters__checkbox">
+								<span className={ `checkbox-label ${onlyLNT ? 'checkbox-label--checked' : ''}` }>
+									<input
+										className="checkbox-input"
+										type="checkbox"
+										checked={ onlyLNT }
+										onChange={ e => setOnlyLNT(e.target.checked) }
+									/>
+								</span>
+								LNT
+							</label>
+						</Filters>
 
 						<div className="table">
 							<div className="table__row">
@@ -96,7 +123,7 @@ export default function Potters() {
 						<button className="button admin__create-button" onClick={ () => handleOpenModal() }>
 							Создать
 						</button>
-					</div>
+					</>
 				) }
 		</>
 	);

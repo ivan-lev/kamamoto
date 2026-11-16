@@ -63,8 +63,7 @@ export default function Dictionary() {
 					<Preloader />
 				)
 				: (
-					<div className="container container--background-transparent">
-
+					<>
 						<h1 className="title title--1">Словарь</h1>
 
 						<Filters
@@ -112,7 +111,7 @@ export default function Dictionary() {
 						<button className="button admin__create-button" onClick={ openEmptyTermForm }>
 							Создать
 						</button>
-					</div>
+					</>
 				) }
 		</>
 	);
