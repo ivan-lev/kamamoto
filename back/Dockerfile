@@ -1,5 +1,5 @@
 # make a build of backend app with api
-FROM node:24-alpine
+FROM node:26-alpine
 
 # install curl for diagnostics
 RUN apk add --no-cache curl
