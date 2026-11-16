@@ -96,11 +96,14 @@ export default function Map() {
 								scrollWheelZoom={ true }
 								fadeAnimation={ false }
 								className="leaflet-map"
-								maxBounds={ [[22, 108], [48, 163]] }
+								maxBounds={ [
+									[22, 108],
+									[48, 163],
+								] }
 								maxBoundsViscosity={ 1 }
 							>
 								<JapanGeoJSON />
-								<MapPoints />
+								<MapPoints groups={ groups } />
 
 								<LayersControl position="topright" collapsed={ false }>
 									{ MARKER_GROUPS.map(group => (
@@ -108,7 +111,7 @@ export default function Map() {
 											key={ group.groupName }
 											title={ group.title }
 											markers={ getGroupMarkers(group.groupName) }
-											icon={ group.icon }
+											icon={ group.icon || '' }
 										/>
 									)) }
 								</LayersControl>

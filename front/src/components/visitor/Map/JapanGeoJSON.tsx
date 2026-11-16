@@ -1,5 +1,4 @@
 import L from 'leaflet';
-// components/visitor/Map/JapanGeoJSON.tsx
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 

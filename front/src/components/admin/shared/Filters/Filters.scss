@@ -26,4 +26,13 @@
 			--input-height: var(--gap-16);
 		}
 	}
+
+	&__select {
+		flex-shrink: 0;
+		width: fit-content;
+
+		@media (max-width: 480px) {
+			width: 100%;
+		}
+	}
 }

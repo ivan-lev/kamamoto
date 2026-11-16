@@ -1,7 +1,7 @@
 export interface MarkerGroupConfig {
 	groupName: string;
 	title: string;
-	icon: string;
+	icon?: string;
 }
 
 export const MARKER_GROUPS: MarkerGroupConfig[] = [
@@ -10,4 +10,7 @@ export const MARKER_GROUPS: MarkerGroupConfig[] = [
 	{ groupName: 'traditional-kilns', title: 'Японские традиционные ремёсла', icon: 'marker-deep-saffron' },
 	{ groupName: 'regional-kilns', title: 'Традиционные ремёсла префектур', icon: 'marker-amber-flame' },
 	{ groupName: 'other-kilns', title: 'Другие стили керамики', icon: 'marker-sunflower-gold' },
+	{ groupName: 'prefecture', title: 'Названия префектур' },
+	{ groupName: 'capital', title: 'Столицы' },
+	{ groupName: 'city', title: 'Города' },
 ];

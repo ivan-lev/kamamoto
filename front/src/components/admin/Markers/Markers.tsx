@@ -18,16 +18,29 @@ export default function Markers() {
 	const [showPreloader, setShowPreloader] = useState<boolean>(true);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [query, setQuery] = useState<string>('');
+	const [groupFilter, setGroupFilter] = useState<string>('');
+	const [activeFilter, setActiveFilter] = useState<string>('');
 	const dispatch = useDispatch();
 	const markersList = useSelector((state: RootState) => state.markers.markersList);
 	const isExistingMarkerEdited = useSelector((state: RootState) => state.markers.isExistingMarkerEdited);
 
 	const normalizedQuery = query.trim().toLowerCase();
-	const markersFiltered = normalizedQuery
-		// кандзи и ромадзи в схеме необязательные и без дефолтов — у части маркеров их может не быть
-		? markersList.filter(marker => [marker.title, marker.kanji, marker.romaji, getGroupTitle(marker.groupName)]
-			.some(field => (field ?? '').toLowerCase().includes(normalizedQuery)))
-		: markersList;
+	const markersFiltered = markersList
+		.filter(marker => !groupFilter || marker.groupName === groupFilter)
+		.filter(marker => !activeFilter || String(marker.isActive) === activeFilter)
+		.filter((marker) => {
+			if (!normalizedQuery)
+				return true;
+
+			// кандзи и ромадзи в схеме необязательные и без дефолтов — у части маркеров их может не быть
+			return [
+				marker.title,
+				marker.kanji,
+				marker.romaji,
+				getGroupTitle(marker.groupName),
+			]
+				.some(field => (field ?? '').toLowerCase().includes(normalizedQuery));
+		});
 
 	function getGroupTitle(groupName: string) {
 		return MARKER_GROUPS.find(group => group.groupName === groupName)?.title ?? groupName;
@@ -87,7 +100,31 @@ export default function Markers() {
 							query={ query }
 							searchPlaceholder="поиск: название, кандзи, ромадзи, группа"
 							onQueryChange={ setQuery }
-						/>
+						>
+							<select
+								className="input filters__select"
+								value={ groupFilter }
+								onChange={ e => setGroupFilter(e.target.value) }
+								aria-label="Фильтр по группе"
+							>
+								<option value="">все группы</option>
+								{ MARKER_GROUPS.map(group => (
+									<option key={ group.groupName } value={ group.groupName }>
+										{ group.title }
+									</option>
+								)) }
+							</select>
+							<select
+								className="input filters__select"
+								value={ activeFilter }
+								onChange={ e => setActiveFilter(e.target.value) }
+								aria-label="Фильтр по активности"
+							>
+								<option value="">все статусы</option>
+								<option value="true">активные</option>
+								<option value="false">неактивные</option>
+							</select>
+						</Filters>
 
 						<div className="table">
 							<div className="table__row">
