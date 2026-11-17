@@ -20,7 +20,7 @@ const ZOOM_FROM: Record<string, number> = {
 	village: 9,
 };
 
-const POINT_GROUP_NAMES = ['capital', 'prefecture', 'city'] as const;
+const POINT_GROUP_NAMES = ['capital', 'prefecture', 'city', 'town', 'village'] as const;
 
 interface Props {
 	// группы маркеров, уже загруженные Map.tsx из GET /maps/groups
@@ -91,14 +91,12 @@ export default function MapPoints({ groups }: Props) {
 					}).addTo(layer);
 				}
 				else {
-					// столица и города - точка с постоянным названием рядом:
-					// позиция текста относительно точки правится в css
-					// (.map-label__text -> transform)
-					// iconSize = размеру точки: якорь (центр бокса) совпадает
-					// с центром точки, и она не съезжает с координаты
-					const dotSize = p.kind === 'capital'
-						? 12
-						: 8;
+					// все точки (столица, города, посёлки, деревни) - единый
+					// размер 20x20: iconSize = размеру точки, якорь (центр
+					// бокса) совпадает с центром точки, и она не съезжает
+					// с координаты. Позиция текста относительно точки правится
+					// в css (.map-label__text -> transform)
+					const dotSize = 20;
 
 					L.marker(p.geocode, {
 						pane: 'map-points-pane',

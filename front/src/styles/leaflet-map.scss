@@ -32,26 +32,43 @@
 	// CSS-смещение на .map-label не сработает. Смещай вложенный элемент
 	// (.map-label__text) через transform: translate(...)
 	.map-label {
-		// pointer-events: none;
+		pointer-events: none;
 		display: flex;
 		flex-direction: column-reverse;
 		align-items: center;
 
 		.map-label__dot {
+			display: flex;
 			flex: none;
+			align-items: center;
+			justify-content: center;
+
+			width: 20px;
+			height: 20px;
 			border: 1px solid #26221e;
 			border-radius: 50%;
+
+			&::after {
+				position: absolute;
+				font-weight: bold;
+				font-style: normal;
+				color: black;
+			}
 		}
 
 		.map-label__text {
 			display: inline-block;
+
 			font-family: var(--main-font);
+			font-size: 13px;
+			color: var(--color-secondary-060);
 			white-space: nowrap;
 		}
 	}
 
-	// название префектуры
 	.map-label--prefecture {
+		pointer-events: none;
+
 		.map-label__text {
 			transform: translate(-50%, -50%); // текст по центру точки-координаты
 			font-size: 16px;
@@ -62,59 +79,42 @@
 		}
 	}
 
-	// столица страны
 	.map-label--capital {
 		.map-label__dot {
-			width: 12px;
-			height: 12px;
 			background-color: #ffb627;
-		}
-
-		.map-label__text {
-			font-size: 13px;
-			color: var(--color-secondary-060);
+			&::after {
+				content: '都';
+			}
 		}
 	}
 
-	// кастомный город
 	.map-label--city {
 		.map-label__dot {
-			width: 8px;
-			height: 8px;
 			background-color: #ff9505;
-		}
 
-		.map-label__text {
-			font-size: 11px;
-			color: var(--color-secondary-060);
+			&::after {
+				content: '市';
+			}
 		}
 	}
 
-	// посёлок - пока повторяет стили города
 	.map-label--town {
 		.map-label__dot {
-			width: 8px;
-			height: 8px;
 			background-color: #ff9505;
-		}
 
-		.map-label__text {
-			font-size: 11px;
-			color: var(--color-secondary-060);
+			&::after {
+				content: '町';
+			}
 		}
 	}
 
-	// деревня - пока повторяет стили города
 	.map-label--village {
 		.map-label__dot {
-			width: 8px;
-			height: 8px;
 			background-color: #ff9505;
-		}
 
-		.map-label__text {
-			font-size: 11px;
-			color: var(--color-secondary-060);
+			&::after {
+				content: '村';
+			}
 		}
 	}
 
